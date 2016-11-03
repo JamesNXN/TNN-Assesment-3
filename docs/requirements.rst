@@ -29,17 +29,13 @@ than just witnessing the solving.
 
 The tables below are numbered using the following system:
 
-The first number is category (The bit in bold e.g. Characters)
+* The first number is category (The bit in bold e.g. Characters)
 
-The second number represents ‘must(1), should(2), could(3)’ (the
-priority of achieving the
+* The second number represents ‘must(1), should(2), could(3)’ (the priority of achieving the requirement)
 
-requirement)
+* The third number is the requirements position in the list (to make it easier to find and refer to)
 
-The third number is the requirements position in the list (to make it
-easier to find and refer to)
-
-The numbering is spread across the two tables.
+* The numbering is spread across the two tables.
 
 The requirements are sorted into two tables, functional and
 non-functional. Functional requirements are things that the system does,
