@@ -4,11 +4,16 @@
 }
 
 .wy-side-nav-search {
-  background-color: rgb(1, 76, 140);
+  background-color: #0275d8;
 }
 
 .wy-side-nav-search .icon.icon-home {
   font-family: Fofer, cursive;
+  line-height: 50px;
+  font-size: 2em;
+}
+.wy-side-nav-search .icon.icon-home::before {
+  font-size: 18px;
 }
 
 .wy-nav-content {
@@ -19,10 +24,10 @@ p.caption > .caption-text {
   color: rgba(255,255,255,0.8);
 }
 
-p, h4, h5, h6 {
+body, p, h4, h5, h6 {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 a {
-  color: rgb(1, 76, 140);
+  color: #0275d8;
 }
