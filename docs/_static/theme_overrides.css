@@ -1,0 +1,16 @@
+@font-face {
+  font-family: Fofer;
+  src: url(http://lihq.me/fonts/Fofer.otf);
+}
+
+h1 {
+  font-family: Fofer, cursive;
+}
+
+.wy-nav-content {
+   max-width: 1000px
+}
+
+p.caption > .caption-text {
+  color: rgba(255,255,255,0.8);
+}
