@@ -9,11 +9,12 @@
 
 .wy-side-nav-search .icon.icon-home {
   font-family: Fofer, cursive;
-  line-height: 50px;
   font-size: 2em;
 }
+
+.wy-side-nav-search .version,
 .wy-side-nav-search .icon.icon-home::before {
-  font-size: 18px;
+  display: none;
 }
 
 .wy-nav-content {
@@ -24,10 +25,14 @@ p.caption > .caption-text {
   color: rgba(255,255,255,0.8);
 }
 
-body, p, h4, h5, h6 {
+body, p, h4, h5, h6, input {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 a {
   color: #0275d8;
+}
+
+.wy-table-responsive table td, .wy-table-responsive table th {
+  white-space: normal;
 }
