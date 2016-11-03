@@ -6,15 +6,17 @@
 Welcome to Lorem Ipsum's documentation!
 =======================================
 
-**Pellentesque habitant morbi tristique** senectus et netus et malesuada
-fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-egestas semper. *Aenean ultricies mi vitae est*. Mauris placerat
-eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
-Vestibulum erat wisi, condimentum sed, ``commodo vitae``, ornare sit
-amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros
-ipsum rutrum orci, sagittis tempus lacus enim ac dui. `Donec non enim`_
-in turpis pulvinar facilisis. Ut felis.
+Hello we are team Lorem Ipsum and we are creating the game "insert game name here".
+
+This Page will be developed further as time goes on, but for now you can access the first assessment pieces on this site,
+or visit our `homepage <http://lihq.me/>`_.
+
+Brooke Hatton @brookke
+Ben Jarvis @beno11224
+Benjamin Grahamslaw @Penguin-Benjamin
+Jason Mashinchi @jasonmash
+Joseph Shufflebotham @joeShuff
+Vishal Soomaney @TheProgrammingDuck
 
 .. toctree::
    :maxdepth: 2
