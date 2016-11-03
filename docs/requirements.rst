@@ -57,11 +57,11 @@ taken into account the systems that the game is designed to run on.
 Functional Requirements
 ------------------------
 
+Characters
+~~~~~~~~~~~~~~
 +--------------------+--------------------+--------------------+--------------------+
 | No.                | Requirement        | Success Criteria   | Alternative        |
 |                    |                    |                    | Requirements       |
-+--------------------+--------------------+--------------------+--------------------+
-|                    | Characters         |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
 | 1.1.1              | The murderer and   | Upon loading the   | N/A - necessary    |
 |                    | victim must be     | game at least 2    | requirement.       |
@@ -80,7 +80,12 @@ Functional Requirements
 |                    | the start of the   | room without an    |                    |
 |                    | game.              | NPC.               |                    |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | MAP                |                    |                    |
+
+Map
+~~~~~~~~~~~~~~
++--------------------+--------------------+--------------------+--------------------+
+| No.                | Requirement        | Success Criteria   | Alternative        |
+|                    |                    |                    | Requirements       |
 +--------------------+--------------------+--------------------+--------------------+
 | 2.1.1              | Rooms on the       | Walk through map   | All of the map     |
 |                    | viewable map must  | and check that     | will be visible    |
@@ -89,8 +94,12 @@ Functional Requirements
 |                    | has visited the    | visited.           |                    |
 |                    | respective rooms.  |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | DIALOGUE/INTERACTI |                    |                    |
-|                    | ON                 |                    |                    |
+
+Dialogue and Interaction
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++--------------------+--------------------+--------------------+--------------------+
+| No.                | Requirement        | Success Criteria   | Alternative        |
+|                    |                    |                    | Requirements       |
 +--------------------+--------------------+--------------------+--------------------+
 | 3.1.1              | The player must    | Ensure while game  | N/A - necessary    |
 |                    | always get three   | is running the     | requirement.       |
@@ -118,7 +127,12 @@ Functional Requirements
 |                    | points of          |                    |                    |
 |                    | interest.          |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | Clues              |                    |                    |
+
+Clues
+~~~~~~~~~~~~~~
++--------------------+--------------------+--------------------+--------------------+
+| No.                | Requirement        | Success Criteria   | Alternative        |
+|                    |                    |                    | Requirements       |
 +--------------------+--------------------+--------------------+--------------------+
 | 4.1.1              | Clues must help    | Ensure that all    | N/A - clues are    |
 |                    | with the           | clues look         | necessary.         |
@@ -134,7 +148,12 @@ Functional Requirements
 |                    | is able to accuse  | they have found    | player is able to  |
 |                    | any NPCs.          | the murder weapon. | accuse NPCs.       |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | Score              |                    |                    |
+
+Score
+~~~~~~~~~~~~~~
++--------------------+--------------------+--------------------+--------------------+
+| No.                | Requirement        | Success Criteria   | Alternative        |
+|                    |                    |                    | Requirements       |
 +--------------------+--------------------+--------------------+--------------------+
 | 5.1.1              | The score must be  | If the player      | There will be no   |
 |                    | raised when a clue | finds a clue, the  | scoring.           |
@@ -154,7 +173,12 @@ Functional Requirements
 |                    | each second        |                    |                    |
 |                    | played.            |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | Other/System       |                    |                    |
+
+Other/System
+~~~~~~~~~~~~~~
++--------------------+--------------------+--------------------+--------------------+
+| No.                | Requirement        | Success Criteria   | Alternative        |
+|                    |                    |                    | Requirements       |
 +--------------------+--------------------+--------------------+--------------------+
 | 6.3.1.1            | IF the game has a  | Check that sound   | The game will have |
 |                    | soundtrack it must | turns on/off when  | no soundtrack.     |
@@ -163,12 +187,13 @@ Functional Requirements
 +--------------------+--------------------+--------------------+--------------------+
 
 Non-Functional Requirements
+-----------------------------
 
+Characters
+~~~~~~~~~~~~~~
 +--------------------+--------------------+--------------------+--------------------+
 | No.                | Requirement        | Success Criteria   | Alternative        |
 |                    |                    |                    | Requirements       |
-+--------------------+--------------------+--------------------+--------------------+
-|                    | Characters         |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
 | 1.1.3              | The game must have | The game contains  | N/A - necessary    |
 |                    | a cast of 10 NPCs  | 10 NPCs.           | requirement.       |
@@ -189,7 +214,12 @@ Non-Functional Requirements
 |                    | and further help   |                    |                    |
 |                    | during gameplay.   |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | MAP                |                    |                    |
+
+Map
+~~~~~~~~~~~~~~
++--------------------+--------------------+--------------------+--------------------+
+| No.                | Requirement        | Success Criteria   | Alternative        |
+|                    |                    |                    | Requirements       |
 +--------------------+--------------------+--------------------+--------------------+
 | 2.1.2              | The game must      | The game will have | N/A - necessary    |
 |                    | contain a game-map | 10 rooms.          | requirement.       |
@@ -206,8 +236,13 @@ Non-Functional Requirements
 |                    | each time the game |                    |                    |
 |                    | begins.            |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | Dialogue/Interacti |                    |                    |
-|                    | on                 |                    |                    |
+
+Dialogue and Interaction
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++--------------------+--------------------+--------------------+--------------------+
+| No.                | Requirement        | Success Criteria   | Alternative        |
+|                    |                    |                    | Requirements       |
 +--------------------+--------------------+--------------------+--------------------+
 | 3.1.4              | The game must have | Play through the   | N/A - necessary    |
 |                    | multiple ‘plot     | game multiple      | requirement.       |
@@ -222,7 +257,12 @@ Non-Functional Requirements
 |                    | others.            | plotlines are more |                    |
 |                    |                    | complicated.       |                    |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | Clues              |                    |                    |
+
+Clues
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++--------------------+--------------------+--------------------+--------------------+
+| No.                | Requirement        | Success Criteria   | Alternative        |
+|                    |                    |                    | Requirements       |
 +--------------------+--------------------+--------------------+--------------------+
 | 4.1.3              | There must be at   | Make sure that     | N/A - necessary    |
 |                    | least one clue to  | clues spawn in     | requirement.       |
@@ -251,7 +291,12 @@ Non-Functional Requirements
 |                    | which are not      | clue.              |                    |
 |                    | clues.             |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | Score              |                    |                    |
+
+Score
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++--------------------+--------------------+--------------------+--------------------+
+| No.                | Requirement        | Success Criteria   | Alternative        |
+|                    |                    |                    | Requirements       |
 +--------------------+--------------------+--------------------+--------------------+
 | 5.1.3              | The player must be | Play through the   | There will be no   |
 |                    | scored on time     | game at least 3    | scoring system.    |
@@ -267,7 +312,12 @@ Non-Functional Requirements
 |                    | be stored on a     | scores.            | scores or no list  |
 |                    | server.            |                    | of high scores.    |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | Other/System       |                    |                    |
+
+Other/System
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++--------------------+--------------------+--------------------+--------------------+
+| No.                | Requirement        | Success Criteria   | Alternative        |
+|                    |                    |                    | Requirements       |
 +--------------------+--------------------+--------------------+--------------------+
 | 6.1.1              | The game will be   | Determine the game | N/A - necessary    |
 |                    | controlled by      | is controlled as   | requirement.       |

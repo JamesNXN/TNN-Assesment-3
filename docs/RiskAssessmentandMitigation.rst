@@ -24,7 +24,7 @@ Low :=Low likelihood, this risk is not likely to
 occur. Roughly a 25% chance although some extreme risks could be a lot
 lower.
 
- 
+
 The fourth column describes the impact the risk would have on progress in the
 project. The fifth column shows the severity of the impact using this:
 
@@ -54,18 +54,18 @@ Software risks
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 1            | Software     | Medium       | Will need to | Medium       | Test the     |
 |              | library      |              | rewrite      |              | elements of  |
-|              | doesn’t      |              | code.        |              | the library  |
+|              | doesnï¿½t      |              | code.        |              | the library  |
 |              | work.        |              |              |              | you plan to  |
 |              |              |              |              |              | use          |
 |              |              |              |              |              | beforehand.  |
 +--------------+--------------+--------------+--------------+--------------+--------------+
-| 2            | | Code is    | Low          | Could cause  | Medium       | | Use        |
-|              |   hard to    |              | bugs and     |              |   meaningful |
-|              |   understand |              | makes bug    |              |   variable   |
-|              |   by         |              | fixing       |              |   names and  |
-|              | |   others.  |              | harder.      |              |   plenty of  |
-|              |              |              |              |              |   comments,b |
-|              |              |              |              |              | oth          |
+| 2            | Code is      | Low          | Could cause  | Medium       |   Use        |
+|              | hard to      |              | bugs and     |              |   meaningful |
+|              | understand   |              | makes bug    |              |   variable   |
+|              | by           |              | fixing       |              |   names and  |
+|              | others.      |              | harder.      |              |   plenty of  |
+|              |              |              |              |              |   comments,  |
+|              |              |              |              |              |   both       |
 |              |              |              |              |              |   in code    |
 |              |              |              |              |              |   and in     |
 |              |              |              |              |              |   commit     |
@@ -81,17 +81,17 @@ Software risks
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 4            | Our own      | High         | Will need to | Low          | This is a    |
 |              | software     |              | bug fix.     |              | normal part  |
-|              | doesn’t work |              |              |              | of software  |
+|              | doesn't work |              |              |              | of software  |
 |              | as intended. |              |              |              | development. |
 |              |              |              |              |              | We all make  |
 |              |              |              |              |              | mistakes.    |
 +--------------+--------------+--------------+--------------+--------------+--------------+
-| 5            | | Software   | Medium       | | May need   | Low          | | Check      |
+| 5            |   Software   | Medium       |   May need   | Low          |   Check      |
 |              |   library    |              |   to rewrite |              |   support    |
 |              |   has no     |              |   code if    |              |   forums and |
-|              | |   support. |              |   cannot     |              |   check they |
+|              |   support.   |              |   cannot     |              |   check they |
 |              |              |              |   figure it  |              |   have been  |
-|              |              |              | |   out.     |              |   actively   |
+|              |              |              |   out.       |              |   actively   |
 |              |              |              |              |              |   used       |
 |              |              |              |              |              |   recently.  |
 +--------------+--------------+--------------+--------------+--------------+--------------+
@@ -101,11 +101,11 @@ Hardware risks
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | Risk ID      | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
 +--------------+--------------+--------------+--------------+--------------+--------------+
-| 6            | | Personal   | Low          | Could lose   | Medium       | | Ensure     |
+| 6            |   Personal   | Low          | Could lose   | Medium       |   Ensure     |
 |              |   computer   |              | work and be  |              |   work is    |
 |              |   breaks     |              | unable to    |              |   saved      |
 |              |   long       |              | work.        |              |   online to  |
-|              | |   term or  |              |              |              |   google     |
+|              |   term or    |              |              |              |   google     |
 |              |   is lost.   |              |              |              |   drive      |
 |              |              |              |              |              |   cloud      |
 |              |              |              |              |              |   service.   |
@@ -167,7 +167,7 @@ Risks with people
 |              |              |              |              |              | tools we     |
 |              |              |              |              |              | plan to use. |
 +--------------+--------------+--------------+--------------+--------------+--------------+
-| 12           | A team       | Medium       | Could        | Low          | Don’t give   |
+| 12           | A team       | Medium       | Could        | Low          | Don't give   |
 |              | member does  |              | disrupt      |              | members too  |
 |              | not do their |              | other        |              | much work or |
 |              | work.        |              | members work |              | work they    |
@@ -239,7 +239,7 @@ Requirements risks
 |              |              |              |              |              | them.        |
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 19           | Ambiguity in | Medium       | May end up   | Medium       | Ensure       |
-|              |  requirement |              | making       |              | requirements |
+|              | requirement  |              | making       |              | requirements |
 |              | s.           |              | something    |              | are clear    |
 |              |              |              | which is not |              | and check    |
 |              |              |              | what was     |              | any          |
@@ -266,7 +266,7 @@ Estimation risks
 |              | team or a    |              | done or is   |              | that people  |
 |              | team member  |              | done to an   |              | can do and   |
 |              | can do more  |              | insufficient |              | if they      |
-|              | than they    |              | standard.    |              | can’t then   |
+|              | than they    |              | standard.    |              | can't then   |
 |              | actually     |              |              |              | help them.   |
 |              | can.         |              |              |              |              |
 +--------------+--------------+--------------+--------------+--------------+--------------+

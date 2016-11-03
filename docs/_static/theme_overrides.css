@@ -3,7 +3,11 @@
   src: url(http://lihq.me/fonts/Fofer.otf);
 }
 
-h1 {
+.wy-side-nav-search {
+  background-color: rgb(1, 76, 140);
+}
+
+.wy-side-nav-search .icon.icon-home {
   font-family: Fofer, cursive;
 }
 
@@ -13,4 +17,12 @@ h1 {
 
 p.caption > .caption-text {
   color: rgba(255,255,255,0.8);
+}
+
+p, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+a {
+  color: rgb(1, 76, 140);
 }
