@@ -3,8 +3,15 @@
   src: url(http://lihq.me/fonts/Fofer.otf);
 }
 
-.wy-side-nav-search {
+.wy-side-nav-search, .wy-nav-top {
   background-color: #0275d8;
+}
+
+.wy-nav-top {
+  line-height: auto;
+  font-family: Fofer, cursive;
+  font-size: 2em;
+  box-shadow: 0px -1px 7px black;
 }
 
 .wy-side-nav-search .icon.icon-home {
