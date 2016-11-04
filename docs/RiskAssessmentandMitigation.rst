@@ -161,8 +161,8 @@ Risks with people
 |              |              |              |              |              | hidden.      |
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 11           | Lack of      | Medium       | Tasks may be | Medium       | Keep strong  |
-|              | communicatio |              | done twice   |              | communicatio |
-|              | n.           |              | or not done  |              | n            |
+|              | communication|              | done twice   |              | communicatio |
+|              | .            |              | or not done  |              | n            |
 |              |              |              | at all.      |              | using the    |
 |              |              |              |              |              | tools we     |
 |              |              |              |              |              | plan to use. |
@@ -272,11 +272,11 @@ Estimation risks
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 22           | We may       | Medium       | Work ends up | Medium       | Set          |
 |              | underestimate|              | not getting  |              | realistic    |
-|              |              |              | done or not  |              | timings to   |
-|              | how long it  |              | done to the  |              | do work and  |
-|              | will take to |              | standard it  |              | be realistic |
-|              | do some      |              | could be     |              | on how long  |
-|              | work.        |              | done.        |              | a task will  |
+|              | how long it  |              | done or not  |              | timings to   |
+|              | will take to |              | done to the  |              | do work and  |
+|              | do some      |              | standard it  |              | be realistic |
+|              | work.        |              | could be     |              | on how long  |
+|              |              |              | done.        |              | a task will  |
 |              |              |              |              |              | take.        |
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 23           | Be too       | Medium       | We end up    | Low          | Push our     |
