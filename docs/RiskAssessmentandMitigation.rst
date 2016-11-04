@@ -54,7 +54,7 @@ Software risks
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 1            | Software     | Medium       | Will need to | Medium       | Test the     |
 |              | library      |              | rewrite      |              | elements of  |
-|              | doesn�t      |              | code.        |              | the library  |
+|              | doesn't      |              | code.        |              | the library  |
 |              | work.        |              |              |              | you plan to  |
 |              |              |              |              |              | use          |
 |              |              |              |              |              | beforehand.  |
@@ -239,8 +239,8 @@ Requirements risks
 |              |              |              |              |              | them.        |
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 19           | Ambiguity in | Medium       | May end up   | Medium       | Ensure       |
-|              | requirement  |              | making       |              | requirements |
-|              | s.           |              | something    |              | are clear    |
+|              | requirements.|              | making       |              | requirements |
+|              |              |              | something    |              | are clear    |
 |              |              |              | which is not |              | and check    |
 |              |              |              | what was     |              | any          |
 |              |              |              | originally   |              | ambiguities  |
@@ -271,8 +271,8 @@ Estimation risks
 |              | can.         |              |              |              |              |
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 22           | We may       | Medium       | Work ends up | Medium       | Set          |
-|              | underestimat |              | not getting  |              | realistic    |
-|              | e            |              | done or not  |              | timings to   |
+|              | underestimate|              | not getting  |              | realistic    |
+|              |              |              | done or not  |              | timings to   |
 |              | how long it  |              | done to the  |              | do work and  |
 |              | will take to |              | standard it  |              | be realistic |
 |              | do some      |              | could be     |              | on how long  |
