@@ -39,7 +39,7 @@ would have on progress in the project. The fifth column shows the
 severity of the impact using this colour coordination:
 
 +--------------------------------------+--------------------------------------+
-| Green                                |  Low severity, may mean a few hours  |
+| Green                                | Low severity, may mean a few hours   |
 |                                      | extra work but nothing major.        |
 +--------------------------------------+--------------------------------------+
 | Yellow                               | Medium severity, could add up to a   |
@@ -257,8 +257,8 @@ Risks with people
 |              |              |              |              |              | hidden.      |
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 11           | Lack of      | Medium       | Tasks may be | Medium       | Keep strong  |
-|              | communicatio |              | done twice   |              | communicatio |
-|              | n.           |              | or not done  |              | n            |
+|              | communication|              | done twice   |              | communicatio |
+|              | .            |              | or not done  |              | n            |
 |              |              |              | at all.      |              | using the    |
 |              |              |              |              |              | tools we     |
 |              |              |              |              |              | plan to use. |
@@ -368,8 +368,8 @@ Requirements risks
 |              |              |              |              |              | them.        |
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 19           | Ambiguity in | Medium       | May end up   | Medium       | Ensure       |
-|              |  requirement |              | making       |              | requirements |
-|              | s.           |              | something    |              | are clear    |
+|              | requirements |              | making       |              | requirements |
+|              | .            |              | something    |              | are clear    |
 |              |              |              | which is not |              | and check    |
 |              |              |              | what was     |              | any          |
 |              |              |              | originally   |              | ambiguities  |
@@ -410,8 +410,8 @@ Estimation risks
 |              |              |              |              |              | overwhelmed  |
 |              |              |              |              |              | by the task  |
 +--------------+--------------+--------------+--------------+--------------+--------------+
-| 22           | We may       | Medium       | Work ends    | Medium       | Set          |
-|              | underestimat |              |  taking      |              | realistic    |
+| 22           | We may       | Medium       | Work ends up | Medium       | Set          |
+|              | underestimat |              | taking       |              | realistic    |
 |              | e            |              | longer than  |              | timings to   |
 |              | how long it  |              | expected or  |              | do work and  |
 |              | will take to |              | not done to  |              | be realistic |
