@@ -16,6 +16,7 @@ happen and we need to resolve it. The second column describes the risk
 itself. The third column gives an estimated likelihood of the risk
 occurring. To indicate the likelihood of each risk occurring we have use
 a high medium and low rating which is then also colour coded:
+
 +--------------------------------------+--------------------------------------+
 | Green                                |  Low likelihood, this risk is not    |
 |                                      |  likely to occur. Roughly a 25%      |
