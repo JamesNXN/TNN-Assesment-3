@@ -435,7 +435,7 @@ Other/System
 |                | by a gamepad.  | described.     | gamepad.       |                |
 +----------------+----------------+----------------+----------------+----------------+
 
-Bibliography:
+Bibliography
 --------------
 
 [1] Appendix A [online] docs.lihq.me/en/latest/AppendixA [Created
