@@ -11,13 +11,18 @@ Hello we are team Lorem Ipsum and we are creating the game "insert game name her
 This Page will be developed further as time goes on, but for now you can access the first assessment pieces on this site,
 or visit our `homepage <http://lihq.me/>`_.
 
-Brooke Hatton @brookke
-Ben Jarvis @beno11224
-Benjamin Grahamslaw @Penguin-Benjamin
-Jason Mashinchi @jasonmash
-Joseph Shufflebotham @joeShuff
-Vishal Soomaney @TheProgrammingDuck
+Team Members
+-------------
+* Brooke Hatton @brookke
+* Ben Jarvis @beno11224
+* Benjamin Grahamslaw @Penguin-Benjamin
+* Jason Mashinchi @jasonmash
+* Joseph Shufflebotham @joeShuff
+* Vishal Soomaney @TheProgrammingDuck
 
+
+Contents
+---------
 .. toctree::
    :maxdepth: 2
    :caption: Assessment 1
@@ -26,3 +31,10 @@ Vishal Soomaney @TheProgrammingDuck
    RiskAssessmentandMitigation
    methods
    architecture
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Appendicies
+
+   appendixC
