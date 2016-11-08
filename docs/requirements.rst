@@ -19,7 +19,7 @@ strides to be made on requirements very early on, by giving us an idea
 of what works in a game. This also allowed us to discuss ideas that
 would be interesting but more difficult to implement, which we left as
 possible expansion if overall time costs do not overrun. We also
-produced a number of user scenarios which we used to help guide our
+produced a number of user scenarios[1] which we used to help guide our
 thinking when producing requirements.
 
 After discussing our ideas on clues for a bit, as a group we decided
@@ -52,11 +52,11 @@ referenced in the tables.
 Some requirements are based on considerations of environmental
 assumptions of the game. Requirements based on hardware have all taken
 into account the systems that the game will run on. We produced a survey
-[1] which we got a small number of our target market to answer. From
+[2] which we got a small number of our target market to answer. From
 this we found that the preferred way of interaction with the game was
 keyboard and mouse. Although our survey produced no results of
 colourblind people, it is a condition apparent in 1 in 12 men and 1 in
-200 women [2] so we still feel that it is a requirement that some people
+200 women [3] so we still feel that it is a requirement that some people
 would benefit from, hence why it is listed as ‘could’.
 
 
@@ -438,9 +438,12 @@ Other/System
 Bibliography
 --------------
 
-[1] Appendix A [online] docs.lihq.me/en/latest/AppendixA [Created
+[1] Appendix C [online] docs.lihq.me/en/laest/AppendixC [Created 
+21/11/16
+
+[2] Appendix A [online] docs.lihq.me/en/latest/AppendixA [Created
 21/11/16]
 
-[2] Colour Blind awareness [online]
+[3] Colour Blind awareness [online]
 http://www.colourblindawareness.org/colour-blindness/, [Accessed
 3/11/16]
