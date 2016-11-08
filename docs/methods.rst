@@ -210,6 +210,10 @@ version can be seen on our website.
 
 .. image:: images/Assessment2GanttChart.png
 
+For the Gantt chart showing the schedule for the rest of the SEPR project,
+please check appendix B or alternatively you can also see it on the website
+on this URL: http://lihq.me/Downloads/Assessment1/AppendixB.pdf
+
 Bibliography
 -------------
 
