@@ -39,3 +39,4 @@ Contents
 
    appendixA
    appendixB
+   appendixC

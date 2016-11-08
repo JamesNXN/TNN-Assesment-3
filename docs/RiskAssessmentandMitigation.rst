@@ -247,8 +247,8 @@ Risks with people
 |              |              |              |              |              | hidden.      |
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 11           | Lack of      | Medium       | Tasks may be | Medium       | Keep strong  |
-|              | communicatio |              | done twice   |              | communicatio |
-|              | n.           |              | or not done  |              | n            |
+|              | communication|              | done twice   |              | communicatio |
+|              |              |              | or not done  |              | n            |
 |              |              |              | at all.      |              | using the    |
 |              |              |              |              |              | tools we     |
 |              |              |              |              |              | plan to use. |
@@ -275,15 +275,15 @@ Risks with tools
 | ID           | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 13           | Google drive | Low          | Could        | Medium       | Store work   |
-|              |  servers     |              | lose/lose    |              | locally ,    |
+|              | servers      |              | lose/lose    |              | locally ,    |
 |              | stop         |              | access to    |              | and on other |
 |              | working.     |              | work that is |              | services.    |
 |              |              |              | stored       |              |              |
 |              |              |              | there.       |              |              |
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 14           | Central git  | Low          | Temporarily  | Low          | Keep up to   |
-|              | repository[1 |              | lose access  |              | date local   |
-|              | ]            |              | to it.       |              | copies so    |
+|              | repository   |              | lose access  |              | date local   |
+|              | [1]          |              | to it.       |              | copies so    |
 |              | is lost in   |              |              |              | can be       |
 |              | some way.    |              |              |              | easily       |
 |              |              |              |              |              | restored. We |
@@ -343,7 +343,7 @@ Requirements risks
 | 17           | A            | High         | May need to  | Medium       | Our software |
 |              | requirement  |              | rewrite code |              | architecture |
 |              | could        |              | or add extra |              | must be      |
-|              | change/ be   |              | code to      |              | flexible and |
+|              | change / be  |              | code to      |              | flexible and |
 |              | added.       |              | account for  |              | able to be   |
 |              |              |              | it. Extra    |              | changed      |
 |              |              |              | time will be |              | easily.      |
@@ -359,8 +359,8 @@ Requirements risks
 |              |              |              |              |              | them.        |
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 19           | Ambiguity in | Medium       | May end up   | Medium       | Ensure       |
-|              |  requirement |              | making       |              | requirements |
-|              | s.           |              | something    |              | are clear    |
+|              | requirements |              | making       |              | requirements |
+|              |              |              | something    |              | are clear    |
 |              |              |              | which is not |              | and check    |
 |              |              |              | what was     |              | any          |
 |              |              |              | originally   |              | ambiguities  |
@@ -402,12 +402,12 @@ Estimation risks
 |              |              |              |              |              | by the task  |
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 22           | We may       | Medium       | Work ends up | Medium       | Set          |
-|              | underestimat |              | taking       |              | realistic    |
-|              | e            |              | longer than  |              | timings to   |
-|              | how long it  |              | expected or  |              | do work and  |
-|              | will take to |              | not done to  |              | be realistic |
-|              | do some      |              | the standard |              | on how long  |
-|              | work.        |              | it could be  |              | a task will  |
+|              | underestimate|              | taking       |              | realistic    |
+|              | how long it  |              | longer than  |              | timings to   |
+|              | will take to |              | expected or  |              | do work and  |
+|              | do some      |              | not done to  |              | be realistic |
+|              | work.        |              | the standard |              | on how long  |
+|              |              |              | it could be  |              | a task will  |
 |              |              |              | done. This   |              | take.        |
 |              |              |              | could cause  |              | Account for  |
 |              |              |              | other areas  |              | unforeseen   |
