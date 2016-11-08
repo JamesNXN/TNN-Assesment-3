@@ -1,9 +1,7 @@
 Risk Assessment and Mitigation
 ==================================
-
 Introduction
---------------
-
+-------------
 Risk management is an important part of any project, we must prepare for
 what could happen during the course of the project in order to be able
 to quickly recover and stay on track. The risks which are shown below
@@ -17,7 +15,49 @@ into 6 columns; the first column gives the risk an identification number
 happen and we need to resolve it. The second column describes the risk
 itself. The third column gives an estimated likelihood of the risk
 occurring. To indicate the likelihood of each risk occurring we have use
-a high medium and low rating.
+a high medium and low rating which is then also colour coded:
+
+Likelihood
+
+Green
+
+Low likelihood, this risk is not likely to occur. Roughly a 25% chance
+although some extreme risks could be a lot lower.
+
+Yellow
+
+Medium likelihood, there is an equal chance of the risk occurring or not
+occurring. Roughly a 50% chance.
+
+Red
+
+High likelihood, there is a good chance that this risk will occur .
+Roughly a 75% chance.
+
+These colours were chosen as a low likelihood is generally preferable to
+a high likelihood.  The fourth column describes the impact the risk
+would have on progress in the project. The fifth column shows the
+severity of the impact using this colour coordination:
+
+Severity
+
+Green
+
+ Low severity, may mean a few hours extra work but nothing major.
+
+Yellow
+
+Medium severity, could add up to a week of extra work and may threaten a
+deadline.
+
+Red
+
+High severity, a major set back which could affect the whole project.
+
+These colours were chosen due to their natural association with severity
+which is well known. The sixth and final column details how we will aim
+to avoid such a risk and deal with it.
+
 The overall table is split into sections which group together similar
 risk such as software risks. Each section is then ordered by severity,
 highest first. Equal severity is ordered by likelihood. This table will
@@ -25,9 +65,9 @@ be regularly consulted in an attempt to monitor the risks and try to
 ensure they do not occur and catch them early if they are occurring.
 
 Table of risks
-----------------
+-----------------
 Software risks
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | ID           | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
 +--------------+--------------+--------------+--------------+--------------+--------------+
@@ -129,7 +169,7 @@ Software risks
 +--------------+--------------+--------------+--------------+--------------+--------------+
 
 Hardware risks
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | ID           | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
 +--------------+--------------+--------------+--------------+--------------+--------------+
@@ -244,7 +284,7 @@ Risks with people
 +--------------+--------------+--------------+--------------+--------------+--------------+
 
 Risks with tools
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | ID           | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
 +--------------+--------------+--------------+--------------+--------------+--------------+
@@ -300,7 +340,7 @@ Risks with tools
 +--------------+--------------+--------------+--------------+--------------+--------------+
 
 Requirements risks
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | ID           | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
 +--------------+--------------+--------------+--------------+--------------+--------------+
@@ -352,7 +392,7 @@ Requirements risks
 +--------------+--------------+--------------+--------------+--------------+--------------+
 
 Estimation risks
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | ID           | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
 +--------------+--------------+--------------+--------------+--------------+--------------+
