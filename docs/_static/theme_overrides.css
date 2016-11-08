@@ -33,6 +33,10 @@ p.caption > .caption-text {
   color: rgba(255,255,255,0.8);
 }
 
+.toctree-wrapper p.caption > .caption-text {
+  color: black;
+}
+
 body, p, h4, h5, h6, input {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }

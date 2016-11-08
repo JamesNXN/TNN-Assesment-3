@@ -22,7 +22,7 @@ Team Members
 
 
 Contents
----------
+=========
 .. toctree::
    :maxdepth: 2
    :caption: Assessment 1
@@ -35,6 +35,6 @@ Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: Appendicies
+   :caption: Appendix
 
    appendixC

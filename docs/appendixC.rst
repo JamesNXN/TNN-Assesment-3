@@ -1,4 +1,4 @@
-Appendix C: User Stories
+C: User Stories
 ==========================
 
 Persona 1
