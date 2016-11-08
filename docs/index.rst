@@ -22,6 +22,7 @@ Vishal Soomaney @TheProgrammingDuck
    :maxdepth: 2
    :caption: Assessment 1
 
-   architecture
    requirements
    RiskAssessmentandMitigation
+   methods
+   architecture
