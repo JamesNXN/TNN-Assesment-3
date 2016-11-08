@@ -26,6 +26,8 @@ of how the structure of the game worked, and allowed us to move on to
 producing a more complex UML diagram that we can use for reference later
 on when implementing the game.
 
+.. image:: images/ArchDiagram1.png
+
 The structure that was presented by the simplified UML diagram served as
 a base for our final UML diagram. The UML diagram was produced based on
 our previous thinking, and it expanded upon the detail about the
