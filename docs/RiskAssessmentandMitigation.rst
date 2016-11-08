@@ -454,5 +454,7 @@ Estimation risks
 Bibliography
 ------------
 [1]GitHub [online] Available https://github.com [Accessed 01/11/2016]
+
 [2] Google Drive [online] Available https://www.google.com/drive/  [Accessed 01/11/2016]
+
 [3] Cloud Flare Available[online] https://www.cloudflare.com/ [Accessed 01/11/2016]
