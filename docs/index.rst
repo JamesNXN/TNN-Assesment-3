@@ -6,7 +6,7 @@
 Welcome to Lorem Ipsum's documentation!
 =======================================
 
-Hello we are team Lorem Ipsum and we are creating the game "insert game name here".
+Hello we are team Lorem Ipsum and we are developing a murder mystery game.
 
 This Page will be developed further as time goes on, but for now you can access the first assessment pieces on this site,
 or visit our `homepage <http://lihq.me/>`_.
