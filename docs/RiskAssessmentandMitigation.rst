@@ -28,8 +28,7 @@ occurring. Roughly a 50% chance.
 High likelihood = There is a good chance that this risk will occur .
 Roughly a 75% chance.
 
-These colours were chosen as a low likelihood is generally preferable to
-a high likelihood.  The fourth column describes the impact the risk
+The fourth column describes the impact the risk
 would have on progress in the project. The fifth column shows the
 severity of the impact using this colour coordination:
 
@@ -42,8 +41,7 @@ deadline.
 
 High severity = A major set back which could affect the whole project.
 
-These colours were chosen due to their natural association with severity
-which is well known. The sixth and final column details how we will aim
+The sixth and final column details how we will aim
 to avoid such a risk and deal with it.
 
 The overall table is split into sections which group together similar
