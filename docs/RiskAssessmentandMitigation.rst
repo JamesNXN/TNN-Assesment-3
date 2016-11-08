@@ -18,20 +18,14 @@ occurring. To indicate the likelihood of each risk occurring we have use
 a high medium and low rating which is then also colour coded:
 
 Likelihood
-
-Green
-
-Low likelihood, this risk is not likely to occur. Roughly a 25% chance
+~~~~~~~~~~~
+Low likelihood = This risk is not likely to occur. Roughly a 25% chance
 although some extreme risks could be a lot lower.
 
-Yellow
-
-Medium likelihood, there is an equal chance of the risk occurring or not
+Medium likelihood = There is an equal chance of the risk occurring or not
 occurring. Roughly a 50% chance.
 
-Red
-
-High likelihood, there is a good chance that this risk will occur .
+High likelihood = There is a good chance that this risk will occur .
 Roughly a 75% chance.
 
 These colours were chosen as a low likelihood is generally preferable to
@@ -40,19 +34,13 @@ would have on progress in the project. The fifth column shows the
 severity of the impact using this colour coordination:
 
 Severity
+~~~~~~~~~
+Low severity = May mean a few hours extra work but nothing major.
 
-Green
-
- Low severity, may mean a few hours extra work but nothing major.
-
-Yellow
-
-Medium severity, could add up to a week of extra work and may threaten a
+Medium severity = Could add up to a week of extra work and may threaten a
 deadline.
 
-Red
-
-High severity, a major set back which could affect the whole project.
+High severity = A major set back which could affect the whole project.
 
 These colours were chosen due to their natural association with severity
 which is well known. The sixth and final column details how we will aim
