@@ -127,7 +127,7 @@ Software risks
 |              |              |              |              |              | repository.  |
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | 4            | Conflicts in |  High        | May need to  | Low          | Make sure    |
-|              | git.         |              | move code    |              | people work  |
+|              | git[1].      |              | move code    |              | people work  |
 |              | Different    |              | around and   |              | on separate  |
 |              | members      |              | even         |              | elements by  |
 |              | changing the |              | rewrite.     |              | assigning    |
@@ -284,10 +284,10 @@ Risks with tools
 +--------------+--------------+--------------+--------------+--------------+--------------+
 | ID           | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
 +--------------+--------------+--------------+--------------+--------------+--------------+
-| 13           | Google drive | Low          | Could        | Medium       | Store work   |
-|              | servers stop |              | lose/lose    |              | locally ,    |
-|              | working.     |              | access to    |              | and on other |
-|              |              |              | work that is |              | services.    |
+| 13           | Google       | Low          | Could        | Medium       | Store work   |
+|              | drive [2]    |              | lose/lose    |              | locally ,    |
+|              | servers stop |              | access to    |              | and on other |
+|              | working.     |              | work that is |              | services.    |
 |              |              |              | stored       |              |              |
 |              |              |              | there.       |              |              |
 +--------------+--------------+--------------+--------------+--------------+--------------+
@@ -324,7 +324,7 @@ Risks with tools
 |              |              |              |              |              | site is also |
 |              |              |              |              |              | protected by |
 |              |              |              |              |              | cloud-flare  |
-|              |              |              |              |              | who will     |
+|              |              |              |              |              | [3] who will |
 |              |              |              |              |              | provide a    |
 |              |              |              |              |              | cached       |
 |              |              |              |              |              | version of   |
@@ -451,3 +451,8 @@ Estimation risks
 |              |              |              |              |              | over/under   |
 |              |              |              |              |              | worked.      |
 +--------------+--------------+--------------+--------------+--------------+--------------+
+Bibliography
+------------
+[1]GitHub [online] Available https://github.com [Accessed 01/11/2016]
+[2] Google Drive [online] Available https://www.google.com/drive/  [Accessed 01/11/2016]
+[3] Cloud Flare Available[online] https://www.cloudflare.com/ [Accessed 01/11/2016]
