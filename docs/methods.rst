@@ -247,4 +247,4 @@ Bibliography
 
 [17] Goal Oriented Requirements Engineering - Axel van Lamsweerde [Online] Available: http://dl.acm.org/citation.cfm?id=776930 [Accessed 04/11/2016]
 
-[18] Gantt Chart [Online]
+[18] Gantt Chart [Online] Available: http://lihq.me/Downloads/Assessment1/AppendixB.pdf
