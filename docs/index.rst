@@ -37,4 +37,4 @@ Contents
    :maxdepth: 1
    :caption: Appendix
 
-   appendixC
+   appendixA

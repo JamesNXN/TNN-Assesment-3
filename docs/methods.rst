@@ -239,22 +239,12 @@ Bibliography
 
 [13] IntelliJ [Online]   www.jetbrains.com [Accessed 8/11/2016]
 
-[14] Kanban board [Online] www.github.com [Accessed 8/11/2016]
-
-
+[14] GitHub Projects - kanban board [Online] www.github.com [Accessed 8/11/2016]
 
 [15] Piskel [Online] www.piskelapp.com [Acessed 8/11/2016]
 
-[16] Waterfall to Agile: Flipping the Switch - Bhushan Gupta [Online]
-Available:
+[16] Waterfall to Agile: Flipping the Switch - Bhushan Gupta [Online] Available: http://www.uploads.pnsqc.org/2012/papers/t-21\_Gupta\_paper.pdf [Accessed 25/10/2016]
 
-
-http://www.uploads.pnsqc.org/2012/papers/t-21\_Gupta\_paper.pdf [Accessed
-25/10/2016]
-
-[17] Goal Oriented Requirements Engineering - Axel van Lamsweerde
-[Online] Available:
-
-      http://dl.acm.org/citation.cfm?id=776930 [Accessed 04/11/2016]
+[17] Goal Oriented Requirements Engineering - Axel van Lamsweerde [Online] Available: http://dl.acm.org/citation.cfm?id=776930 [Accessed 04/11/2016]
 
 [18] Gantt Chart [Online]

@@ -1,4 +1,4 @@
-C: User Stories
+A: User Stories
 ==========================
 
 Persona 1

@@ -438,11 +438,9 @@ Other/System
 Bibliography
 --------------
 
-[1] Appendix C [online] docs.lihq.me/en/laest/AppendixC [Created 
-21/11/16
+[1] Appendix A [online] docs.lihq.me/en/latest/AppendixA [Created 21/11/16]
 
-[2] Appendix A [online] docs.lihq.me/en/latest/AppendixA [Created
-21/11/16]
+[2] Appendix C [online] docs.lihq.me/en/latest/AppendixC [Created 21/11/16]
 
 [3] Colour Blind awareness [online]
 http://www.colourblindawareness.org/colour-blindness/, [Accessed
