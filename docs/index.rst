@@ -38,3 +38,4 @@ Contents
    :caption: Appendix
 
    appendixA
+   appendixB
