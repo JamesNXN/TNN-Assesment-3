@@ -7,12 +7,12 @@ Figure 1
 
 Figure 2
 ~~~~~~~~~~
-.. image:: images/SurveyResult01.png
+.. image:: images/SurveyResult02.png
 Bar Chart for Helper Character
 1 = not helpful
 10 = extremely helpful
 
 Figure 3
 ~~~~~~~~~~
-.. image:: images/SurveyResult02.png
+.. image:: images/SurveyResult01.png
 Pie Chart Colour blind.
