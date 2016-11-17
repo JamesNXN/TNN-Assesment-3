@@ -27,9 +27,9 @@ android/libs/arm64-v8a/
 android/libs/x86/
 android/libs/x86_64/
 android/gen/
-.idea/
-*.ipr
-*.iws
+#.idea/
+# *.ipr
+#*.iws
 *.iml
 out/
 com_crashlytics_export_strings.xml
@@ -37,7 +37,7 @@ com_crashlytics_export_strings.xml
 ## Eclipse
 .classpath
 .project
-.metadata
+#.metadata
 **/bin/
 tmp/
 *.tmp
