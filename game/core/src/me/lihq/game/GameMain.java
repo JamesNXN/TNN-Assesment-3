@@ -31,6 +31,7 @@ public class GameMain extends ApplicationAdapter implements InputProcessor {
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
         Gdx.input.setInputProcessor(this);
     }
+    
 	@Override
 	public void render () {
         Gdx.gl.glClearColor(1, 0, 0, 1);
@@ -41,7 +42,6 @@ public class GameMain extends ApplicationAdapter implements InputProcessor {
         tiledMapRenderer.render();
 
 	}
-
 
     @Override
     public boolean keyUp(int keycode) {
