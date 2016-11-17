@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90f32c4f-982d-456c-9f90-9cfd03819b6f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game.iws" afterPath="$PROJECT_DIR$/game.iws" />
-    </list>
+    <list default="true" id="90f32c4f-982d-456c-9f90-9cfd03819b6f" name="Default" comment="" />
     <ignored path="game.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -278,12 +275,12 @@
       <option name="presentableId" value="Default" />
       <updated>1479378877324</updated>
       <workItem from="1479378878554" duration="359000" />
-      <workItem from="1479379265491" duration="893000" />
+      <workItem from="1479379265491" duration="972000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1252000" />
+    <option name="totallyTimeSpent" value="1331000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="43" width="1260" height="676" extended-state="0" />
