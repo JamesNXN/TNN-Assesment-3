@@ -29,14 +29,14 @@ android/libs/x86_64/
 android/gen/
 #.idea/
 # *.ipr
-# *.iws
-#*.iml
+#*.iws
+*.iml
 out/
 com_crashlytics_export_strings.xml
 
 ## Eclipse
 #.classpath
-#.project
+.project
 #.metadata
 **/bin/
 tmp/
