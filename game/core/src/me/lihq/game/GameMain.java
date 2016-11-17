@@ -12,6 +12,8 @@ import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class GameMain extends ApplicationAdapter implements InputProcessor {
 	SpriteBatch batch;
@@ -19,6 +21,7 @@ public class GameMain extends ApplicationAdapter implements InputProcessor {
 	TiledMap map;
 	OrthographicCamera camera;
 	TiledMapRenderer tiledMapRenderer;
+    Viewport viewport;
 
 	@Override
 	public void create () {
@@ -26,10 +29,16 @@ public class GameMain extends ApplicationAdapter implements InputProcessor {
         float h = Gdx.graphics.getHeight();
         camera = new OrthographicCamera();
         camera.setToOrtho(false,w,h);
+        camera.zoom = 1;
         camera.update();
         map = new TmxMapLoader().load("map.tmx");
+        viewport = new FitViewport(w, h, camera);
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
         Gdx.input.setInputProcessor(this);
+    }
+
+    public void resize(int width, int height) {
+        viewport.update(width, height);
     }
     
 	@Override
@@ -38,6 +47,7 @@ public class GameMain extends ApplicationAdapter implements InputProcessor {
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
+
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
 
