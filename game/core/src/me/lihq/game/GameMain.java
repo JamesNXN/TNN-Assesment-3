@@ -28,18 +28,18 @@ public class GameMain extends ApplicationAdapter {
 
 	@Override
 	public void create () {
-
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
         camera = new OrthographicCamera();
         camera.setToOrtho(false,w,h);
         camera.zoom = 1;
         camera.update();
-        PlayerController player = new PlayerController(camera);
+        //PlayerController player = new PlayerController();
+        //Gdx.input.setInputProcessor(player);
         map = new TmxMapLoader().load("map.tmx");
         viewport = new FitViewport(w/2, h/2, camera);
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
-        Gdx.input.setInputProcessor(player);
+
         FPS = new FPSLogger();
     }
 
@@ -53,7 +53,6 @@ public class GameMain extends ApplicationAdapter {
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
-
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
         FPS.log();

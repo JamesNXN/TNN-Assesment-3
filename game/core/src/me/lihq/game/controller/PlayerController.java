@@ -3,28 +3,29 @@ package me.lihq.game.controller;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import me.lihq.game.model.Player;
 
 /**
  * Created by brookehatton on 18/11/2016.
  */
 public class PlayerController extends InputAdapter {
 
-    private OrthographicCamera camera;
+    private Player player;
 
-    public PlayerController (OrthographicCamera camera) {
-        this.camera = camera;
+    public PlayerController (Player player) {
+        this.player = player;
     }
 
     @Override
     public boolean keyDown(int keycode) {
         if(keycode == Input.Keys.LEFT)
-            this.camera.translate(-32,0);
+            return false;
         if(keycode == Input.Keys.RIGHT)
-            this.camera.translate(32,0);
+            return false;
         if(keycode == Input.Keys.UP)
-            this.camera.translate(0,-32);
+            return false;
         if(keycode == Input.Keys.DOWN)
-            this.camera.translate(0,32);
+            return false;
         return false;
     }
 }
