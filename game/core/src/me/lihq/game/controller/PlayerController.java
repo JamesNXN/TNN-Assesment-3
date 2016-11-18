@@ -19,13 +19,13 @@ public class PlayerController extends InputAdapter {
     @Override
     public boolean keyDown(int keycode) {
         if(keycode == Input.Keys.LEFT)
-            return false;
+            player.move(-1, 0);
         if(keycode == Input.Keys.RIGHT)
-            return false;
+            player.move(1, 0);
         if(keycode == Input.Keys.UP)
-            return false;
+            player.move(0, 1);
         if(keycode == Input.Keys.DOWN)
-            return false;
+            player.move(0, -1);
         return false;
     }
 }

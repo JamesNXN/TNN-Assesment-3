@@ -9,6 +9,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import me.lihq.game.controller.PlayerController;
+import me.lihq.game.model.Player;
 
 /**
  * Created by brookehatton on 18/11/2016.
@@ -19,6 +21,8 @@ public class GameScreen extends AbstractScreen {
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     private OrthographicCamera camera;
     private Viewport viewport;
+    private Player player;
+    private PlayerController playerController;
 
     public GameScreen(GameMain game) {
         super(game);
@@ -28,7 +32,6 @@ public class GameScreen extends AbstractScreen {
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false,w,h);
-        camera.zoom = 1;
         camera.update();
 
         viewport = new FitViewport(w, h, camera);
@@ -36,17 +39,21 @@ public class GameScreen extends AbstractScreen {
         map = new TmxMapLoader().load("map.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
 
+        player = new Player(10,10);
+        playerController = new PlayerController(player);
+
     }
 
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(playerController);
     }
 
     @Override
     public void render(float delta) {
+        camera.position.x = player.getX()*32;
+        camera.position.y = player.getY()*32;
         camera.update();
-
         tiledMapRenderer.setView(camera); // not sure if this belongs here or in the constructor.
         tiledMapRenderer.render();
 
