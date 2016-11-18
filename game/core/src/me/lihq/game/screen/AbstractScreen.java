@@ -3,51 +3,41 @@ package me.lihq.game.screen;
 import com.badlogic.gdx.Screen;
 import me.lihq.game.GameMain;
 
+
 /**
  * Created by brookehatton on 17/11/2016.
  */
 
-public class AbstractScreen implements Screen {
+public abstract class AbstractScreen implements Screen {
 
-    GameMain game;
+    private GameMain game;
 
     public AbstractScreen (GameMain game) {
         this.game = game;
     }
 
+    @Override
+    public abstract void show();
 
     @Override
-    public void show() {
-
-    }
+    public abstract void render(float delta);
 
     @Override
-    public void render(float delta) {
-
-    }
+    public abstract void resize(int width, int height);
 
     @Override
-    public void resize(int width, int height) {
-
-    }
+    public abstract void pause();
 
     @Override
-    public void pause() {
-
-    }
+    public abstract void resume();
 
     @Override
-    public void resume() {
-
-    }
+    public abstract void hide();
 
     @Override
-    public void hide() {
+    public abstract void dispose();
 
-    }
-
-    @Override
-    public void dispose() {
-
+    public GameMain getGame() {
+        return game;
     }
 }
