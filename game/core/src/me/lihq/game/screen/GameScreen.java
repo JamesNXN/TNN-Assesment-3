@@ -10,7 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.controller.PlayerController;
-import me.lihq.game.model.Player;
+import me.lihq.game.models.Player;
 
 /**
  * Created by brookehatton on 18/11/2016.

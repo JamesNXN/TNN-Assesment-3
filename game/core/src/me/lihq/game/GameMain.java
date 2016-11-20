@@ -11,11 +11,17 @@ public class GameMain extends Game {
     FPSLogger FPS;
     private GameScreen screen1;
 
+    //This is a static reference to itself. Comes in REALLY handy when in other classes that don't have a reference to the main game
+    public static GameMain me = null;
 
+    //Game wide variables
+    public String PLAYERNAME = "Dr Professor Lecture Module Leader Sir Colin Runciman-Sensei-Sama PhD Hons. GCSEs";
 
 	@Override
 	public void create () {
         screen1 = new GameScreen(this);
+
+        me = this;
 
         this.setScreen(screen1);
         

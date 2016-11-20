@@ -2,8 +2,7 @@ package me.lihq.game.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import me.lihq.game.model.Player;
+import me.lihq.game.models.Player;
 
 /**
  * Created by brookehatton on 18/11/2016.
@@ -18,13 +17,13 @@ public class PlayerController extends InputAdapter {
 
     @Override
     public boolean keyDown(int keycode) {
-        if(keycode == Input.Keys.LEFT)
+        if(keycode == Input.Keys.LEFT || keycode == Input.Keys.A)
             player.move(-1, 0);
-        if(keycode == Input.Keys.RIGHT)
+        if(keycode == Input.Keys.RIGHT || keycode == Input.Keys.D)
             player.move(1, 0);
-        if(keycode == Input.Keys.UP)
+        if(keycode == Input.Keys.UP || keycode == Input.Keys.W)
             player.move(0, 1);
-        if(keycode == Input.Keys.DOWN)
+        if(keycode == Input.Keys.DOWN || keycode == Input.Keys.S)
             player.move(0, -1);
         return false;
     }
