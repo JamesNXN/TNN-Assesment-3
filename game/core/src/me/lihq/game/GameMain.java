@@ -15,7 +15,7 @@ public class GameMain extends Game {
     public static GameMain me = null;
 
     //Game wide variables
-    public String PLAYERNAME = "Dr Professor Lecture Module Leader Sir Colin Runciman-Sensei-Sama PhD Hons. GCSEs";
+
 
 	@Override
 	public void create () {

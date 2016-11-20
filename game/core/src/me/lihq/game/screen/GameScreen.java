@@ -39,7 +39,11 @@ public class GameScreen extends AbstractScreen {
         map = new TmxMapLoader().load("map.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
 
-        player = new Player(10,10);
+        player = new Player("Test name");
+
+        player.setX(10);
+        player.setY(10);
+
         playerController = new PlayerController(player);
 
     }

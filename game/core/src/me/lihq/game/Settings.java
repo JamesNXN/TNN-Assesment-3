@@ -11,4 +11,6 @@ public class Settings {
 
     public static final int PIXEL_SIZE = 32;
 
+    public static String PLAYERNAME = "Dr Professor Lecture Module Leader Sir Colin Runciman-Sensei-Sama PhD Hons. GCSEs";
+
 }

@@ -1,6 +1,7 @@
 package me.lihq.game.models;
 
 import me.lihq.game.GameMain;
+import me.lihq.game.Settings;
 
 /**
  * Created by brookehatton on 18/11/2016.
@@ -16,7 +17,7 @@ public class Player extends Character {
 
     public Player(String name)
     {
-        GameMain.me.PLAYERNAME = name;
+        Settings.PLAYERNAME = name;
     }
 
     public Inventory getInventory() {return this.inventory;}
@@ -41,6 +42,18 @@ public class Player extends Character {
         {
             personalityLevel = 100;
         }
+    }
+
+    public void move(int dx, int dy)
+    {
+        int newX = getX();
+        newX += dx;
+
+        int newY = getY();
+        newY += dy;
+
+        setX(newX);
+        setY(newY);
     }
 
     @Override
