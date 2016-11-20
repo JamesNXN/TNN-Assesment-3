@@ -27,17 +27,17 @@ android/libs/arm64-v8a/
 android/libs/x86/
 android/libs/x86_64/
 android/gen/
-#.idea/
-# *.ipr
-#*.iws
+.idea/
+*.ipr
+*.iws
 *.iml
 out/
 com_crashlytics_export_strings.xml
 
 ## Eclipse
 .classpath
-# .project
-#.metadata
+.project
+.metadata
 **/bin/
 tmp/
 *.tmp
@@ -64,6 +64,7 @@ nb-configuration.xml
 .gradle
 gradle-app.setting
 build/
+!gradle-wrapper.jar
 
 ## OS Specific
 .DS_Store
