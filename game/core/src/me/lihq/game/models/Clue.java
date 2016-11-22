@@ -5,38 +5,55 @@ import me.lihq.game.Settings;
 /**
  * Created by vishal on 21/11/2016.
  */
-public class Clue {
-    private String ClueName;
-    private int RoomID;
-    private int xcoord;
-    private int ycoord;
+public class Clue
+{
+    private String clueName = "Super Secret Clue";
 
-    public Clue(String Name,int RoomID, int x, int y){
-        this.ClueName= Name;
-        this.RoomID= RoomID;
-        this.xcoord= x* Settings.PIXEL_SIZE;
-        this.ycoord= y* Settings.PIXEL_SIZE;
+    private int x = 0;
+    private int y = 0;
+
+    //=== NEEDS DISCUSSING ===
+    //Does a clue need a room ID as a room has a list of clues in it...
+    private int roomID = -1;
+
+    private String imagePath = "clueSheet.png";
+
+    public Clue(String name, int roomID, int x, int y)
+    {
+        this.clueName= name;
+        this.roomID= roomID;
+        this.x= x * Settings.TILE_SIZE;
+        this.y= y * Settings.TILE_SIZE;
     }
-    public String getClueName(){
-        return(this.ClueName);
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj instanceof Clue)
+        {
+            Clue c = (Clue) obj;
+
+            //Might have to do same coordinates AND same room AND same name
+
+            return c.getClueName().equals(this.getClueName());
+        }
+
+        return false;
     }
-    public void setClueName(String name){
-        this.ClueName=name;
+
+    public String getClueName() {return this.clueName;}
+
+    public void setClueName(String name){this.clueName=name;}
+
+    public void setCoords(int x, int y)
+    {
+        this.x= x * Settings.TILE_SIZE;
+        this.y= y * Settings.TILE_SIZE;
     }
-    public void setCoords(int x, int y){
-        this.xcoord=x* Settings.PIXEL_SIZE;
-        this.ycoord=y* Settings.PIXEL_SIZE;
-    }
-    public int getxCoords(){
-        return(this.xcoord);
-    }
-    public int getyCoords(){
-        return(this.ycoord);
-    }
-    public int getRoomID(){
-        return(this.RoomID);
-    }
-    public void setRoomID(int ID){
-        this.RoomID=ID;
-    }
+
+    public int getX() {return x;}
+
+    public int getY() {return y;}
+
+    public int getRoomID() {return roomID;}
 }

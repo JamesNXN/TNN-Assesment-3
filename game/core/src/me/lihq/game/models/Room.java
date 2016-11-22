@@ -7,55 +7,53 @@ package me.lihq.game.models;
 import me.lihq.game.Settings;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class Room {
-    private String RoomName= "";
-    private int ID;
-    private List<Clue> cluesinroom = new ArrayList<Clue>();
-    /**Setting coordinates of room entrance/exit */
-    private int x;
-    private int y;
-    private String NPC;
+public class Room
+{
+    private String roomName= "";
+    private int ID = -1;
 
-    /**Returns True if it's the room the murder took place in*/
-    public boolean ismurderroom(boolean murderroom){
-        return (murderroom);
-    };
+    private List<Clue> cluesInRoom = new ArrayList<Clue>();
 
-    public void setID(int ID){
-        this.ID= ID;
-    }
-    public int getID(){
-        return(this.ID);
-    }
-    public void SetCoords(int x, int y){
-        this.x=x* Settings.PIXEL_SIZE;
-        this.y=y* Settings.PIXEL_SIZE;
-    }
-    public int getx(){
-        return(this.x);
-    }
-    public int gety(){
-        return (this.y);
+    private String mapFile = "map.tmx";
+
+    private boolean murderRoom = false;
+
+    public Room(int id, String mapFile, String roomName)
+    {
+        this.ID = id;
+        this.mapFile = mapFile;
+        this.roomName = roomName;
     }
 
-    /**Can be used by the NPC class to set an NPC to a room*/
-    public void setNPC(String npc) {
-    }
+    //Returns True if it's the room the murder took place in
+    public boolean isMurderRoom() {return murderRoom;}
+
+    public int getID(){return this.ID;}
+
     /**Changes coordinates of clue*/
-    public void moveClue(Clue newClue,int x,int y){
-        newClue.setCoords(x* Settings.PIXEL_SIZE,y* Settings.PIXEL_SIZE);
+    public void moveClue(Clue clue, int x, int y)
+    {
+        if (cluesInRoom.contains(clue))
+        {
+            clue.setCoords(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
+        }
     }
-    public void addClue(Clue newClue){
-        cluesinroom.add(newClue);
-        /**IF statement to remove clue from list of original room if moving from room to room*/
-        if (newClue.getRoomID()!=0){
 
-            newClue.setRoomID(this.ID);}
-        else{
-            newClue.setRoomID(this.ID);
+    public void addClue(Clue newClue)
+    {
+        if (!cluesInRoom.contains(newClue))
+        {
+            cluesInRoom.add(newClue);
+        }
+    }
+
+    public void removeClue(Clue toRemove)
+    {
+        if (cluesInRoom.contains(toRemove))
+        {
+            cluesInRoom.remove(toRemove);
         }
     }
 }

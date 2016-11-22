@@ -7,7 +7,7 @@ public class NPC extends Character {
 
     //These variables are specific to the NPC only
     private int roomID = -1;
-    private String characterName = "";
+    private String name = "";
 
     private boolean isKiller = false;
     private String motive = "";
@@ -53,15 +53,12 @@ public class NPC extends Character {
 
     public NPC setShoeSize(int shoeSize) {this.shoeSize = shoeSize; return this;}
 
-    public NPC setCharacterName(String name) {this.characterName = name; return this;}
+    public NPC setCharacterName(String name) {this.name = name; return this;}
 
     public NPC setMotive(String motive) {this.motive = motive; return this;}
 
     public NPC setRoomID(int roomID) {this.roomID = roomID; return this;}
 
     @Override
-    public void move()
-    {
-        super.move();
-    }
+    public void move(){}
 }

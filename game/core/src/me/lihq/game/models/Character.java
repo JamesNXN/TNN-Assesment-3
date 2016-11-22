@@ -8,10 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public abstract class Character {
 
     //Storing the characters coordinates on the map
-    private int x = 0;
-    private int y = 0;
-    private int offsetX = 0;
-    private int offsetY = 0;
+    protected int x = 0;
+    protected int y = 0;
+    protected int offsetX = 0;
+    protected int offsetY = 0;
 
     //Stores the location path of the characters source image sprite sheet
     private String imagePath = "";
@@ -36,6 +36,5 @@ public abstract class Character {
 
     public String getImagePath() {return this.imagePath;}
 
-    //This will NEED to be overriden, do we make this an interface????
-    public void move() {}
+    abstract void move();
 }

@@ -48,8 +48,8 @@ public class Inventory {
             this.name = itemName;
 
             //* 32 because we can give the position of the image, eg. x=2, y=1. Then it gets the pixel locations by timesing by the pixel size (32 default)
-            this.imageX = imageX * Settings.PIXEL_SIZE;
-            this.imageY = imageY * Settings.PIXEL_SIZE;
+            this.imageX = imageX * Settings.TILE_SIZE;
+            this.imageY = imageY * Settings.TILE_SIZE;
         }
 
         //Returns the name of the item
@@ -83,5 +83,10 @@ public class Inventory {
             }
 
         }
+    }
+
+    public void tests()
+    {
+
     }
 }

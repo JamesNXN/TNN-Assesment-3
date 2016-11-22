@@ -9,7 +9,7 @@ public class Settings {
         This class is used for game wide CONSTANTS or VARIABLES
      */
 
-    public static final int PIXEL_SIZE = 32;
+    public static final int TILE_SIZE = 32;
 
     public static String PLAYERNAME = "Dr Professor Lecture Module Leader Sir Colin Runciman-Sensei-Sama PhD Hons. GCSEs";
 

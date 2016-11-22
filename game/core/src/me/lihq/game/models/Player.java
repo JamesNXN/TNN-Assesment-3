@@ -15,8 +15,11 @@ public class Player extends Character {
 
     private int score = 0;
 
+    private String playername = "Joe";
+
     public Player(String name)
     {
+        this.playername = name;
         Settings.PLAYERNAME = name;
     }
 
@@ -46,18 +49,10 @@ public class Player extends Character {
 
     public void move(int dx, int dy)
     {
-        int newX = getX();
-        newX += dx;
-
-        int newY = getY();
-        newY += dy;
-
-        setX(newX);
-        setY(newY);
+        this.x += dx;
+        this.y += dy;
     }
 
     @Override
-    public void move() {
-        super.move();
-    }
+    public void move() {}
 }
