@@ -84,9 +84,4 @@ public class Inventory {
 
         }
     }
-
-    public void tests()
-    {
-
-    }
 }

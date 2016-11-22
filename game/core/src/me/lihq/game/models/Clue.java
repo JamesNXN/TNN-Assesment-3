@@ -22,8 +22,8 @@ public class Clue
     {
         this.clueName= name;
         this.roomID= roomID;
-        this.x= x * Settings.TILE_SIZE;
-        this.y= y * Settings.TILE_SIZE;
+        this.x= x;
+        this.y= y;
     }
 
     @Override
@@ -47,8 +47,8 @@ public class Clue
 
     public void setCoords(int x, int y)
     {
-        this.x= x * Settings.TILE_SIZE;
-        this.y= y * Settings.TILE_SIZE;
+        this.x= x;
+        this.y= y;
     }
 
     public int getX() {return x;}

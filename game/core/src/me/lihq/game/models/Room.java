@@ -37,7 +37,7 @@ public class Room
     {
         if (cluesInRoom.contains(clue))
         {
-            clue.setCoords(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
+            clue.setCoords(x, y);
         }
     }
 

@@ -23,8 +23,6 @@ public class Player extends Character {
         Settings.PLAYERNAME = name;
     }
 
-    public Inventory getInventory() {return this.inventory;}
-
     /*
         This method will change the players personality by the given amount.
         It will cap the personality between 0 and 100.
@@ -54,5 +52,15 @@ public class Player extends Character {
     }
 
     @Override
-    public void move() {}
+    public void move()
+    {
+
+    }
+
+
+    public Inventory getInventory() {return this.inventory;}
+
+    public String getPlayername() {return this.playername;}
+
+    public int getPersonality() {return this.personalityLevel;}
 }
