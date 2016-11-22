@@ -17,8 +17,7 @@ public class Player extends Character {
 
     private String playername = "Joe";
 
-    public Player(String name)
-    {
+    public Player(String name) {
         this.playername = name;
         Settings.PLAYERNAME = name;
     }
@@ -31,36 +30,36 @@ public class Player extends Character {
 
         @param int change - The amount to change by, can be positive or negative
      */
-    public void changePersonality(int change)
-    {
+    public void changePersonality(int change) {
         personalityLevel = personalityLevel + change;
 
-        if (personalityLevel < 0)
-        {
+        if (personalityLevel < 0) {
             personalityLevel = 0;
-        }
-        else if (personalityLevel > 100)
-        {
+        } else if (personalityLevel > 100) {
             personalityLevel = 100;
         }
     }
 
-    public void move(int dx, int dy)
-    {
+    public void move(int dx, int dy) {
         this.x += dx;
         this.y += dy;
     }
 
     @Override
-    public void move()
-    {
+    public void move() {
 
     }
 
 
-    public Inventory getInventory() {return this.inventory;}
+    public Inventory getInventory() {
+        return this.inventory;
+    }
 
-    public String getPlayername() {return this.playername;}
+    public String getPlayername() {
+        return this.playername;
+    }
 
-    public int getPersonality() {return this.personalityLevel;}
+    public int getPersonality() {
+        return this.personalityLevel;
+    }
 }

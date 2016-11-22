@@ -16,25 +16,45 @@ public abstract class Character {
     //Stores the location path of the characters source image sprite sheet
     private String imagePath = "";
 
-    public void setX(int x){this.x = x;}
+    public int getX() {
+        return this.x;
+    }
 
-    public void setY(int y){this.y = y;}
+    public void setX(int x) {
+        this.x = x;
+    }
 
-    public int getX() {return this.x;}
+    public int getY() {
+        return this.y;
+    }
 
-    public int getY() {return this.y;}
+    public void setY(int y) {
+        this.y = y;
+    }
 
-    public void setOffsetX(int offsetX) {this.offsetX = offsetX;}
+    public int getOffsetX() {
+        return this.offsetX;
+    }
 
-    public void setOffsetY(int offsetY) {this.offsetY = offsetY;}
+    public void setOffsetX(int offsetX) {
+        this.offsetX = offsetX;
+    }
 
-    public int getOffsetX() {return this.offsetX;}
+    public int getOffsetY() {
+        return this.offsetY;
+    }
 
-    public int getOffsetY() {return this.offsetY;}
+    public void setOffsetY(int offsetY) {
+        this.offsetY = offsetY;
+    }
 
-    public void setImagePath(String path) {this.imagePath = path;}
+    public String getImagePath() {
+        return this.imagePath;
+    }
 
-    public String getImagePath() {return this.imagePath;}
+    public void setImagePath(String path) {
+        this.imagePath = path;
+    }
 
     abstract void move();
 }
