@@ -13,12 +13,12 @@ public class NPC extends Character {
     private String motive = "";
 
     //The NPCs 'blood' graphics will also be on the regular NPCs sprite sheet
-    private HAIR_COLOR hairColor = HAIR_COLOR.GINGER; //lol
+    private HAIR_COLOR hairColor = HAIR_COLOR.GINGER;
 
     private boolean hasGlasses = false;
     private WRITING_HAND writingHand = WRITING_HAND.RIGHT;
     private boolean hasLipstick = false; //Really not sure about this one, should probably change to something more neutral
-    
+
     private ACCESSORY accessory = ACCESSORY.NONE;
     private int shoeSize = 12; //You know what they say about people with big shoes.... big socks
 

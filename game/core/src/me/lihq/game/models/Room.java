@@ -4,25 +4,22 @@ package me.lihq.game.models;
  * Created by vishal on 20/11/2016.
  */
 
-import me.lihq.game.Settings;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
-    private String roomName = "";
-    private int ID = -1;
+    private String name;
+    private int ID;
+    private String mapFile;
 
     private List<Clue> cluesInRoom = new ArrayList<Clue>();
 
-    private String mapFile = "map.tmx";
-
     private boolean murderRoom = false;
 
-    public Room(int id, String mapFile, String roomName) {
+    public Room(int id, String mapFile, String name) {
         this.ID = id;
         this.mapFile = mapFile;
-        this.roomName = roomName;
+        this.name = name;
     }
 
     //Returns True if it's the room the murder took place in
