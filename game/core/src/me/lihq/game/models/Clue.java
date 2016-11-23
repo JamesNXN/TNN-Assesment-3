@@ -15,6 +15,9 @@ public class Clue {
     //Does a clue need a room ID as a room has a list of clues in it...
     private int roomID = -1;
 
+    //Don't we need to associate a clue with a list of applicable NPCs?
+    //~Jason
+
     private String imagePath = "clueSheet.png";
 
     public Clue(String name, int roomID, int x, int y) {
