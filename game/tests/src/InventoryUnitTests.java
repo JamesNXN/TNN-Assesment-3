@@ -9,7 +9,6 @@ import static org.junit.Assert.*;
  */
 public class InventoryUnitTests
 {
-
     Inventory inv;
 
     @Before
