@@ -3,7 +3,7 @@ package me.lihq.game.models;
 /**
  * Created by joeshuff on 20/11/2016.
  */
-public class NPC extends Character {
+public class NPC extends AbstractPerson {
 
     //These variables are specific to the NPC only
     private int roomID = -1;

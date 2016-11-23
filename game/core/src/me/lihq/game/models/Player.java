@@ -6,7 +6,7 @@ import me.lihq.game.Settings;
 /**
  * Created by brookehatton on 18/11/2016.
  */
-public class Player extends Character {
+public class Player extends AbstractPerson {
 
     //The personality will be a percent score (0-100) 50 being neutral etc etc
     private int personalityLevel = 50;
