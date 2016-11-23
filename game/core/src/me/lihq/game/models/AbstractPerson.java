@@ -12,6 +12,7 @@ public abstract class AbstractPerson {
     protected int y = 0;
     protected int offsetX = 0;
     protected int offsetY = 0;
+    protected int clockwiseRotation = 0;
 
     //Stores the location path of the characters source image sprite sheet
     private String imagePath = "";
@@ -47,6 +48,10 @@ public abstract class AbstractPerson {
     public void setOffsetY(int offsetY) {
         this.offsetY = offsetY;
     }
+
+    public void setClockwiseRotation(int clockwiseRotation) {this.clockwiseRotation = clockwiseRotation;}
+
+    public int getClockwiseRotation(int clockwiseRotation) {return this.clockwiseRotation;}
 
     public String getImagePath() {
         return this.imagePath;
