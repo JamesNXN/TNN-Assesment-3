@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 /**
  * Created by joeshuff on 20/11/2016.
  */
-public abstract class Character {
+public abstract class AbstractPerson {
 
     //Storing the characters coordinates on the map
     protected int x = 0;
