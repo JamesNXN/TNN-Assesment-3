@@ -1,4 +1,5 @@
 import me.lihq.game.models.Player;
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -7,12 +8,24 @@ import static org.junit.Assert.*;
  */
 public class PlayerUnitTests {
 
+    Player p = null;
+
+    @Before
+    public void before()
+    {
+        p = new Player("Test Name");
+    }
+
     @Test
-    public void testPlayerFunctionsCorrect()
+    public void testPlayername()
     {
         Player p = new Player("Test Name");
         assertEquals("Fail - Not returning correct playername", p.getPlayername(), "Test Name");
+    }
 
+    @Test
+    public void testPlayerPersonality()
+    {
         //Personality Level is default 0
         p.changePersonality(100);
         //Should have surpassed the maximum of 100. Then changed to the maximum, 100

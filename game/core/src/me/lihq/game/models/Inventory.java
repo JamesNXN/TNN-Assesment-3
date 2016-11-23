@@ -18,6 +18,18 @@ public class Inventory {
 
     }
 
+    public void addItem(Item item)
+    {
+        if (hasItem(item.getName()))
+        {
+            //Increase stack size vs not adding?
+        }
+        else
+        {
+            items.add(item);
+        }
+    }
+
     /*
         This method will check whether an item is in the inventory or not based on its name
 
@@ -25,9 +37,9 @@ public class Inventory {
 
         @returns boolean - Whether the item exists or not
      */
-    public boolean hasItem(String name) {
-        return getItems().contains(new Item(name, -1, -1));
-    }
+    public boolean hasItem(String name) {return hasItem(new Item(name, -1,-1));}
+
+    public boolean hasItem(Item item) {return getItems().contains(item);}
 
     //Returns the list of items in the inventory
     public List<Item> getItems() {
@@ -35,7 +47,7 @@ public class Inventory {
     }
 
     //My justification is only the Inventory will hold items, so to save space, keep it in this class
-    public class Item {
+    public static class Item {
         String name = "";
 
         //Stores the location of the item image on the item sprite sheet
