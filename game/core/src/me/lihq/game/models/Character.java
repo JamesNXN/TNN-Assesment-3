@@ -56,5 +56,5 @@ public abstract class Character {
         this.imagePath = path;
     }
 
-    abstract void move();
+    public abstract void move();
 }

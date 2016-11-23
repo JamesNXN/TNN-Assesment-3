@@ -9,6 +9,7 @@ public class NPC extends Character {
     private int roomID = -1;
     private String name = "";
 
+    private boolean canBeKiller = false;
     private boolean isKiller = false;
     private String motive = "";
 
@@ -22,12 +23,14 @@ public class NPC extends Character {
     private ACCESSORY accessory = ACCESSORY.NONE;
     private int shoeSize = 12; //You know what they say about people with big shoes.... big socks
 
-    public NPC(int x, int y, int roomID, String spriteSheet, boolean isKiller) {
+    public NPC(int x, int y, int roomID, String spriteSheet, boolean canBeKiller) {
 
         this.setRoomID(roomID);
 
         this.setX(x);
         this.setY(y);
+
+        this.canBeKiller = canBeKiller;
 
         this.setImagePath(spriteSheet);
     }
@@ -83,11 +86,11 @@ public class NPC extends Character {
     }
 
     //These variables are to describe a players features to make the clues useful
-    private enum HAIR_COLOR {
+    public enum HAIR_COLOR {
         LIGHT_BROWN, DARK_BROWN, GINGER, BLONDE, BLACK, WHITE, GRAY
     }
 
-    private enum WRITING_HAND {LEFT, RIGHT}
+    public enum WRITING_HAND {LEFT, RIGHT}
 
-    private enum ACCESSORY {BAG, BRIEFCASE, HANDBAG, WATCH, NONE}
+    public enum ACCESSORY {BAG, BRIEFCASE, HANDBAG, WATCH, NONE}
 }
