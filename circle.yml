@@ -2,13 +2,11 @@ machine:
   java:
     version: openjdk7
 
-general:
-  artifacts:
-    - "game/tests/build/reports/tests"
-
 test:
   override:
-    - cd game && gradle test
+    - cd game && ./gradlew test
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+    - mkdir -p $CIRCLE_TEST_REPORTS/html/
+    - cp -r game/tests/build/reports/tests/* $CIRCLE_TEST_REPORTS/html/;
