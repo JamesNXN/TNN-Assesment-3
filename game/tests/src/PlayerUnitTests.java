@@ -13,7 +13,7 @@ public class PlayerUnitTests {
     @Before
     public void before()
     {
-        p = new Player("Test Name","");
+        p = new Player("Test Name","player.png");
     }
 
     @Test

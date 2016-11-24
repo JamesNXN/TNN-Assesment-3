@@ -3,6 +3,7 @@ package me.lihq.game.living;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import me.lihq.game.Assets;
 
 /**
  * Created by joeshuff on 20/11/2016.
@@ -20,7 +21,8 @@ public abstract class AbstractPerson extends Sprite {
 
     public AbstractPerson(String img)
     {
-        super(new Texture(img));
+        //TODO: Needs uncommenting when we have assets
+        //super(Assets.loadTexture(img));
     }
 
     public int getOffsetX() {

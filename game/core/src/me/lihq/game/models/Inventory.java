@@ -59,7 +59,8 @@ public class Inventory {
             this.description = description;
 
             //* 32 because we can give the position of the image, eg. x=2, y=1. Then it gets the pixel locations by timesing by the pixel size (32 default)
-            textureRegion = new TextureRegion(Assets.items, imageX * Settings.TILE_SIZE, imageY * Settings.TILE_SIZE, Settings.TILE_SIZE, Settings.TILE_SIZE);
+            //TODO: Needs UNCOMMENTING when we have items assets
+            //textureRegion = new TextureRegion(Assets.items, imageX * Settings.TILE_SIZE, imageY * Settings.TILE_SIZE, Settings.TILE_SIZE, Settings.TILE_SIZE);
         }
 
         //Returns the name of the item

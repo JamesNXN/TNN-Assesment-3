@@ -28,6 +28,9 @@ public class Assets {
         opening = loadTexture("title.png");
         introFrame1 = new TextureRegion(opening,0, 0, 1000, 750);
         introFrame2 = new TextureRegion(opening,0, 750, 1000, 750);
+
+        //Temporary as it errors if it doesnt have a file
+        items = loadTexture("player.png");
     }
 
 }
