@@ -1,8 +1,8 @@
-package me.lihq.game.controller;
+package me.lihq.game.living.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import me.lihq.game.models.Player;
+import me.lihq.game.living.Player;
 
 /**
  * Created by brookehatton on 18/11/2016.

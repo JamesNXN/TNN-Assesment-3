@@ -1,6 +1,8 @@
-package me.lihq.game.models;
+package me.lihq.game.living;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * Created by joeshuff on 20/11/2016.
@@ -8,31 +10,17 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public abstract class AbstractPerson extends Sprite {
 
     //Storing the characters coordinates on the map
-    protected int x = 0;
-    protected int y = 0;
+    protected Vector2 position = new Vector2().set(0,0);
     protected int offsetX = 0;
     protected int offsetY = 0;
-    protected int direction = 0;
+    protected DIRECTION direction = DIRECTION.NORTH;
 
     //Stores the location path of the characters source image sprite sheet
     private String imagePath = "";
 
-    //These are commented because they clash with Sprite
-
-//    public int getX() {
-//        return this.x;
-//    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-//    public int getY() {
-//        return this.y;
-//    }
-
-    public void setY(int y) {
-        this.y = y;
+    public AbstractPerson(String img)
+    {
+        super(new Texture(img));
     }
 
     public int getOffsetX() {
@@ -51,9 +39,9 @@ public abstract class AbstractPerson extends Sprite {
         this.offsetY = offsetY;
     }
 
-    public void setDirection(int direction) {this.direction = direction;}
+    public void setDirection(DIRECTION direction) {this.direction = direction;}
 
-    public int getDirection(int direction) {return this.direction;}
+    public DIRECTION getDirection() {return this.direction;}
 
     public String getImagePath() {
         return this.imagePath;
@@ -63,5 +51,7 @@ public abstract class AbstractPerson extends Sprite {
         this.imagePath = path;
     }
 
-    public abstract void move();
+    public enum DIRECTION {
+        NORTH, SOUTH, EAST, WEST
+    }
 }

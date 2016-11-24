@@ -1,34 +1,42 @@
 package me.lihq.game.models;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 import me.lihq.game.Settings;
+
+import java.util.Set;
 
 /**
  * Created by vishal on 21/11/2016.
  */
-public class Clue {
+public class Clue extends Sprite {
     private String clueName = "Super Secret Clue";
 
-    private int x = 0;
-    private int y = 0;
+    private Vector2 position;
 
     //=== NEEDS DISCUSSING ===
-    //Does a clue need a room ID as a room has a list of clues in it...
+    //TODO: Does a clue need a room ID as a room has a list of clues in it...
     private int roomID = -1;
 
-    //Don't we need to associate a clue with a list of applicable NPCs?
+    //TODO: Clues generate from the killer
+    //TODO: Initialise Characters -> Generate Killer -> Generate Clues
+
+    //TODO: Don't we need to associate a clue with a list of applicable NPCs?
     //~Jason
 
-    private String imagePath = "clueSheet.png";
+    private static String imagePath = "clueSheet.png";
     private int imageSrcX;
     private int imageSrcY;
 
     public Clue(String name, int roomID, int x, int y,int imageSrcX, int imageSrcY) {
+        super(new Texture(imagePath));
         this.clueName = name;
         this.roomID = roomID;
-        this.x = x;
-        this.y = y;
-        this.imageSrcX = imageSrcX;
-        this.imageSrcY = imageSrcY;
+        this.position.x = x;
+        this.position.y = y;
+        this.imageSrcX = imageSrcX * Settings.TILE_SIZE;
+        this.imageSrcY = imageSrcY * Settings.TILE_SIZE;
     }
 
     @Override
@@ -53,16 +61,10 @@ public class Clue {
     }
 
     public void setCoords(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
+        this.position.x = x;
+        this.position.y = y;
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
+        this.setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
     }
 
     public int getRoomID() {

@@ -13,6 +13,4 @@ public class Settings {
 
     public static final int ZOOM = 2;
 
-    public static String PLAYERNAME = "Dr Professor Lecture Module Leader Sir Colin Runciman-Sensei-Sama PhD Hons. GCSEs";
-
 }

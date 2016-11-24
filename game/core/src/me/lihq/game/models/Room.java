@@ -28,6 +28,8 @@ public class Room {
         this.map = new TmxMapLoader().load(mapFile);
     }
 
+    //TODO: Popup notification on room entrance
+
     //Returns True if it's the room the murder took place in
     public boolean isMurderRoom() {
         return murderRoom;

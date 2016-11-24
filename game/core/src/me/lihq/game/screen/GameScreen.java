@@ -10,8 +10,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.Settings;
-import me.lihq.game.controller.PlayerController;
-import me.lihq.game.models.Player;
+import me.lihq.game.living.controller.PlayerController;
+import me.lihq.game.Assets;
+import me.lihq.game.living.Player;
 
 /**
  * Created by brookehatton on 18/11/2016.
@@ -31,6 +32,8 @@ public class GameScreen extends AbstractScreen {
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
 
+        Assets.load();
+
         camera = new OrthographicCamera();
         camera.setToOrtho(false,w,h);
         camera.update();
@@ -40,12 +43,11 @@ public class GameScreen extends AbstractScreen {
         map = new TmxMapLoader().load("map.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
 
-        player = new Player("Test name");
+        player = new Player("Test name","player.png");
 
         player.setX(10);
         player.setY(10);
 
-        //Should we make it so that a player has a player controller. Rather than a controller has a player?
         playerController = new PlayerController(player);
     }
 

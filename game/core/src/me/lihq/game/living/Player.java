@@ -1,7 +1,8 @@
-package me.lihq.game.models;
+package me.lihq.game.living;
 
-import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
+import me.lihq.game.living.AbstractPerson;
+import me.lihq.game.models.Inventory;
 
 /**
  * Created by brookehatton on 18/11/2016.
@@ -15,11 +16,12 @@ public class Player extends AbstractPerson {
 
     private int score = 0;
 
-    private String playername = "Joe";
+    private String name = "Dr Professor Lecture Module Leader Sir Colin Runciman-Sensei-Sama PhD Hons. GCSEs";
 
-    public Player(String name) {
-        this.playername = name;
-        Settings.PLAYERNAME = name;
+    public Player(String name, String imgSrc)
+    {
+        super(imgSrc);
+        this.name = name;
     }
 
     /*
@@ -30,7 +32,8 @@ public class Player extends AbstractPerson {
 
         @param int change - The amount to change by, can be positive or negative
      */
-    public void changePersonality(int change) {
+    public void addToPersonality(int change)
+    {
         personalityLevel = personalityLevel + change;
 
         if (personalityLevel < 0) {
@@ -40,23 +43,20 @@ public class Player extends AbstractPerson {
         }
     }
 
-    public void move(int dx, int dy) {
-        this.x += dx;
-        this.y += dy;
+    public void move(int dx, int dy)
+    {
+        this.position.x += dx;
+        this.position.y += dy;
+
+        this.setPosition(this.position.x * Settings.TILE_SIZE, this.position.y * Settings.TILE_SIZE);
     }
-
-    @Override
-    public void move() {
-
-    }
-
 
     public Inventory getInventory() {
         return this.inventory;
     }
 
     public String getPlayername() {
-        return this.playername;
+        return this.name;
     }
 
     public int getPersonality() {

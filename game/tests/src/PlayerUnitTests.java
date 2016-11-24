@@ -1,4 +1,4 @@
-import me.lihq.game.models.Player;
+import me.lihq.game.living.Player;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -13,29 +13,28 @@ public class PlayerUnitTests {
     @Before
     public void before()
     {
-        p = new Player("Test Name");
+        p = new Player("Test Name","");
     }
 
     @Test
     public void testPlayername()
     {
-        Player p = new Player("Test Name");
         assertEquals("Fail - Not returning correct playername", p.getPlayername(), "Test Name");
     }
 
     @Test
     public void testPlayerPersonality()
     {
-        //Personality Level is default 0
-        p.changePersonality(100);
+        //Personality Level is default 50
+        p.addToPersonality(100);
         //Should have surpassed the maximum of 100. Then changed to the maximum, 100
         assertEquals("Fail - Personality not Upper Capped", p.getPersonality(), 100);
 
-        p.changePersonality(-50);
+        p.addToPersonality(-50);
         //Reduce back to 50
         assertEquals("Fail - Personality not reduced to 50", p.getPersonality(), 50);
 
-        p.changePersonality(-100);
+        p.addToPersonality(-100);
         //Gone below 0, should move it back up to 0
         assertEquals("Fail - Personality not Lower Capped", p.getPersonality(), 0);
     }

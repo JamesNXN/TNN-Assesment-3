@@ -1,4 +1,4 @@
-package me.lihq.game.models;
+package me.lihq.game.living;
 
 /**
  * Created by joeshuff on 20/11/2016.
@@ -21,9 +21,11 @@ public class NPC extends AbstractPerson {
     private boolean hasLipstick = false; //Really not sure about this one, should probably change to something more neutral
 
     private ACCESSORY accessory = ACCESSORY.NONE;
-    private int shoeSize = 12; //You know what they say about people with big shoes.... big socks
+    private int shoeSize = 12;
 
     public NPC(int x, int y, int roomID, String spriteSheet, boolean canBeKiller) {
+
+        super(spriteSheet);
 
         this.setRoomID(roomID);
 
@@ -81,8 +83,48 @@ public class NPC extends AbstractPerson {
         return this;
     }
 
-    @Override
-    public void move() {
+    public int getRoomID() {
+        return roomID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean canBeKiller() {
+        return canBeKiller;
+    }
+
+    public boolean isKiller() {
+        return isKiller;
+    }
+
+    public String getMotive() {
+        return motive;
+    }
+
+    public HAIR_COLOR getHairColor() {
+        return hairColor;
+    }
+
+    public boolean hasGlasses() {
+        return hasGlasses;
+    }
+
+    public WRITING_HAND getWritingHand() {
+        return writingHand;
+    }
+
+    public boolean hasLipstick() {
+        return hasLipstick;
+    }
+
+    public ACCESSORY getAccessory() {
+        return accessory;
+    }
+
+    public int getShoeSize() {
+        return shoeSize;
     }
 
     //These variables are to describe a players features to make the clues useful

@@ -4,10 +4,10 @@ import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 
 import com.badlogic.gdx.graphics.FPSLogger;
-import me.lihq.game.models.NPC;
-import me.lihq.game.models.NPC.ACCESSORY;
-import me.lihq.game.models.NPC.HAIR_COLOR;
-import me.lihq.game.models.NPC.WRITING_HAND;
+import me.lihq.game.living.NPC;
+import me.lihq.game.living.NPC.ACCESSORY;
+import me.lihq.game.living.NPC.HAIR_COLOR;
+import me.lihq.game.living.NPC.WRITING_HAND;
 import me.lihq.game.models.Room;
 import me.lihq.game.screen.GameScreen;
 

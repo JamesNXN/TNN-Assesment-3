@@ -1,9 +1,10 @@
 package me.lihq.game.models;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import me.lihq.game.Assets;
 import me.lihq.game.Settings;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,7 +38,7 @@ public class Inventory {
 
         @returns boolean - Whether the item exists or not
      */
-    public boolean hasItem(String name) {return hasItem(new Item(name, -1,-1));}
+    public boolean hasItem(String name) {return hasItem(new Item(name, "", -1,-1));}
 
     public boolean hasItem(Item item) {return getItems().contains(item);}
 
@@ -49,17 +50,16 @@ public class Inventory {
     //My justification is only the Inventory will hold items, so to save space, keep it in this class
     public static class Item {
         String name = "";
+        String description = "";
 
-        //Stores the location of the item image on the item sprite sheet
-        int imageX = -1;
-        int imageY = -1;
+        TextureRegion textureRegion;
 
-        public Item(String itemName, int imageX, int imageY) {
+        public Item(String itemName, String description, int imageX, int imageY) {
             this.name = itemName;
+            this.description = description;
 
             //* 32 because we can give the position of the image, eg. x=2, y=1. Then it gets the pixel locations by timesing by the pixel size (32 default)
-            this.imageX = imageX * Settings.TILE_SIZE;
-            this.imageY = imageY * Settings.TILE_SIZE;
+            textureRegion = new TextureRegion(Assets.items, imageX * Settings.TILE_SIZE, imageY * Settings.TILE_SIZE, Settings.TILE_SIZE, Settings.TILE_SIZE);
         }
 
         //Returns the name of the item
@@ -67,12 +67,9 @@ public class Inventory {
             return this.name;
         }
 
-        //Returns a list with the X and Y pixel coordinates of the item image e.g {x, y}
-        public List<Integer> getImageLoc() {
-            return Arrays.asList(this.imageX, this.imageY);
+        public String getDescription() {
+            return description;
         }
-
-        //DO WE WANT SETTERS FOR THESE ATTRIBUTES??????
 
         /*
             This is a standard Object method that checks if 2 objects are the same.
