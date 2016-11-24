@@ -19,12 +19,16 @@ public class Clue {
     //~Jason
 
     private String imagePath = "clueSheet.png";
+    private int imageSrcX;
+    private int imageSrcY;
 
-    public Clue(String name, int roomID, int x, int y) {
+    public Clue(String name, int roomID, int x, int y,int imageSrcX, int imageSrcY) {
         this.clueName = name;
         this.roomID = roomID;
         this.x = x;
         this.y = y;
+        this.imageSrcX = imageSrcX;
+        this.imageSrcY = imageSrcY;
     }
 
     @Override

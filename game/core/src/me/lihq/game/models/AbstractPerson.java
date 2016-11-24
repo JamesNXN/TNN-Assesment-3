@@ -1,33 +1,35 @@
 package me.lihq.game.models;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
  * Created by joeshuff on 20/11/2016.
  */
-public abstract class AbstractPerson {
+public abstract class AbstractPerson extends Sprite {
 
     //Storing the characters coordinates on the map
     protected int x = 0;
     protected int y = 0;
     protected int offsetX = 0;
     protected int offsetY = 0;
-    protected int clockwiseRotation = 0;
+    protected int direction = 0;
 
     //Stores the location path of the characters source image sprite sheet
     private String imagePath = "";
 
-    public int getX() {
-        return this.x;
-    }
+    //These are commented because they clash with Sprite
+
+//    public int getX() {
+//        return this.x;
+//    }
 
     public void setX(int x) {
         this.x = x;
     }
 
-    public int getY() {
-        return this.y;
-    }
+//    public int getY() {
+//        return this.y;
+//    }
 
     public void setY(int y) {
         this.y = y;
@@ -49,9 +51,9 @@ public abstract class AbstractPerson {
         this.offsetY = offsetY;
     }
 
-    public void setClockwiseRotation(int clockwiseRotation) {this.clockwiseRotation = clockwiseRotation;}
+    public void setDirection(int direction) {this.direction = direction;}
 
-    public int getClockwiseRotation(int clockwiseRotation) {return this.clockwiseRotation;}
+    public int getDirection(int direction) {return this.direction;}
 
     public String getImagePath() {
         return this.imagePath;
