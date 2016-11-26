@@ -7,7 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 /**
  * Created by joeshuff on 24/11/2016.
  */
-public class Assets {
+public class Assets
+{
 
     public static Texture items;
     public static Texture clues;
@@ -26,8 +27,8 @@ public class Assets {
     public static void load()
     {
         opening = loadTexture("title.png");
-        introFrame1 = new TextureRegion(opening,0, 0, 1000, 750);
-        introFrame2 = new TextureRegion(opening,0, 750, 1000, 750);
+        introFrame1 = new TextureRegion(opening, 0, 0, 1000, 750);
+        introFrame2 = new TextureRegion(opening, 0, 750, 1000, 750);
 
         //Temporary as it errors if it doesnt have a file
         items = loadTexture("player.png");
