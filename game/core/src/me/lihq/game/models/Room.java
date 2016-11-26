@@ -6,8 +6,11 @@ package me.lihq.game.models;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class Room
@@ -20,7 +23,10 @@ public class Room
 
     private boolean murderRoom = false;
 
-    private TiledMap map = null;
+    private TiledMap map;
+
+    //Room transitions stored as (currentX, currentY) points to a (newRoomID, newX, newY)
+    private HashMap<Vector2, List<Integer>> roomTransitions = new HashMap<Vector2, List<Integer>>();
 
     public Room(int id, String mapFile, String name)
     {
@@ -86,6 +92,27 @@ public class Room
         }
 
         return false;
+    }
+
+    public Room setTransition(int x, int y, int newRoom, int newX, int newY)
+    {
+        roomTransitions.put(new Vector2(x,y), Arrays.asList(newRoom, newX, newY));
+        return this;
+    }
+
+    /**
+     * This method will take the current x and y coordinate and attempt to move to another room
+     *
+     * @param x - The current x coordinate in the room
+     * @param y - The current y coordinate in the room
+     * @return - a List with length 3.
+     *             0 - New Room ID
+     *             1 - New X
+     *             2 - New Y
+     */
+    public List<Integer> getNewRoom(int x, int y)
+    {
+        return roomTransitions.get(new Vector2(x,y));
     }
 }
 
