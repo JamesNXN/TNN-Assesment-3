@@ -8,6 +8,7 @@ import me.lihq.game.living.NPC;
 import me.lihq.game.living.NPC.ACCESSORY;
 import me.lihq.game.living.NPC.HAIR_COLOR;
 import me.lihq.game.living.NPC.WRITING_HAND;
+import me.lihq.game.models.Map;
 import me.lihq.game.models.Room;
 import me.lihq.game.screen.NavigationScreen;
 
@@ -24,7 +25,8 @@ public class GameMain extends Game
     public static GameMain me = null;
     //Game wide variables
     public List<NPC> NPCs = new ArrayList<NPC>();
-    public List<Room> rooms = new ArrayList<Room>();
+
+    public Map gameMap;
 
     FPSLogger FPS;
     private NavigationScreen screen1;
@@ -35,6 +37,7 @@ public class GameMain extends Game
      */
     public void create()
     {
+        gameMap = new Map();
 
         initialiseAllData();
 
