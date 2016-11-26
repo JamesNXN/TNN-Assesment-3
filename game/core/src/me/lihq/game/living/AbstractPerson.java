@@ -6,54 +6,71 @@ import com.badlogic.gdx.math.Vector2;
 import me.lihq.game.Assets;
 
 /**
- * Created by joeshuff on 20/11/2016.
+ * The abstract person is an abstract representation of a person. A person can be a non playable character or Player.
+ * It extends the sprite class which provides methods for the person to be rendered in the game.
  */
-public abstract class AbstractPerson extends Sprite {
+public abstract class AbstractPerson extends Sprite
+{
 
     //Storing the characters coordinates on the map
-    protected Vector2 position = new Vector2().set(0,0);
+    //TODO: rename position to gridPosition
+    /**
+     * This is the position of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
+     */
+    protected Vector2 position = new Vector2().set(0, 0);
     protected int offsetX = 0;
     protected int offsetY = 0;
+
+    /**
+     * The direction determines the way the character is facing.
+     */
     protected DIRECTION direction = DIRECTION.NORTH;
 
-    //Stores the location path of the characters source image sprite sheet
-    private String imagePath = "";
 
+    /**
+     * This constructs the player calling super on the sprite class
+     *
+     * @param img this a path to the image
+     */
     public AbstractPerson(String img)
     {
         //TODO: Needs uncommenting when we have assets
         //super(Assets.loadTexture(img));
     }
 
-    public int getOffsetX() {
+    public int getOffsetX()
+    {
         return this.offsetX;
     }
 
-    public void setOffsetX(int offsetX) {
+    public void setOffsetX(int offsetX)
+    {
         this.offsetX = offsetX;
     }
 
-    public int getOffsetY() {
+    public int getOffsetY()
+    {
         return this.offsetY;
     }
 
-    public void setOffsetY(int offsetY) {
+    public void setOffsetY(int offsetY)
+    {
         this.offsetY = offsetY;
     }
 
-    public void setDirection(DIRECTION direction) {this.direction = direction;}
-
-    public DIRECTION getDirection() {return this.direction;}
-
-    public String getImagePath() {
-        return this.imagePath;
+    public DIRECTION getDirection()
+    {
+        return this.direction;
     }
 
-    public void setImagePath(String path) {
-        this.imagePath = path;
+    public void setDirection(DIRECTION direction)
+    {
+        this.direction = direction;
     }
 
-    public enum DIRECTION {
+
+    public enum DIRECTION
+    {
         NORTH, SOUTH, EAST, WEST
     }
 }

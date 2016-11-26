@@ -1,19 +1,21 @@
 import me.lihq.game.living.Player;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**
  * Created by joeshuff on 22/11/2016.
  */
-public class PlayerUnitTests {
+public class PlayerUnitTests
+{
 
     Player p = null;
 
     @Before
     public void before()
     {
-        p = new Player("Test Name","player.png");
+        p = new Player("Test Name", "player.png");
     }
 
     @Test
