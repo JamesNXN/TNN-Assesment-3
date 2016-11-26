@@ -29,10 +29,10 @@ public class GameMain extends Game
     FPSLogger FPS;
     private NavigationScreen screen1;
 
-    @Override
     /**
      * This is called at start up. It initialises the game.
      */
+    @Override
     public void create()
     {
         me = this;
@@ -45,10 +45,11 @@ public class GameMain extends Game
         FPS = new FPSLogger();
     }
 
-    @Override
+
     /**
      * This defines what's rendered on the screen for each frame.
      */
+    @Override
     public void render()
     {
         Gdx.gl.glClearColor(0, 0, 0, 1);

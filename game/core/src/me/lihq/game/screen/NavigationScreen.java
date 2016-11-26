@@ -49,8 +49,7 @@ public class NavigationScreen extends AbstractScreen {
 
         //TODO: Move player to GameMain
         player = new Player("Test name","player.png");
-
-
+        
         playerController = new PlayerController(player);
     }
 
