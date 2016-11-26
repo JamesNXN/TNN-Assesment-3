@@ -5,13 +5,17 @@ import me.lihq.game.GameMain;
 
 
 /**
- * Created by brookehatton on 17/11/2016.
+ * This is defines all the common methods and properties for each screen. It implements the screen interface from com.badlogic.gdx.Screen.
+ * A screen is a like the current view of the game. E.g. Main Menu or Pause screen or dialogue screen.
  */
-
 public abstract class AbstractScreen implements Screen {
 
-    private GameMain game;
+    protected GameMain game;
 
+    /**
+     * This constructor sets the relevant properties of the class.
+     * @param game this provides access to the gameMain class so that screens can set the states of the game.
+     */
     public AbstractScreen (GameMain game) {
         this.game = game;
     }
@@ -37,7 +41,4 @@ public abstract class AbstractScreen implements Screen {
     @Override
     public abstract void dispose();
 
-    public GameMain getGame() {
-        return game;
-    }
 }
