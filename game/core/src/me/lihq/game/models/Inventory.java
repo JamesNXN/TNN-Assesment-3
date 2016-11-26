@@ -10,23 +10,22 @@ import java.util.List;
 /**
  * Created by joeshuff on 20/11/2016.
  */
-public class Inventory {
+public class Inventory
+{
 
     private List<Item> items = new ArrayList<Item>();
 
     //Constructor
-    public Inventory() {
+    public Inventory()
+    {
 
     }
 
     public void addItem(Item item)
     {
-        if (hasItem(item.getName()))
-        {
+        if (hasItem(item.getName())) {
             //Increase stack size vs not adding?
-        }
-        else
-        {
+        } else {
             items.add(item);
         }
     }
@@ -38,23 +37,32 @@ public class Inventory {
 
         @returns boolean - Whether the item exists or not
      */
-    public boolean hasItem(String name) {return hasItem(new Item(name, "", -1,-1));}
+    public boolean hasItem(String name)
+    {
+        return hasItem(new Item(name, "", -1, -1));
+    }
 
-    public boolean hasItem(Item item) {return getItems().contains(item);}
+    public boolean hasItem(Item item)
+    {
+        return getItems().contains(item);
+    }
 
     //Returns the list of items in the inventory
-    public List<Item> getItems() {
+    public List<Item> getItems()
+    {
         return this.items;
     }
 
     //My justification is only the Inventory will hold items, so to save space, keep it in this class
-    public static class Item {
+    public static class Item
+    {
         String name = "";
         String description = "";
 
         TextureRegion textureRegion;
 
-        public Item(String itemName, String description, int imageX, int imageY) {
+        public Item(String itemName, String description, int imageX, int imageY)
+        {
             this.name = itemName;
             this.description = description;
 
@@ -64,11 +72,13 @@ public class Inventory {
         }
 
         //Returns the name of the item
-        public String getName() {
+        public String getName()
+        {
             return this.name;
         }
 
-        public String getDescription() {
+        public String getDescription()
+        {
             return description;
         }
 
@@ -81,7 +91,8 @@ public class Inventory {
             @returns boolean - Whether the parameter obj is equal to the current object
          */
         @Override
-        public boolean equals(Object obj) {
+        public boolean equals(Object obj)
+        {
 
             if (obj instanceof Item) {
                 Item other = (Item) obj;

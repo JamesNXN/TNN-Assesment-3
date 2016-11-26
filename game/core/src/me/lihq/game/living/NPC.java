@@ -3,7 +3,8 @@ package me.lihq.game.living;
 /**
  * Created by joeshuff on 20/11/2016.
  */
-public class NPC extends AbstractPerson {
+public class NPC extends AbstractPerson
+{
 
     //These variables are specific to the NPC only
     private int roomID = -1;
@@ -23,7 +24,8 @@ public class NPC extends AbstractPerson {
     private ACCESSORY accessory = ACCESSORY.NONE;
     private int shoeSize = 12;
 
-    public NPC(int x, int y, int roomID, String spriteSheet, boolean canBeKiller) {
+    public NPC(int x, int y, int roomID, String spriteSheet, boolean canBeKiller)
+    {
 
         super(spriteSheet);
 
@@ -36,102 +38,129 @@ public class NPC extends AbstractPerson {
 
     }
 
-    //Setters for all NPC attributes
-    public NPC setHairColor(HAIR_COLOR color) {
-        this.hairColor = color;
-        return this;
-    }
-
-    public NPC setHasGlasses(boolean hasGlasses) {
+    public NPC setHasGlasses(boolean hasGlasses)
+    {
         this.hasGlasses = hasGlasses;
         return this;
     }
 
-    public NPC setWritingHand(WRITING_HAND hand) {
-        this.writingHand = hand;
-        return this;
-    }
-
-    public NPC setHasLipstick(boolean hasLipstick) {
+    public NPC setHasLipstick(boolean hasLipstick)
+    {
         this.hasLipstick = hasLipstick;
         return this;
     }
 
-    public NPC setAccessory(ACCESSORY accessory) {
-        this.accessory = accessory;
-        return this;
-    }
-
-    public NPC setShoeSize(int shoeSize) {
-        this.shoeSize = shoeSize;
-        return this;
-    }
-
-    public NPC setCharacterName(String name) {
+    public NPC setCharacterName(String name)
+    {
         this.name = name;
         return this;
     }
 
-    public NPC setMotive(String motive) {
-        this.motive = motive;
-        return this;
+    public int getRoomID()
+    {
+        return roomID;
     }
 
-    public NPC setRoomID(int roomID) {
+    public NPC setRoomID(int roomID)
+    {
         this.roomID = roomID;
         return this;
     }
 
-    public int getRoomID() {
-        return roomID;
-    }
-
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public boolean canBeKiller() {
+    public boolean canBeKiller()
+    {
         return canBeKiller;
     }
 
-    public boolean isKiller() {
+    public boolean isKiller()
+    {
         return isKiller;
     }
 
-    public String getMotive() {
+    public String getMotive()
+    {
         return motive;
     }
 
-    public HAIR_COLOR getHairColor() {
+    public NPC setMotive(String motive)
+    {
+        this.motive = motive;
+        return this;
+    }
+
+    public HAIR_COLOR getHairColor()
+    {
         return hairColor;
     }
 
-    public boolean hasGlasses() {
+    //Setters for all NPC attributes
+    public NPC setHairColor(HAIR_COLOR color)
+    {
+        this.hairColor = color;
+        return this;
+    }
+
+    public boolean hasGlasses()
+    {
         return hasGlasses;
     }
 
-    public WRITING_HAND getWritingHand() {
+    public WRITING_HAND getWritingHand()
+    {
         return writingHand;
     }
 
-    public boolean hasLipstick() {
+    public NPC setWritingHand(WRITING_HAND hand)
+    {
+        this.writingHand = hand;
+        return this;
+    }
+
+    public boolean hasLipstick()
+    {
         return hasLipstick;
     }
 
-    public ACCESSORY getAccessory() {
+    public ACCESSORY getAccessory()
+    {
         return accessory;
     }
 
-    public int getShoeSize() {
+    public NPC setAccessory(ACCESSORY accessory)
+    {
+        this.accessory = accessory;
+        return this;
+    }
+
+    public int getShoeSize()
+    {
         return shoeSize;
     }
 
+    public NPC setShoeSize(int shoeSize)
+    {
+        this.shoeSize = shoeSize;
+        return this;
+    }
+
     //These variables are to describe a players features to make the clues useful
-    public enum HAIR_COLOR {
+    public enum HAIR_COLOR
+    {
         LIGHT_BROWN, DARK_BROWN, GINGER, BLONDE, BLACK, WHITE, GRAY
     }
 
-    public enum WRITING_HAND {LEFT, RIGHT}
+    public enum WRITING_HAND
+    {
+        LEFT, RIGHT
+    }
 
-    public enum ACCESSORY {BAG, BRIEFCASE, HANDBAG, WATCH, NONE}
+    public enum ACCESSORY
+    {
+        BAG, BRIEFCASE, HANDBAG, WATCH, NONE
+    }
 }

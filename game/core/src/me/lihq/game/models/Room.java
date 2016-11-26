@@ -10,7 +10,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Room {
+public class Room
+{
     private String name;
     private int ID;
     private String mapFile;
@@ -21,7 +22,8 @@ public class Room {
 
     private TiledMap map = null;
 
-    public Room(int id, String mapFile, String name) {
+    public Room(int id, String mapFile, String name)
+    {
         this.ID = id;
         this.mapFile = mapFile;
         this.name = name;
@@ -31,30 +33,35 @@ public class Room {
     //TODO: Popup notification on room entrance
 
     //Returns True if it's the room the murder took place in
-    public boolean isMurderRoom() {
+    public boolean isMurderRoom()
+    {
         return murderRoom;
     }
 
-    public int getID() {
+    public int getID()
+    {
         return this.ID;
     }
 
     /**
      * Changes coordinates of clue
      */
-    public void moveClue(Clue clue, int x, int y) {
+    public void moveClue(Clue clue, int x, int y)
+    {
         if (cluesInRoom.contains(clue)) {
             clue.setCoords(x, y);
         }
     }
 
-    public void addClue(Clue newClue) {
+    public void addClue(Clue newClue)
+    {
         if (!cluesInRoom.contains(newClue)) {
             cluesInRoom.add(newClue);
         }
     }
 
-    public void removeClue(Clue toRemove) {
+    public void removeClue(Clue toRemove)
+    {
         if (cluesInRoom.contains(toRemove)) {
             cluesInRoom.remove(toRemove);
         }
@@ -74,8 +81,7 @@ public class Room {
 
     public boolean getTrigger(int x, int y)
     {
-        if (isTriggerTile(x,y))
-        {
+        if (isTriggerTile(x, y)) {
             //Get trigger type property
         }
 

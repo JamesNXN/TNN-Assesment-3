@@ -7,7 +7,8 @@ import me.lihq.game.models.Inventory;
 /**
  * Created by brookehatton on 18/11/2016.
  */
-public class Player extends AbstractPerson {
+public class Player extends AbstractPerson
+{
 
     //The personality will be a percent score (0-100) 50 being neutral etc etc
     private int personalityLevel = 50;
@@ -51,15 +52,18 @@ public class Player extends AbstractPerson {
         this.setPosition(this.position.x * Settings.TILE_SIZE, this.position.y * Settings.TILE_SIZE);
     }
 
-    public Inventory getInventory() {
+    public Inventory getInventory()
+    {
         return this.inventory;
     }
 
-    public String getPlayername() {
+    public String getPlayername()
+    {
         return this.name;
     }
 
-    public int getPersonality() {
+    public int getPersonality()
+    {
         return this.personalityLevel;
     }
 }

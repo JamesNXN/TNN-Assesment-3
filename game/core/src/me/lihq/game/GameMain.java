@@ -31,7 +31,7 @@ public class GameMain extends Game
 
     @Override
     /**
-    * This is called at start up. It initialises the game.
+     * This is called at start up. It initialises the game.
      */
     public void create()
     {
