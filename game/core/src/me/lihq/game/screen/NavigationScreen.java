@@ -16,7 +16,7 @@ import me.lihq.game.living.Player;
 
 /**
  * This is the screen that is responsible for the navigation of the player around the game. 
- * It displays the current room that the player is in and takes input for the user to move the player around.
+ * It displays the current room that the player is in, and allows the user to move the player around between rooms.
  */
 public class NavigationScreen extends AbstractScreen {
 
@@ -27,6 +27,11 @@ public class NavigationScreen extends AbstractScreen {
     private Player player;
     private PlayerController playerController;
 
+    //TODO: add more information about this class
+    /**
+     * Initialises the navigation screen
+     * @param game
+     */
     public NavigationScreen(GameMain game) {
         super(game);
 
@@ -34,7 +39,7 @@ public class NavigationScreen extends AbstractScreen {
         float h = Gdx.graphics.getHeight();
 
         Assets.load();
-
+        //TODO: Consider where we have the camera here or GameMain
         camera = new OrthographicCamera();
         camera.setToOrtho(false,w,h);
         camera.update();
@@ -44,6 +49,7 @@ public class NavigationScreen extends AbstractScreen {
         map = new TmxMapLoader().load("map.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
 
+        //TODO: Move player to GameMain
         player = new Player("Test name","player.png");
 
         player.setX(10);
@@ -52,17 +58,23 @@ public class NavigationScreen extends AbstractScreen {
         playerController = new PlayerController(player);
     }
 
+    /**
+     * This is ran when the navigation screen becomes the visible screen in GameMain
+     */
     @Override
     public void show() {
         Gdx.input.setInputProcessor(playerController);
     }
 
+    /** Called when the screen should render itself.
+	 * @param delta The time in seconds since the last render.
+     */
     @Override
     public void render(float delta) {
         camera.position.x = player.getX()* Settings.TILE_SIZE;
         camera.position.y = player.getY()* Settings.TILE_SIZE;
         camera.update();
-        tiledMapRenderer.setView(camera); // not sure if this belongs here or in the constructor.
+        tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
 
     }
