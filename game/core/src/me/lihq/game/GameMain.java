@@ -35,13 +35,11 @@ public class GameMain extends Game
      */
     public void create()
     {
+        me = this;
 
         initialiseAllData();
 
         screen1 = new NavigationScreen(this);
-
-        me = this;
-
         this.setScreen(screen1);
 
         FPS = new FPSLogger();
