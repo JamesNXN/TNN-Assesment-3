@@ -14,7 +14,6 @@ public abstract class AbstractPerson extends Sprite {
 
     //Storing the characters coordinates on the map
     //TODO: rename position to gridPosition
-    /
     /**
      * This is the position of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
      */

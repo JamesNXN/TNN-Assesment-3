@@ -34,7 +34,6 @@ public class NPC extends AbstractPerson {
 
         this.canBeKiller = canBeKiller;
 
-        this.setImagePath(spriteSheet);
     }
 
     //Setters for all NPC attributes
