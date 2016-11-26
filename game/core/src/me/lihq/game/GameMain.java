@@ -9,7 +9,7 @@ import me.lihq.game.living.NPC.ACCESSORY;
 import me.lihq.game.living.NPC.HAIR_COLOR;
 import me.lihq.game.living.NPC.WRITING_HAND;
 import me.lihq.game.models.Room;
-import me.lihq.game.screen.GameScreen;
+import me.lihq.game.screen.NavigationScreen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class GameMain extends Game
     public List<Room> rooms = new ArrayList<Room>();
 
     FPSLogger FPS;
-    private GameScreen screen1;
+    private NavigationScreen screen1;
 
     @Override
     /**
@@ -38,7 +38,7 @@ public class GameMain extends Game
 
         initialiseAllData();
 
-        screen1 = new GameScreen(this);
+        screen1 = new NavigationScreen(this);
 
         me = this;
 

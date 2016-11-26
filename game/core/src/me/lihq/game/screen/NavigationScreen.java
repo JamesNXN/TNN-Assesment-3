@@ -15,9 +15,10 @@ import me.lihq.game.Assets;
 import me.lihq.game.living.Player;
 
 /**
- * Created by brookehatton on 18/11/2016.
+ * This is the screen that is responsible for the navigation of the player around the game. 
+ * It displays the current room that the player is in and takes input for the user to move the player around.
  */
-public class GameScreen extends AbstractScreen {
+public class NavigationScreen extends AbstractScreen {
 
     private TiledMap map;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
@@ -26,7 +27,7 @@ public class GameScreen extends AbstractScreen {
     private Player player;
     private PlayerController playerController;
 
-    public GameScreen(GameMain game) {
+    public NavigationScreen(GameMain game) {
         super(game);
 
         float w = Gdx.graphics.getWidth();
