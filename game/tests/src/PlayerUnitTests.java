@@ -52,14 +52,16 @@ public class PlayerUnitTests extends GameTest
     {
         p.setPosition(0,0);
         p.move(1,1);
-
         assertEquals(p.getX(), Settings.TILE_SIZE, 0.0f);
         assertEquals(p.getY(), Settings.TILE_SIZE, 0.0f);
 
         p.move(1,1);
-
         assertEquals(p.getX(), 2*Settings.TILE_SIZE, 0.0f);
         assertEquals(p.getY(), 2*Settings.TILE_SIZE, 0.0f);
+
+        p.move(-2,-2);
+        assertEquals(p.getX(), 0f, 0.0f);
+        assertEquals(p.getY(), 0f, 0.0f);
     }
 
 }
