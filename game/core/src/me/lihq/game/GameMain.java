@@ -8,6 +8,7 @@ import me.lihq.game.living.NPC;
 import me.lihq.game.living.NPC.ACCESSORY;
 import me.lihq.game.living.NPC.HAIR_COLOR;
 import me.lihq.game.living.NPC.WRITING_HAND;
+import me.lihq.game.living.Player;
 import me.lihq.game.models.Room;
 import me.lihq.game.screen.NavigationScreen;
 
@@ -28,6 +29,7 @@ public class GameMain extends Game
 
     FPSLogger FPS;
     private NavigationScreen screen1;
+    public Player player;
 
     /**
      * This is called at start up. It initialises the game.
@@ -36,7 +38,7 @@ public class GameMain extends Game
     public void create()
     {
         me = this;
-
+        Assets.load();
         initialiseAllData();
 
         screen1 = new NavigationScreen(this);
@@ -75,8 +77,9 @@ public class GameMain extends Game
     {
         //Add ALL NPCs to the list
         //This is how you initialise an NPC
+        player = new Player("Test name","player.png");
         {
-            NPC npc = new NPC(4, 4, 1, "charName.png", true)
+            NPC npc = new NPC(4, 4, 1, "player.png", true)
                     .setCharacterName("Mr Detective 1")
                     .setAccessory(ACCESSORY.WATCH)
                     .setHairColor(HAIR_COLOR.GINGER)
@@ -89,7 +92,7 @@ public class GameMain extends Game
         }
 
         {
-            NPC npc = new NPC(4, 4, 2, "charName2.png", true)
+            NPC npc = new NPC(4, 4, 2, "player.png", true)
                     .setCharacterName("Mrs Detective 2")
                     .setAccessory(ACCESSORY.HANDBAG)
                     .setHairColor(HAIR_COLOR.BLACK)

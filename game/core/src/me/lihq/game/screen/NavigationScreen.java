@@ -2,6 +2,7 @@ package me.lihq.game.screen;
 
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import me.lihq.game.GameMain;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -24,8 +25,8 @@ public class NavigationScreen extends AbstractScreen {
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     private OrthographicCamera camera = new OrthographicCamera();
     private Viewport viewport;
-    private Player player;
     private PlayerController playerController;
+    private SpriteBatch spriteBatch;
 
     //TODO: add more information about this class
     /**
@@ -42,15 +43,15 @@ public class NavigationScreen extends AbstractScreen {
 
         viewport = new FitViewport(w/Settings.ZOOM, h/Settings.ZOOM, camera);
 
-        Assets.load();
+
 
         map = new TmxMapLoader().load("map.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
 
-        //TODO: Move player to GameMain
-        player = new Player("Test name","player.png");
-        
-        playerController = new PlayerController(player);
+        playerController = new PlayerController(game.player);
+
+        spriteBatch = new SpriteBatch();
+
     }
 
     /**
@@ -66,12 +67,19 @@ public class NavigationScreen extends AbstractScreen {
      */
     @Override
     public void render(float delta) {
-        camera.position.x = player.getX();
-        camera.position.y = player.getY();
+        camera.position.x = game.player.getX();
+        camera.position.y = game.player.getY();
         camera.update();
 
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
+
+        spriteBatch.setProjectionMatrix(camera.combined);
+        spriteBatch.begin();
+        game.player.draw(spriteBatch);
+        spriteBatch.end();
+
+
 
     }
 
