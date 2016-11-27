@@ -1,3 +1,4 @@
+import me.lihq.game.Settings;
 import me.lihq.game.living.Player;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +40,26 @@ public class PlayerUnitTests extends GameTest
         p.addToPersonality(-100);
         //Gone below 0, should move it back up to 0
         assertEquals("Fail - Personality not Lower Capped", p.getPersonality(), 0);
+    }
+
+
+    /**
+     * This tests if the move function is working correctly.
+     * The player move function is in terms of tiles so an increase of 1 is actually 1 tile width.
+     */
+    @Test
+    public void doesPlayerMove()
+    {
+        p.setPosition(0,0);
+        p.move(1,1);
+
+        assertEquals(p.getX(), Settings.TILE_SIZE, 0.0f);
+        assertEquals(p.getY(), Settings.TILE_SIZE, 0.0f);
+
+        p.move(1,1);
+
+        assertEquals(p.getX(), 2*Settings.TILE_SIZE, 0.0f);
+        assertEquals(p.getY(), 2*Settings.TILE_SIZE, 0.0f);
     }
 
 }
