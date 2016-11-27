@@ -1,7 +1,6 @@
 package me.lihq.game.living;
 
 import me.lihq.game.Settings;
-import me.lihq.game.living.AbstractPerson;
 import me.lihq.game.models.Inventory;
 
 /**
@@ -17,7 +16,7 @@ public class Player extends AbstractPerson
 
     private int score = 0;
 
-    private String name = "Dr Professor Lecture Module Leader Sir Colin Runciman-Sensei-Sama PhD Hons. GCSEs";
+    private String name;
 
     public Player(String name, String imgSrc)
     {
@@ -25,13 +24,13 @@ public class Player extends AbstractPerson
         this.name = name;
     }
 
-    /*
-        This method will change the players personality by the given amount.
-        It will cap the personality between 0 and 100.
-
-        If the change takes it out of these bounds, it will change it to the min or max.
-
-        @param int change - The amount to change by, can be positive or negative
+    /**
+     * This method will change the players personality by the given amount.
+     * It will cap the personality between 0 and 100.
+     * <p>
+     * If the change takes it out of these bounds, it will change it to the min or max.
+     *
+     * @param change - The amount to change by, can be positive or negative
      */
     public void addToPersonality(int change)
     {
@@ -44,12 +43,18 @@ public class Player extends AbstractPerson
         }
     }
 
+
+    /**
+     * This moves the player to a new tile
+     * @param dx the amount of tiles to move in the x direction
+     * @param dy the amout of tiles to move in the y direction
+     */
     public void move(int dx, int dy)
     {
-        this.position.x += dx;
-        this.position.y += dy;
+        this.tileCoordinates.x += dx;
+        this.tileCoordinates.y += dy;
 
-        this.setPosition(this.position.x * Settings.TILE_SIZE, this.position.y * Settings.TILE_SIZE);
+        this.setPosition(this.tileCoordinates.x * Settings.TILE_SIZE, this.tileCoordinates.y * Settings.TILE_SIZE);
     }
 
     public Inventory getInventory()
