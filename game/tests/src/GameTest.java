@@ -9,6 +9,7 @@ import org.mockito.Mockito;
 
 /**
  * This is the GameTest class it initialises the headless backend of the game.
+ * Taken from: http://manabreak.eu/java/2016/10/21/unittesting-libgdx.html
  */
 public class GameTest
 {
