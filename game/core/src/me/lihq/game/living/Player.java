@@ -30,7 +30,7 @@ public class Player extends AbstractPerson
      * <p>
      * If the change takes it out of these bounds, it will change it to the min or max.
      *
-     * @param int change - The amount to change by, can be positive or negative
+     * @param change - The amount to change by, can be positive or negative
      */
     public void addToPersonality(int change)
     {
