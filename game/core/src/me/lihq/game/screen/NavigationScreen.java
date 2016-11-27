@@ -75,6 +75,7 @@ public class NavigationScreen extends AbstractScreen {
         tiledMapRenderer.render();
 
         spriteBatch.setProjectionMatrix(camera.combined);
+        //place Sprites to be drawn in the sprite batch
         spriteBatch.begin();
         game.player.draw(spriteBatch);
         spriteBatch.end();

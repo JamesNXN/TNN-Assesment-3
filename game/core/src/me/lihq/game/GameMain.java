@@ -79,6 +79,7 @@ public class GameMain extends Game
         //This is how you initialise an NPC
         player = new Player("Test name","player.png");
         {
+            //TODO: Add NPC assets
             NPC npc = new NPC(4, 4, 1, "player.png", true)
                     .setCharacterName("Mr Detective 1")
                     .setAccessory(ACCESSORY.WATCH)
