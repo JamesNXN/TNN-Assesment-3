@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 /**
  * Created by joeshuff on 22/11/2016.
  */
-public class PlayerUnitTests
+public class PlayerUnitTests extends GameTest
 {
 
     Player p = null;
@@ -15,7 +15,7 @@ public class PlayerUnitTests
     @Before
     public void before()
     {
-        p = new Player("Test Name", "player.png");
+        p = new Player("Test Name", "../core/assets/player.png");
     }
 
     @Test
