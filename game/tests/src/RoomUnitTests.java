@@ -1,7 +1,12 @@
 import me.lihq.game.GameMain;
 import me.lihq.game.models.Map;
+import me.lihq.game.models.Room;
+import me.lihq.game.models.Vector2Int;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 

@@ -112,12 +112,20 @@ public class Room
      */
     public List<Integer> getNewRoom(int x, int y)
     {
-        if (!roomTransitions.containsKey(new Vector2Int(x,y)))
+        return hasTransition(new Vector2Int(x, y));
+    }
+
+    private List<Integer> hasTransition(Vector2Int v)
+    {
+        for (Vector2Int l : roomTransitions.keySet())
         {
-            return null;
+            if (v.equals(l))
+            {
+                return roomTransitions.get(l);
+            }
         }
 
-        return roomTransitions.get(new Vector2Int(x,y));
+        return null;
     }
 }
 

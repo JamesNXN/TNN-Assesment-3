@@ -1,5 +1,8 @@
 package me.lihq.game.models;
 
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.NumberUtils;
+
 /**
  * Created by joeshuff on 28/11/2016.
  */
@@ -27,12 +30,12 @@ public class Vector2Int {
     @Override
     public boolean equals(Object obj)
     {
-        if (obj instanceof Vector2Int)
-        {
-            Vector2Int v = (Vector2Int) obj;
-            return (getX() == v.getX() && getY() == v.getY());
-        }
-
-        return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        Vector2Int other = (Vector2Int)obj;
+        if (x != other.x) return false;
+        if (y != other.y) return false;
+        return true;
     }
 }
