@@ -1,5 +1,7 @@
+import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
 import me.lihq.game.living.Player;
+import me.lihq.game.models.Map;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,11 +14,13 @@ public class PlayerUnitTests extends GameTest
 {
 
     Player p = null;
+    Map map = null;
 
     @Before
     public void before()
     {
         p = new Player("Test Name", "player.png");
+        map = new Map();
     }
 
     @Test
@@ -51,15 +55,15 @@ public class PlayerUnitTests extends GameTest
     public void doesPlayerMove()
     {
         p.setPosition(0,0);
-        p.move(1,1);
+        p.move(1,1, map.getRoom(0));
         assertEquals(p.getX(), Settings.TILE_SIZE, 0.0f);
         assertEquals(p.getY(), Settings.TILE_SIZE, 0.0f);
 
-        p.move(1,1);
+        p.move(1,1, map.getRoom(0));
         assertEquals(p.getX(), 2*Settings.TILE_SIZE, 0.0f);
         assertEquals(p.getY(), 2*Settings.TILE_SIZE, 0.0f);
 
-        p.move(-2,-2);
+        p.move(-2,-2, map.getRoom(0));
         assertEquals(p.getX(), 0f, 0.0f);
         assertEquals(p.getY(), 0f, 0.0f);
     }

@@ -54,7 +54,11 @@ public class Player extends AbstractPerson
     public void move(int dx, int dy)
     {
         Room currentRoom = GameMain.me.currentRoom;
+        move(dx, dy, currentRoom);
+    }
 
+    public void move(int dx, int dy, Room currentRoom)
+    {
         if (!currentRoom.isWalkableTile(tileCoordinates.getX() + dx, tileCoordinates.getY() + dy)) {return;}
 
         this.tileCoordinates.x += dx;
