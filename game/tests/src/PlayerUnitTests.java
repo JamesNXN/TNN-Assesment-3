@@ -16,7 +16,7 @@ public class PlayerUnitTests extends GameTest
     @Before
     public void before()
     {
-        p = new Player("Test Name", "../core/assets/player.png");
+        p = new Player("Test Name", "player.png");
     }
 
     @Test

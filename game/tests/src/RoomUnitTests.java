@@ -1,3 +1,4 @@
+import me.lihq.game.GameMain;
 import me.lihq.game.models.Map;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,7 +8,7 @@ import static org.junit.Assert.*;
 /**
  * Created by joeshuff on 26/11/2016.
  */
-public class RoomUnitTests {
+public class RoomUnitTests extends GameTest {
 
     Map map;
 
@@ -21,7 +22,7 @@ public class RoomUnitTests {
     public void testGetTransition()
     {
         System.out.println(map.getRoom(0).getNewRoom(5,5).toString());
-        System.out.println(map.getRoom(0).getNewRoom(5,1).toString());
+        //System.out.println(map.getRoom(0).getNewRoom(5,1).toString());
     }
 
 }
