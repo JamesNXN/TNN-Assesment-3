@@ -26,7 +26,7 @@ public class Room
     private TiledMap map;
 
     //Room transitions stored as (currentX, currentY) points to a (newRoomID, newX, newY)
-    private HashMap<Vector2, List<Integer>> roomTransitions = new HashMap<Vector2, List<Integer>>();
+    private HashMap<Vector2Int, List<Integer>> roomTransitions = new HashMap<Vector2Int, List<Integer>>();
 
     public Room(int id, String mapFile, String name)
     {
@@ -75,7 +75,7 @@ public class Room
 
     public boolean isWalkableTile(int x, int y)
     {
-        //Check the map tile at x, y
+
 
         return false;
     }
@@ -96,7 +96,7 @@ public class Room
 
     public Room setTransition(int x, int y, int newRoom, int newX, int newY)
     {
-        roomTransitions.put(new Vector2(x,y), Arrays.asList(newRoom, newX, newY));
+        roomTransitions.put(new Vector2Int(x,y), Arrays.asList(newRoom, newX, newY));
         return this;
     }
 
@@ -112,7 +112,12 @@ public class Room
      */
     public List<Integer> getNewRoom(int x, int y)
     {
-        return roomTransitions.get(new Vector2(x,y));
+        if (!roomTransitions.containsKey(new Vector2Int(x,y)))
+        {
+            return null;
+        }
+
+        return roomTransitions.get(new Vector2Int(x,y));
     }
 }
 
