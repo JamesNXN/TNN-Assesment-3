@@ -9,9 +9,7 @@ import me.lihq.game.living.NPC.ACCESSORY;
 import me.lihq.game.living.NPC.HAIR_COLOR;
 import me.lihq.game.living.NPC.WRITING_HAND;
 import me.lihq.game.models.Map;
-
 import me.lihq.game.living.Player;
-
 import me.lihq.game.screen.NavigationScreen;
 
 import java.util.ArrayList;
@@ -40,13 +38,13 @@ public class GameMain extends Game
     @Override
     public void create()
     {
-
+        this.me = this;
         gameMap = new Map();
 
+        initialiseAllData();
 
-        me = this;
+        
         Assets.load();
-
         initialiseAllData();
 
         screen1 = new NavigationScreen(this);
