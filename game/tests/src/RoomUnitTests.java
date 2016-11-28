@@ -21,8 +21,8 @@ public class RoomUnitTests extends GameTest {
     @Test
     public void testGetTransition()
     {
-        System.out.println(map.getRoom(0).getNewRoom(5,5).toString());
-        //System.out.println(map.getRoom(0).getNewRoom(5,1).toString());
+        assertEquals("[2, 1, 1]", map.getRoom(0).getNewRoom(5,5).toString());
+        assertEquals(null, map.getRoom(0).getNewRoom(5, 1));
     }
 
 }

@@ -5,8 +5,8 @@ package me.lihq.game.models;
  */
 public class Vector2Int {
 
-    private int x = 0;
-    private int y = 0;
+    public int x = 0;
+    public int y = 0;
 
     public Vector2Int(int x, int y)
     {
@@ -24,4 +24,15 @@ public class Vector2Int {
         return this.y;
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj instanceof Vector2Int)
+        {
+            Vector2Int v = (Vector2Int) obj;
+            return (getX() == v.getX() && getY() == v.getY());
+        }
+
+        return false;
+    }
 }
