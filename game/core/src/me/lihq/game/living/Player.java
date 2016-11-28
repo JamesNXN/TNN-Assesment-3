@@ -1,7 +1,9 @@
 package me.lihq.game.living;
 
+import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
 import me.lihq.game.models.Inventory;
+import me.lihq.game.models.Room;
 
 /**
  * Created by brookehatton on 18/11/2016.
@@ -51,6 +53,10 @@ public class Player extends AbstractPerson
      */
     public void move(int dx, int dy)
     {
+        Room currentRoom = GameMain.me.currentRoom;
+
+        if (!currentRoom.isWalkableTile(tileCoordinates.getX() + dx, tileCoordinates.getY() + dy)) {return;}
+
         this.tileCoordinates.x += dx;
         this.tileCoordinates.y += dy;
 

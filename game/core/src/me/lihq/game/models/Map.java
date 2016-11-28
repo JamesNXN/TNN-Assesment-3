@@ -21,22 +21,22 @@ public class Map {
     public void initialiseRooms()
     {
         rooms.add(new Room(0, "map.tmx", "Main Foyer")
-                    .setTransition(5,5,2,1,1)
-                    .setTransition(12,12,3,1,1));
+                    .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2))
+                    .addTransition(new Room.Transition().setFrom(1, 1).setTo(2, 0, 0)));
 
         rooms.add(new Room(1, "map.tmx", "RCH/037 Lecture Theatre")
-                    .setTransition(2,2,4,4,4));
+                    .addTransition(new Room.Transition().setFrom(10, 10).setTo(2, 0, 0)));
     }
 
-    public List<Integer> moveRoom(int currentRoomID, int currentX, int currentY)
+    public Room.Transition moveRoom(int currentRoomID, int currentX, int currentY)
     {
         Room currentRoom = rooms.get(currentRoomID);
 
-        List<Integer> newRoomData = currentRoom.getNewRoom(currentX, currentY);
+        Room.Transition newRoomData = currentRoom.getNewRoom(currentX, currentY);
 
-        int newRoomID = newRoomData.get(0);
-        int newX = newRoomData.get(1);
-        int newY = newRoomData.get(2);
+        int newRoomID = newRoomData.newRoom;
+        int newX = newRoomData.to.x;
+        int newY = newRoomData.to.y;
 
         //Change current information and do map change transition
         return newRoomData;

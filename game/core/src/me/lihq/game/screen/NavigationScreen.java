@@ -43,8 +43,6 @@ public class NavigationScreen extends AbstractScreen {
 
         viewport = new FitViewport(w/Settings.ZOOM, h/Settings.ZOOM, camera);
 
-
-
         map = new TmxMapLoader().load("map.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
 
@@ -108,5 +106,11 @@ public class NavigationScreen extends AbstractScreen {
     public void dispose() {
         map.dispose();
         tiledMapRenderer.dispose();
+    }
+
+    public void setTiledMapRenderer(TiledMap map)
+    {
+        this.map = map;
+        tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
     }
 }

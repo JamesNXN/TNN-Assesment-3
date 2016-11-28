@@ -10,6 +10,7 @@ import me.lihq.game.living.NPC.HAIR_COLOR;
 import me.lihq.game.living.NPC.WRITING_HAND;
 import me.lihq.game.models.Map;
 import me.lihq.game.living.Player;
+import me.lihq.game.models.Room;
 import me.lihq.game.screen.NavigationScreen;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class GameMain extends Game
     public static GameMain me = null;
     //Game wide variables
     public List<NPC> NPCs = new ArrayList<NPC>();
+    public Room currentRoom;
 
     public Map gameMap;
 
@@ -40,14 +42,15 @@ public class GameMain extends Game
     {
         this.me = this;
         gameMap = new Map();
+        currentRoom = gameMap.getRoom(0);
 
         initialiseAllData();
-
         
         Assets.load();
         initialiseAllData();
 
         screen1 = new NavigationScreen(this);
+        screen1.setTiledMapRenderer(currentRoom.getMap());
         this.setScreen(screen1);
 
         FPS = new FPSLogger();
@@ -75,6 +78,12 @@ public class GameMain extends Game
 
     }
 
+    public void changeMap(Room.Transition to)
+    {
+        currentRoom = gameMap.getRoom(to.newRoom);
+
+        screen1.setTiledMapRenderer(currentRoom.getMap());
+    }
 
     /**
      * Generates all the NPC's, Players and Rooms and maps.
@@ -110,7 +119,5 @@ public class GameMain extends Game
 
             NPCs.add(npc);
         }
-
-        //Add ALL maps to the map list
     }
 }
