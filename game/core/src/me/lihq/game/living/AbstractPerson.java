@@ -1,9 +1,9 @@
 package me.lihq.game.living;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import me.lihq.game.Assets;
+import me.lihq.game.Settings;
 
 /**
  * The abstract person is an abstract representation of a person. A person can be a non playable character or Player.
@@ -13,11 +13,10 @@ public abstract class AbstractPerson extends Sprite
 {
 
     //Storing the characters coordinates on the map
-    //TODO: rename position to gridPosition
     /**
-     * This is the position of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
+     * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
      */
-    protected Vector2 position = new Vector2().set(0, 0);
+    protected Vector2 tileCoordinates = new Vector2().set(0, 0);
     protected int offsetX = 0;
     protected int offsetY = 0;
 
@@ -34,8 +33,10 @@ public abstract class AbstractPerson extends Sprite
      */
     public AbstractPerson(String img)
     {
-        //TODO: Needs uncommenting when we have assets
-        //super(Assets.loadTexture(img));
+        super(Assets.loadTexture(img));
+
+        this.setPosition(tileCoordinates.x * Settings.TILE_SIZE, tileCoordinates.y * Settings.TILE_SIZE);
+
     }
 
     public int getOffsetX()

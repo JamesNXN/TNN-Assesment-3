@@ -1,17 +1,17 @@
 package me.lihq.game;
 
+
 /**
- * Created by joeshuff on 20/11/2016.
+ * This class is used for game wide CONSTANTS or VARIABLES
  */
 public class Settings
 {
 
-    /*
-        This class is used for game wide CONSTANTS or VARIABLES
-     */
-
     public static final int TILE_SIZE = 32;
 
+    /**
+     * The zoom level of the camera
+     */
     public static final int ZOOM = 2;
 
 }
