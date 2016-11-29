@@ -50,7 +50,7 @@ public class GameMain extends Game
         player.setRoom(gameMap.getRoom(0));
 
         screen1 = new NavigationScreen(this);
-        screen1.setTiledMapRenderer(player.getRoom().getMap());
+        screen1.setTiledMapRenderer(player.getRoom().getTiledMap());
         this.setScreen(screen1);
 
         FPS = new FPSLogger();
@@ -82,7 +82,7 @@ public class GameMain extends Game
     {
         player.setRoom(gameMap.getRoom(to.newRoom));
 
-        screen1.setTiledMapRenderer(player.getRoom().getMap());
+        screen1.setTiledMapRenderer(player.getRoom().getTiledMap());
     }
 
     /**

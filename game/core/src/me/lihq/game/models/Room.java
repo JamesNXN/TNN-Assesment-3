@@ -95,7 +95,7 @@ public class Room {
         return false;
     }
 
-    public TiledMap getMap()
+    public TiledMap getTiledMap()
     {
         return this.map;
     }
