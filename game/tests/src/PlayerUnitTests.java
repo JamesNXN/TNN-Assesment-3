@@ -12,7 +12,6 @@ import static org.junit.Assert.*;
  */
 public class PlayerUnitTests extends GameTest
 {
-
     Player p = null;
     Map map = null;
 
@@ -21,6 +20,7 @@ public class PlayerUnitTests extends GameTest
     {
         p = new Player("Test Name", "player.png");
         map = new Map();
+        p.setRoom(map.getRoom(0));
     }
 
     @Test
@@ -55,15 +55,15 @@ public class PlayerUnitTests extends GameTest
     public void doesPlayerMove()
     {
         p.setPosition(0,0);
-        p.move(1,1, map.getRoom(0));
+        p.move(1,1);
         assertEquals(p.getX(), Settings.TILE_SIZE, 0.0f);
         assertEquals(p.getY(), Settings.TILE_SIZE, 0.0f);
 
-        p.move(1,1, map.getRoom(0));
+        p.move(1,1);
         assertEquals(p.getX(), 2*Settings.TILE_SIZE, 0.0f);
         assertEquals(p.getY(), 2*Settings.TILE_SIZE, 0.0f);
 
-        p.move(-2,-2, map.getRoom(0));
+        p.move(-2,-2);
         assertEquals(p.getX(), 0f, 0.0f);
         assertEquals(p.getY(), 0f, 0.0f);
     }

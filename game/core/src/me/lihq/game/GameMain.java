@@ -26,7 +26,6 @@ public class GameMain extends Game
     public static GameMain me = null;
     //Game wide variables
     public List<NPC> NPCs = new ArrayList<NPC>();
-    public Room currentRoom;
 
     public Map gameMap;
 
@@ -42,15 +41,16 @@ public class GameMain extends Game
     {
         this.me = this;
         gameMap = new Map();
-        currentRoom = gameMap.getRoom(0);
 
         initialiseAllData();
         
         Assets.load();
         initialiseAllData();
 
+        player.setRoom(gameMap.getRoom(0));
+
         screen1 = new NavigationScreen(this);
-        screen1.setTiledMapRenderer(currentRoom.getMap());
+        screen1.setTiledMapRenderer(player.getRoom().getMap());
         this.setScreen(screen1);
 
         FPS = new FPSLogger();
@@ -80,9 +80,9 @@ public class GameMain extends Game
 
     public void changeMap(Room.Transition to)
     {
-        currentRoom = gameMap.getRoom(to.newRoom);
+        player.setRoom(gameMap.getRoom(to.newRoom));
 
-        screen1.setTiledMapRenderer(currentRoom.getMap());
+        screen1.setTiledMapRenderer(player.getRoom().getMap());
     }
 
     /**
@@ -93,6 +93,7 @@ public class GameMain extends Game
         //Add ALL NPCs to the list
         //This is how you initialise an NPC
         player = new Player("Test name","player.png");
+
         {
             //TODO: Add NPC assets
             NPC npc = new NPC(4, 4, 1, "player.png", true)

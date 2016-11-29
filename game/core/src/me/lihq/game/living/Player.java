@@ -20,6 +20,8 @@ public class Player extends AbstractPerson
 
     private String name;
 
+    private Room currentRoom;
+
     public Player(String name, String imgSrc)
     {
         super(imgSrc);
@@ -51,20 +53,12 @@ public class Player extends AbstractPerson
      * @param dx the amount of tiles to move in the x direction
      * @param dy the amout of tiles to move in the y direction
      */
+    @Override
     public void move(int dx, int dy)
-    {
-        Room currentRoom = GameMain.me.currentRoom;
-        move(dx, dy, currentRoom);
-    }
-
-    public void move(int dx, int dy, Room currentRoom)
     {
         if (!currentRoom.isWalkableTile(tileCoordinates.getX() + dx, tileCoordinates.getY() + dy)) {return;}
 
-        this.tileCoordinates.x += dx;
-        this.tileCoordinates.y += dy;
-
-        this.setPosition(this.tileCoordinates.x * Settings.TILE_SIZE, this.tileCoordinates.y * Settings.TILE_SIZE);
+        this.setTileCoordinates(tileCoordinates.x + dx, tileCoordinates.y + dy);
     }
 
     public Inventory getInventory()
@@ -80,5 +74,27 @@ public class Player extends AbstractPerson
     public int getPersonality()
     {
         return this.personalityLevel;
+    }
+
+    public void changeRoom(int roomID, int newX, int newY)
+    {
+        changeRoom(GameMain.me.gameMap.getRoom(roomID), newX, newY);
+    }
+
+    public void changeRoom(Room newRoom, int newX, int newY)
+    {
+        currentRoom = newRoom;
+
+        this.setTileCoordinates(newX, newY);
+    }
+
+    public void setRoom(Room room)
+    {
+        this.currentRoom = room;
+    }
+
+    public Room getRoom()
+    {
+        return this.currentRoom;
     }
 }

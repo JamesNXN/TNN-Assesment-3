@@ -43,6 +43,12 @@ public class NPC extends AbstractPerson
 
     }
 
+    @Override
+    public void move(int dx, int dy)
+    {
+
+    }
+
     public NPC setHasGlasses(boolean hasGlasses)
     {
         this.hasGlasses = hasGlasses;

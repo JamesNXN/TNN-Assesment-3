@@ -37,7 +37,14 @@ public abstract class AbstractPerson extends Sprite
         super(Assets.loadTexture(img));
 
         this.setPosition(tileCoordinates.getX() * Settings.TILE_SIZE, tileCoordinates.getY() * Settings.TILE_SIZE);
+    }
 
+    public void setTileCoordinates(int x, int y)
+    {
+        tileCoordinates.x = x;
+        tileCoordinates.y = y;
+
+        setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
     }
 
     public int getOffsetX()
@@ -69,6 +76,8 @@ public abstract class AbstractPerson extends Sprite
     {
         this.direction = direction;
     }
+
+    public abstract void move(int dx, int dy);
 
     public enum DIRECTION
     {

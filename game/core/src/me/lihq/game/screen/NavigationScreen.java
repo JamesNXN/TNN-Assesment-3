@@ -14,6 +14,7 @@ import me.lihq.game.Settings;
 import me.lihq.game.living.controller.PlayerController;
 import me.lihq.game.Assets;
 import me.lihq.game.living.Player;
+import me.lihq.game.models.Map;
 
 /**
  * This is the screen that is responsible for the navigation of the player around the game.
