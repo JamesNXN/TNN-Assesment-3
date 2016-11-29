@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.NumberUtils;
 /**
  * Created by joeshuff on 28/11/2016.
  */
+//TODO: ADD DOCUMENTATION
 public class Vector2Int {
 
     public int x = 0;

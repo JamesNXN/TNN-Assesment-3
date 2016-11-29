@@ -77,9 +77,6 @@ public class NavigationScreen extends AbstractScreen {
         spriteBatch.begin();
         game.player.draw(spriteBatch);
         spriteBatch.end();
-
-
-
     }
 
     @Override
@@ -111,6 +108,6 @@ public class NavigationScreen extends AbstractScreen {
     public void setTiledMapRenderer(TiledMap map)
     {
         this.map = map;
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
+        tiledMapRenderer.setMap(map);
     }
 }
