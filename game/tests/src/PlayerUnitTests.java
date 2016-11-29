@@ -1,5 +1,7 @@
+import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
 import me.lihq.game.living.Player;
+import me.lihq.game.models.Map;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,13 +12,15 @@ import static org.junit.Assert.*;
  */
 public class PlayerUnitTests extends GameTest
 {
-
     Player p = null;
+    Map map = null;
 
     @Before
     public void before()
     {
-        p = new Player("Test Name", "../core/assets/player.png");
+        p = new Player("Test Name", "player.png");
+        map = new Map();
+        p.setRoom(map.getRoom(0));
     }
 
     @Test

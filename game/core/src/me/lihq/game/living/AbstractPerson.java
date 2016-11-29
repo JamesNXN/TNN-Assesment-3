@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import me.lihq.game.Assets;
 import me.lihq.game.Settings;
+import me.lihq.game.models.Vector2Int;
 
 /**
  * The abstract person is an abstract representation of a person. A person can be a non playable character or Player.
@@ -16,7 +17,7 @@ public abstract class AbstractPerson extends Sprite
     /**
      * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
      */
-    protected Vector2 tileCoordinates = new Vector2().set(0, 0);
+    protected Vector2Int tileCoordinates = new Vector2Int(0, 0);
     protected int offsetX = 0;
     protected int offsetY = 0;
 
@@ -35,8 +36,15 @@ public abstract class AbstractPerson extends Sprite
     {
         super(Assets.loadTexture(img));
 
-        this.setPosition(tileCoordinates.x * Settings.TILE_SIZE, tileCoordinates.y * Settings.TILE_SIZE);
+        this.setPosition(tileCoordinates.getX() * Settings.TILE_SIZE, tileCoordinates.getY() * Settings.TILE_SIZE);
+    }
 
+    public void setTileCoordinates(int x, int y)
+    {
+        tileCoordinates.x = x;
+        tileCoordinates.y = y;
+
+        setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
     }
 
     public int getOffsetX()
@@ -69,6 +77,7 @@ public abstract class AbstractPerson extends Sprite
         this.direction = direction;
     }
 
+    public abstract void move(int dx, int dy);
 
     public enum DIRECTION
     {

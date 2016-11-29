@@ -1,5 +1,7 @@
 package me.lihq.game.living;
 
+import me.lihq.game.Settings;
+
 /**
  * Created by joeshuff on 20/11/2016.
  */
@@ -31,10 +33,19 @@ public class NPC extends AbstractPerson
 
         this.setRoomID(roomID);
 
-        this.setX(x);
-        this.setY(y);
+        this.tileCoordinates.x = x;
+        this.tileCoordinates.y = y;
+
+        this.setX(x * Settings.TILE_SIZE);
+        this.setY(y * Settings.TILE_SIZE);
 
         this.canBeKiller = canBeKiller;
+
+    }
+
+    @Override
+    public void move(int dx, int dy)
+    {
 
     }
 

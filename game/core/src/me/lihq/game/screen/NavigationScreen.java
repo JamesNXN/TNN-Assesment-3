@@ -14,6 +14,7 @@ import me.lihq.game.Settings;
 import me.lihq.game.living.controller.PlayerController;
 import me.lihq.game.Assets;
 import me.lihq.game.living.Player;
+import me.lihq.game.models.Map;
 
 /**
  * This is the screen that is responsible for the navigation of the player around the game.
@@ -42,8 +43,6 @@ public class NavigationScreen extends AbstractScreen {
         camera.update();
 
         viewport = new FitViewport(w/Settings.ZOOM, h/Settings.ZOOM, camera);
-
-
 
         map = new TmxMapLoader().load("map.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
@@ -79,9 +78,6 @@ public class NavigationScreen extends AbstractScreen {
         spriteBatch.begin();
         game.player.draw(spriteBatch);
         spriteBatch.end();
-
-
-
     }
 
     @Override
@@ -108,5 +104,11 @@ public class NavigationScreen extends AbstractScreen {
     public void dispose() {
         map.dispose();
         tiledMapRenderer.dispose();
+    }
+
+    public void setTiledMapRenderer(TiledMap map)
+    {
+        this.map = map;
+        tiledMapRenderer.setMap(map);
     }
 }

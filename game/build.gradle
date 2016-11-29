@@ -62,7 +62,7 @@ project(":core") {
 project(":tests") {
     apply plugin: "java"
 
-    sourceSets.test.java.srcDirs = ["src/example"]
+    sourceSets.test.java.srcDirs = ["src"]
 
     dependencies {
         compile project(":core")

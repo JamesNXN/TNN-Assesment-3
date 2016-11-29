@@ -8,6 +8,7 @@ import me.lihq.game.living.NPC;
 import me.lihq.game.living.NPC.ACCESSORY;
 import me.lihq.game.living.NPC.HAIR_COLOR;
 import me.lihq.game.living.NPC.WRITING_HAND;
+import me.lihq.game.models.Map;
 import me.lihq.game.living.Player;
 import me.lihq.game.models.Room;
 import me.lihq.game.screen.NavigationScreen;
@@ -25,7 +26,8 @@ public class GameMain extends Game
     public static GameMain me = null;
     //Game wide variables
     public List<NPC> NPCs = new ArrayList<NPC>();
-    public List<Room> rooms = new ArrayList<Room>();
+
+    public Map gameMap;
 
     FPSLogger FPS;
     private NavigationScreen screen1;
@@ -37,11 +39,18 @@ public class GameMain extends Game
     @Override
     public void create()
     {
-        me = this;
+        this.me = this;
+        gameMap = new Map();
+
+        initialiseAllData();
+        
         Assets.load();
         initialiseAllData();
 
+        player.setRoom(gameMap.getRoom(0));
+
         screen1 = new NavigationScreen(this);
+        screen1.setTiledMapRenderer(player.getRoom().getTiledMap());
         this.setScreen(screen1);
 
         FPS = new FPSLogger();
@@ -69,6 +78,12 @@ public class GameMain extends Game
 
     }
 
+    public void changeMap(Room.Transition to)
+    {
+        player.setRoom(gameMap.getRoom(to.newRoom));
+
+        screen1.setTiledMapRenderer(player.getRoom().getTiledMap());
+    }
 
     /**
      * Generates all the NPC's, Players and Rooms and maps.
@@ -78,6 +93,7 @@ public class GameMain extends Game
         //Add ALL NPCs to the list
         //This is how you initialise an NPC
         player = new Player("Test name","player.png");
+
         {
             //TODO: Add NPC assets
             NPC npc = new NPC(4, 4, 1, "player.png", true)
@@ -104,7 +120,5 @@ public class GameMain extends Game
 
             NPCs.add(npc);
         }
-
-        //Add ALL maps to the map list
     }
 }
