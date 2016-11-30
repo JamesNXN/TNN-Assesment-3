@@ -18,6 +18,7 @@ public abstract class AbstractPerson extends Sprite
      * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
      */
     protected Vector2Int tileCoordinates = new Vector2Int(0, 0);
+    protected Vector2 framePosition = new Vector2(0,0);
     protected int offsetX = 0;
     protected int offsetY = 0;
 
@@ -44,7 +45,7 @@ public abstract class AbstractPerson extends Sprite
         tileCoordinates.x = x;
         tileCoordinates.y = y;
 
-        setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
+        setPosition(x*Settings.TILE_SIZE,y*Settings.TILE_SIZE);
     }
 
     public int getOffsetX()
@@ -76,8 +77,6 @@ public abstract class AbstractPerson extends Sprite
     {
         this.direction = direction;
     }
-
-    public abstract void move(int dx, int dy);
 
     public enum DIRECTION
     {

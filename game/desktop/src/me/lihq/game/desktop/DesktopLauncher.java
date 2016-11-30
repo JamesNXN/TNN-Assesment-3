@@ -12,6 +12,7 @@ public class DesktopLauncher
         config.title = "Game";
         config.width = 1000;
         config.height = 750;
+
         new LwjglApplication(new GameMain(), config);
     }
 }

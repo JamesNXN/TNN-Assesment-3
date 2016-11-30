@@ -43,7 +43,6 @@ public class NPC extends AbstractPerson
 
     }
 
-    @Override
     public void move(int dx, int dy)
     {
 
