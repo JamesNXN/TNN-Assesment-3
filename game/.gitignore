@@ -29,6 +29,8 @@ android/libs/x86_64/
 android/gen/
 .idea/
 !.idea/runConfigurations/
+!.idea/runConfigurations/Tests.xml
+!.idea/runConfigurations/Desktop.xml
 *.ipr
 *.iws
 *.iml
