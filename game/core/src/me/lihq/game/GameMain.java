@@ -13,10 +13,7 @@ import me.lihq.game.living.Player;
 import me.lihq.game.models.Room;
 import me.lihq.game.screen.NavigationScreen;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 
 /**
@@ -88,6 +85,9 @@ public class GameMain extends Game
         screen1.setTiledMapRenderer(player.getRoom().getTiledMap());
     }
 
+    public int ticks = 0;
+    public int lastSecond = -1;
+
     public void gameLoop()
     {
         Timer gameTimer = new Timer();
@@ -95,6 +95,17 @@ public class GameMain extends Game
             @Override
             public void run()
             {
+                ticks ++;
+
+                Calendar cal = Calendar.getInstance();
+
+                if (cal.get(Calendar.SECOND) != lastSecond)
+                {
+                    lastSecond = cal.get(Calendar.SECOND);
+                    System.out.println("TPSLogger: tps:      " + ticks);
+                    ticks = 0;
+                }
+
                 screen1.playerController.update();
                 player.updateMotion();
             }

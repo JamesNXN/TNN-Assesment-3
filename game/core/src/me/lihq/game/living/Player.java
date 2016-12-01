@@ -67,7 +67,6 @@ public class Player extends AbstractPerson
         }
 
         initialiseMove(dir);
-
     }
 
     public Inventory getInventory()
