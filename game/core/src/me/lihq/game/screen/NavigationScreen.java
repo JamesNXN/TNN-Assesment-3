@@ -66,7 +66,8 @@ public class NavigationScreen extends AbstractScreen {
      */
     @Override
     public void render(float delta) {
-        game.player.updateMotion();
+        playerController.update(delta);
+        game.player.updateMotion(delta);
         camera.position.x = game.player.getX();
         camera.position.y = game.player.getY();
         camera.update();

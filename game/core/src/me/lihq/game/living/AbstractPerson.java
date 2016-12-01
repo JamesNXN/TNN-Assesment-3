@@ -18,10 +18,12 @@ public abstract class AbstractPerson extends Sprite
      * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
      */
     protected Vector2Int tileCoordinates = new Vector2Int(0, 0);
-    protected Vector2 framePosition = new Vector2(0,0);
-    protected int offsetX = 0;
-    protected int offsetY = 0;
-
+    protected Vector2Int startPosition = new Vector2Int(0,0);
+    protected Vector2Int destinationPosition = new Vector2Int(0,0);
+    protected float animTimer;
+    protected float ANIM_TIME = 0.25f;
+    protected ACTOR_STATE state;
+    protected boolean left, right, up, down;
     /**
      * The direction determines the way the character is facing.
      */
@@ -38,6 +40,7 @@ public abstract class AbstractPerson extends Sprite
         super(Assets.loadTexture(img));
 
         this.setPosition(tileCoordinates.getX() * Settings.TILE_SIZE, tileCoordinates.getY() * Settings.TILE_SIZE);
+        this.state = ACTOR_STATE.STANDING;
     }
 
     public void setTileCoordinates(int x, int y)
@@ -48,25 +51,6 @@ public abstract class AbstractPerson extends Sprite
         setPosition(x*Settings.TILE_SIZE,y*Settings.TILE_SIZE);
     }
 
-    public int getOffsetX()
-    {
-        return this.offsetX;
-    }
-
-    public void setOffsetX(int offsetX)
-    {
-        this.offsetX = offsetX;
-    }
-
-    public int getOffsetY()
-    {
-        return this.offsetY;
-    }
-
-    public void setOffsetY(int offsetY)
-    {
-        this.offsetY = offsetY;
-    }
 
     public DIRECTION getDirection()
     {
@@ -80,6 +64,34 @@ public abstract class AbstractPerson extends Sprite
 
     public enum DIRECTION
     {
-        NORTH, SOUTH, EAST, WEST
+        NORTH(0,1),
+        SOUTH(0,-1),
+        EAST(1,0),
+        WEST(-1,0);
+
+
+        private int dx, dy;
+
+        DIRECTION(int dx, int dy) {
+            this.dx = dx;
+            this.dy = dy;
+        }
+
+        public int getDx() {
+            return this.dx;
+        }
+
+        public int getDy() {
+            return this.dy;
+        }
+
+
+    }
+
+
+
+    public enum ACTOR_STATE {
+        WALKING,
+        STANDING;
     }
 }

@@ -11,7 +11,7 @@ import static me.lihq.game.living.AbstractPerson.*;
  */
 public class PlayerController extends InputAdapter
 {
-
+    private boolean north, south, west, east;
     private Player player;
 
     public PlayerController(Player player)
@@ -23,27 +23,23 @@ public class PlayerController extends InputAdapter
     public boolean keyDown(int keycode)
     {
         if (keycode == Input.Keys.LEFT || keycode == Input.Keys.A) {
-            player.setDirection(DIRECTION.WEST);
-            player.move = true;
+            this.west = true;
             return true;
         }
 
         if (keycode == Input.Keys.RIGHT || keycode == Input.Keys.D) {
-            player.setDirection(DIRECTION.EAST);
-            player.move = true;
+            this.east = true;
             return true;
         }
 
 
         if (keycode == Input.Keys.UP || keycode == Input.Keys.W) {
-            player.setDirection(DIRECTION.NORTH);
-            player.move = true;
+            this.north = true;
             return true;
         }
 
         if (keycode == Input.Keys.DOWN || keycode == Input.Keys.S) {
-            player.setDirection(DIRECTION.SOUTH);
-            player.move = true;
+            this.south = true;
             return true;
         }
 
@@ -54,30 +50,47 @@ public class PlayerController extends InputAdapter
     public boolean keyUp(int keycode)
     {
         if (keycode == Input.Keys.LEFT || keycode == Input.Keys.A) {
-            player.setDirection(DIRECTION.WEST);
-            player.move = false;
+            this.west = false;
             return true;
         }
 
         if (keycode == Input.Keys.RIGHT || keycode == Input.Keys.D) {
-            player.setDirection(DIRECTION.EAST);
-            player.move = false;
+            this.east = false;
             return true;
         }
 
 
         if (keycode == Input.Keys.UP || keycode == Input.Keys.W) {
-            player.setDirection(DIRECTION.NORTH);
-            player.move = false;
+            this.north = false;
             return true;
         }
 
         if (keycode == Input.Keys.DOWN || keycode == Input.Keys.S) {
-            player.setDirection(DIRECTION.SOUTH);
-            player.move = false;
+            this.south = false;
             return true;
         }
 
         return false;
+    }
+
+    public void update(float delta)
+    {
+        if (north) {
+            player.move(DIRECTION.NORTH);
+            return;
+        }
+        if (south) {
+            player.move(DIRECTION.SOUTH);
+            return;
+        }
+        if (east) {
+            player.move(DIRECTION.EAST);
+            return;
+        }
+        if (west) {
+            player.move(DIRECTION.WEST);
+            return;
+        }
+
     }
 }
