@@ -50,34 +50,6 @@ public class Player extends AbstractPerson
         }
     }
 
-    public void updateMotion(float delta)
-    {
-
-        if (this.state == ACTOR_STATE.WALKING) {
-            this.animTimer += delta;
-            this.setPosition(Interpolation.linear.apply(startPosition.x, destinationPosition.x, animTimer / ANIM_TIME), Interpolation.linear.apply(startPosition.y, destinationPosition.y, animTimer / ANIM_TIME));
-            if (animTimer > ANIM_TIME) {
-                this.finishMove();
-                this.setTileCoordinates(destinationPosition.x/32, destinationPosition.y/32);
-            }
-        }
-
-
-    }
-
-    public void initialiseMove(DIRECTION dir) {
-        this.startPosition.x = this.tileCoordinates.x * Settings.TILE_SIZE;
-        this.startPosition.y = this.tileCoordinates.y * Settings.TILE_SIZE;
-        this.destinationPosition.x = this.startPosition.x + dir.getDx() * Settings.TILE_SIZE;
-        this.destinationPosition.y = this.startPosition.y + dir.getDy() * Settings.TILE_SIZE;
-        this.animTimer = 0f;
-        this.state = ACTOR_STATE.WALKING;
-
-    }
-
-    public void finishMove() {
-        this.state = ACTOR_STATE.STANDING;
-    }
     /**
      * This moves the player to a new tile
      * @param dx the amount of tiles to move in the x direction

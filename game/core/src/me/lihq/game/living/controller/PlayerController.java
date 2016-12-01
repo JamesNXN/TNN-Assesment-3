@@ -59,7 +59,6 @@ public class PlayerController extends InputAdapter
             return true;
         }
 
-
         if (keycode == Input.Keys.UP || keycode == Input.Keys.W) {
             this.north = false;
             return true;
@@ -73,7 +72,7 @@ public class PlayerController extends InputAdapter
         return false;
     }
 
-    public void update(float delta)
+    public void update()
     {
         if (north) {
             player.move(DIRECTION.NORTH);

@@ -15,6 +15,8 @@ import me.lihq.game.screen.NavigationScreen;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -54,8 +56,9 @@ public class GameMain extends Game
         this.setScreen(screen1);
 
         FPS = new FPSLogger();
-    }
 
+        gameLoop();
+    }
 
     /**
      * This defines what's rendered on the screen for each frame.
@@ -83,6 +86,21 @@ public class GameMain extends Game
         player.setRoom(gameMap.getRoom(to.newRoom));
 
         screen1.setTiledMapRenderer(player.getRoom().getTiledMap());
+    }
+
+    public void gameLoop()
+    {
+        Timer gameTimer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run()
+            {
+                screen1.playerController.update();
+                player.updateMotion();
+            }
+        };
+
+        gameTimer.schedule(task, 1000 / Settings.TPS, 1000 / Settings.TPS);
     }
 
     /**
