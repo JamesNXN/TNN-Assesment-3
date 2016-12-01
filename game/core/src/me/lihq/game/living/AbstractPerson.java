@@ -63,6 +63,7 @@ public abstract class AbstractPerson extends Sprite
     public void updateMotion()
     {
         if (this.state == ACTOR_STATE.WALKING) {
+            this.animTimer += 1f;
             this.setPosition(Interpolation.linear.apply(startPosition.x, destinationPosition.x, animTimer / ANIM_TIME), Interpolation.linear.apply(startPosition.y, destinationPosition.y, animTimer / ANIM_TIME));
             updateTextureRegion();
             if (animTimer > ANIM_TIME) {
@@ -81,6 +82,7 @@ public abstract class AbstractPerson extends Sprite
 
         this.destinationPosition.x = this.startPosition.x + (dir.getDx() * Settings.TILE_SIZE);
         this.destinationPosition.y = this.startPosition.y + (dir.getDy() * Settings.TILE_SIZE);
+        this.animTimer = 0f;
 
         this.state = ACTOR_STATE.WALKING;
     }
