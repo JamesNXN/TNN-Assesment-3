@@ -27,8 +27,11 @@ android/libs/arm64-v8a/
 android/libs/x86/
 android/libs/x86_64/
 android/gen/
-.idea/
+.idea/**
 !.idea/runConfigurations/
+.idea/runConfigurations/**
+!.idea/runConfigurations/Tests.xml
+!.idea/runConfigurations/Desktop.xml
 *.ipr
 *.iws
 *.iml
