@@ -144,21 +144,21 @@ public abstract class AbstractPerson extends Sprite
                  break;
         }
 
-        if (animTimer == 0)
+        if (animTimer > threeQuarters)
+        {
+            setRegion(new TextureRegion(spriteSheet, 64, row * 37, 32, 37));
+        }
+        else if (animTimer > half)
         {
             setRegion(new TextureRegion(spriteSheet, 0, row * 37, 32, 37));
         }
-        else if (animTimer < quarter)
+        else if (animTimer > quarter)
         {
             setRegion(new TextureRegion(spriteSheet, 32, row * 37, 32, 37));
         }
-        else if (animTimer < half)
+        else if (animTimer == 0)
         {
             setRegion(new TextureRegion(spriteSheet, 0, row * 37, 32, 37));
-        }
-        else if (animTimer < threeQuarters)
-        {
-            setRegion(new TextureRegion(spriteSheet, 64, row * 37, 32, 37));
         }
     }
 
