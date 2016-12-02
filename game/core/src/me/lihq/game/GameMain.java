@@ -25,12 +25,30 @@ public class GameMain extends Game
     //This is a static reference to itself. Comes in REALLY handy when in other classes that don't have a reference to the main game
     public static GameMain me = null;
     //Game wide variables
+
+    /**
+     * A list holding NPC objects
+     */
     public List<NPC> NPCs = new ArrayList<NPC>();
 
+    /**
+     * The game map
+     */
     public Map gameMap;
 
+    /**
+     * An FPSLogger, FPSLogger allows us to check the game FPS is good enough
+     */
     FPSLogger FPS;
+
+    /**
+     * A screen to be used
+     */
     private NavigationScreen screen1;
+
+    /**
+     * A player object
+     */
     public Player player;
 
     /**
@@ -40,19 +58,21 @@ public class GameMain extends Game
     public void create()
     {
         this.me = this;
-        gameMap = new Map();
 
-        initialiseAllData();
+        gameMap = new Map(); //instantiate game map
+
+        initialiseAllData(); //calls a function that generates all the NPC's, Players and Rooms and maps.
         
-        Assets.load();
-        initialiseAllData();
+        Assets.load();// Load in the assets the game needs
 
+        initialiseAllData();//call the function again after assets loaded
+        //place player in first room
         player.setRoom(gameMap.getRoom(0));
-
+        //set up the screen and display the first room
         screen1 = new NavigationScreen(this);
         screen1.setTiledMapRenderer(player.getRoom().getTiledMap());
         this.setScreen(screen1);
-
+        //Instantiate the FPSLogger to show FPS
         FPS = new FPSLogger();
     }
 
@@ -66,7 +86,7 @@ public class GameMain extends Game
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        FPS.log();
+        FPS.log();//this is where fps is displayed
 
         super.render(); // This calls the render method of the screen that is currently set
 
@@ -77,7 +97,9 @@ public class GameMain extends Game
     {
 
     }
-
+    /**
+     * Change from one room to another
+     */
     public void changeMap(Room.Transition to)
     {
         player.setRoom(gameMap.getRoom(to.newRoom));
