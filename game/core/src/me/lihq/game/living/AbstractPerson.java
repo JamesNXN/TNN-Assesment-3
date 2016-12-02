@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.Vector2;
 import me.lihq.game.Assets;
 import me.lihq.game.Settings;
 import me.lihq.game.models.Vector2Int;
@@ -19,11 +20,19 @@ public abstract class AbstractPerson extends Sprite
      */
     protected Vector2Int tileCoordinates = new Vector2Int(0, 0);
 
+    /**
+     * This is the pixel coordinate of the player. This is moved into their rendered position by the rendering thread.
+     * This is to avoid jolting.
+     *
+     * Avoid using Sprites setPosition as if it is changed mid render it will cause jolting
+     */
+    protected Vector2 pixelCoordinates = new Vector2().set(0.0f, 0.0f);
+
     protected Vector2Int startPosition = new Vector2Int(0,0);
     protected Vector2Int destinationPosition = new Vector2Int(0,0);
 
     protected float animTimer;
-    protected float ANIM_TIME = Settings.TPS / 4;
+    protected float ANIM_TIME = Settings.TPS / 3.5f;
 
     protected ACTOR_STATE state;
     protected boolean left, right, up, down;
@@ -52,23 +61,38 @@ public abstract class AbstractPerson extends Sprite
         this.state = ACTOR_STATE.STANDING;
     }
 
+    /**
+     * This method moves the coordinates in the AbstractPersons pixelCoordinates to
+     * the Sprites position so that it can then be rendered at the correct location.
+     */
+    public void pushCoordinatesToSprite()
+    {
+        setPosition(pixelCoordinates.x, pixelCoordinates.y);
+    }
+
     public void setTileCoordinates(int x, int y)
     {
         tileCoordinates.x = x;
         tileCoordinates.y = y;
 
-        setPosition(x*Settings.TILE_SIZE,y*Settings.TILE_SIZE);
+        setCoords(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
     }
 
     public void updateMotion()
     {
-        if (this.state == ACTOR_STATE.WALKING) {
-            this.animTimer += 1f;
-            this.setPosition(Interpolation.linear.apply(startPosition.x, destinationPosition.x, animTimer / ANIM_TIME), Interpolation.linear.apply(startPosition.y, destinationPosition.y, animTimer / ANIM_TIME));
+        if (this.state == ACTOR_STATE.WALKING)
+        {
+            this.pixelCoordinates.x = Interpolation.linear.apply(startPosition.x, destinationPosition.x, animTimer / ANIM_TIME);
+            this.pixelCoordinates.y = Interpolation.linear.apply(startPosition.y, destinationPosition.y, animTimer / ANIM_TIME);
+
             updateTextureRegion();
-            if (animTimer > ANIM_TIME) {
+
+            this.animTimer += 1f;
+
+            if (animTimer > ANIM_TIME)
+            {
+                this.setTileCoordinates(destinationPosition.x / 32, destinationPosition.y / 32);
                 this.finishMove();
-                this.setTileCoordinates(destinationPosition.x/32, destinationPosition.y/32);
             }
         }
     }
@@ -87,19 +111,20 @@ public abstract class AbstractPerson extends Sprite
         this.state = ACTOR_STATE.WALKING;
     }
 
-    public void finishMove() {
+    public void finishMove()
+    {
         animTimer = 0f;
+
         this.state = ACTOR_STATE.STANDING;
+
         updateTextureRegion();
     }
 
     public void updateTextureRegion()
     {
-        TextureRegion region = currentRegion;
-
-        float quart = ANIM_TIME / 4;
+        float quarter = ANIM_TIME / 4;
         float half = ANIM_TIME / 2;
-        float thir = quart * 3;
+        float threeQuarters = quarter * 3;
 
         int row = 1;
 
@@ -123,7 +148,7 @@ public abstract class AbstractPerson extends Sprite
         {
             setRegion(new TextureRegion(spriteSheet, 0, row * 37, 32, 37));
         }
-        else if (animTimer < quart)
+        else if (animTimer < quarter)
         {
             setRegion(new TextureRegion(spriteSheet, 32, row * 37, 32, 37));
         }
@@ -131,12 +156,23 @@ public abstract class AbstractPerson extends Sprite
         {
             setRegion(new TextureRegion(spriteSheet, 0, row * 37, 32, 37));
         }
-        else if (animTimer < thir)
+        else if (animTimer < threeQuarters)
         {
             setRegion(new TextureRegion(spriteSheet, 64, row * 37, 32, 37));
         }
     }
-    
+
+    public Vector2 getCoords()
+    {
+        return pixelCoordinates;
+    }
+
+    public void setCoords(float x, float y)
+    {
+        pixelCoordinates.x = x;
+        pixelCoordinates.y = y;
+    }
+
     public DIRECTION getDirection()
     {
         return this.direction;
@@ -168,8 +204,6 @@ public abstract class AbstractPerson extends Sprite
         public int getDy() {
             return this.dy;
         }
-
-
     }
 
     public enum ACTOR_STATE {

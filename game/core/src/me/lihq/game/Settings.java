@@ -16,5 +16,5 @@ public class Settings
     /**
      * The maximum amount of ticks per second
      */
-    public static final int TPS = 60;
+    public static final int TPS = 30;
 }
