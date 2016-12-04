@@ -75,19 +75,19 @@ public class PlayerController extends InputAdapter
     public void update()
     {
         if (north) {
-            player.move(DIRECTION.NORTH);
+            player.move(Direction.NORTH);
             return;
         }
         if (south) {
-            player.move(DIRECTION.SOUTH);
+            player.move(Direction.SOUTH);
             return;
         }
         if (east) {
-            player.move(DIRECTION.EAST);
+            player.move(Direction.EAST);
             return;
         }
         if (west) {
-            player.move(DIRECTION.WEST);
+            player.move(Direction.WEST);
             return;
         }
 

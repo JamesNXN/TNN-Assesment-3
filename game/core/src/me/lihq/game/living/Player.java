@@ -1,8 +1,6 @@
 package me.lihq.game.living;
 
-import com.badlogic.gdx.math.Interpolation;
 import me.lihq.game.GameMain;
-import me.lihq.game.Settings;
 import me.lihq.game.models.Inventory;
 import me.lihq.game.models.Room;
 
@@ -56,9 +54,9 @@ public class Player extends AbstractPerson
      * @param dy the amout of tiles to move in the y direction
      */
 
-    public void move(DIRECTION dir)
+    public void move(Direction dir)
     {
-        if (this.state != ACTOR_STATE.STANDING) {
+        if (this.state != PersonState.STANDING) {
             return;
         }
 
