@@ -48,12 +48,11 @@ public class Player extends AbstractPerson
         }
     }
 
-    /**
-     * This moves the player to a new tile
-     * @param dx the amount of tiles to move in the x direction
-     * @param dy the amout of tiles to move in the y direction
-     */
 
+    /**
+     * This Moves the player to a new tile.
+     * @param dir the direction that the player should move in.
+     */
     public void move(Direction dir)
     {
         if (this.state != PersonState.STANDING) {
