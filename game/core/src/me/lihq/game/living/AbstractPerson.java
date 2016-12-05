@@ -17,6 +17,7 @@ public abstract class AbstractPerson extends Sprite
 {
     /**
      * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
+     * Uses the Vector2Int as the tileCoordinates should never be floats as the person should only be between tiles during the move process.
      */
     protected Vector2Int tileCoordinates = new Vector2Int(0, 0);
 
@@ -28,7 +29,14 @@ public abstract class AbstractPerson extends Sprite
      */
     protected Vector2 tempCoordinates = new Vector2().set(0.0f, 0.0f);
 
+    /**
+     * A store of the starting point for a movement.
+     */
     protected Vector2Int startPosition = new Vector2Int(0, 0);
+
+    /**
+     * A store of the destination for a movement.
+     */
     protected Vector2Int destinationPosition = new Vector2Int(0, 0);
 
     protected float animTimer;
