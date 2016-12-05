@@ -6,7 +6,6 @@ package me.lihq.game;
  */
 public class Settings
 {
-
     public static final int TILE_SIZE = 32;
 
     /**
@@ -14,4 +13,8 @@ public class Settings
      */
     public static final int ZOOM = 2;
 
+    /**
+     * The maximum amount of ticks per second
+     */
+    public static final int TPS = 30;
 }

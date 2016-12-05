@@ -1,7 +1,6 @@
 package me.lihq.game.living;
 
 import me.lihq.game.GameMain;
-import me.lihq.game.Settings;
 import me.lihq.game.models.Inventory;
 import me.lihq.game.models.Room;
 
@@ -17,6 +16,8 @@ public class Player extends AbstractPerson
     private Inventory inventory = new Inventory();
 
     private int score = 0;
+
+    public Boolean move = false;
 
     private String name;
 
@@ -49,16 +50,21 @@ public class Player extends AbstractPerson
 
 
     /**
-     * This moves the player to a new tile
-     * @param dx the amount of tiles to move in the x direction
-     * @param dy the amout of tiles to move in the y direction
+     * This Moves the player to a new tile.
+     * @param dir the direction that the player should move in.
      */
-    @Override
-    public void move(int dx, int dy)
+    public void move(Direction dir)
     {
-        if (!currentRoom.isWalkableTile(tileCoordinates.getX() + dx, tileCoordinates.getY() + dy)) {return;}
+        if (this.state != PersonState.STANDING) {
+            return;
+        }
 
-        this.setTileCoordinates(tileCoordinates.x + dx, tileCoordinates.y + dy);
+        if (!currentRoom.isWalkableTile(this.tileCoordinates.x + dir.getDx(),this.tileCoordinates.y + dir.getDy())) {
+            setDirection(dir);
+            return;
+        }
+
+        initialiseMove(dir);
     }
 
     public Inventory getInventory()

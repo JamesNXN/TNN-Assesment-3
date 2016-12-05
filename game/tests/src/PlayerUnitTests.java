@@ -1,5 +1,6 @@
 import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
+import me.lihq.game.living.AbstractPerson;
 import me.lihq.game.living.Player;
 import me.lihq.game.models.Map;
 import org.junit.Before;
@@ -35,15 +36,15 @@ public class PlayerUnitTests extends GameTest
         //Personality Level is default 50
         p.addToPersonality(100);
         //Should have surpassed the maximum of 100. Then changed to the maximum, 100
-        assertEquals("Fail - Personality not Upper Capped", p.getPersonality(), 100);
+        assertEquals("Fail - Personality not Upper Capped", 100, p.getPersonality());
 
         p.addToPersonality(-50);
         //Reduce back to 50
-        assertEquals("Fail - Personality not reduced to 50", p.getPersonality(), 50);
+        assertEquals("Fail - Personality not reduced to 50", 50, p.getPersonality());
 
         p.addToPersonality(-100);
         //Gone below 0, should move it back up to 0
-        assertEquals("Fail - Personality not Lower Capped", p.getPersonality(), 0);
+        assertEquals("Fail - Personality not Lower Capped", 0, p.getPersonality());
     }
 
 
@@ -55,17 +56,38 @@ public class PlayerUnitTests extends GameTest
     public void doesPlayerMove()
     {
         p.setPosition(0,0);
-        p.move(1,1);
-        assertEquals(p.getX(), Settings.TILE_SIZE, 0.0f);
-        assertEquals(p.getY(), Settings.TILE_SIZE, 0.0f);
+        p.setAnimTime(0f);
+        assertEquals(0, p.getX(), 0.0f);
+        assertEquals(0, p.getY(), 0.0f);
 
-        p.move(1,1);
-        assertEquals(p.getX(), 2*Settings.TILE_SIZE, 0.0f);
-        assertEquals(p.getY(), 2*Settings.TILE_SIZE, 0.0f);
+        p.move(AbstractPerson.Direction.NORTH);
+        p.update();
+        p.pushCoordinatesToSprite();
 
-        p.move(-2,-2);
-        assertEquals(p.getX(), 0f, 0.0f);
-        assertEquals(p.getY(), 0f, 0.0f);
+        assertEquals(Settings.TILE_SIZE, p.getY(), 0.0f);
+
+        p.move(AbstractPerson.Direction.EAST);
+        p.update();
+        p.pushCoordinatesToSprite();
+
+        assertEquals(Settings.TILE_SIZE, p.getX(), 0.0f);
+        assertEquals(Settings.TILE_SIZE, p.getY(), 0.0f);
+
+        p.move(AbstractPerson.Direction.SOUTH);
+        p.update();
+        p.pushCoordinatesToSprite();
+
+        assertEquals(Settings.TILE_SIZE, p.getX(), 0.0f);
+        assertEquals(0, p.getY(), 0.0f);
+
+        p.move(AbstractPerson.Direction.WEST);
+        p.update();
+        p.pushCoordinatesToSprite();
+
+        assertEquals(0, p.getX(), 0.0f);
+        assertEquals(0, p.getY(), 0.0f);
+
+
     }
 
 }
