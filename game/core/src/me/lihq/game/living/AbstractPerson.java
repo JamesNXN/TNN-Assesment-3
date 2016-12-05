@@ -32,7 +32,7 @@ public abstract class AbstractPerson extends Sprite
     protected Vector2Int destinationPosition = new Vector2Int(0, 0);
 
     protected float animTimer;
-    protected float ANIM_TIME = Settings.TPS / 3.5f;
+    protected float animTime = Settings.TPS / 3.5f;
 
     protected Texture spriteSheet;
     protected TextureRegion currentRegion;
@@ -91,14 +91,14 @@ public abstract class AbstractPerson extends Sprite
     public void updateMotion()
     {
         if (this.state == PersonState.WALKING) {
-            this.tempCoordinates.x = Interpolation.linear.apply(startPosition.x, destinationPosition.x, animTimer / ANIM_TIME);
-            this.tempCoordinates.y = Interpolation.linear.apply(startPosition.y, destinationPosition.y, animTimer / ANIM_TIME);
+            this.tempCoordinates.x = Interpolation.linear.apply(startPosition.x, destinationPosition.x, animTimer / animTime);
+            this.tempCoordinates.y = Interpolation.linear.apply(startPosition.y, destinationPosition.y, animTimer / animTime);
 
             updateTextureRegion();
 
             this.animTimer += 1f;
 
-            if (animTimer > ANIM_TIME) {
+            if (animTimer > animTime) {
                 this.setTileCoordinates(destinationPosition.x / 32, destinationPosition.y / 32);
                 this.finishMove();
             }
@@ -142,8 +142,8 @@ public abstract class AbstractPerson extends Sprite
 
     public void updateTextureRegion()
     {
-        float quarter = ANIM_TIME / 4;
-        float half = ANIM_TIME / 2;
+        float quarter = animTime / 4;
+        float half = animTime / 2;
         float threeQuarters = quarter * 3;
 
         int row = 1;
@@ -202,6 +202,10 @@ public abstract class AbstractPerson extends Sprite
         this.direction = dir;
     }
 
+    public void setAnimTime(float animTime) {
+        this.animTime = animTime;
+    }
+
 
     /**
      * This is used to describe the direction the person is currently facing or moving in.
@@ -240,4 +244,5 @@ public abstract class AbstractPerson extends Sprite
         WALKING,
         STANDING;
     }
+
 }
