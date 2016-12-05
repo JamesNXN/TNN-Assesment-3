@@ -129,7 +129,7 @@ public class GameMain extends Game
                 }
 
                 screen1.playerController.update();
-                player.updateMotion();
+                player.update();
             }
         };
 

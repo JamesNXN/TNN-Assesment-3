@@ -60,6 +60,7 @@ public class Player extends AbstractPerson
         }
 
         if (!currentRoom.isWalkableTile(this.tileCoordinates.x + dir.getDx(),this.tileCoordinates.y + dir.getDy())) {
+            setDirection(dir);
             return;
         }
 

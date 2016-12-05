@@ -88,20 +88,19 @@ public abstract class AbstractPerson extends Sprite
         tileCoordinates.x = x;
         tileCoordinates.y = y;
 
-        setTempCoords(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
+        setCoords(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
     }
 
     /**
      * This is called to update the players position.
      * Called from the game loop, it interpolates the movement so that the person moves smoothly from tile to tile.
      */
-    public void updateMotion()
+    public void update()
     {
+        //TODO: Add a switch case instead of if
         if (this.state == PersonState.WALKING) {
             this.coordinates.x = Interpolation.linear.apply(startTile.x * Settings.TILE_SIZE, destinationTile.x * Settings.TILE_SIZE, animTimer / animTime);
             this.coordinates.y = Interpolation.linear.apply(startTile.y * Settings.TILE_SIZE, destinationTile.y * Settings.TILE_SIZE, animTimer / animTime);
-
-            updateTextureRegion();
 
             this.animTimer += 1f;
 
@@ -110,6 +109,8 @@ public abstract class AbstractPerson extends Sprite
                 this.finishMove();
             }
         }
+
+        updateTextureRegion();
     }
 
     /**
@@ -181,18 +182,13 @@ public abstract class AbstractPerson extends Sprite
         }
     }
 
-    public Vector2 getCoords()
-    {
-        return coordinates;
-    }
-
     /**
      * Used internally to store the coordinates of the person.
      *
      * @param x the x coordinate you wish to store
      * @param y the y coordinate you wish to store
      */
-    private void setTempCoords(float x, float y)
+    private void setCoords(float x, float y)
     {
         coordinates.x = x;
         coordinates.y = y;

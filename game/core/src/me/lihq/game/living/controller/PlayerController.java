@@ -2,6 +2,7 @@ package me.lihq.game.living.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import me.lihq.game.Settings;
 import me.lihq.game.living.Player;
 
 import static me.lihq.game.living.AbstractPerson.*;
@@ -18,6 +19,8 @@ public class PlayerController extends InputAdapter
     {
         this.player = player;
     }
+
+    //TODO: Add short clicks just changing direction
 
     @Override
     public boolean keyDown(int keycode)
@@ -72,24 +75,40 @@ public class PlayerController extends InputAdapter
         return false;
     }
 
+    public int timer = 0;
+
     public void update()
     {
+        if (!south && !north && !east && !west)
+        {
+            timer = 0;
+        }
+
+        Direction goTo = null;
+
         if (north) {
-            player.move(Direction.NORTH);
-            return;
+            goTo = Direction.NORTH;
         }
-        if (south) {
-            player.move(Direction.SOUTH);
-            return;
+        else if (south) {
+            goTo = Direction.SOUTH;
         }
-        if (east) {
-            player.move(Direction.EAST);
-            return;
+        else if (east) {
+            goTo = Direction.EAST;
         }
-        if (west) {
-            player.move(Direction.WEST);
+        else if (west) {
+            goTo = Direction.WEST;
+        }
+
+        if (goTo == null) return;
+
+        timer ++;
+
+        if (timer > Settings.TPS / 20)
+        {
+            player.move(goTo);
             return;
         }
 
+        player.setDirection(goTo);
     }
 }
