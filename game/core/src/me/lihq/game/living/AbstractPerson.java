@@ -98,6 +98,7 @@ public abstract class AbstractPerson extends Sprite
     public void update()
     {
         //TODO: Add a switch case instead of if
+
         if (this.state == PersonState.WALKING) {
             this.coordinates.x = Interpolation.linear.apply(startTile.x * Settings.TILE_SIZE, destinationTile.x * Settings.TILE_SIZE, animTimer / animTime);
             this.coordinates.y = Interpolation.linear.apply(startTile.y * Settings.TILE_SIZE, destinationTile.y * Settings.TILE_SIZE, animTimer / animTime);
