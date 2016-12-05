@@ -22,22 +22,21 @@ public abstract class AbstractPerson extends Sprite
     protected Vector2Int tileCoordinates = new Vector2Int(0, 0);
 
     /**
-     * This is a temporary store of the pixel coordinate of the person. The persons actual position is set to this by the rendering thread.
-     * This is to avoid jolting.
-     * <p>
-     * Avoid using Sprites setPosition as if it is changed mid render it will cause jolting
+     * This is the players location in the current room.
+     * Note this is different to sprite position, the sprite position is the location that the person is currently drawn.
+     * Avoid using Sprites setPosition as if it is changed mid render it will cause jolting.
      */
-    protected Vector2 tempCoordinates = new Vector2().set(0.0f, 0.0f);
+    protected Vector2 coordinates = new Vector2().set(0.0f, 0.0f);
 
     /**
      * A store of the starting point for a movement.
      */
-    protected Vector2Int startPosition = new Vector2Int(0, 0);
+    protected Vector2Int startTile = new Vector2Int(0, 0);
 
     /**
      * A store of the destination for a movement.
      */
-    protected Vector2Int destinationPosition = new Vector2Int(0, 0);
+    protected Vector2Int destinationTile = new Vector2Int(0, 0);
 
     protected float animTimer;
     protected float animTime = Settings.TPS / 3.5f;
@@ -69,12 +68,12 @@ public abstract class AbstractPerson extends Sprite
     }
 
     /**
-     * This method moves the coordinates in the AbstractPersons tempCoordinates to
+     * This method moves the coordinates in the AbstractPersons coordinates to
      * the Sprites position so that it can then be rendered at the correct location.
      */
     public void pushCoordinatesToSprite()
     {
-        setPosition(tempCoordinates.x, tempCoordinates.y);
+        setPosition(coordinates.x, coordinates.y);
     }
 
 
@@ -99,15 +98,15 @@ public abstract class AbstractPerson extends Sprite
     public void updateMotion()
     {
         if (this.state == PersonState.WALKING) {
-            this.tempCoordinates.x = Interpolation.linear.apply(startPosition.x, destinationPosition.x, animTimer / animTime);
-            this.tempCoordinates.y = Interpolation.linear.apply(startPosition.y, destinationPosition.y, animTimer / animTime);
+            this.coordinates.x = Interpolation.linear.apply(startTile.x * Settings.TILE_SIZE, destinationTile.x * Settings.TILE_SIZE, animTimer / animTime);
+            this.coordinates.y = Interpolation.linear.apply(startTile.y * Settings.TILE_SIZE, destinationTile.y * Settings.TILE_SIZE, animTimer / animTime);
 
             updateTextureRegion();
 
             this.animTimer += 1f;
 
             if (animTimer > animTime) {
-                this.setTileCoordinates(destinationPosition.x / 32, destinationPosition.y / 32);
+                this.setTileCoordinates(destinationTile.x, destinationTile.y);
                 this.finishMove();
             }
         }
@@ -124,11 +123,11 @@ public abstract class AbstractPerson extends Sprite
 
         this.direction = dir;
 
-        this.startPosition.x = this.tileCoordinates.x * Settings.TILE_SIZE;
-        this.startPosition.y = this.tileCoordinates.y * Settings.TILE_SIZE;
+        this.startTile.x = this.tileCoordinates.x;
+        this.startTile.y = this.tileCoordinates.y;
 
-        this.destinationPosition.x = this.startPosition.x + (dir.getDx() * Settings.TILE_SIZE);
-        this.destinationPosition.y = this.startPosition.y + (dir.getDy() * Settings.TILE_SIZE);
+        this.destinationTile.x = this.startTile.x + dir.getDx();
+        this.destinationTile.y = this.startTile.y + dir.getDy();
         this.animTimer = 0f;
 
         this.state = PersonState.WALKING;
@@ -184,7 +183,7 @@ public abstract class AbstractPerson extends Sprite
 
     public Vector2 getCoords()
     {
-        return tempCoordinates;
+        return coordinates;
     }
 
     /**
@@ -195,8 +194,8 @@ public abstract class AbstractPerson extends Sprite
      */
     private void setTempCoords(float x, float y)
     {
-        tempCoordinates.x = x;
-        tempCoordinates.y = y;
+        coordinates.x = x;
+        coordinates.y = y;
     }
 
 
