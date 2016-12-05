@@ -133,7 +133,7 @@ public class GameMain extends Game
             }
         };
 
-        gameTimer.schedule(task, 1000 / Settings.TPS, 1000 / Settings.TPS);
+        gameTimer.schedule(task, 0, 1000 / Settings.TPS);
     }
 
     /**
