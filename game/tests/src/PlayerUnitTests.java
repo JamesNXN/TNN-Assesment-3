@@ -61,27 +61,27 @@ public class PlayerUnitTests extends GameTest
         assertEquals(0, p.getY(), 0.0f);
 
         p.move(AbstractPerson.Direction.NORTH);
-        p.updateMotion();
+        p.update();
         p.pushCoordinatesToSprite();
 
         assertEquals(Settings.TILE_SIZE, p.getY(), 0.0f);
 
         p.move(AbstractPerson.Direction.EAST);
-        p.updateMotion();
+        p.update();
         p.pushCoordinatesToSprite();
 
         assertEquals(Settings.TILE_SIZE, p.getX(), 0.0f);
         assertEquals(Settings.TILE_SIZE, p.getY(), 0.0f);
 
         p.move(AbstractPerson.Direction.SOUTH);
-        p.updateMotion();
+        p.update();
         p.pushCoordinatesToSprite();
 
         assertEquals(Settings.TILE_SIZE, p.getX(), 0.0f);
         assertEquals(0, p.getY(), 0.0f);
 
         p.move(AbstractPerson.Direction.WEST);
-        p.updateMotion();
+        p.update();
         p.pushCoordinatesToSprite();
 
         assertEquals(0, p.getX(), 0.0f);
