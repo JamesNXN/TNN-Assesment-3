@@ -103,7 +103,7 @@ public class PlayerController extends InputAdapter
 
         timer ++;
 
-        if (timer > Settings.TPS / 20)
+        if (timer > Settings.TPS / 12)
         {
             player.move(goTo);
             return;
