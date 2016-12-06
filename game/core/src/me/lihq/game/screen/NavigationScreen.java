@@ -16,9 +16,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.Settings;
 import me.lihq.game.living.controller.PlayerController;
-import me.lihq.game.Assets;
-import me.lihq.game.living.Player;
-import me.lihq.game.models.Map;
 
 /**
  * This is the screen that is responsible for the navigation of the player around the game.
@@ -48,7 +45,7 @@ public class NavigationScreen extends AbstractScreen {
     /**
      * The amount of ticks it takes for the black to fade in and out
      */
-    private int ANIM_TIME = Settings.TPS / 3;
+    private float ANIM_TIME = Settings.TPS / 2.0f;
 
     /**
      * The black sprite that is used to fade in/out
@@ -58,7 +55,7 @@ public class NavigationScreen extends AbstractScreen {
     /**
      * The current animation frame of the fading in/out
      */
-    private int animTime = 0;
+    private float animTime = 0.0f;
 
     public NavigationScreen(GameMain game) {
         super(game);
@@ -103,18 +100,24 @@ public class NavigationScreen extends AbstractScreen {
         updateTransition();
     }
 
+    /**
+     * This boolean determines whether the black is fading in or out
+     */
+    boolean fadeToBlack = true;
+
     private void updateTransition()
     {
         if (roomTransition)
         {
-            if (animTime < ANIM_TIME)
-            {
-                animTime ++;
-            }
-            else if (animTime == ANIM_TIME)
+            if (animTime == ANIM_TIME)
             {
                 game.gameMap.moveRoom(game.player.getRoom().getID(), game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
+                fadeToBlack = false;
                 animTime --;
+            }
+            else if (fadeToBlack)
+            {
+                animTime ++;
             }
             else
             {
@@ -157,9 +160,12 @@ public class NavigationScreen extends AbstractScreen {
 
         if (roomTransition)
         {
-            float percent = (animTime / ANIM_TIME);
+            float alpha = (animTime / (ANIM_TIME * 0.8f));
 
-            float alpha = 255 * percent;
+            if (alpha > 1.0f)
+            {
+                alpha = 1.0f;
+            }
 
             BLACK_BACKGROUND.setColor(BLACK_BACKGROUND.getColor().r, BLACK_BACKGROUND.getColor().g, BLACK_BACKGROUND.getColor().b, alpha);
 

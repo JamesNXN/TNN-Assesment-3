@@ -21,7 +21,7 @@ public class Map {
     public void initialiseRooms()
     {
         rooms.add(new Room(0, "map.tmx", "Main Foyer")
-                    .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2))    //To Porters Office
+                    .addTransition(new Room.Transition().setFrom(10, 10).setTo(1, 2, 2))    //To Porters Office
                     .addTransition(new Room.Transition().setFrom(1, 1).setTo(2, 0, 0))    //To Kitchen
                     .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2))    //To Island of Interaction
                     .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2))    //To Toilet

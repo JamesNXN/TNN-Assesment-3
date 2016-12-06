@@ -83,6 +83,18 @@ public class Room {
     }
 
     public boolean isTriggerTile(int x, int y) {
+
+        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(0);
+
+        if (layer.getCell(x, y) == null) return false;
+
+        if (layer.getCell(x, y).getTile().getProperties().get("trigger") == null) return false;
+
+        if (layer.getCell(x, y).getTile().getProperties().get("trigger").equals(true))
+        {
+            return true;
+        }
+
         return false;
     }
 
