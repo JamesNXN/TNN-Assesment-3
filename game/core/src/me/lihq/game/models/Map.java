@@ -60,14 +60,14 @@ public class Map {
                     .addTransition(new Room.Transition().setFrom(0, 0).setTo(0, 0, 0)));  //To Outside
     }
 
-    public Room.Transition moveRoom(int currentRoomID, int currentX, int currentY)
+    public void moveRoom(int currentRoomID, int currentX, int currentY)
     {
         Room currentRoom = rooms.get(currentRoomID);
 
         Room.Transition newRoomData = currentRoom.getNewRoom(currentX, currentY);
 
         //TODO: Change current information and do map change transition
-        return newRoomData;
+        GameMain.me.changeRoom(newRoomData);
     }
 
     public Room getRoom(int id)

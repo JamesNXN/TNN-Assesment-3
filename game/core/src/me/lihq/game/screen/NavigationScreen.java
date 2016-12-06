@@ -1,7 +1,11 @@
 package me.lihq.game.screen;
 
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import me.lihq.game.GameMain;
@@ -34,6 +38,28 @@ public class NavigationScreen extends AbstractScreen {
      * Initialises the navigation screen
      * @param game
      */
+
+    /**
+     * This determines whether the player is currently changing rooms, it will fade out to black, change
+     * the room, then fade back in.
+     */
+    private boolean roomTransition = false;
+
+    /**
+     * The amount of ticks it takes for the black to fade in and out
+     */
+    private int ANIM_TIME = Settings.TPS / 3;
+
+    /**
+     * The black sprite that is used to fade in/out
+     */
+    private Sprite BLACK_BACKGROUND = new Sprite();
+
+    /**
+     * The current animation frame of the fading in/out
+     */
+    private int animTime = 0;
+
     public NavigationScreen(GameMain game) {
         super(game);
 
@@ -41,6 +67,13 @@ public class NavigationScreen extends AbstractScreen {
         float h = Gdx.graphics.getHeight();
         camera.setToOrtho(false,w,h);
         camera.update();
+
+        Pixmap pixMap = new Pixmap(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), Pixmap.Format.RGBA8888);
+
+        pixMap.setColor(Color.BLACK);
+        pixMap.fill();
+
+        BLACK_BACKGROUND = new Sprite(new Texture(pixMap));
 
         viewport = new FitViewport(w/Settings.ZOOM, h/Settings.ZOOM, camera);
 
@@ -67,8 +100,39 @@ public class NavigationScreen extends AbstractScreen {
         playerController.update();
         game.player.update();
 
+        updateTransition();
     }
 
+    private void updateTransition()
+    {
+        if (roomTransition)
+        {
+            if (animTime < ANIM_TIME)
+            {
+                animTime ++;
+            }
+            else if (animTime == ANIM_TIME)
+            {
+                game.gameMap.moveRoom(game.player.getRoom().getID(), game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
+                animTime --;
+            }
+            else
+            {
+                animTime --;
+            }
+
+            if (animTime <= 0)
+            {
+                animTime = 0;
+                roomTransition = false;
+            }
+        }
+    }
+
+    public void changedRoom()
+    {
+        roomTransition = true;
+    }
 
     /**
      * Called when the screen should render itself.
@@ -90,6 +154,18 @@ public class NavigationScreen extends AbstractScreen {
         //place Sprites to be drawn in the sprite batch
         spriteBatch.begin();
         game.player.draw(spriteBatch);
+
+        if (roomTransition)
+        {
+            float percent = (animTime / ANIM_TIME);
+
+            float alpha = 255 * percent;
+
+            BLACK_BACKGROUND.setColor(BLACK_BACKGROUND.getColor().r, BLACK_BACKGROUND.getColor().g, BLACK_BACKGROUND.getColor().b, alpha);
+
+            BLACK_BACKGROUND.draw(spriteBatch);
+        }
+
         spriteBatch.end();
     }
 

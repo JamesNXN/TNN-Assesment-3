@@ -1,11 +1,13 @@
 package me.lihq.game.living;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import me.lihq.game.Assets;
+import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
@@ -53,9 +55,16 @@ public abstract class AbstractPerson extends Sprite
     protected PersonState state;
 
     /**
-     *
+     * The current room of the AbstractPerson.
      */
     private Room currentRoom;
+
+    /**
+     * This variable decides whether the player has moved onto a trigger tile or
+     * was transported onto a trigger tile from one room to another. If it is true, they will
+     * be transported into another room, else, they will remain where they are.
+     */
+    private boolean justWalkedIn = false;
 
     /**
      * This constructs the player calling super on the sprite class
@@ -116,6 +125,14 @@ public abstract class AbstractPerson extends Sprite
                 this.finishMove();
             }
         }
+        else
+        {
+            if (getRoom().isTriggerTile(tileCoordinates.x, tileCoordinates.y) && !justWalkedIn)
+            {
+                GameMain.me.getNavigationScreen().changedRoom();
+            }
+        }
+
 
         updateTextureRegion();
     }
@@ -148,6 +165,8 @@ public abstract class AbstractPerson extends Sprite
     public void finishMove()
     {
         animTimer = 0f;
+
+        this.justWalkedIn = false;
 
         this.state = PersonState.STANDING;
 
@@ -224,6 +243,11 @@ public abstract class AbstractPerson extends Sprite
     public Room getRoom()
     {
         return this.currentRoom;
+    }
+
+    public Vector2Int getTileCoordinates()
+    {
+        return tileCoordinates;
     }
 
     /**

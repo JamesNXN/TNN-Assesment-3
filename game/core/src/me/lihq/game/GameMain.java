@@ -44,7 +44,7 @@ public class GameMain extends Game
     /**
      * A screen to be used
      */
-    private NavigationScreen screen1;
+    private NavigationScreen navigationScreen;
 
     /**
      * A player object
@@ -69,9 +69,9 @@ public class GameMain extends Game
         //place player in first room
         player.setRoom(gameMap.getRoom(0));
         //set up the screen and display the first room
-        screen1 = new NavigationScreen(this);
-        screen1.setTiledMapRenderer(player.getRoom().getTiledMap());
-        this.setScreen(screen1);
+        navigationScreen = new NavigationScreen(this);
+        navigationScreen.setTiledMapRenderer(player.getRoom().getTiledMap());
+        this.setScreen(navigationScreen);
         //Instantiate the FPSLogger to show FPS
         FPS = new FPSLogger();
 
@@ -101,11 +101,13 @@ public class GameMain extends Game
     /**
      * Change from one room to another
      */
-    public void changeMap(Room.Transition to)
+    public void changeRoom(Room.Transition toRoom)
     {
-        player.setRoom(gameMap.getRoom(to.newRoom));
+        player.setRoom(gameMap.getRoom(toRoom.newRoom));
 
-        screen1.setTiledMapRenderer(player.getRoom().getTiledMap());
+        navigationScreen.setTiledMapRenderer(player.getRoom().getTiledMap());
+
+        player.setTileCoordinates(toRoom.to.x, toRoom.to.y);
     }
 
     /**
@@ -144,6 +146,11 @@ public class GameMain extends Game
         };
 
         gameTimer.schedule(task, 0, 1000 / Settings.TPS);
+    }
+
+    public NavigationScreen getNavigationScreen()
+    {
+        return navigationScreen;
     }
 
     /**
