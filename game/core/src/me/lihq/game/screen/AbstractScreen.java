@@ -26,6 +26,12 @@ public abstract class AbstractScreen implements Screen
     @Override
     public abstract void show();
 
+
+    /**
+     * Called every game tick, all screen related logic should be done in this method.
+     */
+    public abstract void update();
+
     @Override
     public abstract void render(float delta);
 

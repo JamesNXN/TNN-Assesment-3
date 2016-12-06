@@ -61,7 +61,17 @@ public class NavigationScreen extends AbstractScreen {
         Gdx.input.setInputProcessor(playerController);
     }
 
-    /** Called when the screen should render itself.
+    @Override
+    public void update() {
+
+        playerController.update();
+        game.player.update();
+
+    }
+
+
+    /**
+     * Called when the screen should render itself.
 	 * @param delta The time in seconds since the last render.
      */
     @Override
