@@ -21,8 +21,6 @@ public class Player extends AbstractPerson
 
     private String name;
 
-    private Room currentRoom;
-
     public Player(String name, String imgSrc)
     {
         super(imgSrc);
@@ -59,7 +57,7 @@ public class Player extends AbstractPerson
             return;
         }
 
-        if (!currentRoom.isWalkableTile(this.tileCoordinates.x + dir.getDx(),this.tileCoordinates.y + dir.getDy())) {
+        if (!getRoom().isWalkableTile(this.tileCoordinates.x + dir.getDx(),this.tileCoordinates.y + dir.getDy())) {
             setDirection(dir);
             return;
         }
@@ -89,18 +87,8 @@ public class Player extends AbstractPerson
 
     public void changeRoom(Room newRoom, int newX, int newY)
     {
-        currentRoom = newRoom;
+        setRoom(newRoom);
 
         this.setTileCoordinates(newX, newY);
-    }
-
-    public void setRoom(Room room)
-    {
-        this.currentRoom = room;
-    }
-
-    public Room getRoom()
-    {
-        return this.currentRoom;
     }
 }

@@ -65,8 +65,8 @@ public class Map {
         Room currentRoom = rooms.get(currentRoomID);
 
         Room.Transition newRoomData = currentRoom.getNewRoom(currentX, currentY);
-        
-        //Change current information and do map change transition
+
+        //TODO: Change current information and do map change transition
         return newRoomData;
     }
 

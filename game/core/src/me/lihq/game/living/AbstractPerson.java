@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import me.lihq.game.Assets;
 import me.lihq.game.Settings;
+import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 
 /**
@@ -50,6 +51,11 @@ public abstract class AbstractPerson extends Sprite
     protected Direction direction = Direction.EAST;
 
     protected PersonState state;
+
+    /**
+     *
+     */
+    private Room currentRoom;
 
     /**
      * This constructs the player calling super on the sprite class
@@ -210,6 +216,15 @@ public abstract class AbstractPerson extends Sprite
         this.animTime = animTime;
     }
 
+    public void setRoom(Room room)
+    {
+        this.currentRoom = room;
+    }
+
+    public Room getRoom()
+    {
+        return this.currentRoom;
+    }
 
     /**
      * This is used to describe the direction the person is currently facing or moving in.
