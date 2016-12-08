@@ -30,23 +30,45 @@ public class NPC extends AbstractPerson
 
     //The NPCs 'blood' graphics will also be on the regular NPCs sprite sheet
 
+
+     //These are characteristics about the NPC that could be used as clues by the player in a "Guess who" style.
+
     /**
-     * These are characteristics about the NPC that could be used as clues by the player in a "Guess who" style.
+     * Initialise hair color as ginger, they have ginger hair.
      */
     private HAIR_COLOR hairColor = HAIR_COLOR.GINGER;
 
+    /**
+     * Initialise hasGlasses as false, they don't have glasses.
+     */
     private boolean hasGlasses = false;
+
+    /**
+     * Initialise writingHand as right handed.
+     */
     private WRITING_HAND writingHand = WRITING_HAND.RIGHT;
+
+    /**
+     * Intialise hasLipstick as false, they don't have lipstick.
+     */
     private boolean hasLipstick = false; //Really not sure about this one, should probably change to something more neutral
 
+    /**
+     * Initialise accessory as none, they do not have one.
+     */
     private ACCESSORY accessory = ACCESSORY.NONE;
+
+
+    /**
+     * Initialise shoeSize as 12, they have size 12 shoes.
+     */
     private int shoeSize = 12;
 
 
     /**
      * Define an NPC with location coordinates , room, spritesheet and whether or not they can be the killer
-     * @param x - x coordinate
-     * @param y - y coordinate
+     * @param x - x coordinate of tile that the NPC will be initially rendered on.
+     * @param y - y coordinate of tile that the NPC will be initially rendered on.
      * @param roomID - ID of room they are in
      * @param spriteSheet - Spritesheet for this NPC
      * @param canBeKiller - Boolean whether they can or cannot be the killer
@@ -291,26 +313,104 @@ public class NPC extends AbstractPerson
 
     /**
      * These variables are to describe a players features to make the clues useful, this one refers to hair colours.
+     *  <li>{@link #LIGHT_BROWN}</li>
+     *  <li>{@link #DARK_BROWN}</li>
+     *  <li>{@link #GINGER}</li>
+     *  <li>{@link #BLONDE}</li>
+     *  <li>{@link #BLACK}</li>
+     *  <li>{@link #WHITE}</li>
+     *  <li>{@link #GRAY}</li>
      */
     public enum HAIR_COLOR
     {
-        LIGHT_BROWN, DARK_BROWN, GINGER, BLONDE, BLACK, WHITE, GRAY
+        /**
+         * Light brown hair.
+         */
+        LIGHT_BROWN,
+
+        /**
+         * Dark brown hair.
+         */
+        DARK_BROWN,
+
+        /**
+         * Ginger hair.
+         */
+        GINGER,
+
+        /**
+         * Blonde hair.
+         */
+        BLONDE,
+
+        /**
+         * Black hair.
+         */
+        BLACK,
+
+        /**
+         * White hair.
+         */
+        WHITE,
+
+        /**
+         * Gray hair.
+         */
+        GRAY
     }
     /**
      * These variables are to describe a players features to make the clues useful, this one refers to the hands they
      * can write with.
+     * <li>{@link #LEFT}</li>
+     * <li>{@link #RIGHT}</li>
      */
     public enum WRITING_HAND
     {
-        LEFT, RIGHT
+        /**
+         *  Left handed.
+         */
+        LEFT,
+
+        /**
+         * Right handed.
+         */
+        RIGHT
     }
 
     /**
      * These variables are to describe a players features to make the clues useful, this one refers to Accessories
      * they could have.
+     * <li>{@link #BAG}</li>
+     * <li>{@link #BRIEFCASE}</li>
+     * <li>{@link #HANDBAG}</li>
+     * <li>{@link #WATCH}</li>
+     * <li>{@link #NONE}</li>
      */
     public enum ACCESSORY
     {
-        BAG, BRIEFCASE, HANDBAG, WATCH, NONE
+        /**
+         * They have a bag.
+         */
+        BAG,
+
+        /**
+         * They have a briefcase.
+         */
+        BRIEFCASE,
+
+        /**
+         * They have a handbag.
+         */
+        HANDBAG,
+
+        /**
+         * They have a watch.
+         */
+        WATCH,
+
+        /**
+         * They have no accessory.
+         */
+        NONE
     }
 }
