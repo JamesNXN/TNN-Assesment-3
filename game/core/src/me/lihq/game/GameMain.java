@@ -42,12 +42,12 @@ public class GameMain extends Game
     FPSLogger FPS;
 
     /**
-     * A screen to be used
+     * A screen to be used to display standard gameplay within the game , not menus.
      */
     private NavigationScreen navigationScreen;
 
     /**
-     * A player object
+     * A player object for the player of the game
      */
     public Player player;
 

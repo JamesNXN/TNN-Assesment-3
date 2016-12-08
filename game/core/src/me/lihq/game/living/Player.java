@@ -5,7 +5,7 @@ import me.lihq.game.models.Inventory;
 import me.lihq.game.models.Room;
 
 /**
- * Created by brookehatton on 18/11/2016.
+ * This class defines the player that the person playing the game will be represented by.
  */
 public class Player extends AbstractPerson
 {

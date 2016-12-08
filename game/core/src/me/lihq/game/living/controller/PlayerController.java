@@ -8,7 +8,7 @@ import me.lihq.game.living.Player;
 import static me.lihq.game.living.AbstractPerson.*;
 
 /**
- * Created by brookehatton on 18/11/2016.
+ * This class allows the player to be moved and controlled.
  */
 public class PlayerController extends InputAdapter
 {

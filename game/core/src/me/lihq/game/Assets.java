@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
- * Created by joeshuff on 24/11/2016.
+ * This class defines the assets that the game uses.
  */
 public class Assets
 {

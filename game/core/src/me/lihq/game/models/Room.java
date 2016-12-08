@@ -1,7 +1,7 @@
 package me.lihq.game.models;
 
 /**
- * Created by vishal on 20/11/2016.
+ * This class defines a room which is a game representation of a real world room in the Ron Cooke Hub.
  */
 
 import com.badlogic.gdx.graphics.g3d.utils.BaseAnimationController;

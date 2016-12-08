@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The map is a collection of Rooms that links them all together.
+ * The map is a collection of Rooms , it links them all together.
  *
  */
 public class Map {

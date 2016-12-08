@@ -8,7 +8,7 @@ import me.lihq.game.Settings;
 import java.util.Set;
 
 /**
- * Created by vishal on 21/11/2016.
+ * This class defines the clues that the player needs to find in order to solve the murder.
  */
 public class Clue extends Sprite
 {

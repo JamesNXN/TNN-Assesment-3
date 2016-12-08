@@ -255,10 +255,10 @@ public abstract class AbstractPerson extends Sprite
      */
     public enum Direction
     {
-        NORTH(0, 1),
-        SOUTH(0, -1),
-        EAST(1, 0),
-        WEST(-1, 0);
+        NORTH(0, 1), // person is facing north
+        SOUTH(0, -1), // person is facing south
+        EAST(1, 0), // person is facing east
+        WEST(-1, 0); // person is facing west
 
         private int dx, dy;
 
