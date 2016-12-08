@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by joeshuff on 20/11/2016.
+ * This class defines the inventory which is where the player goes to see what items they have found so far.
  */
 public class Inventory
 {
