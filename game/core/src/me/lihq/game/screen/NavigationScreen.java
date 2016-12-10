@@ -142,8 +142,7 @@ public class NavigationScreen extends AbstractScreen {
 	 * @param delta The time in seconds since the last render.
      */
     @Override
-    public void render(float delta)
-    {
+    public void render(float delta) {
         game.player.pushCoordinatesToSprite();
 
         camera.position.x = game.player.getX();
@@ -151,12 +150,42 @@ public class NavigationScreen extends AbstractScreen {
         camera.update();
 
         tiledMapRenderer.setView(camera);
-        tiledMapRenderer.render();
+
+        int amountOfMapLayers = tiledMapRenderer.getMap().getLayers().getCount();
+
+        int[] renderUnderPlayer = new int[]{};
+        int[] renderOverPlayer = new int[]{};
+
+        if (amountOfMapLayers == 1)
+        {
+            renderUnderPlayer = new int[]{0};
+            renderOverPlayer = new int[]{};
+        }
+        else
+        {
+            renderUnderPlayer = new int[amountOfMapLayers - 1];
+
+            renderUnderPlayer[0] = 0;
+
+            for (int i = 1; i < amountOfMapLayers - 1; i++) {
+                renderUnderPlayer[i] = i;
+                System.out.println(i);
+            }
+
+            renderOverPlayer = new int[]{amountOfMapLayers - 1};
+        }
+
+        tiledMapRenderer.render(renderUnderPlayer);
 
         spriteBatch.setProjectionMatrix(camera.combined);
         //place Sprites to be drawn in the sprite batch
         spriteBatch.begin();
         game.player.draw(spriteBatch);
+
+        if (renderOverPlayer.length != 0)
+        {
+            tiledMapRenderer.render(renderOverPlayer);
+        }
 
         if (roomTransition)
         {

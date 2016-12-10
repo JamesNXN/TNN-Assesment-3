@@ -28,7 +28,7 @@ public class Map {
                     .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2))    //To Outside
                     .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2)));  //To RCH/037
 
-        rooms.add(new Room(1, "map.tmx", "RCH/037 Lecture Theatre")
+        rooms.add(new Room(1, "toilet2.tmx", "RCH/037 Lecture Theatre")
                     .addTransition(new Room.Transition().setFrom(10, 10).setTo(2, 0, 0))  //To Main Foyer
                     .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2)));  //To Computer Room
 

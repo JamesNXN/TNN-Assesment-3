@@ -5,15 +5,13 @@ package me.lihq.game.models;
  */
 
 import com.badlogic.gdx.graphics.g3d.utils.BaseAnimationController;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Room {
     private String name;
@@ -33,7 +31,7 @@ public class Room {
         this.ID = id;
         this.mapFile = mapFile;
         this.name = name;
-        this.map = new TmxMapLoader().load(mapFile);
+        this.map = new TmxMapLoader().load(this.mapFile);
     }
 
     //TODO: Popup notification on room entrance
@@ -74,10 +72,22 @@ public class Room {
 
         if (layer.getCell(x, y) == null) return false;
 
-        //TODO: NEEDS UNCOMMENTING ONCE WE HAVE MAPS WITH THIS PROPERTY
-        //if (!layer.getCell(x, y).getTile().getProperties().containsKey("walkable")) return false;
+        Iterator layerIterator = map.getLayers().iterator();
 
-        //return Boolean.valueOf(layer.getCell(x, y).getTile().getProperties().get("walkable").toString());
+        while (layerIterator.hasNext())
+        {
+            TiledMapTileLayer tl = (TiledMapTileLayer) layerIterator.next();
+
+            if (!layer.getCell(x, y).getTile().getProperties().containsKey("walkable"))
+            {
+                continue;
+            }
+
+            if (Boolean.valueOf(layer.getCell(x, y).getTile().getProperties().get("walkable").toString().equals("false")))
+            {
+                return false;
+            }
+        }
 
         return true;
     }
