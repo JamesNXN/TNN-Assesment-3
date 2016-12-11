@@ -8,10 +8,10 @@ import org.junit.BeforeClass;
 import org.mockito.Mockito;
 
 /**
- * This is the GameTest class it initialises the headless backend of the game.
+ * This is the GameTester class it initialises the headless backend of the game.
  * Taken from: http://manabreak.eu/java/2016/10/21/unittesting-libgdx.html
  */
-public class GameTest
+public class GameTester
 {
     private static Application application;
 

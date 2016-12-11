@@ -9,15 +9,19 @@ https://github.com/libgdx/libgdx/wiki/Gradle-and-Intellij-IDEA
 This project is tested using JUnit. Tests are located within the `/game/tests` directory. For test documentation, please see https://github.com/junit-team/junit4/wiki
 
 ### Running Tests
-- Open a terminal and run `./gradlew test` from `/game` directory
-- Results are shown in the terminal window.
+For every commit CircleCI runs all the included tests, however we recomend that you run test locally too before committing.
+
+####Running tests locally
+We have included a handy test configuration that can be ran from intellij.
+![Running tests locally in intellij](https://thumbs.gfycat.com/SentimentalGargantuanAmericanshorthair-size_restricted.gif)
 
 ### Adding Tests
-- Create new class for tests under `/game/tests/src`, end the class name with UnitTests for consistency
+- Create new class for tests under `/game/tests/src` When naming the class end the name with `UnitTests` for consistency e.g. `PlayerUnitTests`
+- This class should extend `GameTester` this initialises the backend of the game so that test run correctly. 
 - Import `org.junit.Test`
 - Write a test function using assertions, and use `@Test` decorator above it
 - See this page for examples of assertions: https://github.com/junit-team/junit4/wiki/assertions
-- Run your tests and see if they pass!
+- Run your tests locally and see if they pass!
 
 ### CircleCI Test Results
 After tests have run the results are displayed in the "Test Summary" tab on CircleCI.
