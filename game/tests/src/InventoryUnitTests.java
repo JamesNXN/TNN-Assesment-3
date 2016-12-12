@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 /**
  * Created by joeshuff on 23/11/2016.
  */
-public class InventoryUnitTests extends GameTest
+public class InventoryUnitTests extends GameTester
 {
     Inventory inv;
 

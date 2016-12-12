@@ -1,4 +1,3 @@
-import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
 import me.lihq.game.living.AbstractPerson;
 import me.lihq.game.living.Player;
@@ -11,7 +10,7 @@ import static org.junit.Assert.*;
 /**
  * Created by joeshuff on 22/11/2016.
  */
-public class PlayerUnitTests extends GameTest
+public class PlayerUnitTests extends GameTester
 {
     Player p = null;
     Map map = null;
