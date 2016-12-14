@@ -24,7 +24,7 @@ import me.lihq.game.living.controller.PlayerController;
 public class NavigationScreen extends AbstractScreen {
 
     private TiledMap map;
-    private OrthogonalTiledMapRenderer tiledMapRenderer;
+    private OrthogonalTiledMapRendererWithSprite tiledMapRenderer;
     private OrthographicCamera camera = new OrthographicCamera();
     private Viewport viewport;
     public PlayerController playerController;
@@ -75,12 +75,13 @@ public class NavigationScreen extends AbstractScreen {
         viewport = new FitViewport(w/Settings.ZOOM, h/Settings.ZOOM, camera);
 
         map = new TmxMapLoader().load("map.tmx");
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
+        tiledMapRenderer = new OrthogonalTiledMapRendererWithSprite(map);
 
         playerController = new PlayerController(game.player);
 
         spriteBatch = new SpriteBatch();
 
+        tiledMapRenderer.addSprite(game.player);
     }
 
     /**
@@ -151,41 +152,7 @@ public class NavigationScreen extends AbstractScreen {
 
         tiledMapRenderer.setView(camera);
 
-        int amountOfMapLayers = tiledMapRenderer.getMap().getLayers().getCount();
-
-        int[] renderUnderPlayer = new int[]{};
-        int[] renderOverPlayer = new int[]{};
-
-        if (amountOfMapLayers == 1)
-        {
-            renderUnderPlayer = new int[]{0};
-            renderOverPlayer = new int[]{};
-        }
-        else
-        {
-            renderUnderPlayer = new int[amountOfMapLayers - 1];
-
-            renderUnderPlayer[0] = 0;
-
-            for (int i = 1; i < amountOfMapLayers - 1; i++) {
-                renderUnderPlayer[i] = i;
-                System.out.println(i);
-            }
-
-            renderOverPlayer = new int[]{amountOfMapLayers - 1};
-        }
-
-        tiledMapRenderer.render(renderUnderPlayer);
-
-        spriteBatch.setProjectionMatrix(camera.combined);
-        //place Sprites to be drawn in the sprite batch
-        spriteBatch.begin();
-        game.player.draw(spriteBatch);
-
-        if (renderOverPlayer.length != 0)
-        {
-            tiledMapRenderer.render(renderOverPlayer);
-        }
+        tiledMapRenderer.render();
 
         if (roomTransition)
         {
@@ -198,10 +165,12 @@ public class NavigationScreen extends AbstractScreen {
 
             BLACK_BACKGROUND.setColor(BLACK_BACKGROUND.getColor().r, BLACK_BACKGROUND.getColor().g, BLACK_BACKGROUND.getColor().b, alpha);
 
-            BLACK_BACKGROUND.draw(spriteBatch);
-        }
+            spriteBatch.begin();
 
-        spriteBatch.end();
+            BLACK_BACKGROUND.draw(spriteBatch);
+
+            spriteBatch.end();
+        }
     }
 
     @Override
