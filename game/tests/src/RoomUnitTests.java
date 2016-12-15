@@ -22,8 +22,8 @@ public class RoomUnitTests extends GameTester
     @Test
     public void testGetTransition()
     {
-        assertEquals(1, map.getRoom(0).getNewRoom(5,5).newRoom);
-        assertEquals(new Vector2Int(2, 2), map.getRoom(0).getNewRoom(5,5).to);
+        assertEquals(1, map.getRoom(0).getNewRoom(5, 5).newRoom);
+        assertEquals(new Vector2Int(2, 2), map.getRoom(0).getNewRoom(5, 5).to);
         assertEquals(null, map.getRoom(0).getNewRoom(5, 1));
     }
 

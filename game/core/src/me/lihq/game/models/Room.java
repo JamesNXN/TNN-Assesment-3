@@ -13,7 +13,8 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.*;
 
-public class Room {
+public class Room
+{
     private String name;
     private int ID;
     private String mapFile;
@@ -27,7 +28,8 @@ public class Room {
     //Room transitions stored as (currentX, currentY) points to a (newRoomID, newX, newY)
     private List<Transition> roomTransitions = new ArrayList<Transition>();
 
-    public Room(int id, String mapFile, String name) {
+    public Room(int id, String mapFile, String name)
+    {
         this.ID = id;
         this.mapFile = mapFile;
         this.name = name;
@@ -37,30 +39,35 @@ public class Room {
     //TODO: Popup notification on room entrance
 
     //Returns True if it's the room the murder took place in
-    public boolean isMurderRoom() {
+    public boolean isMurderRoom()
+    {
         return murderRoom;
     }
 
-    public int getID() {
+    public int getID()
+    {
         return this.ID;
     }
 
     /**
      * Changes coordinates of clue
      */
-    public void moveClue(Clue clue, int x, int y) {
+    public void moveClue(Clue clue, int x, int y)
+    {
         if (cluesInRoom.contains(clue)) {
             clue.setCoords(x, y);
         }
     }
 
-    public void addClue(Clue newClue) {
+    public void addClue(Clue newClue)
+    {
         if (!cluesInRoom.contains(newClue)) {
             cluesInRoom.add(newClue);
         }
     }
 
-    public void removeClue(Clue toRemove) {
+    public void removeClue(Clue toRemove)
+    {
         if (cluesInRoom.contains(toRemove)) {
             cluesInRoom.remove(toRemove);
         }
@@ -74,17 +81,14 @@ public class Room {
 
         Iterator layerIterator = map.getLayers().iterator();
 
-        while (layerIterator.hasNext())
-        {
+        while (layerIterator.hasNext()) {
             TiledMapTileLayer tl = (TiledMapTileLayer) layerIterator.next();
 
-            if (!layer.getCell(x, y).getTile().getProperties().containsKey("walkable"))
-            {
+            if (!layer.getCell(x, y).getTile().getProperties().containsKey("walkable")) {
                 continue;
             }
 
-            if (Boolean.valueOf(layer.getCell(x, y).getTile().getProperties().get("walkable").toString().equals("false")))
-            {
+            if (Boolean.valueOf(layer.getCell(x, y).getTile().getProperties().get("walkable").toString().equals("false"))) {
                 return false;
             }
         }
@@ -92,7 +96,8 @@ public class Room {
         return true;
     }
 
-    public boolean isTriggerTile(int x, int y) {
+    public boolean isTriggerTile(int x, int y)
+    {
 
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(0);
 
@@ -100,17 +105,16 @@ public class Room {
 
         if (layer.getCell(x, y).getTile().getProperties().get("trigger") == null) return false;
 
-        if (layer.getCell(x, y).getTile().getProperties().get("trigger").equals(true))
-        {
+        if (layer.getCell(x, y).getTile().getProperties().get("trigger").equals(true)) {
             return true;
         }
 
         return false;
     }
 
-    public boolean getTrigger(int x, int y) {
-        if (isTriggerTile(x, y))
-        {
+    public boolean getTrigger(int x, int y)
+    {
+        if (isTriggerTile(x, y)) {
             //Get trigger type property
         }
 
@@ -138,16 +142,15 @@ public class Room {
      * 1 - New X
      * 2 - New Y
      */
-    public Transition getNewRoom(int x, int y) {
+    public Transition getNewRoom(int x, int y)
+    {
         return hasTransition(new Vector2Int(x, y));
     }
 
     private Transition hasTransition(Vector2Int v)
     {
-        for (Transition l : roomTransitions)
-        {
-            if (l.from.equals(v))
-            {
+        for (Transition l : roomTransitions) {
+            if (l.from.equals(v)) {
                 return (l);
             }
         }
@@ -163,7 +166,9 @@ public class Room {
 
         public Vector2Int to = new Vector2Int(0, 0);
 
-        public Transition() {}
+        public Transition()
+        {
+        }
 
         public Transition setTo(int room, int x, int y)
         {

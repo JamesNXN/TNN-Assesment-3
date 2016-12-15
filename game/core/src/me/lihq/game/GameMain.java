@@ -35,21 +35,20 @@ public class GameMain extends Game
      * The game map
      */
     public Map gameMap;
-
-    /**
-     * An FPSLogger, FPSLogger allows us to check the game FPS is good enough
-     */
-    FPSLogger FPS;
-
-    /**
-     * A screen to be used to display standard gameplay within the game , including the status bar.
-     */
-    private NavigationScreen navigationScreen;
-
     /**
      * A player object for the player of the game
      */
     public Player player;
+    public int ticks = 0;
+    public int lastSecond = -1;
+    /**
+     * An FPSLogger, FPSLogger allows us to check the game FPS is good enough
+     */
+    FPSLogger FPS;
+    /**
+     * A screen to be used to display standard gameplay within the game , including the status bar.
+     */
+    private NavigationScreen navigationScreen;
 
     /**
      * This is called at start up. It initialises the game.
@@ -62,7 +61,7 @@ public class GameMain extends Game
         gameMap = new Map(); //instantiate game map
 
         initialiseAllData(); //calls a function that generates all the NPC's, Players and Rooms and maps.
-        
+
         Assets.load();// Load in the assets the game needs
 
         initialiseAllData();//call the function again after assets loaded
@@ -98,6 +97,7 @@ public class GameMain extends Game
     {
 
     }
+
     /**
      * Change from one room to another
      */
@@ -113,29 +113,28 @@ public class GameMain extends Game
     /**
      * Overrides the getScreen method to return our AbstractScreen type.
      * This means that we can access the additional methods like update.
+     *
      * @return The current screen of the game.
      */
     @Override
-    public AbstractScreen getScreen() {
+    public AbstractScreen getScreen()
+    {
         return (AbstractScreen) super.getScreen();
     }
-
-    public int ticks = 0;
-    public int lastSecond = -1;
 
     public void gameLoop()
     {
         Timer gameTimer = new Timer();
-        TimerTask task = new TimerTask() {
+        TimerTask task = new TimerTask()
+        {
             @Override
             public void run()
             {
-                ticks ++;
+                ticks++;
 
                 Calendar cal = Calendar.getInstance();
 
-                if (cal.get(Calendar.SECOND) != lastSecond)
-                {
+                if (cal.get(Calendar.SECOND) != lastSecond) {
                     lastSecond = cal.get(Calendar.SECOND);
                     System.out.println("TPSLogger: tps:      " + ticks);
                     ticks = 0;
@@ -160,7 +159,7 @@ public class GameMain extends Game
     {
         //Add ALL NPCs to the list
         //This is how you initialise an NPC
-        player = new Player("Test name","player.png");
+        player = new Player("Test name", "player.png");
 
         {
             //TODO: Add NPC assets

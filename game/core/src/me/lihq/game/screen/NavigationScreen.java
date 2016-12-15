@@ -1,7 +1,6 @@
 package me.lihq.game.screen;
 
 
-
 import com.badlogic.gdx.graphics.Color;
 
 import com.badlogic.gdx.InputMultiplexer;
@@ -27,50 +26,52 @@ import me.lihq.game.screen.elements.StatusBar;
  * This is the screen that is responsible for the navigation of the player around the game.
  * It displays the current room that the player is in, and allows the user to move the player around between rooms.
  */
-public class NavigationScreen extends AbstractScreen {
+public class NavigationScreen extends AbstractScreen
+{
 
+    public PlayerController playerController;
+    /**
+     * This boolean determines whether the black is fading in or out
+     */
+    boolean fadeToBlack = true;
     private TiledMap map;
     private OrthogonalTiledMapRendererWithSprite tiledMapRenderer;
     private OrthographicCamera camera = new OrthographicCamera();
     private Viewport viewport;
-    public PlayerController playerController;
     private SpriteBatch spriteBatch;
-
-    private StatusBar statusBar;
 
     //TODO: add more information about this class
     /**
      * Initialises the navigation screen
+     *
      * @param game
      */
-
+    private StatusBar statusBar;
     /**
      * This determines whether the player is currently changing rooms, it will fade out to black, change
      * the room, then fade back in.
      */
     private boolean roomTransition = false;
-
     /**
      * The amount of ticks it takes for the black to fade in and out
      */
     private float ANIM_TIME = Settings.TPS / 2.0f;
-
     /**
      * The black sprite that is used to fade in/out
      */
     private Sprite BLACK_BACKGROUND = new Sprite();
-
     /**
      * The current animation frame of the fading in/out
      */
     private float animTime = 0.0f;
 
-    public NavigationScreen(GameMain game) {
+    public NavigationScreen(GameMain game)
+    {
         super(game);
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
-        camera.setToOrtho(false,w,h);
+        camera.setToOrtho(false, w, h);
         camera.update();
 
         Pixmap pixMap = new Pixmap(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), Pixmap.Format.RGBA8888);
@@ -80,7 +81,7 @@ public class NavigationScreen extends AbstractScreen {
 
         BLACK_BACKGROUND = new Sprite(new Texture(pixMap));
 
-        viewport = new FitViewport(w/Settings.ZOOM, h/Settings.ZOOM, camera);
+        viewport = new FitViewport(w / Settings.ZOOM, h / Settings.ZOOM, camera);
 
         map = new TmxMapLoader().load("map.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRendererWithSprite(map);
@@ -91,7 +92,7 @@ public class NavigationScreen extends AbstractScreen {
 
 
         tiledMapRenderer.addSprite(game.player);
-      
+
         statusBar = new StatusBar();
 
     }
@@ -100,7 +101,8 @@ public class NavigationScreen extends AbstractScreen {
      * This is ran when the navigation screen becomes the visible screen in GameMain
      */
     @Override
-    public void show() {
+    public void show()
+    {
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(playerController);
         multiplexer.addProcessor(statusBar.stage);
@@ -108,7 +110,8 @@ public class NavigationScreen extends AbstractScreen {
     }
 
     @Override
-    public void update() {
+    public void update()
+    {
 
         playerController.update();
         game.player.update();
@@ -116,33 +119,20 @@ public class NavigationScreen extends AbstractScreen {
         updateTransition();
     }
 
-
-    /**
-     * This boolean determines whether the black is fading in or out
-     */
-    boolean fadeToBlack = true;
-
     private void updateTransition()
     {
-        if (roomTransition)
-        {
-            if (animTime == ANIM_TIME)
-            {
+        if (roomTransition) {
+            if (animTime == ANIM_TIME) {
                 game.gameMap.moveRoom(game.player.getRoom().getID(), game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
                 fadeToBlack = false;
-                animTime --;
-            }
-            else if (fadeToBlack)
-            {
-                animTime ++;
-            }
-            else
-            {
-                animTime --;
+                animTime--;
+            } else if (fadeToBlack) {
+                animTime++;
+            } else {
+                animTime--;
             }
 
-            if (animTime <= 0)
-            {
+            if (animTime <= 0) {
                 animTime = 0;
                 roomTransition = false;
             }
@@ -157,10 +147,12 @@ public class NavigationScreen extends AbstractScreen {
 
     /**
      * Called when the screen should render itself.
-	 * @param delta The time in seconds since the last render.
+     *
+     * @param delta The time in seconds since the last render.
      */
     @Override
-    public void render(float delta) {
+    public void render(float delta)
+    {
         game.player.pushCoordinatesToSprite();
 
         camera.position.x = game.player.getX();
@@ -172,12 +164,10 @@ public class NavigationScreen extends AbstractScreen {
         tiledMapRenderer.render();
 
 
-        if (roomTransition)
-        {
+        if (roomTransition) {
             float alpha = (animTime / (ANIM_TIME * 0.8f));
 
-            if (alpha > 1.0f)
-            {
+            if (alpha > 1.0f) {
                 alpha = 1.0f;
             }
 
@@ -195,27 +185,32 @@ public class NavigationScreen extends AbstractScreen {
     }
 
     @Override
-    public void resize(int width, int height) {
+    public void resize(int width, int height)
+    {
         viewport.update(width, height);
     }
 
     @Override
-    public void pause() {
+    public void pause()
+    {
 
     }
 
     @Override
-    public void resume() {
+    public void resume()
+    {
 
     }
 
     @Override
-    public void hide() {
+    public void hide()
+    {
 
     }
 
     @Override
-    public void dispose() {
+    public void dispose()
+    {
         map.dispose();
         tiledMapRenderer.dispose();
         statusBar.dispose();

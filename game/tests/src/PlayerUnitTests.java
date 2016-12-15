@@ -54,7 +54,7 @@ public class PlayerUnitTests extends GameTester
     @Test
     public void doesPlayerMove()
     {
-        p.setPosition(0,0);
+        p.setPosition(0, 0);
         p.setAnimTime(0f);
         assertEquals(0, p.getX(), 0.0f);
         assertEquals(0, p.getY(), 0.0f);

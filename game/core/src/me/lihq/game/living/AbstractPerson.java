@@ -124,11 +124,8 @@ public abstract class AbstractPerson extends Sprite
                 this.setTileCoordinates(destinationTile.x, destinationTile.y);
                 this.finishMove();
             }
-        }
-        else
-        {
-            if (getRoom().isTriggerTile(tileCoordinates.x, tileCoordinates.y) && !justWalkedIn)
-            {
+        } else {
+            if (getRoom().isTriggerTile(tileCoordinates.x, tileCoordinates.y) && !justWalkedIn) {
                 GameMain.me.getNavigationScreen().changedRoom();
             }
         }
@@ -231,18 +228,19 @@ public abstract class AbstractPerson extends Sprite
         this.direction = dir;
     }
 
-    public void setAnimTime(float animTime) {
-        this.animTime = animTime;
-    }
-
-    public void setRoom(Room room)
+    public void setAnimTime(float animTime)
     {
-        this.currentRoom = room;
+        this.animTime = animTime;
     }
 
     public Room getRoom()
     {
         return this.currentRoom;
+    }
+
+    public void setRoom(Room room)
+    {
+        this.currentRoom = room;
     }
 
     public Vector2Int getTileCoordinates()

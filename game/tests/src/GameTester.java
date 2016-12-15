@@ -17,15 +17,40 @@ public class GameTester
 
     // Before running any tests, initialize the application with the headless backend
     @BeforeClass
-    public static void init() {
+    public static void init()
+    {
         // Note that we don't need to implement any of the listener's methods
-        application = new HeadlessApplication(new ApplicationListener() {
-            @Override public void create() {}
-            @Override public void resize(int width, int height) {}
-            @Override public void render() {}
-            @Override public void pause() {}
-            @Override public void resume() {}
-            @Override public void dispose() {}
+        application = new HeadlessApplication(new ApplicationListener()
+        {
+            @Override
+            public void create()
+            {
+            }
+
+            @Override
+            public void resize(int width, int height)
+            {
+            }
+
+            @Override
+            public void render()
+            {
+            }
+
+            @Override
+            public void pause()
+            {
+            }
+
+            @Override
+            public void resume()
+            {
+            }
+
+            @Override
+            public void dispose()
+            {
+            }
         });
 
         // Use Mockito to mock the OpenGL methods since we are running headlessly
@@ -35,7 +60,8 @@ public class GameTester
 
     // After we are done, clean up the application
     @AfterClass
-    public static void cleanUp() {
+    public static void cleanUp()
+    {
         // Exit the application first
         application.exit();
         application = null;

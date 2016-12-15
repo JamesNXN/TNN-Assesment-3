@@ -10,15 +10,11 @@ import me.lihq.game.models.Room;
 public class Player extends AbstractPerson
 {
 
+    public Boolean move = false;
     //The personality will be a percent score (0-100) 50 being neutral etc etc
     private int personalityLevel = 50;
-
     private Inventory inventory = new Inventory();
-
     private int score = 0;
-
-    public Boolean move = false;
-
     private String name;
 
     public Player(String name, String imgSrc)
@@ -49,6 +45,7 @@ public class Player extends AbstractPerson
 
     /**
      * This Moves the player to a new tile.
+     *
      * @param dir the direction that the player should move in.
      */
     public void move(Direction dir)
@@ -57,7 +54,7 @@ public class Player extends AbstractPerson
             return;
         }
 
-        if (!getRoom().isWalkableTile(this.tileCoordinates.x + dir.getDx(),this.tileCoordinates.y + dir.getDy())) {
+        if (!getRoom().isWalkableTile(this.tileCoordinates.x + dir.getDx(), this.tileCoordinates.y + dir.getDy())) {
             setDirection(dir);
             return;
         }

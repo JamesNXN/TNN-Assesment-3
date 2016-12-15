@@ -13,7 +13,8 @@ import java.util.List;
 /**
  * Created by joeshuff on 14/12/2016.
  */
-public class OrthogonalTiledMapRendererWithSprite extends OrthogonalTiledMapRenderer {
+public class OrthogonalTiledMapRendererWithSprite extends OrthogonalTiledMapRenderer
+{
 
     public List<Sprite> sprites;
 
@@ -30,21 +31,19 @@ public class OrthogonalTiledMapRendererWithSprite extends OrthogonalTiledMapRend
     }
 
     @Override
-    public void render() {
+    public void render()
+    {
         beginRender();
 
         int amountOfLayers = map.getLayers().getCount();
 
-        for (int currentLayer = 0 ; currentLayer < amountOfLayers; currentLayer ++)
-        {
+        for (int currentLayer = 0; currentLayer < amountOfLayers; currentLayer++) {
             MapLayer layer = map.getLayers().get(currentLayer);
 
             renderTileLayer((TiledMapTileLayer) layer);
 
-            if (currentLayer == amountOfLayers - 2 || amountOfLayers == 1)
-            {
-                for (Sprite s : sprites)
-                {
+            if (currentLayer == amountOfLayers - 2 || amountOfLayers == 1) {
+                for (Sprite s : sprites) {
                     s.draw(this.getBatch());
                 }
             }
