@@ -126,7 +126,7 @@ public class NavigationScreen extends AbstractScreen
             {
                 animTimer ++;
 
-                if (animTimer > ANIM_TIME)
+                if (animTimer == ANIM_TIME)
                 {
                     game.gameMap.moveRoom(game.player.getRoom().getID(), game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
                 }
@@ -189,7 +189,6 @@ public class NavigationScreen extends AbstractScreen
         }
 
         statusBar.render();
-
     }
 
     @Override
