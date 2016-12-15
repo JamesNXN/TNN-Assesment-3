@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Interpolation;
 import me.lihq.game.GameMain;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -120,7 +121,7 @@ public class NavigationScreen extends AbstractScreen
     {
         if (roomTransition)
         {
-            BLACK_BACKGROUND.setAlpha(animTimer / ANIM_TIME);
+            BLACK_BACKGROUND.setAlpha(Interpolation.fade.apply(0, 1, animTimer / ANIM_TIME));
 
             if (fadeToBlack)
             {
