@@ -1,7 +1,11 @@
 package me.lihq.game.screen;
 
 
+
 import com.badlogic.gdx.graphics.Color;
+
+import com.badlogic.gdx.InputMultiplexer;
+
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,6 +20,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.Settings;
 import me.lihq.game.living.controller.PlayerController;
+import me.lihq.game.screen.elements.StatusBar;
+
 
 /**
  * This is the screen that is responsible for the navigation of the player around the game.
@@ -29,6 +35,8 @@ public class NavigationScreen extends AbstractScreen {
     private Viewport viewport;
     public PlayerController playerController;
     private SpriteBatch spriteBatch;
+
+    private StatusBar statusBar;
 
     //TODO: add more information about this class
     /**
@@ -81,7 +89,11 @@ public class NavigationScreen extends AbstractScreen {
 
         spriteBatch = new SpriteBatch();
 
+
         tiledMapRenderer.addSprite(game.player);
+      
+        statusBar = new StatusBar();
+
     }
 
     /**
@@ -89,7 +101,10 @@ public class NavigationScreen extends AbstractScreen {
      */
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(playerController);
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(playerController);
+        multiplexer.addProcessor(statusBar.stage);
+        Gdx.input.setInputProcessor(multiplexer);
     }
 
     @Override
@@ -100,6 +115,7 @@ public class NavigationScreen extends AbstractScreen {
 
         updateTransition();
     }
+
 
     /**
      * This boolean determines whether the black is fading in or out
@@ -138,6 +154,7 @@ public class NavigationScreen extends AbstractScreen {
         roomTransition = true;
     }
 
+
     /**
      * Called when the screen should render itself.
 	 * @param delta The time in seconds since the last render.
@@ -153,6 +170,7 @@ public class NavigationScreen extends AbstractScreen {
         tiledMapRenderer.setView(camera);
 
         tiledMapRenderer.render();
+
 
         if (roomTransition)
         {
@@ -171,6 +189,9 @@ public class NavigationScreen extends AbstractScreen {
 
             spriteBatch.end();
         }
+
+        statusBar.render();
+
     }
 
     @Override
@@ -197,6 +218,7 @@ public class NavigationScreen extends AbstractScreen {
     public void dispose() {
         map.dispose();
         tiledMapRenderer.dispose();
+        statusBar.dispose();
     }
 
     public void setTiledMapRenderer(TiledMap map)
