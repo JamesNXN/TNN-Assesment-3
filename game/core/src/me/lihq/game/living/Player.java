@@ -82,6 +82,14 @@ public class Player extends AbstractPerson
         changeRoom(GameMain.me.gameMap.getRoom(roomID), newX, newY);
     }
 
+    /**
+     * This method takes a room & its coordinates, then moves the player to that specific room
+     * at the defined coordinates.
+     *
+     * @param newRoom - The room to change to
+     * @param newX - The X coordinate to move to
+     * @param newY - The Y coordinate to move to
+     */
     public void changeRoom(Room newRoom, int newX, int newY)
     {
         setRoom(newRoom);
