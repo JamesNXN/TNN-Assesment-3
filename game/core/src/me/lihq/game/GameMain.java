@@ -101,13 +101,13 @@ public class GameMain extends Game
     /**
      * Change from one room to another
      */
-    public void changeRoom(Room.Transition toRoom)
+    public void changeRoom(Room.Transition newRoom)
     {
-        player.setRoom(gameMap.getRoom(toRoom.newRoom));
+        player.setRoom(gameMap.getRoom(newRoom.newRoom));
 
         navigationScreen.setTiledMapRenderer(player.getRoom().getTiledMap());
 
-        player.setTileCoordinates(toRoom.to.x, toRoom.to.y);
+        player.setTileCoordinates(newRoom.to.x, newRoom.to.y);
     }
 
     /**
@@ -147,6 +147,11 @@ public class GameMain extends Game
         gameTimer.schedule(task, 0, 1000 / Settings.TPS);
     }
 
+    /**
+     * This method returns the Navigation Screen that the game runs on.
+     *
+     * @return navigationScreen - The gameplay screen.
+     */
     public NavigationScreen getNavigationScreen()
     {
         return navigationScreen;
