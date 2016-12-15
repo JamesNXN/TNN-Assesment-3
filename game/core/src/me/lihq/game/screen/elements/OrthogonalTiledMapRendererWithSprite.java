@@ -1,4 +1,4 @@
-package me.lihq.game.screen;
+package me.lihq.game.screen.elements;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.MapLayer;

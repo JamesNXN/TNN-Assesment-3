@@ -84,11 +84,11 @@ public class Room
         while (layerIterator.hasNext()) {
             TiledMapTileLayer tl = (TiledMapTileLayer) layerIterator.next();
 
-            if (!layer.getCell(x, y).getTile().getProperties().containsKey("walkable")) {
+            if (!tl.getCell(x, y).getTile().getProperties().containsKey("walkable")) {
                 continue;
             }
 
-            if (Boolean.valueOf(layer.getCell(x, y).getTile().getProperties().get("walkable").toString().equals("false"))) {
+            if (Boolean.valueOf(tl.getCell(x, y).getTile().getProperties().get("walkable").toString().equals("false"))) {
                 return false;
             }
         }
@@ -103,10 +103,18 @@ public class Room
 
         if (layer.getCell(x, y) == null) return false;
 
-        if (layer.getCell(x, y).getTile().getProperties().get("trigger") == null) return false;
+        Iterator layerIterator = map.getLayers().iterator();
 
-        if (layer.getCell(x, y).getTile().getProperties().get("trigger").equals(true)) {
-            return true;
+        while (layerIterator.hasNext()) {
+            TiledMapTileLayer tl = (TiledMapTileLayer) layerIterator.next();
+
+            if (!tl.getCell(x, y).getTile().getProperties().containsKey("trigger")) {
+                continue;
+            }
+
+            if (Boolean.valueOf(tl.getCell(x, y).getTile().getProperties().get("walkable").toString().equals("true"))) {
+                return true;
+            }
         }
 
         return false;
