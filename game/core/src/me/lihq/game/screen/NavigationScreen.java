@@ -132,7 +132,7 @@ public class NavigationScreen extends AbstractScreen
                     game.gameMap.moveRoom(game.player.getRoom().getID(), game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
                 }
 
-                if (animTimer > (ANIM_TIME * 1.2)) //This is so it stays solid black for longer
+                if (animTimer > (ANIM_TIME * 1.2f)) //This is so it stays solid black for longer
                 {
                     fadeToBlack = false;
                 }
