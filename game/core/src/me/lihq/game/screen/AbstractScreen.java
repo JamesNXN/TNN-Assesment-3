@@ -28,7 +28,7 @@ public abstract class AbstractScreen implements Screen
 
 
     /**
-     * Called every game tick, all screen related logic should be done fadeToBlack this method.
+     * Called every game tick, all screen related logic should be done in this method.
      */
     public abstract void update();
 
