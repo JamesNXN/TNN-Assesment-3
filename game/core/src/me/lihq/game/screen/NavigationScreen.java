@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import me.lihq.game.GameMain;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -63,7 +62,7 @@ public class NavigationScreen extends AbstractScreen
     /**
      * The current animation frame of the fading in/out
      */
-    private float animTime = 0.0f;
+    private float animTimer = 0.0f;
 
     public NavigationScreen(GameMain game)
     {
@@ -90,7 +89,6 @@ public class NavigationScreen extends AbstractScreen
 
         spriteBatch = new SpriteBatch();
 
-
         tiledMapRenderer.addSprite(game.player);
 
         statusBar = new StatusBar();
@@ -112,7 +110,6 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void update()
     {
-
         playerController.update();
         game.player.update();
 
@@ -121,30 +118,48 @@ public class NavigationScreen extends AbstractScreen
 
     private void updateTransition()
     {
-        if (roomTransition) {
-            if (animTime == ANIM_TIME) {
-                game.gameMap.moveRoom(game.player.getRoom().getID(), game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
-                fadeToBlack = false;
-                animTime--;
-            } else if (fadeToBlack) {
-                animTime++;
-            } else {
-                animTime--;
-            }
+        if (roomTransition)
+        {
+            BLACK_BACKGROUND.setAlpha(animTimer / ANIM_TIME);
 
-            if (animTime <= 0) {
-                animTime = 0;
-                roomTransition = false;
+            if (fadeToBlack)
+            {
+                animTimer ++;
+
+                if (animTimer > ANIM_TIME)
+                {
+                    game.gameMap.moveRoom(game.player.getRoom().getID(), game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
+                }
+
+                if (animTimer > (ANIM_TIME * 1.2)) //This is so it stays solid black for longer
+                {
+                    fadeToBlack = false;
+                }
+            }
+            else
+            {
+                animTimer --;
+
+                if (animTimer < 0)
+                {
+                    finishRoomTransition();
+                }
             }
         }
     }
 
-    public void changedRoom()
+    public void initialiseRoomChange()
     {
         roomTransition = true;
     }
 
+    public void finishRoomTransition()
+    {
+        animTimer = 0;
+        roomTransition = false;
 
+        //TODO : RENDER THE MAP NAME TAG
+    }
     /**
      * Called when the screen should render itself.
      *
@@ -164,15 +179,8 @@ public class NavigationScreen extends AbstractScreen
         tiledMapRenderer.render();
 
 
-        if (roomTransition) {
-            float alpha = (animTime / (ANIM_TIME * 0.8f));
-
-            if (alpha > 1.0f) {
-                alpha = 1.0f;
-            }
-
-            BLACK_BACKGROUND.setColor(BLACK_BACKGROUND.getColor().r, BLACK_BACKGROUND.getColor().g, BLACK_BACKGROUND.getColor().b, alpha);
-
+        if (roomTransition)
+        {
             spriteBatch.begin();
 
             BLACK_BACKGROUND.draw(spriteBatch);
