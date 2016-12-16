@@ -4,9 +4,11 @@ package me.lihq.game.models;
  * This class defines a room which is a game representation of a real world room in the Ron Cooke Hub.
  */
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g3d.utils.BaseAnimationController;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
@@ -79,10 +81,15 @@ public class Room
 
         if (layer.getCell(x, y) == null) return false;
 
-        Iterator layerIterator = map.getLayers().iterator();
+        int amountOfLayers = map.getLayers().getCount();
 
-        while (layerIterator.hasNext()) {
-            TiledMapTileLayer tl = (TiledMapTileLayer) layerIterator.next();
+        for (int currentLayer = 0; currentLayer < amountOfLayers; currentLayer++) {
+            TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(currentLayer);
+
+            if (tl.getCell(x, y) == null)
+            {
+                continue;
+            }
 
             if (!tl.getCell(x, y).getTile().getProperties().containsKey("walkable")) {
                 continue;
@@ -103,16 +110,21 @@ public class Room
 
         if (layer.getCell(x, y) == null) return false;
 
-        Iterator layerIterator = map.getLayers().iterator();
+        int amountOfLayers = map.getLayers().getCount();
 
-        while (layerIterator.hasNext()) {
-            TiledMapTileLayer tl = (TiledMapTileLayer) layerIterator.next();
+        for (int currentLayer = 0; currentLayer < amountOfLayers; currentLayer++) {
+            TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(currentLayer);
+
+            if (tl.getCell(x, y) == null)
+            {
+                continue;
+            }
 
             if (!tl.getCell(x, y).getTile().getProperties().containsKey("trigger")) {
                 continue;
             }
 
-            if (Boolean.valueOf(tl.getCell(x, y).getTile().getProperties().get("walkable").toString().equals("true"))) {
+            if (Boolean.valueOf(tl.getCell(x, y).getTile().getProperties().get("trigger").toString().equals("true"))) {
                 return true;
             }
         }

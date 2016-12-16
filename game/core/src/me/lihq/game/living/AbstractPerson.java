@@ -60,13 +60,6 @@ public abstract class AbstractPerson extends Sprite
     private Room currentRoom;
 
     /**
-     * This variable decides whether the player has moved onto a trigger tile or
-     * was transported onto a trigger tile from one room to another. If it is true, they will
-     * be transported into another room, else, they will remain where they are.
-     */
-    private boolean justWalkedIn = false;
-
-    /**
      * This constructs the player calling super on the sprite class
      *
      * @param img this a path to the image
@@ -125,7 +118,7 @@ public abstract class AbstractPerson extends Sprite
                 this.finishMove();
             }
         } else {
-            if (getRoom().isTriggerTile(tileCoordinates.x, tileCoordinates.y) && !justWalkedIn) {
+            if (getRoom().isTriggerTile(tileCoordinates.x, tileCoordinates.y)) {
                 GameMain.me.getNavigationScreen().initialiseRoomChange();
             }
         }
@@ -162,8 +155,6 @@ public abstract class AbstractPerson extends Sprite
     public void finishMove()
     {
         animTimer = 0f;
-
-        this.justWalkedIn = false;
 
         this.state = PersonState.STANDING;
 
