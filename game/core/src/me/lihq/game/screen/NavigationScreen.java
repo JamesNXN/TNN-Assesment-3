@@ -40,6 +40,7 @@ public class NavigationScreen extends AbstractScreen
     private OrthographicCamera camera = new OrthographicCamera();
     private Viewport viewport;
     private SpriteBatch spriteBatch;
+    private InputMultiplexer multiplexer;
 
     //TODO: add more information about this class
     /**
@@ -56,7 +57,7 @@ public class NavigationScreen extends AbstractScreen
     /**
      * The amount of ticks it takes for the black to fade in and out
      */
-    private float ANIM_TIME = Settings.TPS / 2.0f;
+    private float ANIM_TIME = Settings.TPS / 1.5f;
     /**
      * The black sprite that is used to fade in/out
      */
@@ -95,6 +96,10 @@ public class NavigationScreen extends AbstractScreen
 
         statusBar = new StatusBar();
 
+        multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(playerController);
+        multiplexer.addProcessor(statusBar.stage);
+
     }
 
     /**
@@ -103,9 +108,6 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void show()
     {
-        InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(playerController);
-        multiplexer.addProcessor(statusBar.stage);
         Gdx.input.setInputProcessor(multiplexer);
     }
 
@@ -122,7 +124,7 @@ public class NavigationScreen extends AbstractScreen
     {
         if (roomTransition)
         {
-            BLACK_BACKGROUND.setAlpha(Interpolation.fade.apply(0, 1, animTimer / ANIM_TIME));
+            BLACK_BACKGROUND.setAlpha(Interpolation.pow4.apply(0, 1, animTimer / ANIM_TIME));
 
             if (fadeToBlack)
             {
@@ -133,7 +135,7 @@ public class NavigationScreen extends AbstractScreen
                     game.gameMap.moveRoom(game.player.getRoom().getID(), game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
                 }
 
-                if (animTimer > (ANIM_TIME * 1.2f)) //This is so it stays solid black for longer
+                if (animTimer > ANIM_TIME)
                 {
                     fadeToBlack = false;
                 }
@@ -152,13 +154,18 @@ public class NavigationScreen extends AbstractScreen
 
     public void initialiseRoomChange()
     {
+
+        Gdx.input.setInputProcessor(null); //required otherwise the player will continue to move during a transition and that breaks the game.
         roomTransition = true;
+
     }
 
     public void finishRoomTransition()
     {
+
         animTimer = 0;
         roomTransition = false;
+        Gdx.input.setInputProcessor(multiplexer); //enable input again
 
         //TODO : RENDER THE MAP NAME TAG
     }
