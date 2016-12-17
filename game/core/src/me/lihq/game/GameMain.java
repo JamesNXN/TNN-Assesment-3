@@ -13,6 +13,7 @@ import me.lihq.game.living.Player;
 import me.lihq.game.models.Room;
 import me.lihq.game.screen.AbstractScreen;
 import me.lihq.game.screen.NavigationScreen;
+import me.lihq.game.screen.MainMenuScreen;
 
 import java.util.*;
 
@@ -47,6 +48,11 @@ public class GameMain extends Game
     private NavigationScreen screen1;
 
     /**
+     * The main menu screen that shows up when the game is first started
+     */
+    //private MainMenuScreen MenuScreen;
+
+    /**
      * A player object for the player of the game
      */
     public Player player;
@@ -72,6 +78,8 @@ public class GameMain extends Game
         screen1 = new NavigationScreen(this);
         screen1.setTiledMapRenderer(player.getRoom().getTiledMap());
         this.setScreen(screen1);
+        //Set up the MainMenu
+        //MenuScreen= new MainMenuScreen(this);
         //Instantiate the FPSLogger to show FPS
         FPS = new FPSLogger();
 

@@ -15,6 +15,7 @@ import me.lihq.game.Settings;
 import me.lihq.game.living.controller.PlayerController;
 import me.lihq.game.screen.elements.StatusBar;
 
+
 /**
  * This is the screen that is responsible for the navigation of the player around the game.
  * It displays the current room that the player is in, and allows the user to move the player around between rooms.
@@ -29,6 +30,7 @@ public class NavigationScreen extends AbstractScreen {
     private SpriteBatch spriteBatch;
 
     private StatusBar statusBar;
+
 
     //TODO: add more information about this class
     /**
@@ -81,6 +83,7 @@ public class NavigationScreen extends AbstractScreen {
     @Override
     public void render(float delta)
     {
+
         game.player.pushCoordinatesToSprite();
 
         camera.position.x = game.player.getX();
