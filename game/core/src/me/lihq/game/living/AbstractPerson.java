@@ -45,6 +45,16 @@ public abstract class AbstractPerson extends Sprite
     protected TextureRegion currentRegion;
 
     /**
+     * The height of the texture region for each person
+     */
+    protected static int SPRITE_HEIGHT = 48;
+
+    /**
+     * The width of the texture region for each person
+     */
+    protected static int SPRITE_WIDTH = 32;
+
+    /**
      * The direction determines the way the character is facing.
      */
     protected Direction direction = Direction.EAST;
@@ -58,10 +68,10 @@ public abstract class AbstractPerson extends Sprite
      */
     public AbstractPerson(String img)
     {
-        super(new TextureRegion(Assets.loadTexture(img), 0, 0, 32, 37));
+        super(new TextureRegion(Assets.loadTexture(img), 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT));
 
         this.spriteSheet = Assets.loadTexture(img);
-        this.currentRegion = new TextureRegion(Assets.loadTexture(img), 0, 0, 32, 37);
+        this.currentRegion = new TextureRegion(Assets.loadTexture(img), 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT);
 
         this.setPosition(tileCoordinates.getX() * Settings.TILE_SIZE, tileCoordinates.getY() * Settings.TILE_SIZE);
         this.state = PersonState.STANDING;
@@ -173,13 +183,13 @@ public abstract class AbstractPerson extends Sprite
         }
 
         if (animTimer > threeQuarters) {
-            setRegion(new TextureRegion(spriteSheet, 64, row * 37, 32, 37));
+            setRegion(new TextureRegion(spriteSheet, 64, row * SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT));
         } else if (animTimer > half) {
-            setRegion(new TextureRegion(spriteSheet, 0, row * 37, 32, 37));
+            setRegion(new TextureRegion(spriteSheet, 0, row * SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT));
         } else if (animTimer > quarter) {
-            setRegion(new TextureRegion(spriteSheet, 32, row * 37, 32, 37));
+            setRegion(new TextureRegion(spriteSheet, 32, row * SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT));
         } else if (animTimer == 0) {
-            setRegion(new TextureRegion(spriteSheet, 0, row * 37, 32, 37));
+            setRegion(new TextureRegion(spriteSheet, 0, row * SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT));
         }
     }
 
