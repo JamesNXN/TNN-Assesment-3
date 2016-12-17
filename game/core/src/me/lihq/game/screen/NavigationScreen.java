@@ -41,6 +41,7 @@ public class NavigationScreen extends AbstractScreen
     private Viewport viewport;
     private SpriteBatch spriteBatch;
     private InputMultiplexer multiplexer;
+    private boolean pause = false;
 
     //TODO: add more information about this class
     /**
@@ -114,9 +115,13 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void update()
     {
-        playerController.update();
-        game.player.update();
 
+        if (!pause) { //this statement contains updates that shouldn't happen during a pause
+            playerController.update();
+            game.player.update();
+        }
+
+        //Some things should be updated all the time.
         updateTransition();
     }
 
@@ -155,7 +160,7 @@ public class NavigationScreen extends AbstractScreen
     public void initialiseRoomChange()
     {
 
-        Gdx.input.setInputProcessor(null); //required otherwise the player will continue to move during a transition and that breaks the game.
+        pause = true; //pause all non necessary updates like player movement
         roomTransition = true;
 
     }
@@ -165,7 +170,7 @@ public class NavigationScreen extends AbstractScreen
 
         animTimer = 0;
         roomTransition = false;
-        Gdx.input.setInputProcessor(multiplexer); //enable input again
+        pause = false;
 
         //TODO : RENDER THE MAP NAME TAG
     }
