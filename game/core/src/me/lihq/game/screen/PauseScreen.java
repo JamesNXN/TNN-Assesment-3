@@ -8,17 +8,21 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
 import me.lihq.game.screen.elements.MainMenu;
-
 /**
- * Created by vishal on 17/12/2016.
+ * Created by vishal on 18/12/2016.
  */
-public class MainMenuScreen extends AbstractScreen {
+public class PauseScreen extends AbstractScreen {
 
-    private MainMenu mainMenu;
+    private MainMenu pauseMenu;
     private OrthographicCamera camera = new OrthographicCamera();
     private Viewport viewport;
 
-    public MainMenuScreen(GameMain game){
+    /**
+     * This constructor sets the relevant properties of the class.
+     *
+     * @param game this provides access to the gameMain class so that screens can set the states of the game.
+     */
+    public PauseScreen(GameMain game) {
         super(game);
 
         float w = Gdx.graphics.getWidth();
@@ -28,14 +32,13 @@ public class MainMenuScreen extends AbstractScreen {
 
         viewport = new FitViewport(w/ Settings.ZOOM, h/Settings.ZOOM, camera);
 
-        mainMenu= new MainMenu(game,0);
-
+        pauseMenu= new MainMenu(game,1);
     }
 
     @Override
     public void show() {
         InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(mainMenu.stage);
+        multiplexer.addProcessor(pauseMenu.stage);
     }
 
     @Override
@@ -45,8 +48,7 @@ public class MainMenuScreen extends AbstractScreen {
 
     @Override
     public void render(float delta) {
-
-        mainMenu.render();
+        pauseMenu.render();
     }
 
     @Override
@@ -71,9 +73,6 @@ public class MainMenuScreen extends AbstractScreen {
 
     @Override
     public void dispose() {
-
-        mainMenu.dispose();
+        pauseMenu.dispose();
     }
-
-
 }

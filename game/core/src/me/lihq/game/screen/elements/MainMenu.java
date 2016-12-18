@@ -33,7 +33,7 @@ public class MainMenu {
     private static final Color BACKGROUND_COLOR = Color.GRAY;
     private static final int WIDTH = Gdx.graphics.getWidth()/2 - Gdx.graphics.getWidth()/8;
 
-    public MainMenu(final GameMain game) {
+    public MainMenu(final GameMain game, int MenuType) {
 
         //Initialising new stage
         stage = new Stage();
@@ -57,6 +57,19 @@ public class MainMenu {
         font.draw(batch, "Welcome to the Lorem Ipsum Murder Mystery Game", WIDTH, Gdx.graphics.getHeight()/2 + Gdx.graphics.getHeight()/8);
         batch.end();
 
+        if (MenuType==0){
+            Menu(game);
+        }
+        else if (MenuType==1){
+            Pause(game);
+        }
+        else {
+            System.out.println("MenuType value is incorrect");
+        }
+
+    }
+
+    private void Menu(final GameMain game){
         //Creating the buttons using the button skin
         TextButton newGameButton = new TextButton("New game", buttonSkin);
         newGameButton.setPosition(WIDTH , Gdx.graphics.getHeight()/2);
@@ -80,6 +93,33 @@ public class MainMenu {
                 System.out.println("Button Clicked successfully");
             }
         });
+    }
+
+    private void Pause(final GameMain game){
+        //Creating the buttons using the button skin
+        TextButton ResumeButton = new TextButton("Resume Game", buttonSkin);
+        ResumeButton.setPosition(WIDTH , Gdx.graphics.getHeight()/2);
+        TextButton Settings = new TextButton("Settings", buttonSkin);
+        Settings.setPosition(WIDTH , Gdx.graphics.getHeight()/2 - Gdx.graphics.getHeight()/8);
+        TextButton Quit = new TextButton("Quit", buttonSkin);
+        Quit.setPosition(WIDTH , Gdx.graphics.getHeight()/2 - Gdx.graphics.getHeight()/4);
+
+        //Loading the buttons onto the stage
+        stage.addActor(Settings);
+        stage.addActor(ResumeButton);
+        stage.addActor(Quit);
+
+        //Making the "New Game" button clickable and causing it to start the game
+        ResumeButton.addListener(new ClickListener()
+        {
+            @Override
+            public void clicked(InputEvent event, float x, float y)
+            {
+                game.setScreen(game.screen1);
+                System.out.println("Button Clicked successfully");
+            }
+        });
+
     }
 
     //Creating the Skin for the buttons
