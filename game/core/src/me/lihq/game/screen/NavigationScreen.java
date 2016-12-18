@@ -86,7 +86,7 @@ public class NavigationScreen extends AbstractScreen
 
         viewport = new FitViewport(w / Settings.ZOOM, h / Settings.ZOOM, camera);
 
-        map = new TmxMapLoader().load("/maps/mainroom.tmx");
+        map = new TmxMapLoader().load("maps/mainroom.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRendererWithSprite(map);
 
         playerController = new PlayerController(game.player);
