@@ -1,6 +1,7 @@
 package me.lihq.game.screen.elements;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -38,24 +39,29 @@ public class MainMenu {
         //Initialising new stage
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
+
         //Initialising the skin made for the buttons
         initButtonSkin();
+
+        //Initialising things required for text
+        Label text;
+        LabelStyle textStyle;
+        BitmapFont font = new BitmapFont();
+        SpriteBatch batch= new SpriteBatch();
+        OrthographicCamera camera = new OrthographicCamera();
 
         //Loading music and playing it on loop
         Music menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Mighty Like Us.mp3"));
         menuMusic.setLooping(true);
         menuMusic.play();
 
-        BitmapFont font = new BitmapFont();
-        SpriteBatch batch= new SpriteBatch();
-        OrthographicCamera camera = new OrthographicCamera();
+        textStyle = new LabelStyle(font, Color.RED);
 
-        //An attempt to create a title above the buttons
-        batch.begin();
-        batch.setProjectionMatrix(camera.combined);
-        font.setColor(Color.ORANGE);
-        font.draw(batch, "Welcome to the Lorem Ipsum Murder Mystery Game", WIDTH, Gdx.graphics.getHeight()/2 + Gdx.graphics.getHeight()/8);
-        batch.end();
+        text = new Label("Welcome To the Lorem Ipsum Murder Mystery Game!",textStyle);
+        text.setBounds(WIDTH/2,Gdx.graphics.getHeight()/2+Gdx.graphics.getHeight()/4,2*WIDTH,Gdx.graphics.getHeight()/3);
+        text.setFontScale(2,2);
+
+        stage.addActor(text);
 
         if (MenuType==0){
             Menu(game);
@@ -67,6 +73,12 @@ public class MainMenu {
             System.out.println("MenuType value is incorrect");
         }
 
+        //An attempt to create a title above the buttons
+        /**batch.begin();
+        batch.setProjectionMatrix(camera.combined);
+        font.setColor(Color.BLUE);
+        font.draw(batch, "Welcome to the Lorem Ipsum Murder Mystery Game", WIDTH, Gdx.graphics.getHeight()/2 + Gdx.graphics.getHeight()/4);
+        batch.end();*/
     }
 
     private void Menu(final GameMain game){
