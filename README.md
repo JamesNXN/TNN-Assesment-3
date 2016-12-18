@@ -1,4 +1,4 @@
-# Lorem Ipsum [![CircleCI](https://circleci.com/gh/Brookke/Lorem-Ipsum.svg?style=svg)](https://circleci.com/gh/Brookke/Lorem-Ipsum)
+# Lorem Ipsum [![CircleCI](https://circleci.com/gh/Brookke/Lorem-Ipsum.svg?style=svg&circle-token=88a08119c648799c8c1241249131701e1298e614)](https://circleci.com/gh/Brookke/Lorem-Ipsum)
 Visit out website at http://www.lihq.me, or read the documentation at http://docs.lihq.me
 
 ## Get started

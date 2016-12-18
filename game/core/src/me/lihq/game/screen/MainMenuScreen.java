@@ -28,7 +28,7 @@ public class MainMenuScreen extends AbstractScreen {
 
         viewport = new FitViewport(w/ Settings.ZOOM, h/Settings.ZOOM, camera);
 
-        mainMenu= new MainMenu();
+        mainMenu= new MainMenu(game);
 
     }
 

@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.InputProcessor;
+import me.lihq.game.GameMain;
 
 /**
  * Created by vishal on 17/12/2016.
@@ -28,7 +29,7 @@ public class MainMenu {
     private SpriteBatch batch;
     private static final Color BACKGROUND_COLOR = Color.GRAY;
 
-    public MainMenu() {
+    public MainMenu(final GameMain game) {
 
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
@@ -55,15 +56,15 @@ public class MainMenu {
         stage.addActor(newGameButton);
         stage.addActor(Quit);
 
-        /**newGameButton.addListener(new ClickListener()
+        newGameButton.addListener(new ClickListener()
         {
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
-                stage.dispose();
+                game.setScreen(game.screen1);
                 System.out.println("potato");
             }
-        });*/
+        });
 
 
     }
