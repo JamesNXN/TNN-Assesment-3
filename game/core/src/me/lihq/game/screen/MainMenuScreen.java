@@ -45,7 +45,7 @@ public class MainMenuScreen extends AbstractScreen {
 
     @Override
     public void render(float delta) {
-        mainMenu.render();
+        mainMenu.render(delta);
     }
 
     @Override
