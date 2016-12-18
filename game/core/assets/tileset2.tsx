@@ -45,7 +45,7 @@
  </tile>
  <tile id="6">
   <properties>
-   <property name="dir" value="UP"/>
+   <property name="dir" value="NORTH"/>
    <property name="hidingSpot" type="bool" value="false"/>
    <property name="interactable" type="bool" value="false"/>
    <property name="trigger" type="bool" value="true"/>
@@ -54,7 +54,7 @@
  </tile>
  <tile id="7">
   <properties>
-   <property name="dir" value="DOWN"/>
+   <property name="dir" value="SOUTH"/>
    <property name="hidingSpot" type="bool" value="false"/>
    <property name="interactable" type="bool" value="false"/>
    <property name="trigger" type="bool" value="true"/>
@@ -175,7 +175,7 @@
  </tile>
  <tile id="24">
   <properties>
-   <property name="dir" value="LEFT"/>
+   <property name="dir" value="WEST"/>
    <property name="hidingSpot" type="bool" value="false"/>
    <property name="interactable" type="bool" value="false"/>
    <property name="trigger" type="bool" value="true"/>
@@ -296,7 +296,7 @@
  </tile>
  <tile id="41">
   <properties>
-   <property name="dir" value="RIGHT"/>
+   <property name="dir" value="EAST"/>
    <property name="hidingSpot" type="bool" value="false"/>
    <property name="interactable" type="bool" value="false"/>
    <property name="trigger" type="bool" value="true"/>

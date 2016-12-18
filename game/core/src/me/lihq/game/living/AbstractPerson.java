@@ -94,6 +94,13 @@ public abstract class AbstractPerson extends Sprite
         setPosition(coordinates.x, coordinates.y);
     }
 
+    /**
+     * This method returns the Persons state.
+     */
+    public PersonState getState()
+    {
+        return state;
+    }
 
     /**
      * This sets the tile coordinates of the person.

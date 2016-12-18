@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
+import me.lihq.game.Assets;
 import me.lihq.game.GameMain;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -18,9 +19,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.Settings;
+import me.lihq.game.living.AbstractPerson;
 import me.lihq.game.living.controller.PlayerController;
 import me.lihq.game.screen.elements.OrthogonalTiledMapRendererWithSprite;
 import me.lihq.game.screen.elements.StatusBar;
+import org.omg.CORBA.ARG_OUT;
+
+import static me.lihq.game.living.AbstractPerson.*;
 
 
 /**
@@ -68,6 +73,11 @@ public class NavigationScreen extends AbstractScreen
      */
     private float animTimer = 0.0f;
 
+    /**
+     * The Sprite that is to draw the arrows on the screen by doors
+     */
+    private Sprite ARROW_SPRITE = null;
+
     public NavigationScreen(GameMain game)
     {
         super(game);
@@ -86,7 +96,7 @@ public class NavigationScreen extends AbstractScreen
 
         viewport = new FitViewport(w / Settings.ZOOM, h / Settings.ZOOM, camera);
 
-        map = new TmxMapLoader().load("/maps/mainroom.tmx");
+        map = new TmxMapLoader().load("mainroom.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRendererWithSprite(map);
 
         playerController = new PlayerController(game.player);
@@ -115,7 +125,6 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void update()
     {
-
         if (!pause) { //this statement contains updates that shouldn't happen during a pause
             playerController.update();
             game.player.update();
@@ -191,20 +200,36 @@ public class NavigationScreen extends AbstractScreen
         tiledMapRenderer.setView(camera);
 
         tiledMapRenderer.render();
-        spriteBatch.begin();
+        tiledMapRenderer.getBatch().begin();
 
         if (roomTransition)
         {
             BLACK_BACKGROUND.draw(spriteBatch);
         }
 
-        if (game.player.getRoom().isTriggerTile(game.player.getTileCoordinates().x, game.player.getTileCoordinates().y))
+        if (game.player.getRoom().isTriggerTile(game.player.getTileCoordinates().x, game.player.getTileCoordinates().y) && game.player.getState() != PersonState.WALKING)
         {
-            String rotation = game.player.getRoom().getMatRotation(game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
-            System.out.println(rotation);
+            if (ARROW_SPRITE != null)
+            {
+                ARROW_SPRITE.draw(tiledMapRenderer.getBatch());
+            }
+            else
+            {
+                String rotation = game.player.getRoom().getMatRotation(game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
+                ARROW_SPRITE = new Sprite(Assets.getArrowDirection(rotation));
+
+                int x = (game.player.getTileCoordinates().x * 32) + (Direction.valueOf(rotation).getDx() * 32);
+                int y = (game.player.getTileCoordinates().y * 32) + (Direction.valueOf(rotation).getDy() * 32);
+
+                ARROW_SPRITE.setPosition(x, y);
+            }
+        }
+        else
+        {
+            ARROW_SPRITE = null;
         }
 
-        spriteBatch.end();
+        tiledMapRenderer.getBatch().end();
         statusBar.render();
     }
 

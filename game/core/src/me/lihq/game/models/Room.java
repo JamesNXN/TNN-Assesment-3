@@ -30,7 +30,7 @@ public class Room
         this.ID = id;
         this.mapFile = mapFile;
         this.name = name;
-        try{this.map = new TmxMapLoader().load("/maps/ + " + this.mapFile);} catch (Exception e){} //Maybe use backslash? Tried and result is same
+        try{this.map = new TmxMapLoader().load(this.mapFile);} catch (Exception e){} //Maybe use backslash? Tried and result is same
     }
 
     //TODO: Popup notification on room entrance
