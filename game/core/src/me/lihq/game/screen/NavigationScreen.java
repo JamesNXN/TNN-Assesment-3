@@ -54,7 +54,7 @@ public class NavigationScreen extends AbstractScreen {
 
         spriteBatch = new SpriteBatch();
 
-        statusBar = new StatusBar();
+        statusBar = new StatusBar(game);
     }
 
     /**
