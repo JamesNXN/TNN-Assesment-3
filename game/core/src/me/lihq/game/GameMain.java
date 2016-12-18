@@ -50,7 +50,7 @@ public class GameMain extends Game
     /**
      * The main menu screen that shows up when the game is first started
      */
-    //private MainMenuScreen MenuScreen;
+    private MainMenuScreen menuScreen;
 
     /**
      * A player object for the player of the game
@@ -77,15 +77,11 @@ public class GameMain extends Game
         //set up the screen and display the first room
         screen1 = new NavigationScreen(this);
         screen1.setTiledMapRenderer(player.getRoom().getTiledMap());
-        this.setScreen(screen1);
+
         //Set up the MainMenu
-<<<<<<< HEAD
         menuScreen = new MainMenuScreen(this);
         this.setScreen(menuScreen);
 
-=======
-        //MenuScreen= new MainMenuScreen(this);
->>>>>>> origin/Vishal-Main-Menu
         //Instantiate the FPSLogger to show FPS
         FPS = new FPSLogger();
 
