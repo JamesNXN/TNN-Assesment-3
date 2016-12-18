@@ -31,7 +31,7 @@ public class Room
         this.mapFile = mapFile;
         this.name = name;
 
-        try{this.map = new TmxMapLoader().load(this.mapFile);} catch (Exception e){}
+        try{this.map = new TmxMapLoader().load("maps/" + this.mapFile);} catch (Exception e){}
     }
 
     //TODO: Popup notification on room entrance
