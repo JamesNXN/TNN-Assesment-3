@@ -132,13 +132,11 @@ public class Room
         return false;
     }
 
-    public boolean getTrigger(int x, int y)
+    public int getTileRotation(int x, int y)
     {
-        if (isTriggerTile(x, y)) {
-            //Get trigger type property
-        }
+        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get("Doors");
 
-        return false;
+        return layer.getCell(x, y).getRotation();
     }
 
     public TiledMap getTiledMap()
