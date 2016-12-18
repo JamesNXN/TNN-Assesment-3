@@ -15,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.InputProcessor;
 import me.lihq.game.GameMain;
+import com.badlogic.gdx.audio.Music;
+
 
 /**
  * Created by vishal on 17/12/2016.
@@ -23,52 +25,64 @@ import me.lihq.game.GameMain;
 
 public class MainMenu {
 
+    //Initialising necessary objects and variables
     public Stage stage;
     private Skin buttonSkin;
     private OrthographicCamera camera;
     private SpriteBatch batch;
     private static final Color BACKGROUND_COLOR = Color.GRAY;
+    private static final int WIDTH = Gdx.graphics.getWidth()/2 - Gdx.graphics.getWidth()/8;
 
     public MainMenu(final GameMain game) {
 
+        //Initialising new stage
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
+        //Initialising the skin made for the buttons
         initButtonSkin();
+
+        //Loading music and playing it on loop
+        Music menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Mighty Like Us.mp3"));
+        menuMusic.setLooping(true);
+        menuMusic.play();
 
         BitmapFont font = new BitmapFont();
         SpriteBatch batch= new SpriteBatch();
         OrthographicCamera camera = new OrthographicCamera();
 
+        //An attempt to create a title above the buttons
         batch.begin();
         batch.setProjectionMatrix(camera.combined);
         font.setColor(Color.ORANGE);
-        font.draw(batch, "Welcome to the Lorem Ipsum Murder Mystery Game", 10, 10);
+        font.draw(batch, "Welcome to the Lorem Ipsum Murder Mystery Game", WIDTH, Gdx.graphics.getHeight()/2 + Gdx.graphics.getHeight()/8);
         batch.end();
 
+        //Creating the buttons using the button skin
         TextButton newGameButton = new TextButton("New game", buttonSkin);
-        newGameButton.setPosition(Gdx.graphics.getWidth()/2 - Gdx.graphics.getWidth()/8 , Gdx.graphics.getHeight()/2);
+        newGameButton.setPosition(WIDTH , Gdx.graphics.getHeight()/2);
         TextButton Settings = new TextButton("Settings", buttonSkin);
-        Settings.setPosition(Gdx.graphics.getWidth()/2 - Gdx.graphics.getWidth()/8 , Gdx.graphics.getHeight()/2 - Gdx.graphics.getHeight()/8);
+        Settings.setPosition(WIDTH , Gdx.graphics.getHeight()/2 - Gdx.graphics.getHeight()/8);
         TextButton Quit = new TextButton("Quit", buttonSkin);
-        Quit.setPosition(Gdx.graphics.getWidth()/2 - Gdx.graphics.getWidth()/8 , Gdx.graphics.getHeight()/2 - Gdx.graphics.getHeight()/4);
+        Quit.setPosition(WIDTH , Gdx.graphics.getHeight()/2 - Gdx.graphics.getHeight()/4);
 
+        //Loading the buttons onto the stage
         stage.addActor(Settings);
         stage.addActor(newGameButton);
         stage.addActor(Quit);
 
+        //Making the "New Game" button clickable and causing it to start the game
         newGameButton.addListener(new ClickListener()
         {
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
                 game.setScreen(game.screen1);
-                System.out.println("potato");
+                System.out.println("Button Clicked successfully");
             }
         });
-
-
     }
 
+    //Creating the Skin for the buttons
     private void initButtonSkin(){
         //Create a font
         BitmapFont font = new BitmapFont();
@@ -93,14 +107,16 @@ public class MainMenu {
     }
 
     public void render() {
+        //Determining the background colour of the menu
         Gdx.gl.glClearColor(135, 206, 235, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        //Rendering the buttons
         stage.act();
         stage.draw();
 
     }
     public void dispose() {
-
+        //Called when disposing the main menu
         stage.dispose();
     }
 
