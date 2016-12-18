@@ -112,7 +112,7 @@ public class Room
 
         int amountOfLayers = map.getLayers().getCount();
 
-        for (int currentLayer = 0; currentLayer < amountOfLayers; currentLayer++) {
+        for (int currentLayer = 0; currentLayer < amountOfLayers - 1; currentLayer++) {
             TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(currentLayer);
 
             if (tl.getCell(x, y) == null)
