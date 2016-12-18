@@ -20,7 +20,7 @@ public class Map
 
     public void initialiseRooms()
     {
-        rooms.add(new Room(0, "map.tmx", "Main Foyer")
+        rooms.add(new Room(0, "mainroom.tmx", "Main Foyer")
                 .addTransition(new Room.Transition().setFrom(10, 10).setTo(1, 2, 2))    //To Porters Office
                 .addTransition(new Room.Transition().setFrom(1, 1).setTo(2, 0, 0))    //To Kitchen
                 .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2))    //To Island of Interaction
@@ -28,35 +28,35 @@ public class Map
                 .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2))    //To Outside
                 .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2)));  //To RCH/037
 
-        rooms.add(new Room(1, "toilet2.tmx", "RCH/037 Lecture Theatre")
+        rooms.add(new Room(1, "rch037.tmx", "RCH/037 Lecture Theatre")
                 .addTransition(new Room.Transition().setFrom(10, 10).setTo(2, 0, 0))  //To Main Foyer
                 .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2)));  //To Computer Room
 
-        rooms.add(new Room(2, "map.tmx", "Porters Office")
+        rooms.add(new Room(2, "porters.tmx", "Porters Office")
                 .addTransition(new Room.Transition().setFrom(0, 0).setTo(1, 0, 0)));  //To Main Foyer
 
-        rooms.add(new Room(3, "map.tmx", "Kitchen")
+        rooms.add(new Room(3, "kitchen.tmx", "Kitchen")
                 .addTransition(new Room.Transition().setFrom(0, 0).setTo(0, 1, 1)));  //To Main Foyer
 
-        rooms.add(new Room(4, "map.tmx", "Island of Interaction")
+        rooms.add(new Room(4, "islandofinteraction.tmx", "Island of Interaction")
                 .addTransition(new Room.Transition().setFrom(0, 0).setTo(0, 0, 0)));  //To Main Foyer
 
-        rooms.add(new Room(5, "map.tmx", "Toilet")
+        rooms.add(new Room(5, "toilet.tmx", "Toilet")
                 .addTransition(new Room.Transition().setFrom(0, 0).setTo(0, 0, 0)));  //To Main Foyer
 
-        rooms.add(new Room(6, "map.tmx", "Computer Room")
+        rooms.add(new Room(6, "computerroom.tmx", "Computer Room")
                 .addTransition(new Room.Transition().setFrom(0, 0).setTo(0, 0, 0))    //To Lakehouse
                 .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2))    //To RCH/037
                 .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2)));  //To Main Foyer
 
-        rooms.add(new Room(7, "map.tmx", "Lakehouse")
+        rooms.add(new Room(7, "lakehouse.tmx", "Lakehouse")
                 .addTransition(new Room.Transition().setFrom(0, 0).setTo(0, 0, 0)));  //To Computer Room
 
-        rooms.add(new Room(8, "map.tmx", "Outside Ron Cooke Hub")
+        rooms.add(new Room(8, "outside.tmx", "Outside Ron Cooke Hub")
                 .addTransition(new Room.Transition().setFrom(0, 0).setTo(0, 0, 0))    //To Pod
                 .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2)));  //To Main Foyer
 
-        rooms.add(new Room(9, "map.tmx", "Pod")
+        rooms.add(new Room(9, "pod.tmx", "Pod")
                 .addTransition(new Room.Transition().setFrom(0, 0).setTo(0, 0, 0)));  //To Outside
     }
 
