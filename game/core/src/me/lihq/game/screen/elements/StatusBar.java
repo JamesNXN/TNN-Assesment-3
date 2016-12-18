@@ -5,9 +5,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import me.lihq.game.GameMain;
+import me.lihq.game.screen.PauseScreen;
 
 /**
  * The status bar shown throughout the game
@@ -23,16 +27,18 @@ public class StatusBar {
     public Stage stage;
     private Skin buttonSkin;
     private Skin labelSkin;
-
+    private PauseScreen pauseScreen;
 
     /**
      * The initializer for the StatusBar
      * Sets up UI controls and adds them to the stage ready for rendering
      */
-    public StatusBar() {
+    public StatusBar(final GameMain game) {
 
         stage = new Stage();
+        pauseScreen= new PauseScreen(game);
         initSkins();
+
 
         Table statusBar = new Table();
         statusBar.setSize(Gdx.graphics.getWidth(), HEIGHT);
@@ -52,6 +58,15 @@ public class StatusBar {
 
         TextButton pauseButton = new TextButton("Pause", buttonSkin);
         statusBar.add(pauseButton).uniform();
+        pauseButton.addListener(new ClickListener()
+        {
+            @Override
+            public void clicked(InputEvent event, float x, float y)
+            {
+                game.setScreen(pauseScreen);
+                System.out.println("Button Clicked successfully");
+            }
+        });
 
         stage.addActor(statusBar);
     }
