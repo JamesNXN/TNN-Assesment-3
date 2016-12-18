@@ -25,7 +25,7 @@ public class Map
                 .addTransition(new Room.Transition().setFrom(1, 1).setTo(2, 0, 0))    //To Kitchen
                 .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2))    //To Island of Interaction
                 .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2))    //To Toilet
-                .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2))    //To Outside
+                .addTransition(new Room.Transition().setFrom(11, 1).setTo(8, 2, 2))    //To Outside
                 .addTransition(new Room.Transition().setFrom(5, 5).setTo(1, 2, 2)));  //To RCH/037
 
         rooms.add(new Room(1, "rch037.tmx", "RCH/037 Lecture Theatre")

@@ -4,14 +4,9 @@ package me.lihq.game.models;
  * This class defines a room which is a game representation of a real world room in the Ron Cooke Hub.
  */
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g3d.utils.BaseAnimationController;
-import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
 
 import java.util.*;
 

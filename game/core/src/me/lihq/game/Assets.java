@@ -17,7 +17,10 @@ public class Assets
     public static TextureRegion introFrame1;
     public static TextureRegion introFrame2;
 
-    public static TextureRegion npc1;
+    public static TextureRegion UP_ARROW;
+    public static TextureRegion DOWN_ARROW;
+    public static TextureRegion LEFT_ARROW;
+    public static TextureRegion RIGHT_ARROW;
 
     public static Texture loadTexture(String file)
     {
@@ -30,8 +33,11 @@ public class Assets
         introFrame1 = new TextureRegion(opening, 0, 0, 1000, 750);
         introFrame2 = new TextureRegion(opening, 0, 750, 1000, 750);
 
-        //Temporary as it errors if it doesnt have a file
-        items = loadTexture("player.png");
+        Texture arrows = loadTexture("arrows.png");
+        LEFT_ARROW = new TextureRegion(arrows, 0, 0, 32, 32);
+        RIGHT_ARROW = new TextureRegion(arrows, 32, 0, 32, 32);
+        DOWN_ARROW = new TextureRegion(arrows, 0, 32, 32, 32);
+        UP_ARROW = new TextureRegion(arrows, 32, 32, 32, 32);
     }
 
 }
