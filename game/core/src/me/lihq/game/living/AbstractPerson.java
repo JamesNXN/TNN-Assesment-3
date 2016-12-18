@@ -129,7 +129,7 @@ public abstract class AbstractPerson extends Sprite
             }
         } else {
             if (getRoom().isTriggerTile(tileCoordinates.x, tileCoordinates.y)) {
-                GameMain.me.getNavigationScreen().initialiseRoomChange();
+                //GameMain.me.getNavigationScreen().initialiseRoomChange();
             }
         }
 

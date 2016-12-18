@@ -86,7 +86,7 @@ public class NavigationScreen extends AbstractScreen
 
         viewport = new FitViewport(w / Settings.ZOOM, h / Settings.ZOOM, camera);
 
-        map = new TmxMapLoader().load("map.tmx");
+        map = new TmxMapLoader().load("mainroom.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRendererWithSprite(map);
 
         playerController = new PlayerController(game.player);
@@ -191,17 +191,20 @@ public class NavigationScreen extends AbstractScreen
         tiledMapRenderer.setView(camera);
 
         tiledMapRenderer.render();
-
+        spriteBatch.begin();
 
         if (roomTransition)
         {
-            spriteBatch.begin();
-
             BLACK_BACKGROUND.draw(spriteBatch);
-
-            spriteBatch.end();
         }
 
+        if (game.player.getRoom().isTriggerTile(game.player.getTileCoordinates().x, game.player.getTileCoordinates().y))
+        {
+            String rotation = game.player.getRoom().getMatRotation(game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
+            System.out.println(rotation);
+        }
+
+        spriteBatch.end();
         statusBar.render();
     }
 

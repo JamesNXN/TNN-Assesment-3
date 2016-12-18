@@ -30,7 +30,7 @@ public class Room
         this.ID = id;
         this.mapFile = mapFile;
         this.name = name;
-        this.map = new TmxMapLoader().load(this.mapFile);
+        try{this.map = new TmxMapLoader().load(this.mapFile);} catch (Exception e){}
     }
 
     //TODO: Popup notification on room entrance
@@ -127,11 +127,11 @@ public class Room
         return false;
     }
 
-    public int getTileRotation(int x, int y)
+    public String getMatRotation(int x, int y)
     {
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get("Doors");
 
-        return layer.getCell(x, y).getRotation();
+        return (String) layer.getCell(x, y).getTile().getProperties().get("dir");
     }
 
     public TiledMap getTiledMap()

@@ -21,6 +21,8 @@ public class Player extends AbstractPerson
     {
         super(imgSrc);
         this.name = name;
+
+        setTileCoordinates(15, 5);
     }
 
     /**
