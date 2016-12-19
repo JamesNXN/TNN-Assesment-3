@@ -56,6 +56,12 @@ public class Player extends AbstractPerson
             return;
         }
 
+        if (getRoom().isTriggerTile(this.tileCoordinates.x, this.tileCoordinates.y) && dir.toString().equals(getRoom().getMatRotation(this.tileCoordinates.x, this.tileCoordinates.y)))
+        {
+            GameMain.me.getNavigationScreen().initialiseRoomChange();
+            return;
+        }
+
         if (!getRoom().isWalkableTile(this.tileCoordinates.x + dir.getDx(), this.tileCoordinates.y + dir.getDy())) {
             setDirection(dir);
             return;

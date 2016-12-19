@@ -2134,7 +2134,7 @@
   <properties>
    <property name="hidingSpot" type="bool" value="false"/>
    <property name="interactable" type="bool" value="false"/>
-   <property name="walkable" type="bool" value="false"/>
+   <property name="walkable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="304">
@@ -2328,22 +2328,22 @@
  </tile>
  <tile id="331">
   <properties>
-   <property name="hidingSpot" type="bool" value="false"/>
-   <property name="interactable" type="bool" value="false"/>
+   <property name="hidingSpot" type="bool" value="true"/>
+   <property name="interactable" type="bool" value="true"/>
    <property name="walkable" type="bool" value="false"/>
   </properties>
  </tile>
  <tile id="332">
   <properties>
-   <property name="hidingSpot" type="bool" value="false"/>
-   <property name="interactable" type="bool" value="false"/>
+   <property name="hidingSpot" type="bool" value="true"/>
+   <property name="interactable" type="bool" value="true"/>
    <property name="walkable" type="bool" value="false"/>
   </properties>
  </tile>
  <tile id="333">
   <properties>
-   <property name="hidingSpot" type="bool" value="false"/>
-   <property name="interactable" type="bool" value="false"/>
+   <property name="hidingSpot" type="bool" value="true"/>
+   <property name="interactable" type="bool" value="true"/>
    <property name="walkable" type="bool" value="false"/>
   </properties>
  </tile>
@@ -2449,21 +2449,21 @@
   <properties>
    <property name="hidingSpot" type="bool" value="false"/>
    <property name="interactable" type="bool" value="false"/>
-   <property name="walkable" type="bool" value="false"/>
+   <property name="walkable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="349">
   <properties>
    <property name="hidingSpot" type="bool" value="false"/>
    <property name="interactable" type="bool" value="false"/>
-   <property name="walkable" type="bool" value="false"/>
+   <property name="walkable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="350">
   <properties>
    <property name="hidingSpot" type="bool" value="false"/>
    <property name="interactable" type="bool" value="false"/>
-   <property name="walkable" type="bool" value="false"/>
+   <property name="walkable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="351">

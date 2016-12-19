@@ -134,12 +134,7 @@ public abstract class AbstractPerson extends Sprite
                 this.setTileCoordinates(destinationTile.x, destinationTile.y);
                 this.finishMove();
             }
-        } else {
-            if (getRoom().isTriggerTile(tileCoordinates.x, tileCoordinates.y)) {
-                //GameMain.me.getNavigationScreen().initialiseRoomChange();
-            }
         }
-
 
         updateTextureRegion();
     }
@@ -152,7 +147,6 @@ public abstract class AbstractPerson extends Sprite
      */
     public void initialiseMove(Direction dir)
     {
-
         this.direction = dir;
 
         this.startTile.x = this.tileCoordinates.x;

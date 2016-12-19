@@ -40,7 +40,20 @@ public class NavigationScreen extends AbstractScreen
      * This boolean determines whether the black is fading in or out
      */
     boolean fadeToBlack = true;
+
+    /**
+     * This is the current map that is being shown
+     */
     private TiledMap map;
+
+    /**
+     * This boolean determines whether the map needs to be updated in the next render loop
+     */
+    private boolean changeMap = false;
+
+    /**
+     *
+     */
     private OrthogonalTiledMapRendererWithSprite tiledMapRenderer;
     private OrthographicCamera camera = new OrthographicCamera();
     private Viewport viewport;
@@ -110,7 +123,6 @@ public class NavigationScreen extends AbstractScreen
         multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(playerController);
         multiplexer.addProcessor(statusBar.stage);
-
     }
 
     /**
@@ -193,6 +205,12 @@ public class NavigationScreen extends AbstractScreen
     {
         game.player.pushCoordinatesToSprite();
 
+        if (changeMap)
+        {
+            tiledMapRenderer.setMap(map);
+            changeMap = false;
+        }
+
         camera.position.x = game.player.getX();
         camera.position.y = game.player.getY();
         camera.update();
@@ -204,7 +222,11 @@ public class NavigationScreen extends AbstractScreen
 
         if (roomTransition)
         {
+            //Have to start and end the batch in here.
+            //Only ONE batch can be open at once, it overrides previously opened ones until it is closed.
+            spriteBatch.begin();
             BLACK_BACKGROUND.draw(spriteBatch);
+            spriteBatch.end();
         }
 
         if (game.player.getRoom().isTriggerTile(game.player.getTileCoordinates().x, game.player.getTileCoordinates().y) && game.player.getState() != PersonState.WALKING)
@@ -268,6 +290,6 @@ public class NavigationScreen extends AbstractScreen
     public void setTiledMapRenderer(TiledMap map)
     {
         this.map = map;
-        tiledMapRenderer.setMap(map);
+        changeMap = true;
     }
 }
