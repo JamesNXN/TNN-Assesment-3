@@ -44,7 +44,7 @@ public class Map
                 .addTransition(new Room.Transition().setFrom(11, 17).setTo(6, 7, 1))    //To Computer Room
                 .addTransition(new Room.Transition().setFrom(12, 17).setTo(6, 8, 1)));  //To Computer Room
 
-        rooms.add(new Room(2, "porters.tmx", "Porters Office")
+        rooms.add(new Room(2, "portersoffice.tmx", "Porters Office")
                 .addTransition(new Room.Transition().setFrom(1, 5).setTo(0, 17, 17)));  //To Main Room
 
         rooms.add(new Room(3, "kitchen.tmx", "Kitchen")
@@ -85,7 +85,6 @@ public class Map
 
         Room.Transition newRoomData = currentRoom.getNewRoom(currentX, currentY);
 
-        //TODO: Change current information and do map change transition
         GameMain.me.changeRoom(newRoomData);
     }
 

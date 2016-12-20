@@ -180,17 +180,15 @@ public class NavigationScreen extends AbstractScreen
 
     public void initialiseRoomChange()
     {
-
         pause = true; //pause all non necessary updates like player movement
         roomTransition = true;
-
     }
 
     public void finishRoomTransition()
     {
-
         animTimer = 0;
         roomTransition = false;
+        fadeToBlack = true;
         pause = false;
 
         //TODO : RENDER THE MAP NAME TAG

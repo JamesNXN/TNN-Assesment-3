@@ -31,7 +31,7 @@ public class Room
         this.mapFile = mapFile;
         this.name = name;
 
-        try{this.map = new TmxMapLoader().load("maps/" + this.mapFile);} catch (Exception e){}
+        this.map = new TmxMapLoader().load("maps/" + this.mapFile);
     }
 
     //TODO: Popup notification on room entrance
@@ -73,10 +73,6 @@ public class Room
 
     public boolean isWalkableTile(int x, int y)
     {
-        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(0);
-
-        if (layer.getCell(x, y) == null) return false;
-
         int amountOfLayers = map.getLayers().getCount();
 
         for (int currentLayer = 0; currentLayer < amountOfLayers; currentLayer++) {
@@ -101,7 +97,6 @@ public class Room
 
     public boolean isTriggerTile(int x, int y)
     {
-
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(0);
 
         if (layer.getCell(x, y) == null) return false;
