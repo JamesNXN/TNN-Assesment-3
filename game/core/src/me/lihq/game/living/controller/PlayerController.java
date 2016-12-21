@@ -103,6 +103,10 @@ public class PlayerController extends InputAdapter
             return;
         }
 
-        player.setDirection(goTo);
+        if (player.getState() != PersonState.WALKING)
+        {
+            player.setDirection(goTo);
+        }
+
     }
 }
