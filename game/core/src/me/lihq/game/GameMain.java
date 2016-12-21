@@ -110,6 +110,7 @@ public class GameMain extends Game
         if (newRoom.newDirection != null)
         {
             player.setDirection(newRoom.newDirection);
+            player.updateTextureRegion();
         }
 
         player.setTileCoordinates(newRoom.to.x, newRoom.to.y);

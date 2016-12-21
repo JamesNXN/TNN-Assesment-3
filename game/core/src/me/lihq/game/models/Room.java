@@ -140,6 +140,8 @@ public class Room
     {
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get("Doors");
 
+        if (layer.getCell(x, y) == null) return null;
+
         return (String) layer.getCell(x, y).getTile().getProperties().get("dir");
     }
 
@@ -192,13 +194,6 @@ public class Room
 
         public Transition()
         {
-        }
-
-        public Transition setTo(int room, int x, int y)
-        {
-            this.newRoom = room;
-            this.to = new Vector2Int(x, y);
-            return this;
         }
 
         public Transition setTo(int room, int x, int y, Direction dir)
