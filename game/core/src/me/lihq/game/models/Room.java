@@ -74,12 +74,15 @@ public class Room
     public boolean isWalkableTile(int x, int y)
     {
         int amountOfLayers = map.getLayers().getCount();
+        int emptyCellCount = 0;
+
 
         for (int currentLayer = 0; currentLayer < amountOfLayers; currentLayer++) {
             TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(currentLayer);
 
             if (tl.getCell(x, y) == null)
             {
+                emptyCellCount++;
                 continue;
             }
 
@@ -90,6 +93,10 @@ public class Room
             if (Boolean.valueOf(tl.getCell(x, y).getTile().getProperties().get("walkable").toString().equals("false"))) {
                 return false;
             }
+        }
+
+        if (emptyCellCount == amountOfLayers) {
+            return false;
         }
 
         return true;
