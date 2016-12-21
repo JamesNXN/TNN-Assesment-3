@@ -2,8 +2,12 @@ package me.lihq.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
+import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.*;
 
 /**
  * This class defines the assets that the game uses.
@@ -25,6 +29,8 @@ public class Assets
 
     public static Texture TAG_BORDER;
 
+    public static BitmapFont FONT;
+
     public static Texture loadTexture(String file)
     {
         return new Texture(Gdx.files.internal(file));
@@ -32,6 +38,12 @@ public class Assets
 
     public static void load()
     {
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Fofer.otf"));
+        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+        parameter.size = 45;
+        FONT = generator.generateFont(parameter);
+        generator.dispose();
+
         opening = loadTexture("title.png");
         introFrame1 = new TextureRegion(opening, 0, 0, 1000, 750);
         introFrame2 = new TextureRegion(opening, 0, 750, 1000, 750);
