@@ -22,6 +22,7 @@ import me.lihq.game.Settings;
 import me.lihq.game.living.AbstractPerson;
 import me.lihq.game.living.controller.PlayerController;
 import me.lihq.game.screen.elements.OrthogonalTiledMapRendererWithSprite;
+import me.lihq.game.screen.elements.RoomTag;
 import me.lihq.game.screen.elements.StatusBar;
 import org.omg.CORBA.ARG_OUT;
 
@@ -91,6 +92,13 @@ public class NavigationScreen extends AbstractScreen
      */
     private Sprite ARROW_SPRITE = null;
 
+    /**
+     * This is the room name tag that is to be rendered to the screen
+     *
+     * If it is null then there is no tag to display
+     */
+    private RoomTag roomTag = null;
+
     public NavigationScreen(GameMain game)
     {
         super(game);
@@ -144,6 +152,11 @@ public class NavigationScreen extends AbstractScreen
 
         //Some things should be updated all the time.
         updateTransition();
+
+        if (roomTag != null)
+        {
+            roomTag.update();
+        }
     }
 
     private void updateTransition()
@@ -191,7 +204,7 @@ public class NavigationScreen extends AbstractScreen
         fadeToBlack = true;
         pause = false;
 
-        //TODO : RENDER THE MAP NAME TAG
+        roomTag = new RoomTag(game.player.getRoom().getName());
     }
     /**
      * Called when the screen should render itself.
@@ -249,6 +262,11 @@ public class NavigationScreen extends AbstractScreen
             ARROW_SPRITE = null;
         }
 
+        if (roomTag != null)
+        {
+            roomTag.render(spriteBatch);
+        }
+
         tiledMapRenderer.getBatch().end();
         statusBar.render();
     }
@@ -289,5 +307,10 @@ public class NavigationScreen extends AbstractScreen
     {
         this.map = map;
         changeMap = true;
+    }
+
+    public void setRoomTag(RoomTag tag)
+    {
+        this.roomTag = tag;
     }
 }

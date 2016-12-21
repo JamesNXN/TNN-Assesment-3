@@ -49,6 +49,8 @@ public class Room
         return this.ID;
     }
 
+    public String getName() {return this.name;}
+
     /**
      * Changes coordinates of clue
      */

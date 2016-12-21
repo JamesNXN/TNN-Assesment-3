@@ -23,6 +23,8 @@ public class Assets
     public static TextureRegion LEFT_ARROW;
     public static TextureRegion RIGHT_ARROW;
 
+    public static Texture TAG_BORDER;
+
     public static Texture loadTexture(String file)
     {
         return new Texture(Gdx.files.internal(file));
@@ -39,6 +41,8 @@ public class Assets
         RIGHT_ARROW = new TextureRegion(arrows, 32, 0, 32, 32);
         DOWN_ARROW = new TextureRegion(arrows, 0, 32, 32, 32);
         UP_ARROW = new TextureRegion(arrows, 32, 32, 32, 32);
+
+        TAG_BORDER = loadTexture("border.png");
     }
 
     public static TextureRegion getArrowDirection(String direction)
