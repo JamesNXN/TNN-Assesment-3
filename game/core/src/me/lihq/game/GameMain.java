@@ -107,6 +107,11 @@ public class GameMain extends Game
 
         navigationScreen.setTiledMapRenderer(player.getRoom().getTiledMap());
 
+        if (newRoom.newDirection != null)
+        {
+            player.setDirection(newRoom.newDirection);
+        }
+
         player.setTileCoordinates(newRoom.to.x, newRoom.to.y);
     }
 

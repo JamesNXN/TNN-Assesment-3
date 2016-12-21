@@ -7,6 +7,8 @@ package me.lihq.game.models;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import me.lihq.game.living.AbstractPerson;
+import me.lihq.game.living.AbstractPerson.Direction;
 
 import java.util.*;
 
@@ -114,7 +116,7 @@ public class Room
 
         int amountOfLayers = map.getLayers().getCount();
 
-        for (int currentLayer = 0; currentLayer < amountOfLayers - 1; currentLayer++) {
+        for (int currentLayer = 0; currentLayer < amountOfLayers; currentLayer++) {
             TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(currentLayer);
 
             if (tl.getCell(x, y) == null)
@@ -184,6 +186,8 @@ public class Room
 
         public int newRoom = 0;
 
+        public Direction newDirection = null;
+
         public Vector2Int to = new Vector2Int(0, 0);
 
         public Transition()
@@ -194,6 +198,14 @@ public class Room
         {
             this.newRoom = room;
             this.to = new Vector2Int(x, y);
+            return this;
+        }
+
+        public Transition setTo(int room, int x, int y, Direction dir)
+        {
+            this.newRoom = room;
+            this.to = new Vector2Int(x, y);
+            this.newDirection = dir;
             return this;
         }
 
