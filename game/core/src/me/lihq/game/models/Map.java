@@ -51,7 +51,7 @@ public class Map
                 .addTransition(new Room.Transition().setFrom(1, 3).setTo(0, 27, 13)));  //To Main Room
 
         rooms.add(new Room(4, "islandofinteraction.tmx", "Island of Interaction")
-                .addTransition(new Room.Transition().setFrom(11, 14).setTo(4, 26, 29)));  //To Main Room
+                .addTransition(new Room.Transition().setFrom(11, 14).setTo(0, 26, 29)));  //To Main Room
 
         rooms.add(new Room(5, "toilet.tmx", "Toilet")
                 .addTransition(new Room.Transition().setFrom(1, 1).setTo(0, 18, 2)));  //To Main Room
