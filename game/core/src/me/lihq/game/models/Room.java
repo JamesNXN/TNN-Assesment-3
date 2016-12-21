@@ -74,7 +74,7 @@ public class Room
     public boolean isWalkableTile(int x, int y)
     {
         int amountOfLayers = map.getLayers().getCount();
-        int emptyCellCount = 0;
+        int emptyCellCount = 0; //The amount of empty cells on the map in the location x and y.
 
 
         for (int currentLayer = 0; currentLayer < amountOfLayers; currentLayer++) {
@@ -82,7 +82,7 @@ public class Room
 
             if (tl.getCell(x, y) == null)
             {
-                emptyCellCount++;
+                emptyCellCount++; //for every empty cell increase the emptyCellCount by 1
                 continue;
             }
 
@@ -95,6 +95,10 @@ public class Room
             }
         }
 
+        /*
+        Check to see if the number of empty layer cells matches the number of layers,
+        if it does the this must be an empty area of the map that is not walkable
+         */
         if (emptyCellCount == amountOfLayers) {
             return false;
         }
