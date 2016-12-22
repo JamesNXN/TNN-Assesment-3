@@ -68,10 +68,15 @@ public class RoomTag {
             toClose = true;
         }
 
-        batch.draw(Assets.TAG_BORDER, position.x, Gdx.graphics.getHeight() - position.y, 350, 150);
+        //10 Characters fits in the middle of the default size.
+        //Therefore, change the size of the box depending on amount of characters
+
+        int extraCharacters = roomName.length() - 10;
+
+        batch.draw(Assets.TAG_BORDER, position.x, Gdx.graphics.getHeight() - position.y, 350 + (15 * extraCharacters), 150);
 
         Assets.FONT.setColor(Color.WHITE);
-        Assets.FONT.draw(batch, roomName, position.x * 5, Gdx.graphics.getHeight() - position.y + 75);
+        Assets.FONT.draw(batch, roomName, position.x * 5.1f, Gdx.graphics.getHeight() - position.y + 75);
 
         if (toClose)
         {

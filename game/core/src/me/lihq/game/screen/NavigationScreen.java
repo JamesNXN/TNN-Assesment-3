@@ -229,16 +229,8 @@ public class NavigationScreen extends AbstractScreen
         tiledMapRenderer.setView(camera);
 
         tiledMapRenderer.render();
+        //Everything to be drawn relative to bottom left of the map
         tiledMapRenderer.getBatch().begin();
-
-        if (roomTransition)
-        {
-            //Have to start and end the batch in here.
-            //Only ONE batch can be open at once, it overrides previously opened ones until it is closed.
-            spriteBatch.begin();
-            BLACK_BACKGROUND.draw(spriteBatch);
-            spriteBatch.end();
-        }
 
         if (game.player.getRoom().isTriggerTile(game.player.getTileCoordinates().x, game.player.getTileCoordinates().y) && game.player.getState() != PersonState.WALKING)
         {
@@ -262,12 +254,22 @@ public class NavigationScreen extends AbstractScreen
             ARROW_SPRITE = null;
         }
 
+        tiledMapRenderer.getBatch().end();
+
+        //Everything to be drawn relative to bottom left of the screen
+        spriteBatch.begin();
+
+        if (roomTransition)
+        {
+            BLACK_BACKGROUND.draw(spriteBatch);
+        }
+
         if (roomTag != null)
         {
             roomTag.render(spriteBatch);
         }
 
-        tiledMapRenderer.getBatch().end();
+        spriteBatch.end();
         statusBar.render();
     }
 
