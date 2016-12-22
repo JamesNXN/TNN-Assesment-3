@@ -2,7 +2,6 @@ package me.lihq.game.screen.elements;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
@@ -58,6 +57,13 @@ public class RoomTag {
         this.roomName = roomName;
     }
 
+    /**
+     * This method renders the room tag to the provided SpriteBatch.
+     *
+     * It is called by the screens render method.
+     *
+     * @param batch - The SpriteBatch to draw the tag to
+     */
     public void render(SpriteBatch batch)
     {
         boolean toClose = false;
@@ -84,6 +90,9 @@ public class RoomTag {
         }
     }
 
+    /**
+     * This method is called once per game tick. It is used to control the animation of the tag.
+     */
     public void update()
     {
         if (animTime <= MAX_ANIM_TIME)
