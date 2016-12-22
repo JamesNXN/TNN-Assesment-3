@@ -23,17 +23,21 @@ public class MainMenuScreen extends AbstractScreen {
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
+        //Setting up the camera
         camera.setToOrtho(false,w,h);
         camera.update();
 
+        //Determining the size of the screen
         viewport = new FitViewport(w/ Settings.ZOOM, h/Settings.ZOOM, camera);
 
+        //Creates a Main Menu object thus creating the main menu
         mainMenu= new MainMenu(game,0);
 
     }
 
     @Override
     public void show() {
+        //I don't actually remember what this did, could someone update this?
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(mainMenu.stage);
     }
@@ -45,7 +49,7 @@ public class MainMenuScreen extends AbstractScreen {
 
     @Override
     public void render(float delta) {
-
+        //Renders the main menu
         mainMenu.render();
     }
 
@@ -71,7 +75,7 @@ public class MainMenuScreen extends AbstractScreen {
 
     @Override
     public void dispose() {
-
+        //Disposes the main menu
         mainMenu.dispose();
     }
 

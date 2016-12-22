@@ -27,11 +27,14 @@ public class PauseScreen extends AbstractScreen {
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
+        //Sets up the camera
         camera.setToOrtho(false,w,h);
         camera.update();
 
+        //Determines screen size
         viewport = new FitViewport(w/ Settings.ZOOM, h/Settings.ZOOM, camera);
 
+        //Creates the Pause menu
         pauseMenu= new MainMenu(game,1);
     }
 
@@ -48,6 +51,7 @@ public class PauseScreen extends AbstractScreen {
 
     @Override
     public void render(float delta) {
+        //Renders the pause menu
         pauseMenu.render();
     }
 
@@ -73,6 +77,7 @@ public class PauseScreen extends AbstractScreen {
 
     @Override
     public void dispose() {
+        //Disposes of the Pause menu
         pauseMenu.dispose();
     }
 }
