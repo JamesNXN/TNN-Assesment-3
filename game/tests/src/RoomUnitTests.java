@@ -3,6 +3,8 @@ import me.lihq.game.models.Vector2Int;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Random;
+
 import static org.junit.Assert.*;
 
 /**
@@ -22,8 +24,8 @@ public class RoomUnitTests extends GameTester
     @Test
     public void testGetTransition()
     {
-        assertEquals(1, map.getRoom(0).getNewRoom(5, 5).newRoom);
-        assertEquals(new Vector2Int(2, 2), map.getRoom(0).getNewRoom(5, 5).to);
+        assertEquals(2, map.getRoom(0).getNewRoom(17, 17).newRoom);
+        assertEquals(new Vector2Int(1, 5), map.getRoom(0).getNewRoom(17, 17).to);
         assertEquals(null, map.getRoom(0).getNewRoom(5, 1));
     }
 

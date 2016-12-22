@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.*;
 

@@ -36,8 +36,6 @@ public class Room
         this.map = new TmxMapLoader().load("maps/" + this.mapFile);
     }
 
-    //TODO: Popup notification on room entrance
-
     //Returns True if it's the room the murder took place in
     public boolean isMurderRoom()
     {
@@ -138,6 +136,15 @@ public class Room
         return false;
     }
 
+    /**
+     * This method gets the rotation that the map is that they are standing on.
+     *
+     * If they aren't on a mat, it returns null
+     *
+     * @param x - The x coordinate to check
+     * @param y = The y coordinate to check
+     * @return a String representing the direction they are facing
+     */
     public String getMatRotation(int x, int y)
     {
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get("Doors");
@@ -163,7 +170,7 @@ public class Room
      *
      * @param x - The current x coordinate in the room
      * @param y - The current y coordinate in the room
-     * @return - a List with length 3.
+     * @return - a Transition data type. Which stores the relevant information
      * 0 - New Room ID
      * 1 - New X
      * 2 - New Y
