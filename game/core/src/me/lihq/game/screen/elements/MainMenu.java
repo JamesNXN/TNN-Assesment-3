@@ -18,7 +18,6 @@ import com.badlogic.gdx.InputProcessor;
 import me.lihq.game.GameMain;
 import com.badlogic.gdx.audio.Music;
 
-
 /**
  * Created by vishal on 17/12/2016.
  * Reusable Main Menu UI, can be used for the pause screen aswell.
@@ -50,19 +49,25 @@ public class MainMenu {
         SpriteBatch batch= new SpriteBatch();
         OrthographicCamera camera = new OrthographicCamera();
 
-        //Loading music and playing it on loop
+        //Loading music and playing it on loop, code can be placed in a new class
+        //and called from there if you want to reuse it.
         Music menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Mighty Like Us.mp3"));
         menuMusic.setLooping(true);
         menuMusic.play();
 
+        //Creating a style for the new labels containing text. This determines the font and colour of the text.
         textStyle = new LabelStyle(font, Color.RED);
 
+        //Creating the label containing text and determining  its size and location on screen
         text = new Label("Welcome To the Lorem Ipsum Murder Mystery Game!",textStyle);
         text.setBounds(WIDTH/2,Gdx.graphics.getHeight()/2+Gdx.graphics.getHeight()/4,2*WIDTH,Gdx.graphics.getHeight()/3);
         text.setFontScale(2,2);
 
+        //Adding the text to the screen
         stage.addActor(text);
 
+        //An if statement that lets the same class be used for both the pause and main menu
+        //screens. It also prints an error message to the console if called using an incorrect argument
         if (MenuType==0){
             Menu(game);
         }
@@ -73,14 +78,9 @@ public class MainMenu {
             System.out.println("MenuType value is incorrect");
         }
 
-        //An attempt to create a title above the buttons
-        /**batch.begin();
-        batch.setProjectionMatrix(camera.combined);
-        font.setColor(Color.BLUE);
-        font.draw(batch, "Welcome to the Lorem Ipsum Murder Mystery Game", WIDTH, Gdx.graphics.getHeight()/2 + Gdx.graphics.getHeight()/4);
-        batch.end();*/
     }
 
+    //Method called when you want to create the main Menu
     private void Menu(final GameMain game){
         //Creating the buttons using the button skin
         TextButton newGameButton = new TextButton("New game", buttonSkin);
@@ -107,6 +107,7 @@ public class MainMenu {
         });
     }
 
+    //Method called when you want to load the pause screen
     private void Pause(final GameMain game){
         //Creating the buttons using the button skin
         TextButton ResumeButton = new TextButton("Resume Game", buttonSkin);
@@ -165,11 +166,11 @@ public class MainMenu {
         //Rendering the buttons
         stage.act();
         stage.draw();
-
     }
     public void dispose() {
         //Called when disposing the main menu
         stage.dispose();
+        batch.dispose();
     }
 
 }
