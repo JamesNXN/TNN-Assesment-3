@@ -24,7 +24,7 @@ public class Room
 
     private TiledMap map;
 
-    //Room transitions stored as (currentX, currentY) points to a (newRoomID, newX, newY)
+    //Room transitions stored as custom Transition object. Defines where the transition is from and where it goes to
     private List<Transition> roomTransitions = new ArrayList<Transition>();
 
     public Room(int id, String mapFile, String name)

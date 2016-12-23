@@ -95,7 +95,9 @@ public abstract class AbstractPerson extends Sprite
     }
 
     /**
-     * This method returns the Persons state.
+     * This method returns the Persons walking state.
+     *
+     * Either WALKING or STANDING
      */
     public PersonState getState()
     {
