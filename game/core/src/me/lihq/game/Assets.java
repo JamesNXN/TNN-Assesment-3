@@ -13,14 +13,16 @@ import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.*;
  */
 public class Assets
 {
-
-    public static Texture items;
     public static Texture clues;
     public static Texture opening;
 
     public static TextureRegion introFrame1;
     public static TextureRegion introFrame2;
 
+    /**
+     * These TextureRegions store the 4 different directions that the room changing
+     * arrows can face.
+     */
     public static TextureRegion UP_ARROW;
     public static TextureRegion DOWN_ARROW;
     public static TextureRegion LEFT_ARROW;

@@ -20,6 +20,9 @@ public class Map
         initialiseRooms();
     }
 
+    /**
+     * This initiates all the rooms and their transitions
+     */
     public void initialiseRooms()
     {
         rooms.add(new Room(0, "mainroom.tmx", "Main Foyer")
@@ -81,6 +84,13 @@ public class Map
                 .addTransition(new Room.Transition().setFrom(18, 10).setTo(8, 9, 12, Direction.EAST)));  //To Outside
     }
 
+    /**
+     * This takes the current room and location and moves the player to the new room
+     *
+     * param currentRoomID - The current room the player is in
+     * @param currentX - The current X coordinate
+     * @param currentY - The current Y coordinate
+     */
     public void moveRoom(int currentRoomID, int currentX, int currentY)
     {
         Room currentRoom = rooms.get(currentRoomID);
@@ -90,6 +100,12 @@ public class Map
         GameMain.me.changeRoom(newRoomData);
     }
 
+    /**
+     * This returns a room from the list based on the id.
+     *
+     * @param id - The ID of the room they request.
+     * @return the corresponding room
+     */
     public Room getRoom(int id)
     {
         return rooms.get(id);
