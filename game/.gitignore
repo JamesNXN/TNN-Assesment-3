@@ -32,6 +32,7 @@ android/gen/
 .idea/runConfigurations/**
 !.idea/runConfigurations/Tests.xml
 !.idea/runConfigurations/Desktop.xml
+!.idea/runConfigurations/TestsGradle.xml
 *.ipr
 *.iws
 *.iml
