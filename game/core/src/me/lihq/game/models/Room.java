@@ -75,6 +75,7 @@ public class Room
 
     public boolean isWalkableTile(int x, int y)
     {
+        //reduced by one because the last layer is to be displayed over the top of the player and therefore is ignored.
         int amountOfLayers = map.getLayers().getCount() - 1;
         int emptyCellCount = 0; //The amount of empty cells on the map in the location x and y.
 
