@@ -64,7 +64,6 @@ public class StatusBar {
             public void clicked(InputEvent event, float x, float y)
             {
                 game.setScreen(pauseScreen);
-                System.out.println("Button Clicked successfully");
             }
         });
 

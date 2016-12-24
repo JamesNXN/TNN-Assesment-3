@@ -28,6 +28,7 @@ public class MainMenu {
     //Initialising necessary objects and variables
     public Stage stage;
     private Skin buttonSkin;
+    private int menuType;
     private OrthographicCamera camera;
     private SpriteBatch batch;
     private static final Color BACKGROUND_COLOR = Color.GRAY;
@@ -38,6 +39,7 @@ public class MainMenu {
         //Initialising new stage
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
+        menuType= MenuType;
 
         //Initialising the skin made for the buttons
         initButtonSkin();
@@ -48,12 +50,6 @@ public class MainMenu {
         BitmapFont font = new BitmapFont();
         SpriteBatch batch= new SpriteBatch();
         OrthographicCamera camera = new OrthographicCamera();
-
-        //Loading music and playing it on loop, code can be placed in a new class
-        //and called from there if you want to reuse it.
-        Music menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Mighty Like Us.mp3"));
-        menuMusic.setLooping(true);
-        menuMusic.play();
 
         //Creating a style for the new labels containing text. This determines the font and colour of the text.
         textStyle = new LabelStyle(font, Color.RED);
@@ -66,76 +62,64 @@ public class MainMenu {
         //Adding the text to the screen
         stage.addActor(text);
 
-        //An if statement that lets the same class be used for both the pause and main menu
-        //screens. It also prints an error message to the console if called using an incorrect argument
-        if (MenuType==0){
-            Menu(game);
-        }
-        else if (MenuType==1){
-            Pause(game);
-        }
-        else {
-            System.out.println("MenuType value is incorrect");
-        }
-
+        //Loading the menu or pause screen
+        Menu(game);
     }
 
     //Method called when you want to create the main Menu
-    private void Menu(final GameMain game){
+    private void Menu(final GameMain game) {
         //Creating the buttons using the button skin
-        TextButton newGameButton = new TextButton("New game", buttonSkin);
-        newGameButton.setPosition(WIDTH , Gdx.graphics.getHeight()/2);
-        TextButton Settings = new TextButton("Settings", buttonSkin);
-        Settings.setPosition(WIDTH , Gdx.graphics.getHeight()/2 - Gdx.graphics.getHeight()/8);
-        TextButton Quit = new TextButton("Quit", buttonSkin);
-        Quit.setPosition(WIDTH , Gdx.graphics.getHeight()/2 - Gdx.graphics.getHeight()/4);
+        //An if statement that lets the same class be used for both the pause and main menu
+        //screens. It also prints an error message to the console if called using an incorrect argument
+
+        TextButton newGameButton = new TextButton("", buttonSkin);
+        try {
+            if (menuType == 0) {
+                newGameButton.setText("New Game");
+            } else if (menuType == 1) {
+                newGameButton.setText("Resume Game");
+            }
+            else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            System.out.println("Exception thrown  : Menu Type is incorrect");
+        }
+        newGameButton.setPosition(WIDTH, Gdx.graphics.getHeight() / 2);
+        TextButton settings = new TextButton("Settings", buttonSkin);
+        settings.setPosition(WIDTH, Gdx.graphics.getHeight() / 2 - Gdx.graphics.getHeight() / 8);
+        TextButton quit = new TextButton("Quit", buttonSkin);
+        quit.setPosition(WIDTH, Gdx.graphics.getHeight() / 2 - Gdx.graphics.getHeight() / 4);
 
         //Loading the buttons onto the stage
-        stage.addActor(Settings);
+        stage.addActor(settings);
         stage.addActor(newGameButton);
-        stage.addActor(Quit);
+        stage.addActor(quit);
 
         //Making the "New Game" button clickable and causing it to start the game
-        newGameButton.addListener(new ClickListener()
-        {
+        newGameButton.addListener(new ClickListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y)
-            {
+            public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(game.screen1);
-                System.out.println("Button Clicked successfully");
+            }
+        });
+        //Making the "Quit" button clickable and causing it to close the game
+        quit.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
+            }
+        });
+        //Making the "Settings" button clickable and causing it to load the settings screen
+        settings.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                //Change to settings screen once its been made
             }
         });
     }
 
-    //Method called when you want to load the pause screen
-    private void Pause(final GameMain game){
-        //Creating the buttons using the button skin
-        TextButton ResumeButton = new TextButton("Resume Game", buttonSkin);
-        ResumeButton.setPosition(WIDTH , Gdx.graphics.getHeight()/2);
-        TextButton Settings = new TextButton("Settings", buttonSkin);
-        Settings.setPosition(WIDTH , Gdx.graphics.getHeight()/2 - Gdx.graphics.getHeight()/8);
-        TextButton Quit = new TextButton("Quit", buttonSkin);
-        Quit.setPosition(WIDTH , Gdx.graphics.getHeight()/2 - Gdx.graphics.getHeight()/4);
-
-        //Loading the buttons onto the stage
-        stage.addActor(Settings);
-        stage.addActor(ResumeButton);
-        stage.addActor(Quit);
-
-        //Making the "New Game" button clickable and causing it to start the game
-        ResumeButton.addListener(new ClickListener()
-        {
-            @Override
-            public void clicked(InputEvent event, float x, float y)
-            {
-                game.setScreen(game.screen1);
-                System.out.println("Button Clicked successfully");
-            }
-        });
-
-    }
-
-    //Creating the Skin for the buttons
+       //Creating the Skin for the buttons
     private void initButtonSkin(){
         //Create a font
         BitmapFont font = new BitmapFont();
