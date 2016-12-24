@@ -42,6 +42,7 @@ public class PauseScreen extends AbstractScreen {
     public void show() {
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(pauseMenu.stage);
+        Gdx.input.setInputProcessor(multiplexer);
     }
 
     @Override
