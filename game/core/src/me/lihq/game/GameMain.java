@@ -48,7 +48,7 @@ public class GameMain extends Game
     /**
      * A screen to be used to display standard gameplay within the game , including the status bar.
      */
-    private NavigationScreen navigationScreen;
+    public NavigationScreen navigationScreen;
 
     /**
      * This is called at start up. It initialises the game.
@@ -98,23 +98,7 @@ public class GameMain extends Game
 
     }
 
-    /**
-     * Change from one room to another
-     */
-    public void changeRoom(Room.Transition newRoom)
-    {
-        player.setRoom(gameMap.getRoom(newRoom.newRoom));
 
-        navigationScreen.setTiledMapRenderer(player.getRoom().getTiledMap());
-
-        if (newRoom.newDirection != null)
-        {
-            player.setDirection(newRoom.newDirection);
-            player.updateTextureRegion();
-        }
-
-        player.setTileCoordinates(newRoom.to.x, newRoom.to.y);
-    }
 
     /**
      * Overrides the getScreen method to return our AbstractScreen type.

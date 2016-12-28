@@ -171,7 +171,7 @@ public class NavigationScreen extends AbstractScreen
 
                 if (animTimer == ANIM_TIME)
                 {
-                    game.gameMap.moveRoom(game.player.getRoom().getID(), game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
+                    game.gameMap.moveRoom(game.player, game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
                 }
 
                 if (animTimer > ANIM_TIME)

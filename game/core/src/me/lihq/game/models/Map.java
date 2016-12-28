@@ -1,10 +1,10 @@
 package me.lihq.game.models;
 
 import me.lihq.game.GameMain;
-import me.lihq.game.living.AbstractPerson;
 import me.lihq.game.living.AbstractPerson.Direction;
+import me.lihq.game.living.Player;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -13,7 +13,7 @@ import java.util.List;
 public class Map
 {
 
-    List<Room> rooms = new ArrayList<Room>();
+    List<Room> rooms;
 
     public Map()
     {
@@ -25,81 +25,113 @@ public class Map
      */
     public void initialiseRooms()
     {
-        rooms.add(new Room(0, "mainroom.tmx", "Main Foyer")
-                .addTransition(new Room.Transition().setFrom(17, 17).setTo(2, 1, 5, Direction.EAST))    //To Porters Office
 
-                .addTransition(new Room.Transition().setFrom(27, 13).setTo(3, 1, 3, Direction.EAST))    //To Kitchen
+        Room mainRoom = new Room(0, "mainroom.tmx", "Main Foyer");
 
-                .addTransition(new Room.Transition().setFrom(26, 29).setTo(4, 11, 14, Direction.WEST))    //To Island of Interaction
+        Room rch037 = new Room(1, "rch037.tmx", "RCH/037 Lecture Theatre");
 
-                .addTransition(new Room.Transition().setFrom(18, 2).setTo(5, 1, 1, Direction.EAST))    //To Toilet
+        Room portersOffice = new Room(2, "portersoffice.tmx", "Porters Office");
 
-                .addTransition(new Room.Transition().setFrom(2, 8).setTo(6, 2, 2, Direction.EAST))      //To Computer Room
+        Room kitchen = new Room(3, "kitchen.tmx", "Kitchen");
 
-                .addTransition(new Room.Transition().setFrom(3, 5).setTo(8, 19, 4, Direction.SOUTH)) //To Outside
-                .addTransition(new Room.Transition().setFrom(4, 5).setTo(8, 20, 4, Direction.SOUTH)) //To Outside
+        Room islandOfInteraction = new Room(4, "islandofinteraction.tmx", "Island of Interaction");
 
-                .addTransition(new Room.Transition().setFrom(11, 1).setTo(1, 2, 5, Direction.SOUTH))  //To RCH/037
-                .addTransition(new Room.Transition().setFrom(12, 1).setTo(1, 3, 5, Direction.SOUTH)));  //To RCH/037
+        Room toilet = new Room(5, "toilet.tmx", "Toilet");
 
-        rooms.add(new Room(1, "rch037.tmx", "RCH/037 Lecture Theatre")
-                .addTransition(new Room.Transition().setFrom(2, 5).setTo(0, 11, 1, Direction.NORTH))  //To Main Room
-                .addTransition(new Room.Transition().setFrom(3, 5).setTo(0, 12, 1, Direction.NORTH))  //To Main Room
+        Room computerRoom = new Room(6, "computerroom.tmx", "Computer Room");
 
-                .addTransition(new Room.Transition().setFrom(11, 17).setTo(6, 7, 1, Direction.NORTH))    //To Computer Room
-                .addTransition(new Room.Transition().setFrom(12, 17).setTo(6, 8, 1, Direction.NORTH)));  //To Computer Room
+        Room lakeHouse = new Room(7, "lakehouse.tmx", "Lakehouse");
 
-        rooms.add(new Room(2, "portersoffice.tmx", "Porters Office")
-                .addTransition(new Room.Transition().setFrom(1, 5).setTo(0, 17, 17, Direction.WEST)));  //To Main Room
+        Room outside = new Room(8, "outside.tmx", "Outside Ron Cooke Hub");
 
-        rooms.add(new Room(3, "kitchen.tmx", "Kitchen")
-                .addTransition(new Room.Transition().setFrom(1, 3).setTo(0, 27, 13, Direction.WEST)));  //To Main Room
+        Room pod = new Room(9, "pod.tmx", "Pod");
 
-        rooms.add(new Room(4, "islandofinteraction.tmx", "Island of Interaction")
-                .addTransition(new Room.Transition().setFrom(11, 14).setTo(0, 26, 29, Direction.WEST)));  //To Main Room
 
-        rooms.add(new Room(5, "toilet.tmx", "Toilet")
-                .addTransition(new Room.Transition().setFrom(1, 1).setTo(0, 18, 2, Direction.WEST)));  //To Main Room
 
-        rooms.add(new Room(6, "computerroom.tmx", "Computer Room")
-                .addTransition(new Room.Transition().setFrom(13, 11).setTo(7, 11, 1, Direction.NORTH))    //To Lakehouse
+        mainRoom.addTransition(new Room.Transition().setFrom(17, 17).setTo(portersOffice, 1, 5, Direction.EAST))    //To Porters Office
 
-                .addTransition(new Room.Transition().setFrom(7, 1).setTo(1, 11, 17, Direction.SOUTH))    //To RCH/037
-                .addTransition(new Room.Transition().setFrom(8, 1).setTo(1, 12, 17, Direction.SOUTH))    //To RCH/037
+                .addTransition(new Room.Transition().setFrom(27, 13).setTo(kitchen, 1, 3, Direction.EAST))    //To Kitchen
 
-                .addTransition(new Room.Transition().setFrom(2, 2).setTo(0, 2, 8, Direction.EAST)));  //To Main Room
+                .addTransition(new Room.Transition().setFrom(26, 29).setTo(islandOfInteraction, 11, 14, Direction.WEST))    //To Island of Interaction
 
-        rooms.add(new Room(7, "lakehouse.tmx", "Lakehouse")
-                .addTransition(new Room.Transition().setFrom(11, 1).setTo(6, 13, 11, Direction.WEST)));  //To Computer Room
+                .addTransition(new Room.Transition().setFrom(18, 2).setTo(toilet, 1, 1, Direction.EAST))    //To Toilet
 
-        rooms.add(new Room(8, "outside.tmx", "Outside Ron Cooke Hub")
-                .addTransition(new Room.Transition().setFrom(19, 4).setTo(0, 3, 5, Direction.NORTH))    //To Main Room
-                .addTransition(new Room.Transition().setFrom(20, 4).setTo(0, 4, 5, Direction.NORTH))    //To Main Room
+                .addTransition(new Room.Transition().setFrom(2, 8).setTo(computerRoom, 2, 2, Direction.EAST))      //To Computer Room
 
-                .addTransition(new Room.Transition().setFrom(9, 11).setTo(9, 18, 9, Direction.WEST))    //To Pod
-                .addTransition(new Room.Transition().setFrom(9, 12).setTo(9, 18, 10, Direction.WEST)));  //To Pod
+                .addTransition(new Room.Transition().setFrom(3, 5).setTo(outside, 19, 4, Direction.SOUTH)) //To Outside
+                .addTransition(new Room.Transition().setFrom(4, 5).setTo(outside, 20, 4, Direction.SOUTH)) //To Outside
 
-        rooms.add(new Room(9, "pod.tmx", "Pod")
-                .addTransition(new Room.Transition().setFrom(18, 9).setTo(8, 9, 11, Direction.EAST))    //To Outside
-                .addTransition(new Room.Transition().setFrom(18, 10).setTo(8, 9, 12, Direction.EAST)));  //To Outside
+                .addTransition(new Room.Transition().setFrom(11, 1).setTo(rch037, 2, 5, Direction.SOUTH))  //To RCH/037
+                .addTransition(new Room.Transition().setFrom(12, 1).setTo(rch037, 3, 5, Direction.SOUTH));  //To RCH/037
+
+        rch037.addTransition(new Room.Transition().setFrom(2, 5).setTo(mainRoom, 11, 1, Direction.NORTH))  //To Main Room
+                .addTransition(new Room.Transition().setFrom(3, 5).setTo(mainRoom, 12, 1, Direction.NORTH))  //To Main Room
+
+                .addTransition(new Room.Transition().setFrom(11, 17).setTo(computerRoom, 7, 1, Direction.NORTH))    //To Computer Room
+                .addTransition(new Room.Transition().setFrom(12, 17).setTo(computerRoom, 8, 1, Direction.NORTH));  //To Computer Room
+
+        portersOffice.addTransition(new Room.Transition().setFrom(1, 5).setTo(mainRoom, 17, 17, Direction.WEST));  //To Main Room
+
+        kitchen.addTransition(new Room.Transition().setFrom(1, 3).setTo(mainRoom, 27, 13, Direction.WEST));  //To Main Room
+
+        islandOfInteraction.addTransition(new Room.Transition().setFrom(11, 14).setTo(mainRoom, 26, 29, Direction.WEST));  //To Main Room
+
+        toilet.addTransition(new Room.Transition().setFrom(1, 1).setTo(mainRoom, 18, 2, Direction.WEST));  //To Main Room
+
+        computerRoom.addTransition(new Room.Transition().setFrom(13, 11).setTo(lakeHouse, 11, 1, Direction.NORTH))    //To Lakehouse
+
+                .addTransition(new Room.Transition().setFrom(7, 1).setTo(rch037, 11, 17, Direction.SOUTH))    //To RCH/037
+                .addTransition(new Room.Transition().setFrom(8, 1).setTo(rch037, 12, 17, Direction.SOUTH))    //To RCH/037
+
+                .addTransition(new Room.Transition().setFrom(2, 2).setTo(mainRoom, 2, 8, Direction.EAST));  //To Main Room
+
+        lakeHouse.addTransition(new Room.Transition().setFrom(11, 1).setTo(computerRoom, 13, 11, Direction.WEST));  //To Computer Room
+
+        outside.addTransition(new Room.Transition().setFrom(19, 4).setTo(mainRoom, 3, 5, Direction.NORTH))    //To Main Room
+                .addTransition(new Room.Transition().setFrom(20, 4).setTo(mainRoom, 4, 5, Direction.NORTH))    //To Main Room
+
+                .addTransition(new Room.Transition().setFrom(9, 11).setTo(pod, 18, 9, Direction.WEST))    //To Pod
+                .addTransition(new Room.Transition().setFrom(9, 12).setTo(pod, 18, 10, Direction.WEST));  //To Pod
+
+        pod.addTransition(new Room.Transition().setFrom(18, 9).setTo(outside, 9, 11, Direction.EAST))    //To Outside
+                .addTransition(new Room.Transition().setFrom(18, 10).setTo(outside, 9, 12, Direction.EAST));  //To Outside
+
+        rooms = Arrays.asList(mainRoom, rch037, portersOffice, kitchen, islandOfInteraction, toilet, computerRoom, lakeHouse, outside, pod);
     }
 
     /**
-     * This takes the current room and location and moves the player to the new room
+     * This takes the current room and location gets the transition data and applies it to the player and game
      *
-     * param currentRoomID - The current room the player is in
+     * @param player - The player to move rooms.
      * @param currentX - The current X coordinate
      * @param currentY - The current Y coordinate
      */
-    public void moveRoom(int currentRoomID, int currentX, int currentY)
+    public void moveRoom(Player player, int currentX, int currentY)
     {
-        Room currentRoom = rooms.get(currentRoomID);
 
-        Room.Transition newRoomData = currentRoom.getNewRoom(currentX, currentY);
+        Room.Transition newRoomData = player.getRoom().getTransitionData(currentX, currentY);
 
-        GameMain.me.changeRoom(newRoomData);
+
+        player.setRoom(newRoomData.getNewRoom());
+
+
+        /*
+        TODO: Look into making a getter for the players Game this way we can do player.getGame() here instead of GameMain.
+         */
+
+        GameMain.me.navigationScreen.setTiledMapRenderer(player.getRoom().getTiledMap());
+
+        if (newRoomData.newDirection != null)
+        {
+            player.setDirection(newRoomData.newDirection);
+            player.updateTextureRegion();
+        }
+
+        player.setTileCoordinates(newRoomData.newTileCoordinates.x, newRoomData.newTileCoordinates.y);
     }
 
+
+    //TODO: Make this work properly every time or remove it if we dont need it. Having looked it only exists to give the player an initial room
     /**
      * This returns a room from the list based on the id.
      *

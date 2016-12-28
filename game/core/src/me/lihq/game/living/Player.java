@@ -85,10 +85,6 @@ public class Player extends AbstractPerson
         return this.personalityLevel;
     }
 
-    public void changeRoom(int roomID, int newX, int newY)
-    {
-        changeRoom(GameMain.me.gameMap.getRoom(roomID), newX, newY);
-    }
 
     /**
      * This method takes a room & its coordinates, then moves the player to that specific room
