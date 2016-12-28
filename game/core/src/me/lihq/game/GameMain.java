@@ -42,13 +42,13 @@ public class GameMain extends Game
     public int ticks = 0;
     public int lastSecond = -1;
     /**
-     * An FPSLogger, FPSLogger allows us to check the game FPS is good enough
-     */
-    FPSLogger FPS;
-    /**
      * A screen to be used to display standard gameplay within the game , including the status bar.
      */
     public NavigationScreen navigationScreen;
+    /**
+     * An FPSLogger, FPSLogger allows us to check the game FPS is good enough
+     */
+    FPSLogger FPS;
 
     /**
      * This is called at start up. It initialises the game.
@@ -97,7 +97,6 @@ public class GameMain extends Game
     {
 
     }
-
 
 
     /**

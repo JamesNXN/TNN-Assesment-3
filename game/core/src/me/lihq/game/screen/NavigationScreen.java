@@ -89,7 +89,7 @@ public class NavigationScreen extends AbstractScreen
 
     /**
      * This is the room name tag that is to be rendered to the screen
-     *
+     * <p>
      * If it is null then there is no tag to display
      */
     private RoomTag roomTag = null;
@@ -154,38 +154,30 @@ public class NavigationScreen extends AbstractScreen
         //Some things should be updated all the time.
         updateTransition();
 
-        if (roomTag != null)
-        {
+        if (roomTag != null) {
             roomTag.update();
         }
     }
 
     private void updateTransition()
     {
-        if (roomTransition)
-        {
+        if (roomTransition) {
             BLACK_BACKGROUND.setAlpha(Interpolation.pow4.apply(0, 1, animTimer / ANIM_TIME));
 
-            if (fadeToBlack)
-            {
-                animTimer ++;
+            if (fadeToBlack) {
+                animTimer++;
 
-                if (animTimer == ANIM_TIME)
-                {
+                if (animTimer == ANIM_TIME) {
                     game.gameMap.moveRoom(game.player, game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
                 }
 
-                if (animTimer > ANIM_TIME)
-                {
+                if (animTimer > ANIM_TIME) {
                     fadeToBlack = false;
                 }
-            }
-            else
-            {
-                animTimer --;
+            } else {
+                animTimer--;
 
-                if (animTimer < 0)
-                {
+                if (animTimer < 0) {
                     finishRoomTransition();
                 }
             }
@@ -207,6 +199,7 @@ public class NavigationScreen extends AbstractScreen
 
         roomTag = new RoomTag(game.player.getRoom().getName());
     }
+
     /**
      * Called when the screen should render itself.
      *
@@ -217,8 +210,7 @@ public class NavigationScreen extends AbstractScreen
     {
         game.player.pushCoordinatesToSprite();
 
-        if (changeMap)
-        {
+        if (changeMap) {
             tiledMapRenderer.setMap(map);
             changeMap = false;
         }
@@ -233,14 +225,10 @@ public class NavigationScreen extends AbstractScreen
         //Everything to be drawn relative to bottom left of the map
         tiledMapRenderer.getBatch().begin();
 
-        if (game.player.getRoom().isTriggerTile(game.player.getTileCoordinates().x, game.player.getTileCoordinates().y) && game.player.getState() != PersonState.WALKING)
-        {
-            if (ARROW_SPRITE != null)
-            {
+        if (game.player.getRoom().isTriggerTile(game.player.getTileCoordinates().x, game.player.getTileCoordinates().y) && game.player.getState() != PersonState.WALKING) {
+            if (ARROW_SPRITE != null) {
                 ARROW_SPRITE.draw(tiledMapRenderer.getBatch());
-            }
-            else
-            {
+            } else {
                 String rotation = game.player.getRoom().getMatRotation(game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
                 ARROW_SPRITE = new Sprite(Assets.getArrowDirection(rotation));
 
@@ -249,9 +237,7 @@ public class NavigationScreen extends AbstractScreen
 
                 ARROW_SPRITE.setPosition(x, y);
             }
-        }
-        else
-        {
+        } else {
             ARROW_SPRITE = null;
         }
 
@@ -260,13 +246,11 @@ public class NavigationScreen extends AbstractScreen
         //Everything to be drawn relative to bottom left of the screen
         spriteBatch.begin();
 
-        if (roomTransition)
-        {
+        if (roomTransition) {
             BLACK_BACKGROUND.draw(spriteBatch);
         }
 
-        if (roomTag != null)
-        {
+        if (roomTag != null) {
             roomTag.render(spriteBatch);
         }
 

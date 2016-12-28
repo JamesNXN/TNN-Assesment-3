@@ -47,7 +47,6 @@ public class Map
         Room pod = new Room(9, "pod.tmx", "Pod");
 
 
-
         mainRoom.addTransition(new Room.Transition().setFrom(17, 17).setTo(portersOffice, 1, 5, Direction.EAST))    //To Porters Office
 
                 .addTransition(new Room.Transition().setFrom(27, 13).setTo(kitchen, 1, 3, Direction.EAST))    //To Kitchen
@@ -102,7 +101,7 @@ public class Map
     /**
      * This takes the current room and location gets the transition data and applies it to the player and game
      *
-     * @param player - The player to move rooms.
+     * @param player   - The player to move rooms.
      * @param currentX - The current X coordinate
      * @param currentY - The current Y coordinate
      */
@@ -121,8 +120,7 @@ public class Map
 
         GameMain.me.navigationScreen.setTiledMapRenderer(player.getRoom().getTiledMap());
 
-        if (newRoomData.newDirection != null)
-        {
+        if (newRoomData.newDirection != null) {
             player.setDirection(newRoomData.newDirection);
             player.updateTextureRegion();
         }
@@ -132,6 +130,7 @@ public class Map
 
 
     //TODO: Make this work properly every time or remove it if we dont need it. Having looked it only exists to give the player and NPC an initial room
+
     /**
      * This returns a room from the list based on the id.
      *

@@ -56,8 +56,7 @@ public class Player extends AbstractPerson
             return;
         }
 
-        if (getRoom().isTriggerTile(this.tileCoordinates.x, this.tileCoordinates.y) && dir.toString().equals(getRoom().getMatRotation(this.tileCoordinates.x, this.tileCoordinates.y)))
-        {
+        if (getRoom().isTriggerTile(this.tileCoordinates.x, this.tileCoordinates.y) && dir.toString().equals(getRoom().getMatRotation(this.tileCoordinates.x, this.tileCoordinates.y))) {
             GameMain.me.getNavigationScreen().initialiseRoomChange();
             return;
         }
@@ -91,8 +90,8 @@ public class Player extends AbstractPerson
      * at the defined coordinates.
      *
      * @param newRoom - The room to change to
-     * @param newX - The X coordinate to move to
-     * @param newY - The Y coordinate to move to
+     * @param newX    - The X coordinate to move to
+     * @param newY    - The Y coordinate to move to
      */
     public void changeRoom(Room newRoom, int newX, int newY)
     {

@@ -17,7 +17,7 @@ public class Room
 {
     /**
      * This stores the name of the room.
-     *
+     * <p>
      * It is displayed on the tag when they enter the room
      */
     private String name;
@@ -54,9 +54,10 @@ public class Room
 
     /**
      * Constructor that builds a Room object from the given parameters
-     * @param id - The integer ID of the room
+     *
+     * @param id      - The integer ID of the room
      * @param mapFile - The String that points to the tmx map file.
-     * @param name - The name of the room
+     * @param name    - The name of the room
      */
     public Room(int id, String mapFile, String name)
     {
@@ -86,17 +87,20 @@ public class Room
     /**
      * This returns the String name of the room
      */
-    public String getName() {return this.name;}
+    public String getName()
+    {
+        return this.name;
+    }
 
     /**
      * This moves a clue from its current position to a new defined position
      *
      * @param clue - The clue to change the position of
-     * @param x - The X coordinate to move it to
-     * @param y - The Y coordinate to move it to
+     * @param x    - The X coordinate to move it to
+     * @param y    - The Y coordinate to move it to
      */
-     public void moveClue(Clue clue, int x, int y)
-     {
+    public void moveClue(Clue clue, int x, int y)
+    {
         if (cluesInRoom.contains(clue)) {
             clue.setCoords(x, y);
         }
@@ -144,8 +148,7 @@ public class Room
         for (int currentLayer = 0; currentLayer < amountOfLayers; currentLayer++) {
             TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(currentLayer);
 
-            if (tl.getCell(x, y) == null)
-            {
+            if (tl.getCell(x, y) == null) {
                 emptyCellCount++; //for every empty cell increase the emptyCellCount by 1
                 continue;
             }
@@ -189,8 +192,7 @@ public class Room
         for (int currentLayer = 0; currentLayer < amountOfLayers; currentLayer++) {
             TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(currentLayer);
 
-            if (tl.getCell(x, y) == null)
-            {
+            if (tl.getCell(x, y) == null) {
                 continue;
             }
 
@@ -208,7 +210,7 @@ public class Room
 
     /**
      * This method gets the rotation that the map is that they are standing on.
-     *
+     * <p>
      * If they aren't on a mat, it returns null
      *
      * @param x - The x coordinate to check
@@ -283,21 +285,18 @@ public class Room
     public static class Transition
     {
         public Vector2Int from = new Vector2Int(0, 0);
-
-        /**
-         * The new room to transition to
-         */
-        private Room newRoom;
-
         /**
          * The direction the player should face when they enter the roo,
          */
         public Direction newDirection = null;
-
         /**
          * The entry point to the room in terms of tiles
          */
         public Vector2Int newTileCoordinates = new Vector2Int(0, 0);
+        /**
+         * The new room to transition to
+         */
+        private Room newRoom;
 
         public Transition()
         {

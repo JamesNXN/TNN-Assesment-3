@@ -13,7 +13,8 @@ import me.lihq.game.Settings;
  * This class is for the RoomTag that is to be displayed at the top left
  * of the screen when a new room is entered.
  */
-public class RoomTag {
+public class RoomTag
+{
 
     /**
      * This is the room name it is to display
@@ -22,7 +23,7 @@ public class RoomTag {
 
     /**
      * This is the position of the window relative to the top left of the window
-     *
+     * <p>
      * The rendering calculation is done by the render method
      */
     private Vector2 position = new Vector2(25f, 0f);
@@ -59,7 +60,7 @@ public class RoomTag {
 
     /**
      * This method renders the room tag to the provided SpriteBatch.
-     *
+     * <p>
      * It is called by the screens render method.
      *
      * @param batch - The SpriteBatch to draw the tag to
@@ -68,8 +69,7 @@ public class RoomTag {
     {
         boolean toClose = false;
 
-        if (!batch.isDrawing())
-        {
+        if (!batch.isDrawing()) {
             batch.begin();
             toClose = true;
         }
@@ -84,8 +84,7 @@ public class RoomTag {
         Assets.FONT.setColor(Color.WHITE);
         Assets.FONT.draw(batch, roomName, position.x * 5.1f, Gdx.graphics.getHeight() - position.y + 75);
 
-        if (toClose)
-        {
+        if (toClose) {
             batch.end();
         }
     }
@@ -95,20 +94,14 @@ public class RoomTag {
      */
     public void update()
     {
-        if (animTime <= MAX_ANIM_TIME)
-        {
-            animTime ++;
-        }
-        else if (timeShown <= MAX_TIME_SHOWN)
-        {
-            timeShown ++;
-        }
-        else
-        {
-            animTime ++;
+        if (animTime <= MAX_ANIM_TIME) {
+            animTime++;
+        } else if (timeShown <= MAX_TIME_SHOWN) {
+            timeShown++;
+        } else {
+            animTime++;
 
-            if (animTime >= 2 * MAX_ANIM_TIME)
-            {
+            if (animTime >= 2 * MAX_ANIM_TIME) {
                 GameMain.me.getNavigationScreen().setRoomTag(null);
             }
         }

@@ -19,44 +19,36 @@ import me.lihq.game.models.Vector2Int;
 public abstract class AbstractPerson extends Sprite
 {
     /**
+     * The height of the texture region for each person
+     */
+    protected static int SPRITE_HEIGHT = 48;
+    /**
+     * The width of the texture region for each person
+     */
+    protected static int SPRITE_WIDTH = 32;
+    /**
      * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
      * Uses the Vector2Int as the tileCoordinates should never be floats as the person should only be between tiles during the move process.
      */
     protected Vector2Int tileCoordinates = new Vector2Int(0, 0);
-
     /**
      * This is the players location in the current room.
      * Note this is different to sprite position, the sprite position is the location that the person is currently drawn.
      * Avoid using Sprites setPosition as if it is changed mid render it will cause jolting.
      */
     protected Vector2 coordinates = new Vector2().set(0.0f, 0.0f);
-
     /**
      * A store of the starting point for a movement.
      */
     protected Vector2Int startTile = new Vector2Int(0, 0);
-
     /**
      * A store of the destination for a movement.
      */
     protected Vector2Int destinationTile = new Vector2Int(0, 0);
-
     protected float animTimer;
     protected float animTime = Settings.TPS / 3.5f;
-
     protected Texture spriteSheet;
     protected TextureRegion currentRegion;
-
-    /**
-     * The height of the texture region for each person
-     */
-    protected static int SPRITE_HEIGHT = 48;
-
-    /**
-     * The width of the texture region for each person
-     */
-    protected static int SPRITE_WIDTH = 32;
-
     /**
      * The direction determines the way the character is facing.
      */
@@ -96,7 +88,7 @@ public abstract class AbstractPerson extends Sprite
 
     /**
      * This method returns the Persons walking state.
-     *
+     * <p>
      * Either WALKING or STANDING
      */
     public PersonState getState()

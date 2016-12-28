@@ -60,20 +60,13 @@ public class Assets
 
     public static TextureRegion getArrowDirection(String direction)
     {
-        if (direction.equals("NORTH"))
-        {
+        if (direction.equals("NORTH")) {
             return UP_ARROW;
-        }
-        else if (direction.equals("SOUTH"))
-        {
+        } else if (direction.equals("SOUTH")) {
             return DOWN_ARROW;
-        }
-        else if (direction.equals("WEST"))
-        {
+        } else if (direction.equals("WEST")) {
             return LEFT_ARROW;
-        }
-        else if (direction.equals("EAST"))
-        {
+        } else if (direction.equals("EAST")) {
             return RIGHT_ARROW;
         }
 
