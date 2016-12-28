@@ -16,8 +16,6 @@ public class PlayerController extends InputAdapter
     private boolean north, south, west, east;
     private Player player;
 
-    //TODO: Add short clicks just changing direction
-
     public PlayerController(Player player)
     {
         this.player = player;

@@ -63,11 +63,6 @@ public class NavigationScreen extends AbstractScreen
     private boolean pause = false;
 
     //TODO: add more information about this class
-    /**
-     * Initialises the navigation screen
-     *
-     * @param game
-     */
     private StatusBar statusBar;
     /**
      * This determines whether the player is currently changing rooms, it will fade out to black, change
@@ -99,6 +94,12 @@ public class NavigationScreen extends AbstractScreen
      */
     private RoomTag roomTag = null;
 
+
+    /**
+     * Initialises the navigation screen
+     *
+     * @param game
+     */
     public NavigationScreen(GameMain game)
     {
         super(game);
