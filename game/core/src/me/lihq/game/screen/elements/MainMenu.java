@@ -56,7 +56,7 @@ public class MainMenu {
 
         //Creating the label containing text and determining  its size and location on screen
         text = new Label("Welcome To the Lorem Ipsum Murder Mystery Game!",textStyle);
-        text.setBounds(WIDTH/2,Gdx.graphics.getHeight()/2+Gdx.graphics.getHeight()/4,2*WIDTH,Gdx.graphics.getHeight()/3);
+        text.setBounds(Gdx.graphics.getWidth()/2-text.getWidth(),Gdx.graphics.getHeight()/2+Gdx.graphics.getHeight()/3+Gdx.graphics.getHeight()/16,text.getWidth(),text.getHeight());
         text.setFontScale(2,2);
 
         //Adding the text to the screen
