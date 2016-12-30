@@ -37,12 +37,13 @@ public class RoomArrow extends Sprite
 
 
     /**
-     * This is called on every render it handles the drawing of the RoomArrow
+     * This is called to draw the RoomArrow
      * @param batch
      */
-    public void render(Batch batch)  {
+    @Override
+    public void draw(Batch batch)  {
         if (this.visible) {
-            this.draw(batch);
+            super.draw(batch);
         }
     }
 

@@ -8,27 +8,20 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
-import me.lihq.game.Assets;
 import me.lihq.game.GameMain;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.Settings;
-import me.lihq.game.living.AbstractPerson;
 import me.lihq.game.living.controller.PlayerController;
 import me.lihq.game.screen.elements.OrthogonalTiledMapRendererWithSprite;
 import me.lihq.game.screen.elements.RoomArrow;
 import me.lihq.game.screen.elements.RoomTag;
 import me.lihq.game.screen.elements.StatusBar;
-import org.omg.CORBA.ARG_OUT;
-
-import static me.lihq.game.living.AbstractPerson.*;
 
 
 /**
@@ -229,7 +222,7 @@ public class NavigationScreen extends AbstractScreen
         //Everything to be drawn relative to bottom left of the map
         tiledMapRenderer.getBatch().begin();
 
-        arrow.render(tiledMapRenderer.getBatch());
+        arrow.draw(tiledMapRenderer.getBatch());
 
         tiledMapRenderer.getBatch().end();
 
