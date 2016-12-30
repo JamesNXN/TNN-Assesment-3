@@ -99,6 +99,8 @@ public class Map
         rooms = Arrays.asList(mainRoom, rch037, portersOffice, kitchen, islandOfInteraction, toilet, computerRoom, lakeHouse, outside, pod);
     }
 
+
+    //TODO: Look into moving this method into the player class
     /**
      * This takes the player at its current position, and automatically gets the transition data for the next room and applies it to the player and game
      *
@@ -121,7 +123,8 @@ public class Map
         player.setTileCoordinates(newRoomData.newTileCoordinates.x, newRoomData.newTileCoordinates.y);
 
         //TODO: Look into making a getter for the players Game this way we can do player.getGame() here instead of GameMain.
-        GameMain.me.navigationScreen.updateTiledMapRenderer( );
+
+        GameMain.me.navigationScreen.updateTiledMapRenderer();
     }
 
 
