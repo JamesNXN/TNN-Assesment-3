@@ -153,7 +153,7 @@ public class GameMain extends Game
     {
         //Add ALL NPCs to the list
         //This is how you initialise an NPC
-        player = new Player("Test name", "player.png", 15, 15);
+        player = new Player("Test name", "player.png", 3, 6);
 
         {
             //TODO: Add NPC assets
