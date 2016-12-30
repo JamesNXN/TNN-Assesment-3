@@ -66,7 +66,7 @@ public class GameMain extends Game
 
         //set up the screen and display the first room
         navigationScreen = new NavigationScreen(this);
-        navigationScreen.setTiledMapRenderer(player.getRoom().getTiledMap());
+        navigationScreen.updateTiledMapRenderer();
         this.setScreen(navigationScreen);
         //Instantiate the FPSLogger to show FPS
         FPS = new FPSLogger();

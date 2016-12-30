@@ -100,16 +100,14 @@ public class Map
     }
 
     /**
-     * This takes the current room and location gets the transition data and applies it to the player and game
+     * This takes the player at its current position, gets the transition data and applies it to the player and game
      *
      * @param player   - The player to move rooms.
-     * @param currentX - The current X coordinate
-     * @param currentY - The current Y coordinate
      */
-    public void moveRoom(Player player, int currentX, int currentY)
+    public void moveRoom(Player player)
     {
 
-        Room.Transition newRoomData = player.getRoom().getTransitionData(currentX, currentY);
+        Room.Transition newRoomData = player.getRoom().getTransitionData(player.getTileCoordinates().x, player.getTileCoordinates().y);
 
 
         player.setRoom(newRoomData.getNewRoom());
@@ -119,7 +117,7 @@ public class Map
         TODO: Look into making a getter for the players Game this way we can do player.getGame() here instead of GameMain.
          */
 
-        GameMain.me.navigationScreen.setTiledMapRenderer(player.getRoom().getTiledMap());
+        GameMain.me.navigationScreen.updateTiledMapRenderer();
 
         if (newRoomData.newDirection != null) {
             player.setDirection(newRoomData.newDirection);

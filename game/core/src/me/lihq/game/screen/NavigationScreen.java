@@ -172,7 +172,7 @@ public class NavigationScreen extends AbstractScreen
                 animTimer++;
 
                 if (animTimer == ANIM_TIME) {
-                    game.gameMap.moveRoom(game.player, game.player.getTileCoordinates().x, game.player.getTileCoordinates().y);
+                    game.gameMap.moveRoom(game.player);
                 }
 
                 if (animTimer > ANIM_TIME) {
@@ -286,10 +286,18 @@ public class NavigationScreen extends AbstractScreen
         spriteBatch.dispose();
     }
 
+
+    //TODO: decide if this is wanted, I am proposing we just use the one below (updateTiledMapRenderer)
     public void setTiledMapRenderer(TiledMap map)
     {
         this.map = map;
         changeMap = true;
+    }
+
+    //
+    public void updateTiledMapRenderer()
+    {
+        this.tiledMapRenderer.setMap(game.player.getRoom().getTiledMap());
     }
 
     public void setRoomTag(RoomTag tag)
