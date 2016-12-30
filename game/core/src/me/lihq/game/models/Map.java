@@ -100,7 +100,7 @@ public class Map
     }
 
     /**
-     * This takes the player at its current position, gets the transition data and applies it to the player and game
+     * This takes the player at its current position, and automatically gets the transition data for the next room and applies it to the player and game
      *
      * @param player   - The player to move rooms.
      */
@@ -113,18 +113,15 @@ public class Map
         player.setRoom(newRoomData.getNewRoom());
 
 
-        /*
-        TODO: Look into making a getter for the players Game this way we can do player.getGame() here instead of GameMain.
-         */
-
-        GameMain.me.navigationScreen.updateTiledMapRenderer();
-
         if (newRoomData.newDirection != null) {
             player.setDirection(newRoomData.newDirection);
             player.updateTextureRegion();
         }
 
         player.setTileCoordinates(newRoomData.newTileCoordinates.x, newRoomData.newTileCoordinates.y);
+
+        //TODO: Look into making a getter for the players Game this way we can do player.getGame() here instead of GameMain.
+        GameMain.me.navigationScreen.updateTiledMapRenderer( );
     }
 
 
