@@ -83,17 +83,27 @@ public class Player extends AbstractPerson
 
 
     /**
-     * This method takes a room & its coordinates, then moves the player to that specific room
-     * at the defined coordinates.
-     *
-     * @param newRoom - The room to change to
-     * @param newX    - The X coordinate to move to
-     * @param newY    - The Y coordinate to move to
+     * This takes the player at its current position, and automatically gets the transition data for the next room and applies it to the player and game
      */
-    public void changeRoom(Room newRoom, int newX, int newY)
+    public void moveRoom()
     {
-        setRoom(newRoom);
+        if (isOnTriggerTile()) {
+            Room.Transition newRoomData = this.getRoom().getTransitionData(this.getTileCoordinates().x, this.getTileCoordinates().y);
 
-        this.setTileCoordinates(newX, newY);
+
+            this.setRoom(newRoomData.getNewRoom());
+
+
+            if (newRoomData.newDirection != null) {
+                this.setDirection(newRoomData.newDirection);
+                this.updateTextureRegion();
+            }
+
+            this.setTileCoordinates(newRoomData.newTileCoordinates.x, newRoomData.newTileCoordinates.y);
+
+            //TODO: Look into making a getter for the players Game this way we can do this.getGame() here instead of GameMain.
+
+            GameMain.me.navigationScreen.updateTiledMapRenderer();
+        }
     }
 }

@@ -100,34 +100,6 @@ public class Map
     }
 
 
-    //TODO: Look into moving this method into the player class
-    /**
-     * This takes the player at its current position, and automatically gets the transition data for the next room and applies it to the player and game
-     *
-     * @param player   - The player to move rooms.
-     */
-    public void moveRoom(Player player)
-    {
-
-        Room.Transition newRoomData = player.getRoom().getTransitionData(player.getTileCoordinates().x, player.getTileCoordinates().y);
-
-
-        player.setRoom(newRoomData.getNewRoom());
-
-
-        if (newRoomData.newDirection != null) {
-            player.setDirection(newRoomData.newDirection);
-            player.updateTextureRegion();
-        }
-
-        player.setTileCoordinates(newRoomData.newTileCoordinates.x, newRoomData.newTileCoordinates.y);
-
-        //TODO: Look into making a getter for the players Game this way we can do player.getGame() here instead of GameMain.
-
-        GameMain.me.navigationScreen.updateTiledMapRenderer();
-    }
-
-
     //TODO: Make this work properly every time or remove it if we dont need it. Having looked it only exists to give the player and NPC an initial room
 
     /**

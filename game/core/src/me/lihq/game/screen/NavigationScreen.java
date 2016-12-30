@@ -165,7 +165,7 @@ public class NavigationScreen extends AbstractScreen
                 animTimer++;
 
                 if (animTimer == ANIM_TIME) {
-                    game.gameMap.moveRoom(game.player);
+                    game.player.moveRoom();
                 }
 
                 if (animTimer > ANIM_TIME) {
@@ -208,7 +208,7 @@ public class NavigationScreen extends AbstractScreen
         game.player.pushCoordinatesToSprite();
 
         if (changeMap) {
-            tiledMapRenderer.setMap(map);
+            tiledMapRenderer.setMap(game.player.getRoom().getTiledMap());
             changeMap = false;
         }
 
@@ -279,18 +279,12 @@ public class NavigationScreen extends AbstractScreen
         spriteBatch.dispose();
     }
 
-
-    //TODO: decide if this is wanted, I am proposing we just use the one below (updateTiledMapRenderer)
-    public void setTiledMapRenderer(TiledMap map)
-    {
-        this.map = map;
-        changeMap = true;
-    }
-
-    //
+    /**
+     * This lets the tiledMapRenderer know that on the next render it should reload the current room from the player.
+     */
     public void updateTiledMapRenderer()
     {
-        this.tiledMapRenderer.setMap(game.player.getRoom().getTiledMap());
+        this.changeMap = true;
     }
 
     public void setRoomTag(RoomTag tag)
