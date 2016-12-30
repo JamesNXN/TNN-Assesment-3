@@ -13,7 +13,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.Settings;
 import me.lihq.game.living.controller.PlayerController;
+import me.lihq.game.screen.elements.SpeechBox;
+import me.lihq.game.screen.elements.SpeechBoxButton;
 import me.lihq.game.screen.elements.StatusBar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is the screen that is responsible for the navigation of the player around the game.
@@ -28,6 +33,7 @@ public class NavigationScreen extends AbstractScreen {
     public PlayerController playerController;
     private SpriteBatch spriteBatch;
 
+    private SpeechBox speechBox;
     private StatusBar statusBar;
 
     //TODO: add more information about this class
@@ -52,6 +58,16 @@ public class NavigationScreen extends AbstractScreen {
 
         spriteBatch = new SpriteBatch();
 
+
+        ArrayList<SpeechBoxButton> buttons = new ArrayList<>();
+        SpeechBoxButton.EventHandler eventHandler = (String name) -> {
+            System.out.println(name + " was pressed");
+        };
+        buttons.add(new SpeechBoxButton("Button 1", eventHandler));
+        buttons.add(new SpeechBoxButton("Button 2", eventHandler));
+        buttons.add(new SpeechBoxButton("Button 3", eventHandler));
+        speechBox = new SpeechBox("Hello, my name is Example NPC Name!", buttons);
+
         statusBar = new StatusBar();
     }
 
@@ -59,11 +75,14 @@ public class NavigationScreen extends AbstractScreen {
      * This is ran when the navigation screen becomes the visible screen in GameMain
      */
     @Override
-    public void show() {
+    public void show()
+    {
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(playerController);
+        multiplexer.addProcessor(speechBox.stage);
         multiplexer.addProcessor(statusBar.stage);
         Gdx.input.setInputProcessor(multiplexer);
+
     }
 
     @Override
@@ -71,7 +90,6 @@ public class NavigationScreen extends AbstractScreen {
 
         playerController.update();
         game.player.update();
-
     }
 
     /**
@@ -96,7 +114,9 @@ public class NavigationScreen extends AbstractScreen {
         game.player.draw(spriteBatch);
         spriteBatch.end();
 
+        speechBox.render();
         statusBar.render();
+
     }
 
     @Override
@@ -123,6 +143,7 @@ public class NavigationScreen extends AbstractScreen {
     public void dispose() {
         map.dispose();
         tiledMapRenderer.dispose();
+        speechBox.dispose();
         statusBar.dispose();
     }
 

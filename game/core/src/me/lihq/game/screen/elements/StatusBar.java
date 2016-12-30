@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.Align;
  */
 public class StatusBar {
 
-    private static final int HEIGHT = 50; //Used to set height of status bar
+    public static final int HEIGHT = 50; //Used to set height of status bar
     private static final int ITEM_COUNT = 4; //Used to set width of controls on bar
     private static final int WIDTH = (int) Gdx.graphics.getWidth()/ITEM_COUNT;
     private static final Color BACKGROUND_COLOR = Color.GRAY;
