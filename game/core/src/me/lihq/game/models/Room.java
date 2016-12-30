@@ -146,18 +146,18 @@ public class Room
 
 
         for (int currentLayer = 0; currentLayer < amountOfLayers; currentLayer++) {
-            TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(currentLayer);
+            TiledMapTileLayer tiledLayer = (TiledMapTileLayer) map.getLayers().get(currentLayer);
 
-            if (tl.getCell(x, y) == null) {
+            if (tiledLayer.getCell(x, y) == null) {
                 emptyCellCount++; //for every empty cell increase the emptyCellCount by 1
                 continue;
             }
 
-            if (!tl.getCell(x, y).getTile().getProperties().containsKey("walkable")) {
+            if (!tiledLayer.getCell(x, y).getTile().getProperties().containsKey("walkable")) {
                 continue;
             }
 
-            if (Boolean.valueOf(tl.getCell(x, y).getTile().getProperties().get("walkable").toString().equals("false"))) {
+            if (Boolean.valueOf(tiledLayer.getCell(x, y).getTile().getProperties().get("walkable").toString().equals("false"))) {
                 return false;
             }
         }
