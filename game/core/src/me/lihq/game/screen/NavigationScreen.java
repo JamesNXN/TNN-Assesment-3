@@ -18,11 +18,17 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.Settings;
 import me.lihq.game.living.controller.PlayerController;
+
 import me.lihq.game.screen.elements.OrthogonalTiledMapRendererWithSprite;
 import me.lihq.game.screen.elements.RoomArrow;
 import me.lihq.game.screen.elements.RoomTag;
+
+import me.lihq.game.screen.elements.SpeechBox;
+import me.lihq.game.screen.elements.SpeechBoxButton;
 import me.lihq.game.screen.elements.StatusBar;
 
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is the screen that is responsible for the navigation of the player around the game.
@@ -57,7 +63,11 @@ public class NavigationScreen extends AbstractScreen
     private InputMultiplexer multiplexer;
     private boolean pause = false;
 
+
     //TODO: add more information about this class
+
+    private SpeechBox speechBox;
+
     private StatusBar statusBar;
     /**
      * This determines whether the player is currently changing rooms, it will fade out to black, change
@@ -123,11 +133,17 @@ public class NavigationScreen extends AbstractScreen
 
         arrow = new RoomArrow(game.player);
 
+        ArrayList<SpeechBoxButton> buttons = new ArrayList<>();
+        SpeechBoxButton.EventHandler eventHandler = (String name) -> {
+            System.out.println(name + " was pressed");
+        };
+        buttons.add(new SpeechBoxButton("Button 1", eventHandler));
+        buttons.add(new SpeechBoxButton("Button 2", eventHandler));
+        buttons.add(new SpeechBoxButton("Button 3", eventHandler));
+        speechBox = new SpeechBox("Hello, my name is Example NPC Name!", buttons);
+
         statusBar = new StatusBar();
 
-        multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(playerController);
-        multiplexer.addProcessor(statusBar.stage);
     }
 
     /**
@@ -136,7 +152,14 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void show()
     {
+
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(playerController);
+        multiplexer.addProcessor(speechBox.stage);
+        multiplexer.addProcessor(statusBar.stage);
+
         Gdx.input.setInputProcessor(multiplexer);
+
     }
 
     @Override
@@ -167,7 +190,7 @@ public class NavigationScreen extends AbstractScreen
                 if (animTimer == ANIM_TIME) {
                     game.player.moveRoom();
                 }
-
+                
                 if (animTimer > ANIM_TIME) {
                     fadeToBlack = false;
                 }
@@ -193,7 +216,6 @@ public class NavigationScreen extends AbstractScreen
         roomTransition = false;
         fadeToBlack = true;
         pause = false;
-
         roomTag = new RoomTag(game.player.getRoom().getName());
     }
 
@@ -229,8 +251,6 @@ public class NavigationScreen extends AbstractScreen
         //Everything to be drawn relative to bottom left of the screen
         spriteBatch.begin();
 
-
-
         if (roomTransition) {
             BLACK_BACKGROUND.draw(spriteBatch);
         }
@@ -239,11 +259,11 @@ public class NavigationScreen extends AbstractScreen
             roomTag.render(spriteBatch);
         }
 
-
-
-
         spriteBatch.end();
+
+        speechBox.render();
         statusBar.render();
+
     }
 
     @Override
@@ -275,6 +295,7 @@ public class NavigationScreen extends AbstractScreen
     {
         map.dispose();
         tiledMapRenderer.dispose();
+        speechBox.dispose();
         statusBar.dispose();
         spriteBatch.dispose();
     }

@@ -1,7 +1,7 @@
 apply plugin: "java"
 
-sourceCompatibility = 1.6
-sourceSets.main.java.srcDirs = ["src/"]
+sourceCompatibility = 1.8
+sourceSets.main.java.srcDirs = [ "src/" ]
 
 project.ext.mainClassName = "me.lihq.game.desktop.DesktopLauncher"
 project.ext.assetsDir = new File("../core/assets");
