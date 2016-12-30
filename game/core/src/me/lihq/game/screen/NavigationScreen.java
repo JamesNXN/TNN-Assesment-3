@@ -152,6 +152,7 @@ public class NavigationScreen extends AbstractScreen
         if (!pause) { //this statement contains updates that shouldn't happen during a pause
             playerController.update();
             game.player.update();
+            arrow.update();
         }
 
         //Some things should be updated all the time.
