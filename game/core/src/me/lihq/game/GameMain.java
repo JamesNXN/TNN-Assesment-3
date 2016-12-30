@@ -153,12 +153,11 @@ public class GameMain extends Game
     {
         //Add ALL NPCs to the list
         //This is how you initialise an NPC
-        player = new Player("Test name", "player.png");
+        player = new Player("Test name", "player.png", 15, 15);
 
         {
             //TODO: Add NPC assets
-            NPC npc = new NPC(4, 4, 1, "player.png", true)
-                    .setCharacterName("Mr Detective 1")
+            NPC npc = new NPC("Bill", "player.png", 4, 4, 1, true)
                     .setAccessory(ACCESSORY.WATCH)
                     .setHairColor(HAIR_COLOR.GINGER)
                     .setHasGlasses(false)
@@ -170,8 +169,7 @@ public class GameMain extends Game
         }
 
         {
-            NPC npc = new NPC(4, 4, 2, "player.png", true)
-                    .setCharacterName("Mrs Detective 2")
+            NPC npc = new NPC("Bob", "player.png",4,4, 2, true)
                     .setAccessory(ACCESSORY.HANDBAG)
                     .setHairColor(HAIR_COLOR.BLACK)
                     .setHasGlasses(true)

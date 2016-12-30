@@ -1,7 +1,5 @@
 import me.lihq.game.Settings;
-import me.lihq.game.living.AbstractPerson;
 import me.lihq.game.living.Player;
-import me.lihq.game.models.Map;
 import me.lihq.game.models.Room;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +24,7 @@ public class PlayerUnitTests extends GameTester
     @Test
     public void testPlayername()
     {
-        assertEquals("Fail - Not returning correct playername", p.getPlayername(), "Test Name");
+        assertEquals("Fail - Not returning correct playername", p.getName(), "Test Name");
     }
 
     @Test

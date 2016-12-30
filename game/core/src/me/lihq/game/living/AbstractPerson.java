@@ -22,25 +22,35 @@ public abstract class AbstractPerson extends Sprite
      * The height of the texture region for each person
      */
     protected static int SPRITE_HEIGHT = 48;
+
     /**
      * The width of the texture region for each person
      */
     protected static int SPRITE_WIDTH = 32;
+
     /**
      * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
      * Uses the Vector2Int as the tileCoordinates should never be floats as the person should only be between tiles during the move process.
      */
     protected Vector2Int tileCoordinates = new Vector2Int(0, 0);
+
+    /**
+     * The Name of the Person
+     */
+    private String name;
+
     /**
      * This is the players location in the current room.
      * Note this is different to sprite position, the sprite position is the location that the person is currently drawn.
      * Avoid using Sprites setPosition as if it is changed mid render it will cause jolting.
      */
     protected Vector2 coordinates = new Vector2().set(0.0f, 0.0f);
+
     /**
      * A store of the starting point for a movement.
      */
     protected Vector2Int startTile = new Vector2Int(0, 0);
+
     /**
      * A store of the destination for a movement.
      */
@@ -66,13 +76,13 @@ public abstract class AbstractPerson extends Sprite
      *
      * @param img this a path to the image
      */
-    public AbstractPerson(String img)
+    public AbstractPerson(String name, String img, int tileX, int tileY)
     {
         super(new TextureRegion(Assets.loadTexture(img), 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT));
-
+        this.name = name;
         this.spriteSheet = Assets.loadTexture(img);
         this.currentRegion = new TextureRegion(Assets.loadTexture(img), 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT);
-
+        this.setTileCoordinates(tileX, tileY);
         this.setPosition(tileCoordinates.getX() * Settings.TILE_SIZE, tileCoordinates.getY() * Settings.TILE_SIZE);
         this.state = PersonState.STANDING;
     }
@@ -211,6 +221,10 @@ public abstract class AbstractPerson extends Sprite
         coordinates.y = y;
     }
 
+    public String getName()
+    {
+        return this.name;
+    }
 
     public Direction getDirection()
     {

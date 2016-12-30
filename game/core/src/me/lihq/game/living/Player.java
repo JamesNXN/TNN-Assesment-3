@@ -15,14 +15,11 @@ public class Player extends AbstractPerson
     private int personalityLevel = 50;
     private Inventory inventory = new Inventory();
     private int score = 0;
-    private String name;
 
-    public Player(String name, String imgSrc)
+
+    public Player(String name, String imgSrc, int tileX, int tileY)
     {
-        super(imgSrc);
-        this.name = name;
-
-        setTileCoordinates(15, 5);
+        super(name, imgSrc, tileX, tileY);
     }
 
     /**
@@ -74,10 +71,7 @@ public class Player extends AbstractPerson
         return this.inventory;
     }
 
-    public String getPlayername()
-    {
-        return this.name;
-    }
+
 
     public int getPersonality()
     {

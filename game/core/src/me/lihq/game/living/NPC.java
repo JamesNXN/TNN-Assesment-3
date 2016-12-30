@@ -13,10 +13,7 @@ public class NPC extends AbstractPerson
      * The roomID specifies which room the NPC will be in during the game.
      */
     private int roomID = -1;
-    /**
-     * The name is the name of the detective NPC that the player will meet.
-     */
-    private String name = "";
+
     /**
      * These two booleans decide whether an NPC has the potential to be a killer and if, in this particular game, they
      * are the killer.
@@ -68,24 +65,18 @@ public class NPC extends AbstractPerson
     /**
      * Define an NPC with location coordinates , room, spritesheet and whether or not they can be the killer
      *
-     * @param x           - x coordinate of tile that the NPC will be initially rendered on.
-     * @param y           - y coordinate of tile that the NPC will be initially rendered on.
+     * @param tileX       - x coordinate of tile that the NPC will be initially rendered on.
+     * @param tileY       - y coordinate of tile that the NPC will be initially rendered on.
      * @param roomID      - ID of room they are in
      * @param spriteSheet - Spritesheet for this NPC
      * @param canBeKiller - Boolean whether they can or cannot be the killer
      */
-    public NPC(int x, int y, int roomID, String spriteSheet, boolean canBeKiller)
+    public NPC(String name, String spriteSheet, int tileX, int tileY, int roomID, boolean canBeKiller)
     {
 
-        super(spriteSheet);
+        super(name, spriteSheet, tileX, tileY);
 
         this.setRoomID(roomID);
-
-        this.tileCoordinates.x = x;
-        this.tileCoordinates.y = y;
-
-        this.setX(x * Settings.TILE_SIZE);
-        this.setY(y * Settings.TILE_SIZE);
 
         this.canBeKiller = canBeKiller;
 
@@ -130,18 +121,6 @@ public class NPC extends AbstractPerson
         return this;
     }
 
-    /**
-     * Setter for NPC name
-     *
-     * @param name - the name you want to assign.
-     * @return returns the NPC object as this is how the NPC's are built
-     * by returning and adding each part.
-     */
-    public NPC setCharacterName(String name)
-    {
-        this.name = name;
-        return this;
-    }
 
     /**
      * Getter for RoomID
