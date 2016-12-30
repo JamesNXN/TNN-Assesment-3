@@ -10,7 +10,6 @@ import me.lihq.game.models.Room;
 public class Player extends AbstractPerson
 {
 
-    public Boolean move = false;
     //The personality will be a percent score (0-100) 50 being neutral etc etc
     private int personalityLevel = 50;
     private Inventory inventory = new Inventory();

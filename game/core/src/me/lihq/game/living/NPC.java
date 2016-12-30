@@ -146,16 +146,6 @@ public class NPC extends AbstractPerson
     }
 
     /**
-     * Getter for NPC name.
-     *
-     * @return Returns the name of the NPC object.
-     */
-    public String getName()
-    {
-        return name;
-    }
-
-    /**
      * Getter for canBeKiller
      *
      * @return Returns value of canBeKiller for this object.
