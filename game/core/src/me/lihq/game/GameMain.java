@@ -10,7 +10,6 @@ import me.lihq.game.living.NPC.HAIR_COLOR;
 import me.lihq.game.living.NPC.WRITING_HAND;
 import me.lihq.game.models.Map;
 import me.lihq.game.living.Player;
-import me.lihq.game.models.Room;
 import me.lihq.game.screen.AbstractScreen;
 import me.lihq.game.screen.NavigationScreen;
 
@@ -58,15 +57,13 @@ public class GameMain extends Game
     {
         this.me = this;
 
-        gameMap = new Map(); //instantiate game map
-
-        initialiseAllData(); //calls a function that generates all the NPC's, Players and Rooms and maps.
-
         Assets.load();// Load in the assets the game needs
 
-        initialiseAllData();//call the function again after assets loaded
-        //place player in first room
-        player.setRoom(gameMap.getRoom(0));
+        gameMap = new Map(); //instantiate game map
+
+        initialiseAllPeople();
+
+
         //set up the screen and display the first room
         navigationScreen = new NavigationScreen(this);
         navigationScreen.setTiledMapRenderer(player.getRoom().getTiledMap());
@@ -147,13 +144,14 @@ public class GameMain extends Game
     }
 
     /**
-     * Generates all the NPC's, Players and Rooms and maps.
+     * Generates all the NPC's, Players
      */
-    public void initialiseAllData()
+    public void initialiseAllPeople()
     {
         //Add ALL NPCs to the list
         //This is how you initialise an NPC
         player = new Player("Test name", "player.png", 3, 6);
+        player.setRoom(gameMap.getRoom(0));
 
         {
             //TODO: Add NPC assets

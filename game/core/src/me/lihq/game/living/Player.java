@@ -52,7 +52,7 @@ public class Player extends AbstractPerson
             return;
         }
 
-        if (getRoom().isTriggerTile(this.tileCoordinates.x, this.tileCoordinates.y) && dir.toString().equals(getRoom().getMatRotation(this.tileCoordinates.x, this.tileCoordinates.y))) {
+        if (this.isOnTriggerTile() && dir.toString().equals(getRoom().getMatRotation(this.tileCoordinates.x, this.tileCoordinates.y))) {
             GameMain.me.getNavigationScreen().initialiseRoomChange();
             return;
         }
@@ -72,6 +72,10 @@ public class Player extends AbstractPerson
 
 
 
+    public boolean isOnTriggerTile() {
+        return this.getRoom().isTriggerTile(this.tileCoordinates.x, this.tileCoordinates.y);
+
+    }
     public int getPersonality()
     {
         return this.personalityLevel;

@@ -54,9 +54,9 @@ public class RoomArrow extends Sprite
     public void update() {
 
 
-        if (this.player.getRoom().isTriggerTile(this.player.getTileCoordinates().x, this.player.getTileCoordinates().y)) {
+        if (this.player.isOnTriggerTile()) {
 
-            //this is the rotaion of the mat (ie the way the arrow should face)
+            //this is the rotation of the mat (ie the way the arrow should face)
             String rotation = player.getRoom().getMatRotation(player.getTileCoordinates().x, player.getTileCoordinates().y);
 
             int x = (player.getTileCoordinates().x * 32) + (AbstractPerson.Direction.valueOf(rotation).getDx() * 32);
