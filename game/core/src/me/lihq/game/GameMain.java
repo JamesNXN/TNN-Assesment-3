@@ -10,7 +10,6 @@ import me.lihq.game.living.NPC.HAIR_COLOR;
 import me.lihq.game.living.NPC.WRITING_HAND;
 import me.lihq.game.models.Map;
 import me.lihq.game.living.Player;
-import me.lihq.game.models.Room;
 import me.lihq.game.screen.AbstractScreen;
 import me.lihq.game.screen.NavigationScreen;
 import me.lihq.game.screen.MainMenuScreen;
@@ -36,26 +35,28 @@ public class GameMain extends Game
      * The game map
      */
     public Map gameMap;
-
     /**
-     * An FPSLogger, FPSLogger allows us to check the game FPS is good enough
+     * A player object for the player of the game
      */
-    FPSLogger FPS;
-
-    /**
-     * A screen to be used to display standard gameplay within the game , including the status bar.
-     */
-    public NavigationScreen screen1;
+    public Player player;
+    public int ticks = 0;
+    public int lastSecond = -1;
+    
 
     /**
      * The main menu screen that shows up when the game is first started
      */
     private MainMenuScreen menuScreen;
+    
+    /**
+     * A screen to be used to display standard gameplay within the game , including the status bar.
+     */
+    public NavigationScreen navigationScreen;
 
     /**
-     * A player object for the player of the game
+     * An FPSLogger, FPSLogger allows us to check the game FPS is good enough
      */
-    public Player player;
+    FPSLogger FPS;
 
     /**
      * This is called at start up. It initialises the game.
@@ -65,22 +66,21 @@ public class GameMain extends Game
     {
         this.me = this;
 
-        gameMap = new Map(); //instantiate game map
-
-        initialiseAllData(); //calls a function that generates all the NPC's, Players and Rooms and maps.
-        
         Assets.load();// Load in the assets the game needs
 
-        initialiseAllData();//call the function again after assets loaded
-        //place player in first room
-        player.setRoom(gameMap.getRoom(0));
+        gameMap = new Map(); //instantiate game map
+
+        initialiseAllPeople();
+
+
         //set up the screen and display the first room
-        screen1 = new NavigationScreen(this);
-        screen1.setTiledMapRenderer(player.getRoom().getTiledMap());
 
         //Set up the MainMenu
         menuScreen = new MainMenuScreen(this);
         this.setScreen(menuScreen);
+
+        navigationScreen = new NavigationScreen(this);
+        navigationScreen.updateTiledMapRenderer();
 
         //Instantiate the FPSLogger to show FPS
         FPS = new FPSLogger();
@@ -108,42 +108,33 @@ public class GameMain extends Game
     {
 
     }
-    /**
-     * Change from one room to another
-     */
-    public void changeMap(Room.Transition to)
-    {
-        player.setRoom(gameMap.getRoom(to.newRoom));
 
-        screen1.setTiledMapRenderer(player.getRoom().getTiledMap());
-    }
 
     /**
      * Overrides the getScreen method to return our AbstractScreen type.
      * This means that we can access the additional methods like update.
+     *
      * @return The current screen of the game.
      */
     @Override
-    public AbstractScreen getScreen() {
+    public AbstractScreen getScreen()
+    {
         return (AbstractScreen) super.getScreen();
     }
-
-    public int ticks = 0;
-    public int lastSecond = -1;
 
     public void gameLoop()
     {
         Timer gameTimer = new Timer();
-        TimerTask task = new TimerTask() {
+        TimerTask task = new TimerTask()
+        {
             @Override
             public void run()
             {
-                ticks ++;
+                ticks++;
 
                 Calendar cal = Calendar.getInstance();
 
-                if (cal.get(Calendar.SECOND) != lastSecond)
-                {
+                if (cal.get(Calendar.SECOND) != lastSecond) {
                     lastSecond = cal.get(Calendar.SECOND);
                     System.out.println("TPSLogger: tps:      " + ticks);
                     ticks = 0;
@@ -157,18 +148,28 @@ public class GameMain extends Game
     }
 
     /**
-     * Generates all the NPC's, Players and Rooms and maps.
+     * This method returns the Navigation Screen that the game runs on.
+     *
+     * @return navigationScreen - The gameplay screen.
      */
-    public void initialiseAllData()
+    public NavigationScreen getNavigationScreen()
+    {
+        return navigationScreen;
+    }
+
+    /**
+     * Generates all the NPC's, Players
+     */
+    public void initialiseAllPeople()
     {
         //Add ALL NPCs to the list
         //This is how you initialise an NPC
-        player = new Player("Test name","player.png");
+        player = new Player("Test name", "player.png", 3, 6);
+        player.setRoom(gameMap.getRoom(0));
 
         {
             //TODO: Add NPC assets
-            NPC npc = new NPC(4, 4, 1, "player.png", true)
-                    .setCharacterName("Mr Detective 1")
+            NPC npc = new NPC("Bill", "player.png", 4, 4, 1, true)
                     .setAccessory(ACCESSORY.WATCH)
                     .setHairColor(HAIR_COLOR.GINGER)
                     .setHasGlasses(false)
@@ -180,8 +181,7 @@ public class GameMain extends Game
         }
 
         {
-            NPC npc = new NPC(4, 4, 2, "player.png", true)
-                    .setCharacterName("Mrs Detective 2")
+            NPC npc = new NPC("Bob", "player.png",4,4, 2, true)
                     .setAccessory(ACCESSORY.HANDBAG)
                     .setHairColor(HAIR_COLOR.BLACK)
                     .setHasGlasses(true)

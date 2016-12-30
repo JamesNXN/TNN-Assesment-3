@@ -1,12 +1,15 @@
 package me.lihq.game.living;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import me.lihq.game.Assets;
+import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
+import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 
 /**
@@ -16,10 +19,25 @@ import me.lihq.game.models.Vector2Int;
 public abstract class AbstractPerson extends Sprite
 {
     /**
+     * The height of the texture region for each person
+     */
+    protected static int SPRITE_HEIGHT = 48;
+
+    /**
+     * The width of the texture region for each person
+     */
+    protected static int SPRITE_WIDTH = 32;
+
+    /**
      * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
      * Uses the Vector2Int as the tileCoordinates should never be floats as the person should only be between tiles during the move process.
      */
     protected Vector2Int tileCoordinates = new Vector2Int(0, 0);
+
+    /**
+     * The Name of the Person
+     */
+    private String name;
 
     /**
      * This is the players location in the current room.
@@ -37,23 +55,10 @@ public abstract class AbstractPerson extends Sprite
      * A store of the destination for a movement.
      */
     protected Vector2Int destinationTile = new Vector2Int(0, 0);
-
     protected float animTimer;
     protected float animTime = Settings.TPS / 3.5f;
-
     protected Texture spriteSheet;
     protected TextureRegion currentRegion;
-
-    /**
-     * The height of the texture region for each person
-     */
-    protected static int SPRITE_HEIGHT = 48;
-
-    /**
-     * The width of the texture region for each person
-     */
-    protected static int SPRITE_WIDTH = 32;
-
     /**
      * The direction determines the way the character is facing.
      */
@@ -62,17 +67,22 @@ public abstract class AbstractPerson extends Sprite
     protected PersonState state;
 
     /**
+     * The current room of the AbstractPerson.
+     */
+    private Room currentRoom;
+
+    /**
      * This constructs the player calling super on the sprite class
      *
      * @param img this a path to the image
      */
-    public AbstractPerson(String img)
+    public AbstractPerson(String name, String img, int tileX, int tileY)
     {
         super(new TextureRegion(Assets.loadTexture(img), 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT));
-
+        this.name = name;
         this.spriteSheet = Assets.loadTexture(img);
         this.currentRegion = new TextureRegion(Assets.loadTexture(img), 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT);
-
+        this.setTileCoordinates(tileX, tileY);
         this.setPosition(tileCoordinates.getX() * Settings.TILE_SIZE, tileCoordinates.getY() * Settings.TILE_SIZE);
         this.state = PersonState.STANDING;
     }
@@ -86,6 +96,15 @@ public abstract class AbstractPerson extends Sprite
         setPosition(coordinates.x, coordinates.y);
     }
 
+    /**
+     * This method returns the Persons walking state.
+     * <p>
+     * Either WALKING or STANDING
+     */
+    public PersonState getState()
+    {
+        return state;
+    }
 
     /**
      * This sets the tile coordinates of the person.
@@ -107,8 +126,6 @@ public abstract class AbstractPerson extends Sprite
      */
     public void update()
     {
-        //TODO: Add a switch case instead of if
-
         if (this.state == PersonState.WALKING) {
             this.coordinates.x = Interpolation.linear.apply(startTile.x * Settings.TILE_SIZE, destinationTile.x * Settings.TILE_SIZE, animTimer / animTime);
             this.coordinates.y = Interpolation.linear.apply(startTile.y * Settings.TILE_SIZE, destinationTile.y * Settings.TILE_SIZE, animTimer / animTime);
@@ -132,7 +149,6 @@ public abstract class AbstractPerson extends Sprite
      */
     public void initialiseMove(Direction dir)
     {
-
         this.direction = dir;
 
         this.startTile.x = this.tileCoordinates.x;
@@ -205,6 +221,10 @@ public abstract class AbstractPerson extends Sprite
         coordinates.y = y;
     }
 
+    public String getName()
+    {
+        return this.name;
+    }
 
     public Direction getDirection()
     {
@@ -216,10 +236,25 @@ public abstract class AbstractPerson extends Sprite
         this.direction = dir;
     }
 
-    public void setAnimTime(float animTime) {
+    public void setAnimTime(float animTime)
+    {
         this.animTime = animTime;
     }
 
+    public Room getRoom()
+    {
+        return this.currentRoom;
+    }
+
+    public void setRoom(Room room)
+    {
+        this.currentRoom = room;
+    }
+
+    public Vector2Int getTileCoordinates()
+    {
+        return tileCoordinates;
+    }
 
     /**
      * This is used to describe the direction the person is currently facing or moving in.
