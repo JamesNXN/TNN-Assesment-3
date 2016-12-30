@@ -283,6 +283,7 @@ public class NavigationScreen extends AbstractScreen
         map.dispose();
         tiledMapRenderer.dispose();
         statusBar.dispose();
+        spriteBatch.dispose();
     }
 
     public void setTiledMapRenderer(TiledMap map)
