@@ -100,7 +100,7 @@ public class MainMenu {
         newGameButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(game.screen1);
+                game.setScreen(game.navigationScreen);
             }
         });
         //Making the "Quit" button clickable and causing it to close the game
