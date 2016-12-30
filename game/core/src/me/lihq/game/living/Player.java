@@ -12,21 +12,13 @@ public class Player extends AbstractPerson
 
     //The personality will be a percent score (0-100) 50 being neutral etc etc
     private int personalityLevel = 50;
-
     private Inventory inventory = new Inventory();
-
     private int score = 0;
 
-    public Boolean move = false;
 
-    private String name;
-
-    private Room currentRoom;
-
-    public Player(String name, String imgSrc)
+    public Player(String name, String imgSrc, int tileX, int tileY)
     {
-        super(imgSrc);
-        this.name = name;
+        super(name, imgSrc, tileX, tileY);
     }
 
     /**
@@ -51,6 +43,7 @@ public class Player extends AbstractPerson
 
     /**
      * This Moves the player to a new tile.
+     *
      * @param dir the direction that the player should move in.
      */
     public void move(Direction dir)
@@ -59,7 +52,12 @@ public class Player extends AbstractPerson
             return;
         }
 
-        if (!currentRoom.isWalkableTile(this.tileCoordinates.x + dir.getDx(),this.tileCoordinates.y + dir.getDy())) {
+        if (this.isOnTriggerTile() && dir.toString().equals(getRoom().getMatRotation(this.tileCoordinates.x, this.tileCoordinates.y))) {
+            GameMain.me.getNavigationScreen().initialiseRoomChange();
+            return;
+        }
+
+        if (!getRoom().isWalkableTile(this.tileCoordinates.x + dir.getDx(), this.tileCoordinates.y + dir.getDy())) {
             setDirection(dir);
             return;
         }
@@ -72,35 +70,40 @@ public class Player extends AbstractPerson
         return this.inventory;
     }
 
-    public String getPlayername()
-    {
-        return this.name;
-    }
 
+
+    public boolean isOnTriggerTile() {
+        return this.getRoom().isTriggerTile(this.tileCoordinates.x, this.tileCoordinates.y);
+
+    }
     public int getPersonality()
     {
         return this.personalityLevel;
     }
 
-    public void changeRoom(int roomID, int newX, int newY)
-    {
-        changeRoom(GameMain.me.gameMap.getRoom(roomID), newX, newY);
-    }
 
-    public void changeRoom(Room newRoom, int newX, int newY)
+    /**
+     * This takes the player at its current position, and automatically gets the transition data for the next room and applies it to the player and game
+     */
+    public void moveRoom()
     {
-        currentRoom = newRoom;
+        if (isOnTriggerTile()) {
+            Room.Transition newRoomData = this.getRoom().getTransitionData(this.getTileCoordinates().x, this.getTileCoordinates().y);
 
-        this.setTileCoordinates(newX, newY);
-    }
 
-    public void setRoom(Room room)
-    {
-        this.currentRoom = room;
-    }
+            this.setRoom(newRoomData.getNewRoom());
 
-    public Room getRoom()
-    {
-        return this.currentRoom;
+
+            if (newRoomData.newDirection != null) {
+                this.setDirection(newRoomData.newDirection);
+                this.updateTextureRegion();
+            }
+
+            this.setTileCoordinates(newRoomData.newTileCoordinates.x, newRoomData.newTileCoordinates.y);
+
+            //TODO: Look into making a getter for the players Game this way we can do this.getGame() here instead of GameMain.
+
+            GameMain.me.navigationScreen.updateTiledMapRenderer();
+        }
     }
 }

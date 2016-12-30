@@ -1,10 +1,10 @@
 import me.lihq.game.Settings;
-import me.lihq.game.living.AbstractPerson;
 import me.lihq.game.living.Player;
-import me.lihq.game.models.Map;
+import me.lihq.game.models.Room;
 import org.junit.Before;
 import org.junit.Test;
 
+import static me.lihq.game.living.AbstractPerson.*;
 import static org.junit.Assert.*;
 
 /**
@@ -13,20 +13,18 @@ import static org.junit.Assert.*;
 public class PlayerUnitTests extends GameTester
 {
     Player p = null;
-    Map map = null;
 
     @Before
     public void before()
     {
-        p = new Player("Test Name", "player.png");
-        map = new Map();
-        p.setRoom(map.getRoom(0));
+        p = new Player("Test Name", "player.png", 0, 0);
+        p.setRoom(new Room(0, "testMap.tmx", "Test Map"));
     }
 
     @Test
     public void testPlayername()
     {
-        assertEquals("Fail - Not returning correct playername", p.getPlayername(), "Test Name");
+        assertEquals("Fail - Not returning correct playername", p.getName(), "Test Name");
     }
 
     @Test
@@ -54,32 +52,32 @@ public class PlayerUnitTests extends GameTester
     @Test
     public void doesPlayerMove()
     {
-        p.setPosition(0,0);
+        p.setTileCoordinates(0, 0);
         p.setAnimTime(0f);
         assertEquals(0, p.getX(), 0.0f);
         assertEquals(0, p.getY(), 0.0f);
 
-        p.move(AbstractPerson.Direction.NORTH);
+        p.move(Direction.NORTH);
         p.update();
         p.pushCoordinatesToSprite();
 
         assertEquals(Settings.TILE_SIZE, p.getY(), 0.0f);
 
-        p.move(AbstractPerson.Direction.EAST);
+        p.move(Direction.EAST);
         p.update();
         p.pushCoordinatesToSprite();
 
         assertEquals(Settings.TILE_SIZE, p.getX(), 0.0f);
         assertEquals(Settings.TILE_SIZE, p.getY(), 0.0f);
 
-        p.move(AbstractPerson.Direction.SOUTH);
+        p.move(Direction.SOUTH);
         p.update();
         p.pushCoordinatesToSprite();
 
         assertEquals(Settings.TILE_SIZE, p.getX(), 0.0f);
         assertEquals(0, p.getY(), 0.0f);
 
-        p.move(AbstractPerson.Direction.WEST);
+        p.move(Direction.WEST);
         p.update();
         p.pushCoordinatesToSprite();
 

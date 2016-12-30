@@ -13,11 +13,12 @@ import com.badlogic.gdx.utils.Align;
  * The status bar shown throughout the game
  * Contains UI controls for presenting the game status to the player
  */
-public class StatusBar {
+public class StatusBar
+{
 
     public static final int HEIGHT = 50; //Used to set height of status bar
     private static final int ITEM_COUNT = 4; //Used to set width of controls on bar
-    private static final int WIDTH = (int) Gdx.graphics.getWidth()/ITEM_COUNT;
+    private static final int WIDTH = (int) Gdx.graphics.getWidth() / ITEM_COUNT;
     private static final Color BACKGROUND_COLOR = Color.GRAY;
 
     public Stage stage;
@@ -29,14 +30,15 @@ public class StatusBar {
      * The initializer for the StatusBar
      * Sets up UI controls and adds them to the stage ready for rendering
      */
-    public StatusBar() {
+    public StatusBar()
+    {
 
         stage = new Stage();
         initSkins();
 
         Table statusBar = new Table();
         statusBar.setSize(Gdx.graphics.getWidth(), HEIGHT);
-        statusBar.setPosition(0,0);
+        statusBar.setPosition(0, 0);
         statusBar.row().height(HEIGHT);
         statusBar.defaults().width(WIDTH);
 
@@ -60,19 +62,22 @@ public class StatusBar {
      * Renders the status bar
      * Should be called within the render() method of a screen
      */
-    public void render() {
+    public void render()
+    {
         stage.act();
         stage.draw();
     }
 
-    public void dispose() {
+    public void dispose()
+    {
         stage.dispose();
     }
 
     /**
      * Sets up skin variables used for defining UI control styles
      */
-    private void initSkins() {
+    private void initSkins()
+    {
         initButtonSkin();
         initLabelSkin();
     }
@@ -80,7 +85,8 @@ public class StatusBar {
     /**
      * Sets up the skin for buttons on the status bar
      */
-    private void initButtonSkin(){
+    private void initButtonSkin()
+    {
         //Create a font
         BitmapFont font = new BitmapFont();
         buttonSkin = new Skin();
@@ -90,7 +96,7 @@ public class StatusBar {
         Pixmap pixmap = new Pixmap(WIDTH, HEIGHT, Pixmap.Format.RGB888);
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
-        buttonSkin.add("background",new Texture(pixmap));
+        buttonSkin.add("background", new Texture(pixmap));
 
         //Create a button style
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
@@ -106,7 +112,8 @@ public class StatusBar {
     /**
      * Sets up the skin for labels on the status bar
      */
-    private void initLabelSkin(){
+    private void initLabelSkin()
+    {
         //Create a font
         BitmapFont font = new BitmapFont();
         labelSkin = new Skin();
@@ -115,7 +122,7 @@ public class StatusBar {
         Pixmap pixmap = new Pixmap(WIDTH, HEIGHT, Pixmap.Format.RGB888);
         pixmap.setColor(BACKGROUND_COLOR);
         pixmap.fill();
-        labelSkin.add("background",new Texture(pixmap));
+        labelSkin.add("background", new Texture(pixmap));
 
         //Create a button style
         Label.LabelStyle labelStyle = new Label.LabelStyle(font, Color.WHITE);

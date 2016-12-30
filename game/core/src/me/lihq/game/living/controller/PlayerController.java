@@ -12,6 +12,7 @@ import static me.lihq.game.living.AbstractPerson.*;
  */
 public class PlayerController extends InputAdapter
 {
+    public int timer = 0;
     private boolean north, south, west, east;
     private Player player;
 
@@ -19,8 +20,6 @@ public class PlayerController extends InputAdapter
     {
         this.player = player;
     }
-
-    //TODO: Add short clicks just changing direction
 
     @Override
     public boolean keyDown(int keycode)
@@ -75,12 +74,9 @@ public class PlayerController extends InputAdapter
         return false;
     }
 
-    public int timer = 0;
-
     public void update()
     {
-        if (!south && !north && !east && !west)
-        {
+        if (!south && !north && !east && !west) {
             timer = 0;
         }
 
@@ -88,27 +84,26 @@ public class PlayerController extends InputAdapter
 
         if (north) {
             goTo = Direction.NORTH;
-        }
-        else if (south) {
+        } else if (south) {
             goTo = Direction.SOUTH;
-        }
-        else if (east) {
+        } else if (east) {
             goTo = Direction.EAST;
-        }
-        else if (west) {
+        } else if (west) {
             goTo = Direction.WEST;
         }
 
         if (goTo == null) return;
 
-        timer ++;
+        timer++;
 
-        if (timer > Settings.TPS / 12)
-        {
+        if (timer > Settings.TPS / 12) {
             player.move(goTo);
             return;
         }
 
-        player.setDirection(goTo);
+        if (player.getState() != PersonState.WALKING) {
+            player.setDirection(goTo);
+        }
+
     }
 }
