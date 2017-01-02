@@ -2,6 +2,7 @@ package me.lihq.game.models;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import me.lihq.game.Settings;
 
@@ -12,30 +13,18 @@ import java.util.Set;
  */
 public class Clue extends Sprite
 {
-    private static String imagePath = "clueSheet.png";
-    private String clueName = "Super Secret Clue";
-    private Vector2Int position;
+    private String name;
+    private String description;
+    private Vector2Int tileCoordinates = new Vector2Int(0,0);
 
-    //TODO: Clues generate from the killer
-    //TODO: Initialise Characters -> Generate Killer -> Generate Clues
-
-    //TODO: Don't we need to associate a clue with a list of applicable NPCs?
-    //~Jason
-    //=== NEEDS DISCUSSING ===
-    //TODO: Does a clue need a room ID as a room has a list of clues in it...
-    private int roomID = -1;
-    private int imageSrcX;
-    private int imageSrcY;
-
-    public Clue(String name, int roomID, int x, int y, int imageSrcX, int imageSrcY)
+    public Clue(String name, String description, TextureRegion texture, int tileX, int tileY)
     {
-        super(new Texture(imagePath));
-        this.clueName = name;
-        this.roomID = roomID;
-        this.position.x = x;
-        this.position.y = y;
-        this.imageSrcX = imageSrcX * Settings.TILE_SIZE;
-        this.imageSrcY = imageSrcY * Settings.TILE_SIZE;
+        super(texture);
+        this.name = name;
+        this.description = description;
+        this.tileCoordinates.x = tileX;
+        this.tileCoordinates.y = tileY;
+        this.setPosition(tileCoordinates.x * Settings.TILE_SIZE, tileCoordinates.y * Settings.TILE_SIZE);
     }
 
     @Override
@@ -46,32 +35,29 @@ public class Clue extends Sprite
 
             //Might have to do same coordinates AND same room AND same name
 
-            return c.getClueName().equals(this.getClueName());
+            return c.getName().equals(this.getName());
         }
 
         return false;
     }
 
-    public String getClueName()
+    public String getName()
     {
-        return this.clueName;
+        return this.name;
     }
 
-    public void setClueName(String name)
+    public String getDescription()
     {
-        this.clueName = name;
+        return this.description;
     }
 
-    public void setCoords(int x, int y)
+
+    public void setTileCoordinates(int x, int y)
     {
-        this.position.x = x;
-        this.position.y = y;
+        this.tileCoordinates.x = x;
+        this.tileCoordinates.y = y;
 
         this.setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
     }
 
-    public int getRoomID()
-    {
-        return roomID;
-    }
 }
