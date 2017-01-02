@@ -2,6 +2,7 @@ package me.lihq.game.living;
 import me.lihq.game.models.Clue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The class which is responsible for the non-playable characters within the game that the player will meet.
@@ -66,7 +67,7 @@ public class NPC extends AbstractPerson
     /**
      * Associated clues
      */
-    private ArrayList<Clue> associatedClues = new ArrayList<>();
+    private List<Clue> associatedClues = new ArrayList<>();
 
     /**
      * Define an NPC with location coordinates , room, spritesheet and whether or not they can be the killer
@@ -100,14 +101,20 @@ public class NPC extends AbstractPerson
 
     }
 
-    public void addClues(ArrayList<Clue> clues)
+    public void addClues(List<Clue> clues)
     {
         this.associatedClues.addAll(clues);
     }
 
-    public ArrayList<Clue> getClues()
+    public List<Clue> getClues()
     {
         return this.associatedClues;
+    }
+
+    public boolean hasClue(Clue clue)
+    {
+        return this.associatedClues.contains(clue);
+
     }
 
 
