@@ -1,12 +1,9 @@
 package me.lihq.game.models;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import me.lihq.game.Settings;
 
-import java.util.Set;
 
 /**
  * This class defines the clues that the player needs to find in order to solve the murder.
