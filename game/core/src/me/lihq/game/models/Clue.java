@@ -70,9 +70,11 @@ public class Clue extends Sprite
 
         this.setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
     }
+
     public int getTileX() {
         return tileCoordinates.x;
     }
+
     public int getTileY() {
         return tileCoordinates.y;
     }
