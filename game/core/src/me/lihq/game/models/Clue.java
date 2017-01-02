@@ -10,18 +10,34 @@ import me.lihq.game.Settings;
  */
 public class Clue extends Sprite
 {
+    /**
+     * The name of the clue, set when you initialise the clue and gettable using {@link #getName()}
+     */
     private String name;
+
+    /**
+     * The description of the clue, set when you initialise the clue and gettable using {@link #getDescription()}
+     */
     private String description;
+
+    /**
+     * This is the location on the map in terms of tiles can be set using {@link #setTileCoordinates(int, int)}
+     * Note: this is different to com.badlogic.gdx.graphics.g2d.Sprite.position that is the position on the screen in terms of pixels,
+     * whereas this is in terms of map tiles.
+     */
     private Vector2Int tileCoordinates = new Vector2Int(0,0);
 
-    public Clue(String name, String description, TextureRegion texture, int tileX, int tileY)
+    /**
+     * Creates a clue
+     * @param name the name of the clue i.e. what it is
+     * @param description describes what the clue is
+     * @param texture the texture region of the clue
+     */
+    public Clue(String name, String description, TextureRegion texture)
     {
         super(texture);
         this.name = name;
         this.description = description;
-        this.tileCoordinates.x = tileX;
-        this.tileCoordinates.y = tileY;
-        this.setPosition(tileCoordinates.x * Settings.TILE_SIZE, tileCoordinates.y * Settings.TILE_SIZE);
     }
 
     @Override
@@ -29,14 +45,12 @@ public class Clue extends Sprite
     {
         if (obj instanceof Clue) {
             Clue c = (Clue) obj;
-
-            //Might have to do same coordinates AND same room AND same name
-
             return c.getName().equals(this.getName());
         }
 
         return false;
     }
+
 
     public String getName()
     {
@@ -55,6 +69,12 @@ public class Clue extends Sprite
         this.tileCoordinates.y = y;
 
         this.setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
+    }
+    public int getTileX() {
+        return tileCoordinates.x;
+    }
+    public int getTileY() {
+        return tileCoordinates.y;
     }
 
 }
