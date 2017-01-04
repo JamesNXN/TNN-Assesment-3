@@ -5,9 +5,6 @@ import com.badlogic.gdx.graphics.GL20;
 
 import com.badlogic.gdx.graphics.FPSLogger;
 import me.lihq.game.living.NPC;
-import me.lihq.game.living.NPC.ACCESSORY;
-import me.lihq.game.living.NPC.HAIR_COLOR;
-import me.lihq.game.living.NPC.WRITING_HAND;
 import me.lihq.game.models.Map;
 import me.lihq.game.living.Player;
 import me.lihq.game.screen.AbstractScreen;
@@ -155,25 +152,14 @@ public class GameMain extends Game
 
         {
             //TODO: Add NPC assets
-            NPC npc = new NPC("Bill", "player.png", 4, 4, 1, true)
-                    .setAccessory(ACCESSORY.WATCH)
-                    .setHairColor(HAIR_COLOR.GINGER)
-                    .setHasGlasses(false)
-                    .setWritingHand(WRITING_HAND.RIGHT)
-                    .setShoeSize(9)
-                    .setHasLipstick(false);
+            NPC npc = new NPC("Bill", "player.png", 4, 4, 1, true);
 
             NPCs.add(npc);
         }
 
         {
-            NPC npc = new NPC("Bob", "player.png",4,4, 2, true)
-                    .setAccessory(ACCESSORY.HANDBAG)
-                    .setHairColor(HAIR_COLOR.BLACK)
-                    .setHasGlasses(true)
-                    .setWritingHand(WRITING_HAND.RIGHT)
-                    .setShoeSize(6)
-                    .setHasLipstick(true);
+            NPC npc = new NPC("Bob", "player.png",4,4, 2, true);
+
 
             NPCs.add(npc);
         }

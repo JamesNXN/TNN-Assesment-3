@@ -17,11 +17,7 @@ public class NPC extends AbstractPerson
     private int roomID = -1;
 
     /**
-     * These two booleans decide whether an NPC has the potential to be a killer and if, in this particular game, they
-     * are the killer.
-     */
-    private boolean canBeKiller = false;
-    private boolean isKiller = false;
+
     /**
      * The motive string details why the NPC committed the murder.
      */
@@ -33,36 +29,11 @@ public class NPC extends AbstractPerson
     //These are characteristics about the NPC that could be used as clues by the player in a "Guess who" style.
 
     /**
-     * Initialise hair color as ginger, they have ginger hair.
+     * These two booleans decide whether an NPC has the potential to be a killer and if, in this particular game, they
+     * are the killer.
      */
-    private HAIR_COLOR hairColor = HAIR_COLOR.GINGER;
-
-    /**
-     * Initialise hasGlasses as false, they don't have glasses.
-     */
-    private boolean hasGlasses = false;
-
-    /**
-     * Initialise writingHand as right handed.
-     */
-    private WRITING_HAND writingHand = WRITING_HAND.RIGHT;
-
-    /**
-     * Intialise hasLipstick as false, they don't have lipstick.
-     */
-    private boolean hasLipstick = false; //Really not sure about this one, should probably change to something more neutral
-
-    /**
-     * Initialise accessory as none, they do not have one.
-     */
-    private ACCESSORY accessory = ACCESSORY.NONE;
-
-
-    /**
-     * Initialise shoeSize as 12, they have size 12 shoes.
-     */
-    private int shoeSize = 12;
-
+    private boolean canBeKiller = false;
+    private boolean isKiller = false;
 
     /**
      * Associated clues
@@ -116,34 +87,6 @@ public class NPC extends AbstractPerson
         return this.associatedClues.contains(clue);
 
     }
-
-
-    /**
-     * Setter for HasGlasses.
-     *
-     * @param hasGlasses - the value you want for hasGlasses
-     * @return returns the NPC object as this is how the NPC's are built
-     * by returning and adding each part.
-     */
-    public NPC setHasGlasses(boolean hasGlasses)
-    {
-        this.hasGlasses = hasGlasses;
-        return this;
-    }
-
-    /**
-     * Setter for hasLipstick
-     *
-     * @param hasLipstick - the value you want for hasLipstick
-     * @return returns the NPC object as this is how the NPC's are built
-     * by returning and adding each part.
-     */
-    public NPC setHasLipstick(boolean hasLipstick)
-    {
-        this.hasLipstick = hasLipstick;
-        return this;
-    }
-
 
     /**
      * Getter for RoomID
@@ -209,222 +152,5 @@ public class NPC extends AbstractPerson
     {
         this.motive = motive;
         return this;
-    }
-
-    /**
-     * Getter for hairColor
-     *
-     * @return Returns the value of hairColor for this object.
-     */
-    public HAIR_COLOR getHairColor()
-    {
-        return hairColor;
-    }
-
-
-    /**
-     * Setter for HairColor
-     *
-     * @param color - The color you want to assign.
-     * @return Returns the NPC object as this is how the NPC's are built
-     * by returning and adding each part.
-     */
-    public NPC setHairColor(HAIR_COLOR color)
-    {
-        this.hairColor = color;
-        return this;
-    }
-
-
-    /**
-     * Getter for whether the NPC has glasses
-     *
-     * @return Returns the value of hasGlasses for this object.
-     */
-    public boolean hasGlasses()
-    {
-        return hasGlasses;
-    }
-
-
-    /**
-     * Getter for whether the NPC is right or left handed.
-     *
-     * @return Returns the value of writingHand for this object.
-     */
-    public WRITING_HAND getWritingHand()
-    {
-        return writingHand;
-    }
-
-    /**
-     * Setter for whether the NPC is right or left handed.
-     *
-     * @param hand - Which hand they write with.
-     * @return Returns the NPC object as this is how the NPC's are built
-     * by returning and adding each part.
-     */
-    public NPC setWritingHand(WRITING_HAND hand)
-    {
-        this.writingHand = hand;
-        return this;
-    }
-
-    /**
-     * Getter for whether the NPC has lipstick.
-     *
-     * @return Returns the value of hasLipstick for this object.
-     */
-    public boolean hasLipstick()
-    {
-        return hasLipstick;
-    }
-
-    /**
-     * Getter for whether the NPC's Accessory.
-     *
-     * @return Return the value of accessory for this object.
-     */
-    public ACCESSORY getAccessory()
-    {
-        return accessory;
-    }
-
-    /**
-     * Setter for whether the NPC's Accessory.
-     *
-     * @param accessory Whether the NPC has an accessory.
-     * @return returns the NPC class as this is how the NPC's are built
-     * by returning and adding each part.
-     */
-    public NPC setAccessory(ACCESSORY accessory)
-    {
-        this.accessory = accessory;
-        return this;
-    }
-
-    /**
-     * Getter for the NPC's shoe size.
-     *
-     * @return Returns the value of the NPC's shoe size.
-     */
-    public int getShoeSize()
-    {
-        return shoeSize;
-    }
-
-    /**
-     * @param shoeSize The shoe size you want to assign to this NPC.
-     * @return returns the NPC class as this is how the NPC's are built
-     * by returning and adding each part.
-     */
-    public NPC setShoeSize(int shoeSize)
-    {
-        this.shoeSize = shoeSize;
-        return this;
-    }
-
-    /**
-     * These variables are to describe a players features to make the clues useful, this one refers to hair colours.
-     * <li>{@link #LIGHT_BROWN}</li>
-     * <li>{@link #DARK_BROWN}</li>
-     * <li>{@link #GINGER}</li>
-     * <li>{@link #BLONDE}</li>
-     * <li>{@link #BLACK}</li>
-     * <li>{@link #WHITE}</li>
-     * <li>{@link #GRAY}</li>
-     */
-    public enum HAIR_COLOR
-    {
-        /**
-         * Light brown hair.
-         */
-        LIGHT_BROWN,
-
-        /**
-         * Dark brown hair.
-         */
-        DARK_BROWN,
-
-        /**
-         * Ginger hair.
-         */
-        GINGER,
-
-        /**
-         * Blonde hair.
-         */
-        BLONDE,
-
-        /**
-         * Black hair.
-         */
-        BLACK,
-
-        /**
-         * White hair.
-         */
-        WHITE,
-
-        /**
-         * Gray hair.
-         */
-        GRAY
-    }
-
-    /**
-     * These variables are to describe a players features to make the clues useful, this one refers to the hands they
-     * can write with.
-     * <li>{@link #LEFT}</li>
-     * <li>{@link #RIGHT}</li>
-     */
-    public enum WRITING_HAND
-    {
-        /**
-         * Left handed.
-         */
-        LEFT,
-
-        /**
-         * Right handed.
-         */
-        RIGHT
-    }
-
-    /**
-     * These variables are to describe a players features to make the clues useful, this one refers to Accessories
-     * they could have.
-     * <li>{@link #BAG}</li>
-     * <li>{@link #BRIEFCASE}</li>
-     * <li>{@link #HANDBAG}</li>
-     * <li>{@link #WATCH}</li>
-     * <li>{@link #NONE}</li>
-     */
-    public enum ACCESSORY
-    {
-        /**
-         * They have a bag.
-         */
-        BAG,
-
-        /**
-         * They have a briefcase.
-         */
-        BRIEFCASE,
-
-        /**
-         * They have a handbag.
-         */
-        HANDBAG,
-
-        /**
-         * They have a watch.
-         */
-        WATCH,
-
-        /**
-         * They have no accessory.
-         */
-        NONE
     }
 }
