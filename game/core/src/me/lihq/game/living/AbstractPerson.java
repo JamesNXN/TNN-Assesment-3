@@ -175,6 +175,9 @@ public abstract class AbstractPerson extends Sprite
     }
 
 
+    /**
+     * Updates the texture region based upon how far though the animation time it is.
+     */
     public void updateTextureRegion()
     {
         float quarter = animTime / 4;
@@ -226,16 +229,29 @@ public abstract class AbstractPerson extends Sprite
         return this.name;
     }
 
+    /**
+     * Getter for direction.
+     * @return Returns the direction the person is facing.
+     */
     public Direction getDirection()
     {
         return this.direction;
     }
 
+    /**
+     * Setter for the direction the person is facing.
+     * @param dir - Desired direction for the person to face.
+     */
     public void setDirection(Direction dir)
     {
         this.direction = dir;
     }
 
+
+    /**
+     * Setter for the animation time.
+     * @param animTime - The animation time you want to set.
+     */
     public void setAnimTime(float animTime)
     {
         this.animTime = animTime;
@@ -258,27 +274,58 @@ public abstract class AbstractPerson extends Sprite
 
     /**
      * This is used to describe the direction the person is currently facing or moving in.
+     * <li>{@link #NORTH}</li>
+     * <li>{@link #SOUTH}</li>
+     * <li>{@link #EAST}</li>
+     * <li>{@link #WEST}</li>
      */
     public enum Direction
     {
-        NORTH(0, 1), // person is facing north
-        SOUTH(0, -1), // person is facing south
-        EAST(1, 0), // person is facing east
-        WEST(-1, 0); // person is facing west
+        /**
+         * person is facing north
+         */
+        NORTH(0, 1),
+
+        /**
+         * person is facing south
+         */
+        SOUTH(0, -1),
+
+        /**
+         * person is facing east
+         */
+        EAST(1, 0),
+
+        /**
+         * person is facing west
+         */
+        WEST(-1, 0);
 
         private int dx, dy;
 
+        /**
+         * @param dx x coordinate.
+         * @param dy y coordinate.
+         */
         Direction(int dx, int dy)
         {
             this.dx = dx;
             this.dy = dy;
         }
 
+        /**
+         * Getter for dx.
+         * @return returns the value of dx.
+         */
         public int getDx()
         {
             return this.dx;
         }
 
+        /**
+         * Getter for dy.
+         * @return returns the value of dy.
+         */
         public int getDy()
         {
             return this.dy;
@@ -287,10 +334,19 @@ public abstract class AbstractPerson extends Sprite
 
     /**
      * The state of the person explains what they are currently doing.
+     * <li>{@link #WALKING}</li>
+     * <li>{@link #STANDING}</li>
      */
     public enum PersonState
     {
+        /**
+         * Person is walking.
+         */
         WALKING,
+
+        /**
+         * Person is standing still.
+         */
         STANDING;
     }
 
