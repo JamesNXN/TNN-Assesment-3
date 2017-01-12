@@ -40,6 +40,10 @@ public class Clue extends Sprite
         this.description = description;
     }
 
+    /**
+     * @param obj - The clue object.
+     * @return - Returns if it is equal as a boolean result.
+     */
     @Override
     public boolean equals(Object obj)
     {
@@ -51,7 +55,10 @@ public class Clue extends Sprite
         return false;
     }
 
-
+    /**
+     * Getter for Clue name.
+     * @return - Returns name of clue.
+     */
     public String getName()
     {
         return this.name;
@@ -62,7 +69,11 @@ public class Clue extends Sprite
         return this.description;
     }
 
-
+    /**
+     * Setter for clue tile coordinates.
+     * @param x - The x coordinate for where the clue is, in terms of tiles.
+     * @param y - The y coordinate for where the clue is, in terms of tiles.
+     */
     public void setTileCoordinates(int x, int y)
     {
         this.tileCoordinates.x = x;
