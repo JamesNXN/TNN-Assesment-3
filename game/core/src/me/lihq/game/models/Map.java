@@ -22,7 +22,7 @@ public class Map
     }
 
     /**
-     * This initiates all the rooms and their transitions
+     * This function initialises all the rooms of the Ron Cooke Hub and their transitions
      */
     public void initialiseRooms()
     {
@@ -98,6 +98,7 @@ public class Map
 
         rooms = Arrays.asList(mainRoom, rch037, portersOffice, kitchen, islandOfInteraction, toilet, computerRoom, lakeHouse, outside, pod);
     }
+
 
 
     //TODO: Make this work properly every time or remove it if we dont need it. Having looked it only exists to give the player and NPC an initial room

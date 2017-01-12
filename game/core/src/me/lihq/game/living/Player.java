@@ -10,12 +10,31 @@ import me.lihq.game.models.Room;
 public class Player extends AbstractPerson
 {
 
-    //The personality will be a percent score (0-100) 50 being neutral etc etc
+    /**
+     * The personality will be a percent score (0-100) 0 being angry, 50 being neutral, and 100 being happy/nice.
+     */
     private int personalityLevel = 50;
+    
+    /**
+     * inventory holds items collected by the player.
+     */
     private Inventory inventory = new Inventory();
+
+    /**
+     * The score the player has earned so far.
+     */
     private int score = 0;
 
+    /**
+     * The room the player is currently exploring.
+     */
+    private Room currentRoom;
 
+    /**
+     * This is the constructor for player, it creates a new playable person
+     * @param name - The name for the new player.
+     * @param imgSrc - The image used to represent it.
+     */
     public Player(String name, String imgSrc, int tileX, int tileY)
     {
         super(name, imgSrc, tileX, tileY);
@@ -65,21 +84,29 @@ public class Player extends AbstractPerson
         initialiseMove(dir);
     }
 
+    /**
+     * Getter for inventory.
+     * @return - Returns the Inventory of this player.
+     */
     public Inventory getInventory()
     {
         return this.inventory;
     }
 
-
-
     public boolean isOnTriggerTile() {
         return this.getRoom().isTriggerTile(this.tileCoordinates.x, this.tileCoordinates.y);
 
     }
+
+    /**
+     * Getter for personality.
+     * @return - Returns the personality of this player.
+     */
     public int getPersonality()
     {
         return this.personalityLevel;
     }
+
 
 
     /**
@@ -89,7 +116,6 @@ public class Player extends AbstractPerson
     {
         if (isOnTriggerTile()) {
             Room.Transition newRoomData = this.getRoom().getTransitionData(this.getTileCoordinates().x, this.getTileCoordinates().y);
-
 
             this.setRoom(newRoomData.getNewRoom());
 

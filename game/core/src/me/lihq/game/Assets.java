@@ -32,11 +32,18 @@ public class Assets
 
     public static BitmapFont FONT;
 
+    /**
+     * @param file - The file that contains the textures.
+     * @return Returns the new texture.
+     */
     public static Texture loadTexture(String file)
     {
         return new Texture(Gdx.files.internal(file));
     }
 
+    /**
+     * Loads all the elements the game needs such as the player.
+     */
     public static void load()
     {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Fofer.otf"));
