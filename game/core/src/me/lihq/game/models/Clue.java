@@ -21,6 +21,13 @@ public class Clue extends Sprite
     private String description;
 
     /**
+     * Describes whether the clue is one that can be shown to a NPC to find out more information.
+     * true means that you can ask a question out it, eg a shoe.. does this fit you NPC.
+     * false means that you cant ask a question eg a note that explains something about the crime.
+     */
+    private boolean questionable;
+
+    /**
      * This is the location on the map in terms of tiles can be set using {@link #setTileCoordinates(int, int)}
      * Note: this is different to com.badlogic.gdx.graphics.g2d.Sprite.position that is the position on the screen in terms of pixels,
      * whereas this is in terms of map tiles.
@@ -32,12 +39,14 @@ public class Clue extends Sprite
      * @param name the name of the clue i.e. what it is
      * @param description describes what the clue is
      * @param texture the texture region of the clue
+     * @param questionable whether the clue can be presented to a NPC and ask them questions about it.
      */
-    public Clue(String name, String description, TextureRegion texture)
+    public Clue(String name, String description, TextureRegion texture, boolean questionable)
     {
         super(texture);
         this.name = name;
         this.description = description;
+        this.questionable = questionable;
     }
 
     /**
@@ -88,6 +97,11 @@ public class Clue extends Sprite
 
     public int getTileY() {
         return tileCoordinates.y;
+    }
+
+    public boolean isQuestionable()
+    {
+        return this.questionable;
     }
 
 }
