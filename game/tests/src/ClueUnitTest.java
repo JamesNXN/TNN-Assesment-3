@@ -16,9 +16,9 @@ public class ClueUnitTest extends GameTester
     {
         Assets.load();
         //TODO: use correct assets
-        shoe = new Clue("Shoe", "I am a shoe", Assets.getArrowDirection("NORTH"), false);
-        book = new Clue("book", "I am a book", Assets.getArrowDirection("NORTH"), false);
-        glasses = new Clue("glasses", "I am a pair of glasses", Assets.getArrowDirection("NORTH"), true);
+        shoe = new Clue("Shoe", "I am a shoe", Assets.getArrowDirection("NORTH"));
+        book = new Clue("book", "I am a book", Assets.getArrowDirection("NORTH"));
+        glasses = new Clue("glasses", "I am a pair of glasses", Assets.getArrowDirection("NORTH"));
     }
 
     @Test
@@ -52,12 +52,6 @@ public class ClueUnitTest extends GameTester
         Clue shoe2 = shoe;
         assertEquals("Equality test failing", shoe, shoe2);
         assertNotEquals("Equality test always true", shoe, book);
-    }
-
-    @Test
-    public void testQuestionable() {
-        assertEquals(shoe.isQuestionable(), false);
-        assertEquals(glasses.isQuestionable(), true);
     }
 
 
