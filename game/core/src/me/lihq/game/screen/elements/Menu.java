@@ -64,7 +64,7 @@ public class Menu
         LabelStyle textStyle = new LabelStyle(font, Color.RED);
 
         //Creating the label containing text and determining  its size and location on screen
-        Label text = new Label("",textStyle);
+        Label text;
 
 
 
@@ -75,9 +75,10 @@ public class Menu
 
         if (pauseMenu) {
             newGameButton.setText("Resume Game");
+            text = new Label("Pause", textStyle);
 
         } else {
-            text.setText("Welcome To the Lorem Ipsum Murder Mystery Game!");
+            text = new Label("Welcome To the Lorem Ipsum Murder Mystery Game!",textStyle);
             newGameButton.setText("New Game");
         }
 
