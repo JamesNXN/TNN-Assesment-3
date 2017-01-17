@@ -17,7 +17,7 @@ import me.lihq.game.GameMain;
 
 /**
  * Created by vishal on 17/12/2016.
- * Reusable Main intMenu UI, can be used for the pause screen aswell.
+ * Reusable Main initMenu UI, can be used for the pause screen aswell.
  */
 
 public class Menu
@@ -55,18 +55,18 @@ public class Menu
         //Creating the label containing text and determining  its size and location on screen
         //text = new Label("Welcome To the Lorem Ipsum Murder Mystery Game!",textStyle);
 
-        text.setBounds(Gdx.graphics.getWidth()/2-text.getWidth(),Gdx.graphics.getHeight()/2+Gdx.graphics.getHeight()/3+Gdx.graphics.getHeight()/16,text.getWidth(),text.getHeight());
-        text.setFontScale(2,2);
+        //text.setBounds(Gdx.graphics.getWidth()/2-text.getWidth(),Gdx.graphics.getHeight()/2+Gdx.graphics.getHeight()/3+Gdx.graphics.getHeight()/16,text.getWidth(),text.getHeight());
+        //text.setFontScale(2,2);
 
         //Adding the text to the screen
-        stage.addActor(text);
+        //stage.addActor(text);
 
         //Loading the menu or pause screen
-        intMenu(game);
+        initMenu(game);
     }
 
-    //Method called when you want to create the main intMenu
-    private void intMenu(final GameMain game) {
+    //Method called when you want to create the main initMenu
+    private void initMenu(final GameMain game) {
         //Creating the buttons using the button skin
         //An if statement that lets the same class be used for both the pause and main menu
         //screens. It also prints an error message to the console if called using an incorrect argument
@@ -98,6 +98,7 @@ public class Menu
                 game.setScreen(game.navigationScreen);
             }
         });
+
         //Making the "Quit" button clickable and causing it to close the game
         quit.addListener(new ClickListener() {
             @Override
