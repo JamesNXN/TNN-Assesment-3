@@ -7,13 +7,13 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
-import me.lihq.game.screen.elements.MainMenu;
+import me.lihq.game.screen.elements.Menu;
 /**
  * Created by vishal on 18/12/2016.
  */
 public class PauseScreen extends AbstractScreen {
 
-    private MainMenu pauseMenu;
+    private Menu pauseMenu;
     private OrthographicCamera camera = new OrthographicCamera();
     private Viewport viewport;
 
@@ -31,11 +31,8 @@ public class PauseScreen extends AbstractScreen {
         camera.setToOrtho(false,w,h);
         camera.update();
 
-        //Determines screen size
-        viewport = new FitViewport(w/ Settings.ZOOM, h/Settings.ZOOM, camera);
-
         //Creates the Pause menu
-        pauseMenu= new MainMenu(game,1);
+        pauseMenu = new Menu(game,true);
     }
 
     @Override

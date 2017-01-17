@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -14,32 +13,31 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.InputProcessor;
 import me.lihq.game.GameMain;
-import com.badlogic.gdx.audio.Music;
 
 /**
  * Created by vishal on 17/12/2016.
- * Reusable Main Menu UI, can be used for the pause screen aswell.
+ * Reusable Main intMenu UI, can be used for the pause screen aswell.
  */
 
-public class MainMenu {
+public class Menu
+{
 
     //Initialising necessary objects and variables
     public Stage stage;
     private Skin buttonSkin;
-    private int menuType;
+    private boolean pauseMenu;
     private OrthographicCamera camera;
     private SpriteBatch batch;
     private static final Color BACKGROUND_COLOR = Color.GRAY;
     private static final int WIDTH = Gdx.graphics.getWidth()/2 - Gdx.graphics.getWidth()/8;
 
-    public MainMenu(final GameMain game, int MenuType) {
+    public Menu(final GameMain game, boolean pauseMenu) {
 
         //Initialising new stage
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-        menuType= MenuType;
+        this.pauseMenu = pauseMenu;
 
         //Initialising the skin made for the buttons
         initButtonSkin();
@@ -55,7 +53,8 @@ public class MainMenu {
         textStyle = new LabelStyle(font, Color.RED);
 
         //Creating the label containing text and determining  its size and location on screen
-        text = new Label("Welcome To the Lorem Ipsum Murder Mystery Game!",textStyle);
+        //text = new Label("Welcome To the Lorem Ipsum Murder Mystery Game!",textStyle);
+
         text.setBounds(Gdx.graphics.getWidth()/2-text.getWidth(),Gdx.graphics.getHeight()/2+Gdx.graphics.getHeight()/3+Gdx.graphics.getHeight()/16,text.getWidth(),text.getHeight());
         text.setFontScale(2,2);
 
@@ -63,28 +62,24 @@ public class MainMenu {
         stage.addActor(text);
 
         //Loading the menu or pause screen
-        Menu(game);
+        intMenu(game);
     }
 
-    //Method called when you want to create the main Menu
-    private void Menu(final GameMain game) {
+    //Method called when you want to create the main intMenu
+    private void intMenu(final GameMain game) {
         //Creating the buttons using the button skin
         //An if statement that lets the same class be used for both the pause and main menu
         //screens. It also prints an error message to the console if called using an incorrect argument
 
         TextButton newGameButton = new TextButton("", buttonSkin);
-        try {
-            if (menuType == 0) {
-                newGameButton.setText("New Game");
-            } else if (menuType == 1) {
-                newGameButton.setText("Resume Game");
-            }
-            else {
-                throw new Exception();
-            }
-        } catch (Exception e) {
-            System.out.println("Exception thrown  : Menu Type is incorrect");
+
+        if (pauseMenu) {
+            newGameButton.setText("Resume Game");
+        } else {
+            newGameButton.setText("New Game");
         }
+
+
         newGameButton.setPosition(WIDTH, Gdx.graphics.getHeight() / 2);
         TextButton settings = new TextButton("Settings", buttonSkin);
         settings.setPosition(WIDTH, Gdx.graphics.getHeight() / 2 - Gdx.graphics.getHeight() / 8);

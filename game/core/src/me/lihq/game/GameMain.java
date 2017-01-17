@@ -72,7 +72,7 @@ public class GameMain extends Game
 
         //set up the screen and display the first room
 
-        //Set up the MainMenu
+        //Set up the Menu
         menuScreen = new MainMenuScreen(this);
         this.setScreen(menuScreen);
 
