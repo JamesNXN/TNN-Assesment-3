@@ -55,7 +55,7 @@ public class PauseScreen extends AbstractScreen {
 
     @Override
     public void resize(int width, int height) {
-
+        pauseMenu.resize(width, height);
     }
 
     @Override

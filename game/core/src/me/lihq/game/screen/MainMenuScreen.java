@@ -51,7 +51,7 @@ public class MainMenuScreen extends AbstractScreen {
 
     @Override
     public void resize(int width, int height) {
-
+        menu.resize(width, height);
     }
 
     @Override

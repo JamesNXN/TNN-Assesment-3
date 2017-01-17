@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.GameMain;
 import me.lihq.game.screen.PauseScreen;
 
@@ -37,7 +38,7 @@ public class StatusBar
     public StatusBar(final GameMain game) {
 
 
-        stage = new Stage();
+        stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         pauseScreen= new PauseScreen(game);
         initSkins();
 
@@ -80,6 +81,12 @@ public class StatusBar
     {
         stage.act();
         stage.draw();
+    }
+
+
+    public void resize(int width, int height)
+    {
+        stage.getViewport().update(width, height, true);
     }
 
     public void dispose()

@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.GameMain;
 
 /**
@@ -35,7 +36,7 @@ public class Menu
     public Menu(final GameMain game, boolean pauseMenu) {
 
         //Initialising new stage
-        stage = new Stage();
+        stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(stage);
         this.pauseMenu = pauseMenu;
 
@@ -43,23 +44,9 @@ public class Menu
         initButtonSkin();
 
         //Initialising things required for text
-        Label text;
-        LabelStyle textStyle;
-        BitmapFont font = new BitmapFont();
-        SpriteBatch batch= new SpriteBatch();
-        OrthographicCamera camera = new OrthographicCamera();
 
-        //Creating a style for the new labels containing text. This determines the font and colour of the text.
-        textStyle = new LabelStyle(font, Color.RED);
 
-        //Creating the label containing text and determining  its size and location on screen
-        //text = new Label("Welcome To the Lorem Ipsum Murder Mystery Game!",textStyle);
 
-        //text.setBounds(Gdx.graphics.getWidth()/2-text.getWidth(),Gdx.graphics.getHeight()/2+Gdx.graphics.getHeight()/3+Gdx.graphics.getHeight()/16,text.getWidth(),text.getHeight());
-        //text.setFontScale(2,2);
-
-        //Adding the text to the screen
-        //stage.addActor(text);
 
         //Loading the menu or pause screen
         initMenu(game);
@@ -71,14 +58,32 @@ public class Menu
         //An if statement that lets the same class be used for both the pause and main menu
         //screens. It also prints an error message to the console if called using an incorrect argument
 
+
+        BitmapFont font = new BitmapFont();
+
+        LabelStyle textStyle = new LabelStyle(font, Color.RED);
+
+        //Creating the label containing text and determining  its size and location on screen
+        Label text = new Label("",textStyle);
+
+
+
+
+
+
         TextButton newGameButton = new TextButton("", buttonSkin);
 
         if (pauseMenu) {
             newGameButton.setText("Resume Game");
+
         } else {
+            text.setText("Welcome To the Lorem Ipsum Murder Mystery Game!");
             newGameButton.setText("New Game");
         }
 
+        text.setFontScale(2,2);
+
+        text.setBounds(Gdx.graphics.getWidth()/2-text.getWidth(),Gdx.graphics.getHeight()/2+Gdx.graphics.getHeight()/3+Gdx.graphics.getHeight()/16,text.getWidth(),text.getHeight());
 
         newGameButton.setPosition(WIDTH, Gdx.graphics.getHeight() / 2);
         TextButton settings = new TextButton("Settings", buttonSkin);
@@ -87,6 +92,7 @@ public class Menu
         quit.setPosition(WIDTH, Gdx.graphics.getHeight() / 2 - Gdx.graphics.getHeight() / 4);
 
         //Loading the buttons onto the stage
+        stage.addActor(text);
         stage.addActor(settings);
         stage.addActor(newGameButton);
         stage.addActor(quit);
@@ -153,4 +159,7 @@ public class Menu
         batch.dispose();
     }
 
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height, true);
+    }
 }
