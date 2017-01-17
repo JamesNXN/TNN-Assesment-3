@@ -102,7 +102,7 @@ public class Room
     public void moveClue(Clue clue, int x, int y)
     {
         if (cluesInRoom.contains(clue)) {
-            clue.setCoords(x, y);
+            clue.setTileCoordinates(x, y);
         }
     }
 
