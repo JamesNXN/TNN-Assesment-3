@@ -138,7 +138,7 @@ Dialogue/Interaction
 |                |                | game.          |                |                |
 +----------------+----------------+----------------+----------------+----------------+
 | 3.1.3          | The game       | Check          | N/A -          |                |
-|                | must have a    | functionality  | otherwise the  |                |
+|                | should have a  | functionality  | otherwise the  |                |
 |                | method, for    | as described   | player cannot  |                |
 |                | example an     | throughout a   | review         |                |
 |                | interface to   | play-through.  | information    |                |
@@ -303,31 +303,6 @@ Dialogue/Interaction
 |                |                | are more       |                |                |
 |                |                | complicated .  |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 3.1.5          | The game must  |  Game has a    |  Game starts   |                |
-|                | have a main    |  working main  |  automatically.|                |
-|                | menu to start  |  menu.         |                |                |
-|                | the game.      |                |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 3.1.6          | The game must  |  The game has  |  N/A-required. |                |
-|                | have a user    |  a clear user  |                |                |
-|                | manual.        |  manual.       |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 3.1.7          | The game must  |  The game has  |  N/A-required. |                |
-|                | have an in game|  a clear in    |                |                |
-|                | menu which     |  game menu.    |                |                |
-|                | links to other |                |                |                |
-|                | parts of the   |                |                |                |
-|                | game.          |                |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 3.1.8          | The game must  |  The game has  |  N/A-required. |                |
-|                | have an in game|  a working     |                |                |
-|                | overlay that   |  overlay which |                |                |
-|                | shows the      |  shows         |                |                |
-|                | temperament    |  temperament   |                |                |
-|                | gauge and also |  and clue      |                |                |
-|                | text describing|  notifications.|                |                |
-|                | clues found.   |                |                |                |
-+----------------+----------------+----------------+----------------+----------------+
 
 Clues
 ~~~~~~~~~~~~~~
@@ -339,7 +314,7 @@ Clues
 |                | at least one   | clues spawn in | necessary      |                |
 |                | clue to find   | each room.     | requirement.   |                |
 |                | in each room   |                |                |                |
-|                | on the map.    |                |                |                |
+|                |  on the map.   |                |                |                |
 +----------------+----------------+----------------+----------------+----------------+
 | 4.2.1          | Some           | Check that     | There are no   | 21             |
 |                | ‘constant’     | consistent     | ‘constant’     |                |
