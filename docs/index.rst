@@ -24,19 +24,27 @@ Team Members
 Contents
 =========
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Assessment 1
 
-   requirements
-   RiskAssessmentandMitigation
-   methods
-   architecture
-
+   Assessment1/requirements
+   Assessment1/riskAssessmentandMitigation
+   Assessment1/methods
+   Assessment1/architecture
+   Assessment1/appendixA
+   Assessment1/appendixB
+   Assessment1/appendixC
 
 .. toctree::
    :maxdepth: 1
-   :caption: Appendix
+   :caption: Assessment 2
 
-   appendixA
-   appendixB
-   appendixC
+   Assessment2/requirements
+   Assessment2/riskAssessmentandMitigation
+   Assessment2/methods
+   Assessment2/architecture
+   Assessment2/executableTestPlan
+   Assessment2/appendixA
+   Assessment2/appendixB
+   Assessment2/appendixC
+
