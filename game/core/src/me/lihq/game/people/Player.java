@@ -1,4 +1,4 @@
-package me.lihq.game.living;
+package me.lihq.game.people;
 
 import me.lihq.game.GameMain;
 import me.lihq.game.models.Clue;
@@ -97,7 +97,7 @@ public class Player extends AbstractPerson
 
         Clue clueFound = getRoom().getClue(x, y);
         if (clueFound != null) {
-            GameMain.me.getNavigationScreen().setRoomTag(new RoomTag("You got a clue"));
+            GameMain.me.getNavigationScreen().setRoomTag(new RoomTag("You found " + clueFound.getName()));
             this.collectedClues.add(clueFound);
         } else {
             GameMain.me.getNavigationScreen().setRoomTag(new RoomTag("No clue here"));

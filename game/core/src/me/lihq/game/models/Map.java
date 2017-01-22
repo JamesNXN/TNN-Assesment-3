@@ -1,8 +1,6 @@
 package me.lihq.game.models;
 
-import me.lihq.game.GameMain;
-import me.lihq.game.living.AbstractPerson.Direction;
-import me.lihq.game.living.Player;
+import me.lihq.game.people.AbstractPerson.Direction;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,9 +12,16 @@ import java.util.Random;
 public class Map
 {
 
-    List<Room> rooms;
+
+    /**
+     * Store of the rooms in the map
+     */
+    private List<Room> rooms;
 
 
+    /**
+     * Constructs the map
+     */
     public Map()
     {
         initialiseRooms();
@@ -117,8 +122,31 @@ public class Map
      */
     public Room getRoom(int id)
     {
-        return rooms.get(id);
+        for (Room room : rooms)
+        {
+            if (room.getID() == id) return room;
+        }
+
+        return null;
     }
 
-    public List<Room> getRooms() {return rooms;}
+
+    /**
+     * Returns the amout of rooms created by the map
+     * @return number of rooms
+     */
+    public int getAmountOfRooms()
+    {
+        return rooms.size();
+    }
+
+
+    /**
+     * Gets the rooms in the map
+     * @return List of rooms that the map initialised
+     */
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
 }

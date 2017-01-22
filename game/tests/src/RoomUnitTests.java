@@ -1,6 +1,4 @@
-import me.lihq.game.living.AbstractPerson;
-import me.lihq.game.living.Player;
-import me.lihq.game.models.Map;
+import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 import org.junit.Before;

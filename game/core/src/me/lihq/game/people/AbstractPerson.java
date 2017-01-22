@@ -1,16 +1,16 @@
-package me.lihq.game.living;
+package me.lihq.game.people;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import me.lihq.game.Assets;
-import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
+
+import java.util.Comparator;
 
 /**
  * The abstract person is an abstract representation of a person. A person can be a non playable character or Player.
@@ -56,7 +56,7 @@ public abstract class AbstractPerson extends Sprite
      */
     protected Vector2Int destinationTile = new Vector2Int(0, 0);
     protected float animTimer;
-    protected float animTime = Settings.TPS / 3.5f;
+    protected float animTime = Settings.TPS / 3f;
     protected Texture spriteSheet;
     protected TextureRegion currentRegion;
     /**
@@ -149,6 +149,8 @@ public abstract class AbstractPerson extends Sprite
      */
     public void initialiseMove(Direction dir)
     {
+        getRoom().lockCoordinate(this.tileCoordinates.x + dir.getDx(), this.tileCoordinates.y + dir.getDy());
+
         this.direction = dir;
 
         this.startTile.x = this.tileCoordinates.x;
@@ -170,6 +172,8 @@ public abstract class AbstractPerson extends Sprite
         animTimer = 0f;
 
         this.state = PersonState.STANDING;
+
+        getRoom().unlockCoordinate(tileCoordinates.x, tileCoordinates.y);
 
         updateTextureRegion();
     }
@@ -202,7 +206,7 @@ public abstract class AbstractPerson extends Sprite
         }
 
         if (animTimer > threeQuarters) {
-            setRegion(new TextureRegion(spriteSheet, 64, row * SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT));
+            setRegion(new TextureRegion(spriteSheet, 96, row * SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT));
         } else if (animTimer > half) {
             setRegion(new TextureRegion(spriteSheet, 0, row * SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT));
         } else if (animTimer > quarter) {
@@ -348,6 +352,13 @@ public abstract class AbstractPerson extends Sprite
          * Person is standing still.
          */
         STANDING;
+    }
+
+    public static class PersonPositionComparator implements Comparator<AbstractPerson> {
+        @Override
+        public int compare(AbstractPerson o1, AbstractPerson o2) {
+            return o2.getTileCoordinates().y - o1.getTileCoordinates().y;
+        }
     }
 
 }

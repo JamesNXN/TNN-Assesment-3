@@ -3,16 +3,18 @@ package me.lihq.game.models;
 //TODO: Tidy up getters and setters add them if needed, some places we are using them others not.
 
 
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import me.lihq.game.Assets;
 import me.lihq.game.GameMain;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapLayer;
+import me.lihq.game.Assets;
 import me.lihq.game.Settings;
-import me.lihq.game.living.AbstractPerson.Direction;
+import me.lihq.game.people.AbstractPerson.Direction;
+import me.lihq.game.people.NPC;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,6 +58,12 @@ public class Room
     private TiledMap map;
 
     /**
+     * This stores the coordinates of the map in a 2x2 array. If a player/NPC attempts to move to a location, it locks
+     * the location before it moves, to avoid anything else moving to it.
+     */
+    private boolean[][] lockedTiles = null;
+
+    /**
      * Room transitions stored as custom Transition object. Defines where the transition is from and where it goes to
      */
     private List<Transition> roomTransitions = new ArrayList<Transition>();
@@ -75,6 +83,29 @@ public class Room
         this.name = name;
 
         this.map = new TmxMapLoader().load("maps/" + this.mapFile);
+
+        int roomWidth = ((TiledMapTileLayer) map.getLayers().get(0)).getWidth();
+        int roomHeight = ((TiledMapTileLayer) map.getLayers().get(0)).getHeight();
+
+        this.lockedTiles = new boolean[roomWidth][roomHeight];
+        for (int w = 0; w < roomWidth; w ++)
+        {
+            for (int h = 0; h < roomHeight; h ++)
+            {
+                this.lockedTiles[w][h] = false;
+            }
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj instanceof Room) {
+        Room r = (Room) obj;
+        return r.getID() == this.getID();
+    }
+
+        return false;
     }
 
     /**
@@ -137,8 +168,6 @@ public class Room
         //Check for a clue at that coordinate
         for (Clue c : cluesInRoom) {
             if (c.getPosition().x == x && c.getPosition().y == y) {
-                //This is just temporary indicator that you have found the clue
-                //We will use the speech box in the future
                 out = c;
             }
         }
@@ -179,6 +208,28 @@ public class Room
             }
         }
         return false;
+    }
+
+    /**
+     * This method locks the specified coordinates so no other people object can move to it
+     *
+     * @param x - The x coordinate to lock
+     * @param y - The y coordinate to lock
+     */
+    public void lockCoordinate(int x, int y)
+    {
+        this.lockedTiles[x][y] = true;
+    }
+
+    /**
+     * This method unlocks the specified coordinates so other people object can move to it
+     *
+     * @param x - The x coordinate to unlock
+     * @param y - The y coordinate to unlock
+     */
+    public void unlockCoordinate(int x, int y)
+    {
+        this.lockedTiles[x][y] = false;
     }
 
     /**
@@ -224,6 +275,42 @@ public class Room
         if it does the this must be an empty area of the map that is not walkable
          */
         if (emptyCellCount == amountOfLayers) {
+            return false;
+        }
+
+        try
+        {
+             /*
+            Check to see if the player is standing in the target destination
+            */
+            if (GameMain.me.player.getTileCoordinates().x == x && GameMain.me.player.getTileCoordinates().y == y)
+            {
+                return false;
+            }
+
+             /*
+             Check to see if any NPCs are standing in the target destination
+             */
+            for (Sprite sprite : GameMain.me.getNavigationScreen().getNPCs())
+            {
+                NPC npc = (NPC) sprite;
+
+                if (npc.getTileCoordinates().x == x && npc.getTileCoordinates().y == y)
+                {
+                    return false;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        /*
+        Check to see if any people object has locked the target destination for them to move to
+         */
+        if (this.lockedTiles[x][y] == true)
+        {
             return false;
         }
 
@@ -391,6 +478,32 @@ public class Room
         }
 
         return null;
+    }
+
+    /**
+     * This method returns a random location in the room that is walkable
+     */
+    public Vector2Int getRandomLocation()
+    {
+        int roomWidth = ((TiledMapTileLayer) getTiledMap().getLayers().get(0)).getWidth();
+        int roomHeight = ((TiledMapTileLayer) getTiledMap().getLayers().get(0)).getHeight();
+
+        List<Vector2Int> possibleLocations = new ArrayList<Vector2Int>();
+
+        for (int w = 0; w < roomWidth; w ++)
+        {
+            for (int h = 0; h < roomHeight; h ++)
+            {
+                if (isWalkableTile(w, h))
+                {
+                    possibleLocations.add(new Vector2Int(w, h));
+                }
+            }
+        }
+
+        Collections.shuffle(possibleLocations);
+
+        return possibleLocations.get(0);
     }
 
     /**

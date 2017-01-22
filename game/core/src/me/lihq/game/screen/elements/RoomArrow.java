@@ -3,8 +3,8 @@ package me.lihq.game.screen.elements;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import me.lihq.game.Assets;
-import me.lihq.game.living.AbstractPerson;
-import me.lihq.game.living.Player;
+import me.lihq.game.people.AbstractPerson;
+import me.lihq.game.people.Player;
 
 /**
  * This is the arrow the indicates the movement to a new room when the player is on a floor mat.

@@ -1,11 +1,11 @@
-package me.lihq.game.living.controller;
+package me.lihq.game.people.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import me.lihq.game.Settings;
-import me.lihq.game.living.Player;
+import me.lihq.game.people.Player;
 
-import static me.lihq.game.living.AbstractPerson.*;
+import static me.lihq.game.people.AbstractPerson.*;
 
 /**
  * This class allows the player to be moved and controlled.
@@ -42,14 +42,33 @@ public class PlayerController extends InputAdapter
             return true;
         }
 
-
         if (keycode == Input.Keys.UP || keycode == Input.Keys.W) {
             this.north = true;
             return true;
         }
 
+
         if (keycode == Input.Keys.DOWN || keycode == Input.Keys.S) {
             this.south = true;
+            return true;
+        }
+
+        //TODO: The following 3 key reads could do with being placed in another controller
+        if (keycode == Input.Keys.J)
+        {
+            Settings.DEBUG_OPTIONS.put("showWalkable", !Settings.DEBUG_OPTIONS.get("showWalkable"));
+            return true;
+        }
+
+        if (keycode == Input.Keys.H)
+        {
+            Settings.DEBUG_OPTIONS.put("showHideable", !Settings.DEBUG_OPTIONS.get("showHideable"));
+            return true;
+        }
+
+        if (keycode == Input.Keys.F3)
+        {
+            Settings.DEBUG = !Settings.DEBUG;
             return true;
         }
 

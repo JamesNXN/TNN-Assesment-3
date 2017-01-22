@@ -1,34 +1,34 @@
-package me.lihq.game.screen.elements;
+package me.lihq.game;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import me.lihq.game.GameMain;
+import me.lihq.game.people.AbstractPerson;
+import me.lihq.game.people.AbstractPerson.PersonPositionComparator;
+import me.lihq.game.screen.elements.DebugOverlay;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+
+import java.util.*;
 
 /**
- * OrthogonalTiledMapRendererWithSprite
+ * OrthogonalTiledMapRendererWithPeople
  * <p>
  * This class is an extension of the OrthogonalTiledMapRenderer that deals with
  * rendering sprites aswell. The last layer of the map is designed to be drawn OVER
  * the player sprite and NPCs. So this controls that by drawing each layer until it comes to the last
  * one, then it draws the sprites, then the final layer.
  */
-public class OrthogonalTiledMapRendererWithSprite extends OrthogonalTiledMapRenderer
+public class OrthogonalTiledMapRendererWithPeople extends OrthogonalTiledMapRenderer
 {
 
-    public List<Sprite> sprites;
+    public List<AbstractPerson> people;
 
-    public OrthogonalTiledMapRendererWithSprite(TiledMap map)
+    public OrthogonalTiledMapRendererWithPeople(TiledMap map)
     {
         super(map);
 
-        sprites = new ArrayList<Sprite>();
+        people = new ArrayList<>();
     }
 
     /**
@@ -36,9 +36,27 @@ public class OrthogonalTiledMapRendererWithSprite extends OrthogonalTiledMapRend
      *
      * @param sprite - Sprite to be added
      */
-    public void addSprite(Sprite sprite)
+    public void addPerson(AbstractPerson sprite)
     {
-        sprites.add(sprite);
+        people.add(sprite);
+    }
+
+
+    public void addPerson(List<AbstractPerson> sprites)
+    {
+
+        for (AbstractPerson a : sprites) {
+            people.add(a);
+        }
+    }
+
+
+
+
+
+    public void clearPeople()
+    {
+        people.clear();
     }
 
     /**
@@ -51,6 +69,8 @@ public class OrthogonalTiledMapRendererWithSprite extends OrthogonalTiledMapRend
     public void render()
     {
         beginRender();
+
+        people.sort(new PersonPositionComparator());
 
         int amountOfLayers = map.getLayers().getCount();
 
@@ -67,10 +87,17 @@ public class OrthogonalTiledMapRendererWithSprite extends OrthogonalTiledMapRend
             }
 
             if (currentLayer == amountOfLayers - 2 || amountOfLayers == 1) {
-                for (Sprite s : sprites) {
+
+                for (AbstractPerson s : people)
+                {
                     s.draw(this.getBatch());
                 }
             }
+        }
+
+        if (Settings.DEBUG)
+        {
+           DebugOverlay.renderDebugTiles(map, this.getBatch());
         }
 
         endRender();

@@ -63,12 +63,12 @@ public class Vector2Int
     }
 
     /**
-     * This method returns a string representation of the object
+     * This method returns a String representation of the Vector2Int object
      *
-     * @return String that represents the values in this object
+     * @return String - Representing the values stored in this object
      */
     @Override
     public String toString() {
-        return "(" + x + ", " + y + ")";
+        return "(" + x + "," + y + ")";
     }
 }

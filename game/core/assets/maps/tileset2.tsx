@@ -405,7 +405,7 @@
   <properties>
    <property name="hidingSpot" type="bool" value="false"/>
    <property name="interactable" type="bool" value="false"/>
-   <property name="walkable" type="bool" value="true"/>
+   <property name="walkable" type="bool" value="false"/>
   </properties>
  </tile>
  <tile id="57">
@@ -2162,7 +2162,7 @@
   <properties>
    <property name="hidingSpot" type="bool" value="false"/>
    <property name="interactable" type="bool" value="false"/>
-   <property name="walkable" type="bool" value="false"/>
+   <property name="walkable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="308">
@@ -3126,7 +3126,7 @@
  </tile>
  <tile id="445">
   <properties>
-   <property name="hidingSpot" type="bool" value="false"/>
+   <property name="hidingSpot" type="bool" value="true"/>
    <property name="interactable" type="bool" value="false"/>
    <property name="walkable" type="bool" value="false"/>
   </properties>

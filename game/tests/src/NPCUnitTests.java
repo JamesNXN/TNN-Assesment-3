@@ -1,4 +1,5 @@
-import me.lihq.game.living.NPC;
+import me.lihq.game.people.NPC;
+import me.lihq.game.models.Room;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,11 +11,13 @@ import static org.junit.Assert.*;
 public class NPCUnitTests extends GameTester
 {
     public NPC bob;
+    public Room room;
 
     @Before
     public void makeNPC()
     {
-        bob = new NPC("bob", "player.png", 1,1,1, false);
+        room = new Room(0, "testRoom0.tmx", "Test Room 0");
+        bob = new NPC("bob", "colin.png", 1,1, room, false);
     }
 
     @Test

@@ -2,15 +2,12 @@ package me.lihq.game;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
-
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import me.lihq.game.living.NPC;
+import me.lihq.game.people.NPC;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Map;
-import me.lihq.game.living.Player;
+import me.lihq.game.people.Player;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 import me.lihq.game.screen.AbstractScreen;
@@ -18,8 +15,6 @@ import me.lihq.game.screen.NavigationScreen;
 import me.lihq.game.screen.MainMenuScreen;
 
 import java.util.*;
-
-import static com.badlogic.gdx.maps.tiled.TiledMapTileLayer.*;
 
 
 /**
@@ -173,19 +168,90 @@ public class GameMain extends Game
         player = new Player("Test name", "player.png", 3, 6);
         player.setRoom(gameMap.getRoom(0));
 
-        {
-            //TODO: Add NPC assets
-            NPC npc = new NPC("Bill", "player.png", 4, 4, 1, true);
+        //TODO: Add NPC assets
+        NPC npc = new NPC("Colin", "colin.png", 15, 17, gameMap.getRoom(0), true);
+        NPCs.add(npc);
 
-            NPCs.add(npc);
+        NPC npc2 = new NPC("Diana", "diana.png",4,4, gameMap.getRoom(1), true);
+        NPCs.add(npc2);
+
+        NPC npc3 = new NPC("Lily", "lily.png", 0, 0, gameMap.getRoom(0), true);
+        NPCs.add(npc3);
+
+        NPC npc4 = new NPC("Mary", "mary.png", 0, 0, gameMap.getRoom(0), true);
+        NPCs.add(npc4);
+
+        NPC npc5 = new NPC("Mike", "mike.png", 0, 0, gameMap.getRoom(0), true);
+        NPCs.add(npc5);
+
+        NPC npc6 = new NPC("Will", "will.png", 0, 0, gameMap.getRoom(0), true);
+        NPCs.add(npc6);
+
+        int amountOfRooms = gameMap.getAmountOfRooms();
+
+        List<Integer> roomsLeft = new ArrayList<Integer>();
+
+        for (int i = 0; i < amountOfRooms; i ++)
+        {
+            roomsLeft.add(i);
         }
 
+        for (NPC loopNpc : NPCs)
         {
-            NPC npc = new NPC("Bob", "player.png",4,4, 2, true);
+            /*
+            Refill the rooms left list if there are more NPCs than Rooms. This will put AT LEAST one NPC per room if so.
+             */
+            if (roomsLeft.isEmpty())
+            {
+                for (int i = 0; i < amountOfRooms; i ++)
+                {
+                    roomsLeft.add(i);
+                }
+            }
 
+            /*
+            Pick a random room and put that NPC in it
+             */
+            int toTake = new Random().nextInt(roomsLeft.size() - 1);
+            int selectedRoom = roomsLeft.get(toTake);
+            roomsLeft.remove(toTake);
 
-            NPCs.add(npc);
+            loopNpc.setRoom(gameMap.getRoom(selectedRoom));
+            Vector2Int position = loopNpc.getRoom().getRandomLocation();
+            loopNpc.setTileCoordinates(position.x, position.y);
+
+            System.out.println(loopNpc.getName() + " has been placed in room " + selectedRoom + " at " + position);
         }
+
+        /*
+        Generate who the Killer and Victim are
+         */
+        NPC killer = NPCs.get(new Random().nextInt(NPCs.size() - 1));
+
+        while(!killer.setKiller())
+        {
+            killer = NPCs.get(new Random().nextInt(NPCs.size() - 1));
+        }
+
+        NPC victim = NPCs.get(new Random().nextInt(NPCs.size() - 1));;
+
+        while (!victim.setVictim())
+        {
+            victim = NPCs.get(new Random().nextInt(NPCs.size() - 1));
+    }
+
+    }
+
+    public List<NPC> getNPCS(Room room)
+    {
+        List<NPC> npcsInRoom = new ArrayList<>();
+        for (NPC n : this.NPCs) {
+            if (n.getRoom() == room) {
+                npcsInRoom.add(n);
+            }
+        }
+
+        return npcsInRoom;
     }
 
     private void initialiseClues()

@@ -1,10 +1,10 @@
 import me.lihq.game.Settings;
-import me.lihq.game.living.Player;
+import me.lihq.game.people.Player;
 import me.lihq.game.models.Room;
 import org.junit.Before;
 import org.junit.Test;
 
-import static me.lihq.game.living.AbstractPerson.*;
+import static me.lihq.game.people.AbstractPerson.*;
 import static org.junit.Assert.*;
 
 /**

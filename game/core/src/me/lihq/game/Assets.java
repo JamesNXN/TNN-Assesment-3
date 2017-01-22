@@ -91,4 +91,15 @@ public class Assets
         return null;
     }
 
+    public static BitmapFont getFontWithSize(int size)
+    {
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Fofer.otf"));
+        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+        parameter.size = size;
+        BitmapFont font = generator.generateFont(parameter);
+        generator.dispose();
+
+        return font;
+    }
+
 }
