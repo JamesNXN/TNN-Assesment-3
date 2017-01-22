@@ -2,6 +2,7 @@ package me.lihq.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -13,13 +14,13 @@ import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.*;
  */
 public class Assets
 {
-    public static Texture clues;
-    public static Texture opening;
+    public static Texture CLUE_SHEET;
+    public static Texture OPENING;
 
-    public static TextureRegion introFrame1;
-    public static TextureRegion introFrame2;
+    public static TextureRegion INTROFRAME1;
+    public static TextureRegion INTROFRAME2;
 
-    /**
+     /**
      * These TextureRegions store the 4 different directions that the room changing
      * arrows can face.
      */
@@ -31,6 +32,8 @@ public class Assets
     public static Texture TAG_BORDER;
 
     public static BitmapFont FONT;
+
+    public static Animation CLUE_GLINT;
 
     /**
      * @param file - The file that contains the textures.
@@ -52,9 +55,9 @@ public class Assets
         FONT = generator.generateFont(parameter);
         generator.dispose();
 
-        opening = loadTexture("title.png");
-        introFrame1 = new TextureRegion(opening, 0, 0, 1000, 750);
-        introFrame2 = new TextureRegion(opening, 0, 750, 1000, 750);
+        OPENING = loadTexture("title.png");
+        INTROFRAME1 = new TextureRegion(OPENING, 0, 0, 1000, 750);
+        INTROFRAME2 = new TextureRegion(OPENING, 0, 750, 1000, 750);
 
         Texture arrows = loadTexture("arrows.png");
         LEFT_ARROW = new TextureRegion(arrows, 0, 0, 32, 32);
@@ -63,6 +66,14 @@ public class Assets
         UP_ARROW = new TextureRegion(arrows, 32, 32, 32, 32);
 
         TAG_BORDER = loadTexture("border.png");
+
+        CLUE_SHEET = loadTexture("clueSheet.png");
+
+        Texture glintFile = loadTexture("glintSheet.png");
+        TextureRegion[][] splitFrames = TextureRegion.split(glintFile, 32,32);
+        TextureRegion[] frames = splitFrames[0];
+
+        CLUE_GLINT = new Animation(0.1f, frames);
     }
 
     public static TextureRegion getArrowDirection(String direction)

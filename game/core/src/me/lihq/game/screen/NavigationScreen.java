@@ -249,6 +249,8 @@ public class NavigationScreen extends AbstractScreen
 
         arrow.draw(tiledMapRenderer.getBatch());
 
+        game.player.getRoom().drawClues(delta, tiledMapRenderer.getBatch());
+
         tiledMapRenderer.getBatch().end();
 
         //Everything to be drawn relative to bottom left of the screen

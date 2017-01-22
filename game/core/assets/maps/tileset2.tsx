@@ -2987,14 +2987,14 @@
  <tile id="425">
   <properties>
    <property name="hidingSpot" type="bool" value="false"/>
-   <property name="interactable" type="bool" value="false"/>
+   <property name="interactable" type="bool" value="true"/>
    <property name="walkable" type="bool" value="false"/>
   </properties>
  </tile>
  <tile id="426">
   <properties>
    <property name="hidingSpot" type="bool" value="false"/>
-   <property name="interactable" type="bool" value="false"/>
+   <property name="interactable" type="bool" value="true"/>
    <property name="walkable" type="bool" value="false"/>
   </properties>
  </tile>
@@ -3106,14 +3106,14 @@
  <tile id="442">
   <properties>
    <property name="hidingSpot" type="bool" value="false"/>
-   <property name="interactable" type="bool" value="false"/>
+   <property name="interactable" type="bool" value="true"/>
    <property name="walkable" type="bool" value="false"/>
   </properties>
  </tile>
  <tile id="443">
   <properties>
    <property name="hidingSpot" type="bool" value="false"/>
-   <property name="interactable" type="bool" value="false"/>
+   <property name="interactable" type="bool" value="true"/>
    <property name="walkable" type="bool" value="false"/>
   </properties>
  </tile>

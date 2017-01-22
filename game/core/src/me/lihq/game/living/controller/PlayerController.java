@@ -16,6 +16,8 @@ public class PlayerController extends InputAdapter
     private boolean north, south, west, east;
     private Player player;
 
+    private boolean interact = false;
+
     public PlayerController(Player player)
     {
         this.player = player;
@@ -24,6 +26,12 @@ public class PlayerController extends InputAdapter
     @Override
     public boolean keyDown(int keycode)
     {
+        if (keycode == Input.Keys.ENTER)
+        {
+            interact = true;
+            return true;
+        }
+
         if (keycode == Input.Keys.LEFT || keycode == Input.Keys.A) {
             this.west = true;
             return true;
@@ -51,6 +59,12 @@ public class PlayerController extends InputAdapter
     @Override
     public boolean keyUp(int keycode)
     {
+        if (keycode == Input.Keys.ENTER)
+        {
+            interact = false;
+            return true;
+        }
+
         if (keycode == Input.Keys.LEFT || keycode == Input.Keys.A) {
             this.west = false;
             return true;
@@ -76,6 +90,12 @@ public class PlayerController extends InputAdapter
 
     public void update()
     {
+        if (interact)
+        {
+            player.checkForClue();
+            interact = false;
+        }
+
         if (!south && !north && !east && !west) {
             timer = 0;
         }
@@ -104,6 +124,5 @@ public class PlayerController extends InputAdapter
         if (player.getState() != PersonState.WALKING) {
             player.setDirection(goTo);
         }
-
     }
 }

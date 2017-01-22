@@ -6,6 +6,7 @@ import me.lihq.game.living.Player;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * The map is a collection of Rooms , it links them all together.
@@ -97,6 +98,11 @@ public class Map
                 .addTransition(new Room.Transition().setFrom(18, 10).setTo(outside, 9, 12, Direction.EAST));  //To Outside
 
         rooms = Arrays.asList(mainRoom, rch037, portersOffice, kitchen, islandOfInteraction, toilet, computerRoom, lakeHouse, outside, pod);
+
+        /**
+         * Assign the murder room
+         */
+        rooms.get(new Random().nextInt(rooms.size())).setMurderRoom();
     }
 
 
@@ -114,4 +120,5 @@ public class Map
         return rooms.get(id);
     }
 
+    public List<Room> getRooms() {return rooms;}
 }

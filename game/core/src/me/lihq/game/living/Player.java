@@ -1,24 +1,24 @@
 package me.lihq.game.living;
 
 import me.lihq.game.GameMain;
-import me.lihq.game.models.Inventory;
+import me.lihq.game.models.Clue;
 import me.lihq.game.models.Room;
+import me.lihq.game.screen.elements.RoomTag;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class defines the player that the person playing the game will be represented by.
  */
 public class Player extends AbstractPerson
 {
-
     /**
      * The personality will be a percent score (0-100) 0 being angry, 50 being neutral, and 100 being happy/nice.
      */
     private int personalityLevel = 50;
-    
-    /**
-     * inventory holds items collected by the player.
-     */
-    private Inventory inventory = new Inventory();
+
+    public List<Clue> collectedClues = new ArrayList<>();
 
     /**
      * The score the player has earned so far.
@@ -67,6 +67,7 @@ public class Player extends AbstractPerson
      */
     public void move(Direction dir)
     {
+        System.out.println(this.getTileCoordinates().x + ": " + this.getTileCoordinates().y);
         if (this.state != PersonState.STANDING) {
             return;
         }
@@ -84,14 +85,26 @@ public class Player extends AbstractPerson
         initialiseMove(dir);
     }
 
-    /**
-     * Getter for inventory.
-     * @return - Returns the Inventory of this player.
-     */
-    public Inventory getInventory()
+    public void checkForClue()
     {
-        return this.inventory;
+        int x = getTileCoordinates().x + getDirection().getDx();
+        int y = getTileCoordinates().y + getDirection().getDy();
+
+
+        if (!this.getRoom().isHidingPlace(x, y)) {
+            return;
+        }
+
+        Clue clueFound = getRoom().getClue(x, y);
+        if (clueFound != null) {
+            GameMain.me.getNavigationScreen().setRoomTag(new RoomTag("You got a clue"));
+            this.collectedClues.add(clueFound);
+        } else {
+            GameMain.me.getNavigationScreen().setRoomTag(new RoomTag("No clue here"));
+        }
     }
+
+
 
     public boolean isOnTriggerTile() {
         return this.getRoom().isTriggerTile(this.tileCoordinates.x, this.tileCoordinates.y);

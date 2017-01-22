@@ -5,6 +5,7 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import me.lihq.game.GameMain;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -56,7 +57,14 @@ public class OrthogonalTiledMapRendererWithSprite extends OrthogonalTiledMapRend
         for (int currentLayer = 0; currentLayer < amountOfLayers; currentLayer++) {
             MapLayer layer = map.getLayers().get(currentLayer);
 
-            renderTileLayer((TiledMapTileLayer) layer);
+            if (layer.getName().equals("Blood") && !GameMain.me.player.getRoom().isMurderRoom())
+            {
+                //Don't draw the layer as its not the murder room
+            }
+            else
+            {
+                renderTileLayer((TiledMapTileLayer) layer);
+            }
 
             if (currentLayer == amountOfLayers - 2 || amountOfLayers == 1) {
                 for (Sprite s : sprites) {

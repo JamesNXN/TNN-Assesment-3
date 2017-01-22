@@ -69,17 +69,29 @@ public class Clue extends Sprite
         return this.description;
     }
 
+    public Clue setTileCoordinates(Vector2Int v)
+    {
+        return setTileCoordinates(v.x, v.y);
+    }
+
     /**
      * Setter for clue tile coordinates.
      * @param x - The x coordinate for where the clue is, in terms of tiles.
      * @param y - The y coordinate for where the clue is, in terms of tiles.
      */
-    public void setTileCoordinates(int x, int y)
+    public Clue setTileCoordinates(int x, int y)
     {
         this.tileCoordinates.x = x;
         this.tileCoordinates.y = y;
 
-        this.setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
+        setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
+
+        return this;
+    }
+
+    public Vector2Int getPosition()
+    {
+        return this.tileCoordinates;
     }
 
     public int getTileX() {
