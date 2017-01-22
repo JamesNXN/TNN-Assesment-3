@@ -67,7 +67,6 @@ public class Player extends AbstractPerson
      */
     public void move(Direction dir)
     {
-        System.out.println(this.getTileCoordinates().x + ": " + this.getTileCoordinates().y);
         if (this.state != PersonState.STANDING) {
             return;
         }

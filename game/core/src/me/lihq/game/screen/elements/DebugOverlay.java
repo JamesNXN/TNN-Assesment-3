@@ -5,9 +5,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import me.lihq.game.Assets;
 import me.lihq.game.GameMain;
@@ -15,13 +14,19 @@ import me.lihq.game.Settings;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 
-import java.util.List;
-
 /**
  * This class allows you to easily debug issues with the map
  */
 public class DebugOverlay
 {
+
+    private static Sprite greenSprite = getColoredTileSprite(Color.GREEN);
+
+    private static Sprite redSprite = getColoredTileSprite(Color.RED);
+
+    private static Sprite yellowSprite = getColoredTileSprite(Color.GOLD);
+
+    private static BitmapFont font = Assets.getFontWithSize(30);
 
     public static void renderDebugInfo(Batch batch)
     {
@@ -30,20 +35,15 @@ public class DebugOverlay
         border.setSize(390, 180);
         border.draw(batch);
 
-        Assets.getFontWithSize(30).draw(batch, "====== DEBUG MODE ====== \n" +
+        font.draw(batch, "====== DEBUG MODE ====== \n" +
                 "Press H to toggle showHideable\n" +
                 "Press J to Toggle showWalkable ", Gdx.graphics.getWidth() - 360, Gdx.graphics.getHeight() - 50);
     }
 
     public static void renderDebugTiles(Room room, Batch batch) {
          /*
-            Draw a filter over showing whether or not a tile is "walkable"
-             */
-        Sprite greenSprite = getColoredTileSprite(Color.GREEN);
-
-        Sprite redSprite = getColoredTileSprite(Color.RED);
-
-        Sprite yellowSprite = getColoredTileSprite(Color.GOLD);
+         Draw a filter over showing whether or not a tile is "walkable"
+         */
 
         int roomWidth = ((TiledMapTileLayer) room.getTiledMap().getLayers().get(0)).getWidth();
         int roomHeight = ((TiledMapTileLayer) room.getTiledMap().getLayers().get(0)).getHeight();
@@ -62,9 +62,7 @@ public class DebugOverlay
             }
         }
 
-        List<Vector2Int> hideableTiles = room.getHidingSpots();
-
-        for (Vector2Int c : hideableTiles)
+        for (Vector2Int c : room.hidingSpots)
         {
             yellowSprite.setPosition(c.x * Settings.TILE_SIZE, c.y * Settings.TILE_SIZE);
             yellowSprite.draw(batch);
