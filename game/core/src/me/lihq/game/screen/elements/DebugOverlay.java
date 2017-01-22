@@ -12,6 +12,10 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import me.lihq.game.Assets;
 import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
+import me.lihq.game.models.Room;
+import me.lihq.game.models.Vector2Int;
+
+import java.util.List;
 
 /**
  * This class allows you to easily debug issues with the map
@@ -31,8 +35,7 @@ public class DebugOverlay
                 "Press J to Toggle showWalkable ", Gdx.graphics.getWidth() - 360, Gdx.graphics.getHeight() - 50);
     }
 
-    public static void renderDebugTiles(TiledMap map, Batch batch)
-    {
+    public static void renderDebugTiles(Room room, Batch batch) {
          /*
             Draw a filter over showing whether or not a tile is "walkable"
              */
@@ -42,47 +45,29 @@ public class DebugOverlay
 
         Sprite yellowSprite = getColoredTileSprite(Color.GOLD);
 
-        int roomWidth = ((TiledMapTileLayer) map.getLayers().get(0)).getWidth();
-        int roomHeight = ((TiledMapTileLayer) map.getLayers().get(0)).getHeight();
+        int roomWidth = ((TiledMapTileLayer) room.getTiledMap().getLayers().get(0)).getWidth();
+        int roomHeight = ((TiledMapTileLayer) room.getTiledMap().getLayers().get(0)).getHeight();
 
-        for (int w = 0; w < roomWidth; w ++)
-        {
-            for (int h = 0; h < roomHeight; h ++)
-            {
-                if (Settings.DEBUG_OPTIONS.get("showWalkable"))
-                {
-                    if (GameMain.me.player.getRoom().isWalkableTile(w, h))
-                    {
+        for (int w = 0; w < roomWidth; w++) {
+            for (int h = 0; h < roomHeight; h++) {
+                if (Settings.DEBUG_OPTIONS.get("showWalkable")) {
+                    if (GameMain.me.player.getRoom().isWalkableTile(w, h)) {
                         greenSprite.setPosition(w * Settings.TILE_SIZE, h * Settings.TILE_SIZE);
                         greenSprite.draw(batch);
-                    }
-                    else
-                    {
+                    } else {
                         redSprite.setPosition(w * Settings.TILE_SIZE, h * Settings.TILE_SIZE);
                         redSprite.draw(batch);
                     }
                 }
-
-                if (Settings.DEBUG_OPTIONS.get("showHideable"))
-                {
-                    for (MapLayer layer : map.getLayers())
-                    {
-                        TiledMapTileLayer thisLayer = (TiledMapTileLayer) layer;
-                        TiledMapTileLayer.Cell cellInTile = thisLayer.getCell(w, h);
-
-                        if (cellInTile == null) continue;
-
-                        if (!cellInTile.getTile().getProperties().containsKey("hidingSpot")) continue;
-
-                        if (Boolean.valueOf(cellInTile.getTile().getProperties().get("hidingSpot").toString().equals("true")))
-                        {
-                            yellowSprite.setPosition(w * Settings.TILE_SIZE, h * Settings.TILE_SIZE);
-                            yellowSprite.draw(batch);
-                            break;
-                        }
-                    }
-                }
             }
+        }
+
+        List<Vector2Int> hideableTiles = room.getHidingSpots();
+
+        for (Vector2Int c : hideableTiles)
+        {
+            yellowSprite.setPosition(c.x * Settings.TILE_SIZE, c.y * Settings.TILE_SIZE);
+            yellowSprite.draw(batch);
         }
     }
 

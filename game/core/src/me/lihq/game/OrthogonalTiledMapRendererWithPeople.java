@@ -97,7 +97,7 @@ public class OrthogonalTiledMapRendererWithPeople extends OrthogonalTiledMapRend
 
         if (Settings.DEBUG)
         {
-           DebugOverlay.renderDebugTiles(map, this.getBatch());
+           DebugOverlay.renderDebugTiles(GameMain.me.player.getRoom(), this.getBatch());
         }
 
         endRender();
