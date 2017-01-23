@@ -4,435 +4,513 @@ Requirements
 Introduction
 -------------
 
-First the team read the brief and associated documentation. Then we got
-together and discussed our ideas, coming up with a rough draft of basic
-and requirements. From these we discussed the more ambiguous points,
-such as what sort of view the player will use, and where the murder will
-take place. Then we picked out the most ambiguous parts that prevented
-us from continuing with basic designs and discussed them with our
-customer. After two interviews with our customer we finalised the
-requirements.
+At our first meeting we read the brief, and with that in mind, we played
+cluedo to get a feel for a general detective game. This sparked
+discussion as to what works in a game, and it gave us ideas for how our
+game should work. We decided the most effective way of thinking about
+the game was like “guess who”. Using the brief and our new ideas, we
+produced a list of features we’d like to include in the game, and then
+prioritised those.
 
-At the first group meeting we played cluedo to get a feel for a general
-detective game. This sparked great discussion, and allowed for great
-strides to be made on requirements very early on, by giving us an idea
-of what works in a game. This also allowed us to discuss ideas that
-would be interesting but more difficult to implement, which we left as
-possible expansion if overall time costs do not overrun. We also
-produced a number of user scenarios[1] which we used to help guide our
-thinking when producing requirements.
+After the initial meeting, we produced a number of user scenarios [1],
+and used our list of features to help produce a draft of
+the requirements. From these we identified ambiguous points and produced
+questions we needed to get answers for. We met multiple times with the
+customer throughout the  design process, to present our requirements and
+ask questions we had. Using their feedback, we made any necessary
+changes.
 
-After discussing our ideas on clues for a bit, as a group we decided
-that the most effective way of deducing the murderer was to attempt a
-‘guess who’ style. This way the player can cross off certain NPCs upon
-finding clues that confirm their alibis. This should allow the player to
-feel as though they are actually solving the crime, rather than just
-witnessing the solving.
+Following the response we got after the Assessment 1 feedback was
+released, we decided it was best to rewrite our requirements. This lead
+to substantial improvements in the clarity and categorisation of our
+requirements, and this has benefitted us as it made the requirements
+easier to test against when it came to implementing the game.
 
-The requirements are sorted into two tables, functional and
-non-functional. Functional requirements are things that the system does,
-so mainly requirements for when the game is running. Non-functional
-requirements are things that the system is, so mainly qualities the game
-must have, or objects that are hard coded.
+When designing the requirements, we took these points into account:
 
-The tables below are numbered using the following system:
+-  The requirements should be categorised as:
 
-*  The first number is category (The bit in bold e.g. NPCs)
-*  The second number represents ‘must(1), should(2), could(3)’ (the
-   priority of achieving the requirement)
-*  The third number is the requirements position in the list (to make it
-   easier to find and refer to)
+-  Functional requirements - these define what the system should do
+-  Nonfunctional requirements - the define the behaviour of the system
+
+-  The requirements should be achievable within the time allocated of
+   this project
+-  The requirements should consider the hardware in which the game
+   should run
+-  The requirements should meet all points included in the brief
+-  We produced a survey asking about input methods and accessibility
+   [2]. We got a sample of our target market to respond. From this we
+   found:
+
+-  The preferred way of interaction with the game was keyboard and
+   mouse.
+-  There were no results from colourblind people, however we still felt
+   it was important that our game was accessible, so have included
+   accessibility features as a “could” requirement. Colour blindness is
+   a condition apparent in 1 in 12 men and 1 in 200 women [3] so we feel
+   that it is a requirement that some people would benefit from.
 
 The requirements are laid out in tables based on the IEEE standard for
-system requirements for ease of access. By giving each requirement a row
-and a number all information is easy to find quickly in future. Any and
-all associated risks are discussed in the risks document and are
-referenced in the tables.
+system requirements, as we felt this was a good standard to adhere to.
+The tables are split according to type (functional or non-functional),
+and category. Some requirements have associated risks, these are
+referenced in the table below, and are defined in the risks document .
 
-Some requirements are based on considerations of environmental
-assumptions of the game. Requirements based on hardware have all taken
-into account the systems that the game will run on. We produced a survey
-[2] which we got a small number of our target market to answer. From
-this we found that the preferred way of interaction with the game was
-keyboard and mouse. Although our survey produced no results of
-colourblind people, it is a condition apparent in 1 in 12 men and 1 in
-200 women [3] so we still feel that it is a requirement that some people
-would benefit from, hence why it is listed as ‘could’.
+Each requirement is given a unique identifier to make it easy to locate,
+and for traceability. The identifiers are made up of three numbers,
+using the following system:
+
+-  The first number is category, this represents the functional area of
+   the requirement
+-  The second number represents how important the requirement is:
+
+-  1=Must implement
+-  2=Should implement
+-  3=Could implement
+
+-  The third number is the position in the list, used to ensure the
+   identifier is unique.
 
 
 Functional Requirements
 ------------------------
 
-NPCs
+Game
 ~~~~~~~~~~~~~~
 +----------------+----------------+----------------+----------------+----------------+
-| No.            | Requirement    | Success        | Alternative    | Risk ID        |
-|                |                | Criteria       | Requirements   |                |
+| ID             | Requirement    | Success        | Alternative    | Risk ID        |
+|                |                | Criteria       |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 1.1.1          | The murderer   | Upon loading   | N/A -          |                |
-|                | and victim     | the game at    | necessary      |                |
-|                | must be        | least 2 times  | requirement.   |                |
-|                | randomly       | either or both |                |                |
-|                | selected each  | the victim and |                |                |
-|                | time the game  | murderer will  |                |                |
-|                | begins from    | change.        |                |                |
-|                | two sub-lists  |                |                |                |
-|                | of murderers   |                |                |                |
-|                | and victims.   |                |                |                |
+| 1.1.1          | To start the   | The game has a | The game       | 21-24          |
+|                | game there     | working clear  | starts         |                |
+|                | must be a main | menu           | immediately    |                |
+|                | menu           |                | when its       |                |
+|                |                |                | opened         |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 1.1.2          | The NPCs must  | Upon loading   | NPCs will      | 21             |
-|                | spawn randomly | of the game    | spawn in       |                |
-|                | into rooms so  | the NPCs will  | different      |                |
-|                | that each room | be spread      | rooms.         |                |
-|                | has at least   | around the map |                |                |
-|                | one NPC at the | so that there  |                |                |
-|                | start of the   | is no room     |                |                |
-|                | game.          | without an     |                |                |
-|                |                | NPC.           |                |                |
+| 1.1.2          | The game must  | The game can   | The game is    |                |
+|                | be fully       | be interacted  | controlled by  |                |
+|                | controlled by  | with using     | an Xbox        |                |
+|                | a mouse and    | only a mouse   | controller.    |                |
+|                | keyboard       | and keyboard   |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 1.1.3          | Game must have | Each gameplay  | Game only has  | 21-24          |
+|                | different      | is different   | 2 plot lines.  |                |
+|                | 'plotlines'    | in some way    |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 1.2.1          | There should   | There is the   | The game       | 21-24          |
+|                | be a way of    | option to      | cannot be      |                |
+|                | suspending or  | pause the game | paused         |                |
+|                | pausing the    | which opens a  |                |                |
+|                | game           | pause menu     |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 1.3.1          | Could be       | The game can   | Game is only   |                |
+|                | controlled by  | be interacted  | controllable   |                |
+|                | a gamepad      | with using a   | by keyboard    |                |
+|                |                | gamepad        | and mouse.     |                |
++----------------+----------------+----------------+----------------+----------------+
+| 1.3.2          | Could have a   | Music will be  | There is no    | 21-24          |
+|                | sound track    | played when    | sound track.   |                |
+|                |                | the game is    |                |                |
+|                |                | running        |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 1.3.3          | If game has a  | There is a     | The soundtrack |                |
+|                | soundtrack, it | player         | would always   |                |
+|                | must have an   | accessible way | be on.         |                |
+|                | option to turn | to turn the    |                |                |
+|                | the sound      | sound track    |                |                |
+|                | track off      | off within the |                |                |
+|                |                | game           |                |                |
 +----------------+----------------+----------------+----------------+----------------+
 
-MAP
-~~~~~~~~~~~~~~
-+----------------+----------------+----------------+----------------+----------------+
-| No.            | Requirement    | Success        | Alternative    | Risk ID        |
-|                |                | Criteria       | Requirements   |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 2.1.1          | Rooms on the   | Walk through   | All of the map | 21             |
-|                | viewable map   | map and check  | will be        |                |
-|                | must be        | that rooms are | visible from   |                |
-|                | revealed only  | only revealed  | the start.     |                |
-|                | once the       | once visited.  |                |                |
-|                | player has     |                |                |                |
-|                | visited the    |                |                |                |
-|                | respective     |                |                |                |
-|                | rooms.         |                |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-
-Dialogue/Interaction
+Player
 ~~~~~~~~~~~~~~~~~~~~
 +----------------+----------------+----------------+----------------+----------------+
-| No.            | Requirement    | Success        | Alternative    | Risk ID        |
-|                |                | Criteria       | Requirements   |                |
+| ID             | Requirement    | Success        | Alternative    | Risk ID        |
+|                |                | Criteria       |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 3.1.1          | The player     | Ensure while   | N/A -          |                |
-|                | must always    | game is        | necessary      |                |
-|                | get three      | running the    | requirement.   |                |
-|                | choices of     | player can use |                |                |
-|                | interaction    | any of these   |                |                |
-|                | with NPCs -    | interactions   |                |                |
-|                | Question,      | with NPCs.     |                |                |
-|                | Accuse and     |                |                |                |
-|                | Ignore.        |                |                |                |
+| 2.1.1          | The player     | The players    | The player     | 21-24          |
+|                | must have a    | personality    | personality    |                |
+|                | personality    | changes in the | does not       |                |
+|                | that is        | game           | change.        |                |
+|                | customisable   |                |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 3.1.2          | All dialogue   | Not every NPC  | Each NPC has   | 3              |
-|                | must change    | will respond   | set lines of   |                |
-|                | based on the   | in the same    | dialogue.      |                |
-|                | characteristic | way to the     |                |                |
-|                | s              | same question, |                |                |
-|                | of the player  | the options    |                |                |
-|                | NPC and NPC.   | the player has |                |                |
-|                |                | to interact    |                |                |
-|                |                | with the       |                |                |
-|                |                | player changes |                |                |
-|                |                | throughout the |                |                |
-|                |                | game.          |                |                |
+| 2.1.2          | Must not be    | The player     | Can accuse an  | 21-24          |
+|                | able to accuse | cannot see the | NPC without    |                |
+|                | a NPC unless   | option to      | evidence.      |                |
+|                | enough         | accuse an NPC  |                |                |
+|                | evidence has   | unless they    |                |                |
+|                | been found     | have           |                |                |
+|                |                | interacted     |                |                |
+|                |                | with enough    |                |                |
+|                |                | clues          |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 3.1.3          | The game       | Check          | N/A -          |                |
-|                | should have a  | functionality  | otherwise the  |                |
-|                | method, for    | as described   | player cannot  |                |
-|                | example an     | throughout a   | review         |                |
-|                | interface to   | play-through.  | information    |                |
-|                | allow the      | Ensure that    | collected.     |                |
-|                | player to view | there is a     |                |                |
-|                | the map, and   | clear way of   |                |                |
-|                | some form a    | displaying and |                |                |
-|                | information on | closing        |                |                |
-|                | NPCs, clues    | interfaces.    |                |                |
-|                | found and      |                |                |                |
-|                | other points   |                |                |                |
-|                | of interest.   |                |                |                |
+| 2.1.3          | The player     | When the game  | Player can     |                |
+|                | must start in  | starts, the    | start in any   |                |
+|                | a central room | player should  | room.          |                |
+|                | at the start   | be in the      |                |                |
+|                | of every game  | centre of the  |                |                |
+|                |                | "Ron Cooke     |                |                |
+|                |                | Hub"           |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 2.1.4          | The player     | The player can | The player     | 21-24          |
+|                | must be able   | move           | progresses     |                |
+|                | to navigate    | throughout the | through rooms  |                |
+|                | between rooms  | map and        | automatically. |                |
+|                | on the map     | transition to  |                |                |
+|                |                | other rooms    |                |                |
+|                |                | when desired   |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 2.2.1          | The player     | The game       | The Player     | 21-24          |
+|                | should be able | should present | will not be    |                |
+|                | to see their   | the player     | able to see    |                |
+|                | current        | with an GUI    | their current  |                |
+|                | personality    | element        | personality    |                |
+|                | level          | showing their  | level          |                |
+|                |                | personality    |                |                |
+|                |                | level          |                |                |
 +----------------+----------------+----------------+----------------+----------------+
 
-Clues
+NPC
 ~~~~~~~~~~~~~~
 +----------------+----------------+----------------+----------------+----------------+
-| No.            | Requirement    | Success        | Alternative    | Risk ID        |
-|                |                | Criteria       | Requirements   |                |
+| ID             | Requirement    | Success        | Alternative    | Risk ID        |
+|                |                | Criteria       |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 4.1.1          | Clues must     | Ensure that    | N/A - clues    |                |
-|                | help with the  | all clues look | are necessary. |                |
-|                | elimination    | meaningful,    |                |                |
-|                | process, but   | but some have  |                |                |
-|                | some will      | false          |                |                |
-|                | point to more  | assumptions    |                |                |
-|                | than one NPC.  | associated     |                |                |
-|                |                | with them.     |                |                |
+| 3.1.1          | Each killer    | The killers    | All killer     | 21-24          |
+|                | must have a    | all have       | have the same  |                |
+|                | motive         | motives        | motive.        |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 4.1.2          | The murder     | Make sure the  | Murder weapon  | 21             |
-|                | weapon must be | player cannot  | does not have  |                |
-|                | found before   | accuse NPCs    | to be found    |                |
-|                | the player is  | before they    | before the     |                |
-|                | able to accuse | have found the | player is able |                |
-|                | any NPCs.      | murder weapon. | to accuse      |                |
-|                |                |                | NPCs.          |                |
+| 3.1.2          | There must be  | The player     | There are less | 21-24          |
+|                | 10 non         | should be able | than 10 NPC’s. |                |
+|                | playable       | to locate 10   |                |                |
+|                | characters.    | NPCs in rooms  |                |                |
+|                |                | during the     |                |                |
+|                |                | game           |                |                |
++----------------+----------------+----------------+----------------+----------------+
+
+Map
+~~~~~~~~~~~~~~
++----------------+----------------+----------------+----------------+----------------+
+| ID             | Requirement    | Success        | Alternative    | Risk ID        |
+|                |                | Criteria       |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 4.1.1          | The game must  | The player     | The game has   | 21-24          |
+|                | have a map     | should be able | less than 10   |                |
+|                | containing 10  | to visit 10    | rooms.         |                |
+|                | separate rooms | different      |                |                |
+|                |                | rooms in the   |                |                |
+|                |                | game           |                |                |
++----------------+----------------+----------------+----------------+----------------+
+
+Clue
+~~~~~~~~~~~~~~
++----------------+----------------+----------------+----------------+----------------+
+| ID             | Requirement    | Success        | Alternative    | Risk ID        |
+|                |                | Criteria       |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 5.1.1          | There must be  | The player can | Some rooms may | 21-24          |
+|                | at least one   | navigate to    | have no clues, |                |
+|                | clue in each   | every room and | some may have  |                |
+|                | room of the    | be able to     | multiple       |                |
+|                | map            | locate a clue  |                |                |
+|                |                |                |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 5.1.2          | The player     | The player     | The player     | 21-24          |
+|                | must be able   | should be able | gets the clue  |                |
+|                | to interact    | to interact    | without        |                |
+|                | with a clue    | with a clue    | interaction.   |                |
+|                |                | once it has    |                |                |
+|                |                | been located   |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 5.2.1          | There should   | The player can | Clues are      | 21-24          |
+|                | be an          | see an         | stored         |                |
+|                | inventory      | inventory in   | internally but |                |
+|                | where clues    | the GUI that   | the player     |                |
+|                | can be placed  | allows         | will not be    |                |
+|                | by a player    | visibility of  | able to see    |                |
+|                | for future     | collected      | them           |                |
+|                | reference      | clues          |                |                |
 +----------------+----------------+----------------+----------------+----------------+
 
 Score
 ~~~~~~~~~~~~~~
 +----------------+----------------+----------------+----------------+----------------+
-| No.            | Requirement    | Success        | Alternative    | Risk ID        |
-|                |                | Criteria       | Requirements   |                |
+| ID             | Requirement    | Success        | Alternative    | Risk ID        |
+|                |                | Criteria       |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 5.1.1          | The score must | If the player  | There will be  | 21             |
-|                | be raised when | finds a clue,  | no scoring.    |                |
-|                | a clue is      | the score is   |                |                |
-|                | found.         | raised.        |                |                |
+| 6.1.1          | There must be  | The player     | There will be  | 21-24          |
+|                | a score shown  | must see a     | no scoring.    |                |
+|                | to players in  | score          |                |                |
+|                | the game       | displayed in   |                |                |
+|                |                | the GUI        |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 5.1.2          | The score must | The score      | There will be  | 21             |
-|                | be lowered for | changes as     | no scoring.    |                |
-|                | each wrong     | required.      |                |                |
-|                | accusation and |                |                |                |
-|                | each question  |                |                |                |
-|                | asked.         |                |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 5.3.1          | The player     | Check that     | There will be  | 21             |
-|                | could start    | score reduces  | no scoring.    |                |
-|                | with a         | as time is     |                |                |
-|                | predetermined  | spent playing  |                |                |
-|                | score which is | the game.      |                |                |
-|                | reduced for    |                |                |                |
-|                | each  second   |                |                |                |
-|                | played.        |                |                |                |
+| 6.2.1          | There could be | There could be | There will be  | 21-24          |
+|                | an online      | a scoreboard   | a local list   |                |
+|                | scoreboard to  | in the GUI     | of high        |                |
+|                | keep high      | that presents  | scores, or no  |                |
+|                | scores         | the all time   | scoring        |                |
+|                |                | high scores    |                |                |
 +----------------+----------------+----------------+----------------+----------------+
 
-Other/System
+Dialogue
 ~~~~~~~~~~~~~~
 +----------------+----------------+----------------+----------------+----------------+
-| No.            | Requirement    | Success        | Alternative    | Risk ID        |
-|                |                | Criteria       | Requirements   |                |
+| ID             | Requirement    | Success        | Alternative    | Risk ID        |
+|                |                | Criteria       |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 6.3.2          | IF (dependant  | Check that     | The game will  | 21             |
-|                | on 6.3.1) the  | sound turns    | have no        |                |
-|                | game has a     | on/off when    | soundtrack.    |                |
-|                | soundtrack it  | appropriate    |                |                |
-|                | must have a    | option chosen. |                |                |
-|                | ‘sound on/off’ |                |                |                |
-|                | option.        |                |                |                |
+| 7.1.1          | The player     | A player can   | The player     | 21-24          |
+|                | must be able   | go up to an    | cannot         |                |
+|                | to interact    | NPC and talk   | interact with  |                |
+|                | with an NPC    | to them        | NPC’s.         |                |
++----------------+----------------+----------------+----------------+----------------+
+| 7.1.2          | The player     | When a player  | The player     | 21-24          |
+|                | must have the  | talks to an    | cannot         |                |
+|                | option of      | NPC, they      | question an    |                |
+|                | questioning an | should have    | NPC.           |                |
+|                | NPC            | the option to  |                |                |
+|                |                | question them  |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 7.1.3          | The player     | When a player  | The player     | 21-24          |
+|                | must have the  | talks to an    | cannot ignore  |                |
+|                | option of      | NPC, they      | an NPC.        |                |
+|                | ignoring an    | should have    |                |                |
+|                | NPC            | the option to  |                |                |
+|                |                | ignore them    |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 7.1.4          | The player     | When a player  | The player     | 21-24          |
+|                | must have the  | talks to an    | cannot accuse  |                |
+|                | option of      | NPC, they      | an NPC.        |                |
+|                | accusing an    | should have    |                |                |
+|                | NPC            | the option to  |                |                |
+|                |                | accuse them if |                |                |
+|                |                | they have      |                |                |
+|                |                | found enough   |                |                |
+|                |                | clues to       |                |                |
+|                |                | accuse the NPC |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 7.1.5          | The player     | When a player  | The player     | 21-24          |
+|                | must choose    | talks to an    | only has one   |                |
+|                | from a set of  | NPC, and       |                |                |
+|                | questions when | chooses to     |                |                |
+|                | interacting    | question them, |                |                |
+|                | with an NPC    | they can       |                |                |
+|                | that reflects  | choose from    |                |                |
+|                | different      | multiple       |                |                |
+|                | personalities  | speeches with  |                |                |
+|                |                | different      |                |                |
+|                |                | personality    |                |                |
+|                |                | levels. Eg.    |                |                |
+|                |                | Aggressive     |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 7.1.6          | Each NPC must  | When an NPC    | All NPC’s      | 21-24          |
+|                | respond        | responds to a  | respond in the |                |
+|                | differently to | player after   | same way.      |                |
+|                | questions from | being          |                |                |
+|                | a Player       | questioned,    |                |                |
+|                | depending on   | their response |                |                |
+|                | both NPC's and | must be        |                |                |
+|                | Player's       | determined by  |                |                |
+|                | personality    | their          |                |                |
+|                | and            | characteristic |                |                |
+|                | characteristic | s              |                |                |
+|                | s              | and the        |                |                |
+|                |                | player's       |                |                |
+|                |                | personality    |                |                |
 +----------------+----------------+----------------+----------------+----------------+
 
-Non-Functional Requirements
-----------------------------
-
-NPCs
+Nonfunctional Requirements
+---------------------------
+Game
 ~~~~~~~~~~~~~~
 +----------------+----------------+----------------+----------------+----------------+
-| No.            | Requirement    | Success        | Alternative    | Risk ID        |
-|                |                | Criteria       | Requirements   |                |
+| ID             | Requirement    | Success        | Alternative    | Risk ID        |
+|                |                | Criteria       |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 1.1.3          | The game must  | The game       | N/A -          |                |
-|                | have a cast of | contains 10    | necessary      |                |
-|                | 10 NPCs        | NPCs.          | requirement.   |                |
-|                | (Non-Player    |                |                |                |
-|                | NPCs).         |                |                |                |
+| 1.1.4          | Must run on    | An executable  | The game will  | 7              |
+|                | the university | is provided    | not run on     |                |
+|                | computers      | the runs on    | university     |                |
+|                |                | the computers  | computers.     |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 1.1.4          | The murderer   | Game functions | The murderer   | 21             |
-|                | must have a    | as described.  | will not have  |                |
-|                | motive that    |                | a clear        |                |
-|                | becomes clear  |                | motive.        |                |
-|                | at some point  |                |                |                |
-|                | in the game,   |                |                |                |
-|                | not            |                |                |                |
-|                | necessarily    |                |                |                |
-|                | before they    |                |                |                |
-|                | are accused.   |                |                |                |
+| 1.1.5          | Must run on    | An executable  | The game will  | 7              |
+|                | Windows 10     | is provided    | not run on     |                |
+|                |                | that runs on   | windows 10.    |                |
+|                |                | windows 10     |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 1.1.5          | There must be  | The narrator   | There will be  | 3              |
-|                | a narrator who | talks to the   | no narrator.   |                |
-|                | acts as the    | player.        |                |                |
-|                | tutorial and   |                |                |                |
-|                | further help   |                |                |                |
-|                | during         |                |                |                |
-|                | gameplay.      |                |                |                |
+| 1.2.2          | Should run on  | An executable  | There will not | 7              |
+|                | MacOS          | is provided    | be an          |                |
+|                |                | that runs on   | executable     |                |
+|                |                | MacOS          | that runs on   |                |
+|                |                |                | MacOS          |                |
++----------------+----------------+----------------+----------------+----------------+
+| 1.3.4          | Could run on a | An executable  | The game will  |                |
+|                | mobile         | is provided to | only run on    |                |
+|                | platform       | run on mobile  | desktop        |                |
+|                |                | platforms      | operating      |                |
+|                |                |                | systems        |                |
++----------------+----------------+----------------+----------------+----------------+
+| 1.3.5          | Could have a   | The colours in | There will not | 21-24          |
+|                | colour blind   | the game can   | be a colour    |                |
+|                | mode           | be configured  | blind mode     |                |
+|                |                | by the user to |                |                |
+|                |                | be more        |                |                |
+|                |                | accessible     |                |                |
 +----------------+----------------+----------------+----------------+----------------+
 
-MAP
+NPC
+~~~~~~~~~~~~~~
+
++----------------+----------------+----------------+----------------+----------------+
+| ID             | Requirement    | Success        | Alternative    | Risk ID        |
+|                |                | Criteria       |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 3.1.5          | Each NPC must  | The NPC will   | All NPC’s have | 21-24          |
+|                | have a         | respond best   | the same       |                |
+|                | personality    | to different   | personality.   |                |
+|                | that affects   | types of       |                |                |
+|                | and is         | question. For  |                |                |
+|                | affected by    | example, an    |                |                |
+|                | game play.     | aggressive NPC |                |                |
+|                |                | will respond   |                |                |
+|                |                | best when      |                |                |
+|                |                | questioned     |                |                |
+|                |                | nicely.        |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 3.1.6          | The killer and | When the game  | The killer and | 21-24          |
+|                | victim must be | starts, the    | victim is the  |                |
+|                | randomly       | victim and the | same every     |                |
+|                | selected each  | killer has     | time.          |                |
+|                | time the game  | been selected  |                |                |
+|                | begins from    | at random.     |                |                |
+|                | two sub-lists  |                |                |                |
+|                | of killers and |                |                |                |
+|                | victims.       |                |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 3.1.7          | Each NPC must  | All NPCs       | Each NPC is    | 21-24          |
+|                | be randomly    | should be      | always in the  |                |
+|                | assigned to a  | situated       | same room.     |                |
+|                | room at the    | within a       |                |                |
+|                | start of the   | different room |                |                |
+|                | game           | at the start   |                |                |
+|                |                | of the game.   |                |                |
++----------------+----------------+----------------+----------------+----------------+
+
+Map
 ~~~~~~~~~~~~~~
 +----------------+----------------+----------------+----------------+----------------+
-| No.            | Requirement    | Success        | Alternative    | Risk ID        |
-|                |                | Criteria       | Requirements   |                |
+| ID             | Requirement    | Success        | Alternative    | Risk ID        |
+|                |                | Criteria       |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 2.1.2          | The game must  | The game will  | N/A -          |                |
-|                | contain a      | have 10 rooms  | necessary      |                |
-|                | game-map of 10 | that are       | requirement.   |                |
-|                | separate       | accessible to  |                |                |
-|                | rooms, spread  | the player.    |                |                |
-|                | across the     |                |                |                |
-|                | setting of     |                |                |                |
-|                | ‘The Ron Cooke |                |                |                |
-|                | Hub’.          |                |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 2.2.1          | The room of    | Upon loading   | The crime      | 21             |
-|                | the crime      | the game at    | scene is       |                |
-|                | scene/murder   | least 2 times  | always in the  |                |
-|                | room must be   | the murder     | same place.    |                |
-|                | chosen         | room will      |                |                |
-|                | randomly each  | change.        |                |                |
-|                | time the game  |                |                |                |
-|                | begins.        |                |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-
-Dialogue/Interaction
-~~~~~~~~~~~~~~~~~~~~~
-+----------------+----------------+----------------+----------------+----------------+
-| No.            | Requirement    | Success        | Alternative    | Risk ID        |
-|                |                | Criteria       | Requirements   |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 3.1.4          | The game must  | Play through   | N/A -          |                |
-|                | have multiple  | the game       | necessary      |                |
-|                | ‘plot lines’ . | multiple       | requirement.   |                |
-|                |                | times,         |                |                |
-|                |                | checking that  |                |                |
-|                |                | the plot lines |                |                |
-|                |                | differ each    |                |                |
-|                |                | time.          |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 3.2.1          | Some plotlines | Play through   | The game line  | 3              |
-|                | could be more  | the game and   | has similar    |                |
-|                | intricate than | determine that | plot lines.    |                |
-|                | others.        | some plotlines |                |                |
-|                |                | are more       |                |                |
-|                |                | complicated .  |                |                |
+| 4.1.3          | The room where | One random     | The murder     | 21-24          |
+|                | the murder     | room should be | room is always |                |
+|                | occurred must  | the selected   | the same.      |                |
+|                | be randomly    | murder         |                |                |
+|                | selected at    | location at    |                |                |
+|                | the start of   | the start of   |                |                |
+|                | every game     | every game     |                |                |
 +----------------+----------------+----------------+----------------+----------------+
 
 Clues
 ~~~~~~~~~~~~~~
 +----------------+----------------+----------------+----------------+----------------+
-| No.            | Requirement    | Success        | Alternative    | Risk ID        |
-|                |                | Criteria       | Requirements   |                |
+| ID             | Requirement    | Success        | Alternative    | Risk ID        |
+|                |                | Criteria       |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 4.1.3          | There must be  | Make sure that | N/A -          |                |
-|                | at least one   | clues spawn in | necessary      |                |
-|                | clue to find   | each room.     | requirement.   |                |
-|                | in each room   |                |                |                |
-|                |  on the map.   |                |                |                |
+| 5.1.3          | The murder     | The player     | Can accuse     | 21-24          |
+|                | weapon clue    | cannot accuse  | without the    |                |
+|                | must be found  | an NPC until   | murder weapon. |                |
+|                | before the     | they've        |                |                |
+|                | player can     | located the    |                |                |
+|                | accuse any     | murder weapon  |                |                |
+|                | NPCs           | clue           |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 4.2.1          | Some           | Check that     | There are no   | 21             |
-|                | ‘constant’     | consistent     | ‘constant’     |                |
-|                | clues should   | clues spawn in | clues.         |                |
-|                | be available,  | the correct    |                |                |
-|                | for example    | place on at    |                |                |
-|                | the guest sign | least 2        |                |                |
-|                | in book in the | separate       |                |                |
-|                | central part   | occasions .    |                |                |
-|                | of the map.    |                |                |                |
+| 5.1.4          | Most clues     | A clue will    | All clues help | 21-24          |
+|                | should help    | narrow down    | identify the   |                |
+|                | with           | the number of  | killer         |                |
+|                | identifying    | suspects left  |                |                |
+|                | the killer     | to be the      |                |                |
+|                |                | killer         |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 4.2.2          | Some rooms     | Check that at  | There is only  | 21             |
-|                | should have    | least one room | one clue per   |                |
-|                | more than one  | has at least   | room.          |                |
-|                | clue e..g note | one clue in.   |                |                |
-|                | left by        |                |                |                |
-|                | victim/murder  |                |                |                |
-|                | weapon.        |                |                |                |
+| 5.1.5          | At the start   | There must be  | Clues always   | 21-24          |
+|                | of the game,   | at least one   | in same        |                |
+|                | clues must be  | clue in every  | location.      |                |
+|                | randomly       | room of the    |                |                |
+|                | assigned to    | map at the     |                |                |
+|                | each room in   | start of the   |                |                |
+|                | the map        | game           |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 4.3.1          | The player     | Check the      | All clues will | 3              |
-|                | could be able  | player can     | be meaningful. |                |
-|                | to interact    | interact with  |                |                |
-|                | with or pick   | some item and  |                |                |
-|                | up some items  | it not be      |                |                |
-|                | which are not  | listed as a    |                |                |
-|                | clues.         | clue.          |                |                |
+| 5.2.2          | Clues could be | The player can | Clues will be  | 21-24          |
+|                | picked up by a | interact with  | stored         |                |
+|                | player and     | a clue and     | internally,    |                |
+|                | placed in an   | place it in    | but my not be  |                |
+|                | inventory      | their          | seen by the    |                |
+|                |                | inventory for  | player         |                |
+|                |                | future         |                |                |
+|                |                | reference      |                |                |
 +----------------+----------------+----------------+----------------+----------------+
 
 Score
 ~~~~~~~~~~~~~~
 +----------------+----------------+----------------+----------------+----------------+
-| No.            | Requirement    | Success        | Alternative    | Risk ID        |
-|                |                | Criteria       | Requirements   |                |
+| ID             | Requirement    | Success        | Alternative    | Risk ID        |
+|                |                | Criteria       |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 5.1.3          | The player     | Play through   | There will be  | 21             |
-|                | must be scored | the game at    | no scoring     |                |
-|                | on time taken, | least 3 times  | system.        |                |
-|                | number of      | to check that  |                |                |
-|                | wrong          | scores add up  |                |                |
-|                | accusations,   | as expected.   |                |                |
-|                | number of      |                |                |                |
-|                | questions      |                |                |                |
-|                | asked and      |                |                |                |
-|                | number of      |                |                |                |
-|                | clues found.   |                |                |                |
+| 6.1.2          | The player's   | The score must | There will be  | 21-24          |
+|                | score must     | change         | no scoring.    |                |
+|                | take into      | depending on   |                |                |
+|                | account the    | how long the   |                |                |
+|                | time taken     | game has       |                |                |
+|                |                | lasted         |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 5.3.2          | A list of      | Check the      | There will be  | 3              |
-|                | high-scores    | server         | a local list   |                |
-|                | could be       | contains the   | of high scores |                |
-|                | stored on a    | high scores.   | or no list of  |                |
-|                | server.        |                | high scores.   |                |
+| 6.1.3          | The player's   | The score must | There will be  | 21-24          |
+|                | score must     | change         | no scoring.    |                |
+|                | take into      | depending on   |                |                |
+|                | account the    | how many       |                |                |
+|                | number of      | accusations    |                |                |
+|                | wrong          | the player has |                |                |
+|                | accusations    | made           |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 6.1.4          | The player's   | The score must | There will be  | 21-24          |
+|                | score must     | change         | no scoring.    |                |
+|                | take into      | depending on   |                |                |
+|                | account the    | how many       |                |                |
+|                | number of      | questions the  |                |                |
+|                | questions      | player has     |                |                |
+|                | asked          | asked          |                |                |
++----------------+----------------+----------------+----------------+----------------+
+| 6.1.5          | The player's   | The score must | There will be  | 21-24          |
+|                | score must     | change         | no scoring.    |                |
+|                | take into      | depending on   |                |                |
+|                | account the    | how many clues |                |                |
+|                | number of      | have been      |                |                |
+|                | clues found    | found by the   |                |                |
+|                |                | player         |                |                |
 +----------------+----------------+----------------+----------------+----------------+
 
-Other/System
+Dialogue
 ~~~~~~~~~~~~~~
 +----------------+----------------+----------------+----------------+----------------+
-| No.            | Requirement    | Success        | Alternative    | Risk ID        |
-|                |                | Criteria       | Requirements   |                |
+| ID             | Requirement    | Success        | Alternative    | Risk ID        |
+|                |                | Criteria       |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 6.1.1          | The game will  | Determine the  | N/A -          |                |
-|                | be controlled  | game is        | necessary      |                |
-|                | by keyboard    | controlled as  | requirement.   |                |
-|                | with mouse     | described.     |                |                |
-|                | integration.   |                |                |                |
+| 7.1.7          | The type of    | When a player  | The type of    | 21-24          |
+|                | question asked | chooses a      | question asked |                |
+|                | to an NPC by a | speech to say  | affects        |                |
+|                | player must    | to an NPC,     | nothing.       |                |
+|                | determine the  | their          |                |                |
+|                | player's       | personality    |                |                |
+|                | personality    | level is       |                |                |
+|                |                | affected by    |                |                |
+|                |                | their choice   |                |                |
 +----------------+----------------+----------------+----------------+----------------+
-| 6.1.2          | The game must  | Determine the  | N/A -          |                |
-|                | play on a      | game runs on   | necessary      |                |
-|                | windows based  | the system     | requirement.   |                |
-|                | system.        | described.     |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 6.1.3          | The game must  | Check the game | The game will  | 5              |
-|                | be played in a | is viewed as   | be played in   |                |
-|                | ‘top down’     | described.     | an improved    |                |
-|                | viewpoint,     |                | viewpoint      |                |
-|                | where the      |                | based on the   |                |
-|                | player is in   |                | reason for     |                |
-|                | the centre of  |                | discarding     |                |
-|                | the screen and |                | this one.      |                |
-|                | the world      |                |                |                |
-|                | moves around   |                |                |                |
-|                | the player.    |                |                |                |
-|                | The viewpoint  |                |                |                |
-|                | is fixed zoom. |                |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 6.2.1          | The game       | Use frame-rate | N/A -          |                |
-|                | should run     | measuring      | necessary      |                |
-|                | smoothly on    | software to    | requirement.   |                |
-|                | university     | obtain a       |                |                |
-|                | computers.     | frame-rate of  |                |                |
-|                |                | at-least 30.   |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 6.3.1          | The game could | Check that     | The game will  | 21             |
-|                | have a         | sound plays    | not have a     |                |
-|                | soundtrack.    | when game is   | soundtrack.    |                |
-|                |                | running.       |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 6.3.3          | The game could | When           | The game       | 5              |
-|                | have a ‘colour | activated, the | textures will  |                |
-|                | blind’         | colourblind    | be designed    |                |
-|                | setting.       | setting        | with colour    |                |
-|                |                | changes all    | blindness in   |                |
-|                |                | textures in    | mind.          |                |
-|                |                | the game to    |                |                |
-|                |                | ones that are  |                |                |
-|                |                | easier for a   |                |                |
-|                |                | colour-blind   |                |                |
-|                |                | person to see. |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 6.3.4          | The game could | Make sure game | The game will  | 5              |
-|                | be cross       | runs on        | not be cross   |                |
-|                | compatible on  | alternative    | compatible.    |                |
-|                | mobile         | systems.       |                |                |
-|                | (android) and  |                |                |                |
-|                | Mac.           |                |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-| 6.3.5          | The game could | The game is    | The game will  | 21             |
-|                | be controlled  | controlled as  | not use a      |                |
-|                | by a gamepad.  | described.     | gamepad.       |                |
+| 7.1.8          | If an NPC is   | When a player  | The NPC does   | 21-24          |
+|                | accused and    | interacts with | not mind being |                |
+|                | isn't the      | a previously   | falsely        |                |
+|                | killer then    | accused NPC    | accused.       |                |
+|                | the NPC must   | they shouldn't |                |                |
+|                | refuse to      | get a response |                |                |
+|                | interact for   |                |                |                |
+|                | the rest of    |                |                |                |
+|                | the game       |                |                |                |
 +----------------+----------------+----------------+----------------+----------------+
 
 Bibliography
