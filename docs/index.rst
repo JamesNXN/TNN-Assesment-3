@@ -40,6 +40,7 @@ Contents
    Assessment2/appendixC
    Assessment2/appendixD
    Assessment2/appendixE
+   Assessment2/appendixF
 
 .. toctree::
    :maxdepth: 1
