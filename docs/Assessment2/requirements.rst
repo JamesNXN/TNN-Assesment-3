@@ -30,8 +30,8 @@ When designing the requirements, we took these points into account:
 
 -  The requirements should be categorised as:
 
--  Functional requirements - these define what the system should do
--  Nonfunctional requirements - the define the behaviour of the system
+   -  Functional requirements - these define what the system should do
+   -  Nonfunctional requirements - the define the behaviour of the system
 
 -  The requirements should be achievable within the time allocated of
    this project
@@ -64,9 +64,9 @@ using the following system:
    the requirement
 -  The second number represents how important the requirement is:
 
--  1=Must implement
--  2=Should implement
--  3=Could implement
+   -  1=Must implement
+   -  2=Should implement
+   -  3=Could implement
 
 -  The third number is the position in the list, used to ensure the
    identifier is unique.
@@ -311,9 +311,8 @@ Dialogue
 |                | both NPC's and | must be        |                |                |
 |                | Player's       | determined by  |                |                |
 |                | personality    | their          |                |                |
-|                | and            | characteristic |                |                |
-|                | characteristic | s              |                |                |
-|                | s              | and the        |                |                |
+|                | and            | characteristics|                |                |
+|                | characteristics| and the        |                |                |
 |                |                | player's       |                |                |
 |                |                | personality    |                |                |
 +----------------+----------------+----------------+----------------+----------------+
