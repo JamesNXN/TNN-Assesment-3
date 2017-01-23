@@ -1,190 +1,197 @@
 Methods and Planning
 =====================
 
-Overview
----------
-
-We plan to use an agile-scrum approach for our software engineering
-project, as this will allow our team to carry out work in a flexible
-manner, evaluating our progress throughout the project, and make any
-necessary changes to our plan as we go along.
-
-Collaboration & Development tools
-----------------------------------
-
-Throughout the design and development stages, we as a team will use a
-wide variety of software and tools to complete our tasks in the most
-efficient and appropriate way.
-
-Team Communication
+Software Engineering Methods & Tools
+--------------------------------------
+Development Process
 ~~~~~~~~~~~~~~~~~~~~
+We are using an agile-scrum [0] approach for our software engineering
+project, as it allows our team to carry out work in a flexible manner,
+while providing the flexibility to evaluate our progress and plan for
+the next phase of work as we go along.  Details of how we use this
+methodology to run our meetings and plan tasks are found in the team
+organisation section.
 
-We will be using Slack for general team communication, it allows us to
-have separate chat channels for different aspects of the project,
-letting us keep all necessary information separated. Since separate
-discussions are split into separate channels, we are able to find
-important information more easily for future reference. The team engages
-in daily communication on Slack[1], we use this to consistently report
-our progress, ask questions on ambiguous issues and organise future
-in-person meetings. We plan to use integration between development tools
-and Slack to help us keep track of progress in one clear feed, in
-particular the GitHub[2] integration.
+One of the key tools needed for any software engineering project is a
+version control system. This is a tool that will allow us to keep track
+of code changes, and collaborate on the same piece of code. We’re using
+GitHub[1] for our code repository, as it’s a popular tool that our team
+members are familiar with.
 
-Finally, for online meetings we will be using Join.me. Join.me[3] is a
-free tool with voice, text and video chat as well as a screen sharing
-feature which allows a presenter to share their screens with other team
-members. This also allows for control of your screen can be passed on to
-other team members, allowing them to easily demonstrate ideas and make
-changes if necessary. Join.me allows efficient and effective team
-meetings to take place even whilst all members are in separate
-locations, looking ahead we expect this to be a very useful feature
-during the Christmas holiday period. An often overlooked benefit of
-Join.me is that it does not require users who are viewing to install
-software. This allows us to meet in a virtual environment even whilst
-travelling since we can simply use a public computer with a modern web
-browser to take part in the meeting.
-
-Software Development
-~~~~~~~~~~~~~~~~~~~~~~
-Through a detailed and constructive debate, the team decided that the
-project will be constructed using the Java[4] programming language. One
-reason that heavily influenced our decision was that Java is a language
-accessible to all members of the team, as well as the entirety of our
-cohort. This is due to Java being taught in the TPOP module in our First
-year. This fact is likely be a boon to the team once implementation
-begins and it should help increase development speed. We did give
-serious consideration to other programming languages such as C#[5] with
-Unity[6] however few in our team have any experience in the language
-thus using it would involve learning a new language which may take
-longer and cause problems later in the development process. Furthermore,
-from our understanding the vast majority of our cohort has little to no
-experience with C# therefore we believe they would be less inclined to
-choose our project at the end of assessment 2.
-
-Another important reason for choosing Java was that a wide variety of
-libraries and frameworks for the purpose of game development are already
-freely available for use – we expect this to further speed up our
-development process.  As different team members prefer different IDEs,
-we plan to ensure our code base is compatible with both Eclipse[12] and
-IntelliJ[13].
-
-After engaging in detailed research, we obtained 4 main options of
-libraries/frameworks we could use: Swing[7], Mini2Dx[8], LibGDX[9],
-LWJGL[10]. Although LWJGL is a very good library for game graphics
-development, it is far too low level for us to create a high quality for
-the game within the time constraints we have been given. Swing can be
-used for simple 2D games however LibGDX and Mini2Dx provide more
-flexibility and game specific tools, making development easier. In the
-end decided to use the LibGDX Java game development framework. We chose
-LibGDX over Mini2DX because, although Mini2DX is based upon LibGDX it
-lacks some of the more powerful features that LibGDX has and we didn’t
-want to limit ourselves so early on. LibGDX has support for all of the
-IDEs that we intend to use, it provides features that simplify several
-game development steps. One of the key feature is that it has support
-for tiled maps, we plan to use software called “Tiled”[11] that allows
-us to easily create a high quality 2D map and export it for use with the
-framework. This will save us massive amounts of time compared to
-alternative solutions, this can be used to improve gameplay and ensure
-that there are no bugs.
-
-So as to ensure work is done in a balanced manner, we will engage in
-design process whilst the development stages are progressing. We will
-split the team up based on their skills and their preferences. The main
-tool we will be using to design the game assets is Piskel, it is a
-online tool that allows us to easily create game assets. We expect
-designs to start as paper prototypes that will be developed further as
-the project goes on. We will also be using Tiled to easily draw maps and
-rooms.
-
-To ensure that several playability features we are considering are
-popular with the game's main audience, we conducted a survey using
-Google Forms asking questions regarding preferred input methods.
-
-Code Management
-~~~~~~~~~~~~~~~~~
-Throughout the development process, we will be using GitHub as our code
-repository since it allows for easy collaboration. All members of the
-team will be contributing to the repository.
-
-To manage development tasks, we plan to use the GitHub projects feature
-of our code repository. This lets us manage our tasks and code issues
-with a Kanban[14] board, and allows for items to be assigned to team
-members so everybody knows who’s doing what. This allows us to keep our
-project management and code in the same place, which should encourage us
-to effectively keep track of what’s happening as we’re working on the
-code. GitHub also allows us to link issues to the project, and these are
-useful because team members can collaborate on design decisions and keep
-track of what’s happening in the code.
-
-Alongside GitHub projects, we plan to use git’s branch and pull request
+While developing, we plan to use git’s branch and pull request
 functionality to help us manage multiple developers on the same project.
-For every pull request, we will ensure that a different developer
-performs a code review, and that all tests pass before approving the
-branch.
+To ensure our code quality is high, we ensure that a different developer
+performs a code review for every pull request, and that appropriate unit
+tests have been added and successfully pass before approving the branch
+to be merged.
 
-Tests will be added to our code as we write it, so that we maintain a
-high level of test coverage. We plan to use a continuous integration
-server to run all the tests every time a commit is made to GitHub, this
-will ensure that nobody accidentally breaks the codebase.
+We are using test driven development for our acceptance tests, as these
+are being written before development starts to ensure our code meets the
+requirements. While development is occurring, unit tests will be added
+to our code using JUnit[2]. This is so that we maintain a high level of
+test coverage, and have confidence that our code is working as intended.
+It will help with ensuring regressions do not occur. We are using
+CircleCI[3], a continuous integration server, to run all the unit tests
+every time a commit is made to GitHub, this will ensure that nobody
+accidentally breaks the codebase. For more details, please see the
+testing report.
 
+To manage our development tasks, we plan to use the GitHub
+Projects feature of our code repository. This lets us manage our tasks
+and code issues with a Kanban board[4], and allows for items to be
+assigned to team members so everybody knows who’s doing what. GitHub
+also allows us to link issues to the project, and these are useful
+because team members can collaborate on design decisions and keep track
+of what’s happening in the code. More about our team organisation is
+discussed later.
 
-Team Organisation
--------------------
-Team organisation model
-~~~~~~~~~~~~~~~~~~~~~~~~~
-As mentioned above, we plan on utilising the traditional Agile-SCRUM[16]
-model when organising our team. In-person meetings are held multiple
-times a week, here each team member goes through the progress they have
-made since the previous meeting. This allows all members to have a clear
-understanding of how the project as a whole is progressing. The meetings
-also allow us to sort out any queries or worries that members may have.
-The team will be split into 3 sub teams, and we then discuss what each
-sub team should accomplish and what tasks each member or sub team should
-meet by the next team meeting. These constant updates allow us to
-account for any unforeseen events and alter our development process
-based on these events.
-
-Team Roles
-~~~~~~~~~~~
-Through unanimous voting, we chose Brooke Hatton as our group leader. We
-determined that his prior experience in tasks similar to those we were
-undertaking and his general teamwork skills made him a natural leader
-for our group. We may potentially change our leadership during future
-assessments if the group feels it is necessary.
-
-The reports in assessment 1 are assigned in the following manner:
-
-*  Ben Jarvis was assigned the requirements document
-*  Benjamin Grahamslaw was assigned the risks and mitigations report
-*  Brooke Hatton and Jason Mashinchi were assigned the Architecture
-   report
-*  Joseph Shufflebotham and Vishal Soomaney were assigned the Methods
-   report
-*  Vishal Soomaney was assigned the user stories and scenarios
-
-Each member proofread all of the documents and contributed to all of the
-documents through comments and small edits.
-
-Team Collaboration
+Development Tooling
 ~~~~~~~~~~~~~~~~~~~~
-We plan to use the tools above to help us with our collaboration on this
-project, in particular Slack and GitHub. During our meetings, the team
-will split up tasks evenly and we will be able to keep track of progress
-with the Kanban board in GitHub Projects and the Slack integration. As
-we have been using Github throughout the first assessment, there will be
-no confusion due to work platform transition when we use Github and Git
-regularly in the second assessment for game implementation.
 
-During the project, we will determine specific and realistic goals that
-we expect to meet within certain timeframes. We have chosen to use
-SMART[16] goals (specific, measurable, achievable, realistic,
-time-bound) to help us meet our targets. We chose this as it will help
-us produce useful goals that we can use to guide our work, and meet our
-deadlines.
+To develop the project, we decided, after much deliberation, to use
+Java[5] and IntelliJ IDEA[6] as our programming language and IDE. This
+is because Java is a language accessible to all members of the team, as
+well as the entirety of our cohort. We did give serious consideration to
+other programming languages such as C#[7] with Unity[8] however few in
+our team have any experience in the language which means it may take
+longer and cause problems later on in the process.
+
+We needed a library that provides useful game APIs to help speed up our
+development process. We did some research and found 4 options of
+libraries we could use: Swing[9], Mini2Dx[10], LibGDX[11], LWJGL[12]. We
+quickly realised LWJGL and Swing weren’t right for our project. In the
+end we decided to use the LibGDX Java game development framework. We
+chose LibGDX over Mini2DX because LibGDX has support for the IDEs that
+we intend to use, and it provides features that simplify several game
+development steps.
+
+Design Processes
+~~~~~~~~~~~~~~~~~~~~
+
+We will need to do some designing whilst the development stages are
+progressing. The main tool we will be using to design the game assets is
+Piskel[13], an online tool that allows us to easily create game assets.
+We expect designs to start as paper prototypes that will be developed
+further as the project goes on.
+
+As we’d have to produce a map for our game (see requirement 4.1.1), we
+were pleased to discover that LibGDX has support for tiled maps. There
+is useful software called Tiled [14] that allows us to create a high
+quality 2D map and export it for use with the framework. This will save
+us massive amounts of time compared to alternative solutions, and this
+can be used to improve gameplay and ensure that there are few bugs.
+
+Collaboration Tools
+~~~~~~~~~~~~~~~~~~~~
+
+In addition to using GitHub projects as mentioned above, we also need
+some communication and collaboration tools to help us keep the project
+on track.
+
+
+
+For the first few weeks we were using Facebook Messenger[15] for team
+communication, but it became apparent that it wasn’t up to the job as we
+kept losing important pieces of information. We decided to switch to
+Slack [16] as it allows us to have separate chat channels for different
+aspects of the project, letting us keep all necessary information
+separated. Since separate discussions are split into separate channels,
+we are able to find important information more easily for future
+reference. The team engages in daily communication on Slack, we use this
+to consistently report our progress, ask questions on ambiguous issues
+and organise future in-person meetings.
+
+We are using integration between our development tools and Slack to help
+us keep track of progress in one clear feed, in particular the
+GitHub integration and the CircleCI integration. This helps with our
+development method, as it ensures all team members are kept up to date
+with the status of the repository and test results.
+
+For online meetings we are using Join.me [17] Join.me is a free tool
+with voice, text and video chat as well as a screen sharing feature
+which allows a presenter to share their screens with other team members.
+Join.me allows efficient and effective team meetings to take place even
+whilst all members are in separate locations. We made extensive use of
+Join.me over Christmas holiday period, where we used it to hold a full
+team meeting, using our scrum method as described later.
+
+For document storage and collaboration, we are using Google Drive[18]
+with a shared team folder. This contains all of the documents and other
+files we’ve been working on. We are making use of Google Docs, Sheets &
+Forms[18] as they allow us to collaboratively work on documents at the
+same time, as well as providing mechanisms that allow us to review and
+comments on our documents.
+
+
+Team Organisation Roles
+--------------------------
+
+We decided early on to have a team leader role. The team leader is
+responsible for ensuring everybody has a task to be working on, and for
+making sure progress is being made. They are also responsible for
+producing meeting plans, and answering queries of any team member.
+
+In Assessment 1, we voted to decide a group leader - Brooke Hatton won
+as we felt he was a natural leader. For Assessment 2, we decided that
+Jason Mashinchi would take over as group leader, as he had experience in
+a software development team. We plan to alternate group leaders
+throughout the assessments, to give the other member a break.
+
+Every member of the team is assigned tasks to do at the end of every
+meeting for the sprint ahead. We decide who does what based on who wants
+to take on the task, or based on previous experience if it’s relevant to
+a task.
+
+Meetings
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+The team aims to have a meeting at least once a week, during which our
+team leader acts as our scrum master. We may not strictly follow the
+agile-scrum rules, but we’ve found that our approach works well for us.
+
+Our team leader prepares for every meeting by producing a brief plan of
+what needs to happen during the meeting to ensure that we are making
+progress. Having a plan means that we can stay on track within the
+meeting and don’t go off track and don’t make progress. We tend to keep
+meetings high-level so that we don’t waste time on implementation
+details that can be decided without the entire group present.
+
+Meetings are scheduled to happen multiple times a week depending on
+availability of team members. Our meetings always signify the start of a
+new sprint. We typically start with each member going through what
+they’ve been working on in the previous sprint,  and they raise any
+problems or questions they may have. This allows us to catch issues,
+concerns or blockers that have arisen early on in the meeting, so we can
+take them into account when planning the next sprint.
+
+We then proceed to discuss what needs to be done during the next
+sprint, and assign tasks to each individual in the team. This is great
+because it means everybody has something to be working on for the next
+week, and ensures that we are making sufficient progress in the project.
+
+During Sprints
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Everybody is assigned a task to be working on during sprints, and they
+are responsible for ensuring their bit of work gets done. Every team
+member uses the kanban board containing issues on GitHub to keep the
+rest of the team up to date on where their task is at, and they make
+sure that their appropriate issues/tasks are assigned to themselves.
+
+If any problems arise during the week, team members use their assigned
+GitHub issues to discuss anything related to their task, or we
+communicate through Slack when we need to discuss something more
+general. Splitting up the communication methods in this manner allows us
+to find discussion when necessary, as often we make design decisions
+within GitHub that can be referenced later.
+
 
 Systematic Plan
------------------
+---------------------------------
 
+Assessment 2
+~~~~~~~~~~~~~~~~~~~~
 The focus of the team will fully switch to the second assessment on
 Wednesday 9th November, once the first assessment has been submitted. We
 plan on completing the second assessment by Tuesday Spring Week 2 giving
@@ -198,57 +205,97 @@ students from other teams look at sections of our code to test
 readability. There will also be a 2 week rest from SEPR to account for
 time spent studying for exams and also the exam week itself.
 
-A Gantt chart [18] containing the schedule for key tasks from all the
+Assessment 3
+~~~~~~~~~~~~~~~~~~~~
+After the completion of Assessment 2 on Tuesday 24th January we will
+work as a team to decide the project to take on for Assessment 3. This
+will be done within one week, after which we shall decide upon areas
+that need to be worked upon over the next assessment, and delegate tasks
+accordingly to team members. Documentation is started in the first week
+with everyone focusing on making sure reports and code documentation are
+up to date. within the next week all documents will be near to
+completion and the code will have started to be updated. Again, we plan
+on completing the work a week before the deadline to give us time to fix
+any issues found.
+
+A Gantt chart [19] containing the schedule for key tasks from all the
 assessments can be found in the appendix. This chart includes
 priorities, task dependencies and a critical path.
 
-Assessment 2 Gantt Chart
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Gantt Chart
+~~~~~~~~~~~~~~~~~~~~
 
-Below is an extract of our Gantt chart related to Assessment 2. The full
-version can be seen on our website.
+Below is an extract of our Gantt chart. The full version can be seen on
+our website under Appendix B (
+http://lihq.me/Downloads/Assessment1/AppendixB.pdf).
 
-.. image:: images/Assessment2GanttChart.png
-
-For the Gantt chart showing the schedule for the rest of the SEPR project,
-please check appendix B or alternatively you can also see it on the website
-on this URL: http://lihq.me/Downloads/Assessment1/AppendixB.pdf
 
 Bibliography
--------------
+----------------
 
-[1] Slack [Online] www.slack.com [Accessed 8/11/2016]
+[0] Waterfall to Agile: Flipping the Switch - Bhushan Gupta [Online]
+Available:
 
-[2] Github [Online] www.github.com [Accessed 8/11/2016]
+      http://www.uploads.pnsqc.org/2012/papers/t-21\_Gupta\_paper.pdf
+ [Accessed 25/10/2016]
 
-[3] Join.me [Online] www.join.me [Accessed 8/11/2016]
+[1] Github [Online] www.github.com  [Accessed 8/11/2016]
 
-[4] Java [Online] www.oracle.com [Accessed 8/11/2016]
+[2] JUnit [Online] http://junit.org  [Accessed 22/01/2017]
 
-[5] C# [Online] www.msdn.microsoft.com [Accessed 8/11/2016]
+[3] CircleCI[Online] https://circleci.com/  [Accessed 22/01/2017]
 
-[6] Unity [Online] www.unity.com [Accessed 8/11/2016]
+[4] Kanban board [Online] www.github.com  [Accessed 8/11/2016]
 
-[7] Swing [Online] www.oracle.com [Accessed 8/11/2016]
+[5] Java [Online] www.oracle.com  [Accessed 8/11/2016]
 
-[8] Mini2DX [Online] www.mini2dx.org [Accessed 8/11/2016]
+[6] IntelliJ [Online]  www.jetbrains.com  [Accessed 8/11/2016]
 
-[9] libGDX [Online] www.libgdx.badlogicgames.com [Accessed 8/11/2016]
+[7] C# [Online] www.msdn.microsoft.com  [Accessed 8/11/2016]
 
-[10] LWJGL [Online] www.lwjgl.org [Accessed 8/11/2016]
+[8] Unity [Online] www.unity.com  [Accessed 8/11/2016]
 
-[11] Tiled [Online] www.mapeditor.org [Accessed 8/11/2016]
+[9] Swing [Online] www.oracle.com  [Accessed 8/11/2016]
 
-[12] Eclipse [Online] www.eclipse.org [Accessed 8/11/2016]
+[10] Mini2DX [Online] www.mini2dx.org  [Accessed 8/11/2016]
 
-[13] IntelliJ [Online]   www.jetbrains.com [Accessed 8/11/2016]
+[11] libGDX [Online] www.libgdx.badlogicgames.com  [Accessed 8/11/2016]
 
-[14] GitHub Projects - kanban board [Online] www.github.com [Accessed 8/11/2016]
+[12] LWJGL [Online] www.lwjgl.org  [Accessed 8/11/2016]
 
-[15] Piskel [Online] www.piskelapp.com [Acessed 8/11/2016]
+[13] Piskel [Online] www.piskelapp.com  [Acessed 8/11/2016]
 
-[16] Waterfall to Agile: Flipping the Switch - Bhushan Gupta [Online] Available: http://www.uploads.pnsqc.org/2012/papers/t-21\_Gupta\_paper.pdf [Accessed 25/10/2016]
+[14] Tiled [Online] www.mapeditor.org  [Accessed 8/11/2016]
 
-[17] Goal Oriented Requirements Engineering - Axel van Lamsweerde [Online] Available: http://dl.acm.org/citation.cfm?id=776930 [Accessed 04/11/2016]
+[15] Facebook Messenger [Online] https://en-gb. messenger .com/
+ [Accessed 23/01/2017]
 
-[18] Gantt Chart [Online] Available: http://lihq.me/Downloads/Assessment1/AppendixB.pdf
+[16] Slack [Online] www.slack.com  [Accessed 8/11/2016]
+
+[17] Join.me [Online] www.join.me  [Accessed 8/11/2016]
+
+[18] Google Drive [Online] https://www. google .com/ drive /  [Accessed
+23/01/2017]
+
+[19] Gantt Chart [Online]
+http://lihq.me/Downloads/Assessment1/AppendixB.pdf
+
+
+Appendix: Task Assignment Summary
+-------------------------------------
+Assessment 1:
+~~~~~~~~~~~~~~~~~~
+- Ben Jarvis was assigned the requirements document
+- Benjamin Grahamslaw was assigned the risks and mitigations report
+- Brooke Hatton and Jason Mashinchi were assigned the Architecture report
+- Joseph Shufflebotham and Vishal Soomaney were assigned the Methods report
+
+Assessment 2:
+~~~~~~~~~~~~~~~~~~
+- Benjamin Grahamslaw was assigned the GUI report & user manual
+- Brooke Hatton, Jason Mashinchi & Joe Shufflebotham were responsible for the implementation of the game, testing and the design choices made.
+      - Other team members contributed towards implementing smaller features
+- Jason Mashinchi was assigned the testing report
+- Brooke Hatton & Vishal Soomaney were assigned the architecture report
+- Ben Jarvis & Benjamin Grahamslaw were assigned the document updates
+- Joe Shufflebotham & Vishal Soomaney were assigned the implementation report
