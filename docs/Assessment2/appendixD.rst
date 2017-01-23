@@ -481,8 +481,6 @@ Test Listing
 |                | score is not   |                |                |                |
 |                | currently      |                |                |                |
 |                | implemented    |                |                |                |
-|                |                |                |                |                |
-
 +----------------+----------------+----------------+----------------+----------------+
 | 2.33           | Run game       | 7.1.7          | Medium         | Failed         |
 |                | executable.    |                |                |                |
