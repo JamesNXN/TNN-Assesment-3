@@ -1,4 +1,4 @@
-Appendix D: Acceptance Tests
+D: Acceptance Tests
 ==============================
 
 Below is a table of the acceptance tests included within this project.

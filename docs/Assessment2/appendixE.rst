@@ -1,4 +1,4 @@
-Appendix E: Unit Tests
+E: Unit Tests
 ========================
 
 Below is a table of the unit tests included within this project.
