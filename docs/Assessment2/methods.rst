@@ -47,7 +47,6 @@ discussed later.
 
 Development Tooling
 ~~~~~~~~~~~~~~~~~~~~
-
 To develop the project, we decided, after much deliberation, to use
 Java[5] and IntelliJ IDEA[6] as our programming language and IDE. This
 is because Java is a language accessible to all members of the team, as
@@ -67,7 +66,6 @@ development steps.
 
 Design Processes
 ~~~~~~~~~~~~~~~~~~~~
-
 We will need to do some designing whilst the development stages are
 progressing. The main tool we will be using to design the game assets is
 Piskel[13], an online tool that allows us to easily create game assets.
@@ -83,12 +81,9 @@ can be used to improve gameplay and ensure that there are few bugs.
 
 Collaboration Tools
 ~~~~~~~~~~~~~~~~~~~~
-
 In addition to using GitHub projects as mentioned above, we also need
 some communication and collaboration tools to help us keep the project
 on track.
-
-
 
 For the first few weeks we were using Facebook Messenger[15] for team
 communication, but it became apparent that it wasn’t up to the job as we
@@ -144,8 +139,6 @@ a task.
 
 Meetings
 ~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 The team aims to have a meeting at least once a week, during which our
 team leader acts as our scrum master. We may not strictly follow the
 agile-scrum rules, but we’ve found that our approach works well for us.
@@ -172,7 +165,6 @@ week, and ensures that we are making sufficient progress in the project.
 
 During Sprints
 ~~~~~~~~~~~~~~~~~~~~~~~~
-
 Everybody is assigned a task to be working on during sprints, and they
 are responsible for ensuring their bit of work gets done. Every team
 member uses the kanban board containing issues on GitHub to keep the
@@ -189,7 +181,6 @@ within GitHub that can be referenced later.
 
 Systematic Plan
 ---------------------------------
-
 Assessment 2
 ~~~~~~~~~~~~~~~~~~~~
 The focus of the team will fully switch to the second assessment on
@@ -224,10 +215,8 @@ priorities, task dependencies and a critical path.
 
 Gantt Chart
 ~~~~~~~~~~~~~~~~~~~~
-
 Below is an extract of our Gantt chart. The full version can be seen on
-our website under Appendix B (
-http://lihq.me/Downloads/Assessment1/AppendixB.pdf).
+our website under Appendix B (http://lihq.me/Downloads/Assessment2/AppendixB.pdf).
 
 
 Bibliography
@@ -287,7 +276,7 @@ Assessment 2:
 ~~~~~~~~~~~~~~~~~~
 - Benjamin Grahamslaw was assigned the GUI report & user manual
 - Brooke Hatton, Jason Mashinchi & Joe Shufflebotham were responsible for the implementation of the game, testing and the design choices made.
- - Other team members contributed towards implementing smaller features in the game
+- Other team members contributed towards implementing smaller features in the game
 - Jason Mashinchi was assigned the testing report
 - Brooke Hatton & Vishal Soomaney were assigned the architecture report
 - Ben Jarvis & Benjamin Grahamslaw were assigned the document updates
