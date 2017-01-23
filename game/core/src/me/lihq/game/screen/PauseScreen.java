@@ -12,8 +12,14 @@ import me.lihq.game.screen.elements.Menu;
  */
 public class PauseScreen extends AbstractScreen
 {
-
+    /**
+     * This is the menu element for the pause menu
+     */
     private Menu pauseMenu;
+
+    /**
+     * The camera for the pause menu to use
+     */
     private OrthographicCamera camera = new OrthographicCamera();
     private Viewport viewport;
 
@@ -36,6 +42,9 @@ public class PauseScreen extends AbstractScreen
         pauseMenu = new Menu(game, true);
     }
 
+    /**
+     * This is ran when the navigation screen becomes the visible screen in GameMain
+     */
     @Override
     public void show()
     {
@@ -44,12 +53,20 @@ public class PauseScreen extends AbstractScreen
         Gdx.input.setInputProcessor(multiplexer);
     }
 
+    /**
+     * This method is called once a game tick
+     */
     @Override
     public void update()
     {
 
     }
 
+    /**
+     * Called when the screen should render itself.
+     *
+     * @param delta The time in seconds since the last render.
+     */
     @Override
     public void render(float delta)
     {
@@ -57,30 +74,48 @@ public class PauseScreen extends AbstractScreen
         pauseMenu.render();
     }
 
+    /**
+     * This is called when the window is resized
+     *
+     * @param width  - The new width
+     * @param height - The new height
+     */
     @Override
     public void resize(int width, int height)
     {
         pauseMenu.resize(width, height);
     }
 
+    /**
+     * This is called when the focus is lost on the window
+     */
     @Override
     public void pause()
     {
 
     }
 
+    /**
+     * This method is called when the window is brought back into focus
+     */
     @Override
     public void resume()
     {
 
     }
 
+    /**
+     * This method is called when the user hides the window
+     */
     @Override
     public void hide()
     {
 
     }
 
+    /**
+     * This is to be called when you want to dispose of all data
+     */
     @Override
     public void dispose()
     {

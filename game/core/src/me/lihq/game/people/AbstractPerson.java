@@ -1,12 +1,10 @@
 package me.lihq.game.people;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.Assets;
 import me.lihq.game.Settings;
@@ -31,7 +29,10 @@ public abstract class AbstractPerson extends Sprite
      * The width of the texture region for each person
      */
     protected static int SPRITE_WIDTH = 32;
-
+    /**
+     * This is whether the NPC can move or not. It is mainly used to not let them move during converstation
+     */
+    public boolean canMove = true;
     /**
      * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
      * Uses the Vector2Int as the tileCoordinates should never be floats as the person should only be between tiles during the move process.
@@ -51,35 +52,48 @@ public abstract class AbstractPerson extends Sprite
      * A store of the destination for a movement.
      */
     protected Vector2Int destinationTile = new Vector2Int(0, 0);
+    /**
+     * The following variables control the walking animation speed
+     */
     protected float animTimer;
     protected float animTime = Settings.TPS / 3f;
+    /**
+     * This stores the sprite sheet of the Player/NPC
+     */
     protected Texture spriteSheet;
+    /**
+     * This stores the current region of the above texture that is to be drawn
+     * to the map
+     */
     protected TextureRegion currentRegion;
+    /**
+     * This is the JSON data for the Player/NPC
+     */
     protected JsonValue jsonData;
     /**
      * The direction determines the way the character is facing.
      */
     protected Direction direction = Direction.EAST;
+    /**
+     * This is the current walking state of the Person. {@link #getState()}
+     */
     protected PersonState state;
     /**
      * The Name of the Person
      */
     private String name;
-
     /**
      * The current room of the AbstractPerson.
      */
     private Room currentRoom;
 
     /**
-     * This is whether the NPC can move or not. It is mainly used to not let them move during converstation
-     */
-    public boolean canMove = true;
-
-    /**
      * This constructs the player calling super on the sprite class
      *
-     * @param img this a path to the image
+     * @param name  - The name of the Person
+     * @param img   - this a path to the sprite sheet image
+     * @param tileX - This is the start x coordinate for the Person
+     * @param tileY - This is the start y coordinate for the Person
      */
     public AbstractPerson(String name, String img, int tileX, int tileY)
     {
@@ -103,8 +117,9 @@ public abstract class AbstractPerson extends Sprite
 
     /**
      * This method returns the Persons walking state.
-     * <p>
      * Either WALKING or STANDING
+     *
+     * @return (PersonState) the current state of the Person
      */
     public PersonState getState()
     {
@@ -211,6 +226,12 @@ public abstract class AbstractPerson extends Sprite
         }
     }
 
+    /**
+     * This method returns the response based on the clue given
+     *
+     * @param clue - The clue to get the response for
+     * @return (String) the string response
+     */
     public String getSpeech(Clue clue)
     {
         return this.getSpeech(clue.getName());
@@ -278,10 +299,15 @@ public abstract class AbstractPerson extends Sprite
     /**
      * This returns the persons personality
      *
-     * @return
+     * @return (Personality) returns the Persons personality
      */
     public abstract Personality getPersonality();
 
+    /**
+     * This method returns the Persons name as a String
+     *
+     * @return (String) the persons name {@link #name}
+     */
     public String getName()
     {
         return this.name;
@@ -290,7 +316,7 @@ public abstract class AbstractPerson extends Sprite
     /**
      * Getter for direction.
      *
-     * @return Returns the direction the person is facing.
+     * @return (Direction) Returns the direction the person is facing.
      */
     public Direction getDirection()
     {
@@ -318,16 +344,31 @@ public abstract class AbstractPerson extends Sprite
         this.animTime = animTime;
     }
 
+    /**
+     * This method returns the room that the Person is in
+     *
+     * @return (Room) the room the Person is in {@link #currentRoom}
+     */
     public Room getRoom()
     {
         return this.currentRoom;
     }
 
+    /**
+     * This method sets the currentRoom to the room parameter
+     *
+     * @param room - The room to change currentRoom to {@link #currentRoom}
+     */
     public void setRoom(Room room)
     {
         this.currentRoom = room;
     }
 
+    /**
+     * This method gets the Persons tile coordinates
+     *
+     * @return (Vector2Int) the value of tileCoordinates {@link #tileCoordinates}
+     */
     public Vector2Int getTileCoordinates()
     {
         return tileCoordinates;
@@ -394,6 +435,11 @@ public abstract class AbstractPerson extends Sprite
             return this.dy;
         }
 
+        /**
+         * This method takes the current direction and gets the opposite direction
+         *
+         * @return (Direction) the opposite direction to this
+         */
         public Direction getOpposite()
         {
             if (this == Direction.NORTH) return Direction.SOUTH;
@@ -424,7 +470,7 @@ public abstract class AbstractPerson extends Sprite
     }
 
     /**
-     * This is the possible personalities of the persond
+     * These are the possible personalities of the person
      */
     public enum Personality
     {
@@ -433,8 +479,21 @@ public abstract class AbstractPerson extends Sprite
         AGGRESSIVE
     }
 
+    /**
+     * This class is to sort a list of AbstractPerson in highest Y coordinate to lowest Y coordinate
+     * <p>
+     * It is used to render NPCs and the Player in the correct order to avoid it appearing as though someone
+     * is standing on top of someone else
+     */
     public static class PersonPositionComparator implements Comparator<AbstractPerson>
     {
+        /**
+         * This method compares the 2 objects.
+         *
+         * @param o1 - The first object to compare
+         * @param o2 - The second object to compare
+         * @return (int) if <0 o1 is considered to be first in the list
+         */
         @Override
         public int compare(AbstractPerson o1, AbstractPerson o2)
         {

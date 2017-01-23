@@ -24,51 +24,61 @@ import me.lihq.game.screen.elements.StatusBar;
 
 import java.util.List;
 
-
 /**
  * This is the screen that is responsible for the navigation of the player around the game.
  * It displays the current room that the player is in, and allows the user to move the player around between rooms.
  */
 public class NavigationScreen extends AbstractScreen
 {
-
+    /**
+     * The controller that listens for key inputs
+     */
     public PlayerController playerController;
-
+    /**
+     * This is the SpeechboxManager for the main game
+     */
+    public SpeechboxManager speechboxMngr;
+    /**
+     * This is the main ConversationManager that controls the conversation mechanic
+     */
+    public ConversationManagement convMngt;
     /**
      * This boolean determines whether the black is fading in or out
      */
     private boolean fadeToBlack = true;
-
-
     /**
      * This is the current map that is being shown
      */
     private TiledMap map;
-
     /**
      * This boolean determines whether the map needs to be updated in the next render loop
      */
     private boolean changeMap = false;
-
-    private List<NPC> currentNPCS;
-
     /**
-     *
+     * This is the list of NPCs in the current Room
+     */
+    private List<NPC> currentNPCS;
+    /**
+     * This is the map renderer that also renders Sprites
      */
     private OrthogonalTiledMapRendererWithPeople tiledMapRenderer;
+    /**
+     * The camera to render the map to
+     */
     private OrthographicCamera camera = new OrthographicCamera();
     private Viewport viewport;
     private SpriteBatch spriteBatch;
+    /**
+     * The input multiplexer for the game
+     */
     private InputMultiplexer multiplexer;
+    /**
+     * This stores whether the game is paused or not
+     */
     private boolean pause = false;
-
-
-    //TODO: add more information about this class
-
-    public SpeechboxManager speechboxMngr;
-
-    public ConversationManagement convMngt;
-
+    /**
+     * This is the StatusBar that shows at the bottom
+     */
     private StatusBar statusBar;
 
     /**
@@ -81,10 +91,12 @@ public class NavigationScreen extends AbstractScreen
      * The amount of ticks it takes for the black to fade in and out
      */
     private float ANIM_TIME = Settings.TPS / 1.5f;
+
     /**
      * The black sprite that is used to fade in/out
      */
     private Sprite BLACK_BACKGROUND = new Sprite();
+
     /**
      * The current animation frame of the fading in/out
      */
@@ -102,11 +114,10 @@ public class NavigationScreen extends AbstractScreen
      */
     private RoomTag roomTag = null;
 
-
     /**
      * Initialises the navigation screen
      *
-     * @param game
+     * @param game - The main game instance
      */
     public NavigationScreen(GameMain game)
     {
@@ -160,6 +171,9 @@ public class NavigationScreen extends AbstractScreen
 
     }
 
+    /**
+     * This method is called once a game tick
+     */
     @Override
     public void update()
     {
@@ -181,10 +195,11 @@ public class NavigationScreen extends AbstractScreen
         if (roomTag != null) {
             roomTag.update();
         }
-
-
     }
 
+    /**
+     * This method is called once a game tick to update the room transition animation
+     */
     private void updateTransition()
     {
         if (roomTransition) {
@@ -210,12 +225,19 @@ public class NavigationScreen extends AbstractScreen
         }
     }
 
+    /**
+     * This is called when the player decides to move to another room
+     */
     public void initialiseRoomChange()
     {
         pause = true; //pause all non necessary updates like player movement
         roomTransition = true;
     }
 
+    /**
+     * This is called when the room transition animation has completed so the necessary variables
+     * can be returned to their normal values
+     */
     public void finishRoomTransition()
     {
         animTimer = 0;
@@ -224,8 +246,6 @@ public class NavigationScreen extends AbstractScreen
         pause = false;
         roomTag = new RoomTag(game.player.getRoom().getName());
     }
-
-
 
     /**
      * Called when the screen should render itself.
@@ -287,6 +307,12 @@ public class NavigationScreen extends AbstractScreen
 
     }
 
+    /**
+     * This is called when the window is resized
+     *
+     * @param width  - The new width
+     * @param height - The new height
+     */
     @Override
     public void resize(int width, int height)
     {
@@ -294,24 +320,36 @@ public class NavigationScreen extends AbstractScreen
         statusBar.resize(width, height);
     }
 
+    /**
+     * This is called when the focus is lost on the window
+     */
     @Override
     public void pause()
     {
 
     }
 
+    /**
+     * This method is called when the window is brought back into focus
+     */
     @Override
     public void resume()
     {
 
     }
 
+    /**
+     * This method is called when the user hides the window
+     */
     @Override
     public void hide()
     {
 
     }
 
+    /**
+     * This is to be called when you want to dispose of all data
+     */
     @Override
     public void dispose()
     {
@@ -330,11 +368,21 @@ public class NavigationScreen extends AbstractScreen
         this.currentNPCS = game.getNPCS(game.player.getRoom());
     }
 
+    /**
+     * This method sets the RoomTag to the parameter which is then rendered next render loop
+     *
+     * @param tag - The RoomTag to be rendered
+     */
     public void setRoomTag(RoomTag tag)
     {
         this.roomTag = tag;
     }
 
+    /**
+     * This method gets the list of current NPCs in the current room
+     *
+     * @return (List<NPC>) the value of currentNPCs {@link #currentNPCS}
+     */
     public List<NPC> getNPCs()
     {
         return currentNPCS;

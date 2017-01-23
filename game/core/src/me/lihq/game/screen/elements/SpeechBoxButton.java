@@ -6,9 +6,19 @@ package me.lihq.game.screen.elements;
  */
 public class SpeechBoxButton
 {
-
+    /**
+     * The text to display on the button
+     */
     public String text;
+
+    /**
+     * The int to return as a result of the button being pressed
+     */
     public int result;
+
+    /**
+     * The event handler that listens for the click event
+     */
     public EventHandler eventHandler;
 
     /**

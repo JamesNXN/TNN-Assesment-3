@@ -1,3 +1,12 @@
+/*
+* This is the link to the executable jar file created from this project
+*
+* http://www.lihq.me/Downloads/Assessment2/Game.jar
+*
+* or visit http://www.lihq.me
+* and click "Download Game"
+ */
+
 package me.lihq.game;
 
 import com.badlogic.gdx.Game;
@@ -9,7 +18,6 @@ import me.lihq.game.models.Clue;
 import me.lihq.game.models.Map;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
-import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.NPC;
 import me.lihq.game.people.Player;
 import me.lihq.game.screen.AbstractScreen;
@@ -18,15 +26,15 @@ import me.lihq.game.screen.NavigationScreen;
 
 import java.util.*;
 
-
 /**
  * This is the class responsible for the game as a whole. It manages the current states and entry points of the game
  */
 public class GameMain extends Game
 {
-    //This is a static reference to itself. Comes in REALLY handy when in other classes that don't have a reference to the main game
+    /**
+     * This is a static reference to itself. Comes in REALLY handy when in other classes that don't have a reference to the main game
+     */
     public static GameMain me = null;
-    //Game wide variables
 
     /**
      * A list holding NPC objects
@@ -41,16 +49,23 @@ public class GameMain extends Game
      * A player object for the player of the game
      */
     public Player player;
+
+    /**
+     * This controls the game ticks and calculating how many ticks per second there are
+     */
     public int ticks = 0;
     public int lastSecond = -1;
+
     /**
      * A screen to be used to display standard gameplay within the game , including the status bar.
      */
     public NavigationScreen navigationScreen;
+
     /**
      * An FPSLogger, FPSLogger allows us to check the game FPS is good enough
      */
     FPSLogger FPS;
+
     /**
      * The main menu screen that shows up when the game is first started
      */
@@ -102,6 +117,9 @@ public class GameMain extends Game
 
     }
 
+    /**
+     * This is to be called when you want to dispose of all data
+     */
     @Override
     public void dispose()
     {
@@ -120,6 +138,9 @@ public class GameMain extends Game
         return (AbstractScreen) super.getScreen();
     }
 
+    /**
+     * This is the main gameLoop that only needs to be called once, it then creates a logic thread to be executed once a game tick
+     */
     public void gameLoop()
     {
         Timer gameTimer = new Timer();
@@ -231,9 +252,14 @@ public class GameMain extends Game
         while (!victim.setVictim()) {
             victim = NPCs.get(new Random().nextInt(NPCs.size() - 1));
         }
-
     }
 
+    /**
+     * This method returns a list of the NPCs that are in the specified room
+     *
+     * @param room - The room to check
+     * @return (List<NPC>) The NPCs that are in the specified room
+     */
     public List<NPC> getNPCS(Room room)
     {
         List<NPC> npcsInRoom = new ArrayList<>();
@@ -246,6 +272,9 @@ public class GameMain extends Game
         return npcsInRoom;
     }
 
+    /**
+     * This method initialises all the clues that are to be added to the games.
+     */
     private void initialiseClues()
     {
         //This is a temporary list of clues
@@ -266,7 +295,6 @@ public class GameMain extends Game
 
         for (Room room : gameMap.getRooms()) {
             if (tempClues.isEmpty()) return;
-
 
             Vector2Int randHidingSpot = room.getRandHidingSpot();
 

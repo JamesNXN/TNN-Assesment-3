@@ -7,7 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 /**
- * Created by Jason on 23/12/2016.
+ * This is used to create a Sprite of one color at the specified size.
+ * <p>
+ * Used when creating a UI
  */
 public class UIHelpers
 {

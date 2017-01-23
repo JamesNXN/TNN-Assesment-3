@@ -8,6 +8,9 @@ import java.util.HashMap;
  */
 public class Settings
 {
+    /**
+     * This is the global size of Tiles in the game
+     */
     public static final int TILE_SIZE = 32;
 
     /**

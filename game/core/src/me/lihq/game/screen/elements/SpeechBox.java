@@ -27,11 +27,16 @@ import java.util.ArrayList;
  */
 public class SpeechBox
 {
-
+    /**
+     * The constant color variables for all SpeechBox's
+     */
     private static final Color BACKGROUND_COLOR = Color.BLACK;
     private static final Color BORDER_COLOUR = Color.RED;
     private static final Color TEXT_COLOUR = Color.LIGHT_GRAY;
-    //Layout Constants
+
+    /**
+     * Layout constants
+     */
     private static final int WIDTH = Gdx.graphics.getWidth();
     private static final int PADDING = 8;
     private static final int BORDER_WIDTH = 2;
@@ -41,11 +46,30 @@ public class SpeechBox
     private static final int BUTTON_ROW_HEIGHT = 40;
     private static final int TABLE_HEIGHT = (PADDING * 4) + TEXT_ROW_HEIGHT + BUTTON_ROW_HEIGHT;
     private static final int HEIGHT = TABLE_HEIGHT + (2 * BORDER_WIDTH);
+
+    /**
+     * The stage to render the elemts to
+     */
     public Stage stage;
+
+    /**
+     * The timeout duration for a SpeechBox
+     */
     public int timeoutDuration;
-    //Properties
+
+    /**
+     * The name of the person talking, if any
+     */
     private String person;
+
+    /**
+     * This is the text component to display.
+     */
     private String textContent;
+
+    /**
+     * List of buttons to be displayed on the SpeechBox
+     */
     private ArrayList<SpeechBoxButton> buttons;
     //Styles
     private Skin buttonSkin;
@@ -219,6 +243,9 @@ public class SpeechBox
         stage.draw();
     }
 
+    /**
+     * This method is called once a tick by the logic Thread
+     */
     public void update()
     {
         if (this.timeoutDuration > 0) {
@@ -304,6 +331,12 @@ public class SpeechBox
         stage.dispose();
     }
 
+    /**
+     * This method is called on a window resize
+     *
+     * @param width  - the new width
+     * @param height - the new height
+     */
     public void resize(int width, int height)
     {
         stage.getViewport().update(width, height, true);

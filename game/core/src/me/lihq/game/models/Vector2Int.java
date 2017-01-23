@@ -5,7 +5,9 @@ package me.lihq.game.models;
  */
 public class Vector2Int
 {
-
+    /**
+     * x and y coordinates of the object
+     */
     public int x = 0;// initialise x as 0
     public int y = 0;// initialise y as 0
 

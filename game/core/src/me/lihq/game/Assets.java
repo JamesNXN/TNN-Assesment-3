@@ -14,9 +14,19 @@ import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeT
  */
 public class Assets
 {
+    /**
+     * This is the asset sheet for clues
+     */
     public static Texture CLUE_SHEET;
+
+    /**
+     * This is the texture of splashscreen frames
+     */
     public static Texture OPENING;
 
+    /**
+     * The 2 seperate frames for the splashscreen
+     */
     public static TextureRegion INTROFRAME1;
     public static TextureRegion INTROFRAME2;
 
@@ -29,10 +39,19 @@ public class Assets
     public static TextureRegion LEFT_ARROW;
     public static TextureRegion RIGHT_ARROW;
 
+    /**
+     * This is the asset for the RoomTag {@link me.lihq.game.screen.elements.RoomTag}
+     */
     public static Texture TAG_BORDER;
 
+    /**
+     * This is the default font for the game. Used in RoomTag
+     */
     public static BitmapFont FONT;
 
+    /**
+     * This it the animation for the clue glint to be drawn where a clue is hidden
+     */
     public static Animation CLUE_GLINT;
 
     /**
@@ -76,6 +95,12 @@ public class Assets
         CLUE_GLINT = new Animation(0.1f, frames);
     }
 
+    /**
+     * This method takes a direction and returns the corresponding arrow asset for that direction
+     *
+     * @param direction - The direction to fetch
+     * @return (TextureRegion) the corresponding TextureRegion
+     */
     public static TextureRegion getArrowDirection(String direction)
     {
         if (direction.equals("NORTH")) {
@@ -91,6 +116,12 @@ public class Assets
         return null;
     }
 
+    /**
+     * This method gets the default font but at the requested size
+     *
+     * @param size - The size you want the font to be
+     * @return (BitmapFont) the resulting font
+     */
     public static BitmapFont getFontWithSize(int size)
     {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Fofer.otf"));

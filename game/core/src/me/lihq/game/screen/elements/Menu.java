@@ -15,25 +15,55 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.GameMain;
 
 /**
- * Created by vishal on 17/12/2016.
  * Reusable Main initMenu UI, can be used for the pause screen aswell.
  */
 
 public class Menu
 {
-
+    /**
+     * The background color of the menu
+     */
     private static final Color BACKGROUND_COLOR = Color.GRAY;
+
+    /**
+     * The width of the menu
+     */
     private static final int WIDTH = Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8;
+
     //Initialising necessary objects and variables
+    /**
+     * the stage to render the menu to
+     */
     public Stage stage;
+
+    /**
+     * The default button skins
+     */
     private Skin buttonSkin;
+
+    /**
+     * This stores whether or not the menu is for the main menu (false) or pause menu (true)
+     */
     private boolean pauseMenu;
+
+    /**
+     * This is the camera for the menu
+     */
     private OrthographicCamera camera;
+
+    /**
+     * This is the sprite batch of the menu that elements are rendered on.
+     */
     private SpriteBatch batch;
 
+    /**
+     * Constructor for the menu
+     *
+     * @param game      - The game object the menu is being loaded for
+     * @param pauseMenu - Whether it is a pause menu or not
+     */
     public Menu(final GameMain game, boolean pauseMenu)
     {
-
         //Initialising new stage
         stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(stage);
@@ -49,13 +79,16 @@ public class Menu
         initMenu(game);
     }
 
-    //Method called when you want to create the main initMenu
+    /**
+     * This method is called if you want to initialise the main menu
+     *
+     * @param game - The game to initialise the menu for
+     */
     private void initMenu(final GameMain game)
     {
         //Creating the buttons using the button skin
         //An if statement that lets the same class be used for both the pause and main menu
         //screens. It also prints an error message to the console if called using an incorrect argument
-
 
         BitmapFont font = new BitmapFont();
 
@@ -122,7 +155,10 @@ public class Menu
         });
     }
 
-    //Creating the Skin for the buttons
+
+    /**
+     * This method creates the skins for the buttons
+     */
     private void initButtonSkin()
     {
         //Create a font
@@ -147,6 +183,9 @@ public class Menu
 
     }
 
+    /**
+     * This method is called to render the main menu to the stage
+     */
     public void render()
     {
         //Determining the background colour of the menu
@@ -157,6 +196,9 @@ public class Menu
         stage.draw();
     }
 
+    /**
+     * This method disposes of all elements
+     */
     public void dispose()
     {
         //Called when disposing the main menu
@@ -164,6 +206,12 @@ public class Menu
         batch.dispose();
     }
 
+    /**
+     * This method is called when the window is resized.
+     *
+     * @param width  - The new width
+     * @param height - The new height
+     */
     public void resize(int width, int height)
     {
         stage.getViewport().update(width, height, true);

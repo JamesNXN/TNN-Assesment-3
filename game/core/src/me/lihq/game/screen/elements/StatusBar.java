@@ -23,13 +23,34 @@ import me.lihq.game.screen.PauseScreen;
  */
 public class StatusBar
 {
-
+    /**
+     * The height of the StatusBar
+     */
     public static final int HEIGHT = 50; //Used to set height of status bar
+
+    /**
+     * The amount of items that are in the StatusBar
+     */
     private static final int ITEM_COUNT = 4; //Used to set width of controls on bar
+
+    /**
+     * The width of the StatusBar
+     */
     private static final int WIDTH = (int) Gdx.graphics.getWidth() / ITEM_COUNT;
+
+    /**
+     * The background color of the StatusBar
+     */
     private static final Color BACKGROUND_COLOR = Color.GRAY;
 
+    /**
+     * The stage to render the elements to
+     */
     public Stage stage;
+
+    /**
+     * The different skins for different elements
+     */
     private Skin buttonSkin;
     private Skin labelSkin;
     private PauseScreen pauseScreen;
@@ -40,12 +61,9 @@ public class StatusBar
      */
     public StatusBar(final GameMain game)
     {
-
-
         stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         pauseScreen = new PauseScreen(game);
         initSkins();
-
 
         Table statusBar = new Table();
         statusBar.setSize(Gdx.graphics.getWidth(), HEIGHT);
@@ -87,12 +105,20 @@ public class StatusBar
         stage.draw();
     }
 
-
+    /**
+     * This method is called on a window resize
+     *
+     * @param width  - the new width
+     * @param height - the new height
+     */
     public void resize(int width, int height)
     {
         stage.getViewport().update(width, height, true);
     }
 
+    /**
+     * This disposes all the elements
+     */
     public void dispose()
     {
         stage.dispose();

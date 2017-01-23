@@ -11,7 +11,6 @@ import me.lihq.game.people.Player;
  */
 public class RoomArrow extends Sprite
 {
-
     /**
      * The player that the arrow is associated with
      */
@@ -21,7 +20,6 @@ public class RoomArrow extends Sprite
      * Whether the arrow is to be shown or not
      */
     private Boolean visible = false;
-
 
     /**
      * This constructs the RoomArrow, calling the super() method the the sprite class it extends
@@ -35,11 +33,10 @@ public class RoomArrow extends Sprite
 
     }
 
-
     /**
      * This is called to draw the RoomArrow
      *
-     * @param batch
+     * @param batch - the batch to draw the arrow to
      */
     @Override
     public void draw(Batch batch)
@@ -56,8 +53,6 @@ public class RoomArrow extends Sprite
      */
     public void update()
     {
-
-
         if (this.player.isOnTriggerTile()) {
 
             //this is the rotation of the mat (ie the way the arrow should face)
@@ -80,6 +75,4 @@ public class RoomArrow extends Sprite
         }
 
     }
-
-
 }

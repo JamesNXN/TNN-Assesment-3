@@ -23,7 +23,7 @@ public class Clue extends Sprite
     /**
      * This is the location on the map in terms of tiles can be set using {@link #setTileCoordinates(int, int)}
      * Note: this is different to com.badlogic.gdx.graphics.g2d.Sprite.position that is the position on the screen in terms of pixels,
-     * whereas this is in terms of map tiles.
+     * whereas this is in terms of map tiles relative to the bottom left of the map.
      */
     private Vector2Int tileCoordinates = new Vector2Int(0, 0);
 
@@ -42,8 +42,10 @@ public class Clue extends Sprite
     }
 
     /**
+     * This method checks equality of this Clue object and another object.
+     *
      * @param obj - The clue object.
-     * @return - Returns if it is equal as a boolean result.
+     * @return - Returns True if it is of the type Clue and the names are exactly the same
      */
     @Override
     public boolean equals(Object obj)
@@ -59,18 +61,32 @@ public class Clue extends Sprite
     /**
      * Getter for Clue name.
      *
-     * @return - Returns name of clue.
+     * @return - (String) Returns name of clue.
      */
     public String getName()
     {
         return this.name;
     }
 
+    /**
+     * Getter for clue description
+     *
+     * @return - (String) Returns the description of the clue.
+     */
     public String getDescription()
     {
         return this.description;
     }
 
+    /**
+     * This method calls the method of the same name but allows a Vector2Int as a parameter rather than
+     * the specific coordinates.
+     * <p>
+     * It sets the tile coordinates of the clue in the map.
+     *
+     * @param v - The Vector2Int that the clue's tile coordinates are to be set to
+     * @return (Clue) returns this object once the location has been updated
+     */
     public Clue setTileCoordinates(Vector2Int v)
     {
         return setTileCoordinates(v.x, v.y);
@@ -81,6 +97,9 @@ public class Clue extends Sprite
      *
      * @param x - The x coordinate for where the clue is, in terms of tiles.
      * @param y - The y coordinate for where the clue is, in terms of tiles.
+     *          <p>
+     *          all coordinates relative to bottom left of the map
+     * @return (Clue) this object
      */
     public Clue setTileCoordinates(int x, int y)
     {
@@ -92,16 +111,31 @@ public class Clue extends Sprite
         return this;
     }
 
+    /**
+     * This method gets the Clue's current tile location on the map as a Vector2Int
+     *
+     * @return (Vector2Int) The tile coordinates of the clue
+     */
     public Vector2Int getPosition()
     {
         return this.tileCoordinates;
     }
 
+    /**
+     * This method returns the x component of the clues tile coordinates from {@link #getPosition()}
+     *
+     * @return (int) The x tile coordinate of the clue
+     */
     public int getTileX()
     {
         return tileCoordinates.x;
     }
 
+    /**
+     * This method returns the y component of the clues tile coordinates from {@link #getPosition()}
+     *
+     * @return (int) The y tile coordinate of the clue
+     */
     public int getTileY()
     {
         return tileCoordinates.y;

@@ -13,15 +13,37 @@ import static me.lihq.game.people.AbstractPerson.PersonState;
  */
 public class PlayerController extends InputAdapter
 {
+    /**
+     * This timer is used to measure how long input has been read for
+     */
     public int timer = 0;
+
+    /**
+     * Booleans storing what keys have been pressed and not released
+     */
     private boolean north, south, west, east;
+
+    /**
+     * This stores the player that the controller controls
+     */
     private Player player;
 
+    /**
+     * Constructor to create the PlayerController to control the provided Player
+     *
+     * @param player - The player that we want this controller to control
+     */
     public PlayerController(Player player)
     {
         this.player = player;
     }
 
+    /**
+     * This method is called when a key press is read
+     *
+     * @param keycode - The code of the key pressed
+     * @return (boolean) Whether this method acted upon the keypress or not. Used for InputMultiplexers
+     */
     @Override
     public boolean keyDown(int keycode)
     {
@@ -70,6 +92,12 @@ public class PlayerController extends InputAdapter
         return false;
     }
 
+    /**
+     * This method is called when a key release is read
+     *
+     * @param keycode - The keycode of the released key
+     * @return (boolean) Whether this method processed the key release or not. Used for input multiplexers.
+     */
     @Override
     public boolean keyUp(int keycode)
     {
@@ -97,9 +125,11 @@ public class PlayerController extends InputAdapter
         return false;
     }
 
+    /**
+     * This method is called once a game tick to transfer the key reads to the live game data in the logic Thread.
+     */
     public void update()
     {
-
         if (!south && !north && !east && !west) {
             timer = 0;
         }

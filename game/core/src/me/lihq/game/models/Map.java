@@ -11,13 +11,10 @@ import java.util.Random;
  */
 public class Map
 {
-
-
     /**
      * Store of the rooms in the map
      */
     private List<Room> rooms;
-
 
     /**
      * Constructs the map
@@ -110,14 +107,11 @@ public class Map
         rooms.get(new Random().nextInt(rooms.size())).setMurderRoom();
     }
 
-
-    //TODO: Make this work properly every time or remove it if we dont need it. Having looked it only exists to give the player and NPC an initial room
-
     /**
      * This returns a room from the list based on the id.
      *
      * @param id - The ID of the room they request.
-     * @return the corresponding room
+     * @return (Room) the corresponding room
      */
     public Room getRoom(int id)
     {
@@ -130,9 +124,9 @@ public class Map
 
 
     /**
-     * Returns the amout of rooms created by the map
+     * Returns the amount of rooms created by the map
      *
-     * @return number of rooms
+     * @return (int) number of rooms
      */
     public int getAmountOfRooms()
     {
@@ -143,7 +137,7 @@ public class Map
     /**
      * Gets the rooms in the map
      *
-     * @return List of rooms that the map initialised
+     * @return (List<Room>) List of rooms that the map initialised
      */
     public List<Room> getRooms()
     {

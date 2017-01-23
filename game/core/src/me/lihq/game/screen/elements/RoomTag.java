@@ -15,7 +15,6 @@ import me.lihq.game.Settings;
  */
 public class RoomTag
 {
-
     /**
      * This is the room name it is to display
      */
