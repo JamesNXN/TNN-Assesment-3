@@ -59,8 +59,8 @@ still mostly function as intended.
 |            |            | returned   |            |            |            |            |
 |            |            | correctly  |            |            |            |            |
 +------------+------------+------------+------------+------------+------------+------------+
-| 1.06       | testGetNam | Verifies   | Low        | NPC        | 3.1.2      | passed     |
-|            | e          | NPC name   |            |            |            |            |
+| 1.06       | testGetName| Verifies   | Low        | NPC        | 3.1.2      | passed     |
+|            |            | NPC name   |            |            |            |            |
 |            |            | is         |            |            |            |            |
 |            |            | returned   |            |            |            |            |
 |            |            | correctly  |            |            |            |            |
@@ -73,35 +73,32 @@ still mostly function as intended.
 |            |            | correctly  |            |            |            |            |
 +------------+------------+------------+------------+------------+------------+------------+
 | 1.08       | testPlayer | Verifies   | Medium     | Player     | 2.1.1      | passed     |
-|            | Personalit | the player |            |            |            |            |
-|            | y          | personalit |            |            |            |            |
-|            |            | y          |            |            |            |            |
+|            | Personality| the player |            |            |            |            |
+|            |            | personality|            |            |            |            |
 |            |            | is set and |            |            |            |            |
 |            |            | get        |            |            |            |            |
 |            |            | correctly  |            |            |            |            |
 +------------+------------+------------+------------+------------+------------+------------+
-| 1.09       | testPlayer | Verifies   | Low        | Player     | -          | passed     |
+| 1.09       | testPlayer | Verifies   | Low        | Player     | _          | passed     |
 |            | Name       | the player |            |            |            |            |
 |            |            | name is    |            |            |            |            |
 |            |            | returned   |            |            |            |            |
 |            |            | correctly  |            |            |            |            |
 +------------+------------+------------+------------+------------+------------+------------+
 | 1.10       | testAddTra | Verifies   | High       | Room       | 4.1.1      | passed     |
-|            | nsition    | transition |            |            |            |            |
-|            |            | s          |            |            |            |            |
+|            | nsition    | transitions|            |            |            |            |
 |            |            | between    |            |            |            |            |
 |            |            | rooms can  |            |            |            |            |
 |            |            | be added   |            |            |            |            |
 +------------+------------+------------+------------+------------+------------+------------+
 | 1.11       | testGetTra | Verifies   | High       | Room       | 4.1.1      | passed     |
-|            | nsition    | transition |            |            |            |            |
-|            |            | s          |            |            |            |            |
+|            | nsition    | transitions|            |            |            |            |
 |            |            | between    |            |            |            |            |
 |            |            | rooms can  |            |            |            |            |
 |            |            | be         |            |            |            |            |
 |            |            | performed  |            |            |            |            |
 +------------+------------+------------+------------+------------+------------+------------+
-| 1.12       | testMatRot | Verifies   | Medium     | Room       | -          | passed     |
+| 1.12       | testMatRot | Verifies   | Medium     | Room       | _          | passed     |
 |            | ation      | direction  |            |            |            |            |
 |            |            | of room    |            |            |            |            |
 |            |            | transition |            |            |            |            |
@@ -110,7 +107,7 @@ still mostly function as intended.
 |            |            | returned   |            |            |            |            |
 |            |            |            |            |            |            |            |
 +------------+------------+------------+------------+------------+------------+------------+
-| 1.13       | testTrigge | Verifies   | High       | Room       | -          | passed     |
+| 1.13       | testTrigge | Verifies   | High       | Room       | _          | passed     |
 |            | r          | function   |            |            |            |            |
 |            |            | to check   |            |            |            |            |
 |            |            | if a tile  |            |            |            |            |
@@ -119,7 +116,7 @@ still mostly function as intended.
 |            |            | perform an |            |            |            |            |
 |            |            | action     |            |            |            |            |
 +------------+------------+------------+------------+------------+------------+------------+
-| 1.14       | testWalkab | Verifies   | Low        | Room       | -          | passed     |
+| 1.14       | testWalkab | Verifies   | Low        | Room       | _          | passed     |
 |            | le         | that a     |            |            |            |            |
 |            |            | tile       |            |            |            |            |
 |            |            | returns    |            |            |            |            |
