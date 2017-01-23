@@ -16,27 +16,25 @@ project, focussing on how many knock-on effects the issue would cause.
 
 The risks are presented in a tabular format, with the following columns:
 
--  Risk ID - this allows for traceability across the project
--  Description - describes what the risk is for
--  Likelihood - each risk has an estimated likelihood on a scale
+-  **Risk ID** - this allows for traceability across the project
+-  **Description** - describes what the risk is for
+-  **Likelihood** - each risk has an estimated likelihood on a scale
 
--  High=good chance this risk will occur, about 75% chance
--  Medium=equal chance of risk occurring or not, about 50% chance
--  Low=not likely to occur, about 25% chance, however some risks may be
-   lower
+   -  **High** =good chance this risk will occur, about 75% chance
+   -  **Medium** =equal chance of risk occurring or not, about 50% chance
+   -  **Low** =not likely to occur, about 25% chance, however some risks may be lower
 
--  Impact - this describes the impact the risk would have to progress in
+-  **Impact** - this describes the impact the risk would have to progress in
    the project
--  Severity - shows the severity of the impact on the project on a scale
+-  **Severity** - shows the severity of the impact on the project on a scale
 
--  High=a major setback which could affect the whole project
--  Medium=could add up to a week of extra work and may threaten a
-   deadline
--  Low=may mean a few extra hours of work, but nothing major
+   -  **High** =a major setback which could affect the whole project
+   -  **Medium** =could add up to a week of extra work and may threaten a deadline
+   -  **Low** =may mean a few extra hours of work, but nothing major
 
--  Mitigation - describes how how we will aim to avoid such a risk and
+-  **Mitigation** - describes how how we will aim to avoid such a risk and
    deal with it
--  Owner - describes the owner of the problem, where the owner is the
+-  **Owner** - describes the owner of the problem, where the owner is the
    person most likely to be responsible for the issue.
 
 The overall table is split into sections which group together similar
@@ -69,8 +67,7 @@ Software risks
 |            |            |            |            |            | and        |            |
 |            |            |            |            |            | regularly  |            |
 |            |            |            |            |            | check      |            |
-|            |            |            |            |            | performanc |            |
-|            |            |            |            |            | e          |            |
+|            |            |            |            |            | performance|            |
 +------------+------------+------------+------------+------------+------------+------------+
 | 2          | Software   | Medium     | We would   | Medium     | Test the   | Software   |
 |            | library    |            | struggle   |            | elements   | Library    |
@@ -86,11 +83,10 @@ Software risks
 |            | or is      |            | time       |            | has an     |            |
 |            | missing a  |            | trying to  |            | active     |            |
 |            | feature    |            | solve the  |            | community  |            |
-|            | required   |            | issue.     |            | surroundin |            |
-|            | for the    |            |            |            | g          |            |
-|            | game to    |            |            |            | it and     |            |
-|            | work.      |            |            |            | that bugs  |            |
-|            |            |            |            |            | are fixed  |            |
+|            | required   |            | issue.     |            | surrounding|            |
+|            | for the    |            |            |            | it and     |            |
+|            | game to    |            |            |            | that bugs  |            |
+|            | work.      |            |            |            | are fixed  |            |
 |            |            |            |            |            | quickly.   |            |
 |            |            |            |            |            | If it was  |            |
 |            |            |            |            |            | early      |            |
@@ -113,8 +109,8 @@ Software risks
 |            | understand |            | and makes  |            | variable   |            |
 |            | and seems  |            | bug fixing |            | names and  |            |
 |            | too        |            | harder.    |            | plenty of  |            |
-|            | complex.   |            | Slows down |            | comments,b |            |
-|            |            |            | the        |            | oth        |            |
+|            | complex.   |            | Slows down |            | comments,  |            |
+|            |            |            | the        |            | both       |            |
 |            |            |            | productivi |            | in code    |            |
 |            |            |            | ty         |            | and in     |            |
 |            |            |            | of the     |            | commit     |            |
@@ -324,7 +320,7 @@ Risks with tools
 +------------+------------+------------+------------+------------+------------+------------+
 | 13         | Google     | Low        | Could      | Medium     | Store work | Google     |
 |            | drive      |            | lose/lose  |            | locally ,  |            |
-|            |  servers   |            | access to  |            | and on     |            |
+|            | servers    |            | access to  |            | and on     |            |
 |            | stop       |            | work that  |            | other      |            |
 |            | working.   |            | is stored  |            | services.  |            |
 |            |            |            | there.     |            |            |            |
@@ -421,7 +417,7 @@ Requirements risks
 +------------+------------+------------+------------+------------+------------+------------+
 | 19         | Ambiguity  | Medium     | May end up | Medium     | Ensure     | Requiremen |
 |            | in         |            | making     |            | requiremen | ts         |
-|            |  requireme |            | something  |            | ts         | Team       |
+|            | requireme  |            | something  |            | ts         | Team       |
 |            | nts.       |            | which is   |            | are clear  |            |
 |            |            |            | not what   |            | and check  |            |
 |            |            |            | was        |            | any        |            |
