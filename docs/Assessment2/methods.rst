@@ -233,11 +233,7 @@ http://lihq.me/Downloads/Assessment1/AppendixB.pdf).
 Bibliography
 ----------------
 
-[0] Waterfall to Agile: Flipping the Switch - Bhushan Gupta [Online]
-Available:
-
-      http://www.uploads.pnsqc.org/2012/papers/t-21\_Gupta\_paper.pdf
- [Accessed 25/10/2016]
+[0] Waterfall to Agile: Flipping the Switch - Bhushan Gupta [Online] Available: http://www.uploads.pnsqc.org/2012/papers/t-21_Gupta_paper.pdf [Accessed 25/10/2016]
 
 [1] Github [Online] www.github.com  [Accessed 8/11/2016]
 
@@ -267,18 +263,15 @@ Available:
 
 [14] Tiled [Online] www.mapeditor.org  [Accessed 8/11/2016]
 
-[15] Facebook Messenger [Online] https://en-gb. messenger .com/
- [Accessed 23/01/2017]
+[15] Facebook Messenger [Online] https://en-gb.messenger.com/ [Accessed 23/01/2017]
 
 [16] Slack [Online] www.slack.com  [Accessed 8/11/2016]
 
 [17] Join.me [Online] www.join.me  [Accessed 8/11/2016]
 
-[18] Google Drive [Online] https://www. google .com/ drive /  [Accessed
-23/01/2017]
+[18] Google Drive [Online] https://www.google.com/drive/  [Accessed 23/01/2017]
 
-[19] Gantt Chart [Online]
-http://lihq.me/Downloads/Assessment1/AppendixB.pdf
+[19] Gantt Chart [Online] http://lihq.me/Downloads/Assessment1/AppendixB.pdf
 
 
 Appendix: Task Assignment Summary
@@ -294,7 +287,7 @@ Assessment 2:
 ~~~~~~~~~~~~~~~~~~
 - Benjamin Grahamslaw was assigned the GUI report & user manual
 - Brooke Hatton, Jason Mashinchi & Joe Shufflebotham were responsible for the implementation of the game, testing and the design choices made.
-      - Other team members contributed towards implementing smaller features
+    - Other team members contributed towards implementing smaller features
 - Jason Mashinchi was assigned the testing report
 - Brooke Hatton & Vishal Soomaney were assigned the architecture report
 - Ben Jarvis & Benjamin Grahamslaw were assigned the document updates
