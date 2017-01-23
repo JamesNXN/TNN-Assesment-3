@@ -1,6 +1,13 @@
 Requirements
 ============
 
+**Highlighted changes:**
+
+- All requirements have been reviewed and rewritten where appropriate
+- IDs have changed due to recategorisation of requirements
+- Improved introduction and document formatting
+- More details are in the updates report
+
 Introduction
 -------------
 

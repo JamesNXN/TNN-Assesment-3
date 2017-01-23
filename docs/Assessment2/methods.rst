@@ -1,6 +1,15 @@
 Methods and Planning
 =====================
 
+**Highlighted changes:**
+
+- Group leader has changed
+- Added more documentation about our software development process and methods
+- Improved section discussing the way we work and methodologies
+- Updated Assessment 3 plan
+- In terms of how we work, the group now runs as more singular units than in groups.
+- More details are in the updates report
+
 Software Engineering Methods & Tools
 --------------------------------------
 Development Process
