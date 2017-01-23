@@ -34,6 +34,7 @@ Contents
    Assessment2/implementation
    Assessment2/gui
    Assessment2/testing
+   Assessment2/updates
    Assessment2/executableTestPlan
    Assessment2/appendixA
    Assessment2/appendixB
