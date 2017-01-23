@@ -5,443 +5,520 @@ Introduction
 Risk management is an important part of any project, we must prepare for
 what could happen during the course of the project in order to be able
 to quickly recover and stay on track. The risks which are shown below
-are relevant to the particular SEPR context and take into account the
-scale of the project and aim to cover only risks which are realistic
-within this context.
+take into account the scale of the project and aim to cover only risks
+which are realistic within this context.
 
-The risks are here presented in a tabular format. This table is split
-into 6 columns; the first column gives the risk an identification number
-(ID) for easy reference in our requirements and also if a risk does
-happen and we need to resolve it. The second column describes the risk
-itself. The third column gives an estimated likelihood of the risk
-occurring. To indicate the likelihood of each risk occurring we have use
-a high medium and low rating which is then also colour coded:
+To determine risks we brainstormed various scenarios - such as a
+teammate being ill for more than a few weeks. From these scenarios, we
+collected possible risks, and worked out the likelihood of them
+occurring. To determine the risk we discussed how it would impact the
+project, focussing on how many knock-on effects the issue would cause.
 
-Likelihood
-~~~~~~~~~~~
-Low likelihood = This risk is not likely to occur. Roughly a 25% chance
-although some extreme risks could be a lot lower.
+The risks are presented in a tabular format, with the following columns:
 
-Medium likelihood = There is an equal chance of the risk occurring or not
-occurring. Roughly a 50% chance.
+-  Risk ID - this allows for traceability across the project
+-  Description - describes what the risk is for
+-  Likelihood - each risk has an estimated likelihood on a scale
 
-High likelihood = There is a good chance that this risk will occur .
-Roughly a 75% chance.
+-  High=good chance this risk will occur, about 75% chance
+-  Medium=equal chance of risk occurring or not, about 50% chance
+-  Low=not likely to occur, about 25% chance, however some risks may be
+   lower
 
-The fourth column describes the impact the risk
-would have on progress in the project. The fifth column shows the
-severity of the impact using this colour coordination:
+-  Impact - this describes the impact the risk would have to progress in
+   the project
+-  Severity - shows the severity of the impact on the project on a scale
 
-Severity
-~~~~~~~~~
-Low severity = May mean a few hours extra work but nothing major.
+-  High=a major setback which could affect the whole project
+-  Medium=could add up to a week of extra work and may threaten a
+   deadline
+-  Low=may mean a few extra hours of work, but nothing major
 
-Medium severity = Could add up to a week of extra work and may threaten a
-deadline.
-
-High severity = A major set back which could affect the whole project.
-
-The sixth and final column details how we will aim
-to avoid such a risk and deal with it.
+-  Mitigation - describes how how we will aim to avoid such a risk and
+   deal with it
+-  Owner - describes the owner of the problem, where the owner is the
+   person most likely to be responsible for the issue.
 
 The overall table is split into sections which group together similar
 risk such as software risks. Each section is then ordered by severity,
-highest first. Equal severity is ordered by likelihood. This table will
-be regularly consulted in an attempt to monitor the risks and try to
-ensure they do not occur and catch them early if they are occurring.
+highest first. Equal severity is ordered by likelihood.
+
+
+
+This table will be regularly consulted in an attempt to monitor the
+risks and try to ensure they do not occur and catch them early if they
+are occurring.
+
+Due to the size of the team we feel that these risks are appropriate and
+accurate.
 
 Table of risks
 -----------------
 Software risks
 ~~~~~~~~~~~~~~~~~~
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| ID           | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 1            | Our game may | Medium       | No one will  | High         | Improve      |
-|              | be slow or   |              | want to play |              | efficiency   |
-|              | unresponsive |              | the game.    |              | of the game  |
-|              | .            |              |              |              | wherever     |
-|              |              |              |              |              | possible and |
-|              |              |              |              |              | regularly    |
-|              |              |              |              |              | check        |
-|              |              |              |              |              | performance  |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 2            | Software     | Medium       | We would     | Medium       | Test the     |
-|              | library      |              | struggle to  |              | elements of  |
-|              | doesn’t work |              | implement    |              | the library  |
-|              | or lacks a   |              | the feature  |              | you plan to  |
-|              | feature      |              | we want to   |              | use          |
-|              | e.g. has a   |              | add. We      |              | beforehand.  |
-|              | bug that     |              | would also   |              | Also, make   |
-|              | stops the    |              | use up lots  |              | sure the     |
-|              | game from    |              | of time      |              | library has  |
-|              | working, or  |              | trying to    |              | an active    |
-|              | is missing a |              | solve the    |              | community    |
-|              | feature      |              | issue.       |              | surrounding  |
-|              | required for |              |              |              | it and that  |
-|              | the game to  |              |              |              | bugs are     |
-|              | work.        |              |              |              | fixed        |
-|              |              |              |              |              | quickly. If  |
-|              |              |              |              |              | it was early |
-|              |              |              |              |              | stages we    |
-|              |              |              |              |              | could get a  |
-|              |              |              |              |              | new library  |
-|              |              |              |              |              | but this     |
-|              |              |              |              |              | would        |
-|              |              |              |              |              | require us   |
-|              |              |              |              |              | to rewrite   |
-|              |              |              |              |              | our code to  |
-|              |              |              |              |              | work with    |
-|              |              |              |              |              | the new      |
-|              |              |              |              |              | library.     |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 3            | Code is hard | Low          | Could cause  | Medium       | Use          |
-|              | to           |              | bugs and     |              | meaningful   |
-|              | understand   |              | makes bug    |              | variable     |
-|              | and seems    |              | fixing       |              | names and    |
-|              | too complex. |              | harder.      |              | plenty of    |
-|              |              |              | Slows down   |              | comments,bot |
-|              |              |              | the          |              | h            |
-|              |              |              | productivity |              | in code and  |
-|              |              |              | of the       |              | in commit    |
-|              |              |              | group.       |              | messages.    |
-|              |              |              |              |              | Make sure    |
-|              |              |              |              |              | code is      |
-|              |              |              |              |              | reviewed by  |
-|              |              |              |              |              | the majority |
-|              |              |              |              |              | of members   |
-|              |              |              |              |              | before it    |
-|              |              |              |              |              | gets merged  |
-|              |              |              |              |              | into the     |
-|              |              |              |              |              | repository.  |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 4            | Conflicts in |  High        | May need to  | Low          | Make sure    |
-|              | git.         |              | move code    |              | people work  |
-|              | Different    |              | around and   |              | on separate  |
-|              | members      |              | even         |              | elements by  |
-|              | changing the |              | rewrite.     |              | assigning    |
-|              | same code.   |              |              |              | them to      |
-|              |              |              |              |              | different    |
-|              |              |              |              |              | tasks and if |
-|              |              |              |              |              | not then     |
-|              |              |              |              |              | make use of  |
-|              |              |              |              |              | Gits tools.  |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 5            | Our own      | High         | Will need to | Low          | This is a    |
-|              | software     |              | bug fix.     |              | normal part  |
-|              | doesn’t work |              | Loss of time |              | of software  |
-|              | as intended. |              | and          |              | development. |
-|              |              |              | potentially  |              | We all make  |
-|              |              |              | productivity |              | mistakes.    |
-|              |              |              | if that      |              | However,     |
-|              |              |              | function or  |              | before code  |
-|              |              |              | feature is   |              | is approved  |
-|              |              |              | the          |              | by the group |
-|              |              |              | bottleneck   |              | we will use  |
-|              |              |              | of the game. |              | unit testing |
-|              |              |              |              |              | that will    |
-|              |              |              |              |              | test key     |
-|              |              |              |              |              | functions of |
-|              |              |              |              |              | the game as  |
-|              |              |              |              |              | we develop   |
-|              |              |              |              |              | them meaning |
-|              |              |              |              |              | that should  |
-|              |              |              |              |              | a function   |
-|              |              |              |              |              | break we     |
-|              |              |              |              |              | will know    |
-|              |              |              |              |              | about it     |
-|              |              |              |              |              | before it’s  |
-|              |              |              |              |              | merged.      |
-+--------------+--------------+--------------+--------------+--------------+--------------+
+
++------------+------------+------------+------------+------------+------------+------------+
+| ID         | Description| Likelihood | Impact     | Severity   | Mitigation | Owner      |
++------------+------------+------------+------------+------------+------------+------------+
+| 1          | Our game   | Medium     | No one     | High       | Improve    | Coding     |
+|            | may be     |            | will want  |            | efficiency | Team       |
+|            | slow or    |            | to play    |            | of the     |            |
+|            | unresponsi |            | the game.  |            | game       |            |
+|            | ve.        |            |            |            | wherever   |            |
+|            |            |            |            |            | possible   |            |
+|            |            |            |            |            | and        |            |
+|            |            |            |            |            | regularly  |            |
+|            |            |            |            |            | check      |            |
+|            |            |            |            |            | performanc |            |
+|            |            |            |            |            | e          |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 2          | Software   | Medium     | We would   | Medium     | Test the   | Software   |
+|            | library    |            | struggle   |            | elements   | Library    |
+|            | doesn’t    |            | to         |            | of the     | Owner      |
+|            | work or    |            | implement  |            | library    |            |
+|            | lacks a    |            | the        |            | you plan   |            |
+|            | feature    |            | feature we |            | to use     |            |
+|            | e.g. has a |            | want to    |            | beforehand |            |
+|            | bug that   |            | add. We    |            | .          |            |
+|            | stops the  |            | would also |            | Also, make |            |
+|            | game from  |            | use up     |            | sure the   |            |
+|            | working,   |            | lots of    |            | library    |            |
+|            | or is      |            | time       |            | has an     |            |
+|            | missing a  |            | trying to  |            | active     |            |
+|            | feature    |            | solve the  |            | community  |            |
+|            | required   |            | issue.     |            | surroundin |            |
+|            | for the    |            |            |            | g          |            |
+|            | game to    |            |            |            | it and     |            |
+|            | work.      |            |            |            | that bugs  |            |
+|            |            |            |            |            | are fixed  |            |
+|            |            |            |            |            | quickly.   |            |
+|            |            |            |            |            | If it was  |            |
+|            |            |            |            |            | early      |            |
+|            |            |            |            |            | stages we  |            |
+|            |            |            |            |            | could get  |            |
+|            |            |            |            |            | a new      |            |
+|            |            |            |            |            | library    |            |
+|            |            |            |            |            | but this   |            |
+|            |            |            |            |            | would      |            |
+|            |            |            |            |            | require us |            |
+|            |            |            |            |            | to rewrite |            |
+|            |            |            |            |            | our code   |            |
+|            |            |            |            |            | to work    |            |
+|            |            |            |            |            | with the   |            |
+|            |            |            |            |            | new        |            |
+|            |            |            |            |            | library.   |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 3          | Code is    | Low        | Could      | Medium     | Use        | Coding     |
+|            | hard to    |            | cause bugs |            | meaningful | Team       |
+|            | understand |            | and makes  |            | variable   |            |
+|            | and seems  |            | bug fixing |            | names and  |            |
+|            | too        |            | harder.    |            | plenty of  |            |
+|            | complex.   |            | Slows down |            | comments,b |            |
+|            |            |            | the        |            | oth        |            |
+|            |            |            | productivi |            | in code    |            |
+|            |            |            | ty         |            | and in     |            |
+|            |            |            | of the     |            | commit     |            |
+|            |            |            | group.     |            | messages.  |            |
+|            |            |            |            |            | Make sure  |            |
+|            |            |            |            |            | code is    |            |
+|            |            |            |            |            | reviewed   |            |
+|            |            |            |            |            | by the     |            |
+|            |            |            |            |            | majority   |            |
+|            |            |            |            |            | of members |            |
+|            |            |            |            |            | before it  |            |
+|            |            |            |            |            | gets       |            |
+|            |            |            |            |            | merged     |            |
+|            |            |            |            |            | into the   |            |
+|            |            |            |            |            | repository |            |
+|            |            |            |            |            | .          |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 4          | Conflicts  |  High      | May need   | Low        | Make sure  | Coding     |
+|            | in git.    |            | to move    |            | people     | Team       |
+|            | Different  |            | code       |            | work on    |            |
+|            | members    |            | around and |            | separate   |            |
+|            | changing   |            | even       |            | elements   |            |
+|            | the same   |            | rewrite.   |            | by         |            |
+|            | code.      |            |            |            | assigning  |            |
+|            |            |            |            |            | them to    |            |
+|            |            |            |            |            | different  |            |
+|            |            |            |            |            | tasks and  |            |
+|            |            |            |            |            | if not     |            |
+|            |            |            |            |            | then make  |            |
+|            |            |            |            |            | use of     |            |
+|            |            |            |            |            | Gits       |            |
+|            |            |            |            |            | tools.     |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 5          | Our own    | High       | Will need  | Low        | This is a  | Coding     |
+|            | software   |            | to bug     |            | normal     | Team/Desig |
+|            | doesn’t    |            | fix. Loss  |            | part of    | n          |
+|            | work as    |            | of time    |            | software   | Team/Proje |
+|            | intended.  |            | and        |            | developmen | ct         |
+|            |            |            | potentiall |            | t.         | Manager    |
+|            |            |            | y          |            | We all     |            |
+|            |            |            | productivi |            | make       |            |
+|            |            |            | ty         |            | mistakes.  |            |
+|            |            |            | if that    |            | However,   |            |
+|            |            |            | function   |            | before     |            |
+|            |            |            | or feature |            | code is    |            |
+|            |            |            | is the     |            | approved   |            |
+|            |            |            | bottleneck |            | by the     |            |
+|            |            |            | of the     |            | group we   |            |
+|            |            |            | game.      |            | will use   |            |
+|            |            |            |            |            | unit       |            |
+|            |            |            |            |            | testing    |            |
+|            |            |            |            |            | that will  |            |
+|            |            |            |            |            | test key   |            |
+|            |            |            |            |            | functions  |            |
+|            |            |            |            |            | of the     |            |
+|            |            |            |            |            | game as we |            |
+|            |            |            |            |            | develop    |            |
+|            |            |            |            |            | them       |            |
+|            |            |            |            |            | meaning    |            |
+|            |            |            |            |            | that       |            |
+|            |            |            |            |            | should a   |            |
+|            |            |            |            |            | function   |            |
+|            |            |            |            |            | break we   |            |
+|            |            |            |            |            | will know  |            |
+|            |            |            |            |            | about it   |            |
+|            |            |            |            |            | before     |            |
+|            |            |            |            |            | it’s       |            |
+|            |            |            |            |            | merged.    |            |
++------------+------------+------------+------------+------------+------------+------------+
 
 Hardware risks
 ~~~~~~~~~~~~~~~~~~
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| ID           | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 6            | Personal     | Low          | Could lose   | Low          | | Ensure     |
-|              | computer     |              | work and be  |              |   work is    |
-|              | breaks long  |              | unable to    |              |   saved      |
-|              | term or is   |              | work.        |              |   online to  |
-|              | lost.        |              |              |              |   google     |
-|              |              |              |              |              |   drive      |
-|              |              |              |              |              |    cloud     |
-|              |              |              |              |              |   service    |
-|              |              |              |              |              |   and that   |
-|              |              |              |              |              |   code is    |
-|              |              |              |              |              |   stored on  |
-|              |              |              |              |              |   github.    |
-|              |              |              |              |              |   Department |
-|              |              |              |              |              |   PC’s       |
-|              |              |              |              |              |   should be  |
-|              |              |              |              |              |   accessible |
-|              |              |              |              |              |   most days  |
-|              |              |              |              |              |   and have   |
-|              |              |              |              |              |   all the    |
-|              |              |              |              |              |   tools we   |
-|              |              |              |              |              |   need.      |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 7            | Personal     | Medium       | Potentially  | Low          | Save         |
-|              | computer     |              | will have    |              | regularly,   |
-|              | crashes      |              | lose work,   |              | google       |
-|              | while        |              | meaning you  |              | docs[2] will |
-|              | working.     |              | lose time    |              | do this for  |
-|              |              |              | doing it     |              | us.          |
-|              |              |              | again.       |              | Regularly    |
-|              |              |              |              |              | commit code  |
-|              |              |              |              |              | to personal  |
-|              |              |              |              |              | branches so  |
-|              |              |              |              |              | that it      |
-|              |              |              |              |              | stored       |
-|              |              |              |              |              | elsewhere    |
-|              |              |              |              |              | other than   |
-|              |              |              |              |              | your PC .    |
-+--------------+--------------+--------------+--------------+--------------+--------------+
++------------+------------+------------+------------+------------+------------+------------+
+| ID         | Description| Likelihood | Impact     | Severity   | Mitigation | Owner      |
++------------+------------+------------+------------+------------+------------+------------+
+| 6          | Personal   | Low        | Could lose | Low        | Ensure     | Final User |
+|            | computer   |            | work and   |            | work is    |            |
+|            | breaks     |            | be unable  |            | saved      |            |
+|            | long term  |            | to work.   |            | online to  |            |
+|            | or is      |            |            |            | google     |            |
+|            | lost.      |            |            |            | drive      |            |
+|            |            |            |            |            |  cloud     |            |
+|            |            |            |            |            | service    |            |
+|            |            |            |            |            | and that   |            |
+|            |            |            |            |            | code is    |            |
+|            |            |            |            |            | stored on  |            |
+|            |            |            |            |            | github.    |            |
+|            |            |            |            |            | Department |            |
+|            |            |            |            |            | PC’s       |            |
+|            |            |            |            |            | should be  |            |
+|            |            |            |            |            | accessible |            |
+|            |            |            |            |            | most days  |            |
+|            |            |            |            |            | and have   |            |
+|            |            |            |            |            | all the    |            |
+|            |            |            |            |            | tools we   |            |
+|            |            |            |            |            | need.      |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 7          | Personal   | Medium     | Potentiall | Low        | Save       | Final User |
+|            | computer   |            | y          |            | regularly, |            |
+|            | crashes    |            | will have  |            | google     |            |
+|            | while      |            | lose work, |            | docs[2]    |            |
+|            | working.   |            | meaning    |            | will do    |            |
+|            |            |            | you lose   |            | this for   |            |
+|            |            |            | time doing |            | us.        |            |
+|            |            |            | it again.  |            | Regularly  |            |
+|            |            |            |            |            | commit     |            |
+|            |            |            |            |            | code to    |            |
+|            |            |            |            |            | personal   |            |
+|            |            |            |            |            | branches   |            |
+|            |            |            |            |            | so that it |            |
+|            |            |            |            |            | stored     |            |
+|            |            |            |            |            | elsewhere  |            |
+|            |            |            |            |            | other than |            |
+|            |            |            |            |            | your PC .  |            |
++------------+------------+------------+------------+------------+------------+------------+
 
 Risks with people
 ~~~~~~~~~~~~~~~~~~
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| ID           | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 8            | A team       | Low          | They may     | High         | As above     |
-|              | member       |              | have only    |              | store online |
-|              | leaves the   |              | access to    |              | but also try |
-|              | module or    |              | their work,  |              | to keep each |
-|              | even the     |              | also the     |              | other        |
-|              | course.      |              | rest of the  |              | motivated to |
-|              |              |              | team will    |              | avoid this.  |
-|              |              |              | have more to |              |              |
-|              |              |              | do.          |              |              |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 9            | A team       | High         | They might   | Medium       | Hard to      |
-|              | member is    |              | have been    |              | avoid, but   |
-|              | ill/away for |              | skilled in a |              | we should    |
-|              | a week or    |              | certain area |              | store work   |
-|              | two.         |              | that no      |              | online where |
-|              |              |              | other member |              | everyone can |
-|              |              |              | can do well. |              | access.      |
-|              |              |              | If they have |              |              |
-|              |              |              | the only     |              | If we work   |
-|              |              |              | access to    |              | in pairs to  |
-|              |              |              | work may get |              | complete     |
-|              |              |              | behind from  |              | tasks then   |
-|              |              |              | it.          |              | there will   |
-|              |              |              |              |              | be less of a |
-|              |              |              |              |              | chance of    |
-|              |              |              |              |              | having one   |
-|              |              |              |              |              | person who   |
-|              |              |              |              |              | knows the    |
-|              |              |              |              |              | most about   |
-|              |              |              |              |              | one area.    |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 10           | Arguments    | Medium       | Disrupts the | Medium       | Try to avoid |
-|              | within the   |              | work of the  |              | conflict but |
-|              | team.        |              | team and     |              | if necessary |
-|              |              |              | prevents us  |              | have proper  |
-|              |              |              | moving       |              | debates      |
-|              |              |              | forwards.    |              | perhaps      |
-|              |              |              | Also,        |              | using a      |
-|              |              |              | unpleasant   |              | mediator, do |
-|              |              |              | for the team |              | not keep     |
-|              |              |              | as a whole.  |              | issues       |
-|              |              |              |              |              | hidden.      |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 11           | Lack of      | Medium       | Tasks may be | Medium       | Keep strong  |
-|              | communication|              | done twice   |              | communicatio |
-|              |              |              | or not done  |              | n            |
-|              |              |              | at all.      |              | using the    |
-|              |              |              |              |              | tools we     |
-|              |              |              |              |              | plan to use. |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 12           | A team       | Medium       | Could        | Low          | Don’t give   |
-|              | member does  |              | disrupt      |              | members too  |
-|              | not do their |              | other        |              | much work or |
-|              | work.        |              | members work |              | work they    |
-|              |              |              | and could    |              | cannot do,   |
-|              |              |              | make the     |              | ensure that  |
-|              |              |              | other team   |              | the team     |
-|              |              |              | members      |              | communicates |
-|              |              |              | annoyed.     |              | well and     |
-|              |              |              |              |              | regularly    |
-|              |              |              |              |              | meets up to  |
-|              |              |              |              |              | discuss how  |
-|              |              |              |              |              | the work is  |
-|              |              |              |              |              | going.       |
-+--------------+--------------+--------------+--------------+--------------+--------------+
++------------+------------+------------+------------+------------+------------+------------+
+| ID         | Description| Likelihood | Impact     | Severity   | Mitigation | Owner      |
++------------+------------+------------+------------+------------+------------+------------+
+| 8          | A team     | Low        | They may   | High       | As above   | Project    |
+|            | member     |            | have only  |            | store      | Team       |
+|            | leaves the |            | access to  |            | online but |            |
+|            | module or  |            | their      |            | also try   |            |
+|            | even the   |            | work, also |            | to keep    |            |
+|            | course.    |            | the rest   |            | each other |            |
+|            |            |            | of the     |            | motivated  |            |
+|            |            |            | team will  |            | to avoid   |            |
+|            |            |            | have more  |            | this.      |            |
+|            |            |            | to do.     |            |            |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 9          | A team     | High       | They might | Medium     | Hard to    | Project    |
+|            | member is  |            | have been  |            | avoid, but | Team       |
+|            | ill/away   |            | skilled in |            | we should  |            |
+|            | for a week |            | a certain  |            | store work |            |
+|            | or two.    |            | area that  |            | online     |            |
+|            |            |            | no other   |            | where      |            |
+|            |            |            | member can |            | everyone   |            |
+|            |            |            | do well.If |            | can        |            |
+|            |            |            | they have  |            | access.    |            |
+|            |            |            | the only   |            |            |            |
+|            |            |            | access to  |            | If we work |            |
+|            |            |            | work may   |            | in pairs   |            |
+|            |            |            | get behind |            | to         |            |
+|            |            |            | from it.   |            | complete   |            |
+|            |            |            |            |            | tasks then |            |
+|            |            |            |            |            | there will |            |
+|            |            |            |            |            | be less of |            |
+|            |            |            |            |            | a chance   |            |
+|            |            |            |            |            | of having  |            |
+|            |            |            |            |            | one person |            |
+|            |            |            |            |            | who knows  |            |
+|            |            |            |            |            | the most   |            |
+|            |            |            |            |            | about one  |            |
+|            |            |            |            |            | area.      |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 10         | Arguments  | Medium     | Disrupts   | Medium     | Try to     | Project    |
+|            | within the |            | the work   |            | avoid      | Manager    |
+|            | team.      |            | of the     |            | conflict   |            |
+|            |            |            | team and   |            | but if     |            |
+|            |            |            | prevents   |            | necessary  |            |
+|            |            |            | us moving  |            | have       |            |
+|            |            |            | forwards.  |            | proper     |            |
+|            |            |            | Also,      |            | debates    |            |
+|            |            |            | unpleasant |            | perhaps    |            |
+|            |            |            | for the    |            | using a    |            |
+|            |            |            | team as a  |            | mediator,  |            |
+|            |            |            | whole.     |            | do not     |            |
+|            |            |            |            |            | keep       |            |
+|            |            |            |            |            | issues     |            |
+|            |            |            |            |            | hidden.    |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 11         | Lack of    | Medium     | Tasks may  | Medium     | Keep       | Project    |
+|            | communicat |            | be done    |            | strong     | Manager    |
+|            | ion.       |            | twice or   |            | communicat |            |
+|            |            |            | not done   |            | ion        |            |
+|            |            |            | at all.    |            | using the  |            |
+|            |            |            |            |            | tools we   |            |
+|            |            |            |            |            | plan to    |            |
+|            |            |            |            |            | use.       |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 12         | A team     | Medium     | Could      | Low        | Don’t give | Project    |
+|            | member     |            | disrupt    |            | members    | Team/Manag |
+|            | does not   |            | other      |            | too much   | er         |
+|            | do their   |            | members    |            | work or    |            |
+|            | work.      |            | work and   |            | work they  |            |
+|            |            |            | could make |            | cannot do, |            |
+|            |            |            | the other  |            | ensure     |            |
+|            |            |            | team       |            | that the   |            |
+|            |            |            | members    |            | team       |            |
+|            |            |            | annoyed.   |            | communicat |            |
+|            |            |            |            |            | es         |            |
+|            |            |            |            |            | well and   |            |
+|            |            |            |            |            | regularly  |            |
+|            |            |            |            |            | meets up   |            |
+|            |            |            |            |            | to discuss |            |
+|            |            |            |            |            | how the    |            |
+|            |            |            |            |            | work is    |            |
+|            |            |            |            |            | going.     |            |
++------------+------------+------------+------------+------------+------------+------------+
 
 Risks with tools
 ~~~~~~~~~~~~~~~~~~
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| ID           | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 13           | Google drive | Low          | Could        | Medium       | Store work   |
-|              | servers      |              | lose/lose    |              | locally ,    |
-|              | stop         |              | access to    |              | and on other |
-|              | working.     |              | work that is |              | services.    |
-|              |              |              | stored       |              |              |
-|              |              |              | there.       |              |              |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 14           | Central git  | Low          | Temporarily  | Low          | Keep up to   |
-|              | repository   |              | lose access  |              | date local   |
-|              | [1]          |              | to it.       |              | copies so    |
-|              | is lost in   |              |              |              | can be       |
-|              | some way.    |              |              |              | easily       |
-|              |              |              |              |              | restored. We |
-|              |              |              |              |              | could host   |
-|              |              |              |              |              | our own      |
-|              |              |              |              |              | local copy   |
-|              |              |              |              |              | should       |
-|              |              |              |              |              | github go    |
-|              |              |              |              |              | down.        |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 15           | Website      | Low          | Users lose   | Medium       | The website  |
-|              | hosting      |              | access to    |              | files are    |
-|              | fails.       |              | the website. |              | stored on    |
-|              |              |              |              |              | github and   |
-|              |              |              |              |              | every team   |
-|              |              |              |              |              | member has a |
-|              |              |              |              |              | local copy   |
-|              |              |              |              |              | of the       |
-|              |              |              |              |              | repository   |
-|              |              |              |              |              | on their     |
-|              |              |              |              |              | computer so  |
-|              |              |              |              |              | we could     |
-|              |              |              |              |              | bring the    |
-|              |              |              |              |              | site back up |
-|              |              |              |              |              | on a         |
-|              |              |              |              |              | different    |
-|              |              |              |              |              | server. The  |
-|              |              |              |              |              | site is also |
-|              |              |              |              |              | protected by |
-|              |              |              |              |              | cloud-flare[ |
-|              |              |              |              |              | 3]           |
-|              |              |              |              |              | who will     |
-|              |              |              |              |              | provide a    |
-|              |              |              |              |              | cached       |
-|              |              |              |              |              | version of   |
-|              |              |              |              |              | the site if  |
-|              |              |              |              |              | our host     |
-|              |              |              |              |              | were to go   |
-|              |              |              |              |              | down.        |
-+--------------+--------------+--------------+--------------+--------------+--------------+
++------------+------------+------------+------------+------------+------------+------------+
+| ID         | Description| Likelihood | Impact     | Severity   | Mitigation | Owner      |
++------------+------------+------------+------------+------------+------------+------------+
+| 13         | Google     | Low        | Could      | Medium     | Store work | Google     |
+|            | drive      |            | lose/lose  |            | locally ,  |            |
+|            |  servers   |            | access to  |            | and on     |            |
+|            | stop       |            | work that  |            | other      |            |
+|            | working.   |            | is stored  |            | services.  |            |
+|            |            |            | there.     |            |            |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 14         | Central    | Low        | Temporaril | Low        | Keep up to | Git/Coding |
+|            | git        |            | y          |            | date local | Team       |
+|            | repository |            | lose       |            | copies so  |            |
+|            | [1]        |            | access to  |            | can be     |            |
+|            | is lost in |            | it.        |            | easily     |            |
+|            | some way.  |            |            |            | restored.  |            |
+|            |            |            |            |            | We could   |            |
+|            |            |            |            |            | host our   |            |
+|            |            |            |            |            | own local  |            |
+|            |            |            |            |            | copy       |            |
+|            |            |            |            |            | should     |            |
+|            |            |            |            |            | github go  |            |
+|            |            |            |            |            | down.      |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 15         | Website    | Low        | Users lose | Medium     | The        | Website    |
+|            | hosting    |            | access to  |            | website    | Hosting    |
+|            | fails.     |            | the        |            | files are  | Owner      |
+|            |            |            | website.   |            | stored on  |            |
+|            |            |            |            |            | github and |            |
+|            |            |            |            |            | every team |            |
+|            |            |            |            |            | member has |            |
+|            |            |            |            |            | a local    |            |
+|            |            |            |            |            | copy of    |            |
+|            |            |            |            |            | the        |            |
+|            |            |            |            |            | repository |            |
+|            |            |            |            |            | on their   |            |
+|            |            |            |            |            | computer   |            |
+|            |            |            |            |            | so we      |            |
+|            |            |            |            |            | could      |            |
+|            |            |            |            |            | bring the  |            |
+|            |            |            |            |            | site back  |            |
+|            |            |            |            |            | up on a    |            |
+|            |            |            |            |            | different  |            |
+|            |            |            |            |            | server.    |            |
+|            |            |            |            |            | The site   |            |
+|            |            |            |            |            | is also    |            |
+|            |            |            |            |            | protected  |            |
+|            |            |            |            |            | by         |            |
+|            |            |            |            |            | cloud-flar |            |
+|            |            |            |            |            | e[3]       |            |
+|            |            |            |            |            | who will   |            |
+|            |            |            |            |            | provide a  |            |
+|            |            |            |            |            | cached     |            |
+|            |            |            |            |            | version of |            |
+|            |            |            |            |            | the site   |            |
+|            |            |            |            |            | if our     |            |
+|            |            |            |            |            | host were  |            |
+|            |            |            |            |            | to go      |            |
+|            |            |            |            |            | down.      |            |
++------------+------------+------------+------------+------------+------------+------------+
 
 Requirements risks
-~~~~~~~~~~~~~~~~~~
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| ID           | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 16           | Not          | Low          | We let the   | High         | Make sure    |
-|              | including a  |              | customer     |              | key          |
-|              | requirement  |              | down and     |              | requirements |
-|              | which is     |              | have failed  |              | are elicited |
-|              | required by  |              | them.        |              | from the     |
-|              | the          |              |              |              | customer so  |
-|              | customer.    |              |              |              | they get     |
-|              |              |              |              |              | what they    |
-|              |              |              |              |              | want.        |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 17           | A            | High         | May need to  | Medium       | Our software |
-|              | requirement  |              | rewrite code |              | architecture |
-|              | could        |              | or add extra |              | must be      |
-|              | change / be  |              | code to      |              | flexible and |
-|              | added.       |              | account for  |              | able to be   |
-|              |              |              | it. Extra    |              | changed      |
-|              |              |              | time will be |              | easily.      |
-|              |              |              | needed.      |              |              |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 18           | Stating a    | High         | Let down the | Medium       | Be sensible  |
-|              | requirement  |              | customer and |              | when         |
-|              | that we      |              | also waste   |              | deciding     |
-|              | cannot       |              | time.        |              | requirements |
-|              | actually     |              |              |              | ,            |
-|              | achieve.     |              |              |              | be sure you  |
-|              |              |              |              |              | can achieve  |
-|              |              |              |              |              | them.        |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 19           | Ambiguity in | Medium       | May end up   | Medium       | Ensure       |
-|              | requirements |              | making       |              | requirements |
-|              |              |              | something    |              | are clear    |
-|              |              |              | which is not |              | and check    |
-|              |              |              | what was     |              | any          |
-|              |              |              | originally   |              | ambiguities  |
-|              |              |              | intended.    |              | with the     |
-|              |              |              |              |              | customer.    |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 20           | Choosing     | Medium       | Waste time   | Low          | Ensure you   |
-|              | requirements |              | which could  |              | know which   |
-|              | that the     |              | be spent on  |              | requirements |
-|              | customer     |              | requirements |              | the customer |
-|              | doesn't      |              | they did     |              | really wants |
-|              | really want. |              | want.        |              | and which    |
-|              |              |              |              |              | can be       |
-|              |              |              |              |              | ignored.     |
-+--------------+--------------+--------------+--------------+--------------+--------------+
+~~~~~~~~~~~~~~~~~~~~~~~~
++------------+------------+------------+------------+------------+------------+------------+
+| ID         | Description| Likelihood | Impact     | Severity   | Mitigation | Owner      |
++------------+------------+------------+------------+------------+------------+------------+
+| 16         | Not        | Low        | We let the | High       | Make sure  | Requiremen |
+|            | including  |            | customer   |            | key        | ts         |
+|            | a          |            | down and   |            | requiremen | Team       |
+|            | requiremen |            | have       |            | ts         |            |
+|            | t          |            | failed     |            | are        |            |
+|            | which is   |            | them.      |            | elicited   |            |
+|            | required   |            |            |            | from the   |            |
+|            | by the     |            |            |            | customer   |            |
+|            | customer.  |            |            |            | so they    |            |
+|            |            |            |            |            | get what   |            |
+|            |            |            |            |            | they want. |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 17         | A          | High       | May need   | Medium     | Our        | Requiremen |
+|            | requiremen |            | to rewrite |            | software   | ts         |
+|            | t          |            | code or    |            | architectu | Team       |
+|            | could      |            | add extra  |            | re         |            |
+|            | change/ be |            | code to    |            | must be    |            |
+|            | added.     |            | account    |            | flexible   |            |
+|            |            |            | for it.    |            | and able   |            |
+|            |            |            | Extra time |            | to be      |            |
+|            |            |            | will be    |            | changed    |            |
+|            |            |            | needed.    |            | easily.    |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 18         | Stating a  | High       | Let down   | Medium     | Be         | Requiremen |
+|            | requiremen |            | the        |            | sensible   | ts         |
+|            | t          |            | customer   |            | when       | Team/Codin |
+|            | that we    |            | and also   |            | deciding   | g          |
+|            | cannot     |            | waste      |            | requiremen | Team       |
+|            | actually   |            | time.      |            | ts,        |            |
+|            | achieve.   |            |            |            | be sure    |            |
+|            |            |            |            |            | you can    |            |
+|            |            |            |            |            | achieve    |            |
+|            |            |            |            |            | them.      |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 19         | Ambiguity  | Medium     | May end up | Medium     | Ensure     | Requiremen |
+|            | in         |            | making     |            | requiremen | ts         |
+|            |  requireme |            | something  |            | ts         | Team       |
+|            | nts.       |            | which is   |            | are clear  |            |
+|            |            |            | not what   |            | and check  |            |
+|            |            |            | was        |            | any        |            |
+|            |            |            | originally |            | ambiguitie |            |
+|            |            |            | intended.  |            | s          |            |
+|            |            |            |            |            | with the   |            |
+|            |            |            |            |            | customer.  |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 20         | Choosing   | Medium     | Waste time | Low        | Ensure you | Requiremen |
+|            | requiremen |            | which      |            | know which | ts         |
+|            | ts         |            | could be   |            | requiremen | Team       |
+|            | that the   |            | spent on   |            | ts         |            |
+|            | customer   |            | requiremen |            | the        |            |
+|            | doesn't    |            | ts         |            | customer   |            |
+|            | really     |            | they did   |            | really     |            |
+|            | want.      |            | want.      |            | wants and  |            |
+|            |            |            |            |            | which can  |            |
+|            |            |            |            |            | be         |            |
+|            |            |            |            |            | ignored.   |            |
++------------+------------+------------+------------+------------+------------+------------+
 
 Estimation risks
 ~~~~~~~~~~~~~~~~~~
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| ID           | Description  | Likelihood   | Impact       | Severity     | Mitigation   |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 21           | Expect the   | Medium       | Work is not  | Medium       | Give tasks   |
-|              | team or a    |              | done or is   |              | that people  |
-|              | team member  |              | done to an   |              | can do and   |
-|              | can do more  |              | insufficient |              | if they      |
-|              | than they    |              | standard.    |              | can’t then   |
-|              | actually     |              |              |              | help them.   |
-|              | can.         |              |              |              | When working |
-|              |              |              |              |              | on difficult |
-|              |              |              |              |              | tasks work   |
-|              |              |              |              |              | in pairs to  |
-|              |              |              |              |              | complete the |
-|              |              |              |              |              | task meaning |
-|              |              |              |              |              | individual   |
-|              |              |              |              |              | team members |
-|              |              |              |              |              | don’t feel   |
-|              |              |              |              |              | as           |
-|              |              |              |              |              | overwhelmed  |
-|              |              |              |              |              | by the task  |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 22           | We may       | Medium       | Work ends up | Medium       | Set          |
-|              | underestimate|              | taking       |              | realistic    |
-|              | how long it  |              | longer than  |              | timings to   |
-|              | will take to |              | expected or  |              | do work and  |
-|              | do some      |              | not done to  |              | be realistic |
-|              | work.        |              | the standard |              | on how long  |
-|              |              |              | it could be  |              | a task will  |
-|              |              |              | done. This   |              | take.        |
-|              |              |              | could cause  |              | Account for  |
-|              |              |              | other areas  |              | unforeseen   |
-|              |              |              | of the       |              | delays in    |
-|              |              |              | project to   |              | our plan     |
-|              |              |              | suffer       |              | adding time  |
-|              |              |              |              |              | where we can |
-|              |              |              |              |              | catch up.    |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 23           | Be too       | Medium       | We end up    | Low          | Push our     |
-|              | pessimistic  |              | with a       |              | limits but   |
-|              | about what   |              | product      |              | also stay    |
-|              | we can       |              | which is not |              | realistic    |
-|              | achieve.     |              | as good as   |              | and within   |
-|              |              |              | it could     |              | the          |
-|              |              |              | have         |              | requirements |
-|              |              |              | possibly     |              | .            |
-|              |              |              | been.        |              | If we have   |
-|              |              |              |              |              | extra time   |
-|              |              |              |              |              | then we can  |
-|              |              |              |              |              | use it to    |
-|              |              |              |              |              | enhance the  |
-|              |              |              |              |              | product.     |
-+--------------+--------------+--------------+--------------+--------------+--------------+
-| 24           | Distribute   | Low          | Team         | Low          | Distribute   |
-|              | tasks        |              | over/under   |              | tasks        |
-|              | incorrectly. |              | worked.      |              | appropriatel |
-|              |              |              |              |              | y            |
-|              |              |              |              |              | and tell     |
-|              |              |              |              |              | others if    |
-|              |              |              |              |              | feel         |
-|              |              |              |              |              | over/under   |
-|              |              |              |              |              | worked.      |
-+--------------+--------------+--------------+--------------+--------------+--------------+
++------------+------------+------------+------------+------------+------------+------------+
+| ID         | Description| Likelihood | Impact     | Severity   | Mitigation | Owner      |
++------------+------------+------------+------------+------------+------------+------------+
+| 21         | Expect the | Medium     | Work is    | Medium     | Give tasks | Project    |
+|            | team or a  |            | not done   |            | that       | Manager    |
+|            | team       |            | or is done |            | people can |            |
+|            | member can |            | to an      |            | do and if  |            |
+|            | do more    |            | insufficie |            | they can’t |            |
+|            | than they  |            | nt         |            | then help  |            |
+|            | actually   |            | standard.  |            | them. When |            |
+|            | can.       |            |            |            | working on |            |
+|            |            |            |            |            | difficult  |            |
+|            |            |            |            |            | tasks work |            |
+|            |            |            |            |            | in pairs   |            |
+|            |            |            |            |            | to         |            |
+|            |            |            |            |            | complete   |            |
+|            |            |            |            |            | the task   |            |
+|            |            |            |            |            | meaning    |            |
+|            |            |            |            |            | individual |            |
+|            |            |            |            |            | team       |            |
+|            |            |            |            |            | members    |            |
+|            |            |            |            |            | don’t feel |            |
+|            |            |            |            |            | as         |            |
+|            |            |            |            |            | overwhelme |            |
+|            |            |            |            |            | d          |            |
+|            |            |            |            |            | by the     |            |
+|            |            |            |            |            | task       |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 22         | We may     | Medium     | Work ends  | Medium     | Set        | Project    |
+|            | underestim |            | up taking  |            | realistic  | Manager    |
+|            | ate        |            | longer     |            | timings to |            |
+|            | how long   |            | than       |            | do work    |            |
+|            | it will    |            | expected   |            | and be     |            |
+|            | take to do |            | or not     |            | realistic  |            |
+|            | some work. |            | done to    |            | on how     |            |
+|            |            |            | the        |            | long a     |            |
+|            |            |            | standard   |            | task will  |            |
+|            |            |            | it could   |            | take.      |            |
+|            |            |            | be done.   |            | Account    |            |
+|            |            |            | This could |            | for        |            |
+|            |            |            | cause      |            | unforeseen |            |
+|            |            |            | other      |            | delays in  |            |
+|            |            |            | areas of   |            | our plan   |            |
+|            |            |            | the        |            | adding     |            |
+|            |            |            | project to |            | time where |            |
+|            |            |            | suffer     |            | we can     |            |
+|            |            |            |            |            | catch up.  |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 23         | Be too     | Medium     | We end up  | Low        | Push our   | Project    |
+|            | pessimisti |            | with a     |            | limits but | Manager    |
+|            | c          |            | product    |            | also stay  |            |
+|            | about what |            | which is   |            | realistic  |            |
+|            | we can     |            | not as     |            | and within |            |
+|            | achieve.   |            | good as it |            | the        |            |
+|            |            |            | could have |            | requiremen |            |
+|            |            |            | possibly   |            | ts.        |            |
+|            |            |            | been.      |            | If we have |            |
+|            |            |            |            |            | extra time |            |
+|            |            |            |            |            | then we    |            |
+|            |            |            |            |            | can use it |            |
+|            |            |            |            |            | to enhance |            |
+|            |            |            |            |            | the        |            |
+|            |            |            |            |            | product.   |            |
++------------+------------+------------+------------+------------+------------+------------+
+| 24         | Distribute | Low        | Team       | Low        | Distribute | Project    |
+|            | tasks      |            | over/under |            | tasks      | Manager    |
+|            | incorrectl |            | worked.    |            | appropriat |            |
+|            | y.         |            |            |            | ely        |            |
+|            |            |            |            |            | and tell   |            |
+|            |            |            |            |            | others if  |            |
+|            |            |            |            |            | feel       |            |
+|            |            |            |            |            | over/under |            |
+|            |            |            |            |            | worked.    |            |
++------------+------------+------------+------------+------------+------------+------------+
 
 Bibliography
 --------------
@@ -450,4 +527,4 @@ Bibliography
 
 [2] Google Drive [online] Available https://www.google.com/drive/ [Accessed 01/11/2016]
 
-[3] Cloud Flare Available[online] https://www.cloudflare.com/ [Accessed 01/11/2016]
+[3] Cloud Flare [online] Available https://www.cloudflare.com/ [Accessed 01/11/2016]
