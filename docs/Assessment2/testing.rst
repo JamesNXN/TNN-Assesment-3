@@ -10,9 +10,8 @@ the project, but also making sure that we tested key parts of our code
 that may not directly correspond to any requirement. We decided to use
 two types of testing, these can be seen below:
 
-Acceptance Testing: this allows us to ensure the end product meets the
-requirements, and that a user can perform common scenarios
- successfully.
+**Acceptance Testing**: this allows us to ensure the end product meets the
+requirements, and that a user can perform common scenarios successfully.
 
 -  Each test takes the form of a list of steps to carry out in the game.
 -  If a user can perform the list of steps successfully, the test
@@ -27,11 +26,11 @@ requirements, and that a user can perform common scenarios
    behaves as expected.
 -  Allows us to detect regressions during refactoring or other code
    changes.
--  We use a test-driven development approach here, where the acceptance
+-  We use a **test-driven development** approach here, where the acceptance
    tests were written before the cod e, and more tests should pass as
    more of the requirements are implemented.
 
-Unit Testing: this allows us to check that our code does what it is
+**Unit Testing**: this allows us to check that our code does what it is
 meant to.
 
 -  Takes into account both normal and edge cases to ensure normal
@@ -76,9 +75,9 @@ Test Report
 Overall Statistics
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- 48 tests
-- 18 failures
-- 63% successful
+- **48 tests**
+- **18 failures**
+- **63% successful**
 
 Unit Tests
 ~~~~~~~~~~~
@@ -90,9 +89,9 @@ final executable) that tests a small unit of code at a time. They are
 fully automated, and were automatically run when the appropriate commit
 was made to GitHub.
 
-- 14 tests
-- 0 failures
-- 100% successful
+- **14 tests**
+- **0 failures**
+- **100% successful**
 
 All of the unit tests in the project have passed, which indicates the
 absence of bugs in the tested code sections. More comments on what this
@@ -108,9 +107,9 @@ We have manually run through our acceptance tests to check the game
 works as intended, and to verify that the game fulfils the requirements.
 The results are shown below.
 
-- 34 tests
-- 18 failures
-- 53% successful
+- **34 tests**
+- **18 failures**
+- **53% successful**
 
 The vast majority of the acceptance tests passed, however a significant
 percentage failed because the appropriate code hasn’t been implemented
@@ -119,7 +118,7 @@ when they are run again. More comments on what this result means are on
 the next page. The acceptance tests have test IDs indicated by 2,
 followed by their index in the list.
 
-Failed Test IDs: 2.03, 2.05, 2.06, 2.07, 2.11, 2.12, 2.14, 2.16, 2.17,
+**Failed Test IDs**: 2.03, 2.05, 2.06, 2.07, 2.11, 2.12, 2.14, 2.16, 2.17,
 2.20, 2.26, 2.28, 2.29, 2.30, 2.31, 2.32, 2.33, 2.34
 
 See Appendix D for a full listing of the acceptance tests.
@@ -168,7 +167,7 @@ very many possible ways of using the game. Also, the acceptance tests
 included in this project need to be run manually, which means that human
 error could occur and affect the overall correctness  of the tests.
 
-To improve our testing completeness and correctness , additional types
+To improve our testing **completeness** and **correctness** , additional types
 of testing would be useful additions, such as fully automated end-to-end
 testing, or integration testing, along with more tests of any type.
 Introducing different types of tests would alert developers about the
@@ -185,11 +184,12 @@ Additional testing material can be found on the website
 
 This comprises of:
 
--  Executable test plan:
-   http://docs.lihq.me/en/2.0.0/Assessment2/executableTestPlan
--  Evidence of testing:
+-  **Executable test plan**:
+   
+   - Plan: http://docs.lihq.me/en/2.0.0/Assessment2/executableTestPlan
+-  *Evidence of testing*:
     -  Code: https://github.com/Brookke/Lorem-Ipsum/tree/master/game/tests/src
     -  Continuous integration test script: https://github.com/Brookke/Lorem-Ipsum/blob/master/circle.yml
--  Test design & results:
+-  *Test design & results*:
     -  Acceptance tests: http://lihq.me/Downloads/Assessment2/AppendixD.pdf
     -  Unit tests: http://lihq.me/Downloads/Assessment2/AppendixE.pdf
