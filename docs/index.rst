@@ -25,6 +25,22 @@ Contents
 =========
 .. toctree::
    :maxdepth: 1
+   :caption: Assessment 2
+
+   Assessment2/requirements
+   Assessment2/riskAssessmentandMitigation
+   Assessment2/methods
+   Assessment2/architecture
+   Assessment2/testing
+   Assessment2/executableTestPlan
+   Assessment2/appendixA
+   Assessment2/appendixB
+   Assessment2/appendixC
+   Assessment2/appendixD
+   Assessment2/appendixE
+
+.. toctree::
+   :maxdepth: 1
    :caption: Assessment 1
 
    Assessment1/requirements
@@ -34,17 +50,3 @@ Contents
    Assessment1/appendixA
    Assessment1/appendixB
    Assessment1/appendixC
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Assessment 2
-
-   Assessment2/requirements
-   Assessment2/riskAssessmentandMitigation
-   Assessment2/methods
-   Assessment2/architecture
-   Assessment2/executableTestPlan
-   Assessment2/appendixA
-   Assessment2/appendixB
-   Assessment2/appendixC
-
