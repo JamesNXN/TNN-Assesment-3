@@ -1,0 +1,12 @@
+machine:
+  java:
+    version: openjdk8
+
+test:
+  override:
+    - cd game && ./gradlew test
+  post:
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+    - mkdir -p $CIRCLE_TEST_REPORTS/html/
+    - if test -d game/tests/build/reports/tests; then cp -r game/tests/build/reports/tests/* $CIRCLE_TEST_REPORTS/html/; fi

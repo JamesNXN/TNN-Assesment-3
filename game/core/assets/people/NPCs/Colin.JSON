@@ -1,0 +1,19 @@
+{
+  "name": "Colin",
+  "personality": "NICE",
+  "responses": {
+    "introduction": "Hello young detective!",
+    "Big Footprint": "Sorry my feet are a little smaller than that.",
+    "Small Footprint": "That does look similar to my foot size.",
+    "Glasses": "I do wear glasses yes.",
+    "Bag": "I do own a bag, I think I left it in my room.",
+    "Lipstick": "No I don't wear lipstick.",
+    "Right Handed": "I am right handed.",
+    "Dark Hair": "Don't think it could be my hair, I have light hair."
+  },
+  "noneResponses": [
+    "Sorry I am a little busy for questions right now.",
+    "And why do you think I would help you.",
+    "I am not telling you."
+  ]
+}

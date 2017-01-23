@@ -1,0 +1,20 @@
+{
+  "name":"Mary",
+  "clues": ["Big Footprint","Small Footprint", "Glasses","Bag","Lipstick","Right Handed","Dark Hair"],
+  "personality":"AGGRESSIVE",
+  "responses": {
+    "introduction": "Hello",
+    "Big Footprint": "Those would fit yes, maybe you should give me them.",
+    "Small Footprint": "Not mine, way too small for me.",
+    "Glasses": "Not sure why it matters but yes.",
+    "Bag": "Not mine, I already have a bag.",
+    "Lipstick": "Yes ,I have just got some new Lipstick actually... Now where did I put it",
+    "Right Handed": "I am right handed.",
+    "Dark Hair": "No my hair is not particularly dark."
+  },
+  "noneResponses": [
+    "Sorry I am far too busy for you",
+    "I really don't feel the need to help you.",
+    "I am not telling you."
+  ]
+}
