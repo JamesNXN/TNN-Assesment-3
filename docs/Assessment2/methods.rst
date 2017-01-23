@@ -287,7 +287,7 @@ Assessment 2:
 ~~~~~~~~~~~~~~~~~~
 - Benjamin Grahamslaw was assigned the GUI report & user manual
 - Brooke Hatton, Jason Mashinchi & Joe Shufflebotham were responsible for the implementation of the game, testing and the design choices made.
-    - Other team members contributed towards implementing smaller features
+ - Other team members contributed towards implementing smaller features in the game
 - Jason Mashinchi was assigned the testing report
 - Brooke Hatton & Vishal Soomaney were assigned the architecture report
 - Ben Jarvis & Benjamin Grahamslaw were assigned the document updates
