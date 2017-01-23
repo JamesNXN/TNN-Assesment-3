@@ -1,18 +1,20 @@
 package me.lihq.game;
 
-import com.badlogic.gdx.*;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import me.lihq.game.people.NPC;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Map;
-import me.lihq.game.people.Player;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
+import me.lihq.game.people.AbstractPerson;
+import me.lihq.game.people.NPC;
+import me.lihq.game.people.Player;
 import me.lihq.game.screen.AbstractScreen;
-import me.lihq.game.screen.NavigationScreen;
 import me.lihq.game.screen.MainMenuScreen;
+import me.lihq.game.screen.NavigationScreen;
 
 import java.util.*;
 
@@ -29,7 +31,7 @@ public class GameMain extends Game
     /**
      * A list holding NPC objects
      */
-    public List<NPC> NPCs = new ArrayList<NPC>();
+    public List<NPC> NPCs = new ArrayList<>();
 
     /**
      * The game map
@@ -41,22 +43,18 @@ public class GameMain extends Game
     public Player player;
     public int ticks = 0;
     public int lastSecond = -1;
-    
-
-    /**
-     * The main menu screen that shows up when the game is first started
-     */
-    private MainMenuScreen menuScreen;
-    
     /**
      * A screen to be used to display standard gameplay within the game , including the status bar.
      */
     public NavigationScreen navigationScreen;
-
     /**
      * An FPSLogger, FPSLogger allows us to check the game FPS is good enough
      */
     FPSLogger FPS;
+    /**
+     * The main menu screen that shows up when the game is first started
+     */
+    private MainMenuScreen menuScreen;
 
     /**
      * This is called at start up. It initialises the game.
@@ -109,7 +107,6 @@ public class GameMain extends Game
     {
 
     }
-
 
     /**
      * Overrides the getScreen method to return our AbstractScreen type.
@@ -165,46 +162,42 @@ public class GameMain extends Game
     {
         //Add ALL NPCs to the list
         //This is how you initialise an NPC
-        player = new Player("Test name", "player.png", 3, 6);
+        player = new Player("Player", "player.png", 3, 6);
         player.setRoom(gameMap.getRoom(0));
 
-        //TODO: Add NPC assets
-        NPC npc = new NPC("Colin", "colin.png", 15, 17, gameMap.getRoom(0), true);
+        //TODO: Sort NPC personalities
+        NPC npc = new NPC("Colin", "colin.png", 15, 17, gameMap.getRoom(0), true, "Colin.JSON");
         NPCs.add(npc);
 
-        NPC npc2 = new NPC("Diana", "diana.png",4,4, gameMap.getRoom(1), true);
+        NPC npc2 = new NPC("Diana", "diana.png", 4, 4, gameMap.getRoom(1), true, "Diana.JSON");
         NPCs.add(npc2);
 
-        NPC npc3 = new NPC("Lily", "lily.png", 0, 0, gameMap.getRoom(0), true);
+        NPC npc3 = new NPC("Lily", "lily.png", 0, 0, gameMap.getRoom(0), true, "Lily.JSON");
         NPCs.add(npc3);
 
-        NPC npc4 = new NPC("Mary", "mary.png", 0, 0, gameMap.getRoom(0), true);
+        NPC npc4 = new NPC("Mary", "mary.png", 0, 0, gameMap.getRoom(0), true, "Mary.JSON");
         NPCs.add(npc4);
 
-        NPC npc5 = new NPC("Mike", "mike.png", 0, 0, gameMap.getRoom(0), true);
+        NPC npc5 = new NPC("Mike", "mike.png", 0, 0, gameMap.getRoom(0), true, "Mike.JSON");
         NPCs.add(npc5);
 
-        NPC npc6 = new NPC("Will", "will.png", 0, 0, gameMap.getRoom(0), true);
+        NPC npc6 = new NPC("Will", "will.png", 0, 0, gameMap.getRoom(0), true, "Will.JSON");
         NPCs.add(npc6);
 
         int amountOfRooms = gameMap.getAmountOfRooms();
 
-        List<Integer> roomsLeft = new ArrayList<Integer>();
+        List<Integer> roomsLeft = new ArrayList<>();
 
-        for (int i = 0; i < amountOfRooms; i ++)
-        {
+        for (int i = 0; i < amountOfRooms; i++) {
             roomsLeft.add(i);
         }
 
-        for (NPC loopNpc : NPCs)
-        {
+        for (NPC loopNpc : NPCs) {
             /*
             Refill the rooms left list if there are more NPCs than Rooms. This will put AT LEAST one NPC per room if so.
              */
-            if (roomsLeft.isEmpty())
-            {
-                for (int i = 0; i < amountOfRooms; i ++)
-                {
+            if (roomsLeft.isEmpty()) {
+                for (int i = 0; i < amountOfRooms; i++) {
                     roomsLeft.add(i);
                 }
             }
@@ -228,17 +221,16 @@ public class GameMain extends Game
          */
         NPC killer = NPCs.get(new Random().nextInt(NPCs.size() - 1));
 
-        while(!killer.setKiller())
-        {
+        while (!killer.setKiller()) {
             killer = NPCs.get(new Random().nextInt(NPCs.size() - 1));
         }
 
-        NPC victim = NPCs.get(new Random().nextInt(NPCs.size() - 1));;
+        NPC victim = NPCs.get(new Random().nextInt(NPCs.size() - 1));
 
-        while (!victim.setVictim())
-        {
+
+        while (!victim.setVictim()) {
             victim = NPCs.get(new Random().nextInt(NPCs.size() - 1));
-    }
+        }
 
     }
 
@@ -257,23 +249,22 @@ public class GameMain extends Game
     private void initialiseClues()
     {
         //This is a temporary list of clues
-        List<Clue> tempClues = new ArrayList<Clue>();
+        List<Clue> tempClues = new ArrayList<>();
 
-        tempClues.add(new Clue("Clue 1", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
-        tempClues.add(new Clue("Clue 2", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
-        tempClues.add(new Clue("Clue 3", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
-        tempClues.add(new Clue("Clue 4", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
-        tempClues.add(new Clue("Clue 5", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
-        tempClues.add(new Clue("Clue 6", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
-        tempClues.add(new Clue("Clue 7", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
-        tempClues.add(new Clue("Clue 8", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
-        tempClues.add(new Clue("Clue 9", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
-        tempClues.add(new Clue("Clue 10", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
+        tempClues.add(new Clue("Big Footprint", "A big footprint left at the crime scene by the killer.", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
+        tempClues.add(new Clue("Small Footprint", "A small footprint left at the crime scene by the killer.", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
+        tempClues.add(new Clue("Glasses", "A pair of glasses these were found by another detective at the crime scene.", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
+        tempClues.add(new Clue("Bag", "A bag. Someone must have left in a hurry.", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
+        tempClues.add(new Clue("Lipstick", "Lipstick, a killers best friend.", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
+        tempClues.add(new Clue("Right Handed", "This indicates the killer is right handed", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
+        tempClues.add(new Clue("Dark Hair", "A dark hair from the crime scene", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
+        //tempClues.add(new Clue("Clue 8", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
+        //tempClues.add(new Clue("Clue 9", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
+        //tempClues.add(new Clue("Clue 10", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
 
         Collections.shuffle(tempClues);
 
-        for (Room room : gameMap.getRooms())
-        {
+        for (Room room : gameMap.getRooms()) {
             if (tempClues.isEmpty()) return;
 
 

@@ -1,8 +1,5 @@
 package me.lihq.game.models;
 
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.NumberUtils;
-
 /**
  * This class defines a 2D vector to represent coordinates within the game.
  */
@@ -68,7 +65,8 @@ public class Vector2Int
      * @return String - Representing the values stored in this object
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "(" + x + "," + y + ")";
     }
 }

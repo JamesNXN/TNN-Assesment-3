@@ -1,12 +1,16 @@
 package me.lihq.game.people;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.Assets;
 import me.lihq.game.Settings;
+import me.lihq.game.models.Clue;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 
@@ -33,24 +37,16 @@ public abstract class AbstractPerson extends Sprite
      * Uses the Vector2Int as the tileCoordinates should never be floats as the person should only be between tiles during the move process.
      */
     protected Vector2Int tileCoordinates = new Vector2Int(0, 0);
-
-    /**
-     * The Name of the Person
-     */
-    private String name;
-
     /**
      * This is the players location in the current room.
      * Note this is different to sprite position, the sprite position is the location that the person is currently drawn.
      * Avoid using Sprites setPosition as if it is changed mid render it will cause jolting.
      */
     protected Vector2 coordinates = new Vector2().set(0.0f, 0.0f);
-
     /**
      * A store of the starting point for a movement.
      */
     protected Vector2Int startTile = new Vector2Int(0, 0);
-
     /**
      * A store of the destination for a movement.
      */
@@ -59,17 +55,26 @@ public abstract class AbstractPerson extends Sprite
     protected float animTime = Settings.TPS / 3f;
     protected Texture spriteSheet;
     protected TextureRegion currentRegion;
+    protected JsonValue jsonData;
     /**
      * The direction determines the way the character is facing.
      */
     protected Direction direction = Direction.EAST;
-
     protected PersonState state;
+    /**
+     * The Name of the Person
+     */
+    private String name;
 
     /**
      * The current room of the AbstractPerson.
      */
     private Room currentRoom;
+
+    /**
+     * This is whether the NPC can move or not. It is mainly used to not let them move during converstation
+     */
+    public boolean canMove = true;
 
     /**
      * This constructs the player calling super on the sprite class
@@ -163,6 +168,7 @@ public abstract class AbstractPerson extends Sprite
         this.state = PersonState.WALKING;
     }
 
+
     /**
      * Finalises the move by resetting the animation timer and setting the state back to standing.
      * Called when the player is no longer moving.
@@ -178,6 +184,47 @@ public abstract class AbstractPerson extends Sprite
         updateTextureRegion();
     }
 
+    /**
+     * Reads in the JSON file of tha character and stores dialogue in the dialogue HashMap
+     *
+     * @param fileName
+     */
+    public abstract void importDialogue(String fileName);
+
+    /**
+     * Gets a random item from the correct dictionary key.
+     *
+     * @param key
+     * @return
+     */
+    public String getSpeech(String key)
+    {
+        //TODO: Randomise the noneResponse
+        try {
+            if (!jsonData.get("Responses").has(key)) {
+                return jsonData.get("noneResponses").getString(0);
+            } else {
+                return jsonData.get("Responses").getString(key);
+            }
+        } catch (Exception e) {
+            return "error speech not working";
+        }
+    }
+
+    public String getSpeech(Clue clue)
+    {
+        return this.getSpeech(clue.getName());
+    }
+
+
+    /**
+     * This handles speech for a clue that has a question style
+     *
+     * @param clue  the clue to be questioned about
+     * @param style the style of questioning
+     * @return the speech
+     */
+    public abstract String getSpeech(Clue clue, Personality style);
 
     /**
      * Updates the texture region based upon how far though the animation time it is.
@@ -228,6 +275,13 @@ public abstract class AbstractPerson extends Sprite
         coordinates.y = y;
     }
 
+    /**
+     * This returns the persons personality
+     *
+     * @return
+     */
+    public abstract Personality getPersonality();
+
     public String getName()
     {
         return this.name;
@@ -235,6 +289,7 @@ public abstract class AbstractPerson extends Sprite
 
     /**
      * Getter for direction.
+     *
      * @return Returns the direction the person is facing.
      */
     public Direction getDirection()
@@ -244,6 +299,7 @@ public abstract class AbstractPerson extends Sprite
 
     /**
      * Setter for the direction the person is facing.
+     *
      * @param dir - Desired direction for the person to face.
      */
     public void setDirection(Direction dir)
@@ -254,6 +310,7 @@ public abstract class AbstractPerson extends Sprite
 
     /**
      * Setter for the animation time.
+     *
      * @param animTime - The animation time you want to set.
      */
     public void setAnimTime(float animTime)
@@ -319,6 +376,7 @@ public abstract class AbstractPerson extends Sprite
 
         /**
          * Getter for dx.
+         *
          * @return returns the value of dx.
          */
         public int getDx()
@@ -328,11 +386,22 @@ public abstract class AbstractPerson extends Sprite
 
         /**
          * Getter for dy.
+         *
          * @return returns the value of dy.
          */
         public int getDy()
         {
             return this.dy;
+        }
+
+        public Direction getOpposite()
+        {
+            if (this == Direction.NORTH) return Direction.SOUTH;
+            if (this == Direction.EAST) return Direction.WEST;
+            if (this == Direction.SOUTH) return Direction.NORTH;
+            if (this == Direction.WEST) return Direction.EAST;
+
+            return null;
         }
     }
 
@@ -354,9 +423,21 @@ public abstract class AbstractPerson extends Sprite
         STANDING;
     }
 
-    public static class PersonPositionComparator implements Comparator<AbstractPerson> {
+    /**
+     * This is the possible personalities of the persond
+     */
+    public enum Personality
+    {
+        NICE,
+        NEUTRAL,
+        AGGRESSIVE
+    }
+
+    public static class PersonPositionComparator implements Comparator<AbstractPerson>
+    {
         @Override
-        public int compare(AbstractPerson o1, AbstractPerson o2) {
+        public int compare(AbstractPerson o1, AbstractPerson o2)
+        {
             return o2.getTileCoordinates().y - o1.getTileCoordinates().y;
         }
     }

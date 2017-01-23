@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
-import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.*;
+import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
 /**
  * This class defines the assets that the game uses.
@@ -20,7 +20,7 @@ public class Assets
     public static TextureRegion INTROFRAME1;
     public static TextureRegion INTROFRAME2;
 
-     /**
+    /**
      * These TextureRegions store the 4 different directions that the room changing
      * arrows can face.
      */
@@ -70,7 +70,7 @@ public class Assets
         CLUE_SHEET = loadTexture("clueSheet.png");
 
         Texture glintFile = loadTexture("glintSheet.png");
-        TextureRegion[][] splitFrames = TextureRegion.split(glintFile, 32,32);
+        TextureRegion[][] splitFrames = TextureRegion.split(glintFile, 32, 32);
         TextureRegion[] frames = splitFrames[0];
 
         CLUE_GLINT = new Animation(0.1f, frames);

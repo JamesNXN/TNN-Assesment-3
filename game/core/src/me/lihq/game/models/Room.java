@@ -3,15 +3,15 @@ package me.lihq.game.models;
 //TODO: Tidy up getters and setters add them if needed, some places we are using them others not.
 
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import me.lihq.game.GameMain;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapLayer;
 import me.lihq.game.Assets;
+import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
 import me.lihq.game.people.AbstractPerson.Direction;
 import me.lihq.game.people.NPC;
@@ -93,10 +93,8 @@ public class Room
         int roomHeight = ((TiledMapTileLayer) map.getLayers().get(0)).getHeight();
 
         this.lockedTiles = new boolean[roomWidth][roomHeight];
-        for (int w = 0; w < roomWidth; w ++)
-        {
-            for (int h = 0; h < roomHeight; h ++)
-            {
+        for (int w = 0; w < roomWidth; w++) {
+            for (int h = 0; h < roomHeight; h++) {
                 this.lockedTiles[w][h] = false;
             }
         }
@@ -108,9 +106,9 @@ public class Room
     public boolean equals(Object obj)
     {
         if (obj instanceof Room) {
-        Room r = (Room) obj;
-        return r.getID() == this.getID();
-    }
+            Room r = (Room) obj;
+            return r.getID() == this.getID();
+        }
 
         return false;
     }
@@ -286,41 +284,37 @@ public class Room
             return false;
         }
 
-        try
-        {
+        try {
              /*
             Check to see if the player is standing in the target destination
             */
-            if (GameMain.me.player.getTileCoordinates().x == x && GameMain.me.player.getTileCoordinates().y == y)
-            {
+            if (GameMain.me.player.getTileCoordinates().x == x && GameMain.me.player.getTileCoordinates().y == y) {
                 return false;
             }
 
              /*
              Check to see if any NPCs are standing in the target destination
              */
-            for (Sprite sprite : GameMain.me.getNavigationScreen().getNPCs())
-            {
+            for (Sprite sprite : GameMain.me.getNavigationScreen().getNPCs()) {
                 NPC npc = (NPC) sprite;
 
-                if (npc.getTileCoordinates().x == x && npc.getTileCoordinates().y == y)
-                {
+                if (npc.getTileCoordinates().x == x && npc.getTileCoordinates().y == y) {
                     return false;
                 }
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
 
         }
 
         /*
         Check to see if any people object has locked the target destination for them to move to
          */
-        if (this.lockedTiles[x][y] == true)
+        try
         {
-            return false;
-        }
+            if (this.lockedTiles[x][y] == true) {
+                return false;
+            }
+        } catch (Exception e){}
 
         return true;
     }
@@ -501,12 +495,9 @@ public class Room
 
         List<Vector2Int> possibleLocations = new ArrayList<Vector2Int>();
 
-        for (int w = 0; w < roomWidth; w ++)
-        {
-            for (int h = 0; h < roomHeight; h ++)
-            {
-                if (isWalkableTile(w, h))
-                {
+        for (int w = 0; w < roomWidth; w++) {
+            for (int h = 0; h < roomHeight; h++) {
+                if (isWalkableTile(w, h)) {
                     possibleLocations.add(new Vector2Int(w, h));
                 }
             }

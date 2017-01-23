@@ -1,30 +1,27 @@
 package me.lihq.game.screen;
 
 
-import com.badlogic.gdx.graphics.Color;
-
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Interpolation;
-import me.lihq.game.GameMain;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import me.lihq.game.OrthogonalTiledMapRendererWithPeople;
-import me.lihq.game.Settings;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import me.lihq.game.*;
 import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.NPC;
 import me.lihq.game.people.controller.PlayerController;
+import me.lihq.game.screen.elements.DebugOverlay;
+import me.lihq.game.screen.elements.RoomArrow;
+import me.lihq.game.screen.elements.RoomTag;
+import me.lihq.game.screen.elements.StatusBar;
 
-import me.lihq.game.screen.elements.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,10 +33,12 @@ public class NavigationScreen extends AbstractScreen
 {
 
     public PlayerController playerController;
+
     /**
      * This boolean determines whether the black is fading in or out
      */
-    boolean fadeToBlack = true;
+    private boolean fadeToBlack = true;
+
 
     /**
      * This is the current map that is being shown
@@ -64,17 +63,20 @@ public class NavigationScreen extends AbstractScreen
     private boolean pause = false;
 
 
-
     //TODO: add more information about this class
 
-    private SpeechBox speechBox;
+    public SpeechboxManager speechboxMngr;
+
+    public ConversationManagement convMngt;
 
     private StatusBar statusBar;
+
     /**
      * This determines whether the player is currently changing rooms, it will fade out to black, change
      * the room, then fade back in.
      */
     private boolean roomTransition = false;
+
     /**
      * The amount of ticks it takes for the black to fade in and out
      */
@@ -132,18 +134,14 @@ public class NavigationScreen extends AbstractScreen
 
         statusBar = new StatusBar(game);
 
+        speechboxMngr = new SpeechboxManager();
+
+        convMngt = new ConversationManagement(game.player, speechboxMngr);
+
         tiledMapRenderer.addPerson(game.player);
 
         arrow = new RoomArrow(game.player);
 
-        ArrayList<SpeechBoxButton> buttons = new ArrayList<>();
-        SpeechBoxButton.EventHandler eventHandler = (String name) -> {
-            System.out.println(name + " was pressed");
-        };
-        buttons.add(new SpeechBoxButton("Button 1", eventHandler));
-        buttons.add(new SpeechBoxButton("Button 2", eventHandler));
-        buttons.add(new SpeechBoxButton("Button 3", eventHandler));
-        speechBox = new SpeechBox("Hello, my name is Example NPC Name!", buttons);
 
     }
 
@@ -153,10 +151,9 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void show()
     {
-
         InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(speechboxMngr.multiplexer);
         multiplexer.addProcessor(playerController);
-        multiplexer.addProcessor(speechBox.stage);
         multiplexer.addProcessor(statusBar.stage);
 
         Gdx.input.setInputProcessor(multiplexer);
@@ -175,6 +172,7 @@ public class NavigationScreen extends AbstractScreen
                 n.update();
             }
 
+            speechboxMngr.update();
         }
 
         //Some things should be updated all the time.
@@ -227,6 +225,8 @@ public class NavigationScreen extends AbstractScreen
         roomTag = new RoomTag(game.player.getRoom().getName());
     }
 
+
+
     /**
      * Called when the screen should render itself.
      *
@@ -276,15 +276,14 @@ public class NavigationScreen extends AbstractScreen
             roomTag.render(spriteBatch);
         }
 
-        if (Settings.DEBUG)
-        {
+        if (Settings.DEBUG) {
             DebugOverlay.renderDebugInfo(spriteBatch);
         }
 
         spriteBatch.end();
 
-        speechBox.render();
         statusBar.render();
+        speechboxMngr.render();
 
     }
 
@@ -292,7 +291,6 @@ public class NavigationScreen extends AbstractScreen
     public void resize(int width, int height)
     {
         viewport.update(width, height);
-        speechBox.resize(width,height);
         statusBar.resize(width, height);
     }
 
@@ -319,7 +317,6 @@ public class NavigationScreen extends AbstractScreen
     {
         map.dispose();
         tiledMapRenderer.dispose();
-        speechBox.dispose();
         statusBar.dispose();
         spriteBatch.dispose();
     }

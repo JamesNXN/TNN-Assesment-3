@@ -1,25 +1,29 @@
 package me.lihq.game.people;
 
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.JsonReader;
 import me.lihq.game.GameMain;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Room;
 import me.lihq.game.screen.elements.RoomTag;
+import me.lihq.game.screen.elements.SpeechBox;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * This class defines the player that the person playing the game will be represented by.
  */
 public class Player extends AbstractPerson
 {
+
+    public List<Clue> collectedClues = new ArrayList<>();
     /**
      * The personality will be a percent score (0-100) 0 being angry, 50 being neutral, and 100 being happy/nice.
      */
     private int personalityLevel = 50;
-
-    public List<Clue> collectedClues = new ArrayList<>();
-
     /**
      * The score the player has earned so far.
      */
@@ -32,12 +36,25 @@ public class Player extends AbstractPerson
 
     /**
      * This is the constructor for player, it creates a new playable person
-     * @param name - The name for the new player.
+     *
+     * @param name   - The name for the new player.
      * @param imgSrc - The image used to represent it.
      */
     public Player(String name, String imgSrc, int tileX, int tileY)
     {
-        super(name, imgSrc, tileX, tileY);
+        super(name, "people/player/" + imgSrc, tileX, tileY);
+        importDialogue("Player.JSON");
+    }
+
+    /**
+     * Reads in the JSON file of tha character and stores dialogue in the dialogue HashMap
+     *
+     * @param fileName
+     */
+    @Override
+    public void importDialogue(String fileName)
+    {
+        jsonData = new JsonReader().parse(Gdx.files.internal("people/player/" + fileName));
     }
 
     /**
@@ -71,6 +88,10 @@ public class Player extends AbstractPerson
             return;
         }
 
+        if (!canMove) {
+            return;
+        }
+
         if (this.isOnTriggerTile() && dir.toString().equals(getRoom().getMatRotation(this.tileCoordinates.x, this.tileCoordinates.y))) {
             GameMain.me.getNavigationScreen().initialiseRoomChange();
             return;
@@ -84,7 +105,36 @@ public class Player extends AbstractPerson
         initialiseMove(dir);
     }
 
-    public void checkForClue()
+
+    public void interact()
+    {
+        NPC npc = getFacingNPC();
+        if (npc != null)
+        {
+            GameMain.me.getNavigationScreen().convMngt.startConversation(npc);
+        }
+        else
+        {
+            checkForClue();
+        }
+    }
+
+    private NPC getFacingNPC()
+    {
+        for (NPC npc : GameMain.me.getNPCS(getRoom()))
+        {
+            if ((npc.getTileCoordinates().x == getTileCoordinates().x + getDirection().getDx()) && (npc.getTileCoordinates().y == getTileCoordinates().y + getDirection().getDy()))
+            {
+                if (npc.getState() != PersonState.STANDING) return null;
+
+                return npc;
+            }
+        }
+
+        return null;
+    }
+
+    private void checkForClue()
     {
         int x = getTileCoordinates().x + getDirection().getDx();
         int y = getTileCoordinates().y + getDirection().getDy();
@@ -96,29 +146,49 @@ public class Player extends AbstractPerson
 
         Clue clueFound = getRoom().getClue(x, y);
         if (clueFound != null) {
-            GameMain.me.getNavigationScreen().setRoomTag(new RoomTag("You found " + clueFound.getName()));
+            GameMain.me.getNavigationScreen().speechboxMngr.addSpeechBox(new SpeechBox("You found: " + clueFound.getDescription(),6));
             this.collectedClues.add(clueFound);
         } else {
-            GameMain.me.getNavigationScreen().setRoomTag(new RoomTag("No clue here"));
+            GameMain.me.getNavigationScreen().speechboxMngr.addSpeechBox(new SpeechBox("Sorry no clue here",1));
         }
     }
 
 
-
-    public boolean isOnTriggerTile() {
+    public boolean isOnTriggerTile()
+    {
         return this.getRoom().isTriggerTile(this.tileCoordinates.x, this.tileCoordinates.y);
 
     }
 
     /**
-     * Getter for personality.
+     * Getter for personality, it uses the personalityLevel of the player and thus returns either AGGRESSIVE, NEUTRAL or NICE
+     *
      * @return - Returns the personality of this player.
      */
-    public int getPersonality()
+    @Override
+    public Personality getPersonality()
+    {
+        if (personalityLevel < 33) {
+            return Personality.AGGRESSIVE;
+
+        } else if (personalityLevel < 66) {
+            return Personality.NEUTRAL;
+
+        } else if (personalityLevel <= 100) {
+            return Personality.NICE;
+        }
+        return Personality.NEUTRAL;
+    }
+
+    /**
+     * This gets the players personality level; this similar to Personality but a integer representation
+     *
+     * @return value between 0-100
+     */
+    public int getPersonalityLevel()
     {
         return this.personalityLevel;
     }
-
 
 
     /**
@@ -144,4 +214,18 @@ public class Player extends AbstractPerson
             GameMain.me.navigationScreen.updateTiledMapRenderer();
         }
     }
+
+
+    @Override
+    public String getSpeech(Clue clue, Personality style)
+    {
+        String key = clue.getName();
+        if (!jsonData.get("Responses").has(key)) {
+            return jsonData.get("noneResponses").getString(0);
+        } else {
+            return jsonData.get("Responses").get(key).getString(style.toString());
+        }
+    }
+
+
 }

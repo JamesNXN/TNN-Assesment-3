@@ -1,3 +1,4 @@
+import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.NPC;
 import me.lihq.game.models.Room;
 import org.junit.Before;
@@ -10,22 +11,26 @@ import static org.junit.Assert.*;
  */
 public class NPCUnitTests extends GameTester
 {
-    public NPC bob;
+    public NPC colin;
     public Room room;
 
     @Before
     public void makeNPC()
     {
         room = new Room(0, "testRoom0.tmx", "Test Room 0");
-        bob = new NPC("bob", "colin.png", 1,1, room, false);
+        colin = new NPC("bob", "colin.png", 1,1, room, false, "Colin.JSON");
     }
 
     @Test
     public void testGetName() {
-        assertEquals("getting the name of the NPC failing", "bob", bob.getName());
+        assertEquals("getting the name of the NPC failing", "bob", colin.getName());
+    }
+
+    @Test
+    public void testPersonality() {
+        assertEquals(AbstractPerson.Personality.NICE, colin.getPersonality());
     }
 
 
-
-
 }
+

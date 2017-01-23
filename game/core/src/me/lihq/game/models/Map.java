@@ -111,7 +111,6 @@ public class Map
     }
 
 
-
     //TODO: Make this work properly every time or remove it if we dont need it. Having looked it only exists to give the player and NPC an initial room
 
     /**
@@ -122,8 +121,7 @@ public class Map
      */
     public Room getRoom(int id)
     {
-        for (Room room : rooms)
-        {
+        for (Room room : rooms) {
             if (room.getID() == id) return room;
         }
 
@@ -133,6 +131,7 @@ public class Map
 
     /**
      * Returns the amout of rooms created by the map
+     *
      * @return number of rooms
      */
     public int getAmountOfRooms()
@@ -143,9 +142,11 @@ public class Map
 
     /**
      * Gets the rooms in the map
+     *
      * @return List of rooms that the map initialised
      */
-    public List<Room> getRooms() {
+    public List<Room> getRooms()
+    {
         return rooms;
     }
 

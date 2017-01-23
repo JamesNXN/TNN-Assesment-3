@@ -22,7 +22,7 @@ public class Settings
 
     /**
      * This is whether to draw some debug features to the screen
-     *
+     * <p>
      * WARNING: DEBUG MODE IS LIKELY TO REDUCE FRAME RATE
      */
     public static boolean DEBUG = false;
@@ -31,8 +31,8 @@ public class Settings
      * This stores the debug options
      */
     public static HashMap<String, Boolean> DEBUG_OPTIONS;
-    static
-    {
+
+    static {
         DEBUG_OPTIONS = new HashMap<String, Boolean>();
         DEBUG_OPTIONS.put("showHideable", true);
         DEBUG_OPTIONS.put("showWalkable", false);

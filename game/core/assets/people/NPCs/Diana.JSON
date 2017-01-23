@@ -1,0 +1,29 @@
+{
+  "name": "Diana",
+  "clues": [
+    "Big Footprint",
+    "Small Footprint",
+    "Glasses",
+    "Bag",
+    "Lipstick",
+    "Right Handed",
+    "Dark Hair"
+  ],
+
+  "personality": "AGGRESSIVE",
+  "responses": {
+    "introduction": "Hello, what do you want?!",
+    "Big Footprint": "Nope, not my size",
+    "Small Footprint": "These would be sufficient for me I guess.",
+    "Glasses": "Glasses? Why would I need glasses!",
+    "Bag": "What do you think I would need a bag for?",
+    "Lipstick": "Yes I have lipstick, my lips aren't naturally this colour.",
+    "Right Handed": "What kind of question is that? But, if you think it'll help, I am right handed.",
+    "Dark Hair": "Oh behind this blue wig, my hair is dark"
+  },
+  "noneResponses": [
+    "Too busy, go away.",
+    "Don't have time for you.",
+    "I am not telling you."
+  ]
+}
