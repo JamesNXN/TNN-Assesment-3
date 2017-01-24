@@ -28,7 +28,7 @@ Contents
    :caption: Assessment 2
 
    Assessment2/requirements
-   Assessment2/riskAssessmentandMitigation
+   Assessment2/riskAssessmentAndMitigation
    Assessment2/methods
    Assessment2/architecture
    Assessment2/implementation
@@ -48,7 +48,7 @@ Contents
    :caption: Assessment 1
 
    Assessment1/requirements
-   Assessment1/riskAssessmentandMitigation
+   Assessment1/riskAssessmentAndMitigation
    Assessment1/methods
    Assessment1/architecture
    Assessment1/appendixA
