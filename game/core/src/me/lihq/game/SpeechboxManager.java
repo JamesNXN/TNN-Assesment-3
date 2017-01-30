@@ -1,5 +1,7 @@
 package me.lihq.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import me.lihq.game.screen.elements.SpeechBox;
 
@@ -11,6 +13,10 @@ import java.util.List;
  */
 public class SpeechboxManager
 {
+    public boolean isPressed;
+
+
+
     /**
      * This controls input readings
      */
@@ -26,6 +32,7 @@ public class SpeechboxManager
      */
     public SpeechboxManager()
     {
+
         multiplexer = new InputMultiplexer();
     }
 
@@ -38,6 +45,13 @@ public class SpeechboxManager
             this.stack.get(0).render();
         }
     }
+    public void nextSpeech(){
+        if (!this.stack.isEmpty()){
+            this.multiplexer.removeProcessor(this.stack.get(0).stage);
+            this.stack.remove(0);
+        }
+
+    }
 
     /**
      * This method is called once a tick
@@ -45,12 +59,22 @@ public class SpeechboxManager
     public void update()
     {
         if (!this.stack.isEmpty()) {
-            if (this.stack.get(0).timeoutDuration == 0) {
+            /**if (this.stack.get(0).timeoutDuration == 0) {
+
                 this.multiplexer.removeProcessor(this.stack.get(0).stage);
                 this.stack.remove(0);
             } else {
                 this.stack.get(0).update();
 
+            }**/
+            SpeechBox top = this.stack.get(0);
+            top.update();
+            if(!top.haveButtons() && Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+                if(!isPressed)nextSpeech();
+                isPressed = true;
+            }
+            else {
+                isPressed = false;
             }
         }
         updateInputProcessor();
@@ -94,10 +118,16 @@ public class SpeechboxManager
      */
     public void removeCurrentSpeechBox()
     {
+        /**
         if (!this.stack.isEmpty()) {
             this.stack.get(0).timeoutDuration = 0;
         }
+         **/
+        nextSpeech();
     }
 
 
+    public boolean isActive() {
+        return !stack.isEmpty();
+    }
 }

@@ -1,6 +1,7 @@
 package me.lihq.game.screen.elements;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,6 +14,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.Settings;
 
 import java.util.ArrayList;
+
+import static java.lang.Thread.sleep;
 
 
 /**
@@ -27,6 +30,7 @@ import java.util.ArrayList;
  */
 public class SpeechBox
 {
+    public boolean isPressed;
     /**
      * The constant color variables for all SpeechBox's
      */
@@ -76,15 +80,22 @@ public class SpeechBox
     private Skin labelSkin;
     private Skin personLabelSkin;
 
+    public boolean haveButtons(){
+        return !buttons.isEmpty();
+    }
+
     /**
      * The constructor for the SpeechBox
      */
     public SpeechBox(String content, ArrayList<SpeechBoxButton> buttonList, int timeout)
     {
+
         textContent = content;
         buttons = buttonList;
         this.timeoutDuration = timeout * Settings.TPS;
-        setupStage();
+        //if(isPressed){
+            setupStage();//}
+
     }
 
     /**
@@ -95,8 +106,9 @@ public class SpeechBox
         person = personName;
         textContent = speechText;
         buttons = buttonList;
-        this.timeoutDuration = timeout * Settings.TPS;
-        setupStage();
+        //this.timeoutDuration = timeout * Settings.TPS;
+        //if(isPressed){
+            setupStage();//}
     }
 
     /**
@@ -107,7 +119,8 @@ public class SpeechBox
         textContent = content;
         buttons = new ArrayList<>();
         this.timeoutDuration = timeout * Settings.TPS;
-        setupStage();
+       // if(isPressed){
+            setupStage();//}
     }
 
     /**
@@ -119,7 +132,8 @@ public class SpeechBox
         textContent = speechText;
         buttons = new ArrayList<>();
         this.timeoutDuration = timeout * Settings.TPS;
-        setupStage();
+        //if(isPressed){
+            setupStage();//}
     }
 
     /**
@@ -248,6 +262,10 @@ public class SpeechBox
      */
     public void update()
     {
+        //isPressed = Boolean.FALSE;
+
+
+
         if (this.timeoutDuration > 0) {
             timeoutDuration--;
         }

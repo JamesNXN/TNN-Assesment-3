@@ -47,7 +47,7 @@ public class PlayerController extends InputAdapter
     @Override
     public boolean keyDown(int keycode)
     {
-        if (keycode == Input.Keys.ENTER || keycode == Input.Keys.SPACE) {
+        if (keycode == Input.Keys.ENTER) {
             player.interact();
             return true;
         }

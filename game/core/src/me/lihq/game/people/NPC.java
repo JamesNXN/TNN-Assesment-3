@@ -2,6 +2,7 @@ package me.lihq.game.people;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.JsonReader;
+import me.lihq.game.GameMain;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Room;
 
@@ -95,6 +96,10 @@ public class NPC extends AbstractPerson
 
         if (!canMove) return;
 
+        if (GameMain.me.getNavigationScreen().speechboxMngr.isActive()) {
+            return ;
+        }
+
         if (!getRoom().isWalkableTile(this.tileCoordinates.x + dir.getDx(), this.tileCoordinates.y + dir.getDy())) {
             setDirection(dir);
             return;
@@ -108,6 +113,7 @@ public class NPC extends AbstractPerson
      */
     private void randomMove()
     {
+        if (!canMove){return;}
         if (getState() == PersonState.WALKING) return;
 
         if (random.nextDouble() > 0.01) {
