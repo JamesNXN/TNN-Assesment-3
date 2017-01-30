@@ -60,3 +60,11 @@ We have included a handy test configuration that can be ran from intellij.
 After tests have run the results are displayed in the "Test Summary" tab on CircleCI.
 
 If the tests have failed and no test summary is provided, this normally means that the code doesn't compile, or there is a problem with the test code. To gather more information, scroll down to read the console output from when the tests were run.
+
+
+
+
+
+
+
+Test addition for checking some shizzle
