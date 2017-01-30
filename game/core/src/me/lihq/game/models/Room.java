@@ -197,7 +197,7 @@ public class Room
         animationStateTime += delta;
 
         for (Clue c : cluesInRoom) {
-            TextureRegion currentFrame = Assets.CLUE_GLINT.getKeyFrame(animationStateTime, true);
+            TextureRegion currentFrame = (TextureRegion) Assets.CLUE_GLINT.getKeyFrame(animationStateTime, true);
             batch.draw(currentFrame, c.getTileX() * Settings.TILE_SIZE, c.getTileY() * Settings.TILE_SIZE);
         }
     }
