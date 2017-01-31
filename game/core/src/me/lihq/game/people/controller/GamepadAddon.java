@@ -41,6 +41,15 @@ public class GamepadAddon implements ControllerListener {
 
     private boolean controllerConnected = false;
 
+    /**
+     * boolean used to reset axis
+     */
+    private boolean axisUsed = false;
+
+    /**
+     * constructor for gamepad used to initialise for controller listener
+     * @param player
+     */
     public GamepadAddon(Player player){
         this.player = player;
     }
@@ -87,49 +96,36 @@ public class GamepadAddon implements ControllerListener {
     }
 
     public boolean axisMoved(Controller controller, int axisCode, float value) {
-        Gdx.app.log("controller axis", String.valueOf(axisCode).concat(String.valueOf(value)));
-        if (axisCode == XBox360Pad.AXIS_LEFT_X && value == -1){
-            this.west = true;
-            return true;
-        }
-
-        if (axisCode == XBox360Pad.AXIS_LEFT_X && value == 0){
-            this.west = false;
-            this. east = false;
-            return true;
-        }
-
-        if (axisCode == XBox360Pad.AXIS_LEFT_X && value == 1){
-            this.east = true;
-            return true;
-        }
-
-        if (axisCode == XBox360Pad.AXIS_LEFT_Y && value == 1) {
-            this.north = true;
-            return true;
-        }
-
-        if (axisCode == XBox360Pad.AXIS_LEFT_Y && value == 0) {
-            this.north = false;
-            this.south = false;
-            return true;
-        }
-
-        if (axisCode == XBox360Pad.AXIS_LEFT_Y && value == -1){
-            this.south = true;
-            return true;
-        }
-
-        if (value == 0){
-            this.south = false;
-            this.north = false;
-            this.east = false;
-            this.west = false;
-        }
-        return false;
+//        Gdx.app.log("controller axis", String.valueOf(axisCode).concat(String.valueOf(value)));
+//        if (axisCode == XBox360Pad.AXIS_LEFT_X && value < -0.3){
+//            this.axisUsed = true;
+//            this.west = true;
+//            return true;
+//        }
+//
+//        if (axisCode == XBox360Pad.AXIS_LEFT_X && value > 0.3 && !axisUsed){
+//            this.axisUsed = true;
+//            this.east = true;
+//            return true;
+//        }
+//
+//        if (axisCode == XBox360Pad.AXIS_LEFT_Y && value < -0.3 && !axisUsed) {
+//            this.axisUsed = true;
+//            this.north = true;
+//            return true;
+//        }
+//
+//        if (axisCode == XBox360Pad.AXIS_LEFT_Y && value > 0.3 && !axisUsed){
+//            this.axisUsed = true;
+//            this.south = true;
+//            return true;
+//        }
+//        return false;
+        return true;
     }
 
     public boolean povMoved(Controller controller, int povCode, PovDirection value) {
+
         Gdx.app.log("controller axis", String.valueOf(povCode).concat(String.valueOf(value)));
         if (value == XBox360Pad.BUTTON_DPAD_UP){
             this.north = true;
