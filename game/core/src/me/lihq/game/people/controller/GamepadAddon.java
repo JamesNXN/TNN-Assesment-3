@@ -1,5 +1,6 @@
 package me.lihq.game.people.controller;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerListener;
 import com.badlogic.gdx.controllers.PovDirection;
@@ -40,7 +41,9 @@ public class GamepadAddon implements ControllerListener {
 
     private boolean controllerConnected = false;
 
-    public GamepadAddon(Player player){this.player = player;}
+    public GamepadAddon(Player player){
+        this.player = player;
+    }
 
     public void connected(Controller controller) {
         controllerConnected = true;
@@ -52,6 +55,7 @@ public class GamepadAddon implements ControllerListener {
     }
 
     public boolean buttonDown(Controller controller, int buttonCode) {
+        Gdx.app.log("controller", String.valueOf(buttonCode));
         if (buttonCode == XBox360Pad.BUTTON_A){
             player.interact();
             return true;
@@ -83,6 +87,7 @@ public class GamepadAddon implements ControllerListener {
     }
 
     public boolean axisMoved(Controller controller, int axisCode, float value) {
+        Gdx.app.log("controller axis", String.valueOf(axisCode).concat(String.valueOf(value)));
         if (axisCode == XBox360Pad.AXIS_LEFT_X && value == -1){
             this.west = true;
             return true;
@@ -114,28 +119,42 @@ public class GamepadAddon implements ControllerListener {
             this.south = true;
             return true;
         }
+
+        if (value == 0){
+            this.south = false;
+            this.north = false;
+            this.east = false;
+            this.west = false;
+        }
         return false;
     }
 
     public boolean povMoved(Controller controller, int povCode, PovDirection value) {
-
-        if (povCode == XBox360Pad.BUTTON_POV_UP ){
+        Gdx.app.log("controller axis", String.valueOf(povCode).concat(String.valueOf(value)));
+        if (value == XBox360Pad.BUTTON_DPAD_UP){
             this.north = true;
             return true;
         }
 
-        if (povCode == XBox360Pad.BUTTON_POV_RIGHT){
+        if (value == XBox360Pad.BUTTON_DPAD_RIGHT){
             this.east = true;
             return true;
         }
 
-        if (povCode == XBox360Pad.BUTTON_POV_DOWN){
+        if (value == XBox360Pad.BUTTON_DPAD_DOWN){
             this.south = true;
             return true;
         }
 
-        if (povCode == XBox360Pad.BUTTON_POV_LEFT){
+        if (value == XBox360Pad.BUTTON_DPAD_LEFT){
             this.west = true;
+            return true;
+        }
+        if (value == PovDirection.center){
+            this.west = false;
+            this.north = false;
+            this.south = false;
+            this.east = false;
             return true;
         }
         return false;

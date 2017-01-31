@@ -3,6 +3,7 @@ package me.lihq.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -121,6 +122,7 @@ public class NavigationScreen extends AbstractScreen
      */
 
     private GamepadAddon gamePad;
+
     /**
      * Initialises the navigation screen
      *
