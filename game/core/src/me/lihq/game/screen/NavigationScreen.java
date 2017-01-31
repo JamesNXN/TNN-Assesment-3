@@ -3,6 +3,7 @@ package me.lihq.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import me.lihq.game.*;
 import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.NPC;
+import me.lihq.game.people.controller.GamepadAddon;
 import me.lihq.game.people.controller.PlayerController;
 import me.lihq.game.screen.elements.DebugOverlay;
 import me.lihq.game.screen.elements.RoomArrow;
@@ -115,10 +117,16 @@ public class NavigationScreen extends AbstractScreen
     private RoomTag roomTag = null;
 
     /**
+     * gamepad listener for 360 controllers on windows 10 only!!!
+     */
+
+    private GamepadAddon gamePad;
+    /**
      * Initialises the navigation screen
      *
      * @param game - The main game instance
      */
+
     public NavigationScreen(GameMain game)
     {
         super(game);
@@ -153,6 +161,8 @@ public class NavigationScreen extends AbstractScreen
 
         arrow = new RoomArrow(game.player);
 
+        gamePad = new GamepadAddon(game.player);
+
 
     }
 
@@ -167,6 +177,7 @@ public class NavigationScreen extends AbstractScreen
         multiplexer.addProcessor(playerController);
         multiplexer.addProcessor(statusBar.stage);
 
+        Controllers.addListener(gamePad);
         Gdx.input.setInputProcessor(multiplexer);
 
     }
@@ -179,6 +190,7 @@ public class NavigationScreen extends AbstractScreen
     {
         if (!pause) { //this statement contains updates that shouldn't happen during a pause
             playerController.update();
+            gamePad.update();
             game.player.update();
             arrow.update();
 
