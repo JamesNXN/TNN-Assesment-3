@@ -1,8 +1,91 @@
 package me.lihq.game.screen;
 
-/**
- * Created by Jeff on 31/01/2017.
- */
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class SplashScreen {
+import me.lihq.game.GameMain;
+
+public class SplashScreen extends AbstractScreen{
+    private Animation<TextureRegion> splashAnimation;
+    private SpriteBatch batch;
+
+    private float stateTime = 0;
+
+    private BitmapFont clickMe;
+
+    /**
+     * This constructor sets the relevant properties of the class.
+     *
+     * @param game this provides access to the gameMain class so that screens can set the states of the game.
+     */
+    public SplashScreen(GameMain game) {
+        super(game);
+
+        batch = new SpriteBatch();
+
+        clickMe = game.assets.getFontWithSize(50);
+    }
+
+    @Override
+    public void show() {
+        game.assets.loadSplashAssets();
+        game.assets.getManager().finishLoading();
+        game.assets.assignSplashAssets();
+
+        splashAnimation = new Animation<>(0.5f, game.assets.splash.getRegions());
+
+
+        game.assets.loadGameAssets();
+
+    }
+
+    @Override
+    public void render(float delta) {
+        batch.begin();
+
+        stateTime += delta;
+
+        TextureRegion splashTexture = splashAnimation.getKeyFrame(stateTime, true);
+        batch.draw(splashTexture,0,0,GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT);
+
+        if (game.assets.getManager().update()){
+
+            clickMe.draw(batch, "CLICK ME!", 550, 400);
+
+            if (Gdx.input.justTouched()){
+                game.assets.assignGameAssets();
+                game.setScreen(new MainMenuScreen(game));
+            }
+        }
+
+        batch.end();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+        batch.dispose();
+    }
 }

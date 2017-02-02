@@ -1,8 +1,20 @@
 package me.lihq.game.people;
 
 /**
- * Created by Jeff on 01/02/2017.
+ * The state of the person explains what they are currently doing.
+ * <li>{@link #WALKING}</li>
+ * <li>{@link #STANDING}</li>
  */
 
 public enum PersonState {
+
+        /**
+         * Person is walking.
+         */
+        WALKING,
+
+        /**
+         * Person is standing still.
+         */
+        STANDING
 }

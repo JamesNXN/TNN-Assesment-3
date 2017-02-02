@@ -1,8 +1,11 @@
 package me.lihq.game.people;
 
 /**
- * Created by Jeff on 01/02/2017.
+ * These are the possible personalities of the person
  */
 
 public enum Personality {
+    NICE,
+    NEUTRAL,
+    AGGRESSIVE
 }
