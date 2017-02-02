@@ -15,6 +15,8 @@ import me.lihq.game.Settings;
  */
 public class RoomTag
 {
+    private Assets assets;
+
     /**
      * This is the room name it is to display
      */
@@ -52,7 +54,7 @@ public class RoomTag
      *
      * @param roomName - The name to display.
      */
-    public RoomTag(String roomName)
+    public RoomTag(String roomName, Assets assets)
     {
         this.roomName = roomName;
     }
@@ -78,10 +80,10 @@ public class RoomTag
 
         int extraCharacters = roomName.length() - 10;
 
-        batch.draw(Assets.TAG_BORDER, position.x, Gdx.graphics.getHeight() - position.y, 350 + (15 * extraCharacters), 150);
+        batch.draw(assets.roomTagBorder, position.x, Gdx.graphics.getHeight() - position.y, 350 + (15 * extraCharacters), 150);
 
-        Assets.FONT.setColor(Color.WHITE);
-        Assets.FONT.draw(batch, roomName, position.x * 5.1f, Gdx.graphics.getHeight() - position.y + 75);
+        assets.roomTagFont.setColor(Color.WHITE);
+        assets.roomTagFont.draw(batch, roomName, position.x * 5.1f, Gdx.graphics.getHeight() - position.y + 75);
 
         if (toClose) {
             batch.end();
@@ -101,7 +103,7 @@ public class RoomTag
             animTime++;
 
             if (animTime >= 2 * MAX_ANIM_TIME) {
-                GameMain.me.getNavigationScreen().setRoomTag(null);
+                GameMain.instance.getNavigationScreen().setRoomTag(null);
             }
         }
 

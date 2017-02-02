@@ -9,16 +9,17 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.GameMain;
 
 /**
- * Reusable Main initMenu UI, can be used for the pause screen aswell.
+ * Reusable Main initMenu UI, can be used for the pause screen as well.
  */
 
-public class Menu
+public class MainMenu extends Table
 {
     /**
      * The background color of the menu
@@ -31,10 +32,6 @@ public class Menu
     private static final int WIDTH = Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8;
 
     //Initialising necessary objects and variables
-    /**
-     * the stage to render the menu to
-     */
-    public Stage stage;
 
     /**
      * The default button skins
@@ -42,32 +39,12 @@ public class Menu
     private Skin buttonSkin;
 
     /**
-     * This stores whether or not the menu is for the main menu (false) or pause menu (true)
-     */
-    private boolean pauseMenu;
-
-    /**
-     * This is the camera for the menu
-     */
-    private OrthographicCamera camera;
-
-    /**
-     * This is the sprite batch of the menu that elements are rendered on.
-     */
-    private SpriteBatch batch;
-
-    /**
      * Constructor for the menu
      *
      * @param game      - The game object the menu is being loaded for
-     * @param pauseMenu - Whether it is a pause menu or not
      */
-    public Menu(final GameMain game, boolean pauseMenu)
+    public MainMenu(final GameMain game)
     {
-        //Initialising new stage
-        stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-        Gdx.input.setInputProcessor(stage);
-        this.pauseMenu = pauseMenu;
 
         //Initialising the skin made for the buttons
         initButtonSkin();
@@ -201,9 +178,7 @@ public class Menu
      */
     public void dispose()
     {
-        //Called when disposing the main menu
         stage.dispose();
-        batch.dispose();
     }
 
     /**

@@ -138,7 +138,7 @@ public class StatusBar
      */
     private void initButtonSkin()
     {
-        //Create a font
+        //Create a roomTagFont
         BitmapFont font = new BitmapFont();
         buttonSkin = new Skin();
         buttonSkin.add("default", font);
@@ -165,7 +165,7 @@ public class StatusBar
      */
     private void initLabelSkin()
     {
-        //Create a font
+        //Create a roomTagFont
         BitmapFont font = new BitmapFont();
         labelSkin = new Skin();
 

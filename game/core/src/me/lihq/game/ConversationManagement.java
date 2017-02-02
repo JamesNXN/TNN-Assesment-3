@@ -1,8 +1,8 @@
 package me.lihq.game;
 
 import me.lihq.game.models.Clue;
-import me.lihq.game.people.AbstractPerson.Personality;
 import me.lihq.game.people.NPC;
+import me.lihq.game.people.Personality;
 import me.lihq.game.people.Player;
 import me.lihq.game.screen.elements.SpeechBox;
 import me.lihq.game.screen.elements.SpeechBoxButton;

@@ -286,7 +286,7 @@ public class SpeechBox
      */
     private void initButtonSkin()
     {
-        //Create a font
+        //Create a roomTagFont
         BitmapFont font = new BitmapFont();
         font.setColor(TEXT_COLOUR);
         buttonSkin = new Skin();

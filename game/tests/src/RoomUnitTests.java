@@ -61,8 +61,8 @@ public class RoomUnitTests extends GameTester
     @Test
     public void testMatRotation()
     {
-        assertEquals("NORTH", room0.getMatRotation(0, 4));
-        assertEquals("SOUTH", room1.getMatRotation(0, 0));
+        assertEquals("NORTH", room0.getEntranceRotation(0, 4));
+        assertEquals("SOUTH", room1.getEntranceRotation(0, 0));
     }
 
 }

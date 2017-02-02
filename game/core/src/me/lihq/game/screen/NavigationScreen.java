@@ -2,8 +2,8 @@ package me.lihq.game.screen;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -12,10 +12,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
+
 import me.lihq.game.*;
+import me.lihq.game.models.Room;
 import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.NPC;
 import me.lihq.game.people.controller.GamepadAddon;
@@ -62,19 +65,12 @@ public class NavigationScreen extends AbstractScreen
      */
     private List<NPC> currentNPCS;
     /**
-     * This is the map renderer that also renders Sprites
+     * This is the map renderer
      */
-    private OrthogonalTiledMapRendererWithPeople tiledMapRenderer;
-    /**
-     * The camera to render the map to
-     */
-    private OrthographicCamera camera = new OrthographicCamera();
-    private Viewport viewport;
+    private TiledMapRenderer tiledMapRenderer;
+
     private SpriteBatch spriteBatch;
-    /**
-     * The input multiplexer for the game
-     */
-    private InputMultiplexer multiplexer;
+
     /**
      * This stores whether the game is paused or not
      */
@@ -123,20 +119,26 @@ public class NavigationScreen extends AbstractScreen
 
     private GamepadAddon gamePad;
 
+    private Stage stage;
+
     /**
      * Initialises the navigation screen
      *
      * @param game - The main game instance
      */
 
+
     public NavigationScreen(GameMain game)
     {
         super(game);
 
-        float w = Gdx.graphics.getWidth();
-        float h = Gdx.graphics.getHeight();
-        camera.setToOrtho(false, w, h);
-        camera.update();
+        game.roomManager = new RoomManager(game.assets);
+        game.personManager = new PersonManager(game.roomManager, game.assets);
+        game.clueManager = new ClueManager(game.roomManager, game.assets);
+
+        spriteBatch = new SpriteBatch();
+        stage = new Stage(new FitViewport(GameMain.GAME_WIDTH / Settings.ZOOM,
+                GameMain.GAME_HEIGHT / Settings.ZOOM), spriteBatch);
 
         Pixmap pixMap = new Pixmap(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), Pixmap.Format.RGBA8888);
 
@@ -145,27 +147,21 @@ public class NavigationScreen extends AbstractScreen
 
         BLACK_BACKGROUND = new Sprite(new Texture(pixMap));
 
-        viewport = new FitViewport(w / Settings.ZOOM, h / Settings.ZOOM, camera);
-
-        tiledMapRenderer = new OrthogonalTiledMapRendererWithPeople(game.player.getRoom().getTiledMap());
-
-        playerController = new PlayerController(game.player);
-
-        spriteBatch = new SpriteBatch();
+        tiledMapRenderer = new TiledMapRenderer(game.personManager.getPlayer().getRoom(), spriteBatch);
 
         statusBar = new StatusBar(game);
 
         speechboxMngr = new SpeechboxManager();
 
-        convMngt = new ConversationManagement(game.player, speechboxMngr);
+        convMngt = new ConversationManagement(game.personManager.getPlayer(), speechboxMngr);
 
-        tiledMapRenderer.addPerson(game.player);
+        arrow = new RoomArrow(game.personManager.getPlayer(), game.assets);
 
-        arrow = new RoomArrow(game.player);
+        gamePad = new GamepadAddon(game.personManager.getPlayer());
 
-        gamePad = new GamepadAddon(game.player);
+        playerController = new PlayerController(game.personManager.getPlayer());
 
-
+        pixMap.dispose();
     }
 
     /**
@@ -174,91 +170,25 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void show()
     {
-        InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(speechboxMngr.multiplexer);
-        multiplexer.addProcessor(playerController);
-        multiplexer.addProcessor(statusBar.stage);
+//        InputMultiplexer multiplexer = new InputMultiplexer();
+//        multiplexer.addProcessor(speechboxMngr.multiplexer);
+//        multiplexer.addProcessor(playerController);
+//        multiplexer.addProcessor(statusBar.stage);
+//
+//        Controllers.addListener(gamePad);
 
-        Controllers.addListener(gamePad);
-        Gdx.input.setInputProcessor(multiplexer);
-
-    }
-
-    /**
-     * This method is called once a game tick
-     */
-    @Override
-    public void update()
-    {
-        if (!pause) { //this statement contains updates that shouldn't happen during a pause
-            playerController.update();
-            gamePad.update();
-            game.player.update();
-            arrow.update();
-
-            for (AbstractPerson n : currentNPCS) {
-                n.update();
-            }
-
-            speechboxMngr.update();
+        stage.addActor(game.personManager.getPlayer());
+        for (NPC npc : game.personManager.getNpcArray()){
+            stage.addActor(npc);
         }
 
-        //Some things should be updated all the time.
-        updateTransition();
+        Gdx.input.setInputProcessor(playerController);
 
-        if (roomTag != null) {
-            roomTag.update();
-        }
+//        ((OrthographicCamera)stage.getCamera()).zoom = Settings.ZOOM;
     }
 
-    /**
-     * This method is called once a game tick to update the room transition animation
-     */
-    private void updateTransition()
-    {
-        if (roomTransition) {
-            BLACK_BACKGROUND.setAlpha(Interpolation.pow4.apply(0, 1, animTimer / ANIM_TIME));
-
-            if (fadeToBlack) {
-                animTimer++;
-
-                if (animTimer == ANIM_TIME) {
-                    game.player.moveRoom();
-                }
-
-                if (animTimer > ANIM_TIME) {
-                    fadeToBlack = false;
-                }
-            } else {
-                animTimer--;
-
-                if (animTimer < 0) {
-                    finishRoomTransition();
-                }
-            }
-        }
-    }
-
-    /**
-     * This is called when the player decides to move to another room
-     */
-    public void initialiseRoomChange()
-    {
-        pause = true; //pause all non necessary updates like player movement
-        roomTransition = true;
-    }
-
-    /**
-     * This is called when the room transition animation has completed so the necessary variables
-     * can be returned to their normal values
-     */
-    public void finishRoomTransition()
-    {
-        animTimer = 0;
-        roomTransition = false;
-        fadeToBlack = true;
-        pause = false;
-        roomTag = new RoomTag(game.player.getRoom().getName());
+    public void changeRoom(Room room){
+        tiledMapRenderer.setMap(game.personManager.getPlayer().getRoom().getTiledMap());
     }
 
     /**
@@ -269,42 +199,22 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void render(float delta)
     {
-        game.player.pushCoordinatesToSprite();
-        for (AbstractPerson n : currentNPCS) {
-            n.pushCoordinatesToSprite();
+        stage.getCamera().position.x = game.personManager.getPlayer().getX();
+        stage.getCamera().position.y = game.personManager.getPlayer().getY();
+        stage.getCamera().update();
 
-        }
 
-        if (changeMap) {
-            tiledMapRenderer.setMap(game.player.getRoom().getTiledMap());
-            tiledMapRenderer.clearPeople();
-            tiledMapRenderer.addPerson((List<AbstractPerson>) ((List<? extends AbstractPerson>) currentNPCS));
-            tiledMapRenderer.addPerson(game.player);
-            changeMap = false;
-        }
-
-        camera.position.x = game.player.getX();
-        camera.position.y = game.player.getY();
-        camera.update();
-
-        tiledMapRenderer.setView(camera);
+        tiledMapRenderer.setView((OrthographicCamera) stage.getCamera());
 
         tiledMapRenderer.render();
-        //Everything to be drawn relative to bottom left of the map
-        tiledMapRenderer.getBatch().begin();
 
-        arrow.draw(tiledMapRenderer.getBatch());
+        stage.act();
+        stage.draw();
 
-        game.player.getRoom().drawClues(delta, tiledMapRenderer.getBatch());
-
-        tiledMapRenderer.getBatch().end();
+        tiledMapRenderer.renderLastLayer();
 
         //Everything to be drawn relative to bottom left of the screen
         spriteBatch.begin();
-
-        if (roomTransition) {
-            BLACK_BACKGROUND.draw(spriteBatch);
-        }
 
         if (roomTag != null) {
             roomTag.render(spriteBatch);
@@ -330,7 +240,7 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void resize(int width, int height)
     {
-        viewport.update(width, height);
+        stage.getViewport().update(width, height);
         statusBar.resize(width, height);
     }
 
@@ -379,7 +289,7 @@ public class NavigationScreen extends AbstractScreen
     public void updateTiledMapRenderer()
     {
         this.changeMap = true;
-        this.currentNPCS = game.getNPCS(game.player.getRoom());
+        this.currentNPCS = game.getNPCs(game.personManager.getPlayer().getRoom());
     }
 
     /**
@@ -390,15 +300,5 @@ public class NavigationScreen extends AbstractScreen
     public void setRoomTag(RoomTag tag)
     {
         this.roomTag = tag;
-    }
-
-    /**
-     * This method gets the list of current NPCs in the current room
-     *
-     * @return (List<NPC>) the value of currentNPCs {@link #currentNPCS}
-     */
-    public List<NPC> getNPCs()
-    {
-        return currentNPCS;
     }
 }

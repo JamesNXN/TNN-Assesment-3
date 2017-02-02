@@ -2,10 +2,9 @@ package me.lihq.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.utils.viewport.Viewport;
+
 import me.lihq.game.GameMain;
-import me.lihq.game.screen.elements.Menu;
+import me.lihq.game.screen.elements.MainMenu;
 
 /**
  * Created by vishal on 18/12/2016.
@@ -15,13 +14,7 @@ public class PauseScreen extends AbstractScreen
     /**
      * This is the menu element for the pause menu
      */
-    private Menu pauseMenu;
-
-    /**
-     * The camera for the pause menu to use
-     */
-    private OrthographicCamera camera = new OrthographicCamera();
-    private Viewport viewport;
+    private MainMenu pauseMenu;
 
     /**
      * This constructor sets the relevant properties of the class.
@@ -31,15 +24,8 @@ public class PauseScreen extends AbstractScreen
     public PauseScreen(GameMain game)
     {
         super(game);
-
-        float w = Gdx.graphics.getWidth();
-        float h = Gdx.graphics.getHeight();
-        //Sets up the camera
-        camera.setToOrtho(false, w, h);
-        camera.update();
-
         //Creates the Pause menu
-        pauseMenu = new Menu(game, true);
+        pauseMenu = new MainMenu(game);
     }
 
     /**
@@ -48,18 +34,6 @@ public class PauseScreen extends AbstractScreen
     @Override
     public void show()
     {
-        InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(pauseMenu.stage);
-        Gdx.input.setInputProcessor(multiplexer);
-    }
-
-    /**
-     * This method is called once a game tick
-     */
-    @Override
-    public void update()
-    {
-
     }
 
     /**
@@ -70,8 +44,6 @@ public class PauseScreen extends AbstractScreen
     @Override
     public void render(float delta)
     {
-        //Renders the pause menu
-        pauseMenu.render();
     }
 
     /**
@@ -83,7 +55,7 @@ public class PauseScreen extends AbstractScreen
     @Override
     public void resize(int width, int height)
     {
-        pauseMenu.resize(width, height);
+
     }
 
     /**
@@ -119,7 +91,5 @@ public class PauseScreen extends AbstractScreen
     @Override
     public void dispose()
     {
-        //Disposes of the Pause menu
-        pauseMenu.dispose();
     }
 }

@@ -6,7 +6,7 @@ import me.lihq.game.GameMain;
 
 /**
  * This is defines all the common methods and properties for each screen. It implements the screen interface from com.badlogic.gdx.Screen.
- * A screen is a like the current view of the game. E.g. Main Menu or Pause screen or dialogue screen.
+ * A screen is a like the current view of the game. E.g. Main MainMenu or Pause screen or dialogue screen.
  */
 public abstract class AbstractScreen implements Screen
 {
@@ -30,11 +30,6 @@ public abstract class AbstractScreen implements Screen
      */
     @Override
     public abstract void show();
-
-    /**
-     * Called every game tick, all screen related logic should be done in this method.
-     */
-    public abstract void update();
 
     /**
      * This method is called every render loop

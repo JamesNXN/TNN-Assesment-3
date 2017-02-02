@@ -35,9 +35,9 @@ public class DebugOverlay
     private static Sprite yellowSprite = getColoredTileSprite(Color.GOLD);
 
     /**
-     * This is to store the font that the debug screen is written in
+     * This is to store the roomTagFont that the debug screen is written in
      */
-    private static BitmapFont font = Assets.getFontWithSize(30);
+    private static BitmapFont font = GameMain.instance.assets.getFontWithSize(30);
 
     /**
      * This method draws the debug menu to the batch
@@ -74,7 +74,7 @@ public class DebugOverlay
         for (int w = 0; w < roomWidth; w++) {
             for (int h = 0; h < roomHeight; h++) {
                 if (Settings.DEBUG_OPTIONS.get("showWalkable")) {
-                    if (GameMain.me.player.getRoom().isWalkableTile(w, h)) {
+                    if (GameMain.instance.personManager.getPlayer().getRoom().isWalkableTile(w, h)) {
                         greenSprite.setPosition(w * Settings.TILE_SIZE, h * Settings.TILE_SIZE);
                         greenSprite.draw(batch);
                     } else {

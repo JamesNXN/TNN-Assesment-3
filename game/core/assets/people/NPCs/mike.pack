@@ -1,0 +1,145 @@
+
+mike.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+StandUp
+  rotate: false
+  xy: 0, 0
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+walkUp
+  rotate: false
+  xy: 0, 0
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 1
+walkUp
+  rotate: false
+  xy: 32, 0
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 2
+walkUp
+  rotate: false
+  xy: 64, 0
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 3
+walkUp
+  rotate: false
+  xy: 96, 0
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 4
+StandLeft
+  rotate: false
+  xy: 0, 48
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+walkLeft
+  rotate: false
+  xy: 0, 48
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 1
+walkLeft
+  rotate: false
+  xy: 32, 48
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 2
+walkLeft
+  rotate: false
+  xy: 64, 48
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 3
+walkLeft
+  rotate: false
+  xy: 96, 48
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 4
+standRight
+  rotate: false
+  xy: 0, 96
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+walkRight
+  rotate: false
+  xy: 0, 96
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 1
+walkRight
+  rotate: false
+  xy: 32, 96
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 2
+walkRight
+  rotate: false
+  xy: 64, 96
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 3
+walkRight
+  rotate: false
+  xy: 96, 96
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 4
+StandDown
+  rotate: false
+  xy: 0, 144
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+walkDown
+  rotate: false
+  xy: 0, 144
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 1
+walkDown
+  rotate: false
+  xy: 32, 144
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 2
+walkDown
+  rotate: false
+  xy: 64, 144
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 3
+walkDown
+  rotate: false
+  xy: 96, 144
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: 4

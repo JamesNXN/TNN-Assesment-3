@@ -4,7 +4,6 @@ import me.lihq.game.models.Room;
 import org.junit.Before;
 import org.junit.Test;
 
-import static me.lihq.game.people.AbstractPerson.*;
 import static org.junit.Assert.*;
 
 /**
@@ -18,7 +17,7 @@ public class PlayerUnitTests extends GameTester
     public void before()
     {
         p = new Player("Test Name", "player.png", 0, 0);
-        p.setRoom(new Room(0, "testMap.tmx", "Test Map"));
+        p.setRoom(new Room(0, "testMap.tmx", "Test RoomManager"));
     }
 
     @Test
@@ -55,7 +54,7 @@ public class PlayerUnitTests extends GameTester
     @Test
     public void doesPlayerMove()
     {
-        p.setTileCoordinates(0, 0);
+        p.setTilePosition(0, 0);
         p.setAnimTime(0f);
         assertEquals(0, p.getX(), 0.0f);
         assertEquals(0, p.getY(), 0.0f);

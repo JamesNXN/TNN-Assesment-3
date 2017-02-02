@@ -7,6 +7,8 @@ import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
 import me.lihq.game.Settings;
 import me.lihq.game.people.AbstractPerson;
+import me.lihq.game.people.Direction;
+import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
 
 
@@ -173,16 +175,16 @@ public class GamepadAddon implements ControllerListener {
             timer = 0;
         }
 
-        AbstractPerson.Direction goTo = null;
+        Direction goTo = null;
 
         if (north) {
-            goTo = AbstractPerson.Direction.NORTH;
+            goTo = Direction.NORTH;
         } else if (south) {
-            goTo = AbstractPerson.Direction.SOUTH;
+            goTo = Direction.SOUTH;
         } else if (east) {
-            goTo = AbstractPerson.Direction.EAST;
+            goTo = Direction.EAST;
         } else if (west) {
-            goTo = AbstractPerson.Direction.WEST;
+            goTo = Direction.WEST;
         }
 
         if (goTo == null) return;
@@ -190,11 +192,11 @@ public class GamepadAddon implements ControllerListener {
         timer++;
 
         if (timer > Settings.TPS / 12) {
-            player.move(goTo);
+//            player.move(goTo);
             return;
         }
 
-        if (player.getState() != AbstractPerson.PersonState.WALKING) {
+        if (player.getState() != PersonState.WALKING) {
             player.setDirection(goTo);
         }
     }

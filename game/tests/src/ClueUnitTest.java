@@ -14,7 +14,7 @@ public class ClueUnitTest extends GameTester
     @Before
     public void createClues()
     {
-        Assets.load();
+        Assets.assignGameAssets();
         //TODO: use correct assets
         shoe = new Clue("Shoe", "I am a shoe", Assets.getArrowDirection("NORTH"));
         book = new Clue("book", "I am a book", Assets.getArrowDirection("NORTH"));
