@@ -8,8 +8,8 @@ public class Vector2Int
     /**
      * x and y coordinates of the object
      */
-    public int x = 0;// initialise x as 0
-    public int y = 0;// initialise y as 0
+    public int x;
+    public int y;
 
     /**
      * Creates a new Vector2Int object.
@@ -21,6 +21,11 @@ public class Vector2Int
     {
         this.x = x;
         this.y = y;
+    }
+
+    public Vector2Int(){
+        this.x = 0;
+        this.y = 0;
     }
 
     /**

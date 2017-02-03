@@ -2,20 +2,15 @@ package me.lihq.game;
 
 import com.badlogic.gdx.utils.Array;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
+import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.NPC;
-import me.lihq.game.people.Player;
 
 /**
  * Initialises player and NPCs and hold them
  */
 
 public class PersonManager {
-    private Player player;
     private Array<NPC> npcArray;
 
     private NPC killer;
@@ -26,13 +21,10 @@ public class PersonManager {
 
         //Add ALL NPCs to the list
         //This is how you initialise an NPC
-        player = new Player("Player", assets.playerSpriteSheet);
-        player.setRoom(roomManager.getRoom(0));
-        player.setTilePosition(roomManager.getRoom(0).getRandomLocation().x, roomManager.getRoom(0).getRandomLocation().y);
 
         //TODO: Sort NPC personalities
-        NPC npc = new NPC("Colin", assets.colinSpriteSheet, "Colin.JSON");
-        npcArray.add(npc);
+        NPC npc1 = new NPC("Colin", assets.colinSpriteSheet, "Colin.JSON");
+        npcArray.add(npc1);
 
         NPC npc2 = new NPC("Diana", assets.dianaSpriteSheet, "Diana.JSON");
         npcArray.add(npc2);
@@ -55,43 +47,21 @@ public class PersonManager {
         victim = npcArray.pop();
         killer = npcArray.random();
 
-        int amountOfRooms = roomManager.getRoomArray().size;
+        int roomIndex = 0;
+        for (NPC npc : npcArray) {
+            roomIndex %= roomManager.getRoomArray().size-1;
 
-        List<Integer> roomsLeft = new ArrayList<>();
+            Room selectedRoom = roomManager.getRoomArray().get(roomIndex);
+            npc.setCurrentRoom(selectedRoom);
+            selectedRoom.addNPC(npc);
+            Vector2Int position = npc.getCurrentRoom().getRandomLocation();
+            npc.setTilePosition(position.x, position.y);
 
-        for (int i = 0; i < amountOfRooms; i++) {
-            roomsLeft.add(i);
-        }
+            System.out.println(npc.getName() + " has been placed in room " + selectedRoom + " at " + position);
 
-        for (NPC loopNpc : npcArray) {
-            /*
-            Refill the rooms left list if there are more npcArray than Rooms. This will put AT LEAST one NPC per room if so.
-             */
-            if (roomsLeft.isEmpty()) {
-                for (int i = 0; i < amountOfRooms; i++) {
-                    roomsLeft.add(i);
-                }
-            }
-
-            /*
-            Pick a random room and put that NPC in it
-             */
-            int toTake = new Random().nextInt(roomsLeft.size() - 1);
-            int selectedRoom = roomsLeft.get(toTake);
-            roomsLeft.remove(toTake);
-
-            loopNpc.setRoom(roomManager.getRoom(selectedRoom));
-            Vector2Int position = loopNpc.getRoom().getRandomLocation();
-            loopNpc.setTilePosition(position.x, position.y);
-
-            System.out.println(loopNpc.getName() + " has been placed in room " + selectedRoom + " at " + position);
+            roomIndex++;
         }
     }
-
-    public Player getPlayer() {
-        return player;
-    }
-
     public Array<NPC> getNpcArray() {
         return npcArray;
     }

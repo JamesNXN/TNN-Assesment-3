@@ -1,13 +1,11 @@
 package me.lihq.game.models;
 
 import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.utils.Array;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import me.lihq.game.people.NPC;
 
@@ -33,8 +31,10 @@ public class Room
     /**
      * This is a list of the clues in the room.
      */
-    private Array<Clue> clueArray = new Array<>();
-    private Array<NPC> npcArray = new Array<>();
+    private Array<Clue> clueArray;
+    private Array<NPC> npcArray;
+    private Array<Door> exitArray;
+    private Array<Door> entryArray;
 
     private boolean isMurderRoom = false;
 
@@ -54,8 +54,16 @@ public class Room
         mapFile.getLayers().get("Collision").setVisible(false);
         mapFile.getLayers().get("HidingSpot").setVisible(false);
 
+        clueArray = new Array<>();
+        npcArray = new Array<>();
+        exitArray = new Array<>();
+        entryArray = new Array<>();
+
+        exitArray.addAll(getExit());
+        entryArray.addAll(getEntry());
+
         hidingSpots = new Array<>();
-        getHidingSpots();
+        hidingSpots.addAll(getHidingSpots());
     }
 
     /**
@@ -99,102 +107,61 @@ public class Room
 
     public void addClue(Clue newClue)
     {
-        System.out.println("Added Clue " + newClue.getName() + " at location " + newClue.getPosition() + " in room " + getID());
+        System.out.println("Added Clue " + newClue.getName() + " at location " + newClue.getTilePosition() + " in room " + getID());
 
         if (!clueArray.contains(newClue, false)) {
             clueArray.add(newClue);
         }
     }
 
-    /**
-     * This method takes a location parameter and checks it for a clue, if a clue is found it is removed from the map and return
-     *
-     * @param x - The x coordinate the player is at
-     * @param y - The y coordinate the player is at
-     * @return (Clue) returns null if there is no clue at coordinate x,y and returns the clue itself otherwise
-     */
-    public Clue getClue(int x, int y)
-    {
-        //Apply direction change
-        Clue out = null;
-        //Check for a clue at that coordinate
-        for (Clue c : clueArray) {
-            if (c.getPosition().x == x && c.getPosition().y == y) {
-                out = c;
-            }
-        }
-        if (out != null) {
-            this.clueArray.removeValue(out, false);
-        }
-
-        return out;
+    public void addNPC(NPC npc){
+        npcArray.add(npc);
     }
 
-
-    /**
-     * This method checks whether the tile at x, y is a tile you can hide a clue
-     * in
-     *
-     * @param x - The x coordinate to check
-     * @param y - The y coordinate to check
-     * @return (boolean) whether the tile is a hideable tile.
-     */
-    public boolean isHidingPlace(int x, int y)
-    {
-        return hidingSpots.contains(new Vector2Int(x, y), false);
+    public Array<NPC> getNpcArray(){
+        return npcArray;
     }
 
+    public Array<Clue> getClueArray(){
+        return clueArray;
+    }
 
-    /**
-     * This method checks ALL layers for the tile at x, y to see if it is a trigger tile.
-     * If any of them are true, it returns true
-     *
-     * @param x - The x coordinate to check
-     * @param y - The y coordinate to check
-     * @return - (boolean) whether or not the tile is a trigger tile.
-     */
-    public boolean isTriggerTile(int x, int y)
-    {
-        TiledMapTileLayer layer = (TiledMapTileLayer) mapFile.getLayers().get(0);
+    public Array<Door> getExitArray(){
+        return exitArray;
+    }
 
-        if (layer.getCell(x, y) == null) return false;
-
-        int amountOfLayers = mapFile.getLayers().getCount();
-
-        for (int currentLayer = 0; currentLayer < amountOfLayers; currentLayer++) {
-            TiledMapTileLayer tl = (TiledMapTileLayer) mapFile.getLayers().get(currentLayer);
-
-            if (tl.getCell(x, y) == null) {
-                continue;
-            }
-
-            if (!tl.getCell(x, y).getTile().getProperties().containsKey("trigger")) {
-                continue;
-            }
-
-            if (tl.getCell(x, y).getTile().getProperties().get("trigger").toString().equals("true")) {
-                return true;
-            }
-        }
-
-        return false;
+    public Array<Door> getEntryArray() {
+        return entryArray;
     }
 
     /**
-     * This method gets the rotation that the mat is that they are standing on.
-     * If they aren't on a mat, it returns null
+     * Gets exit tiles of the room
      *
-     * @param x - The x coordinate to check
-     * @param y = The y coordinate to  check
      * @return a String representing the direction they are facing
      */
-    public String getEntranceRotation(int x, int y)
+    private Array<Door> getExit()
     {
-        TiledMapTileLayer layer = (TiledMapTileLayer) mapFile.getLayers().get("Doors");
+        MapLayer layer = mapFile.getLayers().get("Transition");
+        Array<Door> exitArray = new Array<>();
 
-        if (layer.getCell(x, y) == null) return null;
+        for (MapObject object : layer.getObjects()) {
+            if (object.getProperties().get("type").equals("Exit")) {
+                exitArray.add(new Door((RectangleMapObject) object));
+            }
+        }
+        return exitArray;
+    }
 
-        return (String) layer.getCell(x, y).getTile().getProperties().get("dir");
+    private Array<Door> getEntry(){
+        MapLayer layer = mapFile.getLayers().get("Transition");
+        Array<Door> entryArray = new Array<>();
+
+        for (MapObject object : layer.getObjects()) {
+            if (object.getProperties().get("type").equals("Entry")) {
+                entryArray.add(new Door((RectangleMapObject) object));
+            }
+        }
+        return entryArray;
     }
 
     public TiledMap getTiledMap()
@@ -206,26 +173,25 @@ public class Room
      * This will check the map for any potential hiding locations, and add them as a list of coordinates
      *
      */
-    public void getHidingSpots()
+    private Array<Vector2Int> getHidingSpots()
     {
         TiledMapTileLayer layer = (TiledMapTileLayer) mapFile.getLayers().get("HidingSpot");
         int roomTileWidth = layer.getWidth();
         int roomTileHeight = layer.getHeight();
 
+        Array<Vector2Int> spots = new Array<>();
+
         for (int x = 0; x < roomTileWidth; x++) {
             for (int y = 0; y < roomTileHeight; y++) {
                 TiledMapTileLayer.Cell cellInTile = layer.getCell(x, y);
 
-                if (cellInTile == null) continue;
-
-                if (!cellInTile.getTile().getProperties().containsKey("hidingSpot")) continue;
-
-                if (cellInTile.getTile().getProperties().get("hidingSpot").toString().equals("true")) {
-                    hidingSpots.add(new Vector2Int(x, y));
+                if (cellInTile != null) {
+                    spots.add(new Vector2Int(x, y));
                     break;
                 }
             }
         }
+        return spots;
     }
 
 
@@ -250,8 +216,8 @@ public class Room
      */
     public Vector2Int getRandomLocation()
     {
-        int roomWidth = ((TiledMapTileLayer) getTiledMap().getLayers().get(0)).getWidth();
-        int roomHeight = ((TiledMapTileLayer) getTiledMap().getLayers().get(0)).getHeight();
+        int roomWidth = ((TiledMapTileLayer) getTiledMap().getLayers().get("Collision")).getWidth();
+        int roomHeight = ((TiledMapTileLayer) getTiledMap().getLayers().get("Collision")).getHeight();
 
         Array<Vector2Int> possibleLocations = new Array<>();
 

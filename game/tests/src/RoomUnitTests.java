@@ -4,7 +4,6 @@ import me.lihq.game.models.Vector2Int;
 import org.junit.Before;
 import org.junit.Test;
 
-import static me.lihq.game.models.Room.*;
 import static org.junit.Assert.*;
 
 /**
@@ -61,8 +60,8 @@ public class RoomUnitTests extends GameTester
     @Test
     public void testMatRotation()
     {
-        assertEquals("NORTH", room0.getEntranceRotation(0, 4));
-        assertEquals("SOUTH", room1.getEntranceRotation(0, 0));
+        assertEquals("NORTH", room0.getDoors());
+        assertEquals("SOUTH", room1.getDoors());
     }
 
 }

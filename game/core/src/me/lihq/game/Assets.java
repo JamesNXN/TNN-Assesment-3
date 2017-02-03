@@ -81,9 +81,9 @@ public class Assets
     public BitmapFont roomTagFont;
 
     /**
-     * Animation for the clue glint to be drawn where a clue is hidden
+     * Sprite sheet for the clue glint to be drawn where a clue is hidden
      */
-    public Animation<TextureRegion> clueGlint;
+    public TextureAtlas clueGlint;
 
     public Skin menuSkin;
 
@@ -188,9 +188,7 @@ public class Assets
 //        clueSheet = manager.get("clues.pack");
 
         //clue glint animation init
-        TextureAtlas glintAtlas = manager.get("clueGlint.pack");
-
-        clueGlint = new Animation<>(0.1f, glintAtlas.findRegions("glint"));
+        clueGlint = manager.get("clueGlint.pack");
 
 
         //menu skin init

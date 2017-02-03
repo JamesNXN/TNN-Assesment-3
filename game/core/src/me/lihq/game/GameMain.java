@@ -17,7 +17,6 @@ import com.badlogic.gdx.utils.Array;
 
 import me.lihq.game.models.Room;
 import me.lihq.game.people.NPC;
-import me.lihq.game.people.Player;
 import me.lihq.game.screen.AbstractScreen;
 import me.lihq.game.screen.NavigationScreen;
 import me.lihq.game.screen.SplashScreen;
@@ -42,27 +41,11 @@ public class GameMain extends Game
      */
     public Assets assets;
 
-    /**
-     * A list holding NPC objects
-     */
-    public Array<NPC> NPCs = new Array<>();
-
     public RoomManager roomManager;
 
     public PersonManager personManager;
 
     public ClueManager clueManager;
-
-    /**
-     * This controls the game ticks and calculating how many ticks per second there are
-     */
-    public int ticks = 0;
-    public int lastSecond = -1;
-
-    /**
-     * A screen to be used to display standard gameplay within the game , including the status bar.
-     */
-    public NavigationScreen navigationScreen;
 
     /**
      * An FPSLogger, FPSLogger allows us to check the game FPS is good enough
@@ -84,8 +67,6 @@ public class GameMain extends Game
 
         //Instantiate the FPSLogger to show FPS
         FPS = new FPSLogger();
-
-//        gameLoop();
     }
 
     /**
@@ -121,61 +102,6 @@ public class GameMain extends Game
     public AbstractScreen getScreen()
     {
         return (AbstractScreen) super.getScreen();
-    }
-
-    /**
-     * This is the main gameLoop that only needs to be called once, it then creates a logic thread to be executed once a game tick
-     */
-    public void gameLoop()
-    {
-        Timer gameTimer = new Timer();
-        TimerTask task = new TimerTask()
-        {
-            @Override
-            public void run()
-            {
-                ticks++;
-
-                Calendar cal = Calendar.getInstance();
-
-                if (cal.get(Calendar.SECOND) != lastSecond) {
-                    lastSecond = cal.get(Calendar.SECOND);
-                    System.out.println("TPSLogger: tps:      " + ticks);
-                    ticks = 0;
-                }
-            }
-        };
-
-        gameTimer.schedule(task, 0, 1000 / Settings.TPS);
-    }
-
-    /**
-     * This method returns the Navigation Screen that the game runs on.
-     *
-     * @return navigationScreen - The gameplay screen.
-     */
-    public NavigationScreen getNavigationScreen()
-    {
-        return navigationScreen;
-    }
-
-
-    /**
-     * This method returns a list of the NPCs that are in the specified room
-     *
-     * @param room - The room to check
-     * @return (List<NPC>) The NPCs that are in the specified room
-     */
-    public List<NPC> getNPCs(Room room)
-    {
-        List<NPC> npcsInRoom = new ArrayList<>();
-        for (NPC n : this.NPCs) {
-            if (n.getRoom() == room) {
-                npcsInRoom.add(n);
-            }
-        }
-
-        return npcsInRoom;
     }
 
 }

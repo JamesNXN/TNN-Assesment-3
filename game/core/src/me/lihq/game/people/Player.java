@@ -1,15 +1,15 @@
 package me.lihq.game.people;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonReader;
-import me.lihq.game.GameMain;
+
+import me.lihq.game.Collidable;
 import me.lihq.game.models.Clue;
-import me.lihq.game.models.Room;
-import me.lihq.game.screen.elements.SpeechBox;
+import me.lihq.game.models.Door;
+import me.lihq.game.screen.NavigationScreen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +19,8 @@ import java.util.List;
  */
 public class Player extends AbstractPerson
 {
+    private NavigationScreen screen;
+
     /**
      * This object stores the clues that the player has picked up
      */
@@ -26,25 +28,34 @@ public class Player extends AbstractPerson
     /**
      * This stores whether the player is in the middle of a conversation or not
      */
-    public boolean inConversation = false;
+    public boolean isInConversation = false;
     /**
      * The personality will be a percent score (0-100) 0 being angry, 50 being neutral, and 100 being happy/nice.
      */
     private int personalityLevel = 50;
+
     /**
      * The score the player has earned so far.
      */
     private int score = 0;
+
+    private Rectangle interactionCollisionBox;
 
     /**
      * This is the constructor for player, it creates a new playable person
      *
      * @param name   - The name for the new player.
      * @param spriteSheet - The image used to represent it.
+     * @param screen - The screen it's being drawn onto.
      */
-    public Player(String name, TextureAtlas spriteSheet) {
+
+    public Player(String name, TextureAtlas spriteSheet, NavigationScreen screen) {
         super(name, spriteSheet);
+        this.screen = screen;
         importDialogue("Player.JSON");
+
+        interactionCollisionBox = new Rectangle();
+        interactionCollisionBox.setSize(collisionBox.getWidth(), collisionBox.getHeight());
     }
 
     /**
@@ -82,13 +93,31 @@ public class Player extends AbstractPerson
      */
     public void interact()
     {
-        if (inConversation) return;
+        interactionCollisionBox.setPosition(collisionBox.getX() + collisionBox.getWidth() * direction.getDx(),
+                collisionBox.getY() + collisionBox.getHeight() * direction.getDy());
 
-        NPC npc = getFacingNPC();
-        if (npc != null) {
-            GameMain.instance.getNavigationScreen().convMngt.startConversation(npc);
-        } else {
-            checkForClue();
+        System.out.println(tilePosition);
+
+
+        Collidable interactingActor = null;
+
+        Array<Collidable> roomObjects = new Array<>();
+        roomObjects.addAll(getCurrentRoom().getNpcArray());
+        roomObjects.addAll(getCurrentRoom().getClueArray());
+
+        for (Collidable actor : roomObjects){
+            if (interactionCollisionBox.overlaps(actor.getCollisionBox())){
+                interactingActor = actor;
+                break;
+            }
+        }
+
+        if (interactingActor instanceof NPC) {
+            System.out.println(((NPC)interactingActor).getName());
+//            GameMain.instance.getNavigationScreen().convMngt.startConversation((NPC) facingActor);
+        }
+        else if(interactingActor instanceof Clue) {
+            System.out.println(((Clue)interactingActor).getName());
         }
     }
 
@@ -97,49 +126,47 @@ public class Player extends AbstractPerson
      *
      * @return (NPC) returns null if there isn't an NPC in front of them or the NPC is moving. Otherwise, it returns the NPC
      */
-    private NPC getFacingNPC()
-    {
-        for (NPC npc : GameMain.instance.getNPCs(getRoom())) {
-            if ((npc.getTilePosition().x == getTilePosition().x + getDirection().getDx()) && (npc.getTilePosition().y == getTilePosition().y + getDirection().getDy())) {
-                if (npc.getState() != PersonState.STANDING) return null;
-
-                return npc;
-            }
-        }
-
-        return null;
-    }
+//    private NPC getFacingNPC()
+//    {
+//
+//    }
 
     /**
      * This method checks to see if the tile the player is facing has a clue hidden in it or not
      */
-    private void checkForClue()
-    {
-        int x = getTilePosition().x + getDirection().getDx();
-        int y = getTilePosition().y + getDirection().getDy();
+//    private void checkForClue()
+//    {
+//        if (clueFound != null) {
+//            GameMain.instance.getNavigationScreen().speechboxMngr.addSpeechBox(new SpeechBox("You found: " + clueFound.getDescription(), 6));
+//            this.collectedClues.add(clueFound);
+//        } else {
+//            GameMain.instance.getNavigationScreen().speechboxMngr.addSpeechBox(new SpeechBox("Sorry no clue here", 1));
+//        }
+//    }
 
 
-        if (!this.getRoom().isHidingPlace(x, y)) {
-            return;
-        }
-
-        Clue clueFound = getRoom().getClue(x, y);
-        if (clueFound != null) {
-            GameMain.instance.getNavigationScreen().speechboxMngr.addSpeechBox(new SpeechBox("You found: " + clueFound.getDescription(), 6));
-            this.collectedClues.add(clueFound);
-        } else {
-            GameMain.instance.getNavigationScreen().speechboxMngr.addSpeechBox(new SpeechBox("Sorry no clue here", 1));
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        Door collidingExit = doorCollisionDetection(collisionBox);
+        if (collidingExit != null) {
+            screen.changeRoom(collidingExit.getConnectedRoomId());
         }
     }
 
     /**
-     * This method returns whether or not the player is standing on a tile that initiates a Transition to another room
-     *
-     * @return (boolean) Whether the player is on a trigger tile or not
+     * Detects collision with door
+     * @return colliding door
      */
-    public boolean isOnTriggerTile()
-    {
-        return this.getRoom().isTriggerTile(this.tilePosition.x, this.tilePosition.y);
+    private Door doorCollisionDetection(Rectangle collisionBox){
+        Array<Door> doorArray = getCurrentRoom().getExitArray();
+
+        for (Door door : doorArray){
+            if (collisionBox.overlaps(door.getCollisionBox())){
+                return door;
+            }
+        }
+        return null;
     }
 
     /**

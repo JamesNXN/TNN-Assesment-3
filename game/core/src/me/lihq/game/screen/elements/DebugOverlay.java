@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import me.lihq.game.Assets;
+
 import me.lihq.game.GameMain;
 import me.lihq.game.Settings;
 import me.lihq.game.models.Room;
@@ -71,19 +71,19 @@ public class DebugOverlay
         int roomWidth = ((TiledMapTileLayer) room.getTiledMap().getLayers().get(0)).getWidth();
         int roomHeight = ((TiledMapTileLayer) room.getTiledMap().getLayers().get(0)).getHeight();
 
-        for (int w = 0; w < roomWidth; w++) {
-            for (int h = 0; h < roomHeight; h++) {
-                if (Settings.DEBUG_OPTIONS.get("showWalkable")) {
-                    if (GameMain.instance.personManager.getPlayer().getRoom().isWalkableTile(w, h)) {
-                        greenSprite.setPosition(w * Settings.TILE_SIZE, h * Settings.TILE_SIZE);
-                        greenSprite.draw(batch);
-                    } else {
-                        redSprite.setPosition(w * Settings.TILE_SIZE, h * Settings.TILE_SIZE);
-                        redSprite.draw(batch);
-                    }
-                }
-            }
-        }
+//        for (int w = 0; w < roomWidth; w++) {
+//            for (int h = 0; h < roomHeight; h++) {
+//                if (Settings.DEBUG_OPTIONS.get("showWalkable")) {
+//                    if (GameMain.instance.personManager.getPlayer().getCurrentRoom().isWalkableTile(w, h)) {
+//                        greenSprite.setPosition(w * Settings.TILE_SIZE, h * Settings.TILE_SIZE);
+//                        greenSprite.draw(batch);
+//                    } else {
+//                        redSprite.setPosition(w * Settings.TILE_SIZE, h * Settings.TILE_SIZE);
+//                        redSprite.draw(batch);
+//                    }
+//                }
+//            }
+//        }
 
         for (Vector2Int c : room.hidingSpots) {
             yellowSprite.setPosition(c.x * Settings.TILE_SIZE, c.y * Settings.TILE_SIZE);

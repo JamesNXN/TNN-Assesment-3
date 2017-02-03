@@ -1,19 +1,18 @@
 package me.lihq.game.people;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
 
+import me.lihq.game.Collidable;
 import me.lihq.game.Settings;
+import me.lihq.game.TileObject;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
@@ -22,23 +21,23 @@ import me.lihq.game.models.Vector2Int;
  * The abstract person is an abstract representation of a person. A person can be a non playable character or Player.
  * It extends the sprite class which provides methods for the person to be rendered in the game.
  */
-public abstract class AbstractPerson extends Actor
+public abstract class AbstractPerson extends Actor implements Collidable,TileObject
 {
     /**
      * The height of the texture region for each person
      */
-    protected static final int SPRITE_HEIGHT = 48;
+    private static final int SPRITE_HEIGHT = 48;
 
     /**
      * The width of the texture region for each person
      */
-    protected static final int SPRITE_WIDTH = 32;
+    private static final int SPRITE_WIDTH = 32;
     /**
      * This is whether the NPC can move or not. It is mainly used to not let them move during conversation
      */
     public boolean canMove = true;
 
-    private final float moveSpeed = 100f;
+    private final float MOVE_SPEED = 100f;
 
     /**
      * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
@@ -46,33 +45,14 @@ public abstract class AbstractPerson extends Actor
      */
     protected Vector2Int tilePosition = new Vector2Int(0, 0);
 
-    /**
-     * The distance in pixel that the actor moved after the move() method ran. It is recorded in order to stop the actor from
-     * moving more than 1 tile per move() method.
-     */
-    protected Vector2 movedDistance = new Vector2();
+    private float animStateTime = 0;
 
-    /**
-     * A store of the destination for a movement.
-     */
-    protected Vector2Int destinationTile = new Vector2Int(0, 0);
+    private Animation<TextureRegion> walkDown;
+    private Animation<TextureRegion> walkUp;
+    private Animation<TextureRegion> walkRight;
+    private Animation<TextureRegion> walkLeft;
 
-    /**
-     * The following variables control the walking animation speed
-     */
-    protected float animTimer;
-    protected float animTime = Settings.TPS / 3f;
-
-    protected float animStateTime = 0;
-    /**
-     * This stores the sprite sheet of the Player/NPC
-     */
-    protected TextureAtlas spriteSheet;
-
-    protected Animation<TextureRegion> walkDown;
-    protected Animation<TextureRegion> walkUp;
-    protected Animation<TextureRegion> walkRight;
-    protected Animation<TextureRegion> walkLeft;
+    protected Rectangle collisionBox;
 
     /**
      * This is the JSON data for the Player/NPC
@@ -85,7 +65,7 @@ public abstract class AbstractPerson extends Actor
     /**
      * This is the current walking state of the Person. {@link #getState()}
      */
-    protected PersonState state;
+    private PersonState state;
     /**
      * The Name of the Person
      */
@@ -94,6 +74,7 @@ public abstract class AbstractPerson extends Actor
      * The current room of the AbstractPerson.
      */
     private Room currentRoom;
+
 
     /**
      * This constructs the player calling super on the sprite class
@@ -105,11 +86,13 @@ public abstract class AbstractPerson extends Actor
     {
         debug();
         this.name = name;
-        this.spriteSheet = spriteSheet;
         this.state = PersonState.STANDING;
 
-        // size for collision check box
-        setSize(Settings.TILE_SIZE - 2, Settings.TILE_SIZE - 2);
+        collisionBox = new Rectangle();
+        collisionBox.setSize(Settings.TILE_SIZE * 0.7f);
+
+        setSize(SPRITE_WIDTH, SPRITE_HEIGHT);
+        setOrigin(getWidth()/2, getHeight()/2);
 
         walkUp = new Animation<>(0.1f, spriteSheet.findRegions("walkUp"));
         walkDown = new Animation<>(0.1f, spriteSheet.findRegions("walkDown"));
@@ -132,68 +115,79 @@ public abstract class AbstractPerson extends Actor
         this.state = state;
     }
 
-    /**
-     * This sets the tile coordinates of the person.
-     *
-     * @param x The x coordinate of the tile grid.
-     * @param y The y coordinate of the tile grid.
-     */
+    @Override
     public void setTilePosition(int x, int y)
     {
         tilePosition.x = x;
         tilePosition.y = y;
+
+        //screen position in pixels
         setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
     }
-
-//    /**
-//     * move character one tile to the specified direction
-//     * @param direction direction that the character needs move
-//     */
-//
-//    public void move(Direction direction){
-//        this.direction = direction;
-//
-//        state = PersonState.WALKING;
-//        destinationTile.x = getTilePosition().x + direction.getDx();
-//        destinationTile.y = getTilePosition().y + direction.getDy();
-//    }
 
 
     @Override
     public void act(float delta) {
+        //offset given in order to align the box in the mid bottom of the character
+        collisionBox.setPosition(getX() + getWidth() / 2 - collisionBox.getWidth()/2, getY());
+
         if (state == PersonState.WALKING){
             animStateTime += delta;
 
-            float vectorDistanceX = direction.getDx() * moveSpeed * delta;
-            float vectorDistanceY = direction.getDy() * moveSpeed * delta;
+            float vectorDistanceX = direction.getDx() * MOVE_SPEED * delta;
+            float vectorDistanceY = direction.getDy() * MOVE_SPEED * delta;
+            collisionBox.setPosition(collisionBox.x + vectorDistanceX, collisionBox.y + vectorDistanceY);
 
-            if (collisionDetection(vectorDistanceX, vectorDistanceY)) {
+            if (!wallCollisionDetection(collisionBox) && !npcCollisionDetection(collisionBox)) {
                 moveBy(vectorDistanceX, vectorDistanceY);
             }
         }
         else{
+            tilePosition.x = (int) (getX() / Settings.TILE_SIZE);
+            tilePosition.y = (int) (getY() / Settings.TILE_SIZE);
             animStateTime = 0;
         }
         super.act(delta);
     }
 
-    private boolean collisionDetection(float vectorDistanceX, float vectorDistanceY) {
-        TiledMapTileLayer layer = (TiledMapTileLayer) getRoom().getTiledMap().getLayers().get("Collision");
+    /**
+     * Detects collision with wall
+     * @return return true when there is collision
+     */
+    private boolean wallCollisionDetection(Rectangle collisionBox) {
+        TiledMapTileLayer layer = (TiledMapTileLayer) getCurrentRoom().getTiledMap().getLayers().get("Collision");
 
         float tileWidth = layer.getTileWidth();
         float tileHeight = layer.getTileHeight();
 
-        float translatedX = getX() + vectorDistanceX;
-        float translatedY = getY() + vectorDistanceY;
-        float translatedRight = translatedX + getWidth();
-        float translatedTop = translatedY + getHeight();
+        float translatedX = collisionBox.x;
+        float translatedY = collisionBox.y;
+        float translatedRight = translatedX + collisionBox.getWidth();
+        float translatedTop = translatedY + collisionBox.getHeight();
 
         TiledMapTileLayer.Cell upperLeftTile = layer.getCell((int) (translatedX / tileWidth), (int) (translatedTop / tileHeight));
         TiledMapTileLayer.Cell upperRightTile = layer.getCell((int) (translatedRight / tileWidth), (int) (translatedTop / tileHeight));
         TiledMapTileLayer.Cell lowerLeftTile = layer.getCell((int) (translatedX / tileWidth), (int) (translatedY / tileHeight));
         TiledMapTileLayer.Cell lowerRightTile = layer.getCell((int) (translatedRight / tileWidth), (int) (translatedY / tileHeight));
 
-        return upperLeftTile == null && upperRightTile == null && lowerLeftTile == null && lowerRightTile == null;
+        return upperLeftTile != null || upperRightTile != null || lowerLeftTile != null || lowerRightTile != null;
+    }
+
+    /**
+     * Detects collision with npc
+     * @return return true when there is collision
+     */
+    private boolean npcCollisionDetection(Rectangle collisionBox){
+        Array<NPC> npcArray = getCurrentRoom().getNpcArray();
+
+        boolean npcCollision = false;
+        for (NPC person : npcArray) {
+            if (person.getCollisionBox().overlaps(collisionBox)) {
+                npcCollision = true;
+                break;
+            }
+        }
+        return npcCollision;
     }
 
     @Override
@@ -284,17 +278,12 @@ public abstract class AbstractPerson extends Actor
         this.direction = dir;
     }
 
-    public void setAnimTime(float animTime)
-    {
-        this.animTime = animTime;
-    }
-
-    public Room getRoom()
+    public Room getCurrentRoom()
     {
         return this.currentRoom;
     }
 
-    public void setRoom(Room room)
+    public void setCurrentRoom(Room room)
     {
         this.currentRoom = room;
     }
@@ -302,5 +291,10 @@ public abstract class AbstractPerson extends Actor
     public Vector2Int getTilePosition()
     {
         return tilePosition;
+    }
+
+    @Override
+    public Rectangle getCollisionBox() {
+        return collisionBox;
     }
 }

@@ -1,14 +1,22 @@
 package me.lihq.game.models;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+
+import me.lihq.game.Assets;
+import me.lihq.game.Collidable;
 import me.lihq.game.Settings;
+import me.lihq.game.TileObject;
 
 
 /**
  * This class defines the clues that the player needs to find in order to solve the murder.
  */
-public class Clue extends Sprite
+public class Clue extends Actor implements Collidable, TileObject
 {
     /**
      * The name of the clue, set when you initialise the clue and gettable using {@link #getName()}
@@ -21,24 +29,36 @@ public class Clue extends Sprite
     private String description;
 
     /**
-     * This is the location on the map in terms of tiles can be set using {@link #setTileCoordinates(int, int)}
+     * This is the location on the map in terms of tiles can be set using {@link #setTilePosition(int, int)}
      * Note: this is different to com.badlogic.gdx.graphics.g2d.Sprite.position that is the position on the screen in terms of pixels,
      * whereas this is in terms of map tiles relative to the bottom left of the map.
      */
     private Vector2Int tileCoordinates = new Vector2Int(0, 0);
+
+    private Animation<TextureRegion> clueGlint;
+    private float animStateTime = 0;
+
+    private Rectangle collisionBox;
+
 
     /**
      * Creates a clue
      *
      * @param name        the name of the clue i.e. what it is
      * @param description describes what the clue is
-     * @param texture     the texture region of the clue
+     * @param assets     the asset loader for textures
      */
-    public Clue(String name, String description, TextureRegion texture)
+    public Clue(String name, String description, Assets assets)
     {
-        super(texture);
+        debug();
         this.name = name;
         this.description = description;
+
+        clueGlint = new Animation<>(0.1f, assets.clueGlint.findRegions("glint"));
+        setSize(Settings.TILE_SIZE, Settings.TILE_SIZE);
+
+        collisionBox = new Rectangle();
+        collisionBox.setSize(Settings.TILE_SIZE);
     }
 
     /**
@@ -78,67 +98,34 @@ public class Clue extends Sprite
         return this.description;
     }
 
-    /**
-     * This method calls the method of the same name but allows a Vector2Int as a parameter rather than
-     * the specific coordinates.
-     * <p>
-     * It sets the tile coordinates of the clue in the map.
-     *
-     * @param v - The Vector2Int that the clue's tile coordinates are to be set to
-     * @return (Clue) returns this object once the location has been updated
-     */
-    public Clue setTileCoordinates(Vector2Int v)
-    {
-        return setTileCoordinates(v.x, v.y);
+    @Override
+    public Rectangle getCollisionBox() {
+        return collisionBox;
     }
 
-    /**
-     * Setter for clue tile coordinates.
-     *
-     * @param x - The x coordinate for where the clue is, in terms of tiles.
-     * @param y - The y coordinate for where the clue is, in terms of tiles.
-     *          <p>
-     *          all coordinates relative to bottom left of the map
-     * @return (Clue) this object
-     */
-    public Clue setTileCoordinates(int x, int y)
-    {
-        this.tileCoordinates.x = x;
-        this.tileCoordinates.y = y;
-
-        setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
-
-        return this;
+    @Override
+    public void act(float delta) {
+        animStateTime += delta;
     }
 
-    /**
-     * This method gets the Clue's current tile location on the map as a Vector2Int
-     *
-     * @return (Vector2Int) The tile coordinates of the clue
-     */
-    public Vector2Int getPosition()
-    {
-        return this.tileCoordinates;
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        batch.draw(clueGlint.getKeyFrame(animStateTime,true), getX(), getY(), Settings.TILE_SIZE, Settings.TILE_SIZE);
     }
 
-    /**
-     * This method returns the x component of the clues tile coordinates from {@link #getPosition()}
-     *
-     * @return (int) The x tile coordinate of the clue
-     */
-    public int getTileX()
-    {
-        return tileCoordinates.x;
+    @Override
+    public void setTilePosition(int x, int y) {
+        tileCoordinates.x = x;
+        tileCoordinates.y = y;
+
+        setPosition(getTilePosition().x * Settings.TILE_SIZE,
+                getTilePosition().y * Settings.TILE_SIZE);
+
+        collisionBox.setPosition(getX(), getY());
     }
 
-    /**
-     * This method returns the y component of the clues tile coordinates from {@link #getPosition()}
-     *
-     * @return (int) The y tile coordinate of the clue
-     */
-    public int getTileY()
-    {
-        return tileCoordinates.y;
+    @Override
+    public Vector2Int getTilePosition() {
+        return tileCoordinates;
     }
-
 }

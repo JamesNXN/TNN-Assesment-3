@@ -38,7 +38,7 @@ public class PlayerController extends InputAdapter
     public boolean keyDown(int keycode)
     {
         if (player.getState() == PersonState.STANDING) {
-            if (keycode == Input.Keys.ENTER) {
+            if (keycode == Input.Keys.SPACE) {
                 player.interact();
                 return true;
             }

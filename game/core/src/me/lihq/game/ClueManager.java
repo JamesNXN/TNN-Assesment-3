@@ -18,16 +18,13 @@ public class ClueManager {
         //This is a temporary list of clues
         clueArray = new Array<>();
 
-        clueArray.add(new Clue("Big Footprint", "A big footprint left at the crime scene by the killer.", new TextureRegion(assets.clueSheet, 0, 0, 32, 32)));
-        clueArray.add(new Clue("Small Footprint", "A small footprint left at the crime scene by the killer.", new TextureRegion(assets.clueSheet, 0, 0, 32, 32)));
-        clueArray.add(new Clue("Glasses", "A pair of glasses these were found by another detective at the crime scene.", new TextureRegion(assets.clueSheet, 0, 0, 32, 32)));
-        clueArray.add(new Clue("Bag", "A bag. Someone must have left in a hurry.", new TextureRegion(assets.clueSheet, 0, 0, 32, 32)));
-        clueArray.add(new Clue("Lipstick", "Lipstick, a killers best friend.", new TextureRegion(assets.clueSheet, 0, 0, 32, 32)));
-        clueArray.add(new Clue("Right Handed", "This indicates the killer is right handed", new TextureRegion(assets.clueSheet, 0, 0, 32, 32)));
-        clueArray.add(new Clue("Dark Hair", "A dark hair from the crime scene", new TextureRegion(assets.clueSheet, 0, 0, 32, 32)));
-        //tempClues.add(new Clue("Clue 8", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
-        //tempClues.add(new Clue("Clue 9", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
-        //tempClues.add(new Clue("Clue 10", "test Desc", new TextureRegion(Assets.CLUE_SHEET, 0, 0, 32, 32)));
+        clueArray.add(new Clue("Big Footprint", "A big footprint left at the crime scene by the killer.", assets));
+        clueArray.add(new Clue("Small Footprint", "A small footprint left at the crime scene by the killer.", assets));
+        clueArray.add(new Clue("Glasses", "A pair of glasses these were found by another detective at the crime scene.", assets));
+        clueArray.add(new Clue("Bag", "A bag. Someone must have left in a hurry.", assets));
+        clueArray.add(new Clue("Lipstick", "Lipstick, a killers best friend.", assets));
+        clueArray.add(new Clue("Right Handed", "This indicates the killer is right handed", assets));
+        clueArray.add(new Clue("Dark Hair", "A dark hair from the crime scene", assets));
 
         clueArray.shuffle();
 
@@ -35,14 +32,19 @@ public class ClueManager {
             Vector2Int randHidingSpot = room.getRandHidingSpot();
 
             if (randHidingSpot != null) {
-                room.addClue(clueArray.pop().setTileCoordinates(randHidingSpot));
+                Clue clue = clueArray.pop();
+                clue.setTilePosition(randHidingSpot.x, randHidingSpot.y);
+                room.addClue(clue);
 
                 if (clueArray.size == 0){
                     break;
                 }
             }
-
         }
+    }
+
+    public Array<Clue> getClueArray() {
+        return clueArray;
     }
 
 }
