@@ -28,6 +28,11 @@ public class Gui extends Table{
 
     public void setRoomTag(Room room){
         roomTag.setRoomName(room.getName());
-        roomTag.addAction(Actions.parallel(Actions.fadeIn(1f),Actions.moveBy(0, -roomTag.getHeight() - 10, 1f)));
+        roomTag.addAction(Actions.sequence(
+                Actions.parallel(
+                    Actions.fadeIn(1f),
+                    Actions.moveBy(0, -roomTag.getHeight() - 10, 1f)),
+                Actions.delay(2f),
+                Actions.fadeOut(1f)));
     }
 }

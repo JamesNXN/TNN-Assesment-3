@@ -1,19 +1,14 @@
 package me.lihq.game.screen.elements;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import me.lihq.game.Settings;
-
-import java.util.ArrayList;
+import com.badlogic.gdx.utils.Array;
 
 import static java.lang.Thread.sleep;
 
@@ -23,9 +18,7 @@ import static java.lang.Thread.sleep;
  * Used for rendering box containing text and buttons on screen
  * Note: add to InputMultiplexer if using with other UI elements.
  */
-public class SpeechBox extends Table
-{
-    public boolean isPressed;
+public class SpeechBox extends Container<Table> {
     /**
      * The constant color variables for all SpeechBox's
      */
@@ -46,6 +39,8 @@ public class SpeechBox extends Table
     private static final int TABLE_HEIGHT = (PADDING * 4) + TEXT_ROW_HEIGHT + BUTTON_ROW_HEIGHT;
     private static final int HEIGHT = TABLE_HEIGHT + (2 * BORDER_WIDTH);
 
+    private Table contentTable;
+
     /**
      * The name of the person talking, if any
      */
@@ -59,67 +54,64 @@ public class SpeechBox extends Table
     /**
      * List of buttons to be displayed on the SpeechBox
      */
-    private ArrayList<SpeechBoxButton> buttons;
+    private Array<SpeechBoxButton> buttons;
     //Styles
     private Skin buttonSkin;
     private Skin labelSkin;
     private Skin personLabelSkin;
 
-    public boolean haveButtons(){
-        return !buttons.isEmpty();
+    public boolean haveButtons() {
+        if (buttons.size == 0){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     /**
      * The constructor for the SpeechBox
      */
-    public SpeechBox(String content, ArrayList<SpeechBoxButton> buttonList)
-    {
-
+    public SpeechBox(String content, Array<SpeechBoxButton> buttonList) {
         textContent = content;
         buttons = buttonList;
-        setupStage();
+        setupLayout();
     }
 
     /**
      * The constructor for the SpeechBox with personName
      */
-    public SpeechBox(String personName, String speechText, ArrayList<SpeechBoxButton> buttonList)
-    {
+    public SpeechBox(String personName, String speechText, Array<SpeechBoxButton> buttonList) {
         person = personName;
         textContent = speechText;
         buttons = buttonList;
-        setupStage();
+        setupLayout();
     }
 
     /**
      * The constructor for the SpeechBox without buttons
      */
-    public SpeechBox(String content)
-    {
+    public SpeechBox(String content) {
         textContent = content;
-        buttons = new ArrayList<>();
-       // if(isPressed){
-            setupStage();//}
+        buttons = new Array<>();
+        setupLayout();
     }
 
     /**
      * The constructor for the SpeechBox without buttons with personName
      */
-    public SpeechBox(String personName, String speechText)
-    {
+    public SpeechBox(String personName, String speechText) {
         person = personName;
         textContent = speechText;
-        buttons = new ArrayList<>();
-        //if(isPressed){
-            setupStage();//}
+        buttons = new Array<>();
+        setupLayout();
     }
 
     /**
      * Sets up the SpeechBox stage ready for rendering
      * The stage is a Scene2D class that deals with putting UI controls on the screen
      */
-    private void setupStage()
-    {
+    private void setupLayout() {
         initSkins();
 
         setTransform(true);
@@ -127,33 +119,28 @@ public class SpeechBox extends Table
         setBounds(0, Y_OFFSET, WIDTH, HEIGHT);
         setBackground(UIHelpers.getBackgroundDrawable(BORDER_COLOUR, WIDTH, HEIGHT));
 
-        //Init table containing contents of speech box
-        Table table = new Table();
+        //Init contentTable containing contents of speech box
+        contentTable = new Table();
 
-        table.setSize(TABLE_WIDTH, TABLE_HEIGHT);
-        table.setBackground(UIHelpers.getBackgroundDrawable(BACKGROUND_COLOR, TABLE_WIDTH, TABLE_HEIGHT));
-        fillTableContent(table);
+        contentTable.setSize(TABLE_WIDTH, TABLE_HEIGHT);
+        contentTable.setBackground(UIHelpers.getBackgroundDrawable(BACKGROUND_COLOR, TABLE_WIDTH, TABLE_HEIGHT));
+        fillTableContent(contentTable);
 
-        //Add table to container contents, and add padding
+        //Add contentTable to container contents, and add padding
+        setActor(contentTable);
         pad(BORDER_WIDTH);
     }
 
 
     /**
-     * Add relevant SpeechBox UI controls to table element
+     * Add relevant SpeechBox UI controls to contentTable element
      *
      * @param table Table to add controls to
      */
-    private void fillTableContent(Table table)
-    {
+    private void fillTableContent(Table table) {
 
         //Calculate constants for use later
-        int buttonCount = 0;
-        try {
-            buttonCount = buttons.size();
-        } catch (Exception noButtons) {
-            buttonCount = 0;
-        }
+        int buttonCount = buttons.size;
 
 
         //Calculate number of columns for label row to span
@@ -196,32 +183,29 @@ public class SpeechBox extends Table
 
                 //Create button, and add listener for click event
                 TextButton buttonElement = new TextButton(button.text, buttonSkin);
-                buttonElement.addListener(new ClickListener()
-                {
+                buttonElement.addListener(new ClickListener() {
                     @Override
-                    public void clicked(InputEvent event, float x, float y)
-                    {
+                    public void clicked(InputEvent event, float x, float y) {
                         //Trigger click event handler for current button (see button definition)
                         button.eventHandler.trigger(button.result);
                     }
                 });
 
-                //Add button to table, with appropriate spacing
+                //Add button to contentTable, with appropriate spacing
                 table.add(buttonElement).width(buttonWidth).pad(PADDING, PADDING / 2, 0, PADDING / 2);
 
             }
         }
 
 
-        //Pack table
+        //Pack contentTable
         table.pack();
     }
 
     /**
      * Sets up skin variables used for defining UI control styles
      */
-    private void initSkins()
-    {
+    private void initSkins() {
         initButtonSkin();
         initLabelSkin();
         initPersonLabelSkin();
@@ -230,8 +214,7 @@ public class SpeechBox extends Table
     /**
      * Sets up the skin for buttons on the speech box
      */
-    private void initButtonSkin()
-    {
+    private void initButtonSkin() {
         //Create a roomTagFont
         BitmapFont font = new BitmapFont();
         font.setColor(TEXT_COLOUR);
@@ -259,8 +242,7 @@ public class SpeechBox extends Table
      * Sets up the skin for buttons on the speech box
      */
 
-    private void initLabelSkin()
-    {
+    private void initLabelSkin() {
         labelSkin = new Skin();
 
         Label.LabelStyle fontStyle = new Label.LabelStyle();
@@ -274,8 +256,7 @@ public class SpeechBox extends Table
     /**
      * Sets up the skin for buttons on the speech box
      */
-    private void initPersonLabelSkin()
-    {
+    private void initPersonLabelSkin() {
         personLabelSkin = new Skin();
 
         Label.LabelStyle fontStyle = new Label.LabelStyle();
