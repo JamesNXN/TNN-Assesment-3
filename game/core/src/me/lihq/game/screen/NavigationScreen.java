@@ -3,6 +3,7 @@ package me.lihq.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -20,6 +21,7 @@ import me.lihq.game.people.Direction;
 import me.lihq.game.people.NPC;
 import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
+import me.lihq.game.people.controller.GamePadController;
 import me.lihq.game.people.controller.PlayerController;
 import me.lihq.game.screen.elements.DebugOverlay;
 import me.lihq.game.screen.elements.FadeInOut;
@@ -40,6 +42,7 @@ public class NavigationScreen extends AbstractScreen
      * The controller that listens for key inputs
      */
     public PlayerController playerController;
+    public GamePadController gamePadController;
 
     /**
      * This is the main ConversationManager that controls the conversation mechanic
@@ -79,7 +82,7 @@ public class NavigationScreen extends AbstractScreen
      * gamepad listener for 360 controllers on windows 10 only!!!
      */
 
-//    private GamepadAddon gamePad;
+//    private GamePadController gamePad;
 
     private Stage gameWorldStage;
     private SpriteBatch gameWorldBatch;
@@ -133,7 +136,7 @@ public class NavigationScreen extends AbstractScreen
 
 //        convMngt = new ConversationManagement(player, speechboxMngr);
 
-//        gamePad = new GamepadAddon(player);
+         gamePadController = new GamePadController(player);
 
         playerController = new PlayerController(player);
     }
@@ -148,8 +151,6 @@ public class NavigationScreen extends AbstractScreen
 //        multiplexer.addProcessor(speechboxMngr.multiplexer);
 //        multiplexer.addProcessor(playerController);
 //        multiplexer.addProcessor(statusBar.gameWorldStage);
-//
-//        Controllers.addListener(gamePad);
 
         gameWorldStage.addActor(roomArrowGroup);
 
@@ -178,6 +179,9 @@ public class NavigationScreen extends AbstractScreen
         multiplexer.addProcessor(guiStage);
         multiplexer.addProcessor(playerController);
         Gdx.input.setInputProcessor(multiplexer);
+
+        Controllers.addListener(gamePadController);
+
     }
 
     public void changeRoom(int roomId){
