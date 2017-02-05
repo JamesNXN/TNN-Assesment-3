@@ -23,19 +23,6 @@ public class GamepadAddon implements ControllerListener {
      */
     private Player player;
 
-    /**
-     * Booleans storing what keys have been pressed and not released
-     */
-    private boolean north;
-    private boolean south;
-    private boolean west;
-    private boolean east;
-
-    /**
-     * This timer is used to measure how long input has been read for
-     */
-    public int timer = 0;
-
 
     /**
      * boolean for handling controller connects and disconnects
@@ -43,16 +30,14 @@ public class GamepadAddon implements ControllerListener {
 
     private boolean controllerConnected = false;
 
-    /**
-     * boolean used to reset axis
-     */
-    private boolean axisUsed = false;
+
 
     /**
      * constructor for gamepad used to initialise for controller listener
+     *
      * @param player
      */
-    public GamepadAddon(Player player){
+    public GamepadAddon(Player player) {
         this.player = player;
     }
 
@@ -66,93 +51,101 @@ public class GamepadAddon implements ControllerListener {
     }
 
     public boolean buttonDown(Controller controller, int buttonCode) {
-        Gdx.app.log("controller", String.valueOf(buttonCode));
+        Gdx.app.log("controller buttons", String.valueOf(buttonCode));
         if (buttonCode == XBox360Pad.BUTTON_A){
             player.interact();
             return true;
         }
+        if (buttonCode == XBox360Pad.BUTTON_B) {
+            ////// TODO: 05/02/2017 add ignore for b button when implemented or running
+            return true;
 
-        if (buttonCode == XBox360Pad.BUTTON_B){
-            //// TODO: 31/01/2017 Add ignore function eg A = interact B = back out
+        }
+        if (buttonCode == XBox360Pad.BUTTON_START) {
+            //// TODO: 05/02/2017 add pause on start press
             return true;
         }
-
-        if (buttonCode == XBox360Pad.BUTTON_START){
-            //// TODO: 31/01/2017 add pausing on start press
+        if (buttonCode == XBox360Pad.BUTTON_X) {
+            //// TODO: 05/02/2017 display inventory
+            return true;
+        }
+        if (buttonCode == XBox360Pad.BUTTON_Y) {
+            //// TODO: 05/02/2017 display map
             return true;
         }
         return false;
     }
 
     public boolean buttonUp(Controller controller, int buttonCode) {
-        if (buttonCode == XBox360Pad.BUTTON_B){
-            //// TODO: 31/01/2017 finalise backout eg after button press up
-            return true;
-        }
-
-        if (buttonCode == XBox360Pad.BUTTON_START){
-            //// TODO: 31/01/2017 add pausing on start press
-            return true;
-        }
         return false;
     }
 
-    public boolean axisMoved(Controller controller, int axisCode, float value) {
-//        Gdx.app.log("controller axis", String.valueOf(axisCode).concat(String.valueOf(value)));
-//        if (axisCode == XBox360Pad.AXIS_LEFT_X && value < -0.3){
-//            this.axisUsed = true;
-//            this.west = true;
-//            return true;
-//        }
-//
-//        if (axisCode == XBox360Pad.AXIS_LEFT_X && value > 0.3 && !axisUsed){
-//            this.axisUsed = true;
-//            this.east = true;
-//            return true;
-//        }
-//
-//        if (axisCode == XBox360Pad.AXIS_LEFT_Y && value < -0.3 && !axisUsed) {
-//            this.axisUsed = true;
-//            this.north = true;
-//            return true;
-//        }
-//
-//        if (axisCode == XBox360Pad.AXIS_LEFT_Y && value > 0.3 && !axisUsed){
-//            this.axisUsed = true;
-//            this.south = true;
-//            return true;
-//        }
-//        return false;
-        return true;
+    public boolean axisMoved(Controller controller, int axisCode, float value){
+        return false;
     }
 
+//    public boolean axisMoved(Controller controller, int axisCode, float value) {
+//        Gdx.app.log("controller AXIS code", String.valueOf(axisCode));
+//        Gdx.app.log("controller AXIS float", String.valueOf(value));
+//        if (axisCode == XBox360Pad.AXIS_LEFT_X) {
+//            if (value > 0.3) {
+//                player.setDirection(Direction.EAST);
+//                player.setState(PersonState.WALKING);
+//                return true;
+//            }
+//            else if (value < -0.3) {
+//                player.setDirection(Direction.WEST);
+//                player.setState(PersonState.WALKING);
+//                return true;
+//            }
+//            else if (value < 0.3  && value > -0.3) {
+//                player.setState(PersonState.STANDING);
+//                return true;
+//            }
+//        }
+//        else if (axisCode == XBox360Pad.AXIS_LEFT_Y) {
+//            if (value < -0.3) {
+//                player.setDirection(Direction.NORTH);
+//                player.setState(PersonState.WALKING);
+//                return true;
+//            }
+//            else if (value > 0.3) {
+//                player.setDirection(Direction.SOUTH);
+//                player.setState(PersonState.WALKING);
+//                return true;
+//            }
+//            else if (value > -0.3 && value < 0.3) {
+//                player.setState(PersonState.STANDING);
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
     public boolean povMoved(Controller controller, int povCode, PovDirection value) {
-
-        Gdx.app.log("controller axis", String.valueOf(povCode).concat(String.valueOf(value)));
-        if (value == XBox360Pad.BUTTON_DPAD_UP){
-            this.north = true;
+        Gdx.app.log("controller DPAD", String.valueOf(value));
+        if (value == XBox360Pad.BUTTON_DPAD_UP) {
+            player.setDirection(Direction.NORTH);
+            player.setState(PersonState.WALKING);
             return true;
         }
-
-        if (value == XBox360Pad.BUTTON_DPAD_RIGHT){
-            this.east = true;
+        else if (value == XBox360Pad.BUTTON_DPAD_RIGHT ) {
+            player.setDirection(Direction.EAST);
+            player.setState(PersonState.WALKING);
             return true;
         }
-
-        if (value == XBox360Pad.BUTTON_DPAD_DOWN){
-            this.south = true;
+        else if (value == XBox360Pad.BUTTON_DPAD_DOWN) {
+            player.setDirection(Direction.SOUTH);
+            player.setState(PersonState.WALKING);
             return true;
         }
-
-        if (value == XBox360Pad.BUTTON_DPAD_LEFT){
-            this.west = true;
+        else if (value == XBox360Pad.BUTTON_DPAD_LEFT) {
+            player.setDirection(Direction.WEST);
+            player.setState(PersonState.WALKING);
             return true;
         }
-        if (value == PovDirection.center){
-            this.west = false;
-            this.north = false;
-            this.south = false;
-            this.east = false;
+        else if (value == XBox360Pad.DPAD_CENTER) {
+            player.setState(PersonState.STANDING);
             return true;
         }
         return false;
@@ -169,32 +162,4 @@ public class GamepadAddon implements ControllerListener {
     public boolean accelerometerMoved(Controller controller, int accelerometerCode, Vector3 value) {
         return true;
     }
-    public void update()
-    {
-        if (!south && !north && !east && !west) {
-            timer = 0;
-        }
-
-        Direction goTo = null;
-
-        if (north) {
-            goTo = Direction.NORTH;
-        } else if (south) {
-            goTo = Direction.SOUTH;
-        } else if (east) {
-            goTo = Direction.EAST;
-        } else if (west) {
-            goTo = Direction.WEST;
-        }
-
-        if (goTo == null) return;
-
-        timer++;
-
-        }
-
-////        if (player.getState() != PersonState.WALKING) {
-////            player.setDirection(goTo);
-////        }
-//    }
 }
