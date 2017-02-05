@@ -1,112 +1,51 @@
 package me.lihq.game.screen.elements;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.math.Vector2;
-import me.lihq.game.Assets;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+
 import me.lihq.game.GameMain;
-import me.lihq.game.Settings;
 
 /**
  * This class is for the RoomTag that is to be displayed at the top left
  * of the screen when a new room is entered.
  */
-public class RoomTag
+public class RoomTag extends Table
 {
-    private Assets assets;
+    private Texture roomTagBackground;
+    private Label roomNameLabel;
 
-    /**
-     * This is the room name it is to display
-     */
-    private String roomName = "";
+    public RoomTag(Texture roomTagBackground, BitmapFont roomTagFont) {
+        setTransform(true);
+        this.roomTagBackground = roomTagBackground;
+        setColor(getColor().r, getColor().g, getColor().b, 0);
 
-    /**
-     * This is the position of the window relative to the top left of the window
-     * <p>
-     * The rendering calculation is done by the render method
-     */
-    private Vector2 position = new Vector2(25f, 0f);
+        Label.LabelStyle style = new Label.LabelStyle(roomTagFont, Color.WHITE);
+        roomNameLabel = new Label("",style);
 
-    /**
-     * This is the amount of time it takes for the tag to both float in and float out.
-     */
-    private float MAX_ANIM_TIME = Settings.TPS / 1.5f;
-
-    /**
-     * The current amount of time the animation has taken
-     */
-    private float animTime = 0f;
-
-    /**
-     * The max amount of time the window should stay rendered onto the screen
-     */
-    private float MAX_TIME_SHOWN = Settings.TPS * 5;
-
-    /**
-     * The current amount of time the window has been shown.
-     */
-    private float timeShown = 0f;
-
-    /**
-     * Initiate a new RoomTag. When the variable roomTag in NavigationScreen is NOT NULL, it is updated and rendered.
-     *
-     * @param roomName - The name to display.
-     */
-    public RoomTag(String roomName, Assets assets)
-    {
-        this.roomName = roomName;
+        add(roomNameLabel);
     }
 
-    /**
-     * This method renders the room tag to the provided SpriteBatch.
-     * <p>
-     * It is called by the screens render method.
-     *
-     * @param batch - The SpriteBatch to draw the tag to
-     */
-    public void render(SpriteBatch batch)
-    {
-        boolean toClose = false;
+    public void setRoomName(String roomName){
+        roomNameLabel.setText(roomName);
 
-        if (!batch.isDrawing()) {
-            batch.begin();
-            toClose = true;
-        }
+        //required for getting width of room name
+        GlyphLayout layout = new GlyphLayout(roomNameLabel.getStyle().font, roomName);
 
-        //10 Characters fits in the middle of the default size.
-        //Therefore, change the size of the box depending on amount of characters
-
-        int extraCharacters = roomName.length() - 10;
-
-        batch.draw(assets.roomTagBorder, position.x, Gdx.graphics.getHeight() - position.y, 350 + (15 * extraCharacters), 150);
-
-        assets.roomTagFont.setColor(Color.WHITE);
-        assets.roomTagFont.draw(batch, roomName, position.x * 5.1f, Gdx.graphics.getHeight() - position.y + 75);
-
-        if (toClose) {
-            batch.end();
-        }
+        setSize(layout.width + 50, roomNameLabel.getHeight() + 50);
+        setPosition(10, GameMain.GAME_HEIGHT);
     }
 
-    /**
-     * This method is called once per game tick. It is used to control the animation of the tag.
-     */
-    public void update()
-    {
-        if (animTime <= MAX_ANIM_TIME) {
-            animTime++;
-        } else if (timeShown <= MAX_TIME_SHOWN) {
-            timeShown++;
-        } else {
-            animTime++;
-
-            if (animTime >= 2 * MAX_ANIM_TIME) {
-//                GameMain.instance.getNavigationScreen().setRoomTag(null);
-            }
-        }
-
-        this.position.y = Interpolation.pow2.apply(0f, 175f, animTime / MAX_ANIM_TIME);
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        Color color = getColor();
+        batch.setColor(color.r, color.g, color.b, color.a * parentAlpha);
+        batch.draw(roomTagBackground,getX(), getY(), getWidth(), getHeight());
+        super.draw(batch, parentAlpha);
     }
 }

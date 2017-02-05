@@ -21,14 +21,9 @@ import static java.lang.Thread.sleep;
 /**
  * SpeechBox class
  * Used for rendering box containing text and buttons on screen
- * <p>
- * Usage:
- * SpeechBox sb = new SpeechBox(..)
- * sb.render();
- * <p>
  * Note: add to InputMultiplexer if using with other UI elements.
  */
-public class SpeechBox
+public class SpeechBox extends Table
 {
     public boolean isPressed;
     /**
@@ -50,16 +45,6 @@ public class SpeechBox
     private static final int BUTTON_ROW_HEIGHT = 40;
     private static final int TABLE_HEIGHT = (PADDING * 4) + TEXT_ROW_HEIGHT + BUTTON_ROW_HEIGHT;
     private static final int HEIGHT = TABLE_HEIGHT + (2 * BORDER_WIDTH);
-
-    /**
-     * The stage to render the elemts to
-     */
-    public Stage stage;
-
-    /**
-     * The timeout duration for a SpeechBox
-     */
-    public int timeoutDuration;
 
     /**
      * The name of the person talking, if any
@@ -87,38 +72,32 @@ public class SpeechBox
     /**
      * The constructor for the SpeechBox
      */
-    public SpeechBox(String content, ArrayList<SpeechBoxButton> buttonList, int timeout)
+    public SpeechBox(String content, ArrayList<SpeechBoxButton> buttonList)
     {
 
         textContent = content;
         buttons = buttonList;
-        this.timeoutDuration = timeout * Settings.TPS;
-        //if(isPressed){
-            setupStage();//}
-
+        setupStage();
     }
 
     /**
      * The constructor for the SpeechBox with personName
      */
-    public SpeechBox(String personName, String speechText, ArrayList<SpeechBoxButton> buttonList, int timeout)
+    public SpeechBox(String personName, String speechText, ArrayList<SpeechBoxButton> buttonList)
     {
         person = personName;
         textContent = speechText;
         buttons = buttonList;
-        //this.timeoutDuration = timeout * Settings.TPS;
-        //if(isPressed){
-            setupStage();//}
+        setupStage();
     }
 
     /**
      * The constructor for the SpeechBox without buttons
      */
-    public SpeechBox(String content, int timeout)
+    public SpeechBox(String content)
     {
         textContent = content;
         buttons = new ArrayList<>();
-        this.timeoutDuration = timeout * Settings.TPS;
        // if(isPressed){
             setupStage();//}
     }
@@ -126,12 +105,11 @@ public class SpeechBox
     /**
      * The constructor for the SpeechBox without buttons with personName
      */
-    public SpeechBox(String personName, String speechText, int timeout)
+    public SpeechBox(String personName, String speechText)
     {
         person = personName;
         textContent = speechText;
         buttons = new ArrayList<>();
-        this.timeoutDuration = timeout * Settings.TPS;
         //if(isPressed){
             setupStage();//}
     }
@@ -142,15 +120,12 @@ public class SpeechBox
      */
     private void setupStage()
     {
-        //Init stage
-        stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-
         initSkins();
 
-        //Init container
-        Container container = new Container();
-        container.setBounds(0, Y_OFFSET, WIDTH, HEIGHT);
-        container.setBackground(UIHelpers.getBackgroundDrawable(BORDER_COLOUR, WIDTH, HEIGHT));
+        setTransform(true);
+
+        setBounds(0, Y_OFFSET, WIDTH, HEIGHT);
+        setBackground(UIHelpers.getBackgroundDrawable(BORDER_COLOUR, WIDTH, HEIGHT));
 
         //Init table containing contents of speech box
         Table table = new Table();
@@ -160,12 +135,7 @@ public class SpeechBox
         fillTableContent(table);
 
         //Add table to container contents, and add padding
-        container.pad(BORDER_WIDTH);
-        container.setActor(table);
-
-
-        //Add container to stage for rendering later
-        stage.addActor(container);
+        pad(BORDER_WIDTH);
     }
 
 
@@ -248,30 +218,6 @@ public class SpeechBox
     }
 
     /**
-     * Renders the speech box
-     * Should be called within the render() method of a screen
-     */
-    public void render()
-    {
-        stage.act();
-        stage.draw();
-    }
-
-    /**
-     * This method is called once a tick by the logic Thread
-     */
-    public void update()
-    {
-        //isPressed = Boolean.FALSE;
-
-
-
-        if (this.timeoutDuration > 0) {
-            timeoutDuration--;
-        }
-    }
-
-    /**
      * Sets up skin variables used for defining UI control styles
      */
     private void initSkins()
@@ -338,25 +284,5 @@ public class SpeechBox
         fontStyle.fontColor = Color.SCARLET;
 
         personLabelSkin.add("default", fontStyle);
-    }
-
-
-    /**
-     * Disposes of SpeechBox resources
-     */
-    public void dispose()
-    {
-        stage.dispose();
-    }
-
-    /**
-     * This method is called on a window resize
-     *
-     * @param width  - the new width
-     * @param height - the new height
-     */
-    public void resize(int width, int height)
-    {
-        stage.getViewport().update(width, height, true);
     }
 }

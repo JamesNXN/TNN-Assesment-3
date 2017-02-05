@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="18" height="15" tilewidth="32" tileheight="32" nextobjectid="3">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="18" height="15" tilewidth="32" tileheight="32" nextobjectid="3">
+ <properties>
+  <property name="id" type="int" value="3"/>
+  <property name="name" value="Kitchen"/>
+ </properties>
  <tileset firstgid="1" name="tileset2" tilewidth="32" tileheight="32" tilecount="459" columns="17">
   <image source="tileset2.png" width="544" height="864"/>
  </tileset>

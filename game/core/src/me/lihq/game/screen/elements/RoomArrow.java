@@ -2,42 +2,92 @@ package me.lihq.game.screen.elements;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 import me.lihq.game.Assets;
+import me.lihq.game.Collidable;
+import me.lihq.game.Settings;
+import me.lihq.game.TileObject;
+import me.lihq.game.models.Door;
+import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.AbstractPerson;
+import me.lihq.game.people.Direction;
 import me.lihq.game.people.Player;
 
 /**
  * This is the arrow the indicates the movement to a new room when the player is on a floor mat.
  */
-public class RoomArrow extends Actor
+public class RoomArrow extends Actor implements TileObject, Collidable
 {
-    /**
-     * The player that the arrow is associated with
-     */
-    private Player player;
+    private TextureRegion image;
+    private Direction direction;
+    private Vector2Int tilePosition;
 
-    /**
-     * This constructs the RoomArrow, calling the super() method the the sprite class it extends
-     *
-     * @param player the player that the arrow is to be associated with
-     */
-    public RoomArrow(Player player, Assets assets)
+    private Rectangle collisionBox;
+
+    private boolean isPlayerOn = false;
+
+    public RoomArrow(Door exit, TextureAtlas arrowAtlas)
     {
-        assets.getArrowDirection("NORTH");
-        this.player = player;
+        direction = exit.getDirection();
+        image = new TextureRegion(getArrowTexture(arrowAtlas, direction));
+        setSize(Settings.TILE_SIZE, Settings.TILE_SIZE);
+        tilePosition = new Vector2Int();
+        setTilePosition(exit.getTilePosition().x - direction.getDx(),
+                exit.getTilePosition().y - direction.getDy());
 
+
+        collisionBox = new Rectangle(getX(), getY(), exit.getCollisionBox().getWidth(), exit.getCollisionBox().getHeight());
+        setVisible(false);
     }
 
+    private TextureRegion getArrowTexture(TextureAtlas atlas, Direction direction){
+        TextureRegion arrowTexture = null;
+        switch (direction){
+            case EAST:
+                arrowTexture = new TextureRegion(atlas.findRegion("rightArrow"));
+                break;
 
-    /**
-     * This is called every tick, all the game logic related to the RoomArrow is contained here,
-     * it checks to see if the player is on a trigger tile (a floor mat for example) and if so displays an arrow
-     * otherwise it is hidden
-     */
-    public void update()
-    {
+            case WEST:
+                arrowTexture = new TextureRegion(atlas.findRegion("leftArrow"));
+                break;
 
+            case NORTH:
+                arrowTexture = new TextureRegion(atlas.findRegion("upArrow"));
+                break;
+
+            case SOUTH:
+                arrowTexture = new TextureRegion(atlas.findRegion("downArrow"));
+                break;
+        }
+        return arrowTexture;
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        // draw it in the center
+        batch.draw(image, getX() + collisionBox.getWidth() / 2 - getWidth() / 2,
+                getY() + collisionBox.getHeight() / 2 - getHeight() / 2, getWidth(), getHeight());
+    }
+
+    @Override
+    public Rectangle getCollisionBox() {
+        return collisionBox;
+    }
+
+    @Override
+    public void setTilePosition(int x, int y) {
+        tilePosition.x = x;
+        tilePosition.y = y;
+
+        setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
+    }
+
+    @Override
+    public Vector2Int getTilePosition() {
+        return tilePosition;
     }
 }

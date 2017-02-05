@@ -1,5 +1,6 @@
 package me.lihq.game;
 
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.Array;
 
 import me.lihq.game.models.Room;
@@ -9,7 +10,6 @@ import me.lihq.game.models.Room;
  */
 public class RoomManager
 {
-    private Assets assets;
     private Array<Room> roomArray;
 
     /**
@@ -17,39 +17,18 @@ public class RoomManager
      */
     public RoomManager(Assets assets)
     {
-        this.assets = assets;
-        initialiseRooms();
+        roomArray = new Array<>();
+        initialiseRooms(assets);
     }
 
     /**
      * This function initialises all the rooms of the Ron Cooke Hub and their transitions
      */
-    public void initialiseRooms()
+    private void initialiseRooms(Assets assets)
     {
-
-        Room mainRoom = new Room(0, assets.mainRoomMap, "Main Foyer");
-
-        Room rch037 = new Room(1, assets.rch037Map, "RCH/037 Lecture Theatre");
-
-        Room portersOffice = new Room(2, assets.portersOfficeMap, "Porters Office");
-
-        Room kitchen = new Room(3, assets.kitchenMap, "Kitchen");
-
-        Room islandOfInteraction = new Room(4, assets.islandMap, "Island of Interaction");
-
-        Room toilet = new Room(5, assets.toiletMap, "Toilet");
-
-        Room computerRoom = new Room(6, assets.computerRoomMap, "Computer Room");
-
-        Room lakeHouse = new Room(7, assets.lakehouseMap, "Lakehouse");
-
-        Room outside = new Room(8, assets.outsideMap, "Outside Ron Cooke Hub");
-
-        Room pod = new Room(9, assets.podMap, "Pod");
-
-
-        roomArray = new Array<>();
-        roomArray.addAll(mainRoom, rch037, portersOffice, kitchen, islandOfInteraction, toilet, computerRoom, lakeHouse, outside, pod);
+        for (TiledMap map : assets.mapArray){
+            roomArray.add(new Room(map, assets.arrowAtlas));
+        }
 
         /**
          * Assign the murder room

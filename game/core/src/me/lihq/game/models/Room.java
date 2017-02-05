@@ -1,5 +1,6 @@
 package me.lihq.game.models;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -7,7 +8,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.utils.Array;
 
+import me.lihq.game.Assets;
 import me.lihq.game.people.NPC;
+import me.lihq.game.screen.elements.RoomArrow;
 
 /**
  * This class defines a room which is a game representation of a real world room in the Ron Cooke Hub.
@@ -35,21 +38,20 @@ public class Room
     private Array<NPC> npcArray;
     private Array<Door> exitArray;
     private Array<Door> entryArray;
+    private Array<RoomArrow> roomArrowArray;
 
     private boolean isMurderRoom = false;
 
     /**
      * Constructor that builds a Room object from the given parameters
      *
-     * @param id      - The integer ID of the room
      * @param map - Tmx map file.
-     * @param name    - The name of the room
      */
-    public Room(int id, TiledMap map, String name)
+    public Room(TiledMap map, TextureAtlas roomArrowAtlas)
     {
-        this.ID = id;
+        this.ID = (int) map.getProperties().get("id");
         this.mapFile = map;
-        this.name = name;
+        this.name = (String) map.getProperties().get("name");
 
         mapFile.getLayers().get("Collision").setVisible(false);
         mapFile.getLayers().get("HidingSpot").setVisible(false);
@@ -58,9 +60,11 @@ public class Room
         npcArray = new Array<>();
         exitArray = new Array<>();
         entryArray = new Array<>();
+        roomArrowArray = new Array<>();
 
         exitArray.addAll(getExit());
         entryArray.addAll(getEntry());
+        roomArrowArray.addAll(getRoomArrow(exitArray, roomArrowAtlas));
 
         hidingSpots = new Array<>();
         hidingSpots.addAll(getHidingSpots());
@@ -134,6 +138,8 @@ public class Room
         return entryArray;
     }
 
+    public Array<RoomArrow> getRoomArrowArray(){ return roomArrowArray; }
+
     /**
      * Gets exit tiles of the room
      *
@@ -164,6 +170,14 @@ public class Room
         return entryArray;
     }
 
+    private Array<RoomArrow> getRoomArrow(Array<Door> exitArray, TextureAtlas arrowAtlas){
+        Array<RoomArrow> arrowArray = new Array<>();
+
+        for (Door exit : exitArray){
+            arrowArray.add(new RoomArrow(exit, arrowAtlas));
+        }
+        return arrowArray;
+    }
     public TiledMap getTiledMap()
     {
         return this.mapFile;

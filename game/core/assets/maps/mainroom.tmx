@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="29" height="33" tilewidth="32" tileheight="32" nextobjectid="8">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="29" height="33" tilewidth="32" tileheight="32" nextobjectid="15">
+ <properties>
+  <property name="id" type="int" value="0"/>
+  <property name="name" value="Main Foyer"/>
+ </properties>
  <tileset firstgid="1" name="tileset2" tilewidth="32" tileheight="32" tilecount="459" columns="17">
   <image source="tileset2.png" width="544" height="864"/>
  </tileset>
@@ -275,7 +279,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="Collision" width="29" height="33">
+ <layer name="Collision" width="29" height="33" visible="0">
   <data encoding="csv">
 460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,
 460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,
@@ -350,39 +354,88 @@
 </data>
  </layer>
  <objectgroup name="Transition">
-  <object id="1" name="toComputerRoom" x="32" y="768" width="32" height="32">
+  <object id="1" name="toComputerRoom" type="Exit" x="32" y="768" width="32" height="32">
    <properties>
     <property name="connectedRoomId" type="int" value="6"/>
+    <property name="direction" value="WEST"/>
    </properties>
   </object>
-  <object id="2" name="toOutside" x="96" y="896" width="62" height="32">
+  <object id="2" name="toOutside" type="Exit" x="96" y="896" width="62" height="32">
    <properties>
     <property name="connectedRoomId" type="int" value="8"/>
+    <property name="direction" value="SOUTH"/>
    </properties>
   </object>
-  <object id="3" name="toRCH/037" x="352" y="1024" width="64" height="32">
+  <object id="3" name="toRCH/037" type="Exit" x="352" y="1024" width="64" height="32">
    <properties>
     <property name="connectedRoomId" type="int" value="1"/>
+    <property name="direction" value="SOUTH"/>
    </properties>
   </object>
-  <object id="4" name="toToilet" x="608" y="960" width="32" height="32">
+  <object id="4" name="toToilet" type="Exit" x="608" y="960" width="32" height="32">
    <properties>
     <property name="connectedRoomId" type="int" value="5"/>
+    <property name="direction" value="EAST"/>
    </properties>
   </object>
-  <object id="5" name="toKitchen" x="896" y="608" width="32" height="32">
+  <object id="5" name="toKitchen" type="Exit" x="896" y="608" width="32" height="32">
    <properties>
     <property name="connectedRoomId" type="int" value="3"/>
+    <property name="direction" value="EAST"/>
    </properties>
   </object>
-  <object id="6" name="toIsland" x="896" y="96" width="32" height="32">
+  <object id="6" name="toIsland" type="Exit" x="864" y="96" width="32" height="32">
    <properties>
     <property name="connectedRoomId" type="int" value="4"/>
+    <property name="direction" value="EAST"/>
    </properties>
   </object>
-  <object id="7" name="toPorters" x="576" y="480" width="32" height="32">
+  <object id="7" name="toPorters" type="Exit" x="576" y="480" width="32" height="32">
    <properties>
     <property name="connectedRoomId" type="int" value="2"/>
+    <property name="direction" value="EAST"/>
+   </properties>
+  </object>
+  <object id="8" name="fromComputerRoom" type="Entry" x="64" y="768" width="32" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="6"/>
+    <property name="direction" value="EAST"/>
+   </properties>
+  </object>
+  <object id="9" name="fromOutside" type="Entry" x="96" y="864" width="64" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="8"/>
+    <property name="direction" value="NORTH"/>
+   </properties>
+  </object>
+  <object id="10" name="fromRCH/037" type="Entry" x="352" y="992" width="64" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="1"/>
+    <property name="direction" value="NORTH"/>
+   </properties>
+  </object>
+  <object id="11" name="fromToilet" type="Entry" x="576" y="960" width="32" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="5"/>
+    <property name="direction" value="WEST"/>
+   </properties>
+  </object>
+  <object id="12" name="fromKitchen" type="Entry" x="864" y="608" width="32" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="3"/>
+    <property name="direction" value="WEST"/>
+   </properties>
+  </object>
+  <object id="13" name="fromIsland" type="Entry" x="832" y="96" width="32" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="4"/>
+    <property name="direction" value="WEST"/>
+   </properties>
+  </object>
+  <object id="14" name="fromPorters" type="Entry" x="544" y="480" width="32" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="2"/>
+    <property name="direction" value="WEST"/>
    </properties>
   </object>
  </objectgroup>

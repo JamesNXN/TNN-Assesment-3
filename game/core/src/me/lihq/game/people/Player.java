@@ -10,6 +10,7 @@ import me.lihq.game.Collidable;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.screen.NavigationScreen;
+import me.lihq.game.screen.elements.RoomArrow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class Player extends AbstractPerson
      * This stores whether the player is in the middle of a conversation or not
      */
     public boolean isInConversation = false;
+
     /**
      * The personality will be a percent score (0-100) 0 being angry, 50 being neutral, and 100 being happy/nice.
      */
@@ -121,37 +123,35 @@ public class Player extends AbstractPerson
         }
     }
 
-    /**
-     * This method tries to get an NPC if the player is facing one
-     *
-     * @return (NPC) returns null if there isn't an NPC in front of them or the NPC is moving. Otherwise, it returns the NPC
-     */
-//    private NPC getFacingNPC()
-//    {
-//
-//    }
-
-    /**
-     * This method checks to see if the tile the player is facing has a clue hidden in it or not
-     */
-//    private void checkForClue()
-//    {
-//        if (clueFound != null) {
-//            GameMain.instance.getNavigationScreen().speechboxMngr.addSpeechBox(new SpeechBox("You found: " + clueFound.getDescription(), 6));
-//            this.collectedClues.add(clueFound);
-//        } else {
-//            GameMain.instance.getNavigationScreen().speechboxMngr.addSpeechBox(new SpeechBox("Sorry no clue here", 1));
-//        }
-//    }
-
-
     @Override
     public void act(float delta) {
         super.act(delta);
-        Door collidingExit = doorCollisionDetection(collisionBox);
-        if (collidingExit != null) {
-            screen.changeRoom(collidingExit.getConnectedRoomId());
+
+        RoomArrow arrow = roomArrowCollisionDetection(collisionBox);
+        if (arrow != null){
+            arrow.setVisible(true);
         }
+
+        //prevents colliding with doors multiple times during transition
+        if (isCanMove()) {
+            Door collidingExit = doorCollisionDetection(collisionBox);
+            if (collidingExit != null) {
+                setCanMove(false);
+                screen.changeRoom(collidingExit.getConnectedRoomId());
+            }
+        }
+    }
+
+    private RoomArrow roomArrowCollisionDetection(Rectangle collisionBox){
+        Array<RoomArrow> arrowArray = getCurrentRoom().getRoomArrowArray();
+
+        for (RoomArrow arrow : arrowArray){
+            if (collisionBox.overlaps(arrow.getCollisionBox())){
+                return arrow;
+            }
+            arrow.setVisible(false);
+        }
+        return null;
     }
 
     /**

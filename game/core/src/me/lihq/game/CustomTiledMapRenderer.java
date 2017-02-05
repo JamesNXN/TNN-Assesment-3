@@ -14,27 +14,29 @@ import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.screen.elements.DebugOverlay;
 
 /**
- * TiledMapRenderer
+ * CustomTiledMapRenderer
  * <p>
- * This class is an extension of the OrthogonalTiledMapRenderer that deals with
- * rendering sprites as well. The last layer of the map is designed to be drawn OVER
- * the player sprite and NPCs. So this controls that by drawing each layer until it comes to the last
- * one, then it draws the sprites, then the final layer.
+ * This class is an extension of the OrthogonalTiledMapRenderer
+ * The last layer of the map is designed to be drawn OVER
+ * the player and NPCs. So this controls that by drawing each layer until it comes to the last
+ * one, then it draws the actors, then the final layer.
  */
-public class TiledMapRenderer extends OrthogonalTiledMapRenderer
+public class CustomTiledMapRenderer extends OrthogonalTiledMapRenderer
 {
-    private Room renderingRoom;
-
+    Room renderingRoom;
     /**
      * Constructor for the map renderer
      *
      * @param room - The room that is to be rendered using this renderer
      */
-    public TiledMapRenderer(Room room, SpriteBatch spriteBatch)
+    public CustomTiledMapRenderer(Room room, SpriteBatch spriteBatch)
     {
         super(room.getTiledMap(), spriteBatch);
-
         renderingRoom = room;
+    }
+
+    public void setRenderingRoom(Room newRoom){
+        renderingRoom = newRoom;
     }
 
     /**
@@ -43,9 +45,10 @@ public class TiledMapRenderer extends OrthogonalTiledMapRenderer
      * It draws all the map layers until the final one. The last layer will be drawn after
      * stage is drawn
      */
-    @Override
     public void render()
     {
+        map = renderingRoom.getTiledMap();
+
         beginRender();
 
         int amountOfLayers = map.getLayers().getCount();
@@ -81,6 +84,8 @@ public class TiledMapRenderer extends OrthogonalTiledMapRenderer
      * render final layer
      */
     public void renderLastLayer(){
+        map = renderingRoom.getTiledMap();
+
         beginRender();
 
         MapLayer layer = map.getLayers().get("Over Player");

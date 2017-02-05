@@ -2,9 +2,12 @@ package me.lihq.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.GameMain;
 import me.lihq.game.screen.elements.MainMenu;
+import me.lihq.game.screen.elements.PauseMenu;
 
 /**
  * Created by vishal on 18/12/2016.
@@ -14,18 +17,20 @@ public class PauseScreen extends AbstractScreen
     /**
      * This is the menu element for the pause menu
      */
-    private MainMenu pauseMenu;
+    private Stage stage;
+    private PauseMenu pauseMenu;
 
     /**
      * This constructor sets the relevant properties of the class.
      *
      * @param game this provides access to the gameMain class so that screens can set the states of the game.
      */
-    public PauseScreen(GameMain game)
+    public PauseScreen(GameMain game, NavigationScreen screen)
     {
         super(game);
+        stage = new Stage(new FitViewport(GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT));
         //Creates the Pause menu
-        pauseMenu = new MainMenu(game);
+        pauseMenu = new PauseMenu(game, screen);
     }
 
     /**
@@ -34,6 +39,8 @@ public class PauseScreen extends AbstractScreen
     @Override
     public void show()
     {
+        stage.addActor(pauseMenu);
+        Gdx.input.setInputProcessor(stage);
     }
 
     /**
@@ -44,6 +51,8 @@ public class PauseScreen extends AbstractScreen
     @Override
     public void render(float delta)
     {
+        stage.act();
+        stage.draw();
     }
 
     /**
@@ -55,7 +64,7 @@ public class PauseScreen extends AbstractScreen
     @Override
     public void resize(int width, int height)
     {
-
+        stage.getViewport().update(width, height);
     }
 
     /**
@@ -91,5 +100,6 @@ public class PauseScreen extends AbstractScreen
     @Override
     public void dispose()
     {
+        stage.dispose();
     }
 }

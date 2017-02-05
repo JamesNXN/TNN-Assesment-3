@@ -89,7 +89,7 @@ public class GameMain extends Game
     @Override
     public void dispose()
     {
-
+        assets.dispose();
     }
 
     /**

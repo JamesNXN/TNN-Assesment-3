@@ -16,6 +16,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.utils.Array;
+
+import me.lihq.game.people.Direction;
 
 import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
@@ -39,10 +42,7 @@ public class Assets
      * These TextureRegions store the 4 different directions that the room changing
      * arrows can face.
      */
-    private TextureRegion upArrow;
-    private TextureRegion downArrow;
-    private TextureRegion leftArrow;
-    private TextureRegion rightArrow;
+    public TextureAtlas arrowAtlas;
 
     /**
      *  Sprite sheets for abstract person objects
@@ -59,16 +59,7 @@ public class Assets
      * map data
      */
 
-    public TiledMap mainRoomMap;
-    public TiledMap rch037Map;
-    public TiledMap portersOfficeMap;
-    public TiledMap kitchenMap;
-    public TiledMap islandMap;
-    public TiledMap toiletMap;
-    public TiledMap computerRoomMap;
-    public TiledMap lakehouseMap;
-    public TiledMap outsideMap;
-    public TiledMap podMap;
+    public Array<TiledMap> mapArray;
 
     /**
      * Texture for the RoomTag {@link me.lihq.game.screen.elements.RoomTag}
@@ -90,6 +81,7 @@ public class Assets
 
     public Assets(){
         manager = new AssetManager();
+        mapArray = new Array<>();
     }
 
     /**
@@ -143,7 +135,7 @@ public class Assets
         //roomTagFont init
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/VT323-Regular.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-        parameter.size = 45;
+        parameter.size = 50;
         roomTagFont = generator.generateFont(parameter);
         generator.dispose();
 
@@ -157,27 +149,19 @@ public class Assets
         willSpriteSheet = manager.get("people/NPCs/will.pack");
 
         // map assign
-        computerRoomMap = manager.get("maps/computerRoom.tmx");
-        islandMap = manager.get("maps/island.tmx");
-        kitchenMap = manager.get("maps/kitchen.tmx");
-        lakehouseMap = manager.get("maps/lakehouse.tmx");
-        mainRoomMap = manager.get("maps/mainRoom.tmx");
-        outsideMap = manager.get("maps/outside.tmx");
-        podMap = manager.get("maps/pod.tmx");
-        portersOfficeMap = manager.get("maps/portersOffice.tmx");
-        rch037Map = manager.get("maps/rch037.tmx");
-        toiletMap = manager.get("maps/toilet.tmx");
+        mapArray.add(manager.get("maps/computerRoom.tmx"));
+        mapArray.add(manager.get("maps/island.tmx"));
+        mapArray.add(manager.get("maps/kitchen.tmx"));
+        mapArray.add(manager.get("maps/lakehouse.tmx"));
+        mapArray.add(manager.get("maps/mainRoom.tmx"));
+        mapArray.add(manager.get("maps/outside.tmx"));
+        mapArray.add(manager.get("maps/pod.tmx"));
+        mapArray.add(manager.get("maps/portersOffice.tmx"));
+        mapArray.add(manager.get("maps/rch037.tmx"));
+        mapArray.add(manager.get("maps/toilet.tmx"));
 
         //arrow texture assign
-        TextureAtlas arrows = manager.get("arrows.pack");
-        rightArrow = new TextureRegion(arrows.findRegion("rightArrow"));
-        upArrow = new TextureRegion(arrows.findRegion("upArrow"));
-
-        leftArrow = new TextureRegion(rightArrow);
-        leftArrow.flip(true, false);
-
-        downArrow = new TextureRegion(upArrow);
-        downArrow.flip(false, true);
+        arrowAtlas = manager.get("arrows.pack");
 
         // clue sheet assign
         clueSheet = manager.get("clueSheet.png");
@@ -222,28 +206,6 @@ public class Assets
         menuSkin.add("default", textButtonStyle);
     }
 
-
-    /**
-     * This method takes a direction and returns the corresponding arrow asset for that direction
-     *
-     * @param direction - The direction to fetch
-     * @return (TextureRegion) the corresponding TextureRegion
-     */
-    public TextureRegion getArrowDirection(String direction)
-    {
-        if (direction.equals("NORTH")) {
-            return upArrow;
-        } else if (direction.equals("SOUTH")) {
-            return downArrow;
-        } else if (direction.equals("WEST")) {
-            return leftArrow;
-        } else if (direction.equals("EAST")) {
-            return rightArrow;
-        }
-
-        return null;
-    }
-
     /**
      * This method gets the default roomTagFont but at the requested size
      *
@@ -263,5 +225,9 @@ public class Assets
 
     public AssetManager getManager() {
         return manager;
+    }
+
+    public void dispose(){
+        manager.dispose();
     }
 }

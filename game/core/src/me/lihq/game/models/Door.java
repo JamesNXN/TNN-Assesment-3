@@ -22,8 +22,8 @@ public class Door extends Actor implements Collidable, TileObject{
         collisionBox = mapObject.getRectangle();
 
         setPosition(collisionBox.getX(), collisionBox.getY());
-        tilePosition = new Vector2Int((int)(collisionBox.getX() / collisionBox.getWidth()),
-                (int)(collisionBox.getY() / collisionBox.getHeight()));
+        tilePosition = new Vector2Int((int)(collisionBox.getX() / Settings.TILE_SIZE),
+                (int)(collisionBox.getY() / Settings.TILE_SIZE));
 
         switch (String.valueOf(mapObject.getProperties().get("direction"))){
             case "EAST":

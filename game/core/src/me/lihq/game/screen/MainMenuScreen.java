@@ -16,6 +16,8 @@ public class MainMenuScreen extends AbstractScreen
 {
     private Stage stage;
 
+    private MainMenu menu;
+
     /**
      * The constructor for the MainMenuScreen
      *
@@ -28,8 +30,8 @@ public class MainMenuScreen extends AbstractScreen
         stage = new Stage(new FitViewport(GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT));
 
         //Creates a MainMenu object thus creating the main menu
-        MainMenu menu = new MainMenu(game);
-        stage.addActor(menu);
+
+        menu = new MainMenu(game);
     }
 
     /**
@@ -38,6 +40,7 @@ public class MainMenuScreen extends AbstractScreen
     @Override
     public void show()
     {
+        stage.addActor(menu);
         Gdx.input.setInputProcessor(stage);
     }
 

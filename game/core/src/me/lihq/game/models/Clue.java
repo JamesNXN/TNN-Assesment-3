@@ -1,5 +1,6 @@
 package me.lihq.game.models;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -110,7 +111,11 @@ public class Clue extends Actor implements Collidable, TileObject
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        Color color = batch.getColor();
+        batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a * parentAlpha);
+
         batch.draw(clueGlint.getKeyFrame(animStateTime,true), getX(), getY(), Settings.TILE_SIZE, Settings.TILE_SIZE);
+        batch.setColor(color);
     }
 
     @Override

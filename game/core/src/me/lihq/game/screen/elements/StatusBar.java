@@ -15,13 +15,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.GameMain;
+import me.lihq.game.screen.NavigationScreen;
 import me.lihq.game.screen.PauseScreen;
 
 /**
  * The status bar shown throughout the game
  * Contains UI controls for presenting the game status to the player
  */
-public class StatusBar
+public class StatusBar extends Table
 {
     /**
      * The height of the StatusBar
@@ -36,7 +37,7 @@ public class StatusBar
     /**
      * The width of the StatusBar
      */
-    private static final int WIDTH = (int) Gdx.graphics.getWidth() / ITEM_COUNT;
+    private static final int WIDTH = Gdx.graphics.getWidth() / ITEM_COUNT;
 
     /**
      * The background color of the StatusBar
@@ -44,84 +45,44 @@ public class StatusBar
     private static final Color BACKGROUND_COLOR = Color.GRAY;
 
     /**
-     * The stage to render the elements to
-     */
-    public Stage stage;
-
-    /**
      * The different skins for different elements
      */
     private Skin buttonSkin;
     private Skin labelSkin;
-    private PauseScreen pauseScreen;
 
     /**
      * The initializer for the StatusBar
      * Sets up UI controls and adds them to the stage ready for rendering
      */
-    public StatusBar(final GameMain game)
+    public StatusBar(final GameMain game, NavigationScreen screen)
     {
-        stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-        pauseScreen = new PauseScreen(game);
         initSkins();
 
-        Table statusBar = new Table();
-        statusBar.setSize(Gdx.graphics.getWidth(), HEIGHT);
-        statusBar.setPosition(0, 0);
-        statusBar.row().height(HEIGHT);
-        statusBar.defaults().width(WIDTH);
+        setSize(Gdx.graphics.getWidth(), HEIGHT);
+        setPosition(0, 0);
+        row().height(HEIGHT);
+        defaults().width(WIDTH);
 
         Label scoreLabel = new Label("Score: 0", labelSkin);
         scoreLabel.setAlignment(Align.center, Align.center);
-        statusBar.add(scoreLabel).uniform();
+        add(scoreLabel).uniform();
 
         TextButton personalityMeter = new TextButton("Personality Meter", buttonSkin);
-        statusBar.add(personalityMeter).uniform();
+        add(personalityMeter).uniform();
 
         TextButton inventoryButton = new TextButton("Inventory", buttonSkin);
-        statusBar.add(inventoryButton).uniform();
+        add(inventoryButton).uniform();
 
         TextButton pauseButton = new TextButton("Pause", buttonSkin);
-        statusBar.add(pauseButton).uniform();
+        add(pauseButton).uniform();
         pauseButton.addListener(new ClickListener()
         {
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
-                game.setScreen(pauseScreen);
+                game.setScreen(new PauseScreen(game, screen));
             }
         });
-
-        stage.addActor(statusBar);
-    }
-
-    /**
-     * Renders the status bar
-     * Should be called within the render() method of a screen
-     */
-    public void render()
-    {
-        stage.act();
-        stage.draw();
-    }
-
-    /**
-     * This method is called on a window resize
-     *
-     * @param width  - the new width
-     * @param height - the new height
-     */
-    public void resize(int width, int height)
-    {
-        stage.getViewport().update(width, height, true);
-    }
-
-    /**
-     * This disposes all the elements
-     */
-    public void dispose()
-    {
-        stage.dispose();
     }
 
     /**
@@ -138,7 +99,6 @@ public class StatusBar
      */
     private void initButtonSkin()
     {
-        //Create a roomTagFont
         BitmapFont font = new BitmapFont();
         buttonSkin = new Skin();
         buttonSkin.add("default", font);
@@ -165,7 +125,6 @@ public class StatusBar
      */
     private void initLabelSkin()
     {
-        //Create a roomTagFont
         BitmapFont font = new BitmapFont();
         labelSkin = new Skin();
 

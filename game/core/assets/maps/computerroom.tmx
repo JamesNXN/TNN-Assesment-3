@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="18" tilewidth="32" tileheight="32" nextobjectid="4">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="16" height="18" tilewidth="32" tileheight="32" nextobjectid="10">
+ <properties>
+  <property name="id" type="int" value="6"/>
+  <property name="name" value="Computer Room"/>
+ </properties>
  <tileset firstgid="1" name="tileset2" tilewidth="32" tileheight="32" tilecount="459" columns="17">
   <image source="tileset2.png" width="544" height="864"/>
  </tileset>
@@ -196,19 +200,40 @@
 </data>
  </layer>
  <objectgroup name="Transition">
-  <object id="1" name="toMainFoyer" x="32" y="480" width="32" height="32">
+  <object id="1" name="toMainFoyer" type="Exit" x="32" y="480" width="32" height="32">
    <properties>
     <property name="connectedRoomId" type="int" value="0"/>
+    <property name="direction" value="WEST"/>
    </properties>
   </object>
-  <object id="2" name="toRCH/037" x="224" y="544" width="64" height="32">
+  <object id="2" name="toRCH/037" type="Exit" x="224" y="544" width="64" height="32">
    <properties>
     <property name="connectedRoomId" type="int" value="1"/>
+    <property name="direction" value="SOUTH"/>
    </properties>
   </object>
-  <object id="3" name="toLakeHouse" x="448" y="192" width="32" height="32">
+  <object id="3" name="toLakeHouse" type="Exit" x="448" y="192" width="32" height="32">
    <properties>
     <property name="connectedRoomId" type="int" value="7"/>
+    <property name="direction" value="EAST"/>
+   </properties>
+  </object>
+  <object id="4" name="fromMainFoyer" type="Entry" x="64" y="480" width="32" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="0"/>
+    <property name="direction" value="EAST"/>
+   </properties>
+  </object>
+  <object id="7" name="fromRCH/037" type="Entry" x="224" y="512" width="64" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="1"/>
+    <property name="direction" value="NORTH"/>
+   </properties>
+  </object>
+  <object id="9" name="fromLakeHouse" type="Entry" x="416" y="192" width="32" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="7"/>
+    <property name="direction" value="WEST"/>
    </properties>
   </object>
  </objectgroup>

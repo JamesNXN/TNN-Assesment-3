@@ -191,13 +191,10 @@ public class GamepadAddon implements ControllerListener {
 
         timer++;
 
-        if (timer > Settings.TPS / 12) {
-//            player.move(goTo);
-            return;
         }
 
-        if (player.getState() != PersonState.WALKING) {
-            player.setDirection(goTo);
-        }
-    }
+////        if (player.getState() != PersonState.WALKING) {
+////            player.setDirection(goTo);
+////        }
+//    }
 }

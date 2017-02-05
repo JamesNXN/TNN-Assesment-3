@@ -1,5 +1,6 @@
 package me.lihq.game.people;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -33,9 +34,9 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
      */
     private static final int SPRITE_WIDTH = 32;
     /**
-     * This is whether the NPC can move or not. It is mainly used to not let them move during conversation
+     * This is whether the NPC can move or not. It is mainly used to not let them move during conversation or room transition
      */
-    public boolean canMove = true;
+    private boolean canMove = true;
 
     private final float MOVE_SPEED = 100f;
 
@@ -210,7 +211,12 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
                 currentFrame = walkDown.getKeyFrame(animStateTime, true);
         }
 
+        //necessary for alpha actions
+        Color color = batch.getColor();
+        batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a * parentAlpha);
+
         batch.draw(currentFrame, getX(), getY(), SPRITE_WIDTH, SPRITE_HEIGHT);
+        batch.setColor(color);
     }
 
     /**
@@ -286,6 +292,14 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
     public void setCurrentRoom(Room room)
     {
         this.currentRoom = room;
+    }
+
+    public boolean isCanMove() {
+        return canMove;
+    }
+
+    public void setCanMove(boolean canMove) {
+        this.canMove = canMove;
     }
 
     public Vector2Int getTilePosition()

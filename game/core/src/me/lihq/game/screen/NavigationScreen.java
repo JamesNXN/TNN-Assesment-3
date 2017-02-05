@@ -2,16 +2,13 @@ package me.lihq.game.screen;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.*;
@@ -21,10 +18,12 @@ import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.Direction;
 import me.lihq.game.people.NPC;
+import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
-import me.lihq.game.people.controller.GamepadAddon;
 import me.lihq.game.people.controller.PlayerController;
 import me.lihq.game.screen.elements.DebugOverlay;
+import me.lihq.game.screen.elements.FadeInOut;
+import me.lihq.game.screen.elements.Gui;
 import me.lihq.game.screen.elements.RoomArrow;
 import me.lihq.game.screen.elements.RoomTag;
 import me.lihq.game.screen.elements.StatusBar;
@@ -41,65 +40,33 @@ public class NavigationScreen extends AbstractScreen
      * The controller that listens for key inputs
      */
     public PlayerController playerController;
-    /**
-     * This is the SpeechboxManager for the main game
-     */
-    public SpeechboxManager speechboxMngr;
+
     /**
      * This is the main ConversationManager that controls the conversation mechanic
      */
-    public ConversationManagement convMngt;
-    /**
-     * This boolean determines whether the black is fading in or out
-     */
-    private boolean fadeToBlack = true;
-    /**
-     * This is the current map that is being shown
-     */
-    private TiledMap map;
-    /**
-     * This boolean determines whether the map needs to be updated in the next render loop
-     */
-    private boolean changeMap = false;
+//    public ConversationManagement convMngt;
+
     /**
      * This is the list of NPCs in the current Room
      */
     private Group characterGroup;
-
     private Group clueGroup;
+    private Group roomArrowGroup;
 
     /**
      * This is the map renderer
      */
-    private TiledMapRenderer tiledMapRenderer;
+    private CustomTiledMapRenderer tiledMapRenderer;
 
-    private SpriteBatch spriteBatch;
-
-    /**
-     * This stores whether the game is paused or not
-     */
-    private boolean pause = false;
     /**
      * This is the StatusBar that shows at the bottom
      */
     private StatusBar statusBar;
 
     /**
-     * This determines whether the player is currently changing rooms, it will fade out to black, change
-     * the room, then fade back in.
+     * The black actor that is used to fade in/out
      */
-    private boolean roomTransition = false;
-
-    /**
-     * The black sprite that is used to fade in/out
-     */
-    private Sprite BLACK_BACKGROUND = new Sprite();
-
-
-    /**
-     * The Sprite that is to draw the arrows on the screen by doors
-     */
-    private RoomArrow arrow;
+    private FadeInOut fadeInOut;
 
     /**
      * This is the room name tag that is to be rendered to the screen
@@ -112,9 +79,14 @@ public class NavigationScreen extends AbstractScreen
      * gamepad listener for 360 controllers on windows 10 only!!!
      */
 
-    private GamepadAddon gamePad;
+//    private GamepadAddon gamePad;
 
-    private Stage stage;
+    private Stage gameWorldStage;
+    private SpriteBatch gameWorldBatch;
+
+    private Gui gui;
+    private Stage guiStage;
+    private SpriteBatch guiBatch;
 
     /**
      * Initialises the navigation screen
@@ -136,9 +108,9 @@ public class NavigationScreen extends AbstractScreen
         Vector2Int randomLocation = player.getCurrentRoom().getRandomLocation();
         player.setTilePosition(randomLocation.x, randomLocation.y);
 
-        spriteBatch = new SpriteBatch();
-        stage = new Stage(new FitViewport(GameMain.GAME_WIDTH / Settings.ZOOM,
-                GameMain.GAME_HEIGHT / Settings.ZOOM), spriteBatch);
+        gameWorldBatch = new SpriteBatch();
+        gameWorldStage = new Stage(new FitViewport(GameMain.GAME_WIDTH / Settings.ZOOM,
+                GameMain.GAME_HEIGHT / Settings.ZOOM), gameWorldBatch);
 
         characterGroup = new Group();
         characterGroup.setName("characterGroup");
@@ -146,28 +118,24 @@ public class NavigationScreen extends AbstractScreen
         clueGroup = new Group();
         clueGroup.setName("clueGroup");
 
-        Pixmap pixMap = new Pixmap(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), Pixmap.Format.RGBA8888);
+        roomArrowGroup = new Group();
+        roomArrowGroup.setName("roomArrowGroup");
 
-        pixMap.setColor(Color.BLACK);
-        pixMap.fill();
+        tiledMapRenderer = new CustomTiledMapRenderer(player.getCurrentRoom(), gameWorldBatch);
 
-        BLACK_BACKGROUND = new Sprite(new Texture(pixMap));
 
-        tiledMapRenderer = new TiledMapRenderer(player.getCurrentRoom(), spriteBatch);
+        guiBatch = new SpriteBatch();
+        guiStage = new Stage(new FitViewport(GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT), guiBatch);
 
-        statusBar = new StatusBar(game);
+        gui = new Gui(game, this);
 
-        speechboxMngr = new SpeechboxManager();
+        fadeInOut = new FadeInOut();
 
-        convMngt = new ConversationManagement(player, speechboxMngr);
+//        convMngt = new ConversationManagement(player, speechboxMngr);
 
-        arrow = new RoomArrow(player, game.assets);
-
-        gamePad = new GamepadAddon(player);
+//        gamePad = new GamepadAddon(player);
 
         playerController = new PlayerController(player);
-
-        pixMap.dispose();
     }
 
     /**
@@ -179,11 +147,13 @@ public class NavigationScreen extends AbstractScreen
 //        InputMultiplexer multiplexer = new InputMultiplexer();
 //        multiplexer.addProcessor(speechboxMngr.multiplexer);
 //        multiplexer.addProcessor(playerController);
-//        multiplexer.addProcessor(statusBar.stage);
+//        multiplexer.addProcessor(statusBar.gameWorldStage);
 //
 //        Controllers.addListener(gamePad);
 
-        characterGroup.addActor(player);
+        gameWorldStage.addActor(roomArrowGroup);
+
+        gameWorldStage.addActor(player);
 
         for (NPC npc : player.getCurrentRoom().getNpcArray()) {
             characterGroup.addActor(npc);
@@ -193,48 +163,68 @@ public class NavigationScreen extends AbstractScreen
             clueGroup.addActor(clue);
         }
 
-        stage.addActor(clueGroup);
-        stage.addActor(characterGroup);
-        Gdx.input.setInputProcessor(playerController);
+        for (RoomArrow arrow : player.getCurrentRoom().getRoomArrowArray()){
+            roomArrowGroup.addActor(arrow);
+        }
+
+        gameWorldStage.addActor(clueGroup);
+        gameWorldStage.addActor(characterGroup);
+
+
+        guiStage.addActor(gui);
+        guiStage.addActor(fadeInOut);
+
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(guiStage);
+        multiplexer.addProcessor(playerController);
+        Gdx.input.setInputProcessor(multiplexer);
     }
 
     public void changeRoom(int roomId){
+        player.setState(PersonState.STANDING);
         Room exitRoom = player.getCurrentRoom();
         Room entryRoom = game.roomManager.getRoom(roomId);
-        Direction entryDirection = null;
         Vector2 entryPosition = new Vector2();
+        Direction entryDirection = player.getDirection();
 
         for (Door door : entryRoom.getEntryArray()){
             if (door.getConnectedRoomId() == exitRoom.getID()){
                 entryPosition.set(door.getX() + door.getWidth()/2, door.getY() + door.getHeight()/2);
                 entryDirection = door.getDirection();
+                break;
             }
         }
 
-        player.setCurrentRoom(entryRoom);
-        player.setPosition(entryPosition.x, entryPosition.y);
-        player.setDirection(entryDirection);
+        Direction finalEntryDirection = entryDirection;
 
-        stage.getCamera().position.x = player.getX();
-        stage.getCamera().position.y = player.getY();
-        stage.getCamera().update();
+        fadeInOut.addAction(Actions.sequence(Actions.fadeIn(0.5f),Actions.run(new Runnable() {
+            @Override
+            public void run() {
+                characterGroup.clear();
+                clueGroup.clear();
+                roomArrowGroup.clear();
 
-        tiledMapRenderer.setView((OrthographicCamera) stage.getCamera());
+                characterGroup.addActor(player);
 
-        tiledMapRenderer.setMap(entryRoom.getTiledMap());
+                player.setCurrentRoom(entryRoom);
+                player.setDirection(finalEntryDirection);
+                player.setPosition(entryPosition.x, entryPosition.y);
 
-        characterGroup.clear();
-        clueGroup.clear();
+                for (NPC npc : player.getCurrentRoom().getNpcArray()) {
+                    characterGroup.addActor(npc);
+                }
+                for (Clue clue : player.getCurrentRoom().getClueArray()){
+                    clueGroup.addActor(clue);
+                }
+                for (RoomArrow arrow : player.getCurrentRoom().getRoomArrowArray()){
+                    roomArrowGroup.addActor(arrow);
+                }
 
-        characterGroup.addActor(player);
+                gui.setRoomTag(entryRoom);
 
-        for (NPC npc : entryRoom.getNpcArray()) {
-            characterGroup.addActor(npc);
-        }
-
-        for (Clue clue : entryRoom.getClueArray()){
-            clueGroup.addActor(clue);
-        }
+                player.setCanMove(true);
+            }
+        }), Actions.fadeOut(0.5f)));
     }
 
     /**
@@ -245,35 +235,27 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void render(float delta)
     {
-        stage.getCamera().position.x = player.getX();
-        stage.getCamera().position.y = player.getY();
-        stage.getCamera().update();
+        gameWorldStage.getCamera().position.x = player.getX();
+        gameWorldStage.getCamera().position.y = player.getY();
+        gameWorldStage.getCamera().update();
 
-        tiledMapRenderer.setView((OrthographicCamera) stage.getCamera());
+        tiledMapRenderer.setRenderingRoom(player.getCurrentRoom());
+        tiledMapRenderer.setView((OrthographicCamera) gameWorldStage.getCamera());
 
         tiledMapRenderer.render();
 
-        stage.act();
-        stage.draw();
+        gameWorldStage.act();
+        gameWorldStage.draw();
 
         tiledMapRenderer.renderLastLayer();
 
-        //Everything to be drawn relative to bottom left of the screen
-        spriteBatch.begin();
 
-        if (roomTag != null) {
-            roomTag.render(spriteBatch);
-        }
+        guiStage.act();
+        guiStage.draw();
 
         if (Settings.DEBUG) {
-            DebugOverlay.renderDebugInfo(spriteBatch);
+            DebugOverlay.renderDebugInfo(gameWorldBatch);
         }
-
-        spriteBatch.end();
-
-        statusBar.render();
-        speechboxMngr.render();
-
     }
 
     /**
@@ -285,8 +267,8 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void resize(int width, int height)
     {
-        stage.getViewport().update(width, height);
-        statusBar.resize(width, height);
+        gameWorldStage.getViewport().update(width, height);
+        guiStage.getViewport().update(width,height);
     }
 
     /**
@@ -322,19 +304,8 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void dispose()
     {
-        map.dispose();
         tiledMapRenderer.dispose();
-        statusBar.dispose();
-        spriteBatch.dispose();
-    }
-
-    /**
-     * This method sets the RoomTag to the parameter which is then rendered next render loop
-     *
-     * @param tag - The RoomTag to be rendered
-     */
-    public void setRoomTag(RoomTag tag)
-    {
-        this.roomTag = tag;
+        gameWorldStage.dispose();
+        guiStage.dispose();
     }
 }

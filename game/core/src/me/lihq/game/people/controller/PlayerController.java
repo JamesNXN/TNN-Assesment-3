@@ -37,35 +37,37 @@ public class PlayerController extends InputAdapter
     @Override
     public boolean keyDown(int keycode)
     {
-        if (player.getState() == PersonState.STANDING) {
-            if (keycode == Input.Keys.SPACE) {
-                player.interact();
-                return true;
-            }
+        if (player.isCanMove()) {
+            if (player.getState() == PersonState.STANDING) {
+                if (keycode == Input.Keys.SPACE) {
+                    player.interact();
+                    return true;
+                }
 
-            if (keycode == Input.Keys.LEFT || keycode == Input.Keys.A) {
-                player.setDirection(Direction.WEST);
-                player.setState(PersonState.WALKING);
-                return true;
-            }
+                else if (keycode == Input.Keys.LEFT || keycode == Input.Keys.A) {
+                    player.setDirection(Direction.WEST);
+                    player.setState(PersonState.WALKING);
+                    return true;
+                }
 
-            if (keycode == Input.Keys.RIGHT || keycode == Input.Keys.D) {
-                player.setDirection(Direction.EAST);
-                player.setState(PersonState.WALKING);
-                return true;
-            }
+                else if (keycode == Input.Keys.RIGHT || keycode == Input.Keys.D) {
+                    player.setDirection(Direction.EAST);
+                    player.setState(PersonState.WALKING);
+                    return true;
+                }
 
-            if (keycode == Input.Keys.UP || keycode == Input.Keys.W) {
-                player.setDirection(Direction.NORTH);
-                player.setState(PersonState.WALKING);
-                return true;
-            }
+                else if (keycode == Input.Keys.UP || keycode == Input.Keys.W) {
+                    player.setDirection(Direction.NORTH);
+                    player.setState(PersonState.WALKING);
+                    return true;
+                }
 
 
-            if (keycode == Input.Keys.DOWN || keycode == Input.Keys.S) {
-                player.setDirection(Direction.SOUTH);
-                player.setState(PersonState.WALKING);
-                return true;
+                else if (keycode == Input.Keys.DOWN || keycode == Input.Keys.S) {
+                    player.setDirection(Direction.SOUTH);
+                    player.setState(PersonState.WALKING);
+                    return true;
+                }
             }
         }
 
@@ -95,18 +97,18 @@ public class PlayerController extends InputAdapter
             return true;
         }
 
-        if (keycode == Input.Keys.RIGHT || keycode == Input.Keys.D) {
+        else if (keycode == Input.Keys.RIGHT || keycode == Input.Keys.D) {
             player.setState(PersonState.STANDING);
             return true;
         }
 
-        if (keycode == Input.Keys.UP || keycode == Input.Keys.W) {
+        else if (keycode == Input.Keys.UP || keycode == Input.Keys.W) {
             player.setState(PersonState.STANDING);
             return true;
         }
 
 
-        if (keycode == Input.Keys.DOWN || keycode == Input.Keys.S) {
+        else if (keycode == Input.Keys.DOWN || keycode == Input.Keys.S) {
             player.setState(PersonState.STANDING);
             return true;
         }
