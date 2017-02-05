@@ -17,7 +17,7 @@ import me.lihq.game.people.Player;
  * it binds on top of the PlayerController class so that the game logic
  * does not need to be changed at all to make this addition.
  */
-public class GamepadAddon implements ControllerListener {
+public class GamePadController implements ControllerListener {
     /**
      * pointer to player instance
      */
@@ -37,7 +37,7 @@ public class GamepadAddon implements ControllerListener {
      *
      * @param player
      */
-    public GamepadAddon(Player player) {
+    public GamePadController(Player player) {
         this.player = player;
     }
 
@@ -56,20 +56,20 @@ public class GamepadAddon implements ControllerListener {
             player.interact();
             return true;
         }
-        if (buttonCode == XBox360Pad.BUTTON_B) {
+        else if (buttonCode == XBox360Pad.BUTTON_B) {
             ////// TODO: 05/02/2017 add ignore for b button when implemented or running
             return true;
 
         }
-        if (buttonCode == XBox360Pad.BUTTON_START) {
+        else if (buttonCode == XBox360Pad.BUTTON_START) {
             //// TODO: 05/02/2017 add pause on start press
             return true;
         }
-        if (buttonCode == XBox360Pad.BUTTON_X) {
+        else if (buttonCode == XBox360Pad.BUTTON_X) {
             //// TODO: 05/02/2017 display inventory
             return true;
         }
-        if (buttonCode == XBox360Pad.BUTTON_Y) {
+        else if (buttonCode == XBox360Pad.BUTTON_Y) {
             //// TODO: 05/02/2017 display map
             return true;
         }

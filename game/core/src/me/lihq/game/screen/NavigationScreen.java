@@ -21,7 +21,7 @@ import me.lihq.game.people.Direction;
 import me.lihq.game.people.NPC;
 import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
-import me.lihq.game.people.controller.GamepadAddon;
+import me.lihq.game.people.controller.GamePadController;
 import me.lihq.game.people.controller.PlayerController;
 import me.lihq.game.screen.elements.DebugOverlay;
 import me.lihq.game.screen.elements.FadeInOut;
@@ -42,7 +42,7 @@ public class NavigationScreen extends AbstractScreen
      * The controller that listens for key inputs
      */
     public PlayerController playerController;
-    public GamepadAddon gamePadController;
+    public GamePadController gamePadController;
 
     /**
      * This is the main ConversationManager that controls the conversation mechanic
@@ -82,7 +82,7 @@ public class NavigationScreen extends AbstractScreen
      * gamepad listener for 360 controllers on windows 10 only!!!
      */
 
-//    private GamepadAddon gamePad;
+//    private GamePadController gamePad;
 
     private Stage gameWorldStage;
     private SpriteBatch gameWorldBatch;
@@ -136,7 +136,7 @@ public class NavigationScreen extends AbstractScreen
 
 //        convMngt = new ConversationManagement(player, speechboxMngr);
 
-         gamePadController = new GamepadAddon(player);
+         gamePadController = new GamePadController(player);
 
         playerController = new PlayerController(player);
     }
