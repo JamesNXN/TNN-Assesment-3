@@ -9,7 +9,7 @@ import me.lihq.game.screen.elements.SpeechBox;
 /**
  * This is to control the order that SpeechBoxes are shown in and controls flow of displaying the SpeechBoxes
  */
-public class SpeechBoxManager
+public class SpeechboxManager
 {
     public boolean isPressed;
 
