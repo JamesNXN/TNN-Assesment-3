@@ -93,7 +93,7 @@ public class GamePadController implements ControllerListener {
 //        Gdx.app.log("controller AXIS code", String.valueOf(axisCode));
 //        Gdx.app.log("controller AXIS float", String.valueOf(newValue);
         if (axisCode == XBox360Pad.AXIS_LEFT_X) {
-            Gdx.app.log("controller axis value X", String.valueOf(newValue));
+            //Gdx.app.log("controller axis value X", String.valueOf(newValue));
             if (newValue > 5) {
                 player.setDirection(Direction.EAST);
                 player.setState(PersonState.WALKING);
@@ -110,7 +110,7 @@ public class GamePadController implements ControllerListener {
             }
         }
         else if (axisCode == XBox360Pad.AXIS_LEFT_Y) {
-            Gdx.app.log("controller axis value Y", String.valueOf(newValue));
+            //Gdx.app.log("controller axis value Y", String.valueOf(newValue));
             if (newValue > 5) {
                 player.setDirection(Direction.SOUTH);
                 player.setState(PersonState.WALKING);

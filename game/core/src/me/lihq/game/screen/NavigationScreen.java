@@ -78,12 +78,6 @@ public class NavigationScreen extends AbstractScreen
      */
     private RoomTag roomTag = null;
 
-    /**
-     * gamepad listener for 360 controllers on windows 10 only!!!
-     */
-
-//    private GamePadController gamePad;
-
     private Stage gameWorldStage;
     private SpriteBatch gameWorldBatch;
 
@@ -136,7 +130,7 @@ public class NavigationScreen extends AbstractScreen
 
 //        convMngt = new ConversationManagement(player, speechboxMngr);
 
-         gamePadController = new GamePadController(player);
+        gamePadController = new GamePadController(player);
 
         playerController = new PlayerController(player);
     }
