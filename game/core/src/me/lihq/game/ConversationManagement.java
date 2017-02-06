@@ -22,7 +22,7 @@ public class ConversationManagement
     /**
      * The manager for speechboxes, controls the flow of speechboxes
      */
-    private SpeechboxManager speechBoxManager;
+    private SpeechBoxManager speechBoxManager;
 
     /**
      * Stores the current NPC that is being questioned
@@ -45,7 +45,7 @@ public class ConversationManagement
      * @param player           the player that will initiate the conversation
      * @param speechBoxManager the speechbox manager that is in charge of displaying the converstation
      */
-    public ConversationManagement(Player player, SpeechboxManager speechBoxManager)
+    public ConversationManagement(Player player, SpeechBoxManager speechBoxManager)
     {
 
         this.player = player;

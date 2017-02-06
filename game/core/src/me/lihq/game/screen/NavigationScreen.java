@@ -7,10 +7,13 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+
+import java.util.Comparator;
 
 import me.lihq.game.*;
 import me.lihq.game.models.Clue;
@@ -148,7 +151,7 @@ public class NavigationScreen extends AbstractScreen
 
         gameWorldStage.addActor(roomArrowGroup);
 
-        gameWorldStage.addActor(player);
+        characterGroup.addActor(player);
 
         for (NPC npc : player.getCurrentRoom().getNpcArray()) {
             characterGroup.addActor(npc);
@@ -243,6 +246,9 @@ public class NavigationScreen extends AbstractScreen
         tiledMapRenderer.render();
 
         gameWorldStage.act();
+
+        //sort characters by their y coordinate so that actors with lesser y coordinate get drawn first
+        characterGroup.getChildren().sort((actor1, actor2) -> (int) (actor2.getY() - actor1.getY()));
         gameWorldStage.draw();
 
         tiledMapRenderer.renderLastLayer();
