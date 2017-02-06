@@ -33,8 +33,8 @@ public class XBox360Pad {
     public static final PovDirection BUTTON_DPAD_LEFT = PovDirection.west;
     public static final PovDirection DPAD_CENTER = PovDirection.center;
 
-    public static final int AXIS_LEFT_Y = 1; //-1 is up | +1 is down
-    public static final int AXIS_LEFT_X = 0; //-1 is left | +1 is right
+    public static final int AXIS_LEFT_Y = 0; //-1 is up | +1 is down
+    public static final int AXIS_LEFT_X = 1; //-1 is left | +1 is right
 
     public static final int AXIS_RIGHT_X = 2; //-1 is left | +1 is right
     public static final int AXIS_RIGHT_Y = 3; //-1 is up | +1 is down
