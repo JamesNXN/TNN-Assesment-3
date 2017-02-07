@@ -8,10 +8,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import me.lihq.game.Assets;
-import me.lihq.game.Collidable;
-import me.lihq.game.Settings;
-import me.lihq.game.TileObject;
+
+import com.badlogic.gdx.utils.Array;
+import me.lihq.game.*;
+import me.lihq.game.people.NPC;
+
+import java.util.Objects;
+import java.util.Random;
 
 
 /**
@@ -19,6 +22,8 @@ import me.lihq.game.TileObject;
  */
 public class Clue extends Actor implements Collidable, TileObject
 {
+    private Assets assets;
+
     /**
      * The name of the clue, set when you initialise the clue and gettable using {@link #getName()}
      */
@@ -97,6 +102,74 @@ public class Clue extends Actor implements Collidable, TileObject
     public String getDescription()
     {
         return this.description;
+    }
+
+    public Array<NPC> relatedNPC(){
+        Array<NPC> npcs = GameMain.instance.personManager.getNpcArray();
+
+        NPC npc1 = npcs.get(0);
+
+        NPC npc2 = npcs.get(1);
+
+        NPC npc3 = npcs.get(2);
+
+        NPC npc4 = npcs.get(3);
+
+        NPC npc5 = npcs.get(4);
+
+        NPC npc6 = npcs.get(5);
+
+        Array<NPC> list =  new Array<>();
+        if (name.equals("Big Footprint")){
+            list.add(npc1);
+            list.add(npc2);
+            list.add(npc3);
+        }
+        if (name.equals("Small Footprint")){
+            list.add(npc6);
+            list.add(npc4);
+            list.add(npc5);
+        }
+        if (name.equals("Glasses")){
+            list.add(npc6);
+            list.add(npc5);
+            list.add(npc3);
+            list.add(npc4);
+        }
+        if (name.equals("Bag")){
+            list.add(npc1);
+            list.add(npc2);
+            list.add(npc4);
+            list.add(npc5);
+        }
+        if (name.equals("Lipstick")){
+            list.add(npc1);
+            list.add(npc2);
+            list.add(npc5);
+            list.add(npc6);
+        }
+        if (name.equals("Right Handed")){
+            list.add(npc1);
+            list.add(npc2);
+            list.add(npc3);
+            list.add(npc6);
+        }
+        if (name.equals("Dark Hair")){
+            list.add(npc1);
+            list.add(npc4);
+            list.add(npc3);
+            list.add(npc5);
+        }
+
+
+        return list;
+    }
+
+    public Array<NPC> getRelatedNPC(){
+        Array<NPC> npclist = relatedNPC();
+        npclist.shuffle();
+        npclist.setSize(2);
+        return npclist;
     }
 
     @Override
