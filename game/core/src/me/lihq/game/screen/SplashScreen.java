@@ -57,7 +57,12 @@ public class SplashScreen extends AbstractScreen{
 
             if (Gdx.input.justTouched()){
                 game.assets.assignGameAssets();
-                game.setScreen(new MainMenuScreen(game));
+
+                //instantiate all the game screens after the assets are loaded
+                game.mainMenuScreen = new MainMenuScreen(game);
+                game.navigationScreen = new NavigationScreen(game);
+                game.pauseScreen = new PauseScreen(game);
+                game.setScreen(game.mainMenuScreen);
             }
         }
 

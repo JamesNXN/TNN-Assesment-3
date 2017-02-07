@@ -18,7 +18,9 @@ import com.badlogic.gdx.utils.Array;
 import me.lihq.game.models.Room;
 import me.lihq.game.people.NPC;
 import me.lihq.game.screen.AbstractScreen;
+import me.lihq.game.screen.MainMenuScreen;
 import me.lihq.game.screen.NavigationScreen;
+import me.lihq.game.screen.PauseScreen;
 import me.lihq.game.screen.SplashScreen;
 
 import java.util.*;
@@ -46,6 +48,11 @@ public class GameMain extends Game
     public PersonManager personManager;
 
     public ClueManager clueManager;
+
+
+    public MainMenuScreen mainMenuScreen;
+    public PauseScreen pauseScreen;
+    public NavigationScreen navigationScreen;
 
     /**
      * An FPSLogger, FPSLogger allows us to check the game FPS is good enough

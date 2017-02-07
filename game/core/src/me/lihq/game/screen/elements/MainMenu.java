@@ -44,7 +44,7 @@ public class MainMenu extends MenuTable
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
-                game.setScreen(new NavigationScreen(game));
+                game.setScreen(game.navigationScreen);
             }
         });
 

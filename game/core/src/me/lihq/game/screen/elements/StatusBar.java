@@ -80,7 +80,7 @@ public class StatusBar extends Table
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
-                game.setScreen(new PauseScreen(game, screen));
+                game.setScreen(new PauseScreen(game));
             }
         });
     }

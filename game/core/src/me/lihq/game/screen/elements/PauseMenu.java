@@ -14,7 +14,7 @@ public class PauseMenu extends MenuTable{
      *
      * @param game - The game object the menu is being loaded for
      */
-    public PauseMenu(GameMain game, NavigationScreen screen) {
+    public PauseMenu(GameMain game) {
         super(game, "PAUSE");
 
         TextButton resumeButton = new TextButton("Resume", menuSkin);
@@ -35,7 +35,7 @@ public class PauseMenu extends MenuTable{
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
-                game.setScreen(screen);
+                game.setScreen(game.navigationScreen);
             }
         });
 

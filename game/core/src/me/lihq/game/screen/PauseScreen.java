@@ -9,9 +9,6 @@ import me.lihq.game.GameMain;
 import me.lihq.game.screen.elements.MainMenu;
 import me.lihq.game.screen.elements.PauseMenu;
 
-/**
- * Created by vishal on 18/12/2016.
- */
 public class PauseScreen extends AbstractScreen
 {
     /**
@@ -25,12 +22,12 @@ public class PauseScreen extends AbstractScreen
      *
      * @param game this provides access to the gameMain class so that screens can set the states of the game.
      */
-    public PauseScreen(GameMain game, NavigationScreen screen)
+    public PauseScreen(GameMain game)
     {
         super(game);
         stage = new Stage(new FitViewport(GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT));
         //Creates the Pause menu
-        pauseMenu = new PauseMenu(game, screen);
+        pauseMenu = new PauseMenu(game);
     }
 
     /**
