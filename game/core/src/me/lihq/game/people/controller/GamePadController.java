@@ -31,10 +31,11 @@ public class GamePadController implements ControllerListener {
     private boolean controllerConnected = false;
 
     /**
-     * int used for ensuring axis movement does not overlap eg x movement doesn't interfere
+     * boolean used for ensuring axis movement does not overlap eg x movement doesn't interfere
      * with y movement
      */
-    private int axisUsed = 3;
+    private boolean xAxisInUse = false;
+    private boolean yAxisInUse = false;
 
     /**
      * constructor for gamepad used to initialise for controller listener
@@ -92,37 +93,43 @@ public class GamePadController implements ControllerListener {
         int newValue = (int) (value * 10f);
 //        Gdx.app.log("controller AXIS code", String.valueOf(axisCode));
 //        Gdx.app.log("controller AXIS float", String.valueOf(newValue);
-        if (axisCode == XBox360Pad.AXIS_LEFT_X) {
+        if (axisCode == XBox360Pad.AXIS_LEFT_X  && yAxisInUse == false) {
             //Gdx.app.log("controller axis value X", String.valueOf(newValue));
-            if (newValue > 5) {
+            if (newValue > 5 && xAxisInUse == false) {
+                xAxisInUse = true;
                 player.setDirection(Direction.EAST);
                 player.setState(PersonState.WALKING);
                 return true;
             }
-            else if (newValue < -5) {
+            else if (newValue < -5 && xAxisInUse == false) {
+                xAxisInUse = true;
                 player.setDirection(Direction.WEST);
                 player.setState(PersonState.WALKING);
                 return true;
             }
-            else if ((newValue >= 1 && newValue < 5) || (newValue > -5 && newValue <= -1)) {
+            else if (newValue == 0 && xAxisInUse == true) {
                 player.setState(PersonState.STANDING);
+                xAxisInUse = false;
                 return true;
             }
         }
-        else if (axisCode == XBox360Pad.AXIS_LEFT_Y) {
+        else if (axisCode == XBox360Pad.AXIS_LEFT_Y && xAxisInUse == false) {
             //Gdx.app.log("controller axis value Y", String.valueOf(newValue));
-            if (newValue > 5) {
+            if (newValue > 5 && yAxisInUse == false) {
+                yAxisInUse = true;
                 player.setDirection(Direction.SOUTH);
                 player.setState(PersonState.WALKING);
                 return true;
             }
-            else if (newValue < -5) {
+            else if (newValue < -5 && yAxisInUse == false) {
+                yAxisInUse = true;
                 player.setDirection(Direction.NORTH);
                 player.setState(PersonState.WALKING);
                 return true;
             }
-            else if ((newValue >= 1 && newValue < 5) || (newValue <= -1 && newValue > -5)) {
+            else if (newValue == 0 && yAxisInUse == true) {
                 player.setState(PersonState.STANDING);
+                yAxisInUse = false;
                 return true;
             }
         }
