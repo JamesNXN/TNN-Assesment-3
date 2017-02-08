@@ -3,18 +3,17 @@ package me.lihq.game.models;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 
 import com.badlogic.gdx.utils.Array;
-import me.lihq.game.*;
-import me.lihq.game.people.NPC;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
 
-import java.util.Objects;
-import java.util.Random;
+import me.lihq.game.*;
 
 
 /**
@@ -22,8 +21,6 @@ import java.util.Random;
  */
 public class Clue extends Actor implements Collidable, TileObject
 {
-    private Assets assets;
-
     /**
      * The name of the clue, set when you initialise the clue and gettable using {@link #getName()}
      */
@@ -39,6 +36,9 @@ public class Clue extends Actor implements Collidable, TileObject
      * Note: this is different to com.badlogic.gdx.graphics.g2d.Sprite.position that is the position on the screen in terms of pixels,
      * whereas this is in terms of map tiles relative to the bottom left of the map.
      */
+
+    private Array<Integer> relatedNpcIdArray;
+
     private Vector2Int tileCoordinates = new Vector2Int(0, 0);
 
     private Animation<TextureRegion> clueGlint;
@@ -46,21 +46,14 @@ public class Clue extends Actor implements Collidable, TileObject
 
     private Rectangle collisionBox;
 
-
-    /**
-     * Creates a clue
-     *
-     * @param name        the name of the clue i.e. what it is
-     * @param description describes what the clue is
-     * @param assets     the asset loader for textures
-     */
-    public Clue(String name, String description, Assets assets)
+    public Clue(JsonValue jsonData, TextureAtlas clueGlintAtlas)
     {
-        debug();
-        this.name = name;
-        this.description = description;
+        Json json = new Json();
+        this.name = jsonData.getString("name");
+        this.description = jsonData.getString("description");
+        this.relatedNpcIdArray = json.readValue(Array.class, jsonData.get("relatedNpcId"));
 
-        clueGlint = new Animation<>(0.1f, assets.clueGlint.findRegions("glint"));
+        clueGlint = new Animation<>(0.1f, clueGlintAtlas.findRegions("glint"));
         setSize(Settings.TILE_SIZE, Settings.TILE_SIZE);
 
         collisionBox = new Rectangle();
@@ -84,88 +77,19 @@ public class Clue extends Actor implements Collidable, TileObject
         return false;
     }
 
-    /**
-     * Getter for Clue name.
-     *
-     * @return - (String) Returns name of clue.
-     */
     public String getName()
     {
         return this.name;
     }
 
-    /**
-     * Getter for clue description
-     *
-     * @return - (String) Returns the description of the clue.
-     */
     public String getDescription()
     {
         return this.description;
     }
 
-    public Array<NPC> getRelatedNPC(){
-        Array<NPC> npcs = GameMain.instance.personManager.getNpcArray();
-
-        NPC npc1 = npcs.get(0);
-
-        NPC npc2 = npcs.get(1);
-
-        NPC npc3 = npcs.get(2);
-
-        NPC npc4 = npcs.get(3);
-
-        NPC npc5 = npcs.get(4);
-
-        NPC npc6 = npcs.get(5);
-
-        Array<NPC> list =  new Array<>();
-        if (name.equals("Big Footprint")){
-            list.add(npc1);
-            list.add(npc2);
-            list.add(npc3);
-        }
-        if (name.equals("Small Footprint")){
-            list.add(npc6);
-            list.add(npc4);
-            list.add(npc5);
-        }
-        if (name.equals("Glasses")){
-            list.add(npc6);
-            list.add(npc5);
-            list.add(npc3);
-            list.add(npc4);
-        }
-        if (name.equals("Bag")){
-            list.add(npc1);
-            list.add(npc2);
-            list.add(npc4);
-            list.add(npc5);
-        }
-        if (name.equals("Lipstick")){
-            list.add(npc1);
-            list.add(npc2);
-            list.add(npc5);
-            list.add(npc6);
-        }
-        if (name.equals("Right Handed")){
-            list.add(npc1);
-            list.add(npc2);
-            list.add(npc3);
-            list.add(npc6);
-        }
-        if (name.equals("Dark Hair")){
-            list.add(npc1);
-            list.add(npc4);
-            list.add(npc3);
-            list.add(npc5);
-        }
-
-
-        return list;
+    public Array<Integer> getRelatedNpcIdArray(){
+        return relatedNpcIdArray;
     }
-
-
 
     @Override
     public Rectangle getCollisionBox() {

@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.JsonValue;
+
 import me.lihq.game.GameMain;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Room;
@@ -17,18 +19,10 @@ import java.util.Random;
  */
 public class NPC extends AbstractPerson
 {
-
-    //These variables are specific to the NPC only
-
-    /**
-     * Associated clues
-     */
-    public Array<Clue> associatedClues = new Array<>();
-
     /**
      * The motive string details why the NPC committed the murder.
      */
-    private String motive = "";
+    private String motive;
 
     private boolean isKiller = false;
     private boolean isVictim = false;
@@ -41,22 +35,13 @@ public class NPC extends AbstractPerson
     private Personality personality;
 
     /**
-     * Define an NPC with location coordinates , room, spritesheet and whether or not they can be the killer
+     * Define an NPC
      *
      * @param spriteSheet - Sprite sheet for this NPC
      */
-    public NPC(String name, TextureAtlas spriteSheet, String jsonFile)
+    public NPC(JsonValue jsonData, TextureAtlas spriteSheet)
     {
-        super(name, spriteSheet);
-
-        importDialogue(jsonFile);
-    }
-
-    @Override
-    public void importDialogue(String fileName)
-    {
-        jsonData = new JsonReader().parse(Gdx.files.internal("people/NPCs/" + fileName));
-        this.personality = Personality.valueOf(jsonData.getString("personality"));
+        super(jsonData, spriteSheet);
     }
 
     public boolean isKiller()
@@ -80,40 +65,16 @@ public class NPC extends AbstractPerson
         return this;
     }
 
-    public boolean setKiller()
+    public void setKiller(boolean killer)
     {
-        if (isVictim()) return false;
-
-        isKiller = true;
+        isKiller = killer;
         System.out.println(getName() + " is the killer");
-        return true;
     }
 
-    public boolean setVictim()
+    public void setVictim(boolean victim)
     {
-        if (isKiller()) return false;
-
-        isVictim = true;
+        isVictim = victim;
         System.out.println(getName() + " is the victim");
-        return true;
-    }
-
-
-    /**
-     * This handles speech for a clue that has a question style
-     *
-     * @param clue  the clue to be questioned about
-     * @param style the style of questioning
-     * @return (String) the speech
-     */
-    @Override
-    public String getSpeech(Clue clue, Personality style)
-    {
-        if (style == this.personality) {
-            return getSpeech(clue);
-        } else {
-            return getSpeech("");
-        }
     }
 
     /**

@@ -2,11 +2,14 @@ package me.lihq.game.people;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.JsonValue;
 
 import me.lihq.game.Collidable;
+import me.lihq.game.GameMain;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Inventory;
@@ -18,7 +21,7 @@ import me.lihq.game.screen.elements.RoomArrow;
  */
 public class Player extends AbstractPerson
 {
-    private NavigationScreen screen;
+    GameMain game;
 
     /**
      * This object stores the clues and hints the player has collected and the npc's they have spoken to.
@@ -32,7 +35,7 @@ public class Player extends AbstractPerson
     /**
      * The personality will be a percent score (0-100) 0 being angry, 50 being neutral, and 100 being happy/nice.
      */
-    private int personalityLevel = 50;
+    private int personalityLevel;
 
     /**
      * The score the player has earned so far.
@@ -44,29 +47,16 @@ public class Player extends AbstractPerson
     /**
      * This is the constructor for player, it creates a new playable person
      *
-     * @param name   - The name for the new player.
+     * @param jsonData   - The json data for the new player.
      * @param spriteSheet - The image used to represent it.
-     * @param screen - The screen it's being drawn onto.
      */
 
-    public Player(String name, TextureAtlas spriteSheet, NavigationScreen screen) {
-        super(name, spriteSheet);
-        this.screen = screen;
-        importDialogue("Player.JSON");
+    public Player(JsonValue jsonData, TextureAtlas spriteSheet, GameMain game) {
+        super(jsonData, spriteSheet);
 
+        this.game = game;
         interactionCollisionBox = new Rectangle();
         interactionCollisionBox.setSize(collisionBox.getWidth(), collisionBox.getHeight());
-    }
-
-    /**
-     * Reads in the JSON file of tha character and stores dialogue in the dialogue HashMap
-     *
-     * @param fileName - The file to read from
-     */
-    @Override
-    public void importDialogue(String fileName)
-    {
-        jsonData = new JsonReader().parse(Gdx.files.internal("people/player/" + fileName));
     }
 
     /**
@@ -139,7 +129,7 @@ public class Player extends AbstractPerson
             Door collidingExit = doorCollisionDetection(collisionBox);
             if (collidingExit != null) {
                 setCanMove(false);
-                screen.changeRoom(collidingExit.getConnectedRoomId());
+                game.navigationScreen.changeRoom(collidingExit.getConnectedRoomId());
             }
         }
     }
@@ -200,25 +190,5 @@ public class Player extends AbstractPerson
     {
         return this.personalityLevel;
     }
-
-
-    /**
-     * This method gets the speech based on what clue it is and the selected personality
-     *
-     * @param clue  the clue to be questioned about
-     * @param style the style of questioning
-     * @return (String) - The speech to add to the SpeechBox
-     */
-    @Override
-    public String getSpeech(Clue clue, Personality style)
-    {
-        String key = clue.getName();
-        if (!jsonData.get("Responses").has(key)) {
-            return jsonData.get("noneResponses").getString(0);
-        } else {
-            return jsonData.get("Responses").get(key).getString(style.toString());
-        }
-    }
-
 
 }

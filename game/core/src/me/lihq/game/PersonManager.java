@@ -1,6 +1,8 @@
 package me.lihq.game;
 
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
 
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
@@ -17,35 +19,20 @@ public class PersonManager {
     private NPC victim;
 
     public PersonManager(RoomManager roomManager, Assets assets){
+        Json json = new Json();
         npcArray = new Array<>();
 
-        //Add ALL NPCs to the list
-        //This is how you initialise an NPC
-
-        //TODO: Sort NPC personalities
-        NPC npc1 = new NPC("Colin", assets.colinSpriteSheet, "Colin.JSON");
-        npcArray.add(npc1);
-
-        NPC npc2 = new NPC("Diana", assets.dianaSpriteSheet, "Diana.JSON");
-        npcArray.add(npc2);
-
-        NPC npc3 = new NPC("Lily", assets.lilySpriteSheet, "Lily.JSON");
-        npcArray.add(npc3);
-
-        NPC npc4 = new NPC("Mary", assets.marySpriteSheet, "Mary.JSON");
-        npcArray.add(npc4);
-
-        NPC npc5 = new NPC("Mike", assets.mikeSpriteSheet, "Mike.JSON");
-        npcArray.add(npc5);
-
-        NPC npc6 = new NPC("Will", assets.willSpriteSheet, "Will.JSON");
-        npcArray.add(npc6);
-
+        Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, assets.npcJsonData);
+        for (JsonValue data : npcJsonDataArray){
+            npcArray.add(new NPC(data, assets.npcSpriteSheetMapArray.get(data.getInt("id"))));
+        }
 
         //Generate who the Killer and Victim are
         npcArray.shuffle();
         victim = npcArray.pop();
+        victim.setVictim(true);
         killer = npcArray.random();
+        killer.setKiller(true);
 
         int roomIndex = 0;
         for (NPC npc : npcArray) {

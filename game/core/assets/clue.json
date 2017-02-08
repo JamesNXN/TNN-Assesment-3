@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Big Footprint",
+    "description": "A big footprint left at the crime scene by the killer.",
+    "relatedNpcId": [1,2,3]
+  },
+
+  {
+    "name": "Small Footprint",
+    "description": "A small footprint left at the crime scene by the killer.",
+    "relatedNpcId": [4,5,6]
+  },
+
+  {
+    "name": "Glasses",
+    "description": "A pair of glasses these were found by another detective at the crime scene.",
+    "relatedNpcId": [3,4,5,6]
+  },
+
+  {
+    "name": "Bag",
+    "description": "A bag. Someone must have left in a hurry.",
+    "relatedNpcId": [2,4,5]
+  },
+
+  {
+    "name": "Lipstick",
+    "description": "Lipstick, a killers best friend.",
+    "relatedNpcId": [1,2,5,6]
+  },
+
+  {
+    "name": "Right Handed",
+    "description": "This indicates the killer is right handed",
+    "relatedNpcId": [1,2,3,6]
+  },
+
+  {
+  "name": "Dark Hair",
+  "description": "A dark hair from the crime scene",
+  "relatedNpcId": [3,4,5]
+},
+]

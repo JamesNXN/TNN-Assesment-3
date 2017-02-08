@@ -80,13 +80,13 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
     /**
      * This constructs the player calling super on the sprite class
      *
-     * @param name  - The name of the Person
+     * @param jsonData  - The json data of the Person
      * @param spriteSheet   - this the texture for the sprite
      */
-    public AbstractPerson(String name, TextureAtlas spriteSheet)
+    public AbstractPerson(JsonValue jsonData, TextureAtlas spriteSheet)
     {
         debug();
-        this.name = name;
+        name = jsonData.getString("name");
         this.state = PersonState.STANDING;
 
         collisionBox = new Rectangle();
@@ -218,55 +218,6 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
         batch.draw(currentFrame, getX(), getY(), SPRITE_WIDTH, SPRITE_HEIGHT);
         batch.setColor(color);
     }
-
-    /**
-     * Reads in the JSON file of tha character and stores dialogue in the dialogue HashMap
-     *
-     * @param fileName
-     */
-    public abstract void importDialogue(String fileName);
-
-    /**
-     * Gets a random item from the correct dictionary key.
-     *
-     * @param key
-     * @return
-     */
-    public String getSpeech(String key)
-    {
-        //TODO: Randomise the noneResponse
-        try {
-            if (!jsonData.get("Responses").has(key)) {
-                return jsonData.get("noneResponses").getString(0);
-            } else {
-                return jsonData.get("Responses").getString(key);
-            }
-        } catch (Exception e) {
-            return "error speech not working";
-        }
-    }
-
-    /**
-     * This method returns the response based on the clue given
-     *
-     * @param clue - The clue to get the response for
-     * @return (String) the string response
-     */
-    public String getSpeech(Clue clue)
-    {
-        return this.getSpeech(clue.getName());
-    }
-
-
-    /**
-     * This handles speech for a clue that has a question style
-     *
-     * @param clue  the clue to be questioned about
-     * @param style the style of questioning
-     * @return the speech
-     */
-    public abstract String getSpeech(Clue clue, Personality style);
-
     public abstract Personality getPersonality();
 
     public String getName()

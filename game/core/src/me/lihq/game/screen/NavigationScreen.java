@@ -103,7 +103,7 @@ public class NavigationScreen extends AbstractScreen
         game.personManager = new PersonManager(game.roomManager, game.assets);
         game.clueManager = new ClueManager(game.roomManager, game.assets);
 
-        player = new Player("Player", game.assets.playerSpriteSheet, this);
+        player = new Player(game.assets.playerJsonData, game.assets.playerSpriteSheet, game);
         player.setCurrentRoom(game.roomManager.getRoom(0));
         Vector2Int randomLocation = player.getCurrentRoom().getRandomLocation();
         player.setTilePosition(randomLocation.x, randomLocation.y);
@@ -135,7 +135,7 @@ public class NavigationScreen extends AbstractScreen
 
         gamePadController = new GamePadController(player);
 
-        playerController = new PlayerController(player, game);
+        playerController = new PlayerController(player);
     }
 
     /**

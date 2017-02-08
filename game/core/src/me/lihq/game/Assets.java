@@ -1,8 +1,10 @@
 package me.lihq.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,6 +19,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ArrayMap;
+import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.JsonValue;
 
 import me.lihq.game.people.Direction;
 
@@ -28,10 +33,6 @@ import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeT
 public class Assets
 {
     private AssetManager manager;
-    /**
-     * This is the asset sheet for clues
-     */
-    public Texture clueSheet;
 
     /**
      * The 2 separate frames for the splash screen
@@ -48,17 +49,11 @@ public class Assets
      *  Sprite sheets for abstract person objects
      */
     public TextureAtlas playerSpriteSheet;
-    public TextureAtlas colinSpriteSheet;
-    public TextureAtlas dianaSpriteSheet;
-    public TextureAtlas lilySpriteSheet;
-    public TextureAtlas marySpriteSheet;
-    public TextureAtlas mikeSpriteSheet;
-    public TextureAtlas willSpriteSheet;
+    public ArrayMap<Integer, TextureAtlas> npcSpriteSheetMapArray;
 
     /**
      * map data
      */
-
     public Array<TiledMap> mapArray;
 
     /**
@@ -78,10 +73,15 @@ public class Assets
 
     public Skin menuSkin;
 
+    public JsonValue npcJsonData;
+    public JsonValue playerJsonData;
+    public JsonValue clueJsonData;
+
 
     public Assets(){
         manager = new AssetManager();
         mapArray = new Array<>();
+        npcSpriteSheetMapArray = new ArrayMap<>();
     }
 
     /**
@@ -122,9 +122,6 @@ public class Assets
         manager.load("maps/portersOffice.tmx",TiledMap.class);
         manager.load("maps/rch037.tmx",TiledMap.class);
         manager.load("maps/toilet.tmx",TiledMap.class);
-
-
-        manager.load("clueSheet.png", Texture.class);
     }
 
     /**
@@ -139,14 +136,20 @@ public class Assets
         roomTagFont = generator.generateFont(parameter);
         generator.dispose();
 
+        playerJsonData = new JsonReader().parse(new FileHandle("player.json"));
+        npcJsonData = new JsonReader().parse(new FileHandle("npc.json"));
+        clueJsonData = new JsonReader().parse(new FileHandle("clue.json"));
+
         // sprite sheet assign
         playerSpriteSheet = manager.get("people/player/player.pack");
-        colinSpriteSheet = manager.get("people/NPCs/colin.pack");
-        dianaSpriteSheet = manager.get("people/NPCs/diana.pack");
-        lilySpriteSheet = manager.get("people/NPCs/lily.pack");
-        marySpriteSheet = manager.get("people/NPCs/mary.pack");
-        mikeSpriteSheet = manager.get("people/NPCs/mike.pack");
-        willSpriteSheet = manager.get("people/NPCs/will.pack");
+
+        //map key is the npc id
+        npcSpriteSheetMapArray.put(1, manager.get("people/NPCs/colin.pack"));
+        npcSpriteSheetMapArray.put(2, manager.get("people/NPCs/diana.pack"));
+        npcSpriteSheetMapArray.put(3, manager.get("people/NPCs/lily.pack"));
+        npcSpriteSheetMapArray.put(4, manager.get("people/NPCs/mary.pack"));
+        npcSpriteSheetMapArray.put(5, manager.get("people/NPCs/mike.pack"));
+        npcSpriteSheetMapArray.put(6, manager.get("people/NPCs/will.pack"));
 
         // map assign
         mapArray.add(manager.get("maps/computerRoom.tmx"));
@@ -162,9 +165,6 @@ public class Assets
 
         //arrow texture assign
         arrowAtlas = manager.get("arrows.pack");
-
-        // clue sheet assign
-        clueSheet = manager.get("clueSheet.png");
 
         //room tag border texture assign
         roomTagBorder = manager.get("roomTagBorder.png");

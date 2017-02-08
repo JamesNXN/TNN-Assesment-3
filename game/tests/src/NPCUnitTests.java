@@ -18,7 +18,7 @@ public class NPCUnitTests extends GameTester
     public void makeNPC()
     {
         room = new Room(0, "testRoom0.tmx", "Test Room 0");
-        colin = new NPC("bob", "colin.png", 1,1, room, false, "Colin.JSON");
+        colin = new NPC("bob", "colin.png", 1,1, room, false, "npc.json");
     }
 
     @Test

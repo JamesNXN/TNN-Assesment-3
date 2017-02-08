@@ -5,9 +5,6 @@ import me.lihq.game.models.Clue;
 import me.lihq.game.models.Hint;
 import me.lihq.game.people.NPC;
 
-/**
- * Created by User on 08/02/2017.
- */
 public class Inventory {
 
     private Array<Clue> collectedClues;

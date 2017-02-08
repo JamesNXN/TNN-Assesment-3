@@ -2,6 +2,8 @@ package me.lihq.game;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,13 +20,11 @@ public class ClueManager {
         //This is a temporary list of clues
         clueArray = new Array<>();
 
-        clueArray.add(new Clue("Big Footprint", "A big footprint left at the crime scene by the killer.", assets));
-        clueArray.add(new Clue("Small Footprint", "A small footprint left at the crime scene by the killer.", assets));
-        clueArray.add(new Clue("Glasses", "A pair of glasses these were found by another detective at the crime scene.", assets));
-        clueArray.add(new Clue("Bag", "A bag. Someone must have left in a hurry.", assets));
-        clueArray.add(new Clue("Lipstick", "Lipstick, a killers best friend.", assets));
-        clueArray.add(new Clue("Right Handed", "This indicates the killer is right handed", assets));
-        clueArray.add(new Clue("Dark Hair", "A dark hair from the crime scene", assets));
+        Json json = new Json();
+        Array<JsonValue> clueJsonData = json.readValue(Array.class, assets.clueJsonData);
+        for (JsonValue data : clueJsonData){
+            clueArray.add(new Clue(data, assets.clueGlint));
+        }
 
         clueArray.shuffle();
 

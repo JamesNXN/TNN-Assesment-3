@@ -1,45 +1,35 @@
 package me.lihq.game.models;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import me.lihq.game.people.NPC;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Created by PPPPPP on 2017/2/7.
- */
 public class Hint {
     private Clue relatedClue;
-    private Array<NPC> relatedNPClist = new Array<NPC>(0);
+    private Array<Integer> relatedNpcIdArray = new Array<>(0);
 
 
     public Hint(Clue clue) {
         this.relatedClue =  clue;
-        Array<NPC> npclist = clue.getRelatedNPC();
-        npclist.shuffle();
-        int subsetSize = ThreadLocalRandom.current().nextInt(1, clue.getRelatedNPC().size + 1);
-        npclist.setSize(subsetSize);
-        this.relatedNPClist = npclist;
-        /**
-        while (this.relatedNPClist.size != subsetSize) {
-            NPC randomNPC = clue.getRelatedNPC().random();
-            if (!this.relatedNPClist.containski(randomNPC, true)) {
-                this.relatedNPClist.ensureCapacity(1);
-                this.relatedNPClist.add(randomNPC);
-            }
-        }**/
+        Array<Integer> npcArray = clue.getRelatedNpcIdArray();
+        npcArray.shuffle();
+        int subsetSize = MathUtils.random(1, npcArray.size);
+        npcArray.setSize(subsetSize);
+        this.relatedNpcIdArray = npcArray;
     }
 
-    public Array<NPC> getRelatedNPClist(){
-        return this.relatedNPClist;
+    public Array<Integer> getRelatedNpcIdArray(){
+        return relatedNpcIdArray;
     }
 
-    public Clue getRelatedClue() { return this.relatedClue;}
+    public Clue getRelatedClue() { return relatedClue;}
 
     public void combine(Hint hint){
-        for(NPC npc: hint.getRelatedNPClist()){
-            if (!hint.getRelatedNPClist().contains(npc, true)) {
-                this.relatedNPClist.add(npc);
+        for (int idToBeAdded : hint.getRelatedNpcIdArray()){
+            if (!relatedNpcIdArray.contains(idToBeAdded, true)){
+                relatedNpcIdArray.add(idToBeAdded);
             }
         }
     }
