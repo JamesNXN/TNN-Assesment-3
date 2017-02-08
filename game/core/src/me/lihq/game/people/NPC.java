@@ -133,4 +133,10 @@ public class NPC extends AbstractPerson
         this.exhaustedClues.ensureCapacity(1);
         this.exhaustedClues.add(clue);
     }
+
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }
