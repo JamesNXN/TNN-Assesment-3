@@ -26,13 +26,15 @@ public class Hint {
     }
 
     public Array<NPC> getRelatedNPClist(){
-        return relatedNPClist;
+        return this.relatedNPClist;
     }
+
+    public Clue getRelatedClue() { return this.relatedClue;}
 
     public void combine(Hint hint){
         for(NPC npc: hint.getRelatedNPClist()){
             if (!hint.getRelatedNPClist().contains(npc, true)) {
-                relatedNPClist.add(npc);
+                this.relatedNPClist.add(npc);
             }
         }
     }

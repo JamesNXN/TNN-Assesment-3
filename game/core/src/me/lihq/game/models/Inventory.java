@@ -31,13 +31,30 @@ public class Inventory {
         this.collectedClues.add(clue);
     }
 
+    public boolean checkIfHintExists(Hint hint) {
+        for (Hint hintToCheck: this.collectedHints) {
+            if (hintToCheck.getRelatedClue() == hint.getRelatedClue()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addNewCharacter(NPC character) {
         this.metCharacters.ensureCapacity(1);
         this.metCharacters.add(character);
     }
 
     public void addNewHint(Hint hint) {
-        this.collectedHints.ensureCapacity(1);
-        this.collectedHints.add(hint);
+        if (checkIfHintExists(hint) == false) {
+            this.collectedHints.ensureCapacity(1);
+            this.collectedHints.add(hint);
+        } else {
+            for (Hint hintToUpdate: this.collectedHints) {
+                if (hintToUpdate == hint) {
+                    hintToUpdate.combine(hint);
+                }
+            }
+        }
     }
 }
