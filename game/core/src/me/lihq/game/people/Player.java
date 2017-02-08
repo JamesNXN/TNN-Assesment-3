@@ -23,9 +23,9 @@ public class Player extends AbstractPerson
     private NavigationScreen screen;
 
     /**
-     * This object stores the clues that the player has picked up
+     * This object stores the clues and hints the player has collected and the npc's they have spoken to.
      */
-    public List<Clue> collectedClues = new ArrayList<>();
+    public Inventory inventory = new Inventory();
     /**
      * This stores whether the player is in the middle of a conversation or not
      */

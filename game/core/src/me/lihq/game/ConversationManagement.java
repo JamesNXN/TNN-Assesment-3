@@ -85,10 +85,10 @@ public class ConversationManagement
         Array<SpeechBoxButton> buttons = new Array<>();
         SpeechBoxButton.EventHandler eventHandler = (result) -> handleResponse(QuestionStage.TYPE, result);
 
-        if (!player.collectedClues.isEmpty()) {
+        if (player.inventory.getCollectedClues().size != 0) {
             buttons.add(new SpeechBoxButton("Question?", 0, eventHandler));
         }
-        if (player.collectedClues.size() > 3) {
+        if (player.inventory.getCollectedClues().size > 3) {
             buttons.add(new SpeechBoxButton("Accuse?", 1, eventHandler));
         }
         if (buttons.size > 0) {
@@ -125,7 +125,7 @@ public class ConversationManagement
 
 
         int i = 0;
-        for (Clue c : this.player.collectedClues) {
+        for (Clue c : this.player.inventory.getCollectedClues()) {
             buttons.add(new SpeechBoxButton(c.getName(), i, eventHandler));
             i++;
         }
@@ -138,8 +138,8 @@ public class ConversationManagement
      */
     private void questionNPC()
     {
-        speechBoxManager.addSpeechBox(new SpeechBox(player.getName(), player.getSpeech(player.collectedClues.get(tempCluePos), tempQuestionStyle)));
-        speechBoxManager.addSpeechBox(new SpeechBox(tempNPC.getName(), tempNPC.getSpeech(player.collectedClues.get(tempCluePos), tempQuestionStyle)));
+        speechBoxManager.addSpeechBox(new SpeechBox(player.getName(), player.getSpeech(player.inventory.getCollectedClues().get(tempCluePos), tempQuestionStyle)));
+        speechBoxManager.addSpeechBox(new SpeechBox(tempNPC.getName(), tempNPC.getSpeech(player.inventory.getCollectedClues().get(tempCluePos), tempQuestionStyle)));
         finishConversation();
     }
 
