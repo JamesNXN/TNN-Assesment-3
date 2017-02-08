@@ -1,8 +1,9 @@
-package me.lihq.game.people;
+package me.lihq.game.models;
 
 import com.badlogic.gdx.utils.Array;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Hint;
+import me.lihq.game.people.NPC;
 
 /**
  * Created by User on 08/02/2017.

@@ -9,11 +9,9 @@ import com.badlogic.gdx.utils.JsonReader;
 import me.lihq.game.Collidable;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
+import me.lihq.game.models.Inventory;
 import me.lihq.game.screen.NavigationScreen;
 import me.lihq.game.screen.elements.RoomArrow;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class defines the player that the person playing the game will be represented by.

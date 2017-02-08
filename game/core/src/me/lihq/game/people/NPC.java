@@ -33,6 +33,10 @@ public class NPC extends AbstractPerson
     private boolean isKiller = false;
     private boolean isVictim = false;
 
+    /**
+     * Used in questioning for more info check Interaction class
+     */
+    private Array<Clue> exhaustedClues = new Array<>(0);
 
     private Personality personality;
 
@@ -121,5 +125,12 @@ public class NPC extends AbstractPerson
     public Personality getPersonality()
     {
         return this.personality;
+    }
+
+    public Array<Clue> getExhaustedClues() {return this.exhaustedClues;}
+
+    public void addExhaustedClue(Clue clue) {
+        this.exhaustedClues.ensureCapacity(1);
+        this.exhaustedClues.add(clue);
     }
 }
