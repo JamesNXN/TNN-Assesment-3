@@ -135,7 +135,7 @@ public class NavigationScreen extends AbstractScreen
 
         gamePadController = new GamePadController(player);
 
-        playerController = new PlayerController(player);
+        playerController = new PlayerController(player, game);
     }
 
     /**

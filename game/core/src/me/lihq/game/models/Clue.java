@@ -166,10 +166,7 @@ public class Clue extends Actor implements Collidable, TileObject
     }
 
     public Array<NPC> getRelatedNPC(){
-        Array<NPC> npclist = relatedNPC();
-        npclist.shuffle();
-        npclist.setSize(2);
-        return npclist;
+        return this.getRelatedNPC();
     }
 
     @Override
