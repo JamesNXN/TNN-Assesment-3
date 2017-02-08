@@ -15,14 +15,19 @@ public class Hint {
 
     public Hint(Clue clue) {
         this.relatedClue =  clue;
+        Array<NPC> npclist = clue.getRelatedNPC();
+        npclist.shuffle();
         int subsetSize = ThreadLocalRandom.current().nextInt(1, clue.getRelatedNPC().size + 1);
+        npclist.setSize(subsetSize);
+        this.relatedNPClist = npclist;
+        /**
         while (this.relatedNPClist.size != subsetSize) {
             NPC randomNPC = clue.getRelatedNPC().random();
-            if (!this.relatedNPClist.contains(randomNPC, true)) {
+            if (!this.relatedNPClist.containski(randomNPC, true)) {
                 this.relatedNPClist.ensureCapacity(1);
                 this.relatedNPClist.add(randomNPC);
             }
-        }
+        }**/
     }
 
     public Array<NPC> getRelatedNPClist(){

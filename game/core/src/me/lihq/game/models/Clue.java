@@ -104,7 +104,7 @@ public class Clue extends Actor implements Collidable, TileObject
         return this.description;
     }
 
-    public Array<NPC> relatedNPC(){
+    public Array<NPC> getRelatedNPC(){
         Array<NPC> npcs = GameMain.instance.personManager.getNpcArray();
 
         NPC npc1 = npcs.get(0);
@@ -165,9 +165,7 @@ public class Clue extends Actor implements Collidable, TileObject
         return list;
     }
 
-    public Array<NPC> getRelatedNPC(){
-        return this.getRelatedNPC();
-    }
+
 
     @Override
     public Rectangle getCollisionBox() {
