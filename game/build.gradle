@@ -21,6 +21,7 @@ allprojects {
         box2DLightsVersion = '1.4'
         ashleyVersion = '1.7.0'
         aiVersion = '1.8.0'
+        junitVersion = '4.12'
     }
 
     repositories {
@@ -56,33 +57,41 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-    }
-}
 
-project(":tests") {
-    apply plugin: "java"
-
-    sourceSets.test.java.srcDirs = ["src"]
-
-    dependencies {
-        compile project(":core")
-
-        compile "junit:junit:4.+"
-        compile "org.mockito:mockito-all:1.9.+"
-
-        compile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
-
-        testCompile 'junit:junit:4.+'
-        testCompile "org.mockito:mockito-all:1.9.+"
-
+        testCompile "junit:junit:$junitVersion"
+        testCompile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         testCompile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        testCompile "org.mockito:mockito-core:2.+"
+
         testCompile "com.badlogicgames.gdx:gdx:$gdxVersion"
         testCompile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        testCompile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
     }
 }
+
+//project(":tests") {
+//    apply plugin: "java"
+//
+//    sourceSets.test.java.srcDirs = ["src"]
+//
+//    dependencies {
+//        compile project(":core")
+//
+//        compile "junit:junit:4.+"
+//        compile "org.mockito:mockito-all:1.9.+"
+//
+//        compile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+//        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+//        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+//
+//        testCompile 'junit:junit:4.+'
+//        testCompile "org.mockito:mockito-all:1.9.+"
+//
+//        testCompile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+//        testCompile "com.badlogicgames.gdx:gdx:$gdxVersion"
+//        testCompile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+//        testCompile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+//    }
+//}
 
 tasks.eclipse.doLast {
     delete ".project"
