@@ -60,6 +60,11 @@ public class Clue extends Actor implements Collidable, TileObject
         collisionBox.setSize(Settings.TILE_SIZE);
     }
 
+    public Clue() {
+        this.name = "test";
+        this.description = "test";
+        this.relatedNpcIdArray = new Array<>(3);
+    }
     /**
      * This method checks equality of this Clue object and another object.
      *
