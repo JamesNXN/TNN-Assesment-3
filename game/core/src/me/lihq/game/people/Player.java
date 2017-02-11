@@ -1,19 +1,14 @@
 package me.lihq.game.people;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-
 import me.lihq.game.Collidable;
 import me.lihq.game.GameMain;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Inventory;
-import me.lihq.game.screen.NavigationScreen;
 import me.lihq.game.screen.elements.RoomArrow;
 
 /**
@@ -40,7 +35,25 @@ public class Player extends AbstractPerson
     /**
      * The score the player has earned so far.
      */
+
     private int score = 0;
+
+     /**
+     * The time penalty that will be applied to the score.
+     */
+
+    private int time = 0;
+
+    /**
+     * This method will be called after each interaction to increase the time penalty.
+     */
+
+    public void addToTime(int change) {
+
+        time = time + change;
+
+    }
+
 
     private Rectangle interactionCollisionBox;
 
