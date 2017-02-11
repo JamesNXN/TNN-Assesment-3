@@ -24,6 +24,7 @@ public class Interaction {
         if (player.inventory.getCollectedClues().size != 0) {
             if (npc.getPersonality() == questioningStyle && !npc.getExhaustedClues().contains(clue, true)) {
                 //// TODO: 08/02/2017 some graphical success text
+                player.addToTime(5);                          // Increases the time penalty by 5.
                 player.inventory.addNewHint(new Hint(clue));
                 npc.addExhaustedClue(clue);
             }
