@@ -1,76 +1,49 @@
 package me.lihq.game.models;
 
-import com.badlogic.gdx.utils.Array;
-import com.sun.deploy.util.ArrayUtil;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.stream.IntStream;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
- * Created by PPPPPP on 2017/2/12.
+ * Created by Tunc on 12/02/2017.
  */
 public class HintTest {
-    private Clue testclue;
-    private Hint testhint;
-    private Hint testhint2;
+    private Hint testHint;
+    private Clue testClue;
 
     @Before
     public void setUp() throws Exception {
-        this.testclue = new Clue();
-        this.testhint = new Hint(testclue);
-        this.testhint2 = new Hint(testclue);
-        while(testhint.getRelatedNpcIdArray() == testhint2.getRelatedNpcIdArray()){
-            this.testhint2 = new Hint(testclue);
-        }
+        testClue = new Clue();
+        testHint = new Hint(testClue);
+
     }
 
     @After
     public void tearDown() throws Exception {
-        this.testhint = null;
-        this.testclue = null;
+        testClue = null;
+        testHint = null;
+
 
     }
 
     @Test
     public void getRelatedNpcIdArray() throws Exception {
-        assertNotNull(testhint.getRelatedNpcIdArray());
-        /**
-        * Test the elements are subsets of related  npc id array.
-        * */
-        for(int id:testhint.getRelatedNpcIdArray()){
-            assertTrue("Hint should be subset of related NPC",  testclue.getRelatedNpcIdArray().contains(id,true));
-        }
 
+        assertNotNull(testHint.getRelatedNpcIdArray());
 
     }
+
+
 
     @Test
     public void getRelatedClue() throws Exception {
-        assertNotNull(testhint.getRelatedClue());
-        assertEquals(testhint.getRelatedClue(),testclue);
-
+        assertEquals(testClue, testHint.getRelatedClue());
 
     }
 
-    @Test
-    public void combine() throws Exception {
-        /**
-         * test if the elements in different hints can be combined.
-         */
-        Array<Integer> test = new Array<>();
-        test.addAll(testhint.getRelatedNpcIdArray());
-        test.addAll(testhint2.getRelatedNpcIdArray());
-        testhint.combine(testhint2);
-        for(int id:test){
-            assertTrue("Combine Failed", testhint.getRelatedNpcIdArray().contains(id,true));
-        }
-
-
-    }
+    //// @TODO Unsure on test for combine method atm. Will add later.
 
 }
