@@ -13,7 +13,8 @@ public class Hint {
 
     public Hint(Clue clue) {
         this.relatedClue =  clue;
-        Array<Integer> npcArray = clue.getRelatedNpcIdArray();
+        Array<Integer> npcArray = new Array<Integer>();
+        npcArray.addAll(clue.getRelatedNpcIdArray());
         npcArray.shuffle();
         int subsetSize = MathUtils.random(1, npcArray.size);
         npcArray.setSize(subsetSize);

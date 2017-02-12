@@ -63,7 +63,7 @@ public class Clue extends Actor implements Collidable, TileObject
     public Clue() {
         this.name = "test";
         this.description = "test";
-        this.relatedNpcIdArray = new Array<>(3);
+        this.relatedNpcIdArray = new Array<>(new Integer[]{1,2,3,4});
     }
     /**
      * This method checks equality of this Clue object and another object.
