@@ -1,13 +1,9 @@
 import com.badlogic.gdx.utils.Array;
-import com.sun.deploy.util.ArrayUtil;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Hint;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.stream.IntStream;
 
 import static org.junit.Assert.*;
 

@@ -1,10 +1,8 @@
 package me.lihq.game.models;
 
-import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-
 import me.lihq.game.Collidable;
 import me.lihq.game.Settings;
 import me.lihq.game.TileObject;
@@ -45,6 +43,24 @@ public class Door extends Actor implements Collidable, TileObject{
 
         connectedRoomId = (int) mapObject.getProperties().get("connectedRoomId");
     }
+
+    /// TEST PARAMETERS
+
+    private int collBox;
+    private String directionT;
+    private String connectedRoomT;
+
+
+    /// TEST CONSTRUCTOR
+
+    public Door(Vector2Int tilepos){
+        this.collBox = 1;
+        this.directionT = "SOUTH";
+        this.connectedRoomT = "HUB";
+        this.tilePosition = tilepos;
+
+    }
+    /// TEST CONSTRUCTOR END
 
     @Override
     public Rectangle getCollisionBox() {

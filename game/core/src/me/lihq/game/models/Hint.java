@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import me.lihq.game.people.NPC;
 
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Hint {
     private Clue relatedClue;
