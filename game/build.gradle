@@ -49,7 +49,9 @@ project(":desktop") {
 }
 
 project(":core") {
-    apply plugin: "java"
+    apply plugin: 'java'
+    compileJava.options.useAnt = true
+    compileJava.options.compilerArgs << "-XDignore.symbol.file"
 
 
     dependencies {
