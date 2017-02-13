@@ -10,11 +10,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
-
 import me.lihq.game.Collidable;
 import me.lihq.game.Settings;
 import me.lihq.game.TileObject;
-import me.lihq.game.models.Clue;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 
@@ -99,6 +97,22 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
         walkDown = new Animation<>(0.1f, spriteSheet.findRegions("walkDown"));
         walkRight = new Animation<>(0.1f, spriteSheet.findRegions("walkRight"));
         walkLeft = new Animation<>(0.1f, spriteSheet.findRegions("walkLeft"));
+    }
+
+    public AbstractPerson(){    //// TEST CONSTRUCTOR
+        this.name = "test";
+        this.state = PersonState.STANDING;
+        collisionBox = new Rectangle();
+        collisionBox.setSize(Settings.TILE_SIZE * 0.7f);
+
+        setSize(SPRITE_WIDTH, SPRITE_HEIGHT);
+        setOrigin(getWidth()/2, getHeight()/2);
+
+        walkUp = null;
+        walkDown = null;
+        walkRight = null;
+        walkLeft = null;
+
     }
 
     /**

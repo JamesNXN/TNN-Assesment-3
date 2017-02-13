@@ -1,18 +1,9 @@
 package me.lihq.game.people;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-
-import me.lihq.game.GameMain;
 import me.lihq.game.models.Clue;
-import me.lihq.game.models.Room;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 /**
  * The class which is responsible for the non-playable characters within the game that the player will meet.
@@ -43,6 +34,9 @@ public class NPC extends AbstractPerson
     {
         super(jsonData, spriteSheet);
     }
+
+
+    public NPC(){} //// TEST CONSTRUCTOR
 
     public boolean isKiller()
     {

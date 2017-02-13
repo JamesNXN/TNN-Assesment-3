@@ -1,22 +1,31 @@
-import com.badlogic.gdx.utils.Array;
 import me.lihq.game.models.Clue;
+import me.lihq.game.models.Hint;
 import me.lihq.game.models.Inventory;
+import me.lihq.game.people.NPC;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
- * Created by User on 09/02/2017.
+ * Created by TD on 13/02/2017.
  */
 public class InventoryUnitTests extends GameTester{
     /**
      * Start by defining test parameters needed
      */
     private Inventory testInventory;
-    private Clue testClue;
 
+    private Clue testClue;
+    private Clue testClue2;
+
+    private NPC testNPC;
+    private NPC testNPC2;
+
+    private Hint testHint;
+    private Hint testHint2;
     /**
      * Setup method initialises the objects needed and the object to be tested and throws an exception
      * if they dont initialise properly
@@ -25,7 +34,15 @@ public class InventoryUnitTests extends GameTester{
     @Before
     public void setUp() throws Exception {
         testInventory = new Inventory();
+
         testClue = new Clue();
+        testClue2 = new Clue();
+
+        testNPC = new NPC();
+        testNPC2 = new NPC();
+
+        testHint = new Hint(testClue);
+        testHint2 = new Hint(testClue2);
 
     }
 
@@ -37,7 +54,15 @@ public class InventoryUnitTests extends GameTester{
     @After
     public void tearDown() throws Exception {
         testInventory = null;
+
         testClue = null;
+        testClue2 = null;
+
+        testNPC = null;
+        testNPC2 = null;
+
+        testHint = null;
+        testHint2 = null;
 
     }
 
@@ -71,31 +96,69 @@ public class InventoryUnitTests extends GameTester{
     @Test
     public void getMetCharacters() throws Exception {
 
+        assertNotNull(testInventory.getMetCharacters());
+
+        testInventory.addNewCharacter(testNPC);
+
+        assertEquals("array does not contain correct NPC",testNPC, testInventory.getMetCharacters().peek());
+
     }
 
     @Test
     public void getCollectedHints() throws Exception {
+
+        assertNotNull(testInventory.getCollectedHints());
+
+        testInventory.addNewHint(testHint);
+
+        assertEquals("array does not contain correct Hint", testHint, testInventory.getCollectedHints().peek());
+    }
+
+    @Test
+    public void checkIfHintExists() throws Exception {
+
+        testInventory.addNewHint(testHint);
+
+        assertEquals(true, testInventory.checkIfHintExists(testHint));
 
     }
 
     @Test
     public void addNewClue() throws Exception {
 
-    }
+        testInventory.addNewClue(testClue);
+        assertEquals("first item not added",testClue, testInventory.getCollectedClues().peek());
 
-    @Test
-    public void checkIfHintExists() throws Exception {
+        testInventory.addNewClue(testClue2);
+        assertEquals("second item not added",testClue2, testInventory.getCollectedClues().peek());
+
+        //// @TODO I was unsure of how to do the last part, but we need to assert collectedClues contains 2 items
 
     }
 
     @Test
     public void addNewCharacter() throws Exception {
 
+        testInventory.addNewCharacter(testNPC);
+        assertEquals("first NPC not added",testNPC, testInventory.getMetCharacters().peek());
+
+        testInventory.addNewCharacter(testNPC2);
+        assertEquals("second NPC not added",testNPC2, testInventory.getMetCharacters().peek());
+
+        //// @TODO I was unsure of how to do the last part, but we need to assert metCharacters contains 2 items
+
     }
 
     @Test
     public void addNewHint() throws Exception {
 
+        testInventory.addNewHint(testHint);
+        assertEquals("first Hint not added",testHint, testInventory.getCollectedHints().peek());
+
+        testInventory.addNewHint(testHint2);
+        assertEquals("second Hint not added",testHint2, testInventory.getCollectedHints().peek());
+
+        //// @TODO I was unsure of how to do the last part, but we need to assert collectedHints contains 2 items
     }
 
 }
