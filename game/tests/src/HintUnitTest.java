@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import java.util.stream.IntStream;
 
-import static org.junit.Assert.*;m
+import static org.junit.Assert.*;
 
 /**
  * Created by PPPPPP on 2017/2/12.
