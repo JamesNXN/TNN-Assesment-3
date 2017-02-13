@@ -1,5 +1,3 @@
-package java;
-
 import com.badlogic.gdx.utils.Array;
 import me.lihq.game.models.Clue;
 import org.junit.After;

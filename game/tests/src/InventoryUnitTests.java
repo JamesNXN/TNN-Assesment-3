@@ -1,5 +1,3 @@
-package java;
-
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Hint;
 import me.lihq.game.models.Inventory;
