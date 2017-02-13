@@ -1,5 +1,4 @@
-package me.lihq.game.models;
-
+import me.lihq.game.models.Vector2Int;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +8,7 @@ import static org.junit.Assert.*;
 /**
  * Created by PPPPPP on 2017/2/13.
  */
-public class Vector2IntTest {
+public class Vector2IntUnitTest {
     private Vector2Int test2int;
     @Before
     public void setUp() throws Exception {
@@ -37,7 +36,7 @@ public class Vector2IntTest {
     }
 
     @Test
-   public void testToString() throws Exception {
+    public void testToString() throws Exception {
         assertTrue("Doesn't return string",test2int.toString() instanceof String);
         assertEquals("xy not equal",test2int.toString(),"(1,2)");
 
