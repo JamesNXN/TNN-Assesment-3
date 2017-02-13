@@ -1,3 +1,5 @@
+package java;
+
 import me.lihq.game.models.Vector2Int;
 import org.junit.After;
 import org.junit.Before;

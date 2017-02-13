@@ -1,3 +1,5 @@
+package java;
+
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -8,7 +10,7 @@ import org.junit.BeforeClass;
 import org.mockito.Mockito;
 
 /**
- * This is the GameTester class it initialises the headless backend of the game.
+ * This is the java.GameTester class it initialises the headless backend of the game.
  * Taken from: http://manabreak.eu/java/2016/10/21/unittesting-libgdx.html
  */
 public class GameTester

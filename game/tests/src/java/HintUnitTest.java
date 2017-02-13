@@ -1,3 +1,5 @@
+package java;
+
 import com.badlogic.gdx.utils.Array;
 import com.sun.deploy.util.ArrayUtil;
 import me.lihq.game.models.Clue;

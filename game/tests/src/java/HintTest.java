@@ -1,3 +1,5 @@
+package java;
+
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Hint;
 import org.junit.After;
