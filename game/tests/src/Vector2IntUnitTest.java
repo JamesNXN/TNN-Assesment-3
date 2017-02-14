@@ -24,6 +24,7 @@ public class Vector2IntUnitTest {
 
     @Test
     public void getX() throws Exception {
+        assertNotNull(test2int.getX());
         assertEquals("x not equal",test2int.getX(),1);
 
     }
@@ -32,6 +33,7 @@ public class Vector2IntUnitTest {
 
     @Test
     public void getY() throws Exception {
+        assertNotNull(test2int.getY());
         assertEquals("y not equal",test2int.getY(),2);
     }
 
