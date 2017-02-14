@@ -204,4 +204,6 @@ public class Player extends AbstractPerson
         return this.personalityLevel;
     }
 
+
+    public int getTime() { return this.time; }
 }
