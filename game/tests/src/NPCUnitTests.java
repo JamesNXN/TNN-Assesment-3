@@ -1,5 +1,3 @@
-package java;
-
 import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.NPC;
 import me.lihq.game.models.Room;

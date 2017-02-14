@@ -1,5 +1,3 @@
-package java;
-
 import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.Direction;
 import org.junit.After;
