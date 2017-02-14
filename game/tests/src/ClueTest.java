@@ -44,6 +44,7 @@ public class ClueTest {
 
     @Test
     public void getName() throws Exception {
+        assertNotNull(cluetest.getName());
         System.out.println(cluetest.getName());
         assertEquals("name doesn't fit","test",cluetest.getName());
 
@@ -51,6 +52,7 @@ public class ClueTest {
 
     @Test
     public void getDescription() throws Exception {
+        assertNotNull(cluetest.getDescription());
         assertEquals("name doesn't fit","test",cluetest.getDescription());
 
 
@@ -81,6 +83,7 @@ public class ClueTest {
      */
     @Test
     public void getTilePosition() throws Exception{
+        assertNotNull(cluetest.getTilePosition());
         Vector2Int testtileCoordinates = new Vector2Int(1,2);
         cluetest.setTilePosition(1,2);
         assertEquals(testtileCoordinates,cluetest.getTilePosition());
@@ -88,7 +91,16 @@ public class ClueTest {
 
     @Test
     public void getCollisionBox() throws Exception {
+        /**
+         * Base case
+         */
         assertNotNull(cluetest.getCollisionBox());
+
+        Rectangle  testbox= new Rectangle();
+        assertEquals("box0000 not equal",testbox.setSize(Settings.TILE_SIZE),cluetest.getCollisionBox());
+        cluetest.setTilePosition(1,2);
+
+        assertNotEquals("collisionBox size not changed",testbox,cluetest.getCollisionBox());
 
     }
 
