@@ -48,7 +48,7 @@ public class HintUnitTest {
     @Test
     public void getRelatedClue() throws Exception {
         assertNotNull(testhint.getRelatedClue());
-        assertEquals(testhint.getRelatedClue(),testclue);
+        assertEquals(testclue,testhint.getRelatedClue());
 
 
     }
