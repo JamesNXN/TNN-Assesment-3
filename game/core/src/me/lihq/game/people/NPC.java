@@ -18,6 +18,10 @@ public class NPC extends AbstractPerson
     private boolean isKiller = false;
     private boolean isVictim = false;
 
+    private int id;
+
+    private boolean falselyAccused = false;
+
     /**
      * Used in questioning for more info check Interaction class
      */
@@ -33,6 +37,7 @@ public class NPC extends AbstractPerson
     public NPC(JsonValue jsonData, TextureAtlas spriteSheet)
     {
         super(jsonData, spriteSheet);
+        this.id = jsonData.getInt("id");
     }
 
 
@@ -94,4 +99,12 @@ public class NPC extends AbstractPerson
     public String toString() {
         return this.getName();
     }
+
+    public int getId() { return this.id;}
+
+    public void setFalselyAccused() {
+        this.falselyAccused = true;
+    }
+
+    public boolean getFalselyAccused() { return this.falselyAccused;}
 }
