@@ -2,16 +2,10 @@ package me.lihq.game;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import me.lihq.game.models.Room;
-import me.lihq.game.people.AbstractPerson;
-import me.lihq.game.screen.elements.DebugOverlay;
 
 /**
  * CustomTiledMapRenderer
@@ -71,10 +65,6 @@ public class CustomTiledMapRenderer extends OrthogonalTiledMapRenderer
             else{
                 renderTileLayer((TiledMapTileLayer) layer);
             }
-        }
-
-        if (Settings.DEBUG) {
-            DebugOverlay.renderDebugTiles(renderingRoom, this.getBatch());
         }
 
         endRender();

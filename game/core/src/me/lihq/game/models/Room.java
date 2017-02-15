@@ -22,7 +22,7 @@ public class Room
      * <p>
      * Hideable slots are tiles that the clues can be hidden in
      */
-    public Array<Vector2Int> hidingSpots;
+    private Array<Vector2Int> hidingSpots;
 
     private String name;
 
@@ -47,8 +47,7 @@ public class Room
      *
      * @param map - Tmx map file.
      */
-    public Room(TiledMap map, TextureAtlas roomArrowAtlas)
-    {
+    public Room(TiledMap map, TextureAtlas roomArrowAtlas) {
         this.ID = (int) map.getProperties().get("id");
         this.mapFile = map;
         this.name = (String) map.getProperties().get("name");
@@ -69,6 +68,32 @@ public class Room
         hidingSpots = new Array<>();
         hidingSpots.addAll(getHidingSpots());
     }
+
+    /**
+     * test constructor without room arrow
+     */
+    public Room(TiledMap map){
+        this.ID = (int) map.getProperties().get("id");
+        this.mapFile = map;
+        this.name = (String) map.getProperties().get("name");
+
+        mapFile.getLayers().get("Collision").setVisible(false);
+        mapFile.getLayers().get("HidingSpot").setVisible(false);
+
+        clueArray = new Array<>();
+        npcArray = new Array<>();
+        exitArray = new Array<>();
+        entryArray = new Array<>();
+        roomArrowArray = new Array<>();
+
+        exitArray.addAll(getExit());
+        entryArray.addAll(getEntry());
+
+        hidingSpots = new Array<>();
+        hidingSpots.addAll(getHidingSpots());
+    }
+
+
 
     /**
      * This method checks equality between the Room and another object

@@ -34,11 +34,6 @@ public class GameMain extends Game
     public static final int GAME_HEIGHT = 750;
 
     /**
-     * This is a static reference to itself. Comes in REALLY handy when in other classes that don't have a reference to the main game
-     */
-    public static GameMain instance = null;
-
-    /**
      * Asset container for referencing assets throughout the game
      */
     public Assets assets;
@@ -63,10 +58,7 @@ public class GameMain extends Game
      * This is called at start up. It initialises the game.
      */
     @Override
-    public void create()
-    {
-        instance = this;
-
+    public void create(){
         assets = new Assets();
 
         //Set up the SplashScreen

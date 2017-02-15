@@ -78,6 +78,18 @@ public class Clue extends Actor implements Collidable, TileObject
 
     }
     /**
+     * constructor for testing
+     */
+    public Clue(String name, String description, Array<Integer> relatedNpcIdArray){
+        this.name = name;
+        this.description = description;
+        this.relatedNpcIdArray = relatedNpcIdArray;
+
+        collisionBox = new Rectangle();
+        collisionBox.setSize(Settings.TILE_SIZE);
+    }
+
+    /**
      * This method checks equality of this Clue object and another object.
      *
      * @param obj - The clue object.

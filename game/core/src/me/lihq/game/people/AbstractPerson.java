@@ -99,20 +99,15 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
         walkLeft = new Animation<>(0.1f, spriteSheet.findRegions("walkLeft"));
     }
 
-    public AbstractPerson(){    //// TEST CONSTRUCTOR
-        this.name = "test";
+    public AbstractPerson(JsonValue jsonData){    //// TEST CONSTRUCTOR
+        name = jsonData.getString("name");
         this.state = PersonState.STANDING;
+
         collisionBox = new Rectangle();
         collisionBox.setSize(Settings.TILE_SIZE * 0.7f);
 
         setSize(SPRITE_WIDTH, SPRITE_HEIGHT);
         setOrigin(getWidth()/2, getHeight()/2);
-
-        walkUp = null;
-        walkDown = null;
-        walkRight = null;
-        walkLeft = null;
-
     }
 
     /**

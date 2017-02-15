@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="7" height="7" tilewidth="32" tileheight="32" nextobjectid="4">
+ <properties>
+  <property name="id" type="int" value="100"/>
+  <property name="name" value="Test Room 1"/>
+ </properties>
+ <tileset firstgid="1" name="tileset2" tilewidth="32" tileheight="32" tilecount="459" columns="17">
+  <image source="tileset2.png" width="544" height="864"/>
+ </tileset>
+ <tileset firstgid="460" source="meta.tsx"/>
+ <layer name="Tile Layer 1" width="7" height="7">
+  <data encoding="csv">
+0,0,0,0,0,0,0,
+0,1,1,1,1,1,0,
+0,1,1,1,1,1,0,
+0,1,1,1,1,1,0,
+0,1,1,1,1,1,0,
+0,1,1,1,1,1,0,
+0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Tile Layer 2" width="7" height="7">
+  <data encoding="csv">
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,256,0,0,256,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Doors" width="7" height="7">
+  <data encoding="csv">
+0,0,0,0,0,0,0,
+0,7,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Over Player" width="7" height="7">
+  <data encoding="csv">
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Collision" width="7" height="7" visible="0">
+  <data encoding="csv">
+460,460,460,460,460,460,460,
+460,0,0,0,0,0,460,
+460,0,0,0,0,0,460,
+460,0,0,0,0,0,460,
+460,460,0,0,460,0,460,
+460,0,0,0,0,0,460,
+460,460,460,460,460,460,460
+</data>
+ </layer>
+ <layer name="HidingSpot" width="7" height="7" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,461,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="Transition">
+  <object id="1" name="toTestRoom2" type="Exit" x="32" y="0" width="32" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="101"/>
+    <property name="direction" value="NORTH"/>
+   </properties>
+  </object>
+  <object id="2" name="fromTestRoom2" type="Entry" x="32" y="32" width="32" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="101"/>
+    <property name="direction" value="SOUTH"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
