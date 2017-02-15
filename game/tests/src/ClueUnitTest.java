@@ -9,9 +9,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by 2017/2/12.Clue Unit Test
- */
 public class ClueUnitTest {
 
     private Clue testClue1;

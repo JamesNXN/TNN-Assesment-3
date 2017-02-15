@@ -49,6 +49,9 @@ public class Door extends Actor implements Collidable, TileObject{
      */
     public Door(Direction direction, int connectedRoomId, Vector2Int tilePosition){
         this.collisionBox = new Rectangle();
+        this.direction = direction;
+        this.connectedRoomId = connectedRoomId;
+        this.tilePosition = tilePosition;
     }
 
     @Override

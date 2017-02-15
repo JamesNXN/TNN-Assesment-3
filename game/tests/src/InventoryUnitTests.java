@@ -48,7 +48,7 @@ public class InventoryUnitTests extends GameTester{
 
         Json json = new Json();
 
-        JsonValue npcJsonData = new JsonReader().parse(new FileHandle("testNPC.json"));
+        JsonValue npcJsonData = new JsonReader().parse(new FileHandle("assets/testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
         testNPC = new NPC(npcJsonDataArray.get(0));
         testNPC2 = new NPC(npcJsonDataArray.get(1));
