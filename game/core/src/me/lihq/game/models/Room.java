@@ -212,7 +212,7 @@ public class Room
      * This will check the map for any potential hiding locations, and add them as a list of coordinates
      *
      */
-    private Array<Vector2Int> getHidingSpots()
+    public Array<Vector2Int> getHidingSpots()
     {
         TiledMapTileLayer layer = (TiledMapTileLayer) mapFile.getLayers().get("HidingSpot");
         int roomTileWidth = layer.getWidth();

@@ -19,7 +19,7 @@ public class NPCUnitTests extends GameTester
     public NPC testNPC;
 
     @Before
-    public void makeNPC()
+    public void setUp()
     {
         Json json = new Json();
         JsonValue npcJsonData = new JsonReader().parse(new FileHandle("testNPC.json"));
@@ -28,12 +28,12 @@ public class NPCUnitTests extends GameTester
     }
 
     @Test
-    public void testGetName() {
+    public void getName() {
         assertEquals("getting the name of the NPC failing", "testNPC1", testNPC.getName());
     }
 
     @Test
-    public void testPersonality() {
+    public void getPersonality() {
         assertEquals(Personality.AGGRESSIVE, testNPC.getPersonality());
     }
 

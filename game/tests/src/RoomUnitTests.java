@@ -1,21 +1,18 @@
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
-import me.lihq.game.people.AbstractPerson;
-import me.lihq.game.models.Room;
-import me.lihq.game.models.Vector2Int;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import static org.junit.Assert.*;
+import me.lihq.game.models.Room;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class RoomUnitTests extends GameTester
 {
 
-    Room testRoom1, testRoom2;
+    private Room testRoom1, testRoom2;
 
     @Before
     public void before()
@@ -39,5 +36,11 @@ public class RoomUnitTests extends GameTester
         assertTrue(testRoom2.isWalkableTile(3,3));
         assertFalse(testRoom2.isWalkableTile(0,0));
         assertFalse(testRoom2.isWalkableTile(1,4));
+    }
+
+    @Test
+    public void getHidingSpots() {
+        assertTrue(testRoom1.getHidingSpots().contains(testRoom1.getRandHidingSpot(),false));
+        assertTrue(testRoom2.getHidingSpots().contains(testRoom2.getRandHidingSpot(),false));
     }
 }
