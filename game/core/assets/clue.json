@@ -2,42 +2,49 @@
   {
     "name": "Big Footprint",
     "description": "A big footprint left at the crime scene by the killer.",
-    "relatedNpcId": [1,2,3]
+    "relatedNpcId": [1,2,3],
+    "clueType": "OTHER"
   },
 
   {
     "name": "Small Footprint",
     "description": "A small footprint left at the crime scene by the killer.",
-    "relatedNpcId": [4,5,6]
+    "relatedNpcId": [4,5,6],
+    "clueType": "OTHER"
   },
 
   {
     "name": "Glasses",
     "description": "A pair of glasses these were found by another detective at the crime scene.",
-    "relatedNpcId": [3,4,5,6]
+    "relatedNpcId": [3,4,5,6],
+    "clueType": "OTHER"
   },
 
   {
     "name": "Bag",
     "description": "A bag. Someone must have left in a hurry.",
-    "relatedNpcId": [2,4,5]
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
   },
 
   {
     "name": "Lipstick",
     "description": "Lipstick, a killers best friend.",
-    "relatedNpcId": [1,2,5,6]
+    "relatedNpcId": [1,2,5,6],
+    "clueType": "OTHER"
   },
 
   {
     "name": "Right Handed",
     "description": "This indicates the killer is right handed",
-    "relatedNpcId": [1,2,3,6]
+    "relatedNpcId": [1,2,3,6],
+    "clueType": "OTHER"
   },
 
   {
   "name": "Dark Hair",
   "description": "A dark hair from the crime scene",
-  "relatedNpcId": [3,4,5]
-},
+  "relatedNpcId": [3,4,5],
+  "clueType": "OTHER"
+}
 ]

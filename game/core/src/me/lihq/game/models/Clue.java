@@ -46,12 +46,15 @@ public class Clue extends Actor implements Collidable, TileObject
 
     private Rectangle collisionBox;
 
+    private ClueType clueType;
+
     public Clue(JsonValue jsonData, TextureAtlas clueGlintAtlas)
     {
         Json json = new Json();
         this.name = jsonData.getString("name");
         this.description = jsonData.getString("description");
         this.relatedNpcIdArray = json.readValue(Array.class, jsonData.get("relatedNpcId"));
+        this.clueType = json.readValue(ClueType.class, jsonData.get("clueType"));
 
         clueGlint = new Animation<>(0.1f, clueGlintAtlas.findRegions("glint"));
         setSize(Settings.TILE_SIZE, Settings.TILE_SIZE);
@@ -104,6 +107,8 @@ public class Clue extends Actor implements Collidable, TileObject
     public Array<Integer> getRelatedNpcIdArray(){
         return relatedNpcIdArray;
     }
+
+    public ClueType getClueType() { return clueType;}
 
     @Override
     public Rectangle getCollisionBox() {
