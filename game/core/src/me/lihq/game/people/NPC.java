@@ -2,6 +2,7 @@ package me.lihq.game.people;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.models.Clue;
 
@@ -37,11 +38,23 @@ public class NPC extends AbstractPerson
     public NPC(JsonValue jsonData, TextureAtlas spriteSheet)
     {
         super(jsonData, spriteSheet);
+
+        Json json = new Json();
         this.id = jsonData.getInt("id");
+        this.personality = json.readValue("personality", Personality.class, jsonData);
     }
 
+    /**
+     * constructor for testing
+     */
 
-    public NPC(){} //// TEST CONSTRUCTOR
+    public NPC(JsonValue jsonData){
+        super(jsonData);
+
+        Json json = new Json();
+        this.id = jsonData.getInt("id");
+        this.personality = json.readValue("personality", Personality.class, jsonData);
+    }
 
     public boolean isKiller()
     {

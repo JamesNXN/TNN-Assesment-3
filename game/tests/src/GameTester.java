@@ -7,6 +7,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.mockito.Mockito;
 
+import me.lihq.game.Assets;
+
 /**
  * This is the java.GameTester class it initialises the headless backend of the game.
  * Taken from: http://manabreak.eu/java/2016/10/21/unittesting-libgdx.html

@@ -7,13 +7,10 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-
-import java.util.Comparator;
 
 import me.lihq.game.*;
 import me.lihq.game.models.Clue;
@@ -26,7 +23,6 @@ import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
 import me.lihq.game.people.controller.GamePadController;
 import me.lihq.game.people.controller.PlayerController;
-import me.lihq.game.screen.elements.DebugOverlay;
 import me.lihq.game.screen.elements.FadeInOut;
 import me.lihq.game.screen.elements.Gui;
 import me.lihq.game.screen.elements.RoomArrow;
@@ -46,11 +42,6 @@ public class NavigationScreen extends AbstractScreen
      */
     public PlayerController playerController;
     public GamePadController gamePadController;
-
-    /**
-     * This is the main ConversationManager that controls the conversation mechanic
-     */
-//    public ConversationManagement convMngt;
 
     /**
      * This is the list of NPCs in the current Room
@@ -130,8 +121,6 @@ public class NavigationScreen extends AbstractScreen
         gui = new Gui(game, this);
 
         fadeInOut = new FadeInOut();
-
-//        convMngt = new ConversationManagement(player, speechboxMngr);
 
         gamePadController = new GamePadController(player);
 
@@ -256,10 +245,6 @@ public class NavigationScreen extends AbstractScreen
 
         guiStage.act();
         guiStage.draw();
-
-        if (Settings.DEBUG) {
-            DebugOverlay.renderDebugInfo(gameWorldBatch);
-        }
     }
 
     /**

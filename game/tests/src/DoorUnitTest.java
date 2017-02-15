@@ -8,10 +8,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-/**
- * Created by TD on 13/02/2017.
- */
-
 public class DoorUnitTest extends GameTester{
 
     private Door testDoor;

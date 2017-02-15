@@ -1,3 +1,9 @@
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.JsonValue;
+
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Hint;
 import me.lihq.game.models.Inventory;
@@ -38,8 +44,12 @@ public class InventoryUnitTests extends GameTester{
         testClue = new Clue();
         testClue2 = new Clue();
 
-        testNPC = new NPC();
-        testNPC2 = new NPC();
+        Json json = new Json();
+
+        JsonValue npcJsonData = new JsonReader().parse(new FileHandle("testNPC.json"));
+        Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
+        testNPC = new NPC(npcJsonDataArray.get(0));
+        testNPC2 = new NPC(npcJsonDataArray.get(1));
 
         testHint = new Hint(testClue);
         testHint2 = new Hint(testClue2);

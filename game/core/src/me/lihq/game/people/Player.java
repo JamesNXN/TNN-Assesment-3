@@ -73,6 +73,17 @@ public class Player extends AbstractPerson
     }
 
     /**
+     * constructor for testing
+     */
+
+    public Player(JsonValue jsonData){
+        super(jsonData);
+
+        interactionCollisionBox = new Rectangle();
+        interactionCollisionBox.setSize(collisionBox.getWidth(), collisionBox.getHeight());
+    }
+
+    /**
      * This method will change the players personality by the given amount.
      * It will cap the personality between 0 and 100.
      * <p>
