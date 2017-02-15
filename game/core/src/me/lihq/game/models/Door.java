@@ -44,20 +44,16 @@ public class Door extends Actor implements Collidable, TileObject{
         connectedRoomId = (int) mapObject.getProperties().get("connectedRoomId");
     }
 
-    /// TEST PARAMETERS
 
-    private int collBox;
-    private String directionT;
-    private String connectedRoomT;
 
 
     /// TEST CONSTRUCTOR
 
-    public Door(Vector2Int tilepos){
-        this.collBox = 1;
-        this.directionT = "SOUTH";
-        this.connectedRoomT = "HUB";
-        this.tilePosition = tilepos;
+    public Door(){
+        this.collisionBox = new Rectangle();
+        this.direction = Direction.EAST;
+        this.connectedRoomId = 1;
+        this.tilePosition= new Vector2Int(0,2);
 
     }
     /// TEST CONSTRUCTOR END
