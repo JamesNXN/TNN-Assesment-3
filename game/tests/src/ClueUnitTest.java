@@ -14,18 +14,18 @@ import static org.junit.Assert.*;
  */
 public class ClueUnitTest {
 
-    private Clue cluetest;
+    private Clue clueTest;
     private Clue clue2;
 
     @Before
     public void setUp() throws Exception {
-        this.cluetest = new Clue();
+        this.clueTest = new Clue();
         this.clue2 = new Clue("test2");
     }
 
     @After
     public void tearDown() throws Exception {
-        this.cluetest = null;
+        this.clueTest = null;
         this.clue2 = null;
     }
 
@@ -35,34 +35,34 @@ public class ClueUnitTest {
      */
     @Test
     public void equals() throws Exception {
-        assertTrue("Should not be equal",!cluetest.equals(clue2));
+        assertTrue("Should not be equal",!clueTest.equals(clue2));
         clue2 = new Clue();
-        assertTrue("Should be equal",cluetest.equals(clue2));
+        assertTrue("Should be equal", clueTest.equals(clue2));
         String teststring = "String";
-        assertTrue("Should not be equal",!cluetest.equals(teststring));
+        assertTrue("Should not be equal",!clueTest.equals(teststring));
     }
 
     @Test
     public void getName() throws Exception {
-        assertNotNull(cluetest.getName());
-        System.out.println(cluetest.getName());
-        assertEquals("name doesn't fit","test",cluetest.getName());
+        assertNotNull(clueTest.getName());
+        System.out.println(clueTest.getName());
+        assertEquals("name doesn't fit","test", clueTest.getName());
 
     }
 
     @Test
     public void getDescription() throws Exception {
-        assertNotNull(cluetest.getDescription());
-        assertEquals("name doesn't fit","test",cluetest.getDescription());
+        assertNotNull(clueTest.getDescription());
+        assertEquals("name doesn't fit","test", clueTest.getDescription());
 
 
     }
 
     @Test
     public void getRelatedNpcIdArray() throws Exception {
-        assertNotNull(cluetest.getRelatedNpcIdArray());
+        assertNotNull(clueTest.getRelatedNpcIdArray());
         Array<Integer> test = new Array<>(new Integer[]{1,2,3,4});
-        assertTrue("ID array doesn't fit",cluetest.getRelatedNpcIdArray().equals(test));
+        assertTrue("ID array doesn't fit", clueTest.getRelatedNpcIdArray().equals(test));
 
     }
 
@@ -72,9 +72,9 @@ public class ClueUnitTest {
 
     @Test
     public void setTilePosition() throws Exception {
-        cluetest.setTilePosition(1,2);
+        clueTest.setTilePosition(1,2);
         Rectangle  testbox= new Rectangle(0,0,0,0);
-        assertNotEquals(testbox,cluetest.getCollisionBox());
+        assertNotEquals(testbox, clueTest.getCollisionBox());
 
     }
 
@@ -83,10 +83,10 @@ public class ClueUnitTest {
      */
     @Test
     public void getTilePosition() throws Exception{
-        assertNotNull(cluetest.getTilePosition());
+        assertNotNull(clueTest.getTilePosition());
         Vector2Int testtileCoordinates = new Vector2Int(1,2);
-        cluetest.setTilePosition(1,2);
-        assertEquals(testtileCoordinates,cluetest.getTilePosition());
+        clueTest.setTilePosition(1,2);
+        assertEquals(testtileCoordinates, clueTest.getTilePosition());
     }
 
     @Test
@@ -94,13 +94,13 @@ public class ClueUnitTest {
         /**
          * Base case
          */
-        assertNotNull(cluetest.getCollisionBox());
+        assertNotNull(clueTest.getCollisionBox());
 
         Rectangle  testbox= new Rectangle();
-        assertEquals("box0000 not equal",testbox.setSize(Settings.TILE_SIZE),cluetest.getCollisionBox());
-        cluetest.setTilePosition(1,2);
+        assertEquals("box0000 not equal",testbox.setSize(Settings.TILE_SIZE), clueTest.getCollisionBox());
+        clueTest.setTilePosition(1,2);
 
-        assertNotEquals("collisionBox size not changed",testbox,cluetest.getCollisionBox());
+        assertNotEquals("collisionBox size not changed",testbox, clueTest.getCollisionBox());
 
     }
 
