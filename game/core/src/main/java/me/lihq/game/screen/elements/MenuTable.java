@@ -30,7 +30,7 @@ public abstract class MenuTable extends Table {
      */
     public MenuTable(final GameMain game, String title) {
         this.game = game;
-        menuSkin = game.assets.menuSkin;
+        menuSkin = game.assetLoader.menuSkin;
 
         align(Align.top);
         setFillParent(true);

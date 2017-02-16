@@ -18,13 +18,13 @@ public class PersonManager {
     private NPC killer;
     private NPC victim;
 
-    public PersonManager(RoomManager roomManager, Assets assets){
+    public PersonManager(RoomManager roomManager, AssetLoader assetLoader){
         Json json = new Json();
         npcArray = new Array<>();
 
-        Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, assets.npcJsonData);
+        Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, assetLoader.npcJsonData);
         for (JsonValue data : npcJsonDataArray){
-            npcArray.add(new NPC(data, assets.npcSpriteSheetMapArray.get(data.getInt("id"))));
+            npcArray.add(new NPC(data, assetLoader.npcSpriteSheetMapArray.get(data.getInt("id"))));
         }
 
         //Generate who the Killer and Victim are

@@ -1,13 +1,8 @@
 package me.lihq.game;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Room;
@@ -16,14 +11,14 @@ import me.lihq.game.models.Vector2Int;
 public class ClueManager {
     private Array<Clue> clueArray;
 
-    public ClueManager(RoomManager roomManager, Assets assets){
+    public ClueManager(RoomManager roomManager, AssetLoader assetLoader){
         //This is a temporary list of clues
         clueArray = new Array<>();
 
         Json json = new Json();
-        Array<JsonValue> clueJsonData = json.readValue(Array.class, assets.clueJsonData);
+        Array<JsonValue> clueJsonData = json.readValue(Array.class, assetLoader.clueJsonData);
         for (JsonValue data : clueJsonData){
-            clueArray.add(new Clue(data, assets.clueGlint));
+            clueArray.add(new Clue(data, assetLoader.clueGlint));
         }
 
         clueArray.shuffle();

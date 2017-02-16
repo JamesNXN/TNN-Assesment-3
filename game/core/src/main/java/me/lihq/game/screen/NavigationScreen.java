@@ -5,29 +5,21 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.*;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Room;
-import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.Direction;
 import me.lihq.game.people.NPC;
 import me.lihq.game.people.PersonState;
-import me.lihq.game.people.Player;
 import me.lihq.game.people.controller.GamePadController;
 import me.lihq.game.people.controller.PlayerController;
 import me.lihq.game.screen.elements.FadeInOut;
-import me.lihq.game.screen.elements.Gui;
+import me.lihq.game.Gui;
 import me.lihq.game.screen.elements.RoomArrow;
-import me.lihq.game.screen.elements.RoomTag;
-import me.lihq.game.screen.elements.StatusBar;
 
 /**
  * This is the screen that is responsible for the navigation of the player around the game.
@@ -35,8 +27,6 @@ import me.lihq.game.screen.elements.StatusBar;
  */
 public class NavigationScreen extends AbstractScreen
 {
-
-    private Player player;
     /**
      * The controller that listens for key inputs
      */
@@ -44,40 +34,12 @@ public class NavigationScreen extends AbstractScreen
     public GamePadController gamePadController;
 
     /**
-     * This is the list of NPCs in the current Room
-     */
-    private Group characterGroup;
-    private Group clueGroup;
-    private Group roomArrowGroup;
-
-    /**
-     * This is the map renderer
-     */
-    private CustomTiledMapRenderer tiledMapRenderer;
-
-    /**
-     * This is the StatusBar that shows at the bottom
-     */
-    private StatusBar statusBar;
-
-    /**
      * The black actor that is used to fade in/out
      */
     private FadeInOut fadeInOut;
 
-    /**
-     * This is the room name tag that is to be rendered to the screen
-     * <p>
-     * If it is null then there is no tag to display
-     */
-    private RoomTag roomTag = null;
-
-    private Stage gameWorldStage;
-    private SpriteBatch gameWorldBatch;
-
+    private GameWorld gameWorld;
     private Gui gui;
-    private Stage guiStage;
-    private SpriteBatch guiBatch;
 
     /**
      * Initialises the navigation screen
@@ -90,37 +52,9 @@ public class NavigationScreen extends AbstractScreen
     {
         super(game);
 
-        game.roomManager = new RoomManager(game.assets);
-        game.personManager = new PersonManager(game.roomManager, game.assets);
-        game.clueManager = new ClueManager(game.roomManager, game.assets);
+        gameWorld = new GameWorld(game);
 
-        player = new Player(game.assets.playerJsonData, game.assets.playerSpriteSheet, game);
-        player.setCurrentRoom(game.roomManager.getRoom(0));
-        Vector2Int randomLocation = player.getCurrentRoom().getRandomLocation();
-        player.setTilePosition(randomLocation.x, randomLocation.y);
-
-        gameWorldBatch = new SpriteBatch();
-        gameWorldStage = new Stage(new FitViewport(GameMain.GAME_WIDTH / Settings.ZOOM,
-                GameMain.GAME_HEIGHT / Settings.ZOOM), gameWorldBatch);
-
-        characterGroup = new Group();
-        characterGroup.setName("characterGroup");
-
-        clueGroup = new Group();
-        clueGroup.setName("clueGroup");
-
-        roomArrowGroup = new Group();
-        roomArrowGroup.setName("roomArrowGroup");
-
-        tiledMapRenderer = new CustomTiledMapRenderer(player.getCurrentRoom(), gameWorldBatch);
-
-
-        guiBatch = new SpriteBatch();
-        guiStage = new Stage(new FitViewport(GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT), guiBatch);
-
-        gui = new Gui(game, this);
-
-        fadeInOut = new FadeInOut();
+        gui = new Gui(game);
 
         gamePadController = new GamePadController(player);
 
@@ -133,34 +67,6 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void show()
     {
-//        InputMultiplexer multiplexer = new InputMultiplexer();
-//        multiplexer.addProcessor(speechboxMngr.multiplexer);
-//        multiplexer.addProcessor(playerController);
-//        multiplexer.addProcessor(statusBar.gameWorldStage);
-
-        gameWorldStage.addActor(roomArrowGroup);
-
-        characterGroup.addActor(player);
-
-        for (NPC npc : player.getCurrentRoom().getNpcArray()) {
-            characterGroup.addActor(npc);
-        }
-
-        for (Clue clue : player.getCurrentRoom().getClueArray()){
-            clueGroup.addActor(clue);
-        }
-
-        for (RoomArrow arrow : player.getCurrentRoom().getRoomArrowArray()){
-            roomArrowGroup.addActor(arrow);
-        }
-
-        gameWorldStage.addActor(clueGroup);
-        gameWorldStage.addActor(characterGroup);
-
-
-        guiStage.addActor(gui);
-        guiStage.addActor(fadeInOut);
-
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(guiStage);
         multiplexer.addProcessor(playerController);

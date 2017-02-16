@@ -1,6 +1,6 @@
 //package java;
 //
-//import me.lihq.game.Assets;
+//import me.lihq.game.AssetLoader;
 //import me.lihq.game.Settings;
 //import me.lihq.game.models.Clue;
 //import org.junit.Before;
@@ -16,11 +16,11 @@
 //    @Before
 //    public void createClues()
 //    {
-//        Assets.assignGameAssets();
-//        //TODO: use correct assets
-//        shoe = new Clue("Shoe", "I am a shoe", Assets.getArrowDirection("NORTH"));
-//        book = new Clue("book", "I am a book", Assets.getArrowDirection("NORTH"));
-//        glasses = new Clue("glasses", "I am a pair of glasses", Assets.getArrowDirection("NORTH"));
+//        AssetLoader.assignGameAssets();
+//        //TODO: use correct assetLoader
+//        shoe = new Clue("Shoe", "I am a shoe", AssetLoader.getArrowDirection("NORTH"));
+//        book = new Clue("book", "I am a book", AssetLoader.getArrowDirection("NORTH"));
+//        glasses = new Clue("glasses", "I am a pair of glasses", AssetLoader.getArrowDirection("NORTH"));
 //    }
 //
 //    @Test

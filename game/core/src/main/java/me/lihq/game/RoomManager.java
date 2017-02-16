@@ -15,19 +15,19 @@ public class RoomManager
     /**
      * Constructs the map
      */
-    public RoomManager(Assets assets)
+    public RoomManager(AssetLoader assetLoader)
     {
         roomArray = new Array<>();
-        initialiseRooms(assets);
+        initialiseRooms(assetLoader);
     }
 
     /**
      * This function initialises all the rooms of the Ron Cooke Hub and their transitions
      */
-    private void initialiseRooms(Assets assets)
+    private void initialiseRooms(AssetLoader assetLoader)
     {
-        for (TiledMap map : assets.mapArray){
-            roomArray.add(new Room(map, assets.arrowAtlas));
+        for (TiledMap map : assetLoader.mapArray){
+            roomArray.add(new Room(map, assetLoader.arrowAtlas));
         }
 
         /**
