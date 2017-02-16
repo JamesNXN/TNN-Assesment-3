@@ -1,13 +1,15 @@
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
-import me.lihq.game.Settings;
-import me.lihq.game.models.Clue;
-import me.lihq.game.models.Vector2Int;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import me.lihq.game.models.Clue;
+import me.lihq.game.models.Vector2Int;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class ClueUnitTest {
 

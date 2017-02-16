@@ -132,7 +132,6 @@ public class Player extends AbstractPerson
                 System.out.println(this.inventory.getMetCharacters());
             }
             System.out.println(((NPC)interactingActor).getName());
-//            GameMain.instance.getNavigationScreen().convMngt.startConversation((NPC) facingActor);
         }
         else if(interactingActor instanceof Clue) {
             System.out.println(((Clue)interactingActor).getName());

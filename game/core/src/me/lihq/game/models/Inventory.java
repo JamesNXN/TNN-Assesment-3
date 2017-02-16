@@ -12,9 +12,9 @@ public class Inventory {
     private Array<Hint> collectedHints;
 
     public Inventory () {
-        this.collectedClues = new Array(0);
-        this.metCharacters = new Array<>(0);
-        this.collectedHints = new Array<>(0);
+        this.collectedClues = new Array<>();
+        this.metCharacters = new Array<>();
+        this.collectedHints = new Array<>();
     }
 
     public Array<Clue> getCollectedClues() {return this.collectedClues;}
@@ -24,7 +24,6 @@ public class Inventory {
     public Array<Hint> getCollectedHints() {return this.collectedHints;}
 
     public void addNewClue(Clue clue) {
-        this.collectedClues.ensureCapacity(1);
         this.collectedClues.add(clue);
     }
 
@@ -38,13 +37,11 @@ public class Inventory {
     }
 
     public void addNewCharacter(NPC character) {
-        this.metCharacters.ensureCapacity(1);
         this.metCharacters.add(character);
     }
 
     public void addNewHint(Hint hint) {
         if (checkIfHintExists(hint) == false) {
-            this.collectedHints.ensureCapacity(1);
             this.collectedHints.add(hint);
         } else {
             for (Hint hintToUpdate: this.collectedHints) {

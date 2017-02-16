@@ -3,6 +3,8 @@ package me.lihq.game.models;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Json;
+
 import me.lihq.game.Collidable;
 import me.lihq.game.Settings;
 import me.lihq.game.TileObject;
