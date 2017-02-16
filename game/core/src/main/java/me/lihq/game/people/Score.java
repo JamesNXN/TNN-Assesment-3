@@ -8,29 +8,31 @@ public class Score {
     private boolean firstAccusation;
     private int points;
 
-    public Score(){
+    public Score() {
         this.firstAccusation = true;
         this.points = 0;
     }
 
-    
 
-    public void addPoints(int point){
+    public void addPoints(int point) {
         this.points += point;
     }
 
-    public void subPoints (int point){
+    public void subPoints(int point) {
         this.points -= point;
     }
 
-    public void failedAccusation(){
+    public void failedAccusation() {
         this.firstAccusation = false;
     }
 
 
-
-    public int getPoints(){
+    public int getPoints() {
         return points;
+    }
+
+    public boolean getAccusation() {
+            return firstAccusation;
     }
 
     public int returnScore( int time ){
