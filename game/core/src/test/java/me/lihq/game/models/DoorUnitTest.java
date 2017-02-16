@@ -1,8 +1,10 @@
-import me.lihq.game.models.Door;
-import me.lihq.game.models.Vector2Int;
+package me.lihq.game.models;
+
+import me.lihq.game.GameTester;
 import me.lihq.game.people.Direction;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class DoorUnitTest extends GameTester{
+public class DoorUnitTest extends GameTester {
 
     private Door testDoor;
     private Vector2Int testVec;
@@ -31,30 +33,30 @@ public class DoorUnitTest extends GameTester{
 
     @Test
     public void getCollisionBox() throws Exception {
-        assertNotNull(testDoor.getCollisionBox());
+        Assert.assertNotNull(testDoor.getCollisionBox());
     }
 
     @Test
     public void getTilePosition() throws Exception {
-        assertNotNull(testDoor.getTilePosition());
-        assertNotEquals(testDoor.getTilePosition(), testVec);
+        Assert.assertNotNull(testDoor.getTilePosition());
+        Assert.assertNotEquals(testDoor.getTilePosition(), testVec);
     }
 
     @Test
     public void getDirection() throws Exception {
-        assertNotNull(testDoor.getDirection());
+        Assert.assertNotNull(testDoor.getDirection());
     }
 
     @Test
     public void getConnectedRoomId() throws Exception {
-        assertNotNull(testDoor.getConnectedRoomId());
+        Assert.assertNotNull(testDoor.getConnectedRoomId());
     }
 
     @Test
     public void setTilePosition() throws Exception {
         testDoor.setTilePosition(0,0);
-        assertNotNull(testDoor.getTilePosition());
-        assertEquals(testDoor.getTilePosition(), testVec);
+        Assert.assertNotNull(testDoor.getTilePosition());
+        Assert.assertEquals(testDoor.getTilePosition(), testVec);
     }
 
 

@@ -15,7 +15,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = "Lorem Ipsum"
+        appName = "Lorem Ipsum" // Change this
         gdxVersion = '1.9.5'
         roboVMVersion = '2.3.0'
         box2DLightsVersion = '1.4'
@@ -34,7 +34,7 @@ allprojects {
 
 project(":desktop") {
     apply plugin: "java"
-
+    apply plugin: "jacoco"
 
     dependencies {
         compile project(":core")
@@ -50,7 +50,7 @@ project(":desktop") {
 
 project(":core") {
     apply plugin: "java"
-
+    apply plugin: "jacoco"
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
@@ -59,37 +59,12 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
 
         testCompile "junit:junit:$junitVersion"
-        testCompile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
-        testCompile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
         testCompile "org.mockito:mockito-core:2.+"
 
-        testCompile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        testCompile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-    }
-}
-
-project(":tests") {
-    apply plugin: "java"
-
-    sourceSets.test.java.srcDirs = ["src"]
-
-    dependencies {
-        compile project(":core")
-
-        compile "junit:junit:4.+"
-        compile "org.mockito:mockito-all:1.9.+"
-
-        compile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
-
-        testCompile 'junit:junit:4.+'
-        testCompile "org.mockito:mockito-all:1.9.+"
-
+        testCompile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         testCompile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
         testCompile "com.badlogicgames.gdx:gdx:$gdxVersion"
         testCompile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        testCompile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
     }
 }
 
