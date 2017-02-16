@@ -222,4 +222,11 @@
     "relatedNpcId": [2,4,5],
     "clueType": "OTHER"
   },
+
+  {
+    "name": "Perfume Bottle",
+    "description": "An bottle of expensive perfume. It looks about half empty.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  }
 ]
