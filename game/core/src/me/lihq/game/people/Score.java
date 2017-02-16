@@ -20,7 +20,7 @@ public class Score {
     }
 
     public void subPoints (int point){
-        this.points += point;
+        this.points -= point;
     }
 
     public void failedAccusation(){
