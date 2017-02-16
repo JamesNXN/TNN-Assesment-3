@@ -26,19 +26,19 @@ public class SplashScreen extends AbstractScreen{
 
         batch = new SpriteBatch();
 
-        clickMe = game.assets.getFontWithSize(50);
+        clickMe = game.assetLoader.getFontWithSize(50);
     }
 
     @Override
     public void show() {
-        game.assets.loadSplashAssets();
-        game.assets.getManager().finishLoading();
-        game.assets.assignSplashAssets();
+        game.assetLoader.loadSplashAssets();
+        game.assetLoader.getManager().finishLoading();
+        game.assetLoader.assignSplashAssets();
 
-        splashAnimation = new Animation<>(0.5f, game.assets.splash.getRegions());
+        splashAnimation = new Animation<>(0.5f, game.assetLoader.splash.getRegions());
 
 
-        game.assets.loadGameAssets();
+        game.assetLoader.loadGameAssets();
 
     }
 
@@ -51,14 +51,14 @@ public class SplashScreen extends AbstractScreen{
         TextureRegion splashTexture = splashAnimation.getKeyFrame(stateTime, true);
         batch.draw(splashTexture,0,0,GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT);
 
-        if (game.assets.getManager().update()){
+        if (game.assetLoader.getManager().update()){
 
             clickMe.draw(batch, "CLICK ME!", 550, 400);
 
             if (Gdx.input.justTouched()){
-                game.assets.assignGameAssets();
+                game.assetLoader.assignGameAssets();
 
-                //instantiate all the game screens after the assets are loaded
+                //instantiate all the game screens after the assetLoader are loaded
                 game.mainMenuScreen = new MainMenuScreen(game);
                 game.navigationScreen = new NavigationScreen(game);
                 game.pauseScreen = new PauseScreen(game);

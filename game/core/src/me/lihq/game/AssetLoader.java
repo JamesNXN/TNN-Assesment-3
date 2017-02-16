@@ -28,9 +28,9 @@ import me.lihq.game.people.Direction;
 import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
 /**
- * This class defines the assets that the game uses.
+ * This class defines the assetLoader that the game uses.
  */
-public class Assets
+public class AssetLoader
 {
     private AssetManager manager;
 
@@ -78,14 +78,14 @@ public class Assets
     public JsonValue clueJsonData;
 
 
-    public Assets(){
+    public AssetLoader(){
         manager = new AssetManager();
         mapArray = new Array<>();
         npcSpriteSheetMapArray = new ArrayMap<>();
     }
 
     /**
-     * Load assets used for splash screen
+     * Load assetLoader used for splash screen
      */
     public void loadSplashAssets(){
         manager.load("splash.pack",TextureAtlas.class);
@@ -96,7 +96,7 @@ public class Assets
     }
 
     /**
-     * Load assets used for the game onto asset manager
+     * Load assetLoader used for the game onto asset manager
      */
     public void loadGameAssets(){
         manager.load("arrows.pack", TextureAtlas.class);
@@ -125,7 +125,7 @@ public class Assets
     }
 
     /**
-     * Assign all the game assets that have been loaded by asset manager
+     * Assign all the game assetLoader that have been loaded by asset manager
      */
     public void assignGameAssets()
     {

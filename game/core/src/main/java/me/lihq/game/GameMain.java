@@ -13,17 +13,12 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.utils.Array;
 
-import me.lihq.game.models.Room;
-import me.lihq.game.people.NPC;
 import me.lihq.game.screen.AbstractScreen;
 import me.lihq.game.screen.MainMenuScreen;
 import me.lihq.game.screen.NavigationScreen;
 import me.lihq.game.screen.PauseScreen;
 import me.lihq.game.screen.SplashScreen;
-
-import java.util.*;
 
 /**
  * This is the class responsible for the game as a whole. It manages the current states and entry points of the game
@@ -34,9 +29,9 @@ public class GameMain extends Game
     public static final int GAME_HEIGHT = 750;
 
     /**
-     * Asset container for referencing assets throughout the game
+     * Asset container for referencing assetLoader throughout the game
      */
-    public Assets assets;
+    public AssetLoader assetLoader;
 
     public RoomManager roomManager;
 
@@ -59,7 +54,7 @@ public class GameMain extends Game
      */
     @Override
     public void create(){
-        assets = new Assets();
+        assetLoader = new AssetLoader();
 
         //Set up the SplashScreen
         this.setScreen(new SplashScreen(this));
@@ -88,7 +83,7 @@ public class GameMain extends Game
     @Override
     public void dispose()
     {
-        assets.dispose();
+        assetLoader.dispose();
     }
 
     /**

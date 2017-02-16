@@ -1,21 +1,17 @@
 package me.lihq.game.screen.elements;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import me.lihq.game.Assets;
 import me.lihq.game.Collidable;
 import me.lihq.game.Settings;
 import me.lihq.game.TileObject;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Vector2Int;
-import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.Direction;
-import me.lihq.game.people.Player;
 
 /**
  * This is the arrow the indicates the movement to a new room when the player is on a floor mat.

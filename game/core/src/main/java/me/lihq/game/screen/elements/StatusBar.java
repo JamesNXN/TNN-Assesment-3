@@ -54,7 +54,7 @@ public class StatusBar extends Table
      * The initializer for the StatusBar
      * Sets up UI controls and adds them to the stage ready for rendering
      */
-    public StatusBar(final GameMain game, NavigationScreen screen)
+    public StatusBar(final GameMain game)
     {
         initSkins();
 
