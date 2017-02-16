@@ -93,140 +93,140 @@
   {
     "name": "Bag",
     "description": "A bag. Someone must have left in a hurry.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [8,5,2,6],
     "clueType": "OTHER"
   },
 
   {
     "name": "Earbuds",
     "description": "Earbuds. Someone must have dropped them.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [3,1,4],
     "clueType": "OTHER"
   },
 
   {
     "name": "Wallet",
     "description": "A Wallet. The wallet is pretty empty apart from a picture of a beach somewhere.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [7,10,9,3],
     "clueType": "OTHER"
   },
 
   {
     "name": "Keys",
     "description": "Some Keys. Someone must have lost these.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [10,7,6],
     "clueType": "OTHER"
   },
 
   {
     "name": "Lighter",
     "description": "A very fancy looking lighter, i wish it was mine.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [2,4,1,9],
     "clueType": "OTHER"
   },
 
   {
     "name": "Lipstick",
     "description": "Lipstick, a killers best friend.",
-    "relatedNpcId": [1,2,5,6],
+    "relatedNpcId": [4,3,2],
     "clueType": "OTHER"
   },
 
   {
     "name": "Bus Ticket",
     "description": "A bus ticket, looks like its for tonight.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [5,10,8,1],
     "clueType": "OTHER"
   },
 
   {
     "name": "Notebook",
     "description": "A notebook, looks like some of the pages are torn out.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [9,7,6],
     "clueType": "OTHER"
   },
 
   {
     "name": "Mirror",
     "description": "A hand mirror. It looks rather old.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [10,9,5,3],
     "clueType": "OTHER"
   },
 
   {
     "name": "Sunglasses",
     "description": "Sunglasses, i guess someone was trying to look cool.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [1,8,6],
     "clueType": "OTHER"
   },
 
   {
     "name": "Watch",
     "description": "A watch. I wonder who's it could be it appears to be broken though.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [2,4,7,3],
     "clueType": "OTHER"
   },
 
   {
     "name": "Comic Book",
     "description": "A Comic Book. I used to love this series i wonder if i can keep this once this is over, probably not",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [5,8,10],
     "clueType": "OTHER"
   },
 
   {
     "name": "Key Chain",
     "description": "A broken key chain, looks like someone threw it away.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [6,7,1,2],
     "clueType": "OTHER"
   },
 
   {
     "name": "Fantasy Book",
     "description": "A Parry Hooter Book. What a weird name for the main character.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [9,4,5],
     "clueType": "OTHER"
   },
 
   {
     "name": "Old mp3 player",
     "description": "An mp3 player it looks about 10 years old.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [2,3,8,9],
     "clueType": "OTHER"
   },
 
   {
     "name": "Small Camera",
     "description": "A small camera. I guess they didn't get to use this in the end the films missing.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [6,7,4],
     "clueType": "OTHER"
   },
 
   {
     "name": "A burnt picture",
     "description": "A picture of the victim but half the picture has been burnt away.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [5,10,9,5],
     "clueType": "OTHER"
   },
 
   {
     "name": "Tarot cards",
     "description": "Some Tarot cards. I hope my fortune isn't the same as our victim",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [1,3,7],
     "clueType": "OTHER"
   },
 
   {
     "name": "Leather checkbook",
     "description": "A Leather Bound Checkbook. Someone must have lost this but it looks pretty new.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [8,2,6,10],
     "clueType": "OTHER"
   },
 
   {
     "name": "Perfume Bottle",
     "description": "An bottle of expensive perfume. It looks about half empty.",
-    "relatedNpcId": [2,4,5],
+    "relatedNpcId": [7,4,5],
     "clueType": "OTHER"
   }
 ]
