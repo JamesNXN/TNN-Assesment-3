@@ -1,17 +1,11 @@
 package me.lihq.game.models;
 
 import com.badlogic.gdx.utils.Array;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import me.lihq.game.models.Clue;
-import me.lihq.game.models.Vector2Int;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ClueUnitTest {
 

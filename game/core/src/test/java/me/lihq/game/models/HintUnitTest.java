@@ -1,8 +1,6 @@
 package me.lihq.game.models;
 
 import com.badlogic.gdx.utils.Array;
-import me.lihq.game.models.Clue;
-import me.lihq.game.models.Hint;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

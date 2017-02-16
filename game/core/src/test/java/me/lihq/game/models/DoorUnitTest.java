@@ -2,14 +2,11 @@ import me.lihq.game.GameTester;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.Direction;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class DoorUnitTest extends GameTester {
 

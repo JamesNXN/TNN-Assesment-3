@@ -1,19 +1,15 @@
+package me.lihq.game.people;
+
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-
 import me.lihq.game.GameTester;
-import me.lihq.game.people.AbstractPerson;
-import me.lihq.game.people.NPC;
-import me.lihq.game.models.Room;
-import me.lihq.game.people.Personality;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class NPCUnitTests extends GameTester {
     public NPC testNPC;
