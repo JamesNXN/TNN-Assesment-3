@@ -4,6 +4,7 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 
+import me.lihq.game.GameTester;
 import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.NPC;
 import me.lihq.game.models.Room;
@@ -14,15 +15,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class NPCUnitTests extends GameTester
-{
+public class NPCUnitTests extends GameTester {
     public NPC testNPC;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         Json json = new Json();
-        JsonValue npcJsonData = new JsonReader().parse(new FileHandle("assets/testNPC.json"));
+        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
         testNPC = new NPC(npcJsonDataArray.get(0));
     }

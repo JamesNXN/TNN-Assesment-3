@@ -8,10 +8,11 @@ import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.GameTester;
 import me.lihq.game.people.NPC;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class InventoryUnitTests extends GameTester {
     /**
@@ -48,7 +49,7 @@ public class InventoryUnitTests extends GameTester {
 
         Json json = new Json();
 
-        JsonValue npcJsonData = new JsonReader().parse(new FileHandle("src/test/resources/assets/testNPC.json"));
+        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
         testNPC = new NPC(npcJsonDataArray.get(0));
         testNPC2 = new NPC(npcJsonDataArray.get(1));
@@ -94,7 +95,7 @@ public class InventoryUnitTests extends GameTester {
         /**
          * base case checks whether the inventory has a collected clue array
          */
-        Assert.assertNotNull(testInventory.getCollectedClues());
+        assertNotNull(testInventory.getCollectedClues());
 
         /**
          * adds test clue to the array
@@ -104,28 +105,28 @@ public class InventoryUnitTests extends GameTester {
         /**
          * checks whether the getCollectedClues returns an array which contains the added test clue
          */
-        Assert.assertEquals("array does not contain correct clue", testClue, testInventory.getCollectedClues().peek());
+        assertEquals("array does not contain correct clue", testClue, testInventory.getCollectedClues().peek());
     }
 
     @Test
     public void getMetCharacters() throws Exception {
 
-        Assert.assertNotNull(testInventory.getMetCharacters());
+        assertNotNull(testInventory.getMetCharacters());
 
         testInventory.addNewCharacter(testNPC);
 
-        Assert.assertEquals("array does not contain correct NPC", testNPC, testInventory.getMetCharacters().peek());
+        assertEquals("array does not contain correct NPC", testNPC, testInventory.getMetCharacters().peek());
 
     }
 
     @Test
     public void getCollectedHints() throws Exception {
 
-        Assert.assertNotNull(testInventory.getCollectedHints());
+        assertNotNull(testInventory.getCollectedHints());
 
         testInventory.addNewHint(testHint);
 
-        Assert.assertEquals("array does not contain correct Hint", testHint, testInventory.getCollectedHints().peek());
+        assertEquals("array does not contain correct Hint", testHint, testInventory.getCollectedHints().peek());
     }
 
     @Test
@@ -133,7 +134,7 @@ public class InventoryUnitTests extends GameTester {
 
         testInventory.addNewHint(testHint);
 
-        Assert.assertEquals(true, testInventory.checkIfHintExists(testHint));
+        assertEquals(true, testInventory.checkIfHintExists(testHint));
 
     }
 
@@ -141,12 +142,12 @@ public class InventoryUnitTests extends GameTester {
     public void addNewClue() throws Exception {
 
         testInventory.addNewClue(testClue);
-        Assert.assertEquals("first item not added", testClue, testInventory.getCollectedClues().peek());
+        assertEquals("first item not added", testClue, testInventory.getCollectedClues().peek());
 
         testInventory.addNewClue(testClue2);
-        Assert.assertEquals("second item not added", testClue2, testInventory.getCollectedClues().peek());
+        assertEquals("second item not added", testClue2, testInventory.getCollectedClues().peek());
 
-        //// @TODO I was unsure of how to do the last part, but we need to assert collectedClues contains 2 items
+        assertEquals(2, testInventory.getCollectedClues().size);
 
     }
 
@@ -154,12 +155,12 @@ public class InventoryUnitTests extends GameTester {
     public void addNewCharacter() throws Exception {
 
         testInventory.addNewCharacter(testNPC);
-        Assert.assertEquals("first NPC not added", testNPC, testInventory.getMetCharacters().peek());
+        assertEquals("first NPC not added", testNPC, testInventory.getMetCharacters().peek());
 
         testInventory.addNewCharacter(testNPC2);
-        Assert.assertEquals("second NPC not added", testNPC2, testInventory.getMetCharacters().peek());
+        assertEquals("second NPC not added", testNPC2, testInventory.getMetCharacters().peek());
 
-        //// @TODO I was unsure of how to do the last part, but we need to assert metCharacters contains 2 items
+        assertEquals(2, testInventory.getMetCharacters().size);
 
     }
 
@@ -167,12 +168,12 @@ public class InventoryUnitTests extends GameTester {
     public void addNewHint() throws Exception {
 
         testInventory.addNewHint(testHint);
-        Assert.assertEquals("first Hint not added", testHint, testInventory.getCollectedHints().peek());
+        assertEquals("first Hint not added", testHint, testInventory.getCollectedHints().peek());
 
         testInventory.addNewHint(testHint2);
-        Assert.assertEquals("second Hint not added", testHint2, testInventory.getCollectedHints().peek());
+        assertEquals("second Hint not added", testHint2, testInventory.getCollectedHints().peek());
 
-        //// @TODO I was unsure of how to do the last part, but we need to assert collectedHints contains 2 items
+        assertEquals(2, testInventory.getCollectedHints().size);
     }
 
 }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.JsonValue;
 
 import me.lihq.game.Assets;
 import me.lihq.game.GameMain;
+import me.lihq.game.GameTester;
 import me.lihq.game.models.Room;
 import me.lihq.game.people.Player;
 import org.junit.After;
@@ -21,7 +22,7 @@ public class PlayerUnitTest extends GameTester {
 
     @Before
     public void setUp() throws Exception {
-        JsonValue jsonData = new JsonReader().parse(new FileHandle("assets/testPlayer.json"));
+        JsonValue jsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testPlayer.json"));
         testPlayer = new Player(jsonData);
         testPlayer.setCurrentRoom(Mockito.mock(Room.class));
     }

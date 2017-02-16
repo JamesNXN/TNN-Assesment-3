@@ -1,10 +1,13 @@
 package me.lihq.game.models;
 
 import com.badlogic.gdx.utils.Array;
+import me.lihq.game.models.Clue;
+import me.lihq.game.models.Hint;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class HintUnitTest {
     private Clue testClue1, testClue2;
@@ -15,11 +18,11 @@ public class HintUnitTest {
     @Before
     public void setUp() throws Exception {
         Array<Integer> testArray1 = new Array<>();
-        testArray1.addAll(1,2,3);
+        testArray1.addAll(1, 2, 3);
         testClue1 = new Clue("testClue1", "description1", testArray1);
 
         Array<Integer> testArray2 = new Array<>();
-        testArray2.addAll(4,5,6);
+        testArray2.addAll(4, 5, 6);
         testClue2 = new Clue("testClue2", "description2", testArray2);
 
         this.testHint1 = new Hint(testClue1);
@@ -37,12 +40,12 @@ public class HintUnitTest {
 
     @Test
     public void getRelatedNpcIdArray() throws Exception {
-        Assert.assertNotNull(testHint1.getRelatedNpcIdArray());
+        assertNotNull(testHint1.getRelatedNpcIdArray());
         /**
-        * Test the elements are subsets of related  npc id array.
-        * */
-        for(int id: testHint1.getRelatedNpcIdArray()){
-            Assert.assertTrue("Hint should be subset of related NPC",  testClue1.getRelatedNpcIdArray().contains(id,true));
+         * Test the elements are subsets of related  npc id array.
+         * */
+        for (int id : testHint1.getRelatedNpcIdArray()) {
+            assertTrue("Hint should be subset of related NPC", testClue1.getRelatedNpcIdArray().contains(id, true));
         }
 
 
@@ -50,8 +53,8 @@ public class HintUnitTest {
 
     @Test
     public void getRelatedClue() throws Exception {
-        Assert.assertNotNull(testHint1.getRelatedClue());
-        Assert.assertEquals(testClue1, testHint1.getRelatedClue());
+        assertNotNull(testHint1.getRelatedClue());
+        assertEquals(testClue1, testHint1.getRelatedClue());
 
 
     }
@@ -65,8 +68,8 @@ public class HintUnitTest {
         test.addAll(testHint1.getRelatedNpcIdArray());
         test.addAll(testHint2.getRelatedNpcIdArray());
         testHint1.combine(testHint2);
-        for(int id:test){
-            Assert.assertTrue("Combine Failed", testHint1.getRelatedNpcIdArray().contains(id,true));
+        for (int id : test) {
+            assertTrue("Combine Failed", testHint1.getRelatedNpcIdArray().contains(id, true));
         }
 
 

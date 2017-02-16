@@ -1,10 +1,9 @@
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-
+import me.lihq.game.GameTester;
+import me.lihq.game.models.Room;
 import org.junit.Before;
 import org.junit.Test;
-
-import me.lihq.game.models.Room;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

@@ -17,6 +17,8 @@ import me.lihq.game.Assets;
  */
 public class GameTester
 {
+    public static final String ASSEST_FOLDER = "src/test/resources/assets/";
+
     private static Application application;
 
     // Before running any tests, initialize the application with the headless backend
