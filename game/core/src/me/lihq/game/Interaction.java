@@ -43,6 +43,7 @@ public class Interaction {
 
     public void accuse(Array<Clue> clues) {
         if (clues.size < 4 || clues.first().getClueType() == ClueType.MOTIVE){
+            player.addToTime(5);                                    // Increases the time penalty by 5.
             int checkingValue = 0;
             for (Clue cluesCheck : clues) {
                 if (cluesCheck.getRelatedNpcIdArray().contains(npc.getId(), true)) {
@@ -53,6 +54,7 @@ public class Interaction {
                 //todo accuse success
             }
             else if (checkingValue < 4) {
+                player.addToTime(5);                         // A further time penalty of 5. False accusation cost 10 time overall.
                 npc.setFalselyAccused();
                 //todo some accuse fail stuff
             }
