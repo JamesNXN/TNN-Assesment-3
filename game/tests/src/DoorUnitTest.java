@@ -1,5 +1,7 @@
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Vector2Int;
+import me.lihq.game.people.Direction;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +18,7 @@ public class DoorUnitTest extends GameTester{
 
     @Before
     public void setUp() throws Exception {
-        testDoor = new Door();        //// Tile pos (0,2) by default
+        testDoor = new Door(Direction.EAST, 1, new Vector2Int(0,2));
         testVec = new Vector2Int();   //// (0,0) by default
     }
 

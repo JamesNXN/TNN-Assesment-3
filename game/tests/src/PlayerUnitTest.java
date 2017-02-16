@@ -21,7 +21,7 @@ public class PlayerUnitTest extends GameTester {
 
     @Before
     public void setUp() throws Exception {
-        JsonValue jsonData = new JsonReader().parse(new FileHandle("testPlayer.json"));
+        JsonValue jsonData = new JsonReader().parse(new FileHandle("assets/testPlayer.json"));
         testPlayer = new Player(jsonData);
         testPlayer.setCurrentRoom(Mockito.mock(Room.class));
     }

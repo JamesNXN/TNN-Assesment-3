@@ -15,16 +15,13 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-/**
- * Created by TD on 13/02/2017.
- */
 public class InventoryUnitTests extends GameTester{
     /**
      * Start by defining test parameters needed
      */
     private Inventory testInventory;
 
-    private Clue testClue;
+    private Clue testClue1;
     private Clue testClue2;
 
     private NPC testNPC;
@@ -41,17 +38,22 @@ public class InventoryUnitTests extends GameTester{
     public void setUp() throws Exception {
         testInventory = new Inventory();
 
-        testClue = new Clue();
-        testClue2 = new Clue();
+        Array<Integer> testArray1 = new Array<>();
+        testArray1.addAll(1,2,3);
+        testClue1 = new Clue("testClue1", "description1", testArray1);
+
+        Array<Integer> testArray2 = new Array<>();
+        testArray2.addAll(4,5,6);
+        testClue2 = new Clue("testClue2", "description2", testArray2);
 
         Json json = new Json();
 
-        JsonValue npcJsonData = new JsonReader().parse(new FileHandle("testNPC.json"));
+        JsonValue npcJsonData = new JsonReader().parse(new FileHandle("assets/testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
         testNPC = new NPC(npcJsonDataArray.get(0));
         testNPC2 = new NPC(npcJsonDataArray.get(1));
 
-        testHint = new Hint(testClue);
+        testHint = new Hint(testClue1);
         testHint2 = new Hint(testClue2);
 
     }
@@ -65,7 +67,7 @@ public class InventoryUnitTests extends GameTester{
     public void tearDown() throws Exception {
         testInventory = null;
 
-        testClue = null;
+        testClue1 = null;
         testClue2 = null;
 
         testNPC = null;
@@ -95,12 +97,12 @@ public class InventoryUnitTests extends GameTester{
         /**
          * adds test clue to the array
          */
-        testInventory.addNewClue(testClue);
+        testInventory.addNewClue(testClue1);
 
         /**
          * checks whether the getCollectedClues returns an array which contains the added test clue
          */
-        assertEquals("array does not contain correct clue", testClue, testInventory.getCollectedClues().peek());
+        assertEquals("array does not contain correct clue", testClue1, testInventory.getCollectedClues().peek());
     }
 
     @Test
@@ -136,8 +138,8 @@ public class InventoryUnitTests extends GameTester{
     @Test
     public void addNewClue() throws Exception {
 
-        testInventory.addNewClue(testClue);
-        assertEquals("first item not added",testClue, testInventory.getCollectedClues().peek());
+        testInventory.addNewClue(testClue1);
+        assertEquals("first item not added", testClue1, testInventory.getCollectedClues().peek());
 
         testInventory.addNewClue(testClue2);
         assertEquals("second item not added",testClue2, testInventory.getCollectedClues().peek());

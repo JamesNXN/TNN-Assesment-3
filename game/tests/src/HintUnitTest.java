@@ -7,41 +7,43 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by PPPPPP on 2017/2/12.
- */
 public class HintUnitTest {
-    private Clue testClue;
-    private Hint testHint;
+    private Clue testClue1, testClue2;
+    private Hint testHint1;
     private Hint testHint2;
 
 
     @Before
     public void setUp() throws Exception {
-        this.testClue = new Clue();
-        this.testHint = new Hint(testClue);
-        this.testHint2 = new Hint(testClue);
-        while(testHint.getRelatedNpcIdArray() == testHint2.getRelatedNpcIdArray()){
-            this.testHint2 = new Hint(testClue);
-        }
+        Array<Integer> testArray1 = new Array<>();
+        testArray1.addAll(1,2,3);
+        testClue1 = new Clue("testClue1", "description1", testArray1);
+
+        Array<Integer> testArray2 = new Array<>();
+        testArray2.addAll(4,5,6);
+        testClue2 = new Clue("testClue2", "description2", testArray2);
+
+        this.testHint1 = new Hint(testClue1);
+        this.testHint2 = new Hint(testClue2);
     }
 
     @After
     public void tearDown() throws Exception {
-        this.testHint = null;
-        this.testClue = null;
+        this.testHint1 = null;
+        this.testClue1 = null;
         this.testHint2 = null;
+        this.testClue2 = null;
 
     }
 
     @Test
     public void getRelatedNpcIdArray() throws Exception {
-        assertNotNull(testHint.getRelatedNpcIdArray());
+        assertNotNull(testHint1.getRelatedNpcIdArray());
         /**
         * Test the elements are subsets of related  npc id array.
         * */
-        for(int id: testHint.getRelatedNpcIdArray()){
-            assertTrue("Hint should be subset of related NPC",  testClue.getRelatedNpcIdArray().contains(id,true));
+        for(int id: testHint1.getRelatedNpcIdArray()){
+            assertTrue("Hint should be subset of related NPC",  testClue1.getRelatedNpcIdArray().contains(id,true));
         }
 
 
@@ -49,8 +51,8 @@ public class HintUnitTest {
 
     @Test
     public void getRelatedClue() throws Exception {
-        assertNotNull(testHint.getRelatedClue());
-        assertEquals(testClue, testHint.getRelatedClue());
+        assertNotNull(testHint1.getRelatedClue());
+        assertEquals(testClue1, testHint1.getRelatedClue());
 
 
     }
@@ -61,11 +63,11 @@ public class HintUnitTest {
          * test if the elements in different hints can be combined.
          */
         Array<Integer> test = new Array<>();
-        test.addAll(testHint.getRelatedNpcIdArray());
+        test.addAll(testHint1.getRelatedNpcIdArray());
         test.addAll(testHint2.getRelatedNpcIdArray());
-        testHint.combine(testHint2);
+        testHint1.combine(testHint2);
         for(int id:test){
-            assertTrue("Combine Failed", testHint.getRelatedNpcIdArray().contains(id,true));
+            assertTrue("Combine Failed", testHint1.getRelatedNpcIdArray().contains(id,true));
         }
 
 
