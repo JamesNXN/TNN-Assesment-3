@@ -20,6 +20,7 @@ public class NPC extends AbstractPerson
     private boolean isVictim = false;
 
     private int id;
+    private String description;
 
     private boolean falselyAccused = false;
 
@@ -41,6 +42,7 @@ public class NPC extends AbstractPerson
 
         Json json = new Json();
         this.id = jsonData.getInt("id");
+        this.description = jsonData.getString("description");
         this.personality = json.readValue("personality", Personality.class, jsonData);
     }
 
@@ -114,6 +116,8 @@ public class NPC extends AbstractPerson
     }
 
     public int getId() { return this.id;}
+
+    public String getDescription() { return this.description;}
 
     public void setFalselyAccused() {
         this.falselyAccused = true;

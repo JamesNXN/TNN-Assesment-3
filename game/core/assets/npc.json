@@ -2,6 +2,7 @@
   {
     "id" : 1,
     "name": "Colin",
+    "description": "Colin is dressed in a black robe with a skeleton mask. \n He is a CEO for a big company that supplied the university with research software.",
     "personality": "AGGRESSIVE",
     "dialogue":{
       "introduction": "Hello young detective!",
@@ -16,6 +17,7 @@
   {
     "id": 2,
     "name": "Diana",
+    "description": "Diana is dressed in a fancy white dress with frills. \n She doesn't normally come to these sortof events, she generally considers them to be beneath her. ",
     "personality": "AGGRESSIVE",
     "dialogue": {
       "introduction" : "Hello, what do you want?!",
@@ -30,6 +32,7 @@
   {
     "id": 3,
     "name": "Lily",
+    "description": "Lilly is dressed as an elf from a fantasy game she enjoys playing. \n She's a student who's been working hard all year, \n she came to the party to get drunk and have fun.",
     "personality": "NICE",
     "dialogue": {
       "introduction" : "Hello",
@@ -44,6 +47,7 @@
   {
     "id": 4,
     "name":"Mary",
+    "description": "Mary is dressed in a rather plain tudor style dress. \n She had the idea to have the fancy dress party.",
     "personality":"NEUTRAL",
     "dialogue": {
       "introduction" : "Hello",
@@ -58,6 +62,7 @@
   {
     "id": 5,
     "name": "Mike",
+    "description": "Mike is dressed in a mad scientist outfit with big goofy goggles. \n He helped to organise the fancy dress party.",
     "personality": "NICE",
     "dialogue": {
       "introduction" : "Hi, have you seen my robot? It seems to have gone astray...",
@@ -72,6 +77,7 @@
   {
     "id": 6,
     "name":"Will",
+    "description": "Will is dressed in an explorers outfit. \n He organised catering team for the party.",
     "personality":"NEUTRAL",
     "dialogue": {
       "introduction" : "Hello",

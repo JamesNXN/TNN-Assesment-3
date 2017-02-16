@@ -1,28 +1,126 @@
 [
   {
-    "name": "Big Footprint",
-    "description": "A big footprint left at the crime scene by the killer.",
-    "relatedNpcId": [1,2,3],
-    "clueType": "OTHER"
+    "name": "Candle stick",
+    "description": "A Candlestick covered in blood",
+    "relatedNpcId": [],
+    "clueType": "WEAPON"
   },
 
   {
-    "name": "Small Footprint",
-    "description": "A small footprint left at the crime scene by the killer.",
-    "relatedNpcId": [4,5,6],
-    "clueType": "OTHER"
+    "name": "Knife",
+    "description": "A small knife covered in blood",
+    "relatedNpcId": [],
+    "clueType": "WEAPON"
   },
 
   {
-    "name": "Glasses",
-    "description": "A pair of glasses these were found by another detective at the crime scene.",
-    "relatedNpcId": [3,4,5,6],
-    "clueType": "OTHER"
+    "name": "Broken Pipe",
+    "description": "A hefty piece of broken plumbing covered in blood",
+    "relatedNpcId": [],
+    "clueType": "WEAPON"
+  },
+
+  {
+    "name": "Revolver",
+    "description": "A gun with an empty clip",
+    "relatedNpcId": [],
+    "clueType": "WEAPON"
+  },
+
+  {
+    "name": "Umbrella",
+    "description": "An umbrella with a spiked end covered in blood",
+    "relatedNpcId": [],
+    "clueType": "WEAPON"
+  },
+
+  {
+    "name": "Fire Extinguisher",
+    "description": "A fire extinguisher covered in blood at one end",
+    "relatedNpcId": [],
+    "clueType": "WEAPON"
+  },
+
+  {
+    "name": "Corkscrew",
+    "description": "A corkscrew covered in blood",
+    "relatedNpcId": [],
+    "clueType": "WEAPON"
+  },
+
+  {
+    "name": "The Bad Business Venture",
+    "description": "Colin i don't think our joint business venture will work out \n  you bring nothing to the table. Im gonna go it alone from now on sorry \n things didnt work out. \n hope i can still come to you for advise from time to time.",
+    "relatedNpcId": [1],
+    "clueType": "MOTIVE"
+  },
+
+  {
+    "name": "The Actors Complaint",
+    "description": "Diana i simply cannot take part in you're play anymore. \n You are a slave driver and you have nothing but complaints for me. \n I can't take it anymore and know its only a couple of weeks untill \n the performance but i QUIT!!!",
+    "relatedNpcId": [2],
+    "clueType": "MOTIVE"
+  },
+
+  {
+    "name": "The fantasy obsession",
+    "description": "Lilly i don't think what you're asking for is safe \n we simply can't go through with it larping with foam swords is one thing but using real weapons?!? \n That's the same as trying to kill someone for real its just not right. \n I'm sorry but i'm out",
+    "relatedNpcId": [3],
+    "clueType": "MOTIVE"
+  },
+
+  {
+    "name": "The Old English Rose",
+    "description": "Marry i managed to do what you asked i sneaked in a weapon and hid it you know where. \n I'm not sure we should go through with this though, i mean sure a pretend \n murder mystery sounds fun but someone could really get hurt.",
+    "relatedNpcId": [4],
+    "clueType": "MOTIVE"
+  },
+
+  {
+    "name": "The scientists art",
+    "description": "Mike i don't mind helping out with you experiment i just need to know what it is first \n and do i really need to make sure i havent eaten. \n This wont be dangerous will it?",
+    "relatedNpcId": [5],
+    "clueType": "MOTIVE"
+  },
+
+  {
+    "name": "The Murdering Archaeologist",
+    "description": "Hey Will i found something amazing right here on campus. \n I am amazed no one else has found it before theirs a cave right under the campus. \n I read up on some old legend's about the area and i think this could really make us rich \n ill tell you where it is at the party see you there. \n Keep this between us though okay!!",
+    "relatedNpcId": [6],
+    "clueType": "MOTIVE"
   },
 
   {
     "name": "Bag",
     "description": "A bag. Someone must have left in a hurry.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Earbuds",
+    "description": "Earbuds. Someone must have dropped them.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Wallet",
+    "description": "A Wallet. The wallet is pretty empty apart from a picture of a beach somewhere.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Keys",
+    "description": "Some Keys. Someone must have lost these.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Lighter",
+    "description": "A very fancy looking lighter, i wish it was mine.",
     "relatedNpcId": [2,4,5],
     "clueType": "OTHER"
   },
@@ -35,16 +133,93 @@
   },
 
   {
-    "name": "Right Handed",
-    "description": "This indicates the killer is right handed",
-    "relatedNpcId": [1,2,3,6],
+    "name": "Bus Ticket",
+    "description": "A bus ticket, looks like its for tonight.",
+    "relatedNpcId": [2,4,5],
     "clueType": "OTHER"
   },
 
   {
-  "name": "Dark Hair",
-  "description": "A dark hair from the crime scene",
-  "relatedNpcId": [3,4,5],
-  "clueType": "OTHER"
-}
+    "name": "Notebook",
+    "description": "A notebook, looks like some of the pages are torn out.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Mirror",
+    "description": "A hand mirror. It looks rather old.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Sunglasses",
+    "description": "Sunglasses, i guess someone was trying to look cool.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Watch",
+    "description": "A watch. I wonder who's it could be it appears to be broken though.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Comic Book",
+    "description": "A Comic Book. I used to love this series i wonder if i can keep this once this is over, probably not",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Key Chain",
+    "description": "A broken key chain, looks like someone threw it away.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Fantasy Book",
+    "description": "A Parry Hooter Book. What a weird name for the main character.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Old mp3 player",
+    "description": "An mp3 player it looks about 10 years old.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Small Camera",
+    "description": "A small camera. I guess they didn't get to use this in the end the films missing.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "A burnt picture",
+    "description": "A picture of the victim but half the picture has been burnt away.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Tarot cards",
+    "description": "Some Tarot cards. I hope my fortune isn't the same as our victim",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
+
+  {
+    "name": "Leather checkbook",
+    "description": "A Leather Bound Checkbook. Someone must have lost this but it looks pretty new.",
+    "relatedNpcId": [2,4,5],
+    "clueType": "OTHER"
+  },
 ]
