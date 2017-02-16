@@ -1,8 +1,6 @@
 package me.lihq.game.models;
 
 import com.badlogic.gdx.utils.Array;
-import me.lihq.game.models.Clue;
-import me.lihq.game.models.Hint;
 import me.lihq.game.people.NPC;
 
 public class Inventory {
@@ -25,6 +23,7 @@ public class Inventory {
 
     public void addNewClue(Clue clue) {
         this.collectedClues.add(clue);
+        /** player.score.addPoints(100); */ //@TODO Need to fix referencing score from inside inventory.
     }
 
     public boolean checkIfHintExists(Hint hint) {
