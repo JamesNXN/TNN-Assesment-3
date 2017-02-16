@@ -1,11 +1,10 @@
-package me.lihq.game.screen.elements;
+package me.lihq.game.gui;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Align;
 
 import me.lihq.game.GameWorld;
-import me.lihq.game.Gui;
 
 /**
  * Basic window used by gui. Interacts with a gui and gameworld.

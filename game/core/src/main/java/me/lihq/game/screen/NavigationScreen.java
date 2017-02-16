@@ -17,9 +17,8 @@ import me.lihq.game.people.NPC;
 import me.lihq.game.people.PersonState;
 import me.lihq.game.people.controller.GamePadController;
 import me.lihq.game.people.controller.PlayerController;
-import me.lihq.game.screen.elements.FadeInOut;
-import me.lihq.game.Gui;
-import me.lihq.game.screen.elements.RoomArrow;
+import me.lihq.game.gui.Gui;
+import me.lihq.game.models.RoomArrow;
 
 /**
  * This is the screen that is responsible for the navigation of the player around the game.
@@ -32,11 +31,6 @@ public class NavigationScreen extends AbstractScreen
      */
     public PlayerController playerController;
     public GamePadController gamePadController;
-
-    /**
-     * The black actor that is used to fade in/out
-     */
-    private FadeInOut fadeInOut;
 
     private GameWorld gameWorld;
     private Gui gui;
@@ -53,12 +47,11 @@ public class NavigationScreen extends AbstractScreen
         super(game);
 
         gameWorld = new GameWorld(game);
+        gui = new Gui(game, gameWorld);
 
-        gui = new Gui(game);
+        gameWorld.setGui(gui);
 
-        gamePadController = new GamePadController(player);
-
-        playerController = new PlayerController(player);
+        playerController = new PlayerController(gameWorld.getPlayer());
     }
 
     /**
@@ -68,59 +61,12 @@ public class NavigationScreen extends AbstractScreen
     public void show()
     {
         InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(guiStage);
+        multiplexer.addProcessor(gui.getGuiStage());
         multiplexer.addProcessor(playerController);
         Gdx.input.setInputProcessor(multiplexer);
 
-        Controllers.addListener(gamePadController);
+//        Controllers.addListener(gamePadController);
 
-    }
-
-    public void changeRoom(int roomId){
-        player.setState(PersonState.STANDING);
-        Room exitRoom = player.getCurrentRoom();
-        Room entryRoom = game.roomManager.getRoom(roomId);
-        Vector2 entryPosition = new Vector2();
-        Direction entryDirection = player.getDirection();
-
-        for (Door door : entryRoom.getEntryArray()){
-            if (door.getConnectedRoomId() == exitRoom.getID()){
-                entryPosition.set(door.getX() + door.getWidth()/2, door.getY() + door.getHeight()/2);
-                entryDirection = door.getDirection();
-                break;
-            }
-        }
-
-        Direction finalEntryDirection = entryDirection;
-
-        fadeInOut.addAction(Actions.sequence(Actions.fadeIn(0.5f),Actions.run(new Runnable() {
-            @Override
-            public void run() {
-                characterGroup.clear();
-                clueGroup.clear();
-                roomArrowGroup.clear();
-
-                characterGroup.addActor(player);
-
-                player.setCurrentRoom(entryRoom);
-                player.setDirection(finalEntryDirection);
-                player.setPosition(entryPosition.x, entryPosition.y);
-
-                for (NPC npc : player.getCurrentRoom().getNpcArray()) {
-                    characterGroup.addActor(npc);
-                }
-                for (Clue clue : player.getCurrentRoom().getClueArray()){
-                    clueGroup.addActor(clue);
-                }
-                for (RoomArrow arrow : player.getCurrentRoom().getRoomArrowArray()){
-                    roomArrowGroup.addActor(arrow);
-                }
-
-                gui.setRoomTag(entryRoom);
-
-                player.setCanMove(true);
-            }
-        }), Actions.fadeOut(0.5f)));
     }
 
     /**
@@ -131,26 +77,8 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void render(float delta)
     {
-        gameWorldStage.getCamera().position.x = player.getX();
-        gameWorldStage.getCamera().position.y = player.getY();
-        gameWorldStage.getCamera().update();
-
-        tiledMapRenderer.setRenderingRoom(player.getCurrentRoom());
-        tiledMapRenderer.setView((OrthographicCamera) gameWorldStage.getCamera());
-
-        tiledMapRenderer.render();
-
-        gameWorldStage.act();
-
-        //sort characters by their y coordinate so that actors with lesser y coordinate get drawn first
-        characterGroup.getChildren().sort((actor1, actor2) -> (int) (actor2.getY() - actor1.getY()));
-        gameWorldStage.draw();
-
-        tiledMapRenderer.renderLastLayer();
-
-
-        guiStage.act();
-        guiStage.draw();
+        gameWorld.render(delta);
+        gui.render(delta);
     }
 
     /**
@@ -162,8 +90,8 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void resize(int width, int height)
     {
-        gameWorldStage.getViewport().update(width, height);
-        guiStage.getViewport().update(width,height);
+        gameWorld.getGameWorldStage().getViewport().update(width, height);
+        gui.getGuiStage().getViewport().update(width,height);
     }
 
     /**
@@ -199,8 +127,7 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void dispose()
     {
-        tiledMapRenderer.dispose();
-        gameWorldStage.dispose();
-        guiStage.dispose();
+        gameWorld.dispose();
+        gui.dispose();
     }
 }

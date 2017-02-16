@@ -1,11 +1,12 @@
-package me.lihq.game.screen.elements;
+package me.lihq.game.gui;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 import me.lihq.game.GameWorld;
-import me.lihq.game.Gui;
+import me.lihq.game.models.Inventory;
 
 /**
  * Window that displays data in notebook
@@ -20,7 +21,7 @@ class InventoryWindow extends GuiWindow {
     private final float WINDOW_HEIGHT = 700;
 
     InventoryWindow(Skin skin, Gui gui, GameWorld gameWorld) {
-        super("NOTEBOOK", skin, gui, gameWorld);
+        super("INVENTORY", skin, gui, gameWorld);
 
         button("OK", true);
     }
@@ -29,13 +30,12 @@ class InventoryWindow extends GuiWindow {
      * called every time notebook is opened. Clears all the children and rebuild.
      */
     void refresh(){
-        NoteBook noteBook = gameWorld.getNotebook();
+        Inventory inventory = gameWorld.getPlayer().getInventory();
         getContentTable().clear();
         getContentTable().align(Align.topLeft);
 
-        Array<GameActor> entryArray = new Array<>();
-        entryArray.addAll(noteBook.getClueList());
-        entryArray.addAll(noteBook.getItemList());
+        Array<Actor> entryArray = new Array<>();
+        entryArray.addAll(inventory.getCollectedClues());
 
         for (int i = 0; i < entryArray.size; i++){
             Slot slot = new Slot(entryArray.get(i), gui, getSkin());

@@ -1,11 +1,9 @@
-package me.lihq.game.screen.elements;
+package me.lihq.game.gui;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-
-import me.lihq.game.Gui;
 
 /**
  * Entry format for notebook and accuse window
@@ -24,7 +22,7 @@ class Slot extends Button {
         addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                gui.displayInfo(null, (gameActor).getDescription());
+                gui.displayInfo(null, gameActor.getName());
             }
         });
     }

@@ -24,11 +24,11 @@ public class Interaction {
 
     public void question(Clue clue, Personality questioningStyle) {
         if (npc.getFalselyAccused() == false) {
-            if (player.inventory.getCollectedClues().size != 0) {
+            if (player.getInventory().getCollectedClues().size != 0) {
                 if (npc.getPersonality() == questioningStyle && !npc.getExhaustedClues().contains(clue, true)) {
                     //// TODO: 08/02/2017 some graphical success text
                     player.score.addPoints(50);     // Successful questioning
-                    player.inventory.addNewHint(new Hint(clue));
+                    player.getInventory().addNewHint(new Hint(clue));
                     npc.addExhaustedClue(clue);
                 } else {
                     player.score.subPoints(25);      // Failed questioning

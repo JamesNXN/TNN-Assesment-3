@@ -6,26 +6,27 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.Collidable;
 import me.lihq.game.GameMain;
+import me.lihq.game.GameWorld;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Inventory;
-import me.lihq.game.screen.elements.RoomArrow;
+import me.lihq.game.models.RoomArrow;
 
 /**
  * This class defines the player that the person playing the game will be represented by.
  */
 public class Player extends AbstractPerson
 {
-    GameMain game;
+    private GameWorld gameWorld;
 
     /**
      * This object stores the clues and hints the player has collected and the npc's they have spoken to.
      */
-    public Inventory inventory = new Inventory();
+    private Inventory inventory = new Inventory();
     /**
      * This stores whether the player is in the middle of a conversation or not
      */
-    public boolean isInConversation = false;
+    private boolean isInConversation = false;
 
     /**
      * The personality will be a percent score (0-100) 0 being angry, 50 being neutral, and 100 being happy/nice.
@@ -38,22 +39,6 @@ public class Player extends AbstractPerson
 
     public Score score;
 
-     /**
-     * The time penalty that will be applied to the score.
-     */
-
-    private int time = 0;
-
-    /**
-     * This method will be called after each interaction to increase the time penalty.
-     */
-
-    public void addToTime(int change) {
-
-        time = time + change;
-
-    }
-
 
     private Rectangle interactionCollisionBox;
 
@@ -64,10 +49,10 @@ public class Player extends AbstractPerson
      * @param spriteSheet - The image used to represent it.
      */
 
-    public Player(JsonValue jsonData, TextureAtlas spriteSheet, GameMain game) {
+    public Player(JsonValue jsonData, TextureAtlas spriteSheet, GameWorld gameWorld) {
         super(jsonData, spriteSheet);
 
-        this.game = game;
+        this.gameWorld = gameWorld;
         this.score = new Score();
         interactionCollisionBox = new Rectangle();
         interactionCollisionBox.setSize(collisionBox.getWidth(), collisionBox.getHeight());
@@ -153,7 +138,7 @@ public class Player extends AbstractPerson
             Door collidingExit = doorCollisionDetection(collisionBox);
             if (collidingExit != null) {
                 setCanMove(false);
-                game.navigationScreen.changeRoom(collidingExit.getConnectedRoomId());
+                gameWorld.changeRoom(collidingExit.getConnectedRoomId());
             }
         }
     }
@@ -215,6 +200,7 @@ public class Player extends AbstractPerson
         return this.personalityLevel;
     }
 
-
-    public int getTime() { return this.time; }
+    public Inventory getInventory() {
+        return inventory;
+    }
 }

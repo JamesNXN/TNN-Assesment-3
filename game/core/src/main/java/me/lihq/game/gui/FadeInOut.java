@@ -1,4 +1,4 @@
-package me.lihq.game.screen.elements;
+package me.lihq.game.gui;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;

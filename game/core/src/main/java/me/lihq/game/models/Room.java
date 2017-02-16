@@ -9,7 +9,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.utils.Array;
 
 import me.lihq.game.people.NPC;
-import me.lihq.game.screen.elements.RoomArrow;
 
 /**
  * This class defines a room which is a game representation of a real world room in the Ron Cooke Hub.

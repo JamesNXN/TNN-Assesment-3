@@ -1,16 +1,18 @@
-package me.lihq.game.screen.elements;
+package me.lihq.game.gui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -54,7 +56,7 @@ public class StatusBar extends Table
      * The initializer for the StatusBar
      * Sets up UI controls and adds them to the stage ready for rendering
      */
-    public StatusBar(final GameMain game)
+    public StatusBar(final GameMain game, Gui gui)
     {
         initSkins();
 
@@ -70,16 +72,14 @@ public class StatusBar extends Table
         TextButton personalityMeter = new TextButton("Personality Meter", buttonSkin);
         add(personalityMeter).uniform();
 
-        TextButton inventoryButton = new TextButton("Inventory", buttonSkin);
+        InventoryButton inventoryButton = new InventoryButton(skin, gui);
         add(inventoryButton).uniform();
 
         TextButton pauseButton = new TextButton("Pause", buttonSkin);
         add(pauseButton).uniform();
-        pauseButton.addListener(new ClickListener()
-        {
+        pauseButton.addListener(new ChangeListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y)
-            {
+            public void changed(ChangeEvent event, Actor actor) {
                 game.setScreen(new PauseScreen(game));
             }
         });

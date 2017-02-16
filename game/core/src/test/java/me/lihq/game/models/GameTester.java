@@ -1,3 +1,5 @@
+package me.lihq.game.models;
+
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -6,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.mockito.Mockito;
+
 
 /**
  * This is the java.GameTester class it initialises the headless backend of the game.

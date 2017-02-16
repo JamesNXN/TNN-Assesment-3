@@ -3,6 +3,7 @@ package me.lihq.game.people;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
+
 import me.lihq.game.GameMain;
 import me.lihq.game.GameTester;
 import me.lihq.game.models.Room;
@@ -32,15 +33,6 @@ public class PlayerUnitTest extends GameTester {
     }
 
     @Test
-    public void addToTime() throws Exception {
-        assertEquals(0, testPlayer.getTime());
-
-        testPlayer.addToTime(5);
-
-        assertEquals(5, testPlayer.getTime());
-    }
-
-    @Test
     public void addToPersonality() throws Exception {
         //todo add test properly once json sorted out
 
@@ -54,12 +46,5 @@ public class PlayerUnitTest extends GameTester {
     @Test
     public void getPersonalityLevel() throws Exception {
         //todo add test properly once json sorted out
-    }
-
-    @Test
-    public void getTime() throws Exception {
-        assertNotNull(testPlayer.getTime());
-
-        assertTrue(testPlayer.getTime() == 0);
     }
 }
