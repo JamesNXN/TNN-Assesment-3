@@ -25,7 +25,7 @@ public class Time extends Actor {
         return this.time;
     }
 
-    public void setPaused(){
-        this.paused = true;
+    public void setPaused(boolean pause){
+        this.paused = pause;
     }
 }

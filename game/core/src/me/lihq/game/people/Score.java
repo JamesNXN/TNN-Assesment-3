@@ -1,7 +1,7 @@
 package me.lihq.game.people;
 
 /**
- * Created by Tunc on 16/02/2017.
+ * Created by Tunc on 16/02/2017
  */
 public class Score {
 
