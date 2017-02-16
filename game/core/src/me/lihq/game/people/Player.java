@@ -36,7 +36,7 @@ public class Player extends AbstractPerson
      * The score the player has earned so far.
      */
 
-    private Score score;
+    public Score score;
 
      /**
      * The time penalty that will be applied to the score.
