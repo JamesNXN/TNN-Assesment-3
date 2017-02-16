@@ -27,10 +27,11 @@ public class Interaction {
             if (player.inventory.getCollectedClues().size != 0) {
                 if (npc.getPersonality() == questioningStyle && !npc.getExhaustedClues().contains(clue, true)) {
                     //// TODO: 08/02/2017 some graphical success text
-                    player.addToTime(5);                          // Increases the time penalty by 5.
+                    player.score.addPoints(50);     // Successful questioning
                     player.inventory.addNewHint(new Hint(clue));
                     npc.addExhaustedClue(clue);
                 } else {
+                    player.score.subPoints(25);      // Failed questioning
                     //// TODO: 08/02/2017 some graphical fail text
                 }
             } else {
@@ -50,9 +51,12 @@ public class Interaction {
                 }
             }
             if (checkingValue >= 4) {
+                player.score.addPoints(500);      // Game clear
                 //todo accuse success
             }
             else if (checkingValue < 4) {
+                player.score.failedAccusation();
+                player.score.subPoints(200);      // Failed accusation
                 npc.setFalselyAccused();
                 //todo some accuse fail stuff
             }

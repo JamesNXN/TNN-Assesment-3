@@ -36,7 +36,7 @@ public class Player extends AbstractPerson
      * The score the player has earned so far.
      */
 
-    private int score = 0;
+    public Score score;
 
      /**
      * The time penalty that will be applied to the score.
@@ -68,6 +68,7 @@ public class Player extends AbstractPerson
         super(jsonData, spriteSheet);
 
         this.game = game;
+        this.score = new Score();
         interactionCollisionBox = new Rectangle();
         interactionCollisionBox.setSize(collisionBox.getWidth(), collisionBox.getHeight());
     }
@@ -132,7 +133,6 @@ public class Player extends AbstractPerson
                 System.out.println(this.inventory.getMetCharacters());
             }
             System.out.println(((NPC)interactingActor).getName());
-//            GameMain.instance.getNavigationScreen().convMngt.startConversation((NPC) facingActor);
         }
         else if(interactingActor instanceof Clue) {
             System.out.println(((Clue)interactingActor).getName());
