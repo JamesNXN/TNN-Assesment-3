@@ -144,7 +144,7 @@ public class InventoryUnitTests extends GameTester{
         testInventory.addNewClue(testClue2);
         assertEquals("second item not added",testClue2, testInventory.getCollectedClues().peek());
 
-        //// @TODO I was unsure of how to do the last part, but we need to assert collectedClues contains 2 items
+        assertEquals(2, testInventory.getCollectedClues().size);
 
     }
 
@@ -157,7 +157,7 @@ public class InventoryUnitTests extends GameTester{
         testInventory.addNewCharacter(testNPC2);
         assertEquals("second NPC not added",testNPC2, testInventory.getMetCharacters().peek());
 
-        //// @TODO I was unsure of how to do the last part, but we need to assert metCharacters contains 2 items
+        assertEquals(2, testInventory.getMetCharacters().size);
 
     }
 
@@ -170,7 +170,7 @@ public class InventoryUnitTests extends GameTester{
         testInventory.addNewHint(testHint2);
         assertEquals("second Hint not added",testHint2, testInventory.getCollectedHints().peek());
 
-        //// @TODO I was unsure of how to do the last part, but we need to assert collectedHints contains 2 items
+        assertEquals(2, testInventory.getCollectedHints().size);
     }
 
 }
