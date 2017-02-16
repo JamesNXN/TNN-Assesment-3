@@ -110,6 +110,10 @@ public class AssetLoader
         manager.load("people/NPCs/mary.pack", TextureAtlas.class);
         manager.load("people/NPCs/mike.pack", TextureAtlas.class);
         manager.load("people/NPCs/will.pack", TextureAtlas.class);
+        manager.load("people/NPCs/david.pack", TextureAtlas.class);
+        manager.load("people/NPCs/julie.pack", TextureAtlas.class);
+        manager.load("people/NPCs/sophie.pack", TextureAtlas.class);
+        manager.load("people/NPCs/tom.pack", TextureAtlas.class);
 
         manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         manager.load("maps/computerRoom.tmx",TiledMap.class);
@@ -150,6 +154,10 @@ public class AssetLoader
         npcSpriteSheetMapArray.put(4, manager.get("people/NPCs/mary.pack"));
         npcSpriteSheetMapArray.put(5, manager.get("people/NPCs/mike.pack"));
         npcSpriteSheetMapArray.put(6, manager.get("people/NPCs/will.pack"));
+        npcSpriteSheetMapArray.put(7, manager.get("people/NPCs/david.pack"));
+        npcSpriteSheetMapArray.put(8, manager.get("people/NPCs/julie.pack"));
+        npcSpriteSheetMapArray.put(9, manager.get("people/NPCs/sophie.pack"));
+        npcSpriteSheetMapArray.put(10, manager.get("people/NPCs/tom.pack"));
 
         // map assign
         mapArray.add(manager.get("maps/computerRoom.tmx"));

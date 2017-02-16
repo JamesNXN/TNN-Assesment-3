@@ -87,5 +87,65 @@
         "I am not telling you."
       ]
     }
+  },
+
+  {
+    "id": 7,
+    "name":"David",
+    "description": "David is dressed in black uniform. \n He is invited to attended this party.",
+    "personality":"NICE",
+    "dialogue": {
+      "introduction" : "Hi, need any help?",
+      "failResponses": [
+        "Sorry I'm busy at the moment.",
+        "I'm not sure whether I should help you or not.",
+        "I am not telling you."
+      ]
+    }
+  },
+
+  {
+    "id": 8,
+    "name":"Julie",
+    "description": "Julie is dressed in steam punk style with pink hair. \n She helped design and decoration of the party.",
+    "personality":"NEUTRAL",
+    "dialogue": {
+      "introduction" : "Hi!",
+      "failResponses": [
+        "Sorry I need to help with the decoration at the moment.",
+        "Why should I help you then?",
+        "I am not telling you."
+      ]
+    }
+  },
+
+  {
+    "id": 9,
+    "name":"Sophie",
+    "description": "Sophie is dressed in pirate. \n She is asked to attend this party, but she doesn't really enjoy it.",
+    "personality":"AGGRESSIVE",
+    "dialogue": {
+      "introduction" : "What do you want?!",
+      "failResponses": [
+        "Can't you see I'm very busy right now?",
+        "I don't want to help!",
+        "I am not telling you."
+      ]
+    }
+  },
+
+  {
+    "id": 10,
+    "name":"Tom",
+    "description": "Tom is dressed in brown with an old-fashion hat. \n He is teacher of university who is invited to attended this party.",
+    "personality":"NEUTRAL",
+    "dialogue": {
+      "introduction" : "Hello, young gentleman.",
+      "failResponses": [
+        "Sorry I have some emails need to reply right now.",
+        "I don't think you really want me to help.",
+        "I am not telling you."
+      ]
+    }
   }
 ]
