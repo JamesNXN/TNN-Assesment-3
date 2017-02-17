@@ -2,7 +2,6 @@ package me.lihq.game.people;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.Collidable;
@@ -34,13 +33,6 @@ public class Player extends AbstractPerson
      */
     private int personalityLevel;
 
-    /**
-     * The score the player has earned so far.
-     */
-
-    public Score score;
-
-
     private Rectangle interactionCollisionBox;
 
     /**
@@ -54,7 +46,6 @@ public class Player extends AbstractPerson
         super(jsonData, spriteSheet);
 
         this.gameWorld = gameWorld;
-        this.score = Score.getInstance();
         interactionCollisionBox = new Rectangle();
         interactionCollisionBox.setSize(collisionBox.getWidth(), collisionBox.getHeight());
     }
@@ -115,17 +106,20 @@ public class Player extends AbstractPerson
 
         if (interactingActor instanceof NPC) {
             if (!this.inventory.getMetCharacters().contains((NPC)interactingActor, true)) {
-                this.inventory.addNewCharacter((NPC)interactingActor);
+                this.inventory.addCharacter((NPC)interactingActor);
                 System.out.println(this.inventory.getMetCharacters());
             }
             System.out.println(((NPC)interactingActor).getName());
         }
         else if(interactingActor instanceof Clue) {
             Clue foundClue = (Clue) interactingActor;
+            if (!foundClue.isFound()){
+                foundClue.setFound(true);
+                inventory.addClue(foundClue);
 
-            foundClue.setFound(false);
-            gameWorld.getGui().displayInfo(foundClue.getDescription());
-            System.out.println(((Clue)interactingActor).getName());
+                gameWorld.getGui().displayInfo(foundClue.getDescription());
+                System.out.println(((Clue)interactingActor).getName());
+            }
         }
     }
 

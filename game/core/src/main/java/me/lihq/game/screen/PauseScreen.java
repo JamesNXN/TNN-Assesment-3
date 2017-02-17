@@ -1,6 +1,7 @@
 package me.lihq.game.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -48,6 +49,10 @@ public class PauseScreen extends AbstractScreen
     @Override
     public void render(float delta)
     {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+            game.setScreen(game.navigationScreen);
+        }
+
         stage.act();
         stage.draw();
     }

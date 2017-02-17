@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 import me.lihq.game.GameWorld;
+import me.lihq.game.models.Clue;
 import me.lihq.game.models.Inventory;
 
 /**
@@ -34,7 +35,7 @@ class InventoryWindow extends GuiWindow {
         getContentTable().clear();
         getContentTable().align(Align.topLeft);
 
-        Array<Actor> entryArray = new Array<>();
+        Array<Clue> entryArray = new Array<>();
         entryArray.addAll(inventory.getCollectedClues());
 
         for (int i = 0; i < entryArray.size; i++){

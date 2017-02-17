@@ -23,6 +23,10 @@ public class GameWorld {
     private GameMain game;
     private Gui gui;
 
+    public RoomManager roomManager;
+    public PersonManager personManager;
+    public ClueManager clueManager;
+
     private Player player;
     private Stage gameWorldStage;
 
@@ -39,12 +43,12 @@ public class GameWorld {
         gameWorldStage = new Stage(new FitViewport(GameMain.GAME_WIDTH / Settings.ZOOM,
                 GameMain.GAME_HEIGHT / Settings.ZOOM), gameWorldBatch);
 
-        game.roomManager = new RoomManager(game.assetLoader);
-        game.personManager = new PersonManager(game.roomManager, game.assetLoader);
-        game.clueManager = new ClueManager(game.roomManager, game.assetLoader);
+        roomManager = new RoomManager(game.assetLoader);
+        personManager = new PersonManager(roomManager, game.assetLoader);
+        clueManager = new ClueManager(roomManager, game.assetLoader);
 
         player = new Player(game.assetLoader.playerJsonData, game.assetLoader.playerSpriteSheet, this);
-        player.setCurrentRoom(game.roomManager.getRoom(0));
+        player.setCurrentRoom(roomManager.getRoom(0));
         Vector2Int randomLocation = player.getCurrentRoom().getRandomLocation();
         player.setTilePosition(randomLocation.x, randomLocation.y);
 
@@ -90,7 +94,7 @@ public class GameWorld {
         RunnableAction runnableAction = new RunnableAction();
         runnableAction.setRunnable(() -> {
             Room exitRoom = player.getCurrentRoom();
-            Room entryRoom = game.roomManager.getRoom(roomId);
+            Room entryRoom = roomManager.getRoom(roomId);
             Vector2 entryPosition = new Vector2();
             Direction entryDirection = player.getDirection();
 

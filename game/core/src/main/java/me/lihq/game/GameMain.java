@@ -33,12 +33,7 @@ public class GameMain extends Game
      */
     public AssetLoader assetLoader;
 
-    public RoomManager roomManager;
-
-    public PersonManager personManager;
-
-    public ClueManager clueManager;
-
+    public GameWorld gameWorld;
 
     public MainMenuScreen mainMenuScreen;
     public PauseScreen pauseScreen;

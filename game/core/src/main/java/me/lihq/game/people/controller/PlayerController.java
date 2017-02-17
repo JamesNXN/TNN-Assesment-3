@@ -3,10 +3,13 @@ package me.lihq.game.people.controller;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 
+import me.lihq.game.GameMain;
+import me.lihq.game.GameWorld;
 import me.lihq.game.Settings;
 import me.lihq.game.people.Direction;
 import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
+import me.lihq.game.screen.PauseScreen;
 
 /**
  * This class allows the player to be moved and controlled.
@@ -16,16 +19,18 @@ public class PlayerController extends InputAdapter
     /**
      * This stores the player that the controller controls
      */
+    private GameMain game;
     private Player player;
 
     /**
      * Constructor to create the PlayerController to control the provided Player
      *
-     * @param player - The player that we want this controller to control
+     * @param game - The game to be attached
      */
-    public PlayerController(Player player)
+    public PlayerController(GameMain game)
     {
-        this.player = player;
+        this.game = game;
+        this.player = game.gameWorld.getPlayer();
     }
 
     /**
@@ -112,6 +117,6 @@ public class PlayerController extends InputAdapter
             player.setState(PersonState.STANDING);
             return true;
         }
-        return false;
+        return true;
     }
 }

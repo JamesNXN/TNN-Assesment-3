@@ -2,26 +2,24 @@ package me.lihq.game;
 
 import com.badlogic.gdx.utils.Array;
 import me.lihq.game.models.Clue;
-import me.lihq.game.models.ClueType;
 import me.lihq.game.models.Hint;
+import me.lihq.game.models.Score;
 import me.lihq.game.people.NPC;
 import me.lihq.game.people.Personality;
 import me.lihq.game.people.Player;
 
-import java.io.ObjectStreamClass;
-
-/**
- * Created by User on 08/02/2017.
- */
 public class Interaction {
 
-    Player player;
+    private Player player;
 
-    NPC npc;
+    private NPC npc;
+
+    private Score score;
 
     public Interaction(Player player, NPC npc) {
         this.player = player;
         this.npc = npc;
+        score = Score.getInstance();
     }
 
     public void question(Clue clue, Personality questioningStyle) {
@@ -29,11 +27,11 @@ public class Interaction {
             if (player.getInventory().getCollectedClues().size != 0) {
                 if (npc.getPersonality() == questioningStyle && !npc.getExhaustedClues().contains(clue, true)) {
                     //// TODO: 08/02/2017 some graphical success text
-                    player.score.addPoints(50);     // Successful questioning
-                    player.getInventory().addNewHint(new Hint(clue));
+                    score.addPoints(50);     // Successful questioning
+                    player.getInventory().addHint(new Hint(clue));
                     npc.addExhaustedClue(clue);
                 } else {
-                    player.score.subPoints(25);      // Failed questioning
+                    score.subPoints(25);      // Failed questioning
                     //// TODO: 08/02/2017 some graphical fail text
                 }
             } else {
@@ -45,7 +43,7 @@ public class Interaction {
     }
 
     public void accuse(Array<Clue> clues) {
-        if (clues.size < 4 && player.getInventory().checkIfWeaponFound()==true){
+        if (clues.size < 4 && player.getInventory().isWeaponFound()==true){
             int checkingValue = 0;
             for (Clue cluesCheck : clues) {
                 if (cluesCheck.getRelatedNpcIdArray().contains(npc.getId(), true)) {
@@ -53,12 +51,12 @@ public class Interaction {
                 }
             }
             if (checkingValue >= 4) {
-                player.score.addPoints(500);      // Game clear
+                score.addPoints(500);      // Game clear
                 //todo accuse success
             }
             else if (checkingValue < 4) {
-                player.score.failedAccusation();
-                player.score.subPoints(200);      // Failed accusation
+                score.failedAccusation();
+                score.subPoints(200);      // Failed accusation
                 npc.setFalselyAccused();
                 //todo some accuse fail stuff
             }

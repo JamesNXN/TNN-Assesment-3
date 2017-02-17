@@ -2,6 +2,7 @@ package me.lihq.game.screen;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -46,12 +47,13 @@ public class NavigationScreen extends AbstractScreen
     {
         super(game);
 
-        gameWorld = new GameWorld(game);
+        game.gameWorld = new GameWorld(game);
+        this.gameWorld = game.gameWorld;
         gui = new Gui(game, gameWorld);
 
         gameWorld.setGui(gui);
 
-        playerController = new PlayerController(gameWorld.getPlayer());
+        playerController = new PlayerController(game);
     }
 
     /**
@@ -75,8 +77,11 @@ public class NavigationScreen extends AbstractScreen
      * @param delta The time in seconds since the last render.
      */
     @Override
-    public void render(float delta)
-    {
+    public void render(float delta) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+            game.setScreen(game.pauseScreen);
+        }
+
         gameWorld.render(delta);
         gui.render(delta);
     }

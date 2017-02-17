@@ -21,12 +21,12 @@ public class Inventory {
 
     public Array<Hint> getCollectedHints() {return this.collectedHints;}
 
-    public void addNewClue(Clue clue) {
+    public void addClue(Clue clue) {
         this.collectedClues.add(clue);
         /** player.score.addPoints(100); */ //@TODO Need to fix referencing score from inside inventory.
     }
 
-    public boolean checkIfHintExists(Hint hint) {
+    public boolean contains(Hint hint) {
         for (Hint hintToCheck: this.collectedHints) {
             if (hintToCheck.getRelatedClue() == hint.getRelatedClue()) {
                 return true;
@@ -35,7 +35,7 @@ public class Inventory {
         return false;
     }
 
-    public boolean checkIfWeaponFound(){
+    public boolean isWeaponFound(){
         for (Clue clue: this.collectedClues){
             if (clue.getClueType()==ClueType.WEAPON){
                 return true;
@@ -44,12 +44,12 @@ public class Inventory {
         return false;
     }
 
-    public void addNewCharacter(NPC character) {
+    public void addCharacter(NPC character) {
         this.metCharacters.add(character);
     }
 
-    public void addNewHint(Hint hint) {
-        if (checkIfHintExists(hint) == false) {
+    public void addHint(Hint hint) {
+        if (contains(hint) == false) {
             this.collectedHints.add(hint);
         } else {
             for (Hint hintToUpdate: this.collectedHints) {

@@ -103,7 +103,7 @@ public class InventoryUnitTests extends GameTester {
         /**
          * adds test clue to the array
          */
-        testInventory.addNewClue(testClue);
+        testInventory.addClue(testClue);
 
         /**
          * checks whether the getCollectedClues returns an array which contains the added test clue
@@ -116,7 +116,7 @@ public class InventoryUnitTests extends GameTester {
 
         assertNotNull(testInventory.getMetCharacters());
 
-        testInventory.addNewCharacter(testNPC);
+        testInventory.addCharacter(testNPC);
 
         assertEquals("array does not contain correct NPC", testNPC, testInventory.getMetCharacters().peek());
 
@@ -127,7 +127,7 @@ public class InventoryUnitTests extends GameTester {
 
         assertNotNull(testInventory.getCollectedHints());
 
-        testInventory.addNewHint(testHint);
+        testInventory.addHint(testHint);
 
         assertEquals("array does not contain correct Hint", testHint, testInventory.getCollectedHints().peek());
     }
@@ -135,19 +135,19 @@ public class InventoryUnitTests extends GameTester {
     @Test
     public void checkIfHintExists() throws Exception {
 
-        testInventory.addNewHint(testHint);
+        testInventory.addHint(testHint);
 
-        assertEquals(true, testInventory.checkIfHintExists(testHint));
+        assertEquals(true, testInventory.contains(testHint));
 
     }
 
     @Test
     public void addNewClue() throws Exception {
 
-        testInventory.addNewClue(testClue);
+        testInventory.addClue(testClue);
         assertEquals("first item not added", testClue, testInventory.getCollectedClues().peek());
 
-        testInventory.addNewClue(testClue2);
+        testInventory.addClue(testClue2);
         assertEquals("second item not added", testClue2, testInventory.getCollectedClues().peek());
 
         assertEquals(2, testInventory.getCollectedClues().size);
@@ -157,10 +157,10 @@ public class InventoryUnitTests extends GameTester {
     @Test
     public void addNewCharacter() throws Exception {
 
-        testInventory.addNewCharacter(testNPC);
+        testInventory.addCharacter(testNPC);
         assertEquals("first NPC not added", testNPC, testInventory.getMetCharacters().peek());
 
-        testInventory.addNewCharacter(testNPC2);
+        testInventory.addCharacter(testNPC2);
         assertEquals("second NPC not added", testNPC2, testInventory.getMetCharacters().peek());
 
         assertEquals(2, testInventory.getMetCharacters().size);
@@ -170,10 +170,10 @@ public class InventoryUnitTests extends GameTester {
     @Test
     public void addNewHint() throws Exception {
 
-        testInventory.addNewHint(testHint);
+        testInventory.addHint(testHint);
         assertEquals("first Hint not added", testHint, testInventory.getCollectedHints().peek());
 
-        testInventory.addNewHint(testHint2);
+        testInventory.addHint(testHint2);
         assertEquals("second Hint not added", testHint2, testInventory.getCollectedHints().peek());
 
         assertEquals(2, testInventory.getCollectedHints().size);
@@ -181,10 +181,10 @@ public class InventoryUnitTests extends GameTester {
 
     @Test
     public void checkIfWeaponFound() throws Exception {
-        assertFalse(testInventory.checkIfWeaponFound());
+        assertFalse(testInventory.isWeaponFound());
 
-        testInventory.addNewClue(testWeapon);
+        testInventory.addClue(testWeapon);
 
-        assertTrue(testInventory.checkIfWeaponFound());
+        assertTrue(testInventory.isWeaponFound());
     }
 }
