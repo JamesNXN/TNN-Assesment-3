@@ -19,34 +19,40 @@ import me.lihq.game.*;
 /**
  * This class defines the clues that the player needs to find in order to solve the murder.
  */
-public class Clue extends Actor implements Collidable, TileObject
-{
+public class Clue extends Actor implements Collidable, TileObject {
     /**
-     * The name of the clue, set when you initialise the clue and gettable using {@link #getName()}
+     * Parameters needed for clues:
+     *
+     * name - name of the clue
+     * decription - description of the clue
+     * relatedNpcIdArray - array of NPC id's to link clues to NPC's
+     * tileCoordinates - Vector2Int object that contains the x and y coordinate for the clue in a room, set by clue manager
+     * clueGlint - animated texture that contains the animation needed for the clueGlint
+     * animStateTime - the time state of the clueGlint animation needed to render the animated texture
+     * collisionBox - a rectangle box needed by LibGDX to calculate collisions between actors
+     * clueType - a enum value used to determine whether the clue is a weapon, motive or other clue
      */
     private String name;
 
-    /**
-     * The description of the clue, set when you initialise the clue and gettable using {@link #getDescription()}
-     */
     private String description;
-
-    /**
-     * This is the location on the map in terms of tiles can be set using {@link #setTilePosition(int, int)}
-     * Note: this is different to com.badlogic.gdx.graphics.g2d.Sprite.position that is the position on the screen in terms of pixels,
-     * whereas this is in terms of map tiles relative to the bottom left of the map.
-     */
 
     private Array<Integer> relatedNpcIdArray;
 
     private Vector2Int tileCoordinates = new Vector2Int(0, 0);
 
     private Animation<TextureRegion> clueGlint;
+
     private float animStateTime = 0;
 
     private Rectangle collisionBox;
 
     private ClueType clueType;
+
+    /**
+     * Constructor for creating Clue objects from json data and textures
+     * @param jsonData - json data loaded through the asset loader for each clue
+     * @param clueGlintAtlas - a texture atlas for the animated textures
+     */
 
     public Clue(JsonValue jsonData, TextureAtlas clueGlintAtlas)
     {
@@ -64,7 +70,7 @@ public class Clue extends Actor implements Collidable, TileObject
     }
 
     /**
-     * constructors for testing
+     * constructors used for testing of methods without Json
      */
     public Clue(String name, String description, Array<Integer> relatedNpcIdArray){
         this.name = name;
@@ -102,6 +108,9 @@ public class Clue extends Actor implements Collidable, TileObject
         return false;
     }
 
+    /**
+     * Getters and setters needed for use in other classes
+     */
     public String getName()
     {
         return this.name;
@@ -124,17 +133,8 @@ public class Clue extends Actor implements Collidable, TileObject
     }
 
     @Override
-    public void act(float delta) {
-        animStateTime += delta;
-    }
-
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        Color color = batch.getColor();
-        batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a * parentAlpha);
-
-        batch.draw(clueGlint.getKeyFrame(animStateTime,true), getX(), getY(), Settings.TILE_SIZE, Settings.TILE_SIZE);
-        batch.setColor(color);
+    public Vector2Int getTilePosition() {
+        return tileCoordinates;
     }
 
     @Override
@@ -148,8 +148,20 @@ public class Clue extends Actor implements Collidable, TileObject
         collisionBox.setPosition(getX(), getY());
     }
 
+    /**
+     * act and draw methods needed to render the clue in game through LibGDX
+     */
     @Override
-    public Vector2Int getTilePosition() {
-        return tileCoordinates;
+    public void act(float delta) {
+        animStateTime += delta;
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        Color color = batch.getColor();
+        batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a * parentAlpha);
+
+        batch.draw(clueGlint.getKeyFrame(animStateTime,true), getX(), getY(), Settings.TILE_SIZE, Settings.TILE_SIZE);
+        batch.setColor(color);
     }
 }
