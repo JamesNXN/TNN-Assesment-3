@@ -159,6 +159,10 @@ public class GameWorld {
         return player;
     }
 
+    public Gui getGui() {
+        return gui;
+    }
+
     public void dispose(){
         tiledMapRenderer.dispose();
         gameWorldStage.dispose();

@@ -2,6 +2,7 @@ package me.lihq.game.people;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.Collidable;
@@ -120,6 +121,7 @@ public class Player extends AbstractPerson
             System.out.println(((NPC)interactingActor).getName());
         }
         else if(interactingActor instanceof Clue) {
+            gameWorld.getGui().displayInfo((Actor)interactingActor, ((Clue) interactingActor).getDescription());
             System.out.println(((Clue)interactingActor).getName());
         }
     }
