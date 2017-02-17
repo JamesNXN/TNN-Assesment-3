@@ -137,10 +137,10 @@
   {
     "id": 10,
     "name":"Tom",
-    "description": "Tom is dressed in brown with an old-fashion hat. \n He is teacher at the university who came to the party to escape marking work for a night",
+    "description": "Tom is dressed in brown with an white hair. \n He is teacher at the university who came to the party to escape marking work for a night",
     "personality":"NEUTRAL",
     "dialogue": {
-      "introduction" : "Hello, young gentleman.",
+      "introduction" : "Hello.",
       "failResponses": [
         "Sorry I have some emails need to reply right now.",
         "I don't think you really want me to help.",

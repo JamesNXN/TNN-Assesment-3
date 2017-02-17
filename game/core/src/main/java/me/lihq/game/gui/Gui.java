@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -89,12 +90,15 @@ public class Gui {
     public void displayInfo(Actor actor, String info){
         infoWindow.getContentTable().clearChildren();
         infoWindow.getContentTable().add(actor).row();
-        infoWindow.text(info);
+        Label infoLabel = new Label(info, infoWindow.getSkin());
+        infoLabel.setWrap(true);
+        infoLabel.setAlignment(Align.center);
+        infoWindow.getContentTable().add(infoLabel).width(500);
         infoWindow.show(guiStage);
     }
 
     public void render(float delta){
-        guiStage.act();
+        guiStage.act(delta);
         guiStage.draw();
     }
 
