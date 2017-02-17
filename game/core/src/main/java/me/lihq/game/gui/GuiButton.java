@@ -12,7 +12,7 @@ import me.lihq.game.GameWorld;
  * Basic gui button that interacts with gui and game world
  */
 
-class GuiButton extends TextButton {
+abstract class GuiButton extends TextButton {
     protected Gui gui;
     protected GameWorld gameWorld;
 

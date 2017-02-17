@@ -1,4 +1,4 @@
-package me.lihq.game.people;
+package me.lihq.game.models;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;

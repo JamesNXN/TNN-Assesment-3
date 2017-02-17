@@ -25,4 +25,8 @@ public enum Personality {
     public int getMaxRange() {
         return maxRange;
     }
+
+    public boolean isInRange(int personalityLevel){
+        return personalityLevel <= maxRange && personalityLevel >= minRange;
+    }
 }

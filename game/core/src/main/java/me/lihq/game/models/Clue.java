@@ -46,6 +46,8 @@ public class Clue extends Actor implements Collidable, TileObject {
 
     private Rectangle collisionBox;
 
+    private boolean isFound = false;
+
     private ClueType clueType;
 
     /**
@@ -59,7 +61,7 @@ public class Clue extends Actor implements Collidable, TileObject {
         Json json = new Json();
         this.name = jsonData.getString("name");
         this.description = jsonData.getString("description");
-        this.relatedNpcIdArray = json.readValue(Array.class, jsonData.get("relatedNpcId"));
+        this.relatedNpcIdArray = json.readValue(Array.class, Integer.class, jsonData.get("relatedNpcId"));
         this.clueType = json.readValue(ClueType.class, jsonData.get("clueType"));
 
         clueGlint = new Animation<>(0.1f, clueGlintAtlas.findRegions("glint"));
@@ -80,6 +82,14 @@ public class Clue extends Actor implements Collidable, TileObject {
 
         collisionBox = new Rectangle();
         collisionBox.setSize(Settings.TILE_SIZE);
+    }
+
+    public boolean isFound() {
+        return isFound;
+    }
+
+    public void setFound(boolean found) {
+        isFound = found;
     }
 
     /**
@@ -152,7 +162,9 @@ public class Clue extends Actor implements Collidable, TileObject {
         Color color = batch.getColor();
         batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a * parentAlpha);
 
-        batch.draw(clueGlint.getKeyFrame(animStateTime,true), getX(), getY(), Settings.TILE_SIZE, Settings.TILE_SIZE);
+        if (!isFound) {
+            batch.draw(clueGlint.getKeyFrame(animStateTime, true), getX(), getY(), Settings.TILE_SIZE, Settings.TILE_SIZE);
+        }
         batch.setColor(color);
     }
 }

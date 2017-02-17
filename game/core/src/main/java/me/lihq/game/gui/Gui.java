@@ -30,6 +30,7 @@ public class Gui {
 
     private InfoWindow infoWindow;
     private InventoryWindow inventoryWindow;
+    private PersonalityMeterWindow personalityMeterWindow;
 
 
     public Gui(GameMain game, GameWorld gameWorld){
@@ -59,6 +60,7 @@ public class Gui {
 
         infoWindow = new InfoWindow(game.assetLoader.uiSkin, this, gameWorld);
         inventoryWindow = new InventoryWindow(game.assetLoader.uiSkin, this, gameWorld);
+        personalityMeterWindow = new PersonalityMeterWindow(game.assetLoader.uiSkin, this, gameWorld);
     }
 
     public void setRoomTag(Room room){
@@ -90,7 +92,20 @@ public class Gui {
     public void displayInfo(Actor actor, String info){
         infoWindow.getContentTable().clearChildren();
         infoWindow.getContentTable().add(actor).row();
-        Label infoLabel = new Label(info, infoWindow.getSkin());
+        Label infoLabel = new Label(info, infoWindow.getSkin(), "dialog");
+        infoLabel.setWrap(true);
+        infoLabel.setAlignment(Align.center);
+        infoWindow.getContentTable().add(infoLabel).width(500);
+        infoWindow.show(guiStage);
+    }
+
+    /**
+     * Show a pop up window that displays a string.
+     * @param info String to be added below.
+     */
+    public void displayInfo(String info){
+        infoWindow.getContentTable().clearChildren();
+        Label infoLabel = new Label(info, infoWindow.getSkin(), "dialog");
         infoLabel.setWrap(true);
         infoLabel.setAlignment(Align.center);
         infoWindow.getContentTable().add(infoLabel).width(500);
@@ -112,6 +127,10 @@ public class Gui {
 
     public InventoryWindow getInventoryWindow() {
         return inventoryWindow;
+    }
+
+    public PersonalityMeterWindow getPersonalityMeterWindow() {
+        return personalityMeterWindow;
     }
 
     public void dispose(){

@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -182,10 +183,10 @@ public class AssetLoader
         uiSkin = manager.get("skin/uiskin.json");
 
         //menu skin init
-        initMenuSkin();
+        initSkin();
     }
 
-    private void initMenuSkin()
+    private void initSkin()
     {
         menuSkin = new Skin();
 
@@ -210,6 +211,10 @@ public class AssetLoader
         textButtonStyle.over = menuSkin.newDrawable("background", Color.LIGHT_GRAY);
         textButtonStyle.font = menuSkin.getFont("default");
         menuSkin.add("default", textButtonStyle);
+
+
+        Label.LabelStyle style = new Label.LabelStyle(getFontWithSize(30), Color.WHITE);
+        uiSkin.add("dialog", style);
     }
 
     /**

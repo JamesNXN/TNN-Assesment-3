@@ -34,11 +34,6 @@ public class StatusBar extends Table
     private static final int WIDTH = Gdx.graphics.getWidth() / ITEM_COUNT;
 
     /**
-     * The background color of the StatusBar
-     */
-    private static final Color BACKGROUND_COLOR = Color.GRAY;
-
-    /**
      * The initializer for the StatusBar
      * Sets up UI controls and adds them to the stage ready for rendering
      */
@@ -49,14 +44,11 @@ public class StatusBar extends Table
         row().height(HEIGHT);
         defaults().width(WIDTH);
 
-        Label.LabelStyle style = new Label.LabelStyle(game.assetLoader.getFontWithSize(30), Color.BLACK);
-        game.assetLoader.uiSkin.add("default", style);
-
         Label scoreLabel = new Label("Score: 0", game.assetLoader.uiSkin);
         scoreLabel.setAlignment(Align.center, Align.center);
         add(scoreLabel).uniform();
 
-        TextButton personalityMeter = new TextButton("Personality Meter", game.assetLoader.uiSkin);
+        PersonalityMeterButton personalityMeter = new PersonalityMeterButton(game.assetLoader.uiSkin, gui);
         add(personalityMeter).uniform();
 
         InventoryButton inventoryButton = new InventoryButton(game.assetLoader.uiSkin, gui);

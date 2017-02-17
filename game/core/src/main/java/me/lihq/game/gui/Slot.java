@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
- * Entry format for notebook and accuse window
+ * Entry format for inventory
  */
 
 class Slot extends Button {

@@ -6,12 +6,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.Collidable;
-import me.lihq.game.GameMain;
 import me.lihq.game.GameWorld;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Inventory;
 import me.lihq.game.models.RoomArrow;
+import me.lihq.game.models.Score;
 
 /**
  * This class defines the player that the person playing the game will be represented by.
@@ -121,7 +121,10 @@ public class Player extends AbstractPerson
             System.out.println(((NPC)interactingActor).getName());
         }
         else if(interactingActor instanceof Clue) {
-            gameWorld.getGui().displayInfo((Actor)interactingActor, ((Clue) interactingActor).getDescription());
+            Clue foundClue = (Clue) interactingActor;
+
+            foundClue.setFound(false);
+            gameWorld.getGui().displayInfo(foundClue.getDescription());
             System.out.println(((Clue)interactingActor).getName());
         }
     }
@@ -180,16 +183,15 @@ public class Player extends AbstractPerson
     @Override
     public Personality getPersonality()
     {
-        if (personalityLevel < 33) {
-            return Personality.AGGRESSIVE;
-
-        } else if (personalityLevel < 66) {
-            return Personality.NEUTRAL;
-
-        } else if (personalityLevel <= 100) {
+        if (Personality.NICE.isInRange(personalityLevel)){
             return Personality.NICE;
         }
-        return Personality.NEUTRAL;
+        else if (Personality.NEUTRAL.isInRange(personalityLevel)){
+            return Personality.NEUTRAL;
+        }
+        else{
+            return Personality.AGGRESSIVE;
+        }
     }
 
     /**

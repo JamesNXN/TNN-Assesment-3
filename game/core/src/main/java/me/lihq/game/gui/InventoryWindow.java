@@ -27,7 +27,7 @@ class InventoryWindow extends GuiWindow {
     }
 
     /**
-     * called every time notebook is opened. Clears all the children and rebuild.
+     * called every time inventory is opened. Clears all the children and rebuild.
      */
     void refresh(){
         Inventory inventory = gameWorld.getPlayer().getInventory();

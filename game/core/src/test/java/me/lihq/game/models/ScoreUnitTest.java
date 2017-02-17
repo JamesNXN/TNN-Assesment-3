@@ -1,6 +1,6 @@
 package me.lihq.game.models;
 import me.lihq.game.GameTester;
-import me.lihq.game.people.Score;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
