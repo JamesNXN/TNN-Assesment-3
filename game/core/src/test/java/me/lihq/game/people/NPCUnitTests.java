@@ -6,20 +6,26 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.GameTester;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class NPCUnitTests extends GameTester {
-    public NPC testNPC;
+    private NPC testNPC;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         Json json = new Json();
         JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
         testNPC = new NPC(npcJsonDataArray.get(0));
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        testNPC = null;
     }
 
     @Test

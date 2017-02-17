@@ -1,7 +1,10 @@
+package me.lihq.game.models;
+
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import me.lihq.game.GameTester;
 import me.lihq.game.models.Room;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,16 +14,22 @@ import static org.junit.Assert.assertTrue;
 public class RoomUnitTests extends GameTester
 {
 
-    private Room testRoom1, testRoom2;
+    private Room testRoom1;
+    private Room testRoom2;
 
     @Before
-    public void before()
-    {
+    public void setUp() throws Exception {
         TiledMap testMap1 = new TmxMapLoader().load("assetLoader/testRoom1.tmx");
         testRoom1 = new Room(testMap1);
 
         TiledMap testMap2 = new TmxMapLoader().load("assetLoader/testRoom2.tmx");
         testRoom2 = new Room(testMap2);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        testRoom1 = null;
+        testRoom2 = null;
     }
 
     @Test

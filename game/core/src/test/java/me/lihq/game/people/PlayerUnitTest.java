@@ -15,8 +15,8 @@ import org.mockito.Mockito;
 import static org.junit.Assert.*;
 
 public class PlayerUnitTest extends GameTester {
-    Player testPlayer;
-    GameMain main;
+    private Player testPlayer;
+    private GameMain main;
 
 
     @Before
@@ -34,17 +34,11 @@ public class PlayerUnitTest extends GameTester {
 
     @Test
     public void addToPersonality() throws Exception {
-        //todo add test properly once json sorted out
+        assertNotNull(testPlayer.getPersonalityLevel());
 
-    }
+        int personalityValue = testPlayer.getPersonalityLevel();
+        testPlayer.addToPersonality(5);
 
-    @Test
-    public void getPersonality() throws Exception {
-        //todo add test properly once json sorted out
-    }
-
-    @Test
-    public void getPersonalityLevel() throws Exception {
-        //todo add test properly once json sorted out
+        assertTrue(personalityValue + 5 == testPlayer.getPersonalityLevel());
     }
 }
