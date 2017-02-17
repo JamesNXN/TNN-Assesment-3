@@ -41,13 +41,13 @@ public class InventoryUnitTests extends GameTester {
 
         Array<Integer> testArray1 = new Array<>();
         testArray1.addAll(1, 2, 3);
-        testClue = new Clue("testClue1", "description1", testArray1);
+        testClue = new Clue(null, null);
 
         Array<Integer> testArray2 = new Array<>();
         testArray2.addAll(4, 5, 6);
-        testClue2 = new Clue("testClue2", "description2", testArray2);
+        testClue2 = new Clue(null, null);
 
-        testWeapon = new Clue(ClueType.WEAPON);
+        testWeapon = new Clue(null, null);
 
         Json json = new Json();
 
