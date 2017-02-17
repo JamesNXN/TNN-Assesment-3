@@ -72,7 +72,7 @@ public class StatusBar extends Table
         TextButton personalityMeter = new TextButton("Personality Meter", buttonSkin);
         add(personalityMeter).uniform();
 
-        InventoryButton inventoryButton = new InventoryButton(skin, gui);
+        InventoryButton inventoryButton = new InventoryButton(buttonSkin, gui);
         add(inventoryButton).uniform();
 
         TextButton pauseButton = new TextButton("Pause", buttonSkin);

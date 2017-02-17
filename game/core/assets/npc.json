@@ -92,7 +92,7 @@
   {
     "id": 7,
     "name":"David",
-    "description": "David is dressed in black uniform. \n He is invited to attended this party.",
+    "description": "David is dressed in an old black school uniform. \n He was invited to attended the party by a friend who couldn't come in the end.",
     "personality":"NICE",
     "dialogue": {
       "introduction" : "Hi, need any help?",
@@ -107,7 +107,7 @@
   {
     "id": 8,
     "name":"Julie",
-    "description": "Julie is dressed in steam punk style with pink hair. \n She helped design and decoration of the party.",
+    "description": "Julie is dressed in a steam punk style outfit with pink hair. \n She helped design the decoration's for the party.",
     "personality":"NEUTRAL",
     "dialogue": {
       "introduction" : "Hi!",
@@ -122,7 +122,7 @@
   {
     "id": 9,
     "name":"Sophie",
-    "description": "Sophie is dressed in pirate. \n She is asked to attend this party, but she doesn't really enjoy it.",
+    "description": "Sophie is dressed as a pirate. \n She usually work's as a receptionist and she is very impatiant.",
     "personality":"AGGRESSIVE",
     "dialogue": {
       "introduction" : "What do you want?!",
@@ -137,7 +137,7 @@
   {
     "id": 10,
     "name":"Tom",
-    "description": "Tom is dressed in brown with an old-fashion hat. \n He is teacher of university who is invited to attended this party.",
+    "description": "Tom is dressed in brown with an old-fashion hat. \n He is teacher at the university who came to the party to escape marking work for a night",
     "personality":"NEUTRAL",
     "dialogue": {
       "introduction" : "Hello, young gentleman.",
