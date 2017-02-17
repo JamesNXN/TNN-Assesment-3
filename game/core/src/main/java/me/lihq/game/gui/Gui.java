@@ -11,13 +11,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.GameMain;
 import me.lihq.game.GameWorld;
-import me.lihq.game.models.Clue;
 import me.lihq.game.models.Room;
-import me.lihq.game.gui.FadeInOut;
-import me.lihq.game.gui.RoomTag;
-import me.lihq.game.gui.StatusBar;
-import me.lihq.game.models.RoomArrow;
-import me.lihq.game.people.NPC;
 
 public class Gui {
     private GameMain game;
@@ -62,8 +56,8 @@ public class Gui {
         guiStage.addActor(fadeInOut);
 
 
-        infoWindow = new InfoWindow(game.assetLoader.menuSkin, this, gameWorld);
-        inventoryWindow = new InventoryWindow(game.assetLoader.menuSkin, this, gameWorld);
+        infoWindow = new InfoWindow(game.assetLoader.uiSkin, this, gameWorld);
+        inventoryWindow = new InventoryWindow(game.assetLoader.uiSkin, this, gameWorld);
     }
 
     public void setRoomTag(Room room){
