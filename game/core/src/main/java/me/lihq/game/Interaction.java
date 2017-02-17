@@ -8,6 +8,8 @@ import me.lihq.game.people.NPC;
 import me.lihq.game.people.Personality;
 import me.lihq.game.people.Player;
 
+import java.io.ObjectStreamClass;
+
 /**
  * Created by User on 08/02/2017.
  */
@@ -43,7 +45,7 @@ public class Interaction {
     }
 
     public void accuse(Array<Clue> clues) {
-        if (clues.size < 4 || clues.first().getClueType() == ClueType.MOTIVE){
+        if (clues.size < 4 && player.getInventory().checkIfWeaponFound()==true){
             int checkingValue = 0;
             for (Clue cluesCheck : clues) {
                 if (cluesCheck.getRelatedNpcIdArray().contains(npc.getId(), true)) {

@@ -64,12 +64,22 @@ public class Clue extends Actor implements Collidable, TileObject
     }
 
     /**
-     * constructor for testing
+     * constructors for testing
      */
     public Clue(String name, String description, Array<Integer> relatedNpcIdArray){
         this.name = name;
         this.description = description;
         this.relatedNpcIdArray = relatedNpcIdArray;
+
+        collisionBox = new Rectangle();
+        collisionBox.setSize(Settings.TILE_SIZE);
+    }
+
+    public Clue(ClueType type){
+        this.name = "test";
+        this.description = "description";
+        this.relatedNpcIdArray = new Array<>();
+        this.clueType = type;
 
         collisionBox = new Rectangle();
         collisionBox.setSize(Settings.TILE_SIZE);

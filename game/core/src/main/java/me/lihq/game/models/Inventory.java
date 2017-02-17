@@ -35,6 +35,15 @@ public class Inventory {
         return false;
     }
 
+    public boolean checkIfWeaponFound(){
+        for (Clue clue: this.collectedClues){
+            if (clue.getClueType()==ClueType.WEAPON){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addNewCharacter(NPC character) {
         this.metCharacters.add(character);
     }

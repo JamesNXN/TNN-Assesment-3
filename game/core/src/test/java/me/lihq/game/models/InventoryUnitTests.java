@@ -11,8 +11,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class InventoryUnitTests extends GameTester {
     /**
@@ -22,6 +21,7 @@ public class InventoryUnitTests extends GameTester {
 
     private Clue testClue;
     private Clue testClue2;
+    private Clue testWeapon;
 
     private NPC testNPC;
     private NPC testNPC2;
@@ -47,6 +47,8 @@ public class InventoryUnitTests extends GameTester {
         testArray2.addAll(4, 5, 6);
         testClue2 = new Clue("testClue2", "description2", testArray2);
 
+        testWeapon = new Clue(ClueType.WEAPON);
+
         Json json = new Json();
 
         JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
@@ -71,6 +73,7 @@ public class InventoryUnitTests extends GameTester {
 
         testClue = null;
         testClue2 = null;
+        testWeapon = null;
 
         testNPC = null;
         testNPC2 = null;
@@ -176,4 +179,12 @@ public class InventoryUnitTests extends GameTester {
         assertEquals(2, testInventory.getCollectedHints().size);
     }
 
+    @Test
+    public void checkIfWeaponFound() throws Exception {
+        assertFalse(testInventory.checkIfWeaponFound());
+
+        testInventory.addNewClue(testWeapon);
+
+        assertTrue(testInventory.checkIfWeaponFound());
+    }
 }
