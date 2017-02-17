@@ -1,46 +1,60 @@
 package me.lihq.game.people;
 
-/**
- * Created by Tunc on 16/02/2017
- */
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
+
 public class Score {
+    private static Score instance = new Score();
 
-    private boolean firstAccusation;
-    private int points;
+    private int highScore;
+    private int currentScore;
 
-    public Score() {
-        this.firstAccusation = true;
-        this.points = 0;
+    private int failedAccusationCount;
+
+    private Score() {
+        highScore = Gdx.app.getPreferences("pref").getInteger("highScore", 0);
+        currentScore = 0;
+        failedAccusationCount = 0;
+    }
+
+    public static Score getInstance(){
+        return instance;
     }
 
 
     public void addPoints(int point) {
-        this.points += point;
+        currentScore += point;
     }
 
     public void subPoints(int point) {
-        this.points -= point;
+        currentScore -= point;
     }
 
-    public void failedAccusation() {
-        this.firstAccusation = false;
+    public int getCurrentScore() {
+        return currentScore;
     }
 
-
-    public int getPoints() {
-        return points;
+    public void reset() {
+        currentScore = 0;
+        failedAccusationCount = 0;
     }
 
-    public boolean getAccusation() {
-            return firstAccusation;
+    public void failedAccusation(){
+        failedAccusationCount++;
     }
 
-    public int returnScore( int time ){
-        if (firstAccusation){
-            this.points += 200;
+    public int getFailedAccusationCount() {
+        return failedAccusationCount;
+    }
+
+    public int returnFinalScore(int time ){
+        int finalScore = currentScore - time;
+        if (finalScore > highScore){
+            Preferences pref = Gdx.app.getPreferences("pref");
+            pref.putInteger("highScore", finalScore);
+            pref.flush();
         }
-        this.points -= time;  // Time class needs a return function thst is time in integer format
 
-        return points;
+        return finalScore;
     }
 }

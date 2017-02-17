@@ -53,7 +53,7 @@ public class Player extends AbstractPerson
         super(jsonData, spriteSheet);
 
         this.gameWorld = gameWorld;
-        this.score = new Score();
+        this.score = Score.getInstance();
         interactionCollisionBox = new Rectangle();
         interactionCollisionBox.setSize(collisionBox.getWidth(), collisionBox.getHeight());
     }

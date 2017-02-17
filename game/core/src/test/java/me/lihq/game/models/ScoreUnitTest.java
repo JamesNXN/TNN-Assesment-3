@@ -15,71 +15,58 @@ public class ScoreUnitTest extends GameTester {
 
     @Before
     public void setUp() throws Exception {
-        testScore = new Score();
+        testScore = Score.getInstance();
     }
 
     @After
     public void tearDown() throws Exception {
-        testScore = null;
+        testScore.reset();
     }
 
 
     @Test
     public void addPoints() throws Exception {
-        assertNotNull(testScore.getPoints());
+        assertNotNull(testScore.getCurrentScore());
 
         testScore.addPoints(30);
 
-        assertEquals(30, testScore.getPoints());
+        assertEquals(30, testScore.getCurrentScore());
     }
 
     @Test
     public void subPoints() throws Exception {
-        assertNotNull(testScore.getPoints());
+        assertNotNull(testScore.getCurrentScore());
 
         testScore.subPoints(50);
 
-        assertEquals(-50, testScore.getPoints());
-    }
-
-    @Test
-    public void failedAccusation() throws Exception {
-        assertNotNull(testScore.getAccusation());
-
-        testScore.failedAccusation();
-
-        assertEquals(false, testScore.getAccusation());
+        assertEquals(-50, testScore.getCurrentScore());
     }
 
     @Test
     public void getPoints() throws Exception {
-        assertNotNull(testScore.getPoints());
+        assertNotNull(testScore.getCurrentScore());
 
         testScore.addPoints(30);
 
-        assertEquals(30, testScore.getPoints());
+        assertEquals(30, testScore.getCurrentScore());
 
         testScore.subPoints(50);
 
-        assertEquals(-20, testScore.getPoints());
+        assertEquals(-20, testScore.getCurrentScore());
     }
 
     @Test
-    public void getAccusation() throws Exception {
-        assertNotNull(testScore.getAccusation());
+    public void returnFinalScore() throws Exception {
+        assertNotNull(testScore.getCurrentScore());
 
+        testScore.addPoints(100);
+        assertEquals(90, testScore.returnFinalScore(10));
+    }
+
+    @Test
+    public void getFailedAccusationCount() throws Exception {
         testScore.failedAccusation();
 
-        assertEquals(false, testScore.getAccusation());
+        assertEquals(1, testScore.getFailedAccusationCount());
     }
-
-    @Test
-    public void returnScore() throws Exception {
-        assertNotNull(testScore.getPoints());
-        assertNotNull(testScore.getAccusation());
-
-        assertEquals(210, testScore.returnScore(-10));
-    }
-
-
 }
