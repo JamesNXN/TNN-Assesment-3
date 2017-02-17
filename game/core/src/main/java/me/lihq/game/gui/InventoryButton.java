@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 class InventoryButton extends GuiButton {
     InventoryButton(Skin skin, Gui gui) {
-        super(skin, "default", gui);
+        super(skin, "Inventory", gui);
 
         addListener(new ChangeListener() {
             @Override

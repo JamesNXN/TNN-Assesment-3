@@ -68,6 +68,7 @@ public class AssetLoader
     public TextureAtlas clueGlint;
 
     public Skin menuSkin;
+    public Skin uiSkin;
 
     public JsonValue npcJsonData;
     public JsonValue playerJsonData;
@@ -95,6 +96,8 @@ public class AssetLoader
      * Load assetLoader used for the game onto asset manager
      */
     public void loadGameAssets(){
+        manager.load("skin/uiskin.json", Skin.class);
+
         manager.load("arrows.pack", TextureAtlas.class);
         manager.load("clueGlint.pack", TextureAtlas.class);
         manager.load("roomTagBorder.png", Texture.class);
@@ -173,11 +176,10 @@ public class AssetLoader
         //room tag border texture assign
         roomTagBorder = manager.get("roomTagBorder.png");
 
-//        clueSheet = manager.get("clues.pack");
-
         //clue glint animation init
         clueGlint = manager.get("clueGlint.pack");
 
+        uiSkin = manager.get("skin/uiskin.json");
 
         //menu skin init
         initMenuSkin();
