@@ -31,6 +31,7 @@ public class Gui {
     private InfoWindow infoWindow;
     private InventoryWindow inventoryWindow;
     private PersonalityMeterWindow personalityMeterWindow;
+    private NpcNoteWindow npcNoteWindow;
 
 
     public Gui(GameMain game, GameWorld gameWorld){
@@ -61,6 +62,7 @@ public class Gui {
         infoWindow = new InfoWindow(game.assetLoader.uiSkin, this, gameWorld);
         inventoryWindow = new InventoryWindow(game.assetLoader.uiSkin, this, gameWorld);
         personalityMeterWindow = new PersonalityMeterWindow(game.assetLoader.uiSkin, this, gameWorld);
+        npcNoteWindow = new NpcNoteWindow(game.assetLoader.uiSkin, this, gameWorld);
     }
 
     public void setRoomTag(Room room){
@@ -131,6 +133,10 @@ public class Gui {
 
     public PersonalityMeterWindow getPersonalityMeterWindow() {
         return personalityMeterWindow;
+    }
+
+    public NpcNoteWindow getNpcNoteWindow() {
+        return npcNoteWindow;
     }
 
     public void dispose(){

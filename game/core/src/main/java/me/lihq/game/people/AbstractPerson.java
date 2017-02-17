@@ -36,7 +36,7 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
      */
     private boolean canMove = true;
 
-    private final float MOVE_SPEED = 100f;
+    private final float MOVE_SPEED = 500f;
 
     /**
      * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
@@ -52,15 +52,10 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
     private Animation<TextureRegion> walkLeft;
 
     protected Rectangle collisionBox;
-
-    /**
-     * This is the JSON data for the Player/NPC
-     */
-    protected JsonValue jsonData;
     /**
      * The direction determines the way the character is facing.
      */
-    protected Direction direction = Direction.EAST;
+    protected Direction direction = Direction.SOUTH;
     /**
      * This is the current walking state of the Person. {@link #getState()}
      */
@@ -97,6 +92,21 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
         walkDown = new Animation<>(0.1f, spriteSheet.findRegions("walkDown"));
         walkRight = new Animation<>(0.1f, spriteSheet.findRegions("walkRight"));
         walkLeft = new Animation<>(0.1f, spriteSheet.findRegions("walkLeft"));
+    }
+
+    public AbstractPerson(AbstractPerson abstractPersonCopy){
+        name = abstractPersonCopy.getName();
+
+        collisionBox = new Rectangle();
+        collisionBox.setSize(Settings.TILE_SIZE * 0.7f);
+
+        setSize(SPRITE_WIDTH, SPRITE_HEIGHT);
+        setOrigin(getWidth()/2, getHeight()/2);
+
+        walkUp = abstractPersonCopy.walkUp;
+        walkDown = abstractPersonCopy.walkDown;
+        walkRight = abstractPersonCopy.walkRight;
+        walkLeft = abstractPersonCopy.walkLeft;
     }
 
     public AbstractPerson(JsonValue jsonData){    //// TEST CONSTRUCTOR
@@ -151,6 +161,10 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
             if (!wallCollisionDetection(collisionBox) && !npcCollisionDetection(collisionBox)) {
                 moveBy(vectorDistanceX, vectorDistanceY);
             }
+        }
+
+        else if (state == PersonState.FIXED_WALKING){
+            animStateTime += delta;
         }
         else{
             tilePosition.x = (int) (getX() / Settings.TILE_SIZE);
@@ -224,7 +238,7 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
         Color color = batch.getColor();
         batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a * parentAlpha);
 
-        batch.draw(currentFrame, getX(), getY(), SPRITE_WIDTH, SPRITE_HEIGHT);
+        batch.draw(currentFrame, getX(), getY(), getOriginX(), getOriginY(), SPRITE_WIDTH, SPRITE_HEIGHT, getScaleX(), getScaleY(), getRotation());
         batch.setColor(color);
     }
     public abstract Personality getPersonality();

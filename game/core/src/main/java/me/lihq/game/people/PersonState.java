@@ -16,5 +16,11 @@ public enum PersonState {
         /**
          * Person is standing still.
          */
-        STANDING
+        STANDING,
+
+        /**
+         * Person is walking in fixed position
+         */
+        FIXED_WALKING
+
 }

@@ -54,13 +54,7 @@ public class StatusBar extends Table
         InventoryButton inventoryButton = new InventoryButton(game.assetLoader.uiSkin, gui);
         add(inventoryButton).uniform();
 
-        TextButton pauseButton = new TextButton("Pause", game.assetLoader.uiSkin);
-        add(pauseButton).uniform();
-        pauseButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new PauseScreen(game));
-            }
-        });
+        NpcNoteButton npcNoteButton = new NpcNoteButton(game.assetLoader.uiSkin, gui);
+        add(npcNoteButton).uniform();
     }
 }

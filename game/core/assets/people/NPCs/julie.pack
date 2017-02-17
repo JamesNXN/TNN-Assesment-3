@@ -3,35 +3,35 @@ julie.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-StandUp
+StandDown
   rotate: false
   xy: 0, 0
   size: 32, 48
   orig: 32, 48
   offset: 0, 0
   index: -1
-walkUp
+walkDown
   rotate: false
   xy: 0, 0
   size: 32, 48
   orig: 32, 48
   offset: 0, 0
   index: 1
-walkUp
+walkDown
   rotate: false
   xy: 32, 0
   size: 32, 48
   orig: 32, 48
   offset: 0, 0
   index: 2
-walkUp
+walkDown
   rotate: false
   xy: 64, 0
   size: 32, 48
   orig: 32, 48
   offset: 0, 0
   index: 3
-walkUp
+walkDown
   rotate: false
   xy: 96, 0
   size: 32, 48
@@ -108,35 +108,35 @@ walkRight
   orig: 32, 48
   offset: 0, 0
   index: 4
-StandDown
+StandUp
   rotate: false
   xy: 0, 144
   size: 32, 48
   orig: 32, 48
   offset: 0, 0
   index: -1
-walkDown
+walkUp
   rotate: false
   xy: 0, 144
   size: 32, 48
   orig: 32, 48
   offset: 0, 0
   index: 1
-walkDown
+walkUp
   rotate: false
   xy: 32, 144
   size: 32, 48
   orig: 32, 48
   offset: 0, 0
   index: 2
-walkDown
+walkUp
   rotate: false
   xy: 64, 144
   size: 32, 48
   orig: 32, 48
   offset: 0, 0
   index: 3
-walkDown
+walkUp
   rotate: false
   xy: 96, 144
   size: 32, 48
