@@ -1,5 +1,6 @@
 package me.lihq.game.models;
 
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import me.lihq.game.GameTester;
@@ -19,10 +20,10 @@ public class RoomUnitTests extends GameTester
 
     @Before
     public void setUp() throws Exception {
-        TiledMap testMap1 = new TmxMapLoader().load("assets/testRoom1.tmx");
+        TiledMap testMap1 = new TmxMapLoader().load(GameTester.ASSEST_FOLDER + "testRoom1.tmx");
         testRoom1 = new Room(testMap1);
 
-        TiledMap testMap2 = new TmxMapLoader().load("assets/testRoom2.tmx");
+        TiledMap testMap2 = new TmxMapLoader().load(GameTester.ASSEST_FOLDER + "testRoom2.tmx");
         testRoom2 = new Room(testMap2);
     }
 

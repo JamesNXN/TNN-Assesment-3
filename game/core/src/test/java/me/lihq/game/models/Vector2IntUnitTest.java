@@ -7,9 +7,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by PPPPPP on 2017/2/13.
- */
 public class Vector2IntUnitTest {
 
     private Vector2Int test2Int;
