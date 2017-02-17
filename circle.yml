@@ -4,13 +4,16 @@ machine:
 
 test:
   override:
-    - cd game && ./gradlew test jacocoTestReport
+   ## - cd game && ./gradlew test jacocoTestReport
+    - cd game && ./gradlew test
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
-    - mkdir -p $CIRCLE_ARTIFACTS/reports/html
-    - if test -d game/core/build/reports/jacoco/test/html; then mv game/core/build/reports/jacoco/test/html $CIRCLE_ARTIFACTS/core/jacoco; fi
-    - if test -d game/desktop/build/reports/jacoco/test/html; then mv game/desktop/build/reports/jacoco/test/html $CIRCLE_ARTIFACTS/desktop/jacoco; fi
-    - if test -d game/core/build/reports/tests/test; then mv game/core/build/reports/tests/test $CIRCLE_ARTIFACTS/core/junit; fi
-    - if test -d game/desktop/build/reports/tests/test; then mv game/desktop/build/reports/tests/test $CIRCLE_ARTIFACTS/desktop/junit; fi
+    - mkdir -p $CIRCLE_TEST_REPORTS/html/
+    - if test -d game/tests/build/reports/tests; then cp -r game/tests/build/reports/tests/* $CIRCLE_TEST_REPORTS/html/; fi
+    ##- mkdir -p $CIRCLE_ARTIFACTS/reports/html
+    ##- if test -d game/core/build/reports/jacoco/test/html; then mv game/core/build/reports/jacoco/test/html $CIRCLE_ARTIFACTS/core/jacoco; fi
+    ##- if test -d game/desktop/build/reports/jacoco/test/html; then mv game/desktop/build/reports/jacoco/test/html $CIRCLE_ARTIFACTS/desktop/jacoco; fi
+    ##- if test -d game/core/build/reports/tests/test; then mv game/core/build/reports/tests/test $CIRCLE_ARTIFACTS/core/junit; fi
+    ##- if test -d game/desktop/build/reports/tests/test; then mv game/desktop/build/reports/tests/test $CIRCLE_ARTIFACTS/desktop/junit; fi
 
