@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-public class NpcNoteButton extends GuiButton {
+class NpcNoteButton extends GuiButton {
     NpcNoteButton(Skin skin, Gui gui) {
         super(skin, "NPC List", gui);
 

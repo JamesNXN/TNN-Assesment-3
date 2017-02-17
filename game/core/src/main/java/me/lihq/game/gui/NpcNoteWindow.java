@@ -9,7 +9,7 @@ import me.lihq.game.models.Clue;
 import me.lihq.game.models.Inventory;
 import me.lihq.game.people.NPC;
 
-public class NpcNoteWindow extends GuiWindow{
+class NpcNoteWindow extends GuiWindow{
     private final int COLUMN_COUNT = 4;
     private final float SLOT_WIDTH = 150;
     private final float SLOT_GAP_HORIZONTAL = 100;

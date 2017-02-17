@@ -16,7 +16,7 @@ import me.lihq.game.screen.PauseScreen;
  * The status bar shown throughout the game
  * Contains UI controls for presenting the game status to the player
  */
-public class StatusBar extends Table
+class StatusBar extends Table
 {
     /**
      * The height of the StatusBar
@@ -37,7 +37,7 @@ public class StatusBar extends Table
      * The initializer for the StatusBar
      * Sets up UI controls and adds them to the stage ready for rendering
      */
-    public StatusBar(final GameMain game, Gui gui)
+    StatusBar(final GameMain game, Gui gui)
     {
         setSize(Gdx.graphics.getWidth(), HEIGHT);
         setPosition(0, 0);

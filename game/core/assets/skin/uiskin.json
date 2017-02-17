@@ -57,7 +57,7 @@
 	    default: { minus: tree-minus, plus: tree-plus, selection: default-select-selection }
     },
     com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
-        default: { background: default-scroll, knobBefore: default-round-large }
+        default-horizontal: { background: default-scroll, knobBefore: default-round-large }
     },
     com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
         default: { down: default-round-down, up: default-round, imageUp: paint_brush }

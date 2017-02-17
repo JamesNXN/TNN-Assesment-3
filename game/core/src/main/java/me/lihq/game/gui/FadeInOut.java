@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 import me.lihq.game.GameMain;
 
-public class FadeInOut extends Actor {
+class FadeInOut extends Actor {
     Texture blackBlank;
 
     public FadeInOut(){

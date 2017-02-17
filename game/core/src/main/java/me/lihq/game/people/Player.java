@@ -46,6 +46,7 @@ public class Player extends AbstractPerson
         super(jsonData, spriteSheet);
 
         this.gameWorld = gameWorld;
+        personalityLevel = jsonData.getInt("personalityLevel");
         interactionCollisionBox = new Rectangle();
         interactionCollisionBox.setSize(collisionBox.getWidth(), collisionBox.getHeight());
     }
