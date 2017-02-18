@@ -24,8 +24,6 @@ public class RoomArrow extends Actor implements TileObject, Collidable
 
     private Rectangle collisionBox;
 
-    private boolean isPlayerOn = false;
-
     public RoomArrow(Door exit, TextureAtlas arrowAtlas)
     {
         direction = exit.getDirection();

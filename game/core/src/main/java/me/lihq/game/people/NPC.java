@@ -62,14 +62,6 @@ public class NPC extends AbstractPerson
         this.personality = json.readValue("personality", Personality.class, jsonData);
     }
 
-    public NPC(NPC npc){
-        super(npc);
-
-        this.id = npc.getId();
-        this.description = npc.getDescription();
-        this.personality = npc.getPersonality();
-    }
-
     /**
      * constructor for testing
      */

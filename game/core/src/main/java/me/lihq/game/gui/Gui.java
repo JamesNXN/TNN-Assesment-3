@@ -127,15 +127,15 @@ public class Gui {
         return gameWorld;
     }
 
-    public InventoryWindow getInventoryWindow() {
+    InventoryWindow getInventoryWindow() {
         return inventoryWindow;
     }
 
-    public PersonalityMeterWindow getPersonalityMeterWindow() {
+    PersonalityMeterWindow getPersonalityMeterWindow() {
         return personalityMeterWindow;
     }
 
-    public NpcNoteWindow getNpcNoteWindow() {
+    NpcNoteWindow getNpcNoteWindow() {
         return npcNoteWindow;
     }
 
