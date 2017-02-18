@@ -32,7 +32,7 @@ public class PlayerUnitTest extends GameTester {
         testPlayer.setCurrentRoom(Mockito.mock(Room.class));
 
         Json json = new Json();
-        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNpc.json"));
+        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
         testNpc = new NPC(npcJsonDataArray.get(0), testSprite);
 

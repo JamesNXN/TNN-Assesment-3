@@ -40,7 +40,7 @@ public class RoomUnitTests extends GameTester
         Array<JsonValue> clueJsonDataArray = json.readValue(Array.class, clueJsonData);
         testClue = new Clue(clueJsonDataArray.get(0), clueGlint);
 
-        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNpc.json"));
+        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
         TextureAtlas testSprite = new TextureAtlas(GameTester.ASSEST_FOLDER +"colin.pack");
         testNpc = new NPC(npcJsonDataArray.get(0), testSprite);
