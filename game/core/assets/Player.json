@@ -2,8 +2,8 @@
   {
     "id": 1,
     "name": "Alfred",
-    "description": "description",
-    "personalityLevel": 30,
+    "description": "Alfred is a kind man the kindest you will probably find anywhere in the world. \n He has taken an oath to bring justice to the world without being violent \n but will he be able to keep that promise to himself now that his skills as a detective are needed.",
+    "personalityLevel": 10,
     "dialogue": {
       "introduction": "Hello",
       "question": {
@@ -29,8 +29,8 @@
   {
     "id": 2,
     "name": "Phoebe",
-    "description": "description",
-    "personalityLevel": 45,
+    "description": "Phoebe has lost a lot in life she lost her parents at a young age but it never stopped her. \n At the orphanage she grew up in she always played detective with her friends, \n without her friends and with a real crime to solve will she be able to do it?",
+    "personalityLevel": 35,
     "dialogue": {
       "introduction": "Hello",
       "question": {
@@ -56,8 +56,8 @@
   {
     "id": 3,
     "name": "Sherlock",
-    "description": "description",
-    "personalityLevel": 60,
+    "description": "Sherlock the great detective known to all and yet known to none. \n Out of his book and into the world will he use his skills to intimidate or befriend, maybe neither. \n Only time will tell if the great detective can solve another case.",
+    "personalityLevel": 50,
     "dialogue": {
       "introduction": "Hello",
       "question": {
@@ -83,7 +83,7 @@
   {
     "id": 4,
     "name": "Steiner",
-    "description": "description",
+    "description": "Shunned by his friends and family Steiner prefers to work alone. \n Using intimidation and aggression to have his way but he's not above being nice to manipulate others into doing what he wants. \n Will Steiner be able to solve the murder his way or will he have to play nice for once? Who knows.",
     "personalityLevel": 75,
     "dialogue": {
       "introduction": "Hello",
@@ -110,7 +110,7 @@
   {
     "id": 5,
     "name": "Victoria",
-    "description": "description",
+    "description": "Victoria was given everything she could ever want from a young age. \n However one day her parents decided that they no longer needed a daughter they had grown tired of the concept, \n they cast her out and now she knows the truth of the world. It is easier to get what you want if your heartless! \n Solving this crime is her ticket up into a cosy job as part of the police force but can she do it?",
     "personalityLevel": 90,
     "dialogue": {
       "introduction": "Hello",

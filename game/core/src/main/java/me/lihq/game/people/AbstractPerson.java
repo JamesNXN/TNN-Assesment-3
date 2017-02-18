@@ -65,6 +65,11 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
      * The Name of the Person
      */
     private String name;
+
+    /**
+     * The person's description
+     */
+    private String description;
     /**
      * The current room of the AbstractPerson.
      */
@@ -80,6 +85,7 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
     public AbstractPerson(JsonValue jsonData, TextureAtlas spriteSheet) {
         debug();
         name = jsonData.getString("name");
+        description = jsonData.getString("description");
         this.state = PersonState.STANDING;
 
         collisionBox = new Rectangle();
@@ -216,6 +222,8 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
     public String getName() {
         return this.name;
     }
+
+    public String getDescription() { return this.description;}
 
     public Direction getDirection() {
         return this.direction;
