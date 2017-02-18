@@ -48,6 +48,7 @@
       }
     }
   },
+
   {
     "name": "Phoebe",
     "personalityLevel": 60,
@@ -72,6 +73,7 @@
       }
     }
   },
+
   {
     "name": "Steiner",
     "personalityLevel": 75,
@@ -96,6 +98,7 @@
       }
     }
   },
+  
   {
     "name": "Victoria",
     "personalityLevel": 90,
