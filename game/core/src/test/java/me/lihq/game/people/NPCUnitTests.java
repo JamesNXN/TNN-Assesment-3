@@ -12,6 +12,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 public class NPCUnitTests extends GameTester {
     private NPC testNPC;
@@ -32,15 +34,28 @@ public class NPCUnitTests extends GameTester {
     }
 
     @Test
-    public void getName() {
+    public void getName() throws Exception{
+        assertNotNull(testNPC.getName());
         assertEquals("getting the name of the NPC failing", "testNPC1", testNPC.getName());
     }
 
     @Test
-    public void getPersonality() {
+    public void getPersonality() throws Exception{
+        assertNotNull(testNPC.getPersonality());
         assertEquals(Personality.AGGRESSIVE, testNPC.getPersonality());
     }
 
+    @Test
+    public void isKiller() throws Exception {
+        assertNotNull(testNPC.isKiller());
+        assertFalse(testNPC.isKiller());
+    }
+
+    @Test
+    public void isVictim() throws Exception {
+        assertNotNull(testNPC.isVictim());
+        assertFalse(testNPC.isVictim());
+    }
 
 }
 
