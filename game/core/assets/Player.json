@@ -32,22 +32,22 @@
     "description": "Phoebe has lost a lot in life she lost her parents at a young age but it never stopped her. \n At the orphanage she grew up in she always played detective with her friends, \n without her friends and with a real crime to solve will she be able to do it?",
     "personalityLevel": 35,
     "dialogue": {
-      "introduction": "Hello",
+      "introduction": "He'ya mind helping me out a bit?",
       "question": {
         "AGGRESSIVE":[
-          "Aggressive dialogue 1",
-          "Aggressive dialogue 2",
-          "Aggressive dialogue 3"
+          "Look lets just cut to the chase tell me what i want to know",
+          "Tell me what you know. Now!",
+          "I'm solving a murder here i don't have time to listen to your story just tell me what i want to know!"
         ],
         "NEUTRAL":[
-          "Neutral dialogue 1",
-          "Neutral dialogue 2",
-          "Neutral dialogue 3"
+          "What do you know about this?",
+          "Could you tell me what you know about this?",
+          "I found this what do you know about it?"
         ],
         "NICE":[
-          "Nice dialogue 1",
-          "Nice dialogue 2",
-          "Nice dialogue 3"
+          "I found this whilst looking around do you know anything about it?",
+          "If you know anything about this could you tell me it would really help?",
+          "I found this can you tell me what you know about it please?"
         ]
       }
     }
@@ -59,22 +59,22 @@
     "description": "Sherlock the great detective known to all and yet known to none. \n Out of his book and into the world will he use his skills to intimidate or befriend, maybe neither. \n Only time will tell if the great detective can solve another case.",
     "personalityLevel": 50,
     "dialogue": {
-      "introduction": "Hello",
+      "introduction": "You seem like a trustworthy fellow well you might not be but what does it matter, i have some questions to ask you",
       "question": {
         "AGGRESSIVE":[
-          "Aggressive dialogue 1",
-          "Aggressive dialogue 2",
-          "Aggressive dialogue 3"
+          "Don't talk so much you'll lower the IQ of the whole building just keep it short what do you know?",
+          "Look I am a high functioning sociopath and you need to tell me what you know before things get out of hand",
+          "Here i have a lovely murder case to solve and you are just getting in the way so hurry up and spit out what you know"
         ],
         "NEUTRAL":[
-          "Neutral dialogue 1",
-          "Neutral dialogue 2",
-          "Neutral dialogue 3"
+          "Mr's Hudson took my skull so i guess you'll do tell me what you think of this",
+          "Look here i am being all clever im even wearing the hat so tell me what i need",
+          "Im Sherlock Holmes, im working this boring little case so please don't waste my time what do you know about this?"
         ],
         "NICE":[
-          "Nice dialogue 1",
-          "Nice dialogue 2",
-          "Nice dialogue 3"
+          "The game is afoot and i need to play it quick so could you tell me what you know as fast as you can?",
+          "It's a lovely day isn't it a murder just what i needed that party was dreadfully boring. so brighten my day up some more what do you know about this",
+          "Lovely day isn't it have you met John yet? oh it appears i forgot he left the party early my bad anyway what can you tell me about this?"
         ]
       }
     }
@@ -86,22 +86,22 @@
     "description": "Shunned by his friends and family Steiner prefers to work alone. \n Using intimidation and aggression to have his way but he's not above being nice to manipulate others into doing what he wants. \n Will Steiner be able to solve the murder his way or will he have to play nice for once? Who knows.",
     "personalityLevel": 75,
     "dialogue": {
-      "introduction": "Hello",
+      "introduction": "Hi i need to ask you some questions",
       "question": {
         "AGGRESSIVE":[
-          "Aggressive dialogue 1",
-          "Aggressive dialogue 2",
-          "Aggressive dialogue 3"
+          "Look lets just cut to the chase tell me what i want to know",
+          "Tell me what you know. Now!",
+          "I'm solving a murder here i don't have time to listen to your story just tell me what i want to know!"
         ],
         "NEUTRAL":[
-          "Neutral dialogue 1",
-          "Neutral dialogue 2",
-          "Neutral dialogue 3"
+          "What do you know about this?",
+          "Could you tell me what you know about this?",
+          "I found this what do you know about it?"
         ],
         "NICE":[
-          "Nice dialogue 1",
-          "Nice dialogue 2",
-          "Nice dialogue 3"
+          "I found this whilst looking around do you know anything about it?",
+          "If you know anything about this could you tell me it would really help?",
+          "I found this can you tell me what you know about it please?"
         ]
       }
     }
@@ -113,22 +113,22 @@
     "description": "Victoria was given everything she could ever want from a young age. \n However one day her parents decided that they no longer needed a daughter they had grown tired of the concept, \n they cast her out and now she knows the truth of the world. It is easier to get what you want if your heartless! \n Solving this crime is her ticket up into a cosy job as part of the police force but can she do it?",
     "personalityLevel": 90,
     "dialogue": {
-      "introduction": "Hello",
+      "introduction": "Good Evening lets keep this short and simple i have some questions i need to ask you",
       "question": {
         "AGGRESSIVE":[
-          "Aggressive dialogue 1",
-          "Aggressive dialogue 2",
-          "Aggressive dialogue 3"
+          "Look lets just cut to the chase tell me what i want to know",
+          "Tell me what you know. Now!",
+          "I'm solving a murder here i don't have time to listen to your story just tell me what i want to know!"
         ],
         "NEUTRAL":[
-          "Neutral dialogue 1",
-          "Neutral dialogue 2",
-          "Neutral dialogue 3"
+          "What do you know about this?",
+          "Could you tell me what you know about this?",
+          "I found this what do you know about it?"
         ],
         "NICE":[
-          "Nice dialogue 1",
-          "Nice dialogue 2",
-          "Nice dialogue 3"
+          "I found this whilst looking around do you know anything about it?",
+          "If you know anything about this could you tell me it would really help?",
+          "I found this can you tell me what you know about it please?"
         ]
       }
     }
