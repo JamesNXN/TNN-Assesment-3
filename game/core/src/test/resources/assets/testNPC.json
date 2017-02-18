@@ -2,6 +2,7 @@
   {
     "id" : 1,
     "name": "testNPC1",
+    "description": "test description",
     "personality": "AGGRESSIVE",
     "dialogue":{
       "introduction": "Hello young detective!",
@@ -16,6 +17,7 @@
   {
     "id": 2,
     "name": "testNPC2",
+    "description": "test description",
     "personality": "NICE",
     "dialogue": {
       "introduction" : "Hello, what do you want?!",

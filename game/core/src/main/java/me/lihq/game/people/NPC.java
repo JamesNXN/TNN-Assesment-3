@@ -62,18 +62,6 @@ public class NPC extends AbstractPerson
         this.personality = json.readValue("personality", Personality.class, jsonData);
     }
 
-    /**
-     * constructor for testing
-     */
-
-    public NPC(JsonValue jsonData){
-        super(jsonData);
-
-        Json json = new Json();
-        this.id = jsonData.getInt("id");
-        this.personality = json.readValue("personality", Personality.class, jsonData);
-    }
-
     @Override
     public void act(float delta) {
         randomTimeSum += delta;

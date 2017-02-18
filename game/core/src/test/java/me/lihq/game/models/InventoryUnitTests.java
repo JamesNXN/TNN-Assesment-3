@@ -53,8 +53,9 @@ public class InventoryUnitTests extends GameTester {
 
         JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
-        testNPC1 = new NPC(npcJsonDataArray.get(0));
-        testNPC2 = new NPC(npcJsonDataArray.get(1));
+        TextureAtlas testSprite = new TextureAtlas(GameTester.ASSEST_FOLDER + "colin.pack");
+        testNPC1 = new NPC(npcJsonDataArray.get(0), testSprite);
+        testNPC2 = new NPC(npcJsonDataArray.get(1), testSprite);
 
         testHint1 = new Hint(testClue1);
         testHint2 = new Hint(testClue2);

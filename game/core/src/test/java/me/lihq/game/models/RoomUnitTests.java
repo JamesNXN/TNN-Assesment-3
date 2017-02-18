@@ -1,5 +1,6 @@
 package me.lihq.game.models;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -42,7 +43,8 @@ public class RoomUnitTests extends GameTester
 
         JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
-        testNPC = new NPC(npcJsonDataArray.get(0));
+        TextureAtlas testSprite = new TextureAtlas(GameTester.ASSEST_FOLDER +"colin.pack");
+        testNPC = new NPC(npcJsonDataArray.get(0), testSprite);
     }
 
     @After

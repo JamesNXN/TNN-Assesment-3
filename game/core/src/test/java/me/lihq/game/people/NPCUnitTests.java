@@ -1,6 +1,7 @@
 package me.lihq.game.people;
 
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
@@ -20,7 +21,9 @@ public class NPCUnitTests extends GameTester {
         Json json = new Json();
         JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
-        testNPC = new NPC(npcJsonDataArray.get(0));
+        TextureAtlas testSprite = new TextureAtlas(GameTester.ASSEST_FOLDER + "colin.pack");
+
+        testNPC = new NPC(npcJsonDataArray.get(0), testSprite);
     }
 
     @After
