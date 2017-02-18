@@ -10,14 +10,12 @@ import me.lihq.game.models.Clue;
 /**
  * The class which is responsible for the non-playable characters within the game that the player will meet.
  */
-public class NPC extends AbstractPerson
+public class Npc extends AbstractPerson
 {
+    private NpcDialogue dialogue;
 
     private boolean isKiller = false;
     private boolean isVictim = false;
-
-    private int id;
-    private String description;
 
     private boolean falselyAccused = false;
 
@@ -29,12 +27,12 @@ public class NPC extends AbstractPerson
     private Personality personality;
 
     /**
-     * The time that NPC will either stand still or walk
+     * The time that Npc will either stand still or walk
      */
     private float randomTimeLimit = 0;
 
     /**
-     * The time sum that NPC has either stood still or walk
+     * The time sum that Npc has either stood still or walk
      */
     private float randomTimeSum = 0;
 
@@ -44,16 +42,17 @@ public class NPC extends AbstractPerson
     private boolean randomMoveToggle = false;
 
     /**
-     * Define an NPC
+     * Define an Npc
      *
-     * @param spriteSheet - Sprite sheet for this NPC
+     * @param spriteSheet - Sprite sheet for this Npc
      */
-    public NPC(JsonValue jsonData, TextureAtlas spriteSheet)
+    public Npc(JsonValue jsonData, TextureAtlas spriteSheet)
     {
         super(jsonData, spriteSheet);
 
+        dialogue = new NpcDialogue(this);
+
         Json json = new Json();
-        this.id = jsonData.getInt("id");
         this.personality = json.readValue("personality", Personality.class, jsonData);
     }
 
@@ -117,6 +116,11 @@ public class NPC extends AbstractPerson
         System.out.println(getName() + " is the victim");
     }
 
+    @Override
+    public NpcDialogue getDialogue() {
+        return dialogue;
+    }
+
     /**
      * This method returns the NPCs personality
      *
@@ -139,8 +143,6 @@ public class NPC extends AbstractPerson
     public String toString() {
         return this.getName();
     }
-
-    public int getId() { return this.id;}
 
     public void setFalselyAccused() {
         this.falselyAccused = true;

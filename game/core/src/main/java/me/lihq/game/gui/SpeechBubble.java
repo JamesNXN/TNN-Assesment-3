@@ -1,16 +1,14 @@
 package me.lihq.game.gui;
 
-import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Align;
 
 import me.lihq.game.GameMain;
-import me.lihq.game.GameWorld;
 import me.lihq.game.people.AbstractPerson;
 
 public class SpeechBubble extends Table {
@@ -22,43 +20,52 @@ public class SpeechBubble extends Table {
 
     public SpeechBubble(AbstractPerson speakingPerson, String dialogue, Skin skin){
         super(skin);
-
-        debug();
         this.speakingPerson = speakingPerson;
 
         setTransform(true);
-        setSize(250, 150);
+        align(Align.top);
 
         nameTable = new Table();
         Label nameLabel = new Label(speakingPerson.getName(), skin, "speechName");
 
-        nameTable.add(nameLabel).align(Align.left).expandX();
-        nameTable.setSize(getWidth(), nameLabel.getHeight());
-        nameTable.setPosition(15, getTop() - nameTable.getHeight() - 15);
-        addActor(nameTable);
-
         dialogueTable = new Table();
         Label dialogueLabel = new Label(dialogue, skin, "speechDialogue");
-        dialogueTable.add(dialogueLabel);
-        add(dialogueTable);
+        dialogueLabel.setWrap(true);
+        dialogueLabel.setAlignment(Align.center);
+        dialogueTable.add(dialogueLabel).align(Align.top).width(250);
+        add(dialogueTable).width(300).padTop(10);
+
+        pack();
+        //height increment to account for speech bubble tail
+        setHeight(dialogueTable.getHeight() + 100);
+
+        nameTable.add(nameLabel).align(Align.left).expandX();
+        nameTable.setSize(getWidth(), nameLabel.getHeight());
+        nameTable.setPosition(20, getTop() - 10, Align.topLeft);
+        addActor(nameTable);
+
+        setOrigin(getWidth()/2, getHeight()/2);
 
         switch (speakingPerson.getDirection()){
             case EAST:
             case SOUTH:
                 setBackground(skin.getDrawable("bubble-lower-right"));
-                setPosition(GameMain.GAME_WIDTH/4, GameMain.GAME_HEIGHT/2, Align.bottom);
+                setPosition(50, GameMain.GAME_HEIGHT/2, Align.bottomLeft);
                 break;
 
             case WEST:
             case NORTH:
                 setBackground(skin.getDrawable("bubble-lower-left"));
-                setPosition(GameMain.GAME_WIDTH/4 * 3, GameMain.GAME_HEIGHT/2, Align.bottom);
+                setPosition(GameMain.GAME_WIDTH - 50, GameMain.GAME_HEIGHT/2, Align.bottomRight);
                 break;
 
         }
+
+        setScale(0);
     }
 
     public void show(Stage stage){
+        addAction(Actions.scaleTo(1f, 1f, 0.5f, Interpolation.swingOut));
         stage.addActor(this);
     }
 

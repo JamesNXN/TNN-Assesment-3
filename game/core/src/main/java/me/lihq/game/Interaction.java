@@ -4,7 +4,7 @@ import com.badlogic.gdx.utils.Array;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Hint;
 import me.lihq.game.models.Score;
-import me.lihq.game.people.NPC;
+import me.lihq.game.people.Npc;
 import me.lihq.game.people.Personality;
 import me.lihq.game.people.Player;
 
@@ -12,11 +12,11 @@ public class Interaction {
 
     private Player player;
 
-    private NPC npc;
+    private Npc npc;
 
     private Score score;
 
-    public Interaction(Player player, NPC npc) {
+    public Interaction(Player player, Npc npc) {
         this.player = player;
         this.npc = npc;
         score = Score.getInstance();

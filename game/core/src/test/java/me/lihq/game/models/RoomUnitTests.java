@@ -1,6 +1,5 @@
 package me.lihq.game.models;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -10,8 +9,8 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.GameTester;
-import me.lihq.game.models.Room;
-import me.lihq.game.people.NPC;
+import me.lihq.game.people.Npc;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +23,7 @@ public class RoomUnitTests extends GameTester
     private Room testRoom1;
     private Room testRoom2;
     private Clue testClue;
-    private NPC testNPC;
+    private Npc testNpc;
 
     @Before
     public void setUp() throws Exception {
@@ -41,10 +40,10 @@ public class RoomUnitTests extends GameTester
         Array<JsonValue> clueJsonDataArray = json.readValue(Array.class, clueJsonData);
         testClue = new Clue(clueJsonDataArray.get(0), clueGlint);
 
-        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
+        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNpc.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
         TextureAtlas testSprite = new TextureAtlas(GameTester.ASSEST_FOLDER +"colin.pack");
-        testNPC = new NPC(npcJsonDataArray.get(0), testSprite);
+        testNpc = new Npc(npcJsonDataArray.get(0), testSprite);
     }
 
     @After
@@ -52,7 +51,7 @@ public class RoomUnitTests extends GameTester
         testRoom1 = null;
         testRoom2 = null;
         testClue = null;
-        testNPC = null;
+        testNpc = null;
     }
 
     @Test
@@ -126,9 +125,9 @@ public class RoomUnitTests extends GameTester
     public void addNPC() throws Exception {
         assertTrue(testRoom1.getNpcArray().size == 0);
 
-        testRoom1.addNPC(testNPC);
+        testRoom1.addNPC(testNpc);
 
-        assertTrue(testRoom1.getNpcArray().contains(testNPC,true));
+        assertTrue(testRoom1.getNpcArray().contains(testNpc,true));
     }
 
     @Test

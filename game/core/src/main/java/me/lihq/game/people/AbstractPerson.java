@@ -33,9 +33,11 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
      */
     private final int SPRITE_WIDTH = 32;
     /**
-     * This is whether the NPC can move or not. It is mainly used to not let them move during conversation or room transition
+     * This is whether the Npc can move or not. It is mainly used to not let them move during conversation or room transition
      */
     private boolean canMove = true;
+
+    private boolean isInConversation = false;
 
     private final float MOVE_SPEED = 500f;
 
@@ -61,6 +63,10 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
      * This is the current walking state of the Person. {@link #getState()}
      */
     private PersonState state;
+
+    private JsonValue jsonData;
+
+    private int id;
     /**
      * The Name of the Person
      */
@@ -84,6 +90,8 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
      */
     public AbstractPerson(JsonValue jsonData, TextureAtlas spriteSheet) {
         debug();
+        this.jsonData = jsonData;
+        id = jsonData.getInt("id");
         name = jsonData.getString("name");
         description = jsonData.getString("description");
         this.state = PersonState.STANDING;
@@ -177,10 +185,10 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
      * @return return true when there is collision
      */
     private boolean characterCollisionDetection(Rectangle collisionBox) {
-        Array<NPC> npcArray = getCurrentRoom().getNpcArray();
+        Array<Npc> npcArray = getCurrentRoom().getNpcArray();
 
         boolean characterCollision = false;
-        for (NPC person : npcArray) {
+        for (Npc person : npcArray) {
             if (person.getCollisionBox().overlaps(collisionBox) && !person.equals(this)) {
                 characterCollision = true;
                 break;
@@ -217,7 +225,31 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
         batch.setColor(color);
     }
 
+    public JsonValue getJsonData() {
+        return jsonData;
+    }
+
+    public void setInConversation(boolean inConversation) {
+        isInConversation = inConversation;
+        if (isInConversation){
+            setCanMove(false);
+        }
+        else{
+            setCanMove(true);
+        }
+    }
+
+    public boolean isInConversation() {
+        return isInConversation;
+    }
+
     public abstract Personality getPersonality();
+
+    public abstract Dialogue getDialogue();
+
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return this.name;

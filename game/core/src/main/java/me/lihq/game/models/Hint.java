@@ -2,7 +2,6 @@ package me.lihq.game.models;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
-import me.lihq.game.people.NPC;
 
 
 public class Hint {

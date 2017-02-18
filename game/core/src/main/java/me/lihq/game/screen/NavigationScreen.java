@@ -4,23 +4,12 @@ package me.lihq.game.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.controllers.Controllers;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 import me.lihq.game.*;
-import me.lihq.game.models.Clue;
-import me.lihq.game.models.Door;
-import me.lihq.game.models.Room;
-import me.lihq.game.people.Direction;
-import me.lihq.game.people.NPC;
-import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
 import me.lihq.game.people.controller.GamePadController;
 import me.lihq.game.people.controller.PlayerController;
 import me.lihq.game.gui.Gui;
-import me.lihq.game.models.RoomArrow;
 
 /**
  * This is the screen that is responsible for the navigation of the player around the game.

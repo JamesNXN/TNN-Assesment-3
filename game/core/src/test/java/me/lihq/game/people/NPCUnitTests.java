@@ -16,13 +16,13 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class NPCUnitTests extends GameTester {
-    private NPC testNPC;
+    private Npc testNpc;
     private Clue testClue;
 
     @Before
     public void setUp() throws Exception {
         Json json = new Json();
-        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
+        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNpc.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
         TextureAtlas testSprite = new TextureAtlas(GameTester.ASSEST_FOLDER + "colin.pack");
 
@@ -32,109 +32,109 @@ public class NPCUnitTests extends GameTester {
 
         testClue = new Clue(clueJsonDataArray.get(0), clueGlint);
 
-        testNPC = new NPC(npcJsonDataArray.get(0), testSprite);
+        testNpc = new Npc(npcJsonDataArray.get(0), testSprite);
     }
 
     @After
     public void tearDown() throws Exception {
-        testNPC = null;
+        testNpc = null;
     }
 
     @Test
     public void getName() throws Exception{
-        assertNotNull(testNPC.getName());
-        assertEquals("getting the name of the NPC failing", "testNPC1", testNPC.getName());
+        assertNotNull(testNpc.getName());
+        assertEquals("getting the name of the Npc failing", "testNPC1", testNpc.getName());
     }
 
     @Test
     public void getPersonality() throws Exception{
-        assertNotNull(testNPC.getPersonality());
-        assertEquals(Personality.AGGRESSIVE, testNPC.getPersonality());
+        assertNotNull(testNpc.getPersonality());
+        assertEquals(Personality.AGGRESSIVE, testNpc.getPersonality());
     }
 
     @Test
     public void isKiller() throws Exception {
-        assertNotNull(testNPC.isKiller());
-        assertFalse(testNPC.isKiller());
+        assertNotNull(testNpc.isKiller());
+        assertFalse(testNpc.isKiller());
     }
 
     @Test
     public void setKiller() throws Exception {
-        assertFalse(testNPC.isKiller());
+        assertFalse(testNpc.isKiller());
 
-        testNPC.setKiller(true);
+        testNpc.setKiller(true);
 
-        assertTrue(testNPC.isKiller());
+        assertTrue(testNpc.isKiller());
     }
 
     @Test
     public void isVictim() throws Exception {
-        assertNotNull(testNPC.isVictim());
-        assertFalse(testNPC.isVictim());
+        assertNotNull(testNpc.isVictim());
+        assertFalse(testNpc.isVictim());
     }
 
     @Test
     public void setVictim() throws Exception {
-        assertFalse(testNPC.isVictim());
+        assertFalse(testNpc.isVictim());
 
-        testNPC.setVictim(true);
+        testNpc.setVictim(true);
 
-        assertTrue(testNPC.isVictim());
+        assertTrue(testNpc.isVictim());
     }
 
     @Test
     public void getExhaustedClues() throws Exception {
-        assertNotNull(testNPC.getExhaustedClues());
-        assertTrue(testNPC.getExhaustedClues().size == 0);
+        assertNotNull(testNpc.getExhaustedClues());
+        assertTrue(testNpc.getExhaustedClues().size == 0);
     }
 
     @Test
     public void addExhaustedClue() throws Exception {
-        assertTrue(testNPC.getExhaustedClues().size == 0);
+        assertTrue(testNpc.getExhaustedClues().size == 0);
 
-        testNPC.addExhaustedClue(testClue);
+        testNpc.addExhaustedClue(testClue);
 
-        assertTrue(testNPC.getExhaustedClues().contains(testClue,true) && testNPC.getExhaustedClues().size == 1);
+        assertTrue(testNpc.getExhaustedClues().contains(testClue,true) && testNpc.getExhaustedClues().size == 1);
     }
 
     @Test
     public void getId() throws Exception {
-        assertNotNull(testNPC.getId());
-        assertEquals("id is not correct", 1, testNPC.getId());
+        assertNotNull(testNpc.getId());
+        assertEquals("id is not correct", 1, testNpc.getId());
     }
 
     @Test
     public void getDescription() throws Exception {
-        assertNotNull(testNPC.getDescription());
-        assertEquals("description is not correct", "test description", testNPC.getDescription());
+        assertNotNull(testNpc.getDescription());
+        assertEquals("description is not correct", "test description", testNpc.getDescription());
     }
 
     @Test
     public void setFalselyAccused() throws Exception {
-        assertFalse(testNPC.getFalselyAccused());
+        assertFalse(testNpc.getFalselyAccused());
 
-        testNPC.setFalselyAccused();
+        testNpc.setFalselyAccused();
 
-        assertTrue(testNPC.getFalselyAccused());
+        assertTrue(testNpc.getFalselyAccused());
     }
 
     @Test
     public void getFalselyAccused() throws Exception {
-        assertNotNull(testNPC.getFalselyAccused());
-        assertFalse(testNPC.getFalselyAccused());
+        assertNotNull(testNpc.getFalselyAccused());
+        assertFalse(testNpc.getFalselyAccused());
     }
 
     @Test
     public void getTilePosition() throws Exception {
-        assertNotNull(testNPC.getTilePosition());
-        assertTrue(testNPC.getTilePosition() instanceof Vector2Int);
+        assertNotNull(testNpc.getTilePosition());
+        assertTrue(testNpc.getTilePosition() instanceof Vector2Int);
     }
 
     @Test
     public void setTilePosition() throws Exception {
-        assertTrue(testNPC.getTilePosition().getX() == 0 && testNPC.getTilePosition().getY() == 0);
-        testNPC.setTilePosition(1,1);
-        assertTrue(testNPC.getTilePosition().getX()==1 && testNPC.getTilePosition().getY()==1);
+        assertTrue(testNpc.getTilePosition().getX() == 0 && testNpc.getTilePosition().getY() == 0);
+        testNpc.setTilePosition(1,1);
+        assertTrue(testNpc.getTilePosition().getX()==1 && testNpc.getTilePosition().getY()==1);
     }
 }
 

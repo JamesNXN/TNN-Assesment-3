@@ -15,7 +15,7 @@ import me.lihq.game.models.Door;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.Direction;
-import me.lihq.game.people.NPC;
+import me.lihq.game.people.Npc;
 import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
 import me.lihq.game.models.RoomArrow;
@@ -73,7 +73,7 @@ public class GameWorld {
 
         characterGroup.addActor(player);
 
-        for (NPC npc : player.getCurrentRoom().getNpcArray()) {
+        for (Npc npc : player.getCurrentRoom().getNpcArray()) {
             characterGroup.addActor(npc);
         }
 
@@ -124,7 +124,7 @@ public class GameWorld {
             player.setDirection(finalEntryDirection);
             player.setPosition(entryPosition.x, entryPosition.y);
 
-            for (NPC npc : player.getCurrentRoom().getNpcArray()) {
+            for (Npc npc : player.getCurrentRoom().getNpcArray()) {
                 characterGroup.addActor(npc);
             }
             for (Clue clue : player.getCurrentRoom().getClueArray()){
@@ -142,15 +142,14 @@ public class GameWorld {
         gui.screenFadeInOut(runnableAction);
     }
 
-    public void startInteraction(NPC interactingNPC){
-        player.setCanMove(false);
+    public void startInteraction(Npc interactingNpc){
         player.setInConversation(true);
-        interactingNPC.setCanMove(false);
-        interactingNPC.setDirection(player.getDirection().getOpposite());
-        SpeechBubble speechBubble = new SpeechBubble(getPlayer(), "HI", game.assetLoader.uiSkin);
+        interactingNpc.setInConversation(true);
+        interactingNpc.setDirection(player.getDirection().getOpposite());
+        SpeechBubble speechBubble = new SpeechBubble(player, player.getDialogue().getIntroduction(), game.assetLoader.uiSkin);
         speechBubble.show(gui.getGuiStage());
 
-        cameraPosition.set((player.getX() + interactingNPC.getRight())/2, (player.getTop() + interactingNPC.getY())/2);
+        cameraPosition.set((player.getX() + interactingNpc.getRight())/2, (player.getTop() + interactingNpc.getY())/2);
         OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
         camera.zoom -= 0.5;
     }

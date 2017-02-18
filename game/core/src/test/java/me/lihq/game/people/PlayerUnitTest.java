@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 public class PlayerUnitTest extends GameTester {
     private Player testPlayer;
-    private NPC testNPC;
+    private Npc testNpc;
     private Clue testClue;
 
 
@@ -32,9 +32,9 @@ public class PlayerUnitTest extends GameTester {
         testPlayer.setCurrentRoom(Mockito.mock(Room.class));
 
         Json json = new Json();
-        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
+        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNpc.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
-        testNPC = new NPC(npcJsonDataArray.get(0), testSprite);
+        testNpc = new Npc(npcJsonDataArray.get(0), testSprite);
 
         TextureAtlas clueGlint = new TextureAtlas(GameTester.ASSEST_FOLDER + "clueGlint.pack");
         JsonValue clueJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testClue.json"));

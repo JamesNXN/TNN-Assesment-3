@@ -4,8 +4,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -15,7 +13,7 @@ import com.badlogic.gdx.utils.Align;
 
 import me.lihq.game.models.Clue;
 import me.lihq.game.people.AbstractPerson;
-import me.lihq.game.people.NPC;
+import me.lihq.game.people.Npc;
 import me.lihq.game.people.Player;
 
 /**
@@ -52,7 +50,7 @@ public class Slot extends Button {
     /**
      * Slot for Npcs in Npc note window
      */
-    public Slot(NPC npc, Gui gui, Skin skin) {
+    public Slot(Npc npc, Gui gui, Skin skin) {
         super(skin);
 
         slotActor = npc;

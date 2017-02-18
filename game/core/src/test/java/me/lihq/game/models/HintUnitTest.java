@@ -48,7 +48,7 @@ public class HintUnitTest extends GameTester{
          * Test the elements are subsets of related  npc id array.
          * */
         for (int id : testHint1.getRelatedNpcIdArray()) {
-            assertTrue("Hint should be subset of related NPC", testClue1.getRelatedNpcIdArray().contains(id, true));
+            assertTrue("Hint should be subset of related Npc", testClue1.getRelatedNpcIdArray().contains(id, true));
         }
 
 

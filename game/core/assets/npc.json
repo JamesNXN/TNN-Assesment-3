@@ -2,7 +2,7 @@
   {
     "id" : 1,
     "name": "Colin",
-    "description": "Colin is dressed in a black robe with a skeleton mask. \n He is a CEO for a big company that supplied the university with research software.",
+    "description": "Colin is dressed in a black robe with a skeleton mask. \nHe is a CEO for a big company that supplied the university with research software.",
     "personality": "AGGRESSIVE",
     "dialogue":{
       "introduction": "Hello young detective!",
@@ -17,7 +17,7 @@
   {
     "id": 2,
     "name": "Diana",
-    "description": "Diana is dressed in a fancy white dress with frills. \n She doesn't normally come to these sortof events, she generally considers them to be beneath her. ",
+    "description": "Diana is dressed in a fancy white dress with frills. \nShe doesn't normally come to these sort of events, she generally considers them to be beneath her.",
     "personality": "AGGRESSIVE",
     "dialogue": {
       "introduction" : "Hello, what do you want?!",
@@ -32,7 +32,7 @@
   {
     "id": 3,
     "name": "Lily",
-    "description": "Lilly is dressed as an elf from a fantasy game she enjoys playing. \n She's a student who's been working hard all year, \n she came to the party to get drunk and have fun.",
+    "description": "Lilly is dressed as an elf from a fantasy game she enjoys playing. \nShe's a student who's been working hard all year, \n she came to the party to get drunk and have fun.",
     "personality": "NICE",
     "dialogue": {
       "introduction" : "Hello",
@@ -47,7 +47,7 @@
   {
     "id": 4,
     "name":"Mary",
-    "description": "Mary is dressed in a rather plain tudor style dress. \n She had the idea to have the fancy dress party.",
+    "description": "Mary is dressed in a rather plain tudor style dress. \nShe had the idea to have the fancy dress party.",
     "personality":"NEUTRAL",
     "dialogue": {
       "introduction" : "Hello",
@@ -62,7 +62,7 @@
   {
     "id": 5,
     "name": "Mike",
-    "description": "Mike is dressed in a mad scientist outfit with big goofy goggles. \n He helped to organise the fancy dress party.",
+    "description": "Mike is dressed in a mad scientist outfit with big goofy goggles. \nHe helped to organise the fancy dress party.",
     "personality": "NICE",
     "dialogue": {
       "introduction" : "Hi, have you seen my robot? It seems to have gone astray...",
@@ -77,7 +77,7 @@
   {
     "id": 6,
     "name":"Will",
-    "description": "Will is dressed in an explorers outfit. \n He organised catering team for the party.",
+    "description": "Will is dressed in an explorers outfit. \nHe organised catering team for the party.",
     "personality":"NEUTRAL",
     "dialogue": {
       "introduction" : "Hello",
@@ -92,7 +92,7 @@
   {
     "id": 7,
     "name":"David",
-    "description": "David is dressed in an old black school uniform. \n He was invited to attended the party by a friend who couldn't come in the end.",
+    "description": "David is dressed in an old black school uniform. \nHe was invited to attended the party by a friend who couldn't come in the end.",
     "personality":"NICE",
     "dialogue": {
       "introduction" : "Hi, need any help?",
@@ -107,7 +107,7 @@
   {
     "id": 8,
     "name":"Julie",
-    "description": "Julie is dressed in a steam punk style outfit with pink hair. \n She helped design the decoration's for the party.",
+    "description": "Julie is dressed in a steam punk style outfit with pink hair. \nShe helped design the decoration's for the party.",
     "personality":"NEUTRAL",
     "dialogue": {
       "introduction" : "Hi!",
@@ -122,7 +122,7 @@
   {
     "id": 9,
     "name":"Sophie",
-    "description": "Sophie is dressed as a pirate. \n She usually work's as a receptionist and she is very impatiant.",
+    "description": "Sophie is dressed as a pirate. \nShe usually work's as a receptionist and she is very impatiant.",
     "personality":"AGGRESSIVE",
     "dialogue": {
       "introduction" : "What do you want?!",
@@ -137,7 +137,7 @@
   {
     "id": 10,
     "name":"Tom",
-    "description": "Tom is dressed in brown with an white hair. \n He is teacher at the university who came to the party to escape marking work for a night",
+    "description": "Tom is dressed in brown with an white hair. \nHe is teacher at the university who came to the party to escape marking work for a night",
     "personality":"NEUTRAL",
     "dialogue": {
       "introduction" : "Hello.",

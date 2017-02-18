@@ -6,12 +6,10 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.Collidable;
 import me.lihq.game.GameWorld;
-import me.lihq.game.gui.SpeechBubble;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Inventory;
 import me.lihq.game.models.RoomArrow;
-import me.lihq.game.models.Score;
 
 /**
  * This class defines the player that the person playing the game will be represented by.
@@ -20,21 +18,18 @@ public class Player extends AbstractPerson
 {
     private GameWorld gameWorld;
 
+    private PlayerDialogue dialogue;
+
     /**
      * This object stores the clues and hints the player has collected and the npc's they have spoken to.
      */
     private Inventory inventory = new Inventory();
-    /**
-     * This stores whether the player is in the middle of a conversation or not
-     */
-    private boolean isInConversation = false;
 
     /**
      * The personality will be a percent score (0-100) 0 being angry, 50 being neutral, and 100 being happy/nice.
      */
     private int personalityLevel;
 
-    private String description;
     private Rectangle interactionCollisionBox;
 
     /**
@@ -47,8 +42,9 @@ public class Player extends AbstractPerson
     public Player(JsonValue jsonData, TextureAtlas spriteSheet) {
         super(jsonData, spriteSheet);
 
+        dialogue = new PlayerDialogue(this);
+
         personalityLevel = jsonData.getInt("personalityLevel");
-        description = jsonData.getString("description");
         interactionCollisionBox = new Rectangle();
         interactionCollisionBox.setSize(collisionBox.getWidth(), collisionBox.getHeight());
     }
@@ -100,13 +96,13 @@ public class Player extends AbstractPerson
             }
         }
 
-        if (interactingActor instanceof NPC) {
-            gameWorld.startInteraction((NPC) interactingActor);
-            if (!this.inventory.getMetCharacters().contains((NPC)interactingActor, true)) {
-                this.inventory.addCharacter((NPC)interactingActor);
+        if (interactingActor instanceof Npc) {
+            gameWorld.startInteraction((Npc) interactingActor);
+            if (!this.inventory.getMetCharacters().contains((Npc)interactingActor, true)) {
+                this.inventory.addCharacter((Npc)interactingActor);
                 System.out.println(this.inventory.getMetCharacters());
             }
-            System.out.println(((NPC)interactingActor).getName());
+            System.out.println(((Npc)interactingActor).getName());
         }
         else if(interactingActor instanceof Clue) {
             Clue foundClue = (Clue) interactingActor;
@@ -170,6 +166,11 @@ public class Player extends AbstractPerson
         return null;
     }
 
+    @Override
+    public PlayerDialogue getDialogue() {
+        return dialogue;
+    }
+
     /**
      * Getter for personality, it uses the personalityLevel of the player and thus returns either AGGRESSIVE, NEUTRAL or NICE
      *
@@ -197,18 +198,6 @@ public class Player extends AbstractPerson
     public int getPersonalityLevel()
     {
         return this.personalityLevel;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setInConversation(boolean inConversation) {
-        isInConversation = inConversation;
-    }
-
-    public boolean isInConversation() {
-        return isInConversation;
     }
 
     public Inventory getInventory() {
