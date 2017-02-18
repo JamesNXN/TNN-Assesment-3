@@ -16,7 +16,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class NPCUnitTests extends GameTester {
-    private Npc testNpc;
+    private NPC testNpc;
     private Clue testClue;
 
     @Before
@@ -32,7 +32,7 @@ public class NPCUnitTests extends GameTester {
 
         testClue = new Clue(clueJsonDataArray.get(0), clueGlint);
 
-        testNpc = new Npc(npcJsonDataArray.get(0), testSprite);
+        testNpc = new NPC(npcJsonDataArray.get(0), testSprite);
     }
 
     @After
@@ -43,7 +43,7 @@ public class NPCUnitTests extends GameTester {
     @Test
     public void getName() throws Exception{
         assertNotNull(testNpc.getName());
-        assertEquals("getting the name of the Npc failing", "testNPC1", testNpc.getName());
+        assertEquals("getting the name of the NPC failing", "testNPC1", testNpc.getName());
     }
 
     @Test

@@ -1,12 +1,12 @@
 package me.lihq.game.models;
 
 import com.badlogic.gdx.utils.Array;
-import me.lihq.game.people.Npc;
+import me.lihq.game.people.NPC;
 
 public class Inventory {
 
     private Array<Clue> collectedClues;
-    private Array<Npc> metCharacters;
+    private Array<NPC> metCharacters;
     private Array<Hint> collectedHints;
 
     public Inventory () {
@@ -17,7 +17,7 @@ public class Inventory {
 
     public Array<Clue> getCollectedClues() {return this.collectedClues;}
 
-    public Array<Npc> getMetCharacters() {return this.metCharacters;}
+    public Array<NPC> getMetCharacters() {return this.metCharacters;}
 
     public Array<Hint> getCollectedHints() {return this.collectedHints;}
 
@@ -44,7 +44,7 @@ public class Inventory {
         return false;
     }
 
-    public void addCharacter(Npc character) {
+    public void addCharacter(NPC character) {
         this.metCharacters.add(character);
     }
 

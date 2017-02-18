@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.JsonValue;
 public class NpcDialogue extends Dialogue{
     private Array<String> failResponseArray;
 
-    public NpcDialogue(Npc person) {
+    public NpcDialogue(NPC person) {
         super(person);
 
         Json json = new Json();

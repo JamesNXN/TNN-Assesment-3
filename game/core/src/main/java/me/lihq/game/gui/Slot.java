@@ -13,11 +13,11 @@ import com.badlogic.gdx.utils.Align;
 
 import me.lihq.game.models.Clue;
 import me.lihq.game.people.AbstractPerson;
-import me.lihq.game.people.Npc;
+import me.lihq.game.people.NPC;
 import me.lihq.game.people.Player;
 
 /**
- * Entry format for inventory window and Npc note window
+ * Entry format for inventory window and NPC note window
  */
 
 public class Slot extends Button {
@@ -48,9 +48,9 @@ public class Slot extends Button {
     }
 
     /**
-     * Slot for Npcs in Npc note window
+     * Slot for Npcs in NPC note window
      */
-    public Slot(Npc npc, Gui gui, Skin skin) {
+    public Slot(NPC npc, Gui gui, Skin skin) {
         super(skin);
 
         slotActor = npc;

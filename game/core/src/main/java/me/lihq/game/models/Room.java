@@ -8,7 +8,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.utils.Array;
 
-import me.lihq.game.people.Npc;
+import me.lihq.game.people.NPC;
 
 /**
  * This class defines a room which is a game representation of a real world room in the Ron Cooke Hub.
@@ -33,7 +33,7 @@ public class Room
      * This is a list of the clues in the room.
      */
     private Array<Clue> clueArray;
-    private Array<Npc> npcArray;
+    private Array<NPC> npcArray;
     private Array<Door> exitArray;
     private Array<Door> entryArray;
     private Array<RoomArrow> roomArrowArray;
@@ -116,11 +116,11 @@ public class Room
         }
     }
 
-    public void addNPC(Npc npc){
+    public void addNPC(NPC npc){
         npcArray.add(npc);
     }
 
-    public Array<Npc> getNpcArray(){
+    public Array<NPC> getNpcArray(){
         return npcArray;
     }
 

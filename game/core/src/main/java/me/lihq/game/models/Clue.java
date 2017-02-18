@@ -25,7 +25,7 @@ public class Clue extends Actor implements Collidable, TileObject {
      *
      * name - name of the clue
      * decription - description of the clue
-     * relatedNpcIdArray - array of Npc id's to link clues to Npc's
+     * relatedNpcIdArray - array of NPC id's to link clues to NPC's
      * tileCoordinates - Vector2Int object that contains the x and y coordinate for the clue in a room, set by clue manager
      * clueGlint - animated texture that contains the animation needed for the clueGlint
      * animStateTime - the time state of the clueGlint animation needed to render the animated texture

@@ -68,7 +68,7 @@ public class Score {
     }
 
     /**
-     * This method is called when the player falsely accuses an Npc to increase the failed accusation count.
+     * This method is called when the player falsely accuses an NPC to increase the failed accusation count.
      */
 
     public void failedAccusation(){

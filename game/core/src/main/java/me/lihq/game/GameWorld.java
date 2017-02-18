@@ -15,7 +15,7 @@ import me.lihq.game.models.Door;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.Direction;
-import me.lihq.game.people.Npc;
+import me.lihq.game.people.NPC;
 import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
 import me.lihq.game.models.RoomArrow;
@@ -73,7 +73,7 @@ public class GameWorld {
 
         characterGroup.addActor(player);
 
-        for (Npc npc : player.getCurrentRoom().getNpcArray()) {
+        for (NPC npc : player.getCurrentRoom().getNpcArray()) {
             characterGroup.addActor(npc);
         }
 
@@ -124,7 +124,7 @@ public class GameWorld {
             player.setDirection(finalEntryDirection);
             player.setPosition(entryPosition.x, entryPosition.y);
 
-            for (Npc npc : player.getCurrentRoom().getNpcArray()) {
+            for (NPC npc : player.getCurrentRoom().getNpcArray()) {
                 characterGroup.addActor(npc);
             }
             for (Clue clue : player.getCurrentRoom().getClueArray()){
@@ -142,7 +142,7 @@ public class GameWorld {
         gui.screenFadeInOut(runnableAction);
     }
 
-    public void startInteraction(Npc interactingNpc){
+    public void startInteraction(NPC interactingNpc){
         player.setInConversation(true);
         interactingNpc.setInConversation(true);
         interactingNpc.setDirection(player.getDirection().getOpposite());
