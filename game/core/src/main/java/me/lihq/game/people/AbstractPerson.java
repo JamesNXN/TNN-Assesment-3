@@ -20,8 +20,9 @@ import me.lihq.game.models.Vector2Int;
  * The abstract person is an abstract representation of a person. A person can be a non playable character or Player.
  * It extends the sprite class which provides methods for the person to be rendered in the game.
  */
-public abstract class AbstractPerson extends Actor implements Collidable,TileObject
-{
+public abstract class AbstractPerson extends Actor implements Collidable, TileObject {
+
+
     /**
      * The height of the texture region for each person
      */
@@ -73,11 +74,10 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
     /**
      * This constructs the player calling super on the sprite class
      *
-     * @param jsonData  - The json data of the Person
-     * @param spriteSheet   - this the texture for the sprite
+     * @param jsonData    - The json data of the Person
+     * @param spriteSheet - this the texture for the sprite
      */
-    public AbstractPerson(JsonValue jsonData, TextureAtlas spriteSheet)
-    {
+    public AbstractPerson(JsonValue jsonData, TextureAtlas spriteSheet) {
         debug();
         name = jsonData.getString("name");
         this.state = PersonState.STANDING;
@@ -86,7 +86,7 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
         collisionBox.setSize(Settings.TILE_SIZE * 0.7f);
 
         setSize(SPRITE_WIDTH, SPRITE_HEIGHT);
-        setOrigin(getWidth()/2, getHeight()/2);
+        setOrigin(getWidth() / 2, getHeight() / 2);
 
         walkUp = new Animation<>(0.1f, spriteSheet.findRegions("walkUp"));
         walkDown = new Animation<>(0.1f, spriteSheet.findRegions("walkDown"));
@@ -100,18 +100,16 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
      *
      * @return (PersonState) the current state of the Person
      */
-    public PersonState getState()
-    {
+    public PersonState getState() {
         return state;
     }
 
-    public void setState(PersonState state){
+    public void setState(PersonState state) {
         this.state = state;
     }
 
     @Override
-    public void setTilePosition(int x, int y)
-    {
+    public void setTilePosition(int x, int y) {
         tilePosition.x = x;
         tilePosition.y = y;
 
@@ -123,9 +121,9 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
     @Override
     public void act(float delta) {
         //offset given in order to align the box in the mid bottom of the character
-        collisionBox.setPosition(getX() + getWidth() / 2 - collisionBox.getWidth()/2, getY());
+        collisionBox.setPosition(getX() + getWidth() / 2 - collisionBox.getWidth() / 2, getY());
 
-        if (state == PersonState.WALKING){
+        if (state == PersonState.WALKING) {
             animStateTime += delta;
 
             float vectorDistanceX = direction.getDx() * MOVE_SPEED * delta;
@@ -135,8 +133,7 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
             if (!wallCollisionDetection(collisionBox) && !characterCollisionDetection(collisionBox)) {
                 moveBy(vectorDistanceX, vectorDistanceY);
             }
-        }
-        else{
+        } else {
             tilePosition.x = (int) (getX() / Settings.TILE_SIZE);
             tilePosition.y = (int) (getY() / Settings.TILE_SIZE);
             animStateTime = 0;
@@ -146,6 +143,7 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
 
     /**
      * Detects collision with wall
+     *
      * @return return true when there is collision
      */
     private boolean wallCollisionDetection(Rectangle collisionBox) {
@@ -169,9 +167,10 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
 
     /**
      * Detects collision with characters
+     *
      * @return return true when there is collision
      */
-    private boolean characterCollisionDetection(Rectangle collisionBox){
+    private boolean characterCollisionDetection(Rectangle collisionBox) {
         Array<NPC> npcArray = getCurrentRoom().getNpcArray();
 
         boolean characterCollision = false;
@@ -187,7 +186,7 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
     @Override
     public void draw(Batch batch, float parentAlpha) {
         TextureRegion currentFrame = null;
-        switch (direction){
+        switch (direction) {
             case EAST:
                 currentFrame = walkRight.getKeyFrame(animStateTime, true);
                 break;
@@ -211,30 +210,26 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
         batch.draw(currentFrame, getX(), getY(), getOriginX(), getOriginY(), SPRITE_WIDTH, SPRITE_HEIGHT, getScaleX(), getScaleY(), getRotation());
         batch.setColor(color);
     }
+
     public abstract Personality getPersonality();
 
-    public String getName()
-    {
+    public String getName() {
         return this.name;
     }
 
-    public Direction getDirection()
-    {
+    public Direction getDirection() {
         return this.direction;
     }
 
-    public void setDirection(Direction dir)
-    {
+    public void setDirection(Direction dir) {
         this.direction = dir;
     }
 
-    public Room getCurrentRoom()
-    {
+    public Room getCurrentRoom() {
         return this.currentRoom;
     }
 
-    public void setCurrentRoom(Room room)
-    {
+    public void setCurrentRoom(Room room) {
         this.currentRoom = room;
     }
 
@@ -246,8 +241,7 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
         this.canMove = canMove;
     }
 
-    public Vector2Int getTilePosition()
-    {
+    public Vector2Int getTilePosition() {
         return tilePosition;
     }
 

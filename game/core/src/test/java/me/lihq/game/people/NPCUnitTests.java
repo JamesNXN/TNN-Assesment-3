@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.GameTester;
 import me.lihq.game.models.Clue;
+import me.lihq.game.models.Vector2Int;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -121,6 +122,19 @@ public class NPCUnitTests extends GameTester {
     public void getFalselyAccused() throws Exception {
         assertNotNull(testNPC.getFalselyAccused());
         assertFalse(testNPC.getFalselyAccused());
+    }
+
+    @Test
+    public void getTilePosition() throws Exception {
+        assertNotNull(testNPC.getTilePosition());
+        assertTrue(testNPC.getTilePosition() instanceof Vector2Int);
+    }
+
+    @Test
+    public void setTilePosition() throws Exception {
+        assertTrue(testNPC.getTilePosition().getX() == 0 && testNPC.getTilePosition().getY() == 0);
+        testNPC.setTilePosition(1,1);
+        assertTrue(testNPC.getTilePosition().getX()==1 && testNPC.getTilePosition().getY()==1);
     }
 }
 
