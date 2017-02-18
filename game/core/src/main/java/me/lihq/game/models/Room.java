@@ -67,31 +67,6 @@ public class Room
         hidingSpots.addAll(getHidingSpots());
     }
 
-    /**
-     * test constructor without room arrow
-     */
-    public Room(TiledMap map){
-        this.ID = (int) map.getProperties().get("id");
-        this.mapFile = map;
-        this.name = (String) map.getProperties().get("name");
-
-        mapFile.getLayers().get("Collision").setVisible(false);
-        mapFile.getLayers().get("HidingSpot").setVisible(false);
-
-        clueArray = new Array<>();
-        npcArray = new Array<>();
-        exitArray = new Array<>();
-        entryArray = new Array<>();
-        roomArrowArray = new Array<>();
-
-        exitArray.addAll(getExit());
-        entryArray.addAll(getEntry());
-
-        hidingSpots = new Array<>();
-        hidingSpots.addAll(getHidingSpots());
-    }
-
-
 
     /**
      * This method checks equality between the Room and another object

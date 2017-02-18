@@ -1,0 +1,33 @@
+
+arrows.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+downArrow
+  rotate: false
+  xy: 0, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+leftArrow
+  rotate: false
+  xy: 33, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+rightArrow
+  rotate: false
+  xy: 66, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+upArrow
+  rotate: false
+  xy: 99, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
