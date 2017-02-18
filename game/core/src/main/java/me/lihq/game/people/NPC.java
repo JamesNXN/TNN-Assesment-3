@@ -12,10 +12,6 @@ import me.lihq.game.models.Clue;
  */
 public class NPC extends AbstractPerson
 {
-    /**
-     * The motive string details why the NPC committed the murder.
-     */
-    private String motive;
 
     private boolean isKiller = false;
     private boolean isVictim = false;
@@ -108,17 +104,6 @@ public class NPC extends AbstractPerson
     public boolean isVictim()
     {
         return isVictim;
-    }
-
-    public String getMotive()
-    {
-        return motive;
-    }
-
-    public NPC setMotive(String motive)
-    {
-        this.motive = motive;
-        return this;
     }
 
     public void setKiller(boolean killer)

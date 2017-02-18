@@ -42,4 +42,10 @@ public class PlayerUnitTest extends GameTester {
 
         assertTrue(personalityValue + 5 == testPlayer.getPersonalityLevel());
     }
+
+    @Test
+    public void getPersonality() throws Exception {
+        assertNotNull(testPlayer.getPersonality());
+        assertEquals("test player does not have expected personality", Personality.NEUTRAL, testPlayer.getPersonality());
+    }
 }

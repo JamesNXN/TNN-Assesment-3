@@ -1,6 +1,6 @@
 {
   "name": "testPlayer",
-  "personalityLevel": 30,
+  "personalityLevel": 50,
   "dialogue": {
     "introduction": "Hello",
     "question": {
