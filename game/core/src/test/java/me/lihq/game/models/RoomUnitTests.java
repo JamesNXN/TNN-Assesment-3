@@ -74,11 +74,12 @@ public class RoomUnitTests extends GameTester
 
     @Test
     public void equals() throws Exception{
-        assertNotNull(testRoom1 == testRoom1);
+        assertNotNull(testRoom1.equals(testRoom1));
 
-        assertTrue(testRoom1==testRoom1);
+        assertTrue(testRoom1.equals(testRoom1));
 
-        assertFalse(testRoom1==testRoom2);
+        assertFalse(testRoom1.equals(testRoom2));
+        assertFalse(testRoom1.equals(testClue));
     }
 
     @Test
@@ -128,5 +129,11 @@ public class RoomUnitTests extends GameTester
         assertTrue(testRoom1.getNpcArray().contains(testNPC,true));
     }
 
-    
+    @Test
+    public void getRandomLocation() throws Exception {
+        assertNotNull(testRoom1.getRandomLocation());
+
+        assertTrue(testRoom1.getRandomLocation() instanceof Vector2Int);
+    }
+
 }
