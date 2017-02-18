@@ -7,9 +7,7 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 
-import me.lihq.game.GameMain;
 import me.lihq.game.GameTester;
-import me.lihq.game.GameWorld;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Inventory;
 import me.lihq.game.models.Room;
@@ -30,7 +28,7 @@ public class PlayerUnitTest extends GameTester {
     public void setUp() throws Exception {
         JsonValue jsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testPlayer.json"));
         TextureAtlas testSprite = new TextureAtlas(GameTester.ASSEST_FOLDER + "colin.pack");
-        testPlayer = new Player(jsonData, testSprite, Mockito.mock(GameWorld.class));
+        testPlayer = new Player(jsonData, testSprite);
         testPlayer.setCurrentRoom(Mockito.mock(Room.class));
 
         Json json = new Json();

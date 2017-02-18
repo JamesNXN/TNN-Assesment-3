@@ -9,16 +9,16 @@ import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.NPC;
 
 /**
- * Initialises player and NPCs and hold them
+ * Initialises NPCs and hold them
  */
 
-public class PersonManager {
+public class NpcManager {
     private Array<NPC> npcArray;
 
     private NPC killer;
     private NPC victim;
 
-    public PersonManager(RoomManager roomManager, AssetLoader assetLoader){
+    public NpcManager(RoomManager roomManager, AssetLoader assetLoader){
         Json json = new Json();
         npcArray = new Array<>();
 

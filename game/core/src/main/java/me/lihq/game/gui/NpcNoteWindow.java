@@ -1,5 +1,8 @@
 package me.lihq.game.gui;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
@@ -33,6 +36,29 @@ class NpcNoteWindow extends GuiWindow{
 
         for (int i = 0; i < entryArray.size; i++){
             Slot slot = new Slot(entryArray.get(i), gui, getSkin());
+            slot.addListener(new InputListener(){
+                @Override
+                public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                    slot.setCursorOver(true);
+                    super.enter(event, x, y, pointer, fromActor);
+                }
+
+                @Override
+                public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                    slot.setCursorOver(false);
+                    super.exit(event, x, y, pointer, toActor);
+                }
+
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    return true;
+                }
+
+                @Override
+                public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                    gui.displayInfo(((NPC)slot.getSlotActor()).getDescription());
+                }
+            });
 
             if ((i+1) % COLUMN_COUNT == 0){
                 getContentTable().add(slot).width(SLOT_WIDTH).padTop(SLOT_GAP_VERTICAL)

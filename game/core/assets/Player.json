@@ -1,6 +1,8 @@
 [
   {
-    "name": "Player 1",
+    "id": 1,
+    "name": "Alfred",
+    "description": "description",
     "personalityLevel": 30,
     "dialogue": {
       "introduction": "Hello",
@@ -25,7 +27,9 @@
   },
 
   {
-    "name": "Alfred",
+    "id": 2,
+    "name": "Phoebe",
+    "description": "description",
     "personalityLevel": 45,
     "dialogue": {
       "introduction": "Hello",
@@ -50,7 +54,9 @@
   },
 
   {
-    "name": "Phoebe",
+    "id": 3,
+    "name": "Sherlock",
+    "description": "description",
     "personalityLevel": 60,
     "dialogue": {
       "introduction": "Hello",
@@ -75,7 +81,9 @@
   },
 
   {
+    "id": 4,
     "name": "Steiner",
+    "description": "description",
     "personalityLevel": 75,
     "dialogue": {
       "introduction": "Hello",
@@ -100,7 +108,9 @@
   },
   
   {
+    "id": 5,
     "name": "Victoria",
+    "description": "description",
     "personalityLevel": 90,
     "dialogue": {
       "introduction": "Hello",

@@ -16,6 +16,7 @@ import me.lihq.game.models.Room;
 import me.lihq.game.people.Direction;
 import me.lihq.game.people.NPC;
 import me.lihq.game.people.PersonState;
+import me.lihq.game.people.Player;
 import me.lihq.game.people.controller.GamePadController;
 import me.lihq.game.people.controller.PlayerController;
 import me.lihq.game.gui.Gui;
@@ -40,14 +41,15 @@ public class NavigationScreen extends AbstractScreen
      * Initialises the navigation screen
      *
      * @param game - The main game instance
+     * @param selectedPlayer
      */
 
 
-    public NavigationScreen(GameMain game)
+    public NavigationScreen(GameMain game, Player selectedPlayer)
     {
         super(game);
 
-        game.gameWorld = new GameWorld(game);
+        game.gameWorld = new GameWorld(game, selectedPlayer);
         this.gameWorld = game.gameWorld;
         gui = new Gui(game, gameWorld);
 
@@ -79,6 +81,9 @@ public class NavigationScreen extends AbstractScreen
     @Override
     public void render(float delta) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+            if (game.pauseScreen == null){
+                game.pauseScreen = new PauseScreen(game);
+            }
             game.setScreen(game.pauseScreen);
         }
 

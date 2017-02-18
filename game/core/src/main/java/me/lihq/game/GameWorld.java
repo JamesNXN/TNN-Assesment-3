@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.gui.Gui;
+import me.lihq.game.gui.SpeechBubble;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Room;
@@ -24,7 +25,7 @@ public class GameWorld {
     private Gui gui;
 
     public RoomManager roomManager;
-    public PersonManager personManager;
+    public NpcManager npcManager;
     public ClueManager clueManager;
 
     private Player player;
@@ -36,7 +37,9 @@ public class GameWorld {
 
     private CustomTiledMapRenderer tiledMapRenderer;
 
-    public GameWorld(GameMain game){
+    private Vector2 cameraPosition;
+
+    public GameWorld(GameMain game, Player selectedPlayer){
         this.game = game;
 
         SpriteBatch gameWorldBatch = new SpriteBatch();
@@ -44,13 +47,16 @@ public class GameWorld {
                 GameMain.GAME_HEIGHT / Settings.ZOOM), gameWorldBatch);
 
         roomManager = new RoomManager(game.assetLoader);
-        personManager = new PersonManager(roomManager, game.assetLoader);
+        npcManager = new NpcManager(roomManager, game.assetLoader);
         clueManager = new ClueManager(roomManager, game.assetLoader);
 
-        player = new Player(game.assetLoader.playerJsonData, game.assetLoader.playerSpriteSheet, this);
+        player = selectedPlayer;
         player.setCurrentRoom(roomManager.getRoom(0));
         Vector2Int randomLocation = player.getCurrentRoom().getRandomLocation();
         player.setTilePosition(randomLocation.x, randomLocation.y);
+        player.setGameWorld(this);
+
+        cameraPosition = new Vector2(player.getX() + player.getWidth()/2, player.getY());
 
         characterGroup = new Group();
         characterGroup.setName("characterGroup");
@@ -136,13 +142,22 @@ public class GameWorld {
         gui.screenFadeInOut(runnableAction);
     }
 
-    public Stage getGameWorldStage() {
-        return gameWorldStage;
+    public void startInteraction(NPC interactingNPC){
+        player.setCanMove(false);
+        player.setInConversation(true);
+        interactingNPC.setCanMove(false);
+        interactingNPC.setDirection(player.getDirection().getOpposite());
+        SpeechBubble speechBubble = new SpeechBubble(getPlayer(), "HI", game.assetLoader.uiSkin);
+        speechBubble.show(gui.getGuiStage());
+
+        cameraPosition.set((player.getX() + interactingNPC.getRight())/2, (player.getTop() + interactingNPC.getY())/2);
+        OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
+        camera.zoom -= 0.5;
     }
 
     public void render(float delta){
-        gameWorldStage.getCamera().position.x = player.getX();
-        gameWorldStage.getCamera().position.y = player.getY();
+        gameWorldStage.getCamera().position.x = cameraPosition.x;
+        gameWorldStage.getCamera().position.y = cameraPosition.y;
         gameWorldStage.getCamera().update();
 
         tiledMapRenderer.setRenderingRoom(player.getCurrentRoom());
@@ -163,8 +178,21 @@ public class GameWorld {
         return player;
     }
 
+    public Stage getGameWorldStage() {
+        return gameWorldStage;
+    }
+
     public Gui getGui() {
         return gui;
+    }
+
+    public Vector2 getCameraPosition() {
+        return cameraPosition;
+    }
+
+    public void setCameraPosition(float x, float y) {
+        this.cameraPosition.x = x;
+        this.cameraPosition.y = y;
     }
 
     public void dispose(){

@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.Collidable;
 import me.lihq.game.GameWorld;
+import me.lihq.game.gui.SpeechBubble;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Inventory;
@@ -33,6 +34,7 @@ public class Player extends AbstractPerson
      */
     private int personalityLevel;
 
+    private String description;
     private Rectangle interactionCollisionBox;
 
     /**
@@ -42,13 +44,17 @@ public class Player extends AbstractPerson
      * @param spriteSheet - The image used to represent it.
      */
 
-    public Player(JsonValue jsonData, TextureAtlas spriteSheet, GameWorld gameWorld) {
+    public Player(JsonValue jsonData, TextureAtlas spriteSheet) {
         super(jsonData, spriteSheet);
 
-        this.gameWorld = gameWorld;
         personalityLevel = jsonData.getInt("personalityLevel");
+        description = jsonData.getString("description");
         interactionCollisionBox = new Rectangle();
         interactionCollisionBox.setSize(collisionBox.getWidth(), collisionBox.getHeight());
+    }
+
+    public void setGameWorld(GameWorld gameWorld){
+        this.gameWorld = gameWorld;
     }
 
     /**
@@ -95,6 +101,7 @@ public class Player extends AbstractPerson
         }
 
         if (interactingActor instanceof NPC) {
+            gameWorld.startInteraction((NPC) interactingActor);
             if (!this.inventory.getMetCharacters().contains((NPC)interactingActor, true)) {
                 this.inventory.addCharacter((NPC)interactingActor);
                 System.out.println(this.inventory.getMetCharacters());
@@ -116,6 +123,10 @@ public class Player extends AbstractPerson
     @Override
     public void act(float delta) {
         super.act(delta);
+
+        if (!isInConversation()){
+            gameWorld.setCameraPosition(getX() + getWidth()/2, getY());
+        }
 
         RoomArrow arrow = roomArrowCollisionDetection(collisionBox);
         if (arrow != null){
@@ -186,6 +197,18 @@ public class Player extends AbstractPerson
     public int getPersonalityLevel()
     {
         return this.personalityLevel;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setInConversation(boolean inConversation) {
+        isInConversation = inConversation;
+    }
+
+    public boolean isInConversation() {
+        return isInConversation;
     }
 
     public Inventory getInventory() {

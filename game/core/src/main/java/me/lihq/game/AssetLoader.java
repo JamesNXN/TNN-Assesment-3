@@ -45,7 +45,7 @@ public class AssetLoader
     /**
      *  Sprite sheets for abstract person objects
      */
-    public TextureAtlas playerSpriteSheet;
+    public ArrayMap<Integer, TextureAtlas> playerSpriteSheetArray;
     public ArrayMap<Integer, TextureAtlas> npcSpriteSheetMapArray;
 
     /**
@@ -70,6 +70,7 @@ public class AssetLoader
 
     public Skin menuSkin;
     public Skin uiSkin;
+//    public Skin speechSkin;
 
     public JsonValue npcJsonData;
     public JsonValue playerJsonData;
@@ -80,6 +81,7 @@ public class AssetLoader
         manager = new AssetManager();
         mapArray = new Array<>();
         npcSpriteSheetMapArray = new ArrayMap<>();
+        playerSpriteSheetArray = new ArrayMap<>();
     }
 
     /**
@@ -98,12 +100,18 @@ public class AssetLoader
      */
     public void loadGameAssets(){
         manager.load("skin/uiskin.json", Skin.class);
+        manager.load("skin/comic-ui.json", Skin.class);
 
         manager.load("arrows.pack", TextureAtlas.class);
         manager.load("clueGlint.pack", TextureAtlas.class);
         manager.load("roomTagBorder.png", Texture.class);
 
-        manager.load("people/player/player.pack", TextureAtlas.class);
+        manager.load("people/player/alfred.pack", TextureAtlas.class);
+        manager.load("people/player/phoebe.pack", TextureAtlas.class);
+        manager.load("people/player/sherlock.pack", TextureAtlas.class);
+        manager.load("people/player/steiner.pack", TextureAtlas.class);
+        manager.load("people/player/victoria.pack", TextureAtlas.class);
+
         manager.load("people/NPCs/colin.pack", TextureAtlas.class);
         manager.load("people/NPCs/diana.pack", TextureAtlas.class);
         manager.load("people/NPCs/lily.pack", TextureAtlas.class);
@@ -145,7 +153,12 @@ public class AssetLoader
         clueJsonData = new JsonReader().parse(new FileHandle("clue.json"));
 
         // sprite sheet assign
-        playerSpriteSheet = manager.get("people/player/player.pack");
+        playerSpriteSheetArray.put(1,manager.get("people/player/alfred.pack"));
+        playerSpriteSheetArray.put(2,manager.get("people/player/phoebe.pack"));
+        playerSpriteSheetArray.put(3,manager.get("people/player/sherlock.pack"));
+        playerSpriteSheetArray.put(4,manager.get("people/player/steiner.pack"));
+        playerSpriteSheetArray.put(5,manager.get("people/player/victoria.pack"));
+
 
         //map key is the npc id
         npcSpriteSheetMapArray.put(1, manager.get("people/NPCs/colin.pack"));
@@ -181,6 +194,7 @@ public class AssetLoader
         clueGlint = manager.get("clueGlint.pack");
 
         uiSkin = manager.get("skin/uiskin.json");
+//        speechSkin = manager.get("skin/comic-ui.json");
 
         //menu skin init
         initSkin();
@@ -213,8 +227,14 @@ public class AssetLoader
         menuSkin.add("default", textButtonStyle);
 
 
-        Label.LabelStyle style = new Label.LabelStyle(getFontWithSize(30), Color.WHITE);
-        uiSkin.add("dialog", style);
+        Label.LabelStyle infoStyle = new Label.LabelStyle(getFontWithSize(30), Color.WHITE);
+        uiSkin.add("dialog", infoStyle);
+
+        Label.LabelStyle speechNameStyle = new Label.LabelStyle(getFontWithSize(20), Color.RED);
+        uiSkin.add("speechName", speechNameStyle);
+
+        Label.LabelStyle speechDialogueStyle = new Label.LabelStyle(getFontWithSize(25), Color.BLACK);
+        uiSkin.add("speechDialogue", speechDialogueStyle);
     }
 
     /**

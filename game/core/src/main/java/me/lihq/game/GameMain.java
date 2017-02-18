@@ -18,6 +18,7 @@ import me.lihq.game.screen.AbstractScreen;
 import me.lihq.game.screen.MainMenuScreen;
 import me.lihq.game.screen.NavigationScreen;
 import me.lihq.game.screen.PauseScreen;
+import me.lihq.game.screen.PlayerSelectionScreen;
 import me.lihq.game.screen.SplashScreen;
 
 /**
@@ -38,6 +39,7 @@ public class GameMain extends Game
     public MainMenuScreen mainMenuScreen;
     public PauseScreen pauseScreen;
     public NavigationScreen navigationScreen;
+    public PlayerSelectionScreen playerSelectionScreen;
 
     /**
      * An FPSLogger, FPSLogger allows us to check the game FPS is good enough

@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import me.lihq.game.GameMain;
 import me.lihq.game.screen.NavigationScreen;
+import me.lihq.game.screen.PlayerSelectionScreen;
 
 /**
  * Main Menu UI table
@@ -44,7 +45,8 @@ public class MainMenu extends MenuTable
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
-                game.setScreen(game.navigationScreen);
+                game.playerSelectionScreen = new PlayerSelectionScreen(game);
+                game.setScreen(game.playerSelectionScreen);
             }
         });
 

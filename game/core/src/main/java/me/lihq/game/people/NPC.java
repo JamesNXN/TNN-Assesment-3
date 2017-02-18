@@ -60,24 +60,24 @@ public class NPC extends AbstractPerson
 
     @Override
     public void act(float delta) {
-        randomTimeSum += delta;
-        if (randomTimeLimit <= randomTimeSum){
-            randomTimeSum = 0;
+        if (isCanMove()) {
+            randomTimeSum += delta;
+            if (randomTimeLimit <= randomTimeSum) {
+                randomTimeSum = 0;
 
-            if (randomMoveToggle) {
-                setState(PersonState.WALKING);
-                setDirection(getRandomDirection());
+                if (randomMoveToggle) {
+                    setState(PersonState.WALKING);
+                    setDirection(getRandomDirection());
 
-                randomTimeLimit = MathUtils.random(0.5f, 1.5f);
+                    randomTimeLimit = MathUtils.random(0.5f, 1.5f);
+                } else {
+                    setState(PersonState.STANDING);
+
+                    randomTimeLimit = MathUtils.random(5, 10);
+                }
+                randomMoveToggle = !randomMoveToggle;
             }
-            else{
-                setState(PersonState.STANDING);
-
-                randomTimeLimit = MathUtils.random(3, 5);
-            }
-            randomMoveToggle = !randomMoveToggle;
         }
-
         super.act(delta);
     }
 
