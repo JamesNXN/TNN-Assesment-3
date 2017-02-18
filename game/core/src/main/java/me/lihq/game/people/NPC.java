@@ -1,6 +1,7 @@
 package me.lihq.game.people;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
@@ -27,9 +28,24 @@ public class NPC extends AbstractPerson
     /**
      * Used in questioning for more info check Interaction class
      */
-    private Array<Clue> exhaustedClues = new Array<>(0);
+    private Array<Clue> exhaustedClues = new Array<>();
 
     private Personality personality;
+
+    /**
+     * The time that NPC will either stand still or walk
+     */
+    private float randomTimeLimit = 0;
+
+    /**
+     * The time sum that NPC has either stood still or walk
+     */
+    private float randomTimeSum = 0;
+
+    /**
+     * Toggle for random walk/stand
+     */
+    private boolean randomMoveToggle = false;
 
     /**
      * Define an NPC
@@ -64,6 +80,44 @@ public class NPC extends AbstractPerson
         Json json = new Json();
         this.id = jsonData.getInt("id");
         this.personality = json.readValue("personality", Personality.class, jsonData);
+    }
+
+    @Override
+    public void act(float delta) {
+        randomTimeSum += delta;
+        if (randomTimeLimit <= randomTimeSum){
+            randomTimeSum = 0;
+
+            if (randomMoveToggle) {
+                setState(PersonState.WALKING);
+                setDirection(getRandomDirection());
+
+                randomTimeLimit = MathUtils.random(0.5f, 1.5f);
+            }
+            else{
+                setState(PersonState.STANDING);
+
+                randomTimeLimit = MathUtils.random(3, 5);
+            }
+            randomMoveToggle = !randomMoveToggle;
+        }
+
+        super.act(delta);
+    }
+
+    private Direction getRandomDirection(){
+        int randomInt = MathUtils.random(3);
+        switch (randomInt){
+            case 0:
+                return Direction.EAST;
+            case 1:
+                return Direction.WEST;
+            case 2:
+                return Direction.NORTH;
+            case 3:
+                return Direction.SOUTH;
+        }
+        return null;
     }
 
     public boolean isKiller()
@@ -113,7 +167,6 @@ public class NPC extends AbstractPerson
     public Array<Clue> getExhaustedClues() {return this.exhaustedClues;}
 
     public void addExhaustedClue(Clue clue) {
-        this.exhaustedClues.ensureCapacity(1);
         this.exhaustedClues.add(clue);
     }
 

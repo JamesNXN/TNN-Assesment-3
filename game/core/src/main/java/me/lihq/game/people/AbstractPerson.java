@@ -36,7 +36,7 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
      */
     private boolean canMove = true;
 
-    private final float MOVE_SPEED = 500f;
+    private final float MOVE_SPEED = 100f;
 
     /**
      * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
@@ -158,7 +158,7 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
             float vectorDistanceY = direction.getDy() * MOVE_SPEED * delta;
             collisionBox.setPosition(collisionBox.x + vectorDistanceX, collisionBox.y + vectorDistanceY);
 
-            if (!wallCollisionDetection(collisionBox) && !npcCollisionDetection(collisionBox)) {
+            if (!wallCollisionDetection(collisionBox) && !characterCollisionDetection(collisionBox)) {
                 moveBy(vectorDistanceX, vectorDistanceY);
             }
         }
@@ -198,20 +198,20 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
     }
 
     /**
-     * Detects collision with npc
+     * Detects collision with characters
      * @return return true when there is collision
      */
-    private boolean npcCollisionDetection(Rectangle collisionBox){
+    private boolean characterCollisionDetection(Rectangle collisionBox){
         Array<NPC> npcArray = getCurrentRoom().getNpcArray();
 
-        boolean npcCollision = false;
+        boolean characterCollision = false;
         for (NPC person : npcArray) {
-            if (person.getCollisionBox().overlaps(collisionBox)) {
-                npcCollision = true;
+            if (person.getCollisionBox().overlaps(collisionBox) && !person.equals(this)) {
+                characterCollision = true;
                 break;
             }
         }
-        return npcCollision;
+        return characterCollision;
     }
 
     @Override

@@ -5,7 +5,6 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 import me.lihq.game.GameWorld;
-import me.lihq.game.models.Clue;
 import me.lihq.game.models.Inventory;
 import me.lihq.game.people.NPC;
 

@@ -103,7 +103,7 @@ public class Gui {
 
     /**
      * Show a pop up window that displays a string.
-     * @param info String to be added below.
+     * @param info String to be displayed.
      */
     public void displayInfo(String info){
         infoWindow.getContentTable().clearChildren();
