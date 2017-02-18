@@ -4,7 +4,7 @@ machine:
 
 test:
   override:
-   ##- cd game && ./gradlew test jacocoTestReport
+   - cd game && ./gradlew test jacocoTestReport
     - cd game && ./gradlew test
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
@@ -16,3 +16,7 @@ test:
     ##- if test -d game/core/build/reports/tests/test; then mv game/core/build/reports/tests/test $CIRCLE_ARTIFACTS/core/junit; fi
     ##- if test -d game/desktop/build/reports/tests/test; then mv game/desktop/build/reports/tests/test $CIRCLE_ARTIFACTS/desktop/junit; fi
 
+general:
+  artifacts:
+    - "$CIRCLE_TEST_REPORTS/junit/"
+    - "$CIRCLE_TEST_REPORTS/html/"
