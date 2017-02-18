@@ -41,7 +41,7 @@ public class ClueUnitTest extends GameTester {
      */
     @Test
     public void equals() throws Exception {
-        assertTrue("Should not be equal", !testClue1.equals(testClue2));
+        assertFalse("Should not be equal", testClue1.equals(testClue2));
         Clue testClue3 = testClue2;
         assertTrue("Should be equal", testClue2.equals(testClue3));
     }
@@ -68,6 +68,20 @@ public class ClueUnitTest extends GameTester {
         Array<Integer> test = new Array<>(new Integer[]{1, 2, 3});
         assertTrue("ID array doesn't fit", testClue1.getRelatedNpcIdArray().equals(test));
 
+    }
+
+    @Test
+    public void isFound() throws Exception {
+        assertFalse(testClue1.isFound());
+    }
+
+    @Test
+    public void setFound() throws Exception {
+        assertFalse(testClue1.isFound());
+
+        testClue1.setFound(true);
+
+        assertTrue(testClue1.isFound());
     }
 
     /**
