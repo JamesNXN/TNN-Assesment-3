@@ -25,18 +25,18 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
     /**
      * The height of the texture region for each person
      */
-    private static final int SPRITE_HEIGHT = 48;
+    private final int SPRITE_HEIGHT = 48;
 
     /**
      * The width of the texture region for each person
      */
-    private static final int SPRITE_WIDTH = 32;
+    private final int SPRITE_WIDTH = 32;
     /**
      * This is whether the NPC can move or not. It is mainly used to not let them move during conversation or room transition
      */
     private boolean canMove = true;
 
-    private final float MOVE_SPEED = 100f;
+    private final float MOVE_SPEED = 500f;
 
     /**
      * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
@@ -46,10 +46,10 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
 
     private float animStateTime = 0;
 
-    private Animation<TextureRegion> walkDown;
-    private Animation<TextureRegion> walkUp;
-    private Animation<TextureRegion> walkRight;
-    private Animation<TextureRegion> walkLeft;
+    public Animation<TextureRegion> walkDown;
+    public Animation<TextureRegion> walkUp;
+    public Animation<TextureRegion> walkRight;
+    public Animation<TextureRegion> walkLeft;
 
     protected Rectangle collisionBox;
     /**
@@ -92,21 +92,6 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
         walkDown = new Animation<>(0.1f, spriteSheet.findRegions("walkDown"));
         walkRight = new Animation<>(0.1f, spriteSheet.findRegions("walkRight"));
         walkLeft = new Animation<>(0.1f, spriteSheet.findRegions("walkLeft"));
-    }
-
-    public AbstractPerson(AbstractPerson abstractPersonCopy){
-        name = abstractPersonCopy.getName();
-
-        collisionBox = new Rectangle();
-        collisionBox.setSize(Settings.TILE_SIZE * 0.7f);
-
-        setSize(SPRITE_WIDTH, SPRITE_HEIGHT);
-        setOrigin(getWidth()/2, getHeight()/2);
-
-        walkUp = abstractPersonCopy.walkUp;
-        walkDown = abstractPersonCopy.walkDown;
-        walkRight = abstractPersonCopy.walkRight;
-        walkLeft = abstractPersonCopy.walkLeft;
     }
 
     public AbstractPerson(JsonValue jsonData){    //// TEST CONSTRUCTOR
@@ -161,10 +146,6 @@ public abstract class AbstractPerson extends Actor implements Collidable,TileObj
             if (!wallCollisionDetection(collisionBox) && !characterCollisionDetection(collisionBox)) {
                 moveBy(vectorDistanceX, vectorDistanceY);
             }
-        }
-
-        else if (state == PersonState.FIXED_WALKING){
-            animStateTime += delta;
         }
         else{
             tilePosition.x = (int) (getX() / Settings.TILE_SIZE);
