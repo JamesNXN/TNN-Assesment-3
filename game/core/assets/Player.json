@@ -1,24 +1,123 @@
-{
-  "name": "Player 1",
-  "personalityLevel": 30,
-  "dialogue": {
-    "introduction": "Hello",
-	"question": {
-      "AGGRESSIVE":[
-        "Aggressive dialogue 1",
-        "Aggressive dialogue 2",
-        "Aggressive dialogue 3"
-      ],
-      "NEUTRAL":[
-        "Neutral dialogue 1",
-        "Neutral dialogue 2",
-        "Neutral dialogue 3"
-      ],
-      "NICE":[
-        "Nice dialogue 1",
-        "Nice dialogue 2",
-        "Nice dialogue 3"
-      ]
-	}
+[
+  {
+    "name": "Player 1",
+    "personalityLevel": 30,
+    "dialogue": {
+      "introduction": "Hello",
+      "question": {
+        "AGGRESSIVE":[
+          "Aggressive dialogue 1",
+          "Aggressive dialogue 2",
+          "Aggressive dialogue 3"
+        ],
+        "NEUTRAL":[
+          "Neutral dialogue 1",
+          "Neutral dialogue 2",
+          "Neutral dialogue 3"
+        ],
+        "NICE":[
+          "Nice dialogue 1",
+          "Nice dialogue 2",
+          "Nice dialogue 3"
+        ]
+      }
+    }
+  },
+
+  {
+    "name": "Alfred",
+    "personalityLevel": 45,
+    "dialogue": {
+      "introduction": "Hello",
+      "question": {
+        "AGGRESSIVE":[
+          "Aggressive dialogue 1",
+          "Aggressive dialogue 2",
+          "Aggressive dialogue 3"
+        ],
+        "NEUTRAL":[
+          "Neutral dialogue 1",
+          "Neutral dialogue 2",
+          "Neutral dialogue 3"
+        ],
+        "NICE":[
+          "Nice dialogue 1",
+          "Nice dialogue 2",
+          "Nice dialogue 3"
+        ]
+      }
+    }
+  },
+  {
+    "name": "Phoebe",
+    "personalityLevel": 60,
+    "dialogue": {
+      "introduction": "Hello",
+      "question": {
+        "AGGRESSIVE":[
+          "Aggressive dialogue 1",
+          "Aggressive dialogue 2",
+          "Aggressive dialogue 3"
+        ],
+        "NEUTRAL":[
+          "Neutral dialogue 1",
+          "Neutral dialogue 2",
+          "Neutral dialogue 3"
+        ],
+        "NICE":[
+          "Nice dialogue 1",
+          "Nice dialogue 2",
+          "Nice dialogue 3"
+        ]
+      }
+    }
+  },
+  {
+    "name": "Steiner",
+    "personalityLevel": 75,
+    "dialogue": {
+      "introduction": "Hello",
+      "question": {
+        "AGGRESSIVE":[
+          "Aggressive dialogue 1",
+          "Aggressive dialogue 2",
+          "Aggressive dialogue 3"
+        ],
+        "NEUTRAL":[
+          "Neutral dialogue 1",
+          "Neutral dialogue 2",
+          "Neutral dialogue 3"
+        ],
+        "NICE":[
+          "Nice dialogue 1",
+          "Nice dialogue 2",
+          "Nice dialogue 3"
+        ]
+      }
+    }
+  },
+  {
+    "name": "Victoria",
+    "personalityLevel": 90,
+    "dialogue": {
+      "introduction": "Hello",
+      "question": {
+        "AGGRESSIVE":[
+          "Aggressive dialogue 1",
+          "Aggressive dialogue 2",
+          "Aggressive dialogue 3"
+        ],
+        "NEUTRAL":[
+          "Neutral dialogue 1",
+          "Neutral dialogue 2",
+          "Neutral dialogue 3"
+        ],
+        "NICE":[
+          "Nice dialogue 1",
+          "Nice dialogue 2",
+          "Nice dialogue 3"
+        ]
+      }
+    }
   }
-}
+]
