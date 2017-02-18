@@ -1,6 +1,7 @@
 package me.lihq.game.models;
 
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
@@ -19,14 +20,14 @@ public class InventoryUnitTests extends GameTester {
      */
     private Inventory testInventory;
 
-    private Clue testClue;
+    private Clue testClue1;
     private Clue testClue2;
     private Clue testWeapon;
 
-    private NPC testNPC;
+    private NPC testNPC1;
     private NPC testNPC2;
 
-    private Hint testHint;
+    private Hint testHint1;
     private Hint testHint2;
 
     /**
@@ -38,25 +39,24 @@ public class InventoryUnitTests extends GameTester {
     @Before
     public void setUp() throws Exception {
         testInventory = new Inventory();
-
-        Array<Integer> testArray1 = new Array<>();
-        testArray1.addAll(1, 2, 3);
-        testClue = new Clue(null, null);
-
-        Array<Integer> testArray2 = new Array<>();
-        testArray2.addAll(4, 5, 6);
-        testClue2 = new Clue(null, null);
-
-        testWeapon = new Clue(null, null);
-
         Json json = new Json();
+        TextureAtlas clueGlint = new TextureAtlas(GameTester.ASSEST_FOLDER + "clueGlint.pack");
+        JsonValue clueJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testClue.json"));
+        Array<JsonValue> clueJsonDataArray = json.readValue(Array.class, clueJsonData);
+
+        testClue1 = new Clue(clueJsonDataArray.get(0), clueGlint);
+
+        testClue2 = new Clue(clueJsonDataArray.get(1), clueGlint);
+
+        testWeapon = new Clue(clueJsonDataArray.get(2), clueGlint);
+
 
         JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
-        testNPC = new NPC(npcJsonDataArray.get(0));
+        testNPC1 = new NPC(npcJsonDataArray.get(0));
         testNPC2 = new NPC(npcJsonDataArray.get(1));
 
-        testHint = new Hint(testClue);
+        testHint1 = new Hint(testClue1);
         testHint2 = new Hint(testClue2);
 
     }
@@ -71,14 +71,14 @@ public class InventoryUnitTests extends GameTester {
     public void tearDown() throws Exception {
         testInventory = null;
 
-        testClue = null;
+        testClue1 = null;
         testClue2 = null;
         testWeapon = null;
 
-        testNPC = null;
+        testNPC1 = null;
         testNPC2 = null;
 
-        testHint = null;
+        testHint1 = null;
         testHint2 = null;
 
     }
@@ -103,12 +103,12 @@ public class InventoryUnitTests extends GameTester {
         /**
          * adds test clue to the array
          */
-        testInventory.addClue(testClue);
+        testInventory.addClue(testClue1);
 
         /**
          * checks whether the getCollectedClues returns an array which contains the added test clue
          */
-        assertEquals("array does not contain correct clue", testClue, testInventory.getCollectedClues().peek());
+        assertEquals("array does not contain correct clue", testClue1, testInventory.getCollectedClues().peek());
     }
 
     @Test
@@ -116,9 +116,9 @@ public class InventoryUnitTests extends GameTester {
 
         assertNotNull(testInventory.getMetCharacters());
 
-        testInventory.addCharacter(testNPC);
+        testInventory.addCharacter(testNPC1);
 
-        assertEquals("array does not contain correct NPC", testNPC, testInventory.getMetCharacters().peek());
+        assertEquals("array does not contain correct NPC", testNPC1, testInventory.getMetCharacters().peek());
 
     }
 
@@ -127,25 +127,25 @@ public class InventoryUnitTests extends GameTester {
 
         assertNotNull(testInventory.getCollectedHints());
 
-        testInventory.addHint(testHint);
+        testInventory.addHint(testHint1);
 
-        assertEquals("array does not contain correct Hint", testHint, testInventory.getCollectedHints().peek());
+        assertEquals("array does not contain correct Hint", testHint1, testInventory.getCollectedHints().peek());
     }
 
     @Test
     public void checkIfHintExists() throws Exception {
 
-        testInventory.addHint(testHint);
+        testInventory.addHint(testHint1);
 
-        assertEquals(true, testInventory.contains(testHint));
+        assertEquals(true, testInventory.contains(testHint1));
 
     }
 
     @Test
     public void addNewClue() throws Exception {
 
-        testInventory.addClue(testClue);
-        assertEquals("first item not added", testClue, testInventory.getCollectedClues().peek());
+        testInventory.addClue(testClue1);
+        assertEquals("first item not added", testClue1, testInventory.getCollectedClues().peek());
 
         testInventory.addClue(testClue2);
         assertEquals("second item not added", testClue2, testInventory.getCollectedClues().peek());
@@ -157,8 +157,8 @@ public class InventoryUnitTests extends GameTester {
     @Test
     public void addNewCharacter() throws Exception {
 
-        testInventory.addCharacter(testNPC);
-        assertEquals("first NPC not added", testNPC, testInventory.getMetCharacters().peek());
+        testInventory.addCharacter(testNPC1);
+        assertEquals("first NPC not added", testNPC1, testInventory.getMetCharacters().peek());
 
         testInventory.addCharacter(testNPC2);
         assertEquals("second NPC not added", testNPC2, testInventory.getMetCharacters().peek());
@@ -170,8 +170,8 @@ public class InventoryUnitTests extends GameTester {
     @Test
     public void addNewHint() throws Exception {
 
-        testInventory.addHint(testHint);
-        assertEquals("first Hint not added", testHint, testInventory.getCollectedHints().peek());
+        testInventory.addHint(testHint1);
+        assertEquals("first Hint not added", testHint1, testInventory.getCollectedHints().peek());
 
         testInventory.addHint(testHint2);
         assertEquals("second Hint not added", testHint2, testInventory.getCollectedHints().peek());

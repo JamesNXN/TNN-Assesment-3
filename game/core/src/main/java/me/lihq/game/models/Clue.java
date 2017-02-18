@@ -71,19 +71,6 @@ public class Clue extends Actor implements Collidable, TileObject {
         collisionBox.setSize(Settings.TILE_SIZE);
     }
 
-    /**
-     * constructor used for testing of methods without Json
-     */
-    public Clue(String name, String description, Array<Integer> relatedNpcIdArray, ClueType clueType){
-        this.name = name;
-        this.description = description;
-        this.relatedNpcIdArray = relatedNpcIdArray;
-        this.clueType = clueType;
-
-        collisionBox = new Rectangle();
-        collisionBox.setSize(Settings.TILE_SIZE);
-    }
-
     public boolean isFound() {
         return isFound;
     }
