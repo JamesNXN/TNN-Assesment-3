@@ -5,22 +5,22 @@
     "description": "Alfred is a kind man the kindest you will probably find anywhere in the world. \n He has taken an oath to bring justice to the world without being violent \n but will he be able to keep that promise to himself now that his skills as a detective are needed.",
     "personalityLevel": 10,
     "dialogue": {
-      "introduction": "Hello",
+      "introduction": "Hey there friend mind if i ask you something?",
       "question": {
         "AGGRESSIVE":[
-          "Aggressive dialogue 1",
-          "Aggressive dialogue 2",
-          "Aggressive dialogue 3"
+          "Look lets just cut to the chase tell me what i want to know",
+          "Tell me what you know. Now!",
+          "I'm solving a murder here i don't have time to listen to your story just tell me what i want to know!"
         ],
         "NEUTRAL":[
-          "Neutral dialogue 1",
-          "Neutral dialogue 2",
-          "Neutral dialogue 3"
+          "What do you know about this?",
+          "Could you tell me what you know about this?",
+          "I found this what do you know about it?"
         ],
         "NICE":[
-          "Nice dialogue 1",
-          "Nice dialogue 2",
-          "Nice dialogue 3"
+          "I found this whilst looking around do you know anything about it?",
+          "If you know anything about this could you tell me it would really help?",
+          "I found this can you tell me what you know about it please?"
         ]
       }
     }
