@@ -27,63 +27,36 @@ public class Slot extends Button {
 
 
     /**
-     * Slot for clues in inventory window
+     * Slot that contains only string
      */
-    Slot(Clue clue, Gui gui, Skin skin) {
+    public Slot(String string, Skin skin) {
         super(skin);
 
-        slotActor = clue;
-
-        Label clueLabel = new Label(clue.getName(), skin);
+        Label clueLabel = new Label(string, skin);
         clueLabel.setWrap(true);
         clueLabel.setAlignment(Align.center);
         add(clueLabel).size(100,100);
-
-        addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                gui.displayInfo(clue.getDescription());
-            }
-        });
     }
 
     /**
-     * Slot for Npcs in Npc note window
+     * Slot that contains a character and string
      */
-    public Slot(Npc npc, Gui gui, Skin skin) {
+    public Slot(AbstractPerson person, Skin skin) {
         super(skin);
 
-        slotActor = npc;
+        slotActor = person;
 
         align(Align.center);
-        SlotCharacter slotCharacter = new SlotCharacter(npc);
+        SlotCharacter slotCharacter = new SlotCharacter(person);
         slotCharacter.scaleBy(1.5f);
-        Container<SlotCharacter> npcContainer = new Container<>(slotCharacter);
-        npcContainer.align(Align.center);
-        add(npcContainer).size(100,150).row();
+        Container<SlotCharacter> slotCharacterContainer = new Container<>(slotCharacter);
+        slotCharacterContainer.align(Align.center);
+        add(slotCharacterContainer).size(100,150).row();
 
-        Label npcLabel = new Label(npc.getName(), skin);
-        npcLabel.setWrap(true);
-        npcLabel.setAlignment(Align.center);
-        add(npcLabel);
-    }
-
-    public Slot(Player player, Skin skin){
-        super(skin);
-
-        slotActor = player;
-
-        align(Align.center);
-        SlotCharacter slotCharacter = new SlotCharacter(player);
-        slotCharacter.scaleBy(1.5f);
-        Container<SlotCharacter> npcContainer = new Container<>(slotCharacter);
-        npcContainer.align(Align.center);
-        add(npcContainer).size(100,150).row();
-
-        Label playerLabel = new Label(player.getName(), skin);
-        playerLabel.setWrap(true);
-        playerLabel.setAlignment(Align.center);
-        add(playerLabel);
+        Label nameLabel = new Label(person.getName(), skin);
+        nameLabel.setWrap(true);
+        nameLabel.setAlignment(Align.center);
+        add(nameLabel);
     }
 
     public boolean isCursorOver() {

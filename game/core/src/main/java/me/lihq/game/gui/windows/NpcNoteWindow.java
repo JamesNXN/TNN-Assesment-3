@@ -1,4 +1,4 @@
-package me.lihq.game.gui;
+package me.lihq.game.gui.windows;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -8,10 +8,12 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 import me.lihq.game.GameWorld;
+import me.lihq.game.gui.Gui;
+import me.lihq.game.gui.Slot;
 import me.lihq.game.models.Inventory;
 import me.lihq.game.people.Npc;
 
-class NpcNoteWindow extends GuiWindow{
+public class NpcNoteWindow extends GuiWindow{
     private final int COLUMN_COUNT = 4;
     private final float SLOT_WIDTH = 150;
     private final float SLOT_GAP_HORIZONTAL = 100;
@@ -19,7 +21,7 @@ class NpcNoteWindow extends GuiWindow{
     private final float WINDOW_WIDTH = SLOT_WIDTH * COLUMN_COUNT + SLOT_GAP_HORIZONTAL * (COLUMN_COUNT - 1) * 1.1f;
     private final float WINDOW_HEIGHT = 700;
 
-    NpcNoteWindow(Skin skin, Gui gui, GameWorld gameWorld) {
+    public NpcNoteWindow(Skin skin, Gui gui, GameWorld gameWorld) {
         super("Npc Note", skin, gui, gameWorld);
 
         button("OK", true);
@@ -35,7 +37,7 @@ class NpcNoteWindow extends GuiWindow{
         entryArray.addAll(inventory.getMetCharacters());
 
         for (int i = 0; i < entryArray.size; i++){
-            Slot slot = new Slot(entryArray.get(i), gui, getSkin());
+            Slot slot = new Slot(entryArray.get(i), getSkin());
             slot.addListener(new InputListener(){
                 @Override
                 public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {

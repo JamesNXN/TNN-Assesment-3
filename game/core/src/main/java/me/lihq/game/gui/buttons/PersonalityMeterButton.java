@@ -1,12 +1,14 @@
-package me.lihq.game.gui;
+package me.lihq.game.gui.buttons;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-class PersonalityMeterButton extends GuiButton {
-    PersonalityMeterButton(Skin skin, Gui gui) {
-        super(skin, "Personality Meter", gui);
+import me.lihq.game.gui.Gui;
+
+public class PersonalityMeterButton extends GuiButton {
+    public PersonalityMeterButton(Skin skin, Gui gui) {
+        super("Personality Meter", skin, gui);
 
         addListener(new ChangeListener() {
             @Override

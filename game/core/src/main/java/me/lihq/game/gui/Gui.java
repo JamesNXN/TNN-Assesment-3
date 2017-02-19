@@ -12,6 +12,10 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.GameMain;
 import me.lihq.game.GameWorld;
+import me.lihq.game.gui.windows.InfoWindow;
+import me.lihq.game.gui.windows.InventoryWindow;
+import me.lihq.game.gui.windows.NpcNoteWindow;
+import me.lihq.game.gui.windows.PersonalityMeterWindow;
 import me.lihq.game.models.Room;
 
 public class Gui {
@@ -127,15 +131,15 @@ public class Gui {
         return gameWorld;
     }
 
-    InventoryWindow getInventoryWindow() {
+    public InventoryWindow getInventoryWindow() {
         return inventoryWindow;
     }
 
-    PersonalityMeterWindow getPersonalityMeterWindow() {
+    public PersonalityMeterWindow getPersonalityMeterWindow() {
         return personalityMeterWindow;
     }
 
-    NpcNoteWindow getNpcNoteWindow() {
+    public NpcNoteWindow getNpcNoteWindow() {
         return npcNoteWindow;
     }
 

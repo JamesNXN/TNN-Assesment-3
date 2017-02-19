@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Queue;
 
+import me.lihq.game.gui.ConversationSpeechBubble;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.gui.SpeechBubble;
 import me.lihq.game.people.AbstractPerson;
@@ -32,7 +33,7 @@ public class ConversationManager extends InputAdapter{
     }
 
     public void addSpeech(AbstractPerson speakingPerson, String speechLine){
-        speechBubbleQueue.addLast(new SpeechBubble(speakingPerson, speechLine, skin));
+        speechBubbleQueue.addLast(new ConversationSpeechBubble(speakingPerson, speechLine, skin));
         if (!interactingCharacterArray.contains(speakingPerson, false)) {
             interactingCharacterArray.add(speakingPerson);
         }

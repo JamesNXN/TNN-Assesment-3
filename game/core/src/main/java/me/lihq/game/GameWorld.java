@@ -186,8 +186,6 @@ public class GameWorld {
     }
 
     public void render(float delta){
-        System.out.println(gameWorldStage.getCamera().position);
-
         if (conversationManager.isFinished()){
             conversationManager.setFinished(false);
             haltInteraction();

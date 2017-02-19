@@ -1,20 +1,19 @@
-package me.lihq.game.gui;
+package me.lihq.game.gui.buttons;
+
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-/**
- * Gui button that opens notebook window.
- */
+import me.lihq.game.gui.Gui;
 
-class InventoryButton extends GuiButton {
-    InventoryButton(Skin skin, Gui gui) {
-        super(skin, "Inventory", gui);
+public class NpcNoteButton extends GuiButton {
+    public NpcNoteButton(Skin skin, Gui gui) {
+        super("Npc List", skin, gui);
 
         addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                gui.getInventoryWindow().show(gui.getGuiStage());
+                gui.getNpcNoteWindow().show(gui.getGuiStage());
             }
         });
     }

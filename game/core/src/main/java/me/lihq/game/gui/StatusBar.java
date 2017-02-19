@@ -1,16 +1,14 @@
 package me.lihq.game.gui;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 
 import me.lihq.game.GameMain;
-import me.lihq.game.screen.PauseScreen;
+import me.lihq.game.gui.buttons.InventoryButton;
+import me.lihq.game.gui.buttons.NpcNoteButton;
+import me.lihq.game.gui.buttons.PersonalityMeterButton;
 
 /**
  * The status bar shown throughout the game
@@ -21,7 +19,7 @@ class StatusBar extends Table
     /**
      * The height of the StatusBar
      */
-    public static final int HEIGHT = 50; //Used to set height of status bar
+    private static final int HEIGHT = 50; //Used to set height of status bar
 
     /**
      * The amount of items that are in the StatusBar

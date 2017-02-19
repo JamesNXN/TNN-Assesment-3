@@ -1,11 +1,14 @@
-package me.lihq.game.gui;
+package me.lihq.game.gui.windows;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 import me.lihq.game.GameWorld;
+import me.lihq.game.gui.Gui;
+import me.lihq.game.gui.Slot;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Inventory;
 
@@ -13,7 +16,7 @@ import me.lihq.game.models.Inventory;
  * Window that displays data in notebook
  */
 
-class InventoryWindow extends GuiWindow {
+public class InventoryWindow extends GuiWindow {
     private final int COLUMN_COUNT = 4;
     private final float SLOT_WIDTH = 150;
     private final float SLOT_GAP_HORIZONTAL = 100;
@@ -21,7 +24,7 @@ class InventoryWindow extends GuiWindow {
     private final float WINDOW_WIDTH = SLOT_WIDTH * COLUMN_COUNT + SLOT_GAP_HORIZONTAL * (COLUMN_COUNT - 1) * 1.1f;
     private final float WINDOW_HEIGHT = 700;
 
-    InventoryWindow(Skin skin, Gui gui, GameWorld gameWorld) {
+    public InventoryWindow(Skin skin, Gui gui, GameWorld gameWorld) {
         super("INVENTORY", skin, gui, gameWorld);
 
         button("OK", true);
@@ -39,7 +42,14 @@ class InventoryWindow extends GuiWindow {
         entryArray.addAll(inventory.getCollectedClues());
 
         for (int i = 0; i < entryArray.size; i++){
-            Slot slot = new Slot(entryArray.get(i), gui, getSkin());
+            Clue slotClue = entryArray.get(i);
+            Slot slot = new Slot(slotClue.getName(), getSkin());
+            slot.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    gui.displayInfo(slotClue.getDescription());
+                }
+            });
 
             if ((i+1) % COLUMN_COUNT == 0){
                 getContentTable().add(slot).width(SLOT_WIDTH).padTop(SLOT_GAP_VERTICAL)
