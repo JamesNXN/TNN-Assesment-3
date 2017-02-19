@@ -14,6 +14,7 @@ import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
+import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.Direction;
 import me.lihq.game.people.Npc;
 import me.lihq.game.people.PersonState;
@@ -38,6 +39,8 @@ public class GameWorld {
     private CustomTiledMapRenderer tiledMapRenderer;
 
     private Vector2 cameraPosition;
+
+    private ConversationManager conversationManager;
 
     public GameWorld(GameMain game, Player selectedPlayer){
         this.game = game;
@@ -87,6 +90,9 @@ public class GameWorld {
 
         gameWorldStage.addActor(clueGroup);
         gameWorldStage.addActor(characterGroup);
+
+
+        conversationManager = new ConversationManager(game.assetLoader.uiSkin);
     }
 
     public void setGui(Gui gui){
@@ -146,15 +152,32 @@ public class GameWorld {
         player.setInConversation(true);
         interactingNpc.setInConversation(true);
         interactingNpc.setDirection(player.getDirection().getOpposite());
-        SpeechBubble speechBubble = new SpeechBubble(player, player.getDialogue().getIntroduction(), game.assetLoader.uiSkin);
-        speechBubble.show(gui.getGuiStage());
+        conversationManager.addSpeech(player, player.getDialogue().getIntroduction());
+        conversationManager.addSpeech(interactingNpc, interactingNpc.getDialogue().getIntroduction());
+
+        conversationManager.startConversation(gui.getGuiStage());
 
         cameraPosition.set((player.getX() + interactingNpc.getRight())/2, (player.getTop() + interactingNpc.getY())/2);
         OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
         camera.zoom -= 0.5;
     }
 
+    public void haltInteraction(){
+        for (AbstractPerson person: conversationManager.getInteractingCharacterArray()){
+            person.setInConversation(false);
+        }
+
+        cameraPosition.set(player.getX() + player.getWidth()/2, player.getY());
+        OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
+        camera.zoom += 0.5;
+    }
+
     public void render(float delta){
+        if (conversationManager.isFinished()){
+            conversationManager.setFinished(false);
+            haltInteraction();
+        }
+
         gameWorldStage.getCamera().position.x = cameraPosition.x;
         gameWorldStage.getCamera().position.y = cameraPosition.y;
         gameWorldStage.getCamera().update();
@@ -183,6 +206,10 @@ public class GameWorld {
 
     public Gui getGui() {
         return gui;
+    }
+
+    public ConversationManager getConversationManager() {
+        return conversationManager;
     }
 
     public Vector2 getCameraPosition() {

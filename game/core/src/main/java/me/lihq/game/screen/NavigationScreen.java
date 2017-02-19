@@ -56,6 +56,7 @@ public class NavigationScreen extends AbstractScreen
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(gui.getGuiStage());
         multiplexer.addProcessor(playerController);
+        multiplexer.addProcessor(gameWorld.getConversationManager());
         Gdx.input.setInputProcessor(multiplexer);
 
 //        Controllers.addListener(gamePadController);

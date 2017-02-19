@@ -70,6 +70,8 @@ public class SpeechBubble extends Table {
     }
 
     public void hide(){
-        remove();
+        addAction(Actions.sequence(
+                Actions.scaleTo(0f, 0f, 0.5f, Interpolation.swingIn),
+                Actions.run(this::remove)));
     }
 }

@@ -11,9 +11,7 @@ import me.lihq.game.people.Player;
 public class Interaction {
 
     private Player player;
-
     private Npc npc;
-
     private Score score;
 
     public Interaction(Player player, Npc npc) {
@@ -23,7 +21,7 @@ public class Interaction {
     }
 
     public void question(Clue clue, Personality questioningStyle) {
-        if (npc.getFalselyAccused() == false) {
+        if (!npc.isFalseAccused()) {
             if (player.getInventory().getCollectedClues().size != 0) {
                 if (npc.getPersonality() == questioningStyle && !npc.getExhaustedClues().contains(clue, true)) {
                     //// TODO: 08/02/2017 some graphical success text
@@ -43,7 +41,7 @@ public class Interaction {
     }
 
     public void accuse(Array<Clue> clues) {
-        if (clues.size < 4 && player.getInventory().isWeaponFound()==true){
+        if (clues.size < 4 && player.getInventory().isWeaponFound()){
             int checkingValue = 0;
             for (Clue cluesCheck : clues) {
                 if (cluesCheck.getRelatedNpcIdArray().contains(npc.getId(), true)) {
@@ -57,7 +55,7 @@ public class Interaction {
             else if (checkingValue < 4) {
                 score.failedAccusation();
                 score.subPoints(200);      // Failed accusation
-                npc.setFalselyAccused();
+                npc.setFalseAccused(true);
                 //todo some accuse fail stuff
             }
         }

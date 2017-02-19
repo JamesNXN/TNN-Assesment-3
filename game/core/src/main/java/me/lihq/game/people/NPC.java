@@ -17,7 +17,7 @@ public class Npc extends AbstractPerson
     private boolean isKiller = false;
     private boolean isVictim = false;
 
-    private boolean falselyAccused = false;
+    private boolean isFalseAccused = false;
 
     /**
      * Used in questioning for more info check Interaction class
@@ -144,9 +144,9 @@ public class Npc extends AbstractPerson
         return this.getName();
     }
 
-    public void setFalselyAccused() {
-        this.falselyAccused = true;
+    public void setFalseAccused(boolean falseAccused) {
+        isFalseAccused = falseAccused;
     }
 
-    public boolean getFalselyAccused() { return this.falselyAccused;}
+    public boolean isFalseAccused() { return isFalseAccused;}
 }

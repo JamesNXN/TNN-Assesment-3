@@ -110,18 +110,18 @@ public class NPCUnitTests extends GameTester {
     }
 
     @Test
-    public void setFalselyAccused() throws Exception {
-        assertFalse(testNpc.getFalselyAccused());
+    public void setFalseAccused() throws Exception {
+        assertFalse(testNpc.isFalseAccused());
 
-        testNpc.setFalselyAccused();
+        testNpc.setFalseAccused(true);
 
-        assertTrue(testNpc.getFalselyAccused());
+        assertTrue(testNpc.isFalseAccused());
     }
 
     @Test
     public void getFalselyAccused() throws Exception {
-        assertNotNull(testNpc.getFalselyAccused());
-        assertFalse(testNpc.getFalselyAccused());
+        assertNotNull(testNpc.isFalseAccused());
+        assertFalse(testNpc.isFalseAccused());
     }
 
     @Test
