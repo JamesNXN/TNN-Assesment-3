@@ -20,8 +20,7 @@ public class NavigationScreen extends AbstractScreen
     /**
      * The controller that listens for key inputs
      */
-    public PlayerController playerController;
-    public GamePadController gamePadController;
+    private PlayerController playerController;
 
     private GameWorld gameWorld;
     private Gui gui;
@@ -30,7 +29,7 @@ public class NavigationScreen extends AbstractScreen
      * Initialises the navigation screen
      *
      * @param game - The main game instance
-     * @param selectedPlayer
+     * @param selectedPlayer The detective that the player selected
      */
 
 
@@ -56,11 +55,7 @@ public class NavigationScreen extends AbstractScreen
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(gui.getGuiStage());
         multiplexer.addProcessor(playerController);
-        multiplexer.addProcessor(gameWorld.getConversationManager());
         Gdx.input.setInputProcessor(multiplexer);
-
-//        Controllers.addListener(gamePadController);
-
     }
 
     /**

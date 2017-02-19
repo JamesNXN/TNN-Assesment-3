@@ -1,7 +1,10 @@
 package me.lihq.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
@@ -19,6 +22,8 @@ public class ConversationManager extends InputAdapter{
 
     private SpeechBubble currentSpeech;
     private boolean isFinished = false;
+
+    private InputProcessor previousInputProcessor;
 
     public ConversationManager(Skin skin){
         this.skin = skin;
@@ -41,6 +46,8 @@ public class ConversationManager extends InputAdapter{
 
     public void startConversation(Stage stage){
         this.stage = stage;
+        previousInputProcessor = Gdx.input.getInputProcessor();
+        Gdx.input.setInputProcessor(this);
 
         currentSpeech = speechBubbleQueue.removeFirst();
         currentSpeech.show(stage);
@@ -49,9 +56,11 @@ public class ConversationManager extends InputAdapter{
     private void nextSpeech(){
         currentSpeech.hide();
         if (speechBubbleQueue.size != 0) {
-            startConversation(stage);
+            currentSpeech = speechBubbleQueue.removeFirst();
+            currentSpeech.show(stage);
         }
         else{
+            Gdx.input.setInputProcessor(previousInputProcessor);
             isFinished = true;
         }
     }
@@ -81,14 +90,14 @@ public class ConversationManager extends InputAdapter{
 
     @Override
     public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.SPACE){
+            nextSpeech();
+        }
         return true;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        if (keycode == Input.Keys.SPACE){
-            nextSpeech();
-        }
         return true;
     }
 }

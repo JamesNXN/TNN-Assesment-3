@@ -2,6 +2,7 @@ package me.lihq.game.people;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.Collidable;
@@ -121,7 +122,7 @@ public class Player extends AbstractPerson
         super.act(delta);
 
         if (!isInConversation()){
-            gameWorld.setCameraPosition(getX() + getWidth()/2, getY());
+            gameWorld.setTargetCameraPosition(getDefaultCameraFocusX(), getDefaultCameraFocusY());
         }
 
         RoomArrow arrow = roomArrowCollisionDetection(collisionBox);
@@ -202,5 +203,17 @@ public class Player extends AbstractPerson
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    /**
+     * Returns the points that the camera will be centred. Change the values to change the focus points.
+     * @return camera focus origin coordinate
+     */
+    public float getDefaultCameraFocusX(){
+        return getX() + getWidth()/2;
+    }
+
+    public float getDefaultCameraFocusY(){
+        return getY();
     }
 }

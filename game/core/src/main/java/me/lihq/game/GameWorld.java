@@ -1,5 +1,6 @@
 package me.lihq.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -37,7 +38,8 @@ public class GameWorld {
 
     private CustomTiledMapRenderer tiledMapRenderer;
 
-    private Vector2 cameraPosition;
+    private Vector2 targetCameraPosition;
+    private float targetCameraZoom;
 
     private ConversationManager conversationManager;
 
@@ -58,7 +60,8 @@ public class GameWorld {
         player.setTilePosition(randomLocation.x, randomLocation.y);
         player.setGameWorld(this);
 
-        cameraPosition = new Vector2(player.getX() + player.getWidth()/2, player.getY());
+        targetCameraPosition = new Vector2(player.getX() + player.getWidth()/2, player.getY());
+        targetCameraZoom = ((OrthographicCamera)(gameWorldStage.getCamera())).zoom;
 
         characterGroup = new Group();
         characterGroup.setName("characterGroup");
@@ -141,6 +144,17 @@ public class GameWorld {
 
             gui.setRoomTag(entryRoom);
 
+            //prevents camera lerp when moving between rooms
+            OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
+            camera.position.x = player.getDefaultCameraFocusX();
+            camera.position.y = player.getDefaultCameraFocusY();
+            targetCameraPosition.x = camera.position.x;
+            targetCameraPosition.y = camera.position.y;
+            camera.update();
+
+            tiledMapRenderer.setRenderingRoom(player.getCurrentRoom());
+            tiledMapRenderer.setView((OrthographicCamera) gameWorldStage.getCamera());
+
             player.setCanMove(true);
         });
 
@@ -156,9 +170,9 @@ public class GameWorld {
 
         conversationManager.startConversation(gui.getGuiStage());
 
-        cameraPosition.set((player.getX() + interactingNpc.getRight())/2, (player.getTop() + interactingNpc.getY())/2);
+        targetCameraPosition.set((player.getX() + interactingNpc.getRight())/2, (player.getTop() + interactingNpc.getY())/2);
         OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
-        camera.zoom -= 0.5;
+        targetCameraZoom = camera.zoom - 0.5f;
     }
 
     public void haltInteraction(){
@@ -166,20 +180,25 @@ public class GameWorld {
             person.setInConversation(false);
         }
 
-        cameraPosition.set(player.getX() + player.getWidth()/2, player.getY());
+        targetCameraPosition.set(player.getDefaultCameraFocusX(), player.getDefaultCameraFocusY());
         OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
-        camera.zoom += 0.5;
+        targetCameraZoom = camera.zoom + 0.5f;
     }
 
     public void render(float delta){
+        System.out.println(gameWorldStage.getCamera().position);
+
         if (conversationManager.isFinished()){
             conversationManager.setFinished(false);
             haltInteraction();
         }
 
-        gameWorldStage.getCamera().position.x = cameraPosition.x;
-        gameWorldStage.getCamera().position.y = cameraPosition.y;
-        gameWorldStage.getCamera().update();
+        //camera move lerp effect
+        OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
+        camera.position.x = camera.position.x + (targetCameraPosition.x - camera.position.x) * 0.2f;
+        camera.position.y = camera.position.y + (targetCameraPosition.y - camera.position.y) * 0.2f;
+        camera.zoom = camera.zoom + (targetCameraZoom - camera.zoom) * 0.4f;
+        camera.update();
 
         tiledMapRenderer.setRenderingRoom(player.getCurrentRoom());
         tiledMapRenderer.setView((OrthographicCamera) gameWorldStage.getCamera());
@@ -207,17 +226,9 @@ public class GameWorld {
         return gui;
     }
 
-    public ConversationManager getConversationManager() {
-        return conversationManager;
-    }
-
-    public Vector2 getCameraPosition() {
-        return cameraPosition;
-    }
-
-    public void setCameraPosition(float x, float y) {
-        this.cameraPosition.x = x;
-        this.cameraPosition.y = y;
+    public void setTargetCameraPosition(float x, float y) {
+        this.targetCameraPosition.x = x;
+        this.targetCameraPosition.y = y;
     }
 
     public void dispose(){
