@@ -7,7 +7,7 @@
     "dialogue":{
       "introduction": "Hello young detective!",
       "failResponses": [
-        "Sorry I am a little busy for questions right now.",
+        "Sorry I am a little too busy for questions right now.",
         "And why do you think I would help you.",
         "I am not telling you."
       ]
@@ -80,10 +80,10 @@
     "description": "Will is dressed in an explorers outfit. \nHe organised catering team for the party.",
     "personality":"NEUTRAL",
     "dialogue": {
-      "introduction" : "Hello",
+      "introduction" : "Hello can i help you?",
       "failResponses": [
         "Sorry I have some graphics to render.",
-        "And why would i help you.",
+        "And why would i help you?",
         "I am not telling you."
       ]
     }
@@ -140,7 +140,7 @@
     "description": "Tom is dressed in brown with an white hair. \nHe is teacher at the university who came to the party to escape marking work for a night",
     "personality":"NEUTRAL",
     "dialogue": {
-      "introduction" : "Hello.",
+      "introduction" : "Hello do you need help with your work?",
       "failResponses": [
         "Sorry I have some emails need to reply right now.",
         "I don't think you really want me to help.",

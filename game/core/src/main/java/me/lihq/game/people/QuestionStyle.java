@@ -1,7 +1,7 @@
 package me.lihq.game.people;
 
 /**
- * Question Style the player can use to question Npc;
+ * Question Style the player can use to question NPC;
  */
 
 public enum QuestionStyle {
@@ -10,8 +10,5 @@ public enum QuestionStyle {
 
     NEUTRAL,
 
-    AGGRESSIVELY;
-
-
-
+    AGGRESSIVELY
 }

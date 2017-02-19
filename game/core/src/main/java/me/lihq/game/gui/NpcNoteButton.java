@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 class NpcNoteButton extends GuiButton {
     NpcNoteButton(Skin skin, Gui gui) {
-        super(skin, "Npc List", gui);
+        super(skin, "NPC List", gui);
 
         addListener(new ChangeListener() {
             @Override

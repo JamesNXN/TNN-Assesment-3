@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.GameTester;
-import me.lihq.game.people.Npc;
+import me.lihq.game.people.NPC;
 
 import org.junit.After;
 import org.junit.Before;
@@ -25,8 +25,8 @@ public class InventoryUnitTests extends GameTester {
     private Clue testClue2;
     private Clue testWeapon;
 
-    private Npc testNpc1;
-    private Npc testNpc2;
+    private NPC testNpc1;
+    private NPC testNpc2;
 
     private Hint testHint1;
     private Hint testHint2;
@@ -55,8 +55,8 @@ public class InventoryUnitTests extends GameTester {
         JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
         TextureAtlas testSprite = new TextureAtlas(GameTester.ASSEST_FOLDER + "colin.pack");
-        testNpc1 = new Npc(npcJsonDataArray.get(0), testSprite);
-        testNpc2 = new Npc(npcJsonDataArray.get(1), testSprite);
+        testNpc1 = new NPC(npcJsonDataArray.get(0), testSprite);
+        testNpc2 = new NPC(npcJsonDataArray.get(1), testSprite);
 
         testHint1 = new Hint(testClue1);
         testHint2 = new Hint(testClue2);
@@ -120,7 +120,7 @@ public class InventoryUnitTests extends GameTester {
 
         testInventory.addCharacter(testNpc1);
 
-        assertEquals("array does not contain correct Npc", testNpc1, testInventory.getMetCharacters().peek());
+        assertEquals("array does not contain correct NPC", testNpc1, testInventory.getMetCharacters().peek());
 
     }
 
@@ -160,10 +160,10 @@ public class InventoryUnitTests extends GameTester {
     public void addNewCharacter() throws Exception {
 
         testInventory.addCharacter(testNpc1);
-        assertEquals("first Npc not added", testNpc1, testInventory.getMetCharacters().peek());
+        assertEquals("first NPC not added", testNpc1, testInventory.getMetCharacters().peek());
 
         testInventory.addCharacter(testNpc2);
-        assertEquals("second Npc not added", testNpc2, testInventory.getMetCharacters().peek());
+        assertEquals("second NPC not added", testNpc2, testInventory.getMetCharacters().peek());
 
         assertEquals(2, testInventory.getMetCharacters().size);
 
