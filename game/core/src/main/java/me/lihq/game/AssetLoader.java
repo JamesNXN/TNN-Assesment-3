@@ -27,45 +27,38 @@ import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeT
 /**
  * This class defines the assetLoader that the game uses.
  */
-public class AssetLoader
-{
+public class AssetLoader {
+
+    /**
+     * Parameters needed for AssetLoader object:
+     *
+     * manager - a LibGDX AssetManager object used to load data
+     * splash - The 2 seperate frames for the splash screen
+     * arrowAtlas -  These TextureRegions store the 4 different directions that the room changing arrows can face.
+     * playerSpriteSheetArray, npcSpriteSheetMapArray - Sprite sheets for abstract person objects
+     * mapArray - map Data
+     * roomTagBorder - Texture for the RoomTag
+     * roomTagFont - Default roomTagFont for the game. Used in RoomTag
+     * clueGlint - Sprite sheet for the clue glint to be drawn where a clue is hidden
+     * menuSkin - skin for main menu
+     * uiskin - skin for UI elements
+     * npcJsonData, playerJsonData, clueJsonData - Data loaded in from json for npcs, players and clues
+     */
     private AssetManager manager;
 
-    /**
-     * The 2 separate frames for the splash screen
-     */
     public TextureAtlas splash;
 
-    /**
-     * These TextureRegions store the 4 different directions that the room changing
-     * arrows can face.
-     */
     public TextureAtlas arrowAtlas;
 
-    /**
-     *  Sprite sheets for abstract person objects
-     */
     public ArrayMap<Integer, TextureAtlas> playerSpriteSheetArray;
     public ArrayMap<Integer, TextureAtlas> npcSpriteSheetMapArray;
 
-    /**
-     * map data
-     */
     public Array<TiledMap> mapArray;
 
-    /**
-     * Texture for the RoomTag {@link RoomTag}
-     */
     public Texture roomTagBorder;
 
-    /**
-     * Default roomTagFont for the game. Used in RoomTag
-     */
     public BitmapFont roomTagFont;
 
-    /**
-     * Sprite sheet for the clue glint to be drawn where a clue is hidden
-     */
     public TextureAtlas clueGlint;
 
     public Skin menuSkin;
@@ -76,7 +69,9 @@ public class AssetLoader
     public JsonValue playerJsonData;
     public JsonValue clueJsonData;
 
-
+    /**
+     * Constructor to build AssetLoader object
+     */
     public AssetLoader(){
         manager = new AssetManager();
         mapArray = new Array<>();
@@ -85,18 +80,21 @@ public class AssetLoader
     }
 
     /**
-     * Load assetLoader used for splash screen
+     * loads asset into manager for the splash screen
      */
     public void loadSplashAssets(){
         manager.load("splash.pack",TextureAtlas.class);
     }
 
+    /**
+     * retrieves asset from manager for the splash screen
+     */
     public void assignSplashAssets(){
         splash = manager.get("splash.pack");
     }
 
     /**
-     * Load assetLoader used for the game onto asset manager
+     * loads in game assets into manager
      */
     public void loadGameAssets(){
         manager.load("skin/uiskin.json", Skin.class);
@@ -137,7 +135,7 @@ public class AssetLoader
     }
 
     /**
-     * Assign all the game assetLoader that have been loaded by asset manager
+     *  retrieves assets from manager and assigns them correctly
      */
     public void assignGameAssets()
     {
@@ -200,6 +198,9 @@ public class AssetLoader
         initSkin();
     }
 
+    /**
+     * Builds menu Skin and ui skin from assets
+     */
     private void initSkin()
     {
         menuSkin = new Skin();
@@ -254,10 +255,17 @@ public class AssetLoader
         return font;
     }
 
+    /**
+     * getter for manager
+     * @return returns manager
+     */
     public AssetManager getManager() {
         return manager;
     }
 
+    /**
+     * Called when AssetLoader is disposed ensures manager object is also disposed
+     */
     public void dispose(){
         manager.dispose();
     }

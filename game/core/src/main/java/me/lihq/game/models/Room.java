@@ -15,35 +15,37 @@ import me.lihq.game.people.Npc;
  */
 public class Room
 {
+
     /**
-     * This list stores the coordinates of all hideable slots in this room
-     * <p>
-     * Hideable slots are tiles that the clues can be hidden in
+     * Parameters needed by Room Object:
+     *
+     * hidingSpots - an array that stores coordinates of spots that clues could be hidden in
+     * name - a unique name for the room used for displaying the name of the room in game
+     * id - a unique id used for identifying the room
+     * mapFile - the tmx map file used to create the room
+     * clueArray - an array of clues that are in the room
+     * npcArray - an array of npcs that are in the room
+     * exitArray - an array of door objects that allow the player to leave the room and enter another
+     * entryArray - an array of door objects that allow the player to enter the room from another room
+     * roomArrowArray - an array of arrow objects that are rendered when the player gets close to a door
+     * isMurderRoom - a boolean value defining whether or not the murder occurred in the room
      */
+
     private Array<Vector2Int> hidingSpots;
-
     private String name;
-
     private int ID;
-    /**
-     * The string that points to the tmx map file for this room.
-     */
     private TiledMap mapFile;
-    /**
-     * This is a list of the clues in the room.
-     */
     private Array<Clue> clueArray;
     private Array<Npc> npcArray;
     private Array<Door> exitArray;
     private Array<Door> entryArray;
     private Array<RoomArrow> roomArrowArray;
-
     private boolean isMurderRoom = false;
 
     /**
-     * Constructor that builds a Room object from the given parameters
-     *
-     * @param map - Tmx map file.
+     * Constructor used for creating the room object
+     * @param map - map file
+     * @param roomArrowAtlas - texture file
      */
     public Room(TiledMap map, TextureAtlas roomArrowAtlas) {
         this.ID = (int) map.getProperties().get("id");
@@ -85,28 +87,26 @@ public class Room
         return false;
     }
 
-    public boolean isMurderRoom()
-    {
-        return isMurderRoom;
+    /**
+     * This method checks if the tile the player or NPC would walk onto
+     * would cause a collision or not
+     * @param x - x coordinate of tile
+     * @param y - y coordinate of tile
+     * @return (boolean) Returns true if no collision would occur
+     */
+    public boolean isWalkableTile(int x, int y) {
+        TiledMapTileLayer layer = (TiledMapTileLayer) mapFile.getLayers().get("Collision");
+        if (layer.getCell(x, y) == null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-
-    public void setMurderRoom(boolean murderRoom)
-    {
-        this.isMurderRoom = murderRoom;
-        System.out.println("Room " + getID() + " is the murder room");
-    }
-
-    public int getID()
-    {
-        return this.ID;
-    }
-
-    public String getName()
-    {
-        return this.name;
-    }
-
+    /**
+     * This method adds a clue into the room if it does not already contain the same clue
+     * @param newClue - clue to be added to the room
+     */
     public void addClue(Clue newClue)
     {
         System.out.println("Added Clue " + newClue.getName() + " at location " + newClue.getTilePosition() + " in room " + getID());
@@ -116,9 +116,17 @@ public class Room
         }
     }
 
+    /**
+     * This method adds an npc into the room
+     * @param npc - npc to be added
+     */
     public void addNPC(Npc npc){
         npcArray.add(npc);
     }
+
+    /**
+     * Getters and setters needed for use by other classes
+     */
 
     public Array<Npc> getNpcArray(){
         return npcArray;
@@ -138,11 +146,6 @@ public class Room
 
     public Array<RoomArrow> getRoomArrowArray(){ return roomArrowArray; }
 
-    /**
-     * Gets exit tiles of the room
-     *
-     * @return a String representing the direction they are facing
-     */
     private Array<Door> getExit()
     {
         MapLayer layer = mapFile.getLayers().get("Transition");
@@ -181,37 +184,31 @@ public class Room
         return this.mapFile;
     }
 
-    /**
-     * This will check the map for any potential hiding locations, and add them as a list of coordinates
-     *
-     */
-    public Array<Vector2Int> getHidingSpots()
+
+
+    public boolean isMurderRoom()
     {
-        TiledMapTileLayer layer = (TiledMapTileLayer) mapFile.getLayers().get("HidingSpot");
-        int roomTileWidth = layer.getWidth();
-        int roomTileHeight = layer.getHeight();
-
-        Array<Vector2Int> spots = new Array<>();
-
-        for (int x = 0; x < roomTileWidth; x++) {
-            for (int y = 0; y < roomTileHeight; y++) {
-                TiledMapTileLayer.Cell cellInTile = layer.getCell(x, y);
-
-                if (cellInTile != null) {
-                    spots.add(new Vector2Int(x, y));
-                    break;
-                }
-            }
-        }
-        return spots;
+        return isMurderRoom;
     }
 
 
-    /**
-     * This gets a random possible location to hide a clue in
-     *
-     * @return (Vector2Int) Coordinates of the tile where the clue is to be hidden, null if there are none available
-     */
+    public void setMurderRoom(boolean murderRoom)
+    {
+        this.isMurderRoom = murderRoom;
+        System.out.println("Room " + getID() + " is the murder room");
+    }
+
+    public int getID()
+    {
+        return this.ID;
+    }
+
+    public String getName()
+    {
+        return this.name;
+    }
+
+
     public Vector2Int getRandHidingSpot()
     {
         if (hidingSpots.size!= 0) {
@@ -221,11 +218,6 @@ public class Room
         }
     }
 
-    /**
-     * This method returns a random location in the room that is walkable
-     *
-     * @return (Vector2Int) the random walkable tile generated.
-     */
     public Vector2Int getRandomLocation()
     {
         int roomWidth = ((TiledMapTileLayer) getTiledMap().getLayers().get("Collision")).getWidth();
@@ -243,15 +235,28 @@ public class Room
 
         return possibleLocations.random();
     }
+    /**
+    * This will check the map for any potential hiding locations, and add them as a list of coordinates
+    *
+    */
+    public Array<Vector2Int> getHidingSpots() {
+        TiledMapTileLayer layer = (TiledMapTileLayer) mapFile.getLayers().get("HidingSpot");
+        int roomTileWidth = layer.getWidth();
+        int roomTileHeight = layer.getHeight();
 
-    public boolean isWalkableTile(int x, int y) {
-        TiledMapTileLayer layer = (TiledMapTileLayer) mapFile.getLayers().get("Collision");
-        if (layer.getCell(x, y) == null){
-            return true;
+        Array<Vector2Int> spots = new Array<>();
+
+        for (int x = 0; x < roomTileWidth; x++) {
+            for (int y = 0; y < roomTileHeight; y++) {
+                TiledMapTileLayer.Cell cellInTile = layer.getCell(x, y);
+
+                if (cellInTile != null) {
+                    spots.add(new Vector2Int(x, y));
+                    break;
+                }
+            }
         }
-        else{
-            return false;
-        }
+        return spots;
     }
 }
 

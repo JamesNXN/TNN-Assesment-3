@@ -2,17 +2,21 @@ package me.lihq.game.models;
 
 /**
  * This class defines a 2D vector to represent coordinates within the game.
+ * coordinates (0,0) is bottom left most tile
  */
 public class Vector2Int
 {
     /**
-     * x and y coordinates of the object
+     * Parameters needed for Vector2Int object:
+     *
+     * x - the x coordinate of the object or tile
+     * y - the y coordinate of the object or tile
      */
     public int x;
     public int y;
 
     /**
-     * Creates a new Vector2Int object.
+     * Constructor for creating a new Vector2Int object.
      *
      * @param x - x coordinate.
      * @param y - y coordinate.
@@ -23,6 +27,9 @@ public class Vector2Int
         this.y = y;
     }
 
+    /**
+     * Constructor used when coordinates can be initialised at (0,0)
+     */
     public Vector2Int(){
         this.x = 0;
         this.y = 0;

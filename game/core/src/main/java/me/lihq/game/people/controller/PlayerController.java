@@ -95,6 +95,11 @@ public class PlayerController extends InputAdapter
         return false;
     }
 
+    /**
+     * This method is called when a key is released
+     * @param keycode - the keycode of the key that was released
+     * @return (boolean) - Returns true if the event was handled correctly and false if not
+     */
     @Override
     public boolean keyUp(int keycode) {
         if (keycode == Input.Keys.LEFT || keycode == Input.Keys.A) {

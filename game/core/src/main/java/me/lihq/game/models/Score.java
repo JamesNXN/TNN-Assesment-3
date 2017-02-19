@@ -3,6 +3,9 @@ package me.lihq.game.models;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
+/**
+ * Score class is a singleton class used to keep track of the players score
+ */
 public class Score {
     private static Score instance = new Score();
 
@@ -20,6 +23,9 @@ public class Score {
 
     private int failedAccusationCount;
 
+    /**
+     * Score constructor
+     */
     private Score() {
         highScore = Gdx.app.getPreferences("pref").getInteger("highScore", 0);
         currentScore = 0;

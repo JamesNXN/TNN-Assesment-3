@@ -22,29 +22,37 @@ import me.lihq.game.models.Vector2Int;
  */
 public abstract class AbstractPerson extends Actor implements Collidable, TileObject {
 
-
     /**
-     * The height of the texture region for each person
-     */
+    * Parameters needed by AbstractPerson:
+     *
+     * SPRITE_HEIGHT - The height of the texture region for each person
+     * SPRITE_WIDTH - The width of the texture region for each person
+     * canMove - A boolean value defining whether the person can move or not. It's main use is to not allow characters to move during room transition or conversations
+     * isInConversation - A boolean value defining whether the person is in a conversation or not
+     * MOVE_SPEED - defines the speed at which people will move
+     * tilePosition - This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room.
+     *                Uses the Vector2Int as the tilePosition should never be floats as the person should only be between tiles during the move process.
+     * animStateTime - defines the animations current state in terms of time
+     * walkUp, walkDown, walkRight and walkLeft - contains the animation for walking in different directions
+     * collisionBox - A Rectangle object used for detecting collisions between actors in LibGDX
+     * direction - determines the direction the character is facing
+     * state - defines whether the person is walking or standing
+     * jsonData - information about the person as imported via json
+     * id - the unique id number of the person
+     * name - the name of the person
+     * description - the description of the person
+     * currentRoom - the room the person is currently in
+    */
+
     private final int SPRITE_HEIGHT = 48;
-
-    /**
-     * The width of the texture region for each person
-     */
     private final int SPRITE_WIDTH = 32;
-    /**
-     * This is whether the Npc can move or not. It is mainly used to not let them move during conversation or room transition
-     */
+
     private boolean canMove = true;
 
     private boolean isInConversation = false;
 
     private final float MOVE_SPEED = 500f;
 
-    /**
-     * This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room
-     * Uses the Vector2Int as the tilePosition should never be floats as the person should only be between tiles during the move process.
-     */
     protected Vector2Int tilePosition = new Vector2Int(0, 0);
 
     private float animStateTime = 0;
@@ -55,35 +63,25 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
     public Animation<TextureRegion> walkLeft;
 
     protected Rectangle collisionBox;
-    /**
-     * The direction determines the way the character is facing.
-     */
+
     protected Direction direction = Direction.SOUTH;
-    /**
-     * This is the current walking state of the Person. {@link #getState()}
-     */
+
     private PersonState state;
 
     private JsonValue jsonData;
 
     private int id;
-    /**
-     * The Name of the Person
-     */
+
     private String name;
 
-    /**
-     * The person's description
-     */
     private String description;
-    /**
-     * The current room of the AbstractPerson.
-     */
+
     private Room currentRoom;
 
 
     /**
-     * This constructs the player calling super on the sprite class
+     * This constructor is called by player and npc to load the json and texture data
+     * correctly such that the appropriate object is created
      *
      * @param jsonData    - The json data of the Person
      * @param spriteSheet - this the texture for the sprite
@@ -108,52 +106,6 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
         walkLeft = new Animation<>(0.1f, spriteSheet.findRegions("walkLeft"));
     }
 
-    /**
-     * This method returns the Persons walking state.
-     * Either WALKING or STANDING
-     *
-     * @return (PersonState) the current state of the Person
-     */
-    public PersonState getState() {
-        return state;
-    }
-
-    public void setState(PersonState state) {
-        this.state = state;
-    }
-
-    @Override
-    public void setTilePosition(int x, int y) {
-        tilePosition.x = x;
-        tilePosition.y = y;
-
-        //screen position in pixels
-        setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
-    }
-
-
-    @Override
-    public void act(float delta) {
-        //offset given in order to align the box in the mid bottom of the character
-        collisionBox.setPosition(getX() + getWidth() / 2 - collisionBox.getWidth() / 2, getY());
-
-        if (state == PersonState.WALKING) {
-            animStateTime += delta;
-
-            float vectorDistanceX = direction.getDx() * MOVE_SPEED * delta;
-            float vectorDistanceY = direction.getDy() * MOVE_SPEED * delta;
-            collisionBox.setPosition(collisionBox.x + vectorDistanceX, collisionBox.y + vectorDistanceY);
-
-            if (!wallCollisionDetection(collisionBox) && !characterCollisionDetection(collisionBox)) {
-                moveBy(vectorDistanceX, vectorDistanceY);
-            }
-        } else {
-            tilePosition.x = (int) (getX() / Settings.TILE_SIZE);
-            tilePosition.y = (int) (getY() / Settings.TILE_SIZE);
-            animStateTime = 0;
-        }
-        super.act(delta);
-    }
 
     /**
      * Detects collision with wall
@@ -197,6 +149,32 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
         return characterCollision;
     }
 
+    /**
+     * Act and Draw methods needed by LibGDX to render the object correctly
+     */
+    @Override
+    public void act(float delta) {
+        //offset given in order to align the box in the mid bottom of the character
+        collisionBox.setPosition(getX() + getWidth() / 2 - collisionBox.getWidth() / 2, getY());
+
+        if (state == PersonState.WALKING) {
+            animStateTime += delta;
+
+            float vectorDistanceX = direction.getDx() * MOVE_SPEED * delta;
+            float vectorDistanceY = direction.getDy() * MOVE_SPEED * delta;
+            collisionBox.setPosition(collisionBox.x + vectorDistanceX, collisionBox.y + vectorDistanceY);
+
+            if (!wallCollisionDetection(collisionBox) && !characterCollisionDetection(collisionBox)) {
+                moveBy(vectorDistanceX, vectorDistanceY);
+            }
+        } else {
+            tilePosition.x = (int) (getX() / Settings.TILE_SIZE);
+            tilePosition.y = (int) (getY() / Settings.TILE_SIZE);
+            animStateTime = 0;
+        }
+        super.act(delta);
+    }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         TextureRegion currentFrame = null;
@@ -223,6 +201,25 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
 
         batch.draw(currentFrame, getX(), getY(), getOriginX(), getOriginY(), SPRITE_WIDTH, SPRITE_HEIGHT, getScaleX(), getScaleY(), getRotation());
         batch.setColor(color);
+    }
+    /**
+     * Getters and setters needed for use by other classes
+     */
+    public PersonState getState() {
+        return state;
+    }
+
+    public void setState(PersonState state) {
+        this.state = state;
+    }
+
+    @Override
+    public void setTilePosition(int x, int y) {
+        tilePosition.x = x;
+        tilePosition.y = y;
+
+        //screen position in pixels
+        setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
     }
 
     public JsonValue getJsonData() {

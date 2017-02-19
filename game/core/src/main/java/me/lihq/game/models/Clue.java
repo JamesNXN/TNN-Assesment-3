@@ -30,6 +30,7 @@ public class Clue extends Actor implements Collidable, TileObject {
      * clueGlint - animated texture that contains the animation needed for the clueGlint
      * animStateTime - the time state of the clueGlint animation needed to render the animated texture
      * collisionBox - a rectangle box needed by LibGDX to calculate collisions between actors
+     * isFound - a boolean value used to determine whether the player has found the clue or not
      * clueType - a enum value used to determine whether the clue is a weapon, motive or other clue
      */
     private String name;

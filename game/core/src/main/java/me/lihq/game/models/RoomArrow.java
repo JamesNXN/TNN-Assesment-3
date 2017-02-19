@@ -14,16 +14,29 @@ import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.Direction;
 
 /**
- * This is the arrow the indicates the movement to a new room when the player is on a floor mat.
+ * This is the arrow that indicates the movement to a new room when the player gets close to a door
  */
-public class RoomArrow extends Actor implements TileObject, Collidable
-{
+public class RoomArrow extends Actor implements TileObject, Collidable {
+
+    /**
+     * Parameters needed by RoomArrow object:
+     *
+     * image - a TextureRegion used by the object when being rendered on screen
+     * direction - the direction the arrow needs to be pointing in
+     * tilePosition - the tilePosition that the arrow will appear at on screen
+     * collisionBox - a collision box used to detect when the arrow should be rendered
+     */
     private TextureRegion image;
     private Direction direction;
     private Vector2Int tilePosition;
 
     private Rectangle collisionBox;
 
+    /**
+     * Constructor used to create the RoomArrow object
+     * @param exit - exit door the arrow needs to point to
+     * @param arrowAtlas - texture file for the arrow
+     */
     public RoomArrow(Door exit, TextureAtlas arrowAtlas)
     {
         direction = exit.getDirection();
@@ -38,6 +51,19 @@ public class RoomArrow extends Actor implements TileObject, Collidable
         setVisible(false);
     }
 
+    /**
+     * Method needed by LibGDX to render the object correctly
+     */
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        // draw it in the center
+        batch.draw(image, getX() + collisionBox.getWidth() / 2 - getWidth() / 2,
+                getY() + collisionBox.getHeight() / 2 - getHeight() / 2, getWidth(), getHeight());
+    }
+
+    /**
+     * getters and setters needed
+     */
     private TextureRegion getArrowTexture(TextureAtlas atlas, Direction direction){
         TextureRegion arrowTexture = null;
         switch (direction){
@@ -58,13 +84,6 @@ public class RoomArrow extends Actor implements TileObject, Collidable
                 break;
         }
         return arrowTexture;
-    }
-
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        // draw it in the center
-        batch.draw(image, getX() + collisionBox.getWidth() / 2 - getWidth() / 2,
-                getY() + collisionBox.getHeight() / 2 - getHeight() / 2, getWidth(), getHeight());
     }
 
     @Override

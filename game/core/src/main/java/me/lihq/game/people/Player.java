@@ -15,20 +15,24 @@ import me.lihq.game.models.RoomArrow;
 /**
  * This class defines the player that the person playing the game will be represented by.
  */
-public class Player extends AbstractPerson
-{
+public class Player extends AbstractPerson {
+
+    /**
+     * Parameters needed for player:
+     *
+     * gameWorld - contains a reference to the game world object
+     * dialogue - contains the players dialogue information
+     * inventory - This object stores the clues and hints the player has collected and the npc's they have spoken to.
+     * personalityLevel - The personality will be a percent score (0-100) 0 being angry, 50 being neutral, and 100 being happy/nice.
+     * interactionCollisionBox - a collision box used to calculate whether or not an interaction should occur.
+     */
+
     private GameWorld gameWorld;
 
     private PlayerDialogue dialogue;
 
-    /**
-     * This object stores the clues and hints the player has collected and the npc's they have spoken to.
-     */
     private Inventory inventory = new Inventory();
 
-    /**
-     * The personality will be a percent score (0-100) 0 being angry, 50 being neutral, and 100 being happy/nice.
-     */
     private int personalityLevel;
 
     private Rectangle interactionCollisionBox;
@@ -50,6 +54,10 @@ public class Player extends AbstractPerson
         interactionCollisionBox.setSize(collisionBox.getWidth(), collisionBox.getHeight());
     }
 
+    /**
+     * This method sets the game world pointer
+     * @param gameWorld - game world object
+     */
     public void setGameWorld(GameWorld gameWorld){
         this.gameWorld = gameWorld;
     }
@@ -117,6 +125,10 @@ public class Player extends AbstractPerson
         }
     }
 
+    /**
+     * Act method required by LibGDX to render the player correctly allowing the player model to move
+     */
+
     @Override
     public void act(float delta) {
         super.act(delta);
@@ -140,6 +152,12 @@ public class Player extends AbstractPerson
         }
     }
 
+    /**
+     * This method detects collisions between the players collision box
+     * and the room arrow objects
+     * @param collisionBox - players collision box
+     * @return returns an arrow object if a collision is detected
+     */
     private RoomArrow roomArrowCollisionDetection(Rectangle collisionBox){
         Array<RoomArrow> arrowArray = getCurrentRoom().getRoomArrowArray();
 
@@ -167,6 +185,10 @@ public class Player extends AbstractPerson
         return null;
     }
 
+    /**
+     * Getter for player dialogue
+     * @return - returns the players dialogue
+     */
     @Override
     public PlayerDialogue getDialogue() {
         return dialogue;
@@ -201,6 +223,10 @@ public class Player extends AbstractPerson
         return this.personalityLevel;
     }
 
+    /**
+     * Getter for the players inventory
+     * @return returns inventory object
+     */
     public Inventory getInventory() {
         return inventory;
     }

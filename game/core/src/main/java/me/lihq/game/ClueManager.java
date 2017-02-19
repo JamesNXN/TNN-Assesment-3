@@ -8,7 +8,15 @@ import me.lihq.game.models.Clue;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 
+/**
+ * Clue manager handles creating and assigning clues to rooms
+ */
 public class ClueManager {
+    /**
+     * Parameters needed for ClueManager:
+     *
+     * clueArray - array of created clues
+     */
     private Array<Clue> clueArray;
 
     public ClueManager(RoomManager roomManager, AssetLoader assetLoader){
@@ -38,6 +46,10 @@ public class ClueManager {
         }
     }
 
+    /**
+     * Getter for created clues
+     * @return returns the  clue array
+     */
     public Array<Clue> getClueArray() {
         return clueArray;
     }

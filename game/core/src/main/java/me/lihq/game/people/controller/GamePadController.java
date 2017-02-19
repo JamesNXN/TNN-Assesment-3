@@ -5,17 +5,18 @@ import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerListener;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
-import me.lihq.game.Settings;
-import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.Direction;
 import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
 
+/**
+ * THIS CLASS IS CURRENTLY NOT FULLY IMPLEMENTED
+ */
 
 /**
  * This class allows the game to be played using a controller
- * it binds on top of the PlayerController class so that the game logic
- * does not need to be changed at all to make this addition.
+ * it should always be capable of performing all actions possible
+ * that the player controller can do in some way
  */
 public class GamePadController implements ControllerListener {
     /**

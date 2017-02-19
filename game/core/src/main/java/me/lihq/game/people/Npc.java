@@ -10,41 +10,41 @@ import me.lihq.game.models.Clue;
 /**
  * The class which is responsible for the non-playable characters within the game that the player will meet.
  */
-public class Npc extends AbstractPerson
-{
+public class Npc extends AbstractPerson {
+    /**
+     * Parameters needed by Npc object:
+     *
+     * dialogue - contains the npc's dialogue information
+     * isKiller - boolean value that defines whether or not the npc is the murderer
+     * isVictim - boolean value that defines whether or not the npc is the victim
+     * isFalseAccused - boolean value that defines whether the npc has been falsely accused by the player
+     * exhaustedClues - an array of clues containing the clues the player has successfully questioned the npc with
+     * personality - contains the personality of the npc
+     * randomTimeLimit - the amount of time that the npc will either stand still or walk for
+     * randomTimeSum - the amount of time that the npc has spent either stood still or walking
+     * randomMoveToggle - a boolean that contains whether the npc will randomly walk around or stand still is toggled randomly
+     */
     private NpcDialogue dialogue;
 
     private boolean isKiller = false;
     private boolean isVictim = false;
-
     private boolean isFalseAccused = false;
 
-    /**
-     * Used in questioning for more info check Interaction class
-     */
     private Array<Clue> exhaustedClues = new Array<>();
 
     private Personality personality;
 
-    /**
-     * The time that Npc will either stand still or walk
-     */
     private float randomTimeLimit = 0;
 
-    /**
-     * The time sum that Npc has either stood still or walk
-     */
     private float randomTimeSum = 0;
 
-    /**
-     * Toggle for random walk/stand
-     */
     private boolean randomMoveToggle = false;
 
     /**
-     * Define an Npc
+     * Constructor used to create Npc Objects
      *
-     * @param spriteSheet - Sprite sheet for this Npc
+     * @param jsonData - jsonData required to create the object
+     * @param spriteSheet - textures for the object
      */
     public Npc(JsonValue jsonData, TextureAtlas spriteSheet)
     {
@@ -56,6 +56,9 @@ public class Npc extends AbstractPerson
         this.personality = json.readValue("personality", Personality.class, jsonData);
     }
 
+    /**
+     * Act method needed to render the npc and move him randomly
+     */
     @Override
     public void act(float delta) {
         if (isCanMove()) {
@@ -79,6 +82,9 @@ public class Npc extends AbstractPerson
         super.act(delta);
     }
 
+    /**
+     * Getters and setters needed.
+     */
     private Direction getRandomDirection(){
         int randomInt = MathUtils.random(3);
         switch (randomInt){
@@ -121,11 +127,6 @@ public class Npc extends AbstractPerson
         return dialogue;
     }
 
-    /**
-     * This method returns the NPCs personality
-     *
-     * @return (Personality) the NPCs personality {@link me.lihq.game.people.Personality}
-     */
     @Override
     public Personality getPersonality()
     {
@@ -138,15 +139,18 @@ public class Npc extends AbstractPerson
         this.exhaustedClues.add(clue);
     }
 
-
-    @Override
-    public String toString() {
-        return this.getName();
-    }
-
     public void setFalseAccused(boolean falseAccused) {
         isFalseAccused = falseAccused;
     }
 
     public boolean isFalseAccused() { return isFalseAccused;}
+
+    /**
+     * Method that will return the object as a string
+     * @return returns the name of the npc
+     */
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }

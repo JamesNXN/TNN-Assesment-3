@@ -10,7 +10,18 @@ import me.lihq.game.Settings;
 import me.lihq.game.TileObject;
 import me.lihq.game.people.Direction;
 
+/**
+ * This class defines the doors that allow a player to travel between different rooms
+ */
 public class Door extends Actor implements Collidable, TileObject{
+    /**
+     * Parameters needed for Door:
+     *
+     * collisionBox - used to detect when a player walks into a door to travel to the next room
+     * tilePosition - used for defining the position of the door in the room
+     * direction - used to define the rotation of the door visually
+     * connectedRoomId - used to define the room that the door will move the player in too
+     */
     private Rectangle collisionBox;
 
     private Vector2Int tilePosition;
@@ -18,6 +29,11 @@ public class Door extends Actor implements Collidable, TileObject{
 
     private int connectedRoomId;
 
+    /**
+     * Constructor for the door object will take a mapObject found in the asset
+     * folder as an input using the information in that to define the object
+     * @param mapObject - map file needed to get information about the door
+     */
     public Door(RectangleMapObject mapObject){
         collisionBox = mapObject.getRectangle();
 
@@ -47,7 +63,7 @@ public class Door extends Actor implements Collidable, TileObject{
     }
 
     /**
-     * constructor for testing
+     * constructor for testing only
      */
     public Door(Direction direction, int connectedRoomId, Vector2Int tilePosition){
         this.collisionBox = new Rectangle();
@@ -56,6 +72,9 @@ public class Door extends Actor implements Collidable, TileObject{
         this.tilePosition = tilePosition;
     }
 
+    /**
+     * Getters and setters needed for use by other classes
+     */
     @Override
     public Rectangle getCollisionBox() {
         return collisionBox;
