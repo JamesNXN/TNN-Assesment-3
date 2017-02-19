@@ -59,10 +59,6 @@ public class Slot extends Button {
         add(nameLabel);
     }
 
-    public boolean isCursorOver() {
-        return isCursorOver;
-    }
-
     public void setCursorOver(boolean cursorOver) {
         isCursorOver = cursorOver;
     }

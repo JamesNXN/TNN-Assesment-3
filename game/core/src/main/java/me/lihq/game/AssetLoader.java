@@ -211,14 +211,14 @@ public class AssetLoader {
         BitmapFont menuFont = getFontWithSize(60);
         menuSkin.add("default", menuFont);
 
-        //Create a texture
+        //Create a background for text buttons
         Pixmap pixmap = new Pixmap(1,1,Pixmap.Format.RGB888);
         pixmap.setColor(Color.ORANGE);
         pixmap.fill();
         menuSkin.add("background", new Texture(pixmap));
         pixmap.dispose();
 
-        //Create a button style
+        //Create a button style for main menu and pause menu
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.up = menuSkin.newDrawable("background", Color.GRAY);
         textButtonStyle.down = menuSkin.newDrawable("background", Color.DARK_GRAY);
@@ -228,14 +228,26 @@ public class AssetLoader {
         menuSkin.add("default", textButtonStyle);
 
 
+        //used in InfoWindow class
         Label.LabelStyle infoStyle = new Label.LabelStyle(getFontWithSize(30), Color.WHITE);
         uiSkin.add("dialog", infoStyle);
 
+        //used in ConversationSpeechBubble class
         Label.LabelStyle speechNameStyle = new Label.LabelStyle(getFontWithSize(20), Color.RED);
         uiSkin.add("speechName", speechNameStyle);
 
+        //used in ConversationSpeechBubble class
         Label.LabelStyle speechDialogueStyle = new Label.LabelStyle(getFontWithSize(25), Color.BLACK);
         uiSkin.add("speechDialogue", speechDialogueStyle);
+
+        //used in ButtonSpeechBubble class
+        TextButton.TextButtonStyle buttonBubbleStyle = new TextButton.TextButtonStyle();
+        buttonBubbleStyle.font = getFontWithSize(30);
+        buttonBubbleStyle.fontColor = Color.BLACK;
+        buttonBubbleStyle.up = uiSkin.getDrawable("button");
+        buttonBubbleStyle.over = uiSkin.getDrawable("button-highlighted");
+        buttonBubbleStyle.down = uiSkin.getDrawable("button-pressed");
+        uiSkin.add("buttonBubble", buttonBubbleStyle);
     }
 
     /**

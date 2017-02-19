@@ -10,7 +10,7 @@ import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 
 /**
- * Basic gui button that interacts with gui and game world
+ * Basic gui button that interacts with corresponding windows
  */
 
 abstract class GuiButton extends TextButton {
@@ -21,10 +21,5 @@ abstract class GuiButton extends TextButton {
         super(text, skin);
         this.gui = gui;
         this.gameWorld = gui.getGameWorld();
-    }
-
-    public GuiButton(String text, Skin skin, String styleName, Gui gui) {
-        super(text, skin, styleName);
-        this.gui = gui;
     }
 }

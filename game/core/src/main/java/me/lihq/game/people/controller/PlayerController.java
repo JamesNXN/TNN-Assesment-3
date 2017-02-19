@@ -75,6 +75,11 @@ public class PlayerController extends InputAdapter
                 }
             }
         }
+        else if (player.isInConversation()){
+            if (keycode == Input.Keys.SPACE){
+                game.gameWorld.getConversationManager().nextSpeech();
+            }
+        }
 
         //TODO: The following 3 key reads could do with being placed in another controller
         if (keycode == Input.Keys.J) {

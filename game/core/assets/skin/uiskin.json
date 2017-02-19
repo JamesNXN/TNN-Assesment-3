@@ -49,7 +49,6 @@ com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle: {
 com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 	default: { up: default-round, down: default-round-down },
 	toggle: { up: default-round, down: default-round-down, checked: default-round-down }
-	comic: {up: button, down: button-pressed, over: button-highlighted}
 },
 com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
 	default: {

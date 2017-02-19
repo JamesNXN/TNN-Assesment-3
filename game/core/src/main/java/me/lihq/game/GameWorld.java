@@ -1,6 +1,5 @@
 package me.lihq.game;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -9,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import me.lihq.game.gui.ButtonSpeechBubble;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
@@ -165,8 +165,9 @@ public class GameWorld {
         player.setInConversation(true);
         interactingNpc.setInConversation(true);
         interactingNpc.setDirection(player.getDirection().getOpposite());
-        conversationManager.addSpeech(player, player.getDialogue().getIntroduction());
-        conversationManager.addSpeech(interactingNpc, interactingNpc.getDialogue().getIntroduction());
+        conversationManager.addSpeechBubble(player, player.getDialogue().getIntroduction());
+        conversationManager.addSpeechBubble(interactingNpc, interactingNpc.getDialogue().getIntroduction());
+        conversationManager.addSpeechBubble(new ButtonSpeechBubble(player, game.assetLoader.uiSkin, this));
 
         conversationManager.startConversation(gui.getGuiStage());
 
@@ -180,6 +181,7 @@ public class GameWorld {
             person.setInConversation(false);
         }
 
+        conversationManager.clear();
         targetCameraPosition.set(player.getDefaultCameraFocusX(), player.getDefaultCameraFocusY());
         OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
         targetCameraZoom = camera.zoom + 0.5f;
@@ -222,6 +224,10 @@ public class GameWorld {
 
     public Gui getGui() {
         return gui;
+    }
+
+    public ConversationManager getConversationManager(){
+        return conversationManager;
     }
 
     public void setTargetCameraPosition(float x, float y) {
