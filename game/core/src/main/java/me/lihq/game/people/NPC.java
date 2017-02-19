@@ -10,7 +10,7 @@ import me.lihq.game.models.Clue;
 /**
  * The class which is responsible for the non-playable characters within the game that the player will meet.
  */
-public class NPC extends AbstractPerson
+public class Npc extends AbstractPerson
 {
     private NpcDialogue dialogue;
 
@@ -27,12 +27,12 @@ public class NPC extends AbstractPerson
     private Personality personality;
 
     /**
-     * The time that NPC will either stand still or walk
+     * The time that Npc will either stand still or walk
      */
     private float randomTimeLimit = 0;
 
     /**
-     * The time sum that NPC has either stood still or walk
+     * The time sum that Npc has either stood still or walk
      */
     private float randomTimeSum = 0;
 
@@ -42,11 +42,11 @@ public class NPC extends AbstractPerson
     private boolean randomMoveToggle = false;
 
     /**
-     * Define an NPC
+     * Define an Npc
      *
-     * @param spriteSheet - Sprite sheet for this NPC
+     * @param spriteSheet - Sprite sheet for this Npc
      */
-    public NPC(JsonValue jsonData, TextureAtlas spriteSheet)
+    public Npc(JsonValue jsonData, TextureAtlas spriteSheet)
     {
         super(jsonData, spriteSheet);
 

@@ -96,13 +96,13 @@ public class Player extends AbstractPerson
             }
         }
 
-        if (interactingActor instanceof NPC) {
-            gameWorld.startInteraction((NPC) interactingActor);
-            if (!this.inventory.getMetCharacters().contains((NPC)interactingActor, true)) {
-                this.inventory.addCharacter((NPC)interactingActor);
+        if (interactingActor instanceof Npc) {
+            gameWorld.startInteraction((Npc) interactingActor);
+            if (!this.inventory.getMetCharacters().contains((Npc)interactingActor, true)) {
+                this.inventory.addCharacter((Npc)interactingActor);
                 System.out.println(this.inventory.getMetCharacters());
             }
-            System.out.println(((NPC)interactingActor).getName());
+            System.out.println(((Npc)interactingActor).getName());
         }
         else if(interactingActor instanceof Clue) {
             Clue foundClue = (Clue) interactingActor;

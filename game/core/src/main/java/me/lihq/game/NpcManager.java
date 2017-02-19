@@ -6,17 +6,17 @@ import com.badlogic.gdx.utils.JsonValue;
 
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
-import me.lihq.game.people.NPC;
+import me.lihq.game.people.Npc;
 
 /**
  * Initialises NPCs and hold them
  */
 
 public class NpcManager {
-    private Array<NPC> npcArray;
+    private Array<Npc> npcArray;
 
-    private NPC killer;
-    private NPC victim;
+    private Npc killer;
+    private Npc victim;
 
     public NpcManager(RoomManager roomManager, AssetLoader assetLoader){
         Json json = new Json();
@@ -24,7 +24,7 @@ public class NpcManager {
 
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, assetLoader.npcJsonData);
         for (JsonValue data : npcJsonDataArray){
-            npcArray.add(new NPC(data, assetLoader.npcSpriteSheetMapArray.get(data.getInt("id"))));
+            npcArray.add(new Npc(data, assetLoader.npcSpriteSheetMapArray.get(data.getInt("id"))));
         }
 
         //Generate who the Killer and Victim are
@@ -35,7 +35,7 @@ public class NpcManager {
         killer.setKiller(true);
 
         int roomIndex = 0;
-        for (NPC npc : npcArray) {
+        for (Npc npc : npcArray) {
             roomIndex %= roomManager.getRoomArray().size-1;
 
             Room selectedRoom = roomManager.getRoomArray().get(roomIndex);
@@ -49,15 +49,15 @@ public class NpcManager {
             roomIndex++;
         }
     }
-    public Array<NPC> getNpcArray() {
+    public Array<Npc> getNpcArray() {
         return npcArray;
     }
 
-    public NPC getKiller() {
+    public Npc getKiller() {
         return killer;
     }
 
-    public NPC getVictim() {
+    public Npc getVictim() {
         return victim;
     }
 }

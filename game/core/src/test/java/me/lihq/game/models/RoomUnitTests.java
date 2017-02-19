@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.GameTester;
-import me.lihq.game.people.NPC;
+import me.lihq.game.people.Npc;
 
 import org.junit.After;
 import org.junit.Before;
@@ -23,7 +23,7 @@ public class RoomUnitTests extends GameTester
     private Room testRoom1;
     private Room testRoom2;
     private Clue testClue;
-    private NPC testNpc;
+    private Npc testNpc;
 
     @Before
     public void setUp() throws Exception {
@@ -43,7 +43,7 @@ public class RoomUnitTests extends GameTester
         JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
         TextureAtlas testSprite = new TextureAtlas(GameTester.ASSEST_FOLDER +"colin.pack");
-        testNpc = new NPC(npcJsonDataArray.get(0), testSprite);
+        testNpc = new Npc(npcJsonDataArray.get(0), testSprite);
     }
 
     @After

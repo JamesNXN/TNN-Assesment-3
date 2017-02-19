@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Array;
 
 import me.lihq.game.GameWorld;
 import me.lihq.game.models.Inventory;
-import me.lihq.game.people.NPC;
+import me.lihq.game.people.Npc;
 
 class NpcNoteWindow extends GuiWindow{
     private final int COLUMN_COUNT = 4;
@@ -20,7 +20,7 @@ class NpcNoteWindow extends GuiWindow{
     private final float WINDOW_HEIGHT = 700;
 
     NpcNoteWindow(Skin skin, Gui gui, GameWorld gameWorld) {
-        super("NPC Note", skin, gui, gameWorld);
+        super("Npc Note", skin, gui, gameWorld);
 
         button("OK", true);
     }
@@ -31,7 +31,7 @@ class NpcNoteWindow extends GuiWindow{
         getContentTable().clear();
         getContentTable().align(Align.topLeft);
 
-        Array<NPC> entryArray = new Array<>();
+        Array<Npc> entryArray = new Array<>();
         entryArray.addAll(inventory.getMetCharacters());
 
         for (int i = 0; i < entryArray.size; i++){
@@ -56,7 +56,7 @@ class NpcNoteWindow extends GuiWindow{
 
                 @Override
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                    gui.displayInfo(((NPC)slot.getSlotActor()).getDescription());
+                    gui.displayInfo(((Npc)slot.getSlotActor()).getDescription());
                 }
             });
 

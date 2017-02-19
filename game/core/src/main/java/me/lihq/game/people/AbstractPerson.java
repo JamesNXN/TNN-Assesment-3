@@ -33,7 +33,7 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
      */
     private final int SPRITE_WIDTH = 32;
     /**
-     * This is whether the NPC can move or not. It is mainly used to not let them move during conversation or room transition
+     * This is whether the Npc can move or not. It is mainly used to not let them move during conversation or room transition
      */
     private boolean canMove = true;
 
@@ -185,10 +185,10 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
      * @return return true when there is collision
      */
     private boolean characterCollisionDetection(Rectangle collisionBox) {
-        Array<NPC> npcArray = getCurrentRoom().getNpcArray();
+        Array<Npc> npcArray = getCurrentRoom().getNpcArray();
 
         boolean characterCollision = false;
-        for (NPC person : npcArray) {
+        for (Npc person : npcArray) {
             if (person.getCollisionBox().overlaps(collisionBox) && !person.equals(this)) {
                 characterCollision = true;
                 break;
