@@ -26,16 +26,5 @@ abstract class GuiWindow extends Dialog {
         setMovable(false);
         setModal(true);
     }
-
-    @Override
-    public Dialog show(Stage stage) {
-        refresh();
-        return super.show(stage);
-    }
-
-    /**
-     * refreshes content when opened
-     */
-    abstract void refresh();
 }
 

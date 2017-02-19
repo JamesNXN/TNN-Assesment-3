@@ -1,5 +1,8 @@
 package me.lihq.game.gui.windows;
 
+import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
@@ -26,7 +29,8 @@ public class PersonalityMeterWindow extends GuiWindow {
     }
 
     @Override
-    void refresh() {
+    public Dialog show(Stage stage, Action action) {
         meterBar.setValue(gameWorld.getPlayer().getPersonalityLevel());
+        return super.show(stage, action);
     }
 }

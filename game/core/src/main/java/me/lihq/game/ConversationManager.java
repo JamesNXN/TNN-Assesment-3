@@ -72,7 +72,11 @@ public class ConversationManager{
         }
     }
 
-    boolean isFinished(){
+    public void question(){
+
+    }
+
+    public boolean isFinished(){
         return isFinished;
     }
 

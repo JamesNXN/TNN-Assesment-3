@@ -18,9 +18,4 @@ public class InfoWindow extends GuiWindow {
             hide();
         }
     }
-
-    @Override
-    void refresh() {
-
-    }
 }

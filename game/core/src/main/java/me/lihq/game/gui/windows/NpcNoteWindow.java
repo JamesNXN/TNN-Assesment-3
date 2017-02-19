@@ -11,15 +11,10 @@ import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.gui.Slot;
 import me.lihq.game.models.Inventory;
+import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.Npc;
 
-public class NpcNoteWindow extends GuiWindow{
-    private final int COLUMN_COUNT = 4;
-    private final float SLOT_WIDTH = 150;
-    private final float SLOT_GAP_HORIZONTAL = 100;
-    private final float SLOT_GAP_VERTICAL = SLOT_GAP_HORIZONTAL * 0.25f;
-    private final float WINDOW_WIDTH = SLOT_WIDTH * COLUMN_COUNT + SLOT_GAP_HORIZONTAL * (COLUMN_COUNT - 1) * 1.1f;
-    private final float WINDOW_HEIGHT = 700;
+public class NpcNoteWindow extends SlotWindow{
 
     public NpcNoteWindow(Skin skin, Gui gui, GameWorld gameWorld) {
         super("Npc Note", skin, gui, gameWorld);
@@ -28,17 +23,13 @@ public class NpcNoteWindow extends GuiWindow{
     }
 
     @Override
-    void refresh() {
+    Array<Slot> setUpSlotArray() {
         Inventory inventory = gameWorld.getPlayer().getInventory();
-        getContentTable().clear();
-        getContentTable().align(Align.topLeft);
+        Array<Slot> slotArray = new Array<>();
 
-        Array<Npc> entryArray = new Array<>();
-        entryArray.addAll(inventory.getMetCharacters());
-
-        for (int i = 0; i < entryArray.size; i++){
-            Slot slot = new Slot(entryArray.get(i), getSkin());
-            slot.addListener(new InputListener(){
+        for (AbstractPerson person : inventory.getMetCharacters()) {
+            Slot slot = new Slot(person, getSkin());
+            slot.addListener(new InputListener() {
                 @Override
                 public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                     slot.setCursorOver(true);
@@ -58,29 +49,13 @@ public class NpcNoteWindow extends GuiWindow{
 
                 @Override
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                    gui.displayInfo(((Npc)slot.getSlotActor()).getDescription());
+                    gui.displayInfo(person.getDescription());
                 }
             });
 
-            if ((i+1) % COLUMN_COUNT == 0){
-                getContentTable().add(slot).width(SLOT_WIDTH).padTop(SLOT_GAP_VERTICAL)
-                        .padBottom(SLOT_GAP_VERTICAL).row();
-            }
-            else{
-                getContentTable().add(slot).width(SLOT_WIDTH).padTop(SLOT_GAP_VERTICAL)
-                        .padBottom(SLOT_GAP_VERTICAL).padRight(SLOT_GAP_HORIZONTAL);
-            }
+            slotArray.add(slot);
         }
-    }
-
-    @Override
-    public float getPrefWidth() {
-        return WINDOW_WIDTH;
-    }
-
-    @Override
-    public float getPrefHeight() {
-        return WINDOW_HEIGHT;
+        return slotArray;
     }
 
     @Override
