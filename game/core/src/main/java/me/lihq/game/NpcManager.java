@@ -9,10 +9,17 @@ import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.Npc;
 
 /**
- * Initialises NPCs and hold them
+ * Initialises NPCs and assigns them to rooms
  */
 
 public class NpcManager {
+    /**
+     * Parameters needed for NpcManager:
+     *
+     * npcArray - the array of created npcs
+     * killer - the npc randomly selected to be the killer
+     * victim - the npc randomly selected to be the victim
+     */
     private Array<Npc> npcArray;
 
     private Npc killer;
@@ -49,6 +56,10 @@ public class NpcManager {
             roomIndex++;
         }
     }
+
+    /**
+     * Getters for NpcManager variables
+     */
     public Array<Npc> getNpcArray() {
         return npcArray;
     }

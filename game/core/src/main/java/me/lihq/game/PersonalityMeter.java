@@ -3,10 +3,15 @@ package me.lihq.game;
 import me.lihq.game.people.QuestionStyle;
 
 /**
- * PesonalityMeter which will affect the way that player can question.
+ * PersonalityMeter which will affect the way that player can question.
  */
 public class PersonalityMeter {
+    /**
+     * Parameters needed for PersonalityMeter:
+     * meter - an integer % value of the players personality
+     */
     private int meter;
+
 
     public PersonalityMeter() {
         this.meter = 50;

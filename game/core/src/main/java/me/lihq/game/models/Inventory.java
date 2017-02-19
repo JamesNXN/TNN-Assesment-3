@@ -56,6 +56,19 @@ public class Inventory {
     }
 
     /**
+     * Method to check whether a MOTIVE type clue has been collected
+     * @return (boolean) Returns true if the motive has been found
+     */
+    public boolean isMotiveFound() {
+        for (Clue clue: this.collectedClues){
+            if (clue.getClueType() == ClueType.MOTIVE) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Method for adding clues to the inventory
      * @param clue - clue to be added to inventory
      */
