@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
@@ -23,9 +24,9 @@ public class NpcNoteWindow extends SlotWindow{
     }
 
     @Override
-    Array<Slot> setUpSlotArray() {
+    Array<Table> setUpSlotArray() {
         Inventory inventory = gameWorld.getPlayer().getInventory();
-        Array<Slot> slotArray = new Array<>();
+        Array<Table> slotArray = new Array<>();
 
         for (AbstractPerson person : inventory.getMetCharacters()) {
             Slot slot = new Slot(person, getSkin());

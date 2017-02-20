@@ -61,8 +61,8 @@ public class ClueManager {
         //distribute normal clues to the rooms
         totalIrrelevantNormalClueArray.shuffle();
 
-        //every room must have at least 1 clue, so the minimum clue count is 10. Maximum is set to relevant clue count x 2.
-        int newSize = MathUtils.random(10 - relevantNormalClueArray.size, relevantNormalClueArray.size * 2);
+        //every room must have at least 1 clue, so the minimum clue count is 10. Maximum is set to relevant clue count x 1.5.
+        int newSize = MathUtils.random(10 - relevantNormalClueArray.size, (int)(relevantNormalClueArray.size * 1.5f));
         totalIrrelevantNormalClueArray.setSize(newSize);
 
         Array<Clue> cluesToBeDistributed = new Array<>();
@@ -72,7 +72,8 @@ public class ClueManager {
 
         cluesToBeDistributed.shuffle();
 
-        Array<Room> roomArray = new Array<>(roomManager.getRoomArray());
+        Array<Room> roomArray = new Array<>();
+        roomArray.addAll(roomManager.getRoomArray());
         roomArray.shuffle();
 
         int clueCount = cluesToBeDistributed.size;

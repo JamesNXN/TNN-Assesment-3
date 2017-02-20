@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.GameMain;
 import me.lihq.game.GameWorld;
+import me.lihq.game.gui.windows.AccuseWindow;
 import me.lihq.game.gui.windows.InfoWindow;
 import me.lihq.game.gui.windows.InventoryWindow;
 import me.lihq.game.gui.windows.NpcNoteWindow;
@@ -39,6 +40,7 @@ public class Gui {
     private PersonalityMeterWindow personalityMeterWindow;
     private NpcNoteWindow npcNoteWindow;
     private ClueSelectionWindow clueSelectionWindow;
+    private AccuseWindow accuseWindow;
 
 
     public Gui(GameMain game, GameWorld gameWorld){
@@ -71,6 +73,7 @@ public class Gui {
         personalityMeterWindow = new PersonalityMeterWindow(game.assetLoader.uiSkin, this, gameWorld);
         npcNoteWindow = new NpcNoteWindow(game.assetLoader.uiSkin, this, gameWorld);
         clueSelectionWindow = new ClueSelectionWindow(game.assetLoader.uiSkin, this, gameWorld);
+        accuseWindow = new AccuseWindow(game.assetLoader.uiSkin, this, gameWorld);
     }
 
     public void setRoomTag(Room room){
@@ -149,6 +152,10 @@ public class Gui {
 
     public ClueSelectionWindow getClueSelectionWindow() {
         return clueSelectionWindow;
+    }
+
+    public AccuseWindow getAccuseWindow() {
+        return accuseWindow;
     }
 
     public void dispose(){

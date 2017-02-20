@@ -107,17 +107,36 @@ public class Interaction {
             }
             if (checkingValue >= 4) {
                 score.addPoints(500);      // Game clear
-                //todo accuse success
+                gameWorld.getConversationManager().addSpeechBubble(interactingNpc, "Oh no! You got me!");
+                gameWorld.getConversationManager().nextSpeechBubble();
+
+                gameWorld.getGui().displayInfo("GAME CLEAR!");
             }
             else if (checkingValue < 4) {
                 score.failedAccusation();
                 score.subPoints(200);      // Failed accusation
                 interactingNpc.setFalseAccused(true);
-                //todo some accuse fail stuff
+
+                gameWorld.getConversationManager().addSpeechBubble(interactingNpc, "They don't prove anything!");
+                gameWorld.getConversationManager().nextSpeechBubble();
+
+                gameWorld.getGui().displayInfo("Accuse fail.\nYou cannot question this character anymore.");
             }
         }
         else {
-            //todo add some graphical stuff telling player they cant accuse until have met minimum clue requirements
+            score.failedAccusation();
+            score.subPoints(200);      // Failed accusation
+            interactingNpc.setFalseAccused(true);
+
+            gameWorld.getConversationManager().addSpeechBubble(interactingNpc, "They're not enough to prove I'm the murderer!");
+            gameWorld.getConversationManager().addAction(() -> {
+                gameWorld.getConversationManager().setFinished(true);
+                gameWorld.getGui().displayInfo("Accuse fail." +
+                        "\nYou cannot question this character anymore.\nFind more clues");
+            });
+            gameWorld.getConversationManager().nextSpeechBubble();
+
+
         }
     }
 }

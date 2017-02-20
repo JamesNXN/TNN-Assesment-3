@@ -35,7 +35,7 @@ public class Slot extends Button {
         Label clueLabel = new Label(string, skin);
         clueLabel.setWrap(true);
         clueLabel.setAlignment(Align.center);
-        add(clueLabel).size(100,100);
+        add(clueLabel).size(100,100).row();
     }
 
     /**
@@ -56,7 +56,7 @@ public class Slot extends Button {
         Label nameLabel = new Label(person.getName(), skin);
         nameLabel.setWrap(true);
         nameLabel.setAlignment(Align.center);
-        add(nameLabel);
+        add(nameLabel).row();
     }
 
     public void setCursorOver(boolean cursorOver) {

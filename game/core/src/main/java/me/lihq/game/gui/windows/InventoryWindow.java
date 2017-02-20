@@ -2,6 +2,7 @@ package me.lihq.game.gui.windows;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
@@ -34,16 +35,20 @@ public class InventoryWindow extends SlotWindow {
      * Set up slots that will be added to the window
      */
     @Override
-    Array<Slot> setUpSlotArray() {
+    Array<Table> setUpSlotArray() {
         Inventory inventory = gameWorld.getPlayer().getInventory();
-        Array<Slot> slotArray = new Array<>();
+        Array<Table> slotArray = new Array<>();
 
         for (Clue clue : inventory.getCollectedClues()) {
             Slot slot = new Slot(clue.getName(), getSkin());
             slot.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    gui.displayInfo(clue.getDescription() + "\n Related NPCs: " + inventory.getHint(clue).getRelatedNpcNames());
+                    String displayString = clue.getDescription();
+                    if (inventory.getHint(clue) != null){
+                        displayString +=  "\n Related NPCs: " + inventory.getHint(clue).getRelatedNpcNames();
+                    }
+                    gui.displayInfo(displayString);
                 }
             });
 

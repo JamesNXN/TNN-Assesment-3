@@ -2,6 +2,7 @@ package me.lihq.game.gui.windows;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 
@@ -22,9 +23,9 @@ public class ClueSelectionWindow extends SlotWindow {
     }
 
     @Override
-    Array<Slot> setUpSlotArray() {
+    Array<Table> setUpSlotArray() {
         Inventory inventory = gameWorld.getPlayer().getInventory();
-        Array<Slot> slotArray = new Array<>();
+        Array<Table> slotArray = new Array<>();
 
         for (Clue clue : inventory.getCollectedClues()) {
             Slot slot = new Slot(clue.getName(), getSkin());

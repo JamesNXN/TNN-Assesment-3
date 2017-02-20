@@ -3,6 +3,7 @@ package me.lihq.game.gui.windows;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
@@ -27,9 +28,9 @@ abstract class SlotWindow extends GuiWindow {
         setUpSlotArray();
     }
 
-    abstract Array<Slot> setUpSlotArray();
+    abstract Array<Table> setUpSlotArray();
 
-    void refresh(Array<Slot> slotArray) {
+    void refresh(Array<Table> slotArray) {
         getContentTable().clear();
         getContentTable().align(Align.topLeft);
 

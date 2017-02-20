@@ -77,7 +77,7 @@ public class PlayerController extends InputAdapter
         // player press space to get the conversation flowing, but it should stop when the game is
         // waiting for player input for interaction option
         else if (player.isInConversation()
-                && game.gameWorld.getConversationManager().getCurrentSpeech() instanceof ConversationSpeechBubble){
+                && game.gameWorld.getConversationManager().getCurrentConversation() instanceof ConversationSpeechBubble){
             if (keycode == Input.Keys.SPACE){
                 game.gameWorld.getConversationManager().nextSpeechBubble();
             }
