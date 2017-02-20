@@ -78,7 +78,7 @@ abstract class SlotWindow extends GuiWindow {
         public int COLUMN_COUNT = 4;
         public float COLUMN_WIDTH = 150;
         public float COLUMN_GAP_HORIZONTAL = 100;
-        public float COLUMN_GAP_VERTICAL = COLUMN_GAP_HORIZONTAL * 0.25f;
+        public float COLUMN_GAP_VERTICAL = COLUMN_GAP_HORIZONTAL * 0.1f;
         public float WINDOW_WIDTH = COLUMN_WIDTH * COLUMN_COUNT + COLUMN_GAP_HORIZONTAL * (COLUMN_COUNT - 1) * 1.1f;
         public float WINDOW_HEIGHT = 700;
 

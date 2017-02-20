@@ -40,6 +40,7 @@ public class ClueManager {
 
             if (clue.getClueType() == ClueType.NORMAL) {
                 if (clue.getRelatedNpcIdArray().contains(npcManager.getMurderer().getId(), true)) {
+                    System.out.println(clue.getName());
                     relevantNormalClueArray.add(clue);
                 }
                 else{
