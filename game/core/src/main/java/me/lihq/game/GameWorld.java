@@ -19,6 +19,7 @@ import me.lihq.game.people.Npc;
 import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
 import me.lihq.game.models.RoomArrow;
+import me.lihq.game.screen.GameClearScreen;
 
 public class GameWorld {
     private GameMain game;
@@ -43,6 +44,8 @@ public class GameWorld {
     private Interaction interaction;
     private ConversationManager conversationManager;
 
+    private boolean isGameClear = false;
+
     public GameWorld(GameMain game, Player selectedPlayer){
         this.game = game;
 
@@ -64,13 +67,8 @@ public class GameWorld {
         targetCameraZoom = ((OrthographicCamera)(gameWorldStage.getCamera())).zoom;
 
         characterGroup = new Group();
-        characterGroup.setName("characterGroup");
-
         clueGroup = new Group();
-        clueGroup.setName("clueGroup");
-
         roomArrowGroup = new Group();
-        roomArrowGroup.setName("roomArrowGroup");
 
         tiledMapRenderer = new CustomTiledMapRenderer(player.getCurrentRoom(), gameWorldBatch);
 
@@ -193,6 +191,10 @@ public class GameWorld {
             haltInteraction();
         }
 
+        if (isGameClear){
+            game.setScreen(new GameClearScreen(game));
+        }
+
         //camera move lerp effect
         OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
         camera.position.x = camera.position.x + (targetCameraPosition.x - camera.position.x) * 0.2f;
@@ -212,6 +214,10 @@ public class GameWorld {
         gameWorldStage.draw();
 
         tiledMapRenderer.renderLastLayer();
+    }
+
+    public void setGameClear(boolean gameClear) {
+        isGameClear = gameClear;
     }
 
     public Player getPlayer() {

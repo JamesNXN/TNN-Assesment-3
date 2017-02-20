@@ -51,6 +51,10 @@ public class InteractionSelectionBubble extends SpeechBubble{
 
         TextButton accuseButton = new TextButton("Accuse", skin, "buttonBubble");
         accuseButton.addListener(new ChangeListener() {
+            /*
+            checks to see if the player has collected 6 clues or more and that 1 of those clues is the weapon clue and 1 is the motive clue
+            if this is true the players accusation becomes possible
+            */
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 //interaction halts when there is no clue in the inventory

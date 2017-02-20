@@ -2,14 +2,14 @@ package me.lihq.game;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-/**
- * Created on 2017/2/15.
- */
+
 public class Time extends Actor {
+    private static Time instance = new Time();
+
     private float time;
     private boolean paused = false;
 
-    public Time() {
+    private Time() {
         this.time = 0;
     }
 
@@ -19,6 +19,10 @@ public class Time extends Actor {
         if(!paused){
             this.time += delta;
         }
+    }
+
+    public static Time getInstance() {
+        return instance;
     }
 
     public float getTime(){

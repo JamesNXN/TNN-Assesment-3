@@ -51,7 +51,7 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
 
     private boolean isInConversation = false;
 
-    private final float MOVE_SPEED = 500f;
+    private final float MOVE_SPEED = 100f;
 
     protected Vector2Int tilePosition = new Vector2Int(0, 0);
 
@@ -87,7 +87,6 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
      * @param spriteSheet - this the texture for the sprite
      */
     public AbstractPerson(JsonValue jsonData, TextureAtlas spriteSheet) {
-        debug();
         this.jsonData = jsonData;
         id = jsonData.getInt("id");
         name = jsonData.getString("name");

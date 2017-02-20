@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.GameMain;
 import me.lihq.game.GameWorld;
+import me.lihq.game.Time;
 import me.lihq.game.gui.windows.AccuseWindow;
 import me.lihq.game.gui.windows.InfoWindow;
 import me.lihq.game.gui.windows.InventoryWindow;
@@ -19,6 +20,7 @@ import me.lihq.game.gui.windows.NpcNoteWindow;
 import me.lihq.game.gui.windows.PersonalityMeterWindow;
 import me.lihq.game.gui.windows.ClueSelectionWindow;
 import me.lihq.game.models.Room;
+import me.lihq.game.models.Score;
 
 public class Gui {
     private GameMain game;
@@ -42,7 +44,6 @@ public class Gui {
     private ClueSelectionWindow clueSelectionWindow;
     private AccuseWindow accuseWindow;
 
-
     public Gui(GameMain game, GameWorld gameWorld){
         this.game = game;
         this.gameWorld = gameWorld;
@@ -64,8 +65,13 @@ public class Gui {
         table.add(statusBar);
 
         guiStage.addActor(table);
-
         guiStage.addActor(fadeInOut);
+
+        Time time = Time.getInstance();
+        Score score = Score.getInstance();
+
+        guiStage.addActor(time);
+        guiStage.addActor(score);
 
 
         infoWindow = new InfoWindow(game.assetLoader.uiSkin, this, gameWorld);

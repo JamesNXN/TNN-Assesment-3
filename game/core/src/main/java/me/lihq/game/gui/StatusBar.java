@@ -9,6 +9,7 @@ import me.lihq.game.GameMain;
 import me.lihq.game.gui.buttons.InventoryButton;
 import me.lihq.game.gui.buttons.NpcNoteButton;
 import me.lihq.game.gui.buttons.PersonalityMeterButton;
+import me.lihq.game.models.Score;
 
 /**
  * The status bar shown throughout the game
@@ -31,6 +32,8 @@ class StatusBar extends Table
      */
     private static final int WIDTH = Gdx.graphics.getWidth() / ITEM_COUNT;
 
+    private Label scoreLabel;
+
     /**
      * The initializer for the StatusBar
      * Sets up UI controls and adds them to the stage ready for rendering
@@ -42,7 +45,7 @@ class StatusBar extends Table
         row().height(HEIGHT);
         defaults().width(WIDTH);
 
-        Label scoreLabel = new Label("Score: 0", game.assetLoader.uiSkin);
+        scoreLabel = new Label("Score: " + Score.getInstance().getCurrentScore(), game.assetLoader.uiSkin);
         scoreLabel.setAlignment(Align.center, Align.center);
         add(scoreLabel).uniform();
 
@@ -54,5 +57,11 @@ class StatusBar extends Table
 
         NpcNoteButton npcNoteButton = new NpcNoteButton(game.assetLoader.uiSkin, gui);
         add(npcNoteButton).uniform();
+    }
+
+    @Override
+    public void act(float delta) {
+        scoreLabel.setText("Score: " + Score.getInstance().getCurrentScore());
+        super.act(delta);
     }
 }

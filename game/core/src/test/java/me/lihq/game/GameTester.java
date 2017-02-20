@@ -15,7 +15,7 @@ import org.mockito.Mockito;
  */
 public class GameTester
 {
-    public static final String ASSEST_FOLDER = "src/test/resources/assets/";
+    public static final String ASSET_FOLDER = "src/test/resources/assets/";
 
     private static Application application;
 

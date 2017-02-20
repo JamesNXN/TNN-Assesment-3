@@ -41,8 +41,8 @@ public class InventoryUnitTests extends GameTester {
     public void setUp() throws Exception {
         testInventory = new Inventory();
         Json json = new Json();
-        TextureAtlas clueGlint = new TextureAtlas(GameTester.ASSEST_FOLDER + "clueGlint.pack");
-        JsonValue clueJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testClue.json"));
+        TextureAtlas clueGlint = new TextureAtlas(GameTester.ASSET_FOLDER + "clueGlint.pack");
+        JsonValue clueJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSET_FOLDER + "testClue.json"));
         Array<JsonValue> clueJsonDataArray = json.readValue(Array.class, clueJsonData);
 
         testClue1 = new Clue(clueJsonDataArray.get(0), clueGlint);
@@ -52,9 +52,9 @@ public class InventoryUnitTests extends GameTester {
         testWeapon = new Clue(clueJsonDataArray.get(2), clueGlint);
 
 
-        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
+        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSET_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
-        TextureAtlas testSprite = new TextureAtlas(GameTester.ASSEST_FOLDER + "colin.pack");
+        TextureAtlas testSprite = new TextureAtlas(GameTester.ASSET_FOLDER + "colin.pack");
         testNpc1 = new Npc(npcJsonDataArray.get(0), testSprite);
         testNpc2 = new Npc(npcJsonDataArray.get(1), testSprite);
 

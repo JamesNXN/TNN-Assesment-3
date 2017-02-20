@@ -20,9 +20,9 @@ public class ClueUnitTest extends GameTester {
 
     @Before
     public void setUp() throws Exception {
-        TextureAtlas clueGlint = new TextureAtlas(GameTester.ASSEST_FOLDER + "clueGlint.pack");
+        TextureAtlas clueGlint = new TextureAtlas(GameTester.ASSET_FOLDER + "clueGlint.pack");
         Json json = new Json();
-        JsonValue clueJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testClue.json"));
+        JsonValue clueJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSET_FOLDER + "testClue.json"));
         Array<JsonValue> clueJsonDataArray = json.readValue(Array.class, clueJsonData);
         testClue1 = new Clue(clueJsonDataArray.get(0), clueGlint);
         testClue2 = new Clue(clueJsonDataArray.get(1), clueGlint);

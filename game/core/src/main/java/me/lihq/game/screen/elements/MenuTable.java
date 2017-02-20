@@ -10,18 +10,15 @@ import com.badlogic.gdx.utils.Align;
 
 import me.lihq.game.GameMain;
 
-/**
- * Created by Jeff on 31/01/2017.
- */
-
 public abstract class MenuTable extends Table {
     //Initialising necessary objects and variables
 
     protected GameMain game;
     protected Skin menuSkin;
 
-    private Table titleTable;
-    private Table buttonTable;
+    protected Table titleTable;
+    protected Table contentTable;
+    protected Table buttonTable;
 
     /**
      * Constructor for the menu
@@ -36,12 +33,14 @@ public abstract class MenuTable extends Table {
         setFillParent(true);
 
         titleTable = new Table();
+        contentTable = new Table();
         buttonTable = new Table();
 
         Label titleLabel = new Label(title, menuSkin, "title", Color.RED);
         titleTable.add(titleLabel).expandX().fillX();
 
-        add(titleTable).padTop(100).row();
+        add(titleTable).padTop(100).padBottom(100).row();
+        add(contentTable).row();
         add(buttonTable).expand(true, true);
     }
 
@@ -49,13 +48,5 @@ public abstract class MenuTable extends Table {
     public void addButton(Button button){
         buttonTable.add(button).padBottom(Value.percentHeight(0.5f,button));
         buttonTable.row();
-    }
-
-    public Table getTitleTable(){
-        return titleTable;
-    }
-
-    public Table getButtonTable(){
-        return buttonTable;
     }
 }

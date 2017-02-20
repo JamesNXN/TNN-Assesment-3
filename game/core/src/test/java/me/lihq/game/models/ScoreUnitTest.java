@@ -59,9 +59,9 @@ public class ScoreUnitTest extends GameTester {
     @Test
     public void returnFinalScore() throws Exception {
         assertNotNull(testScore.getCurrentScore());
-        assertEquals(-10, testScore.returnFinalScore(10));
+        assertEquals(-10, testScore.getFinalScore(10));
         testScore.addPoints(100);
-        assertEquals(90, testScore.returnFinalScore(10));
+        assertEquals(90, testScore.getFinalScore(10));
     }
 
     @Test

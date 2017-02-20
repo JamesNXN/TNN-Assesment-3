@@ -26,18 +26,18 @@ public class PlayerUnitTest extends GameTester {
 
     @Before
     public void setUp() throws Exception {
-        JsonValue jsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testPlayer.json"));
-        TextureAtlas testSprite = new TextureAtlas(GameTester.ASSEST_FOLDER + "colin.pack");
+        JsonValue jsonData = new JsonReader().parse(new FileHandle(GameTester.ASSET_FOLDER + "testPlayer.json"));
+        TextureAtlas testSprite = new TextureAtlas(GameTester.ASSET_FOLDER + "colin.pack");
         testPlayer = new Player(jsonData, testSprite);
         testPlayer.setCurrentRoom(Mockito.mock(Room.class));
 
         Json json = new Json();
-        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
+        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSET_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
         testNpc = new Npc(npcJsonDataArray.get(0), testSprite);
 
-        TextureAtlas clueGlint = new TextureAtlas(GameTester.ASSEST_FOLDER + "clueGlint.pack");
-        JsonValue clueJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testClue.json"));
+        TextureAtlas clueGlint = new TextureAtlas(GameTester.ASSET_FOLDER + "clueGlint.pack");
+        JsonValue clueJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSET_FOLDER + "testClue.json"));
         Array<JsonValue> clueJsonDataArray = json.readValue(Array.class, clueJsonData);
         testClue = new Clue(clueJsonDataArray.get(0), clueGlint);
     }

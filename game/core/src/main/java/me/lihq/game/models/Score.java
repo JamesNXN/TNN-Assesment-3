@@ -2,11 +2,12 @@ package me.lihq.game.models;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
  * Score class is a singleton class used to keep track of the players score
  */
-public class Score {
+public class Score extends Actor{
     private static Score instance = new Score();
 
     /**
@@ -20,6 +21,7 @@ public class Score {
 
     private int highScore;
     private int currentScore;
+    private int targetScore;
 
     private int failedAccusationCount;
 
@@ -41,11 +43,11 @@ public class Score {
      */
 
     public void addPoints(int point) {
-        currentScore += point;
+        targetScore = currentScore + point;
     }
 
     public void subPoints(int point) {
-        currentScore -= point;
+        targetScore = currentScore - point;
     }
 
     /**
@@ -86,18 +88,31 @@ public class Score {
      *
      * This method applies a time penalty to the current score.
      * If the current score is greater than the high score, the high score is updated.
-     *             
+     *
      * Returns the integer finalScore.
      */
 
-    public int returnFinalScore(int time ){
-        int finalScore = currentScore - time;
-        if (finalScore > highScore){
+    public int getFinalScore(int time){
+        int finalScore = (int) (currentScore - time * 0.3f);
+        if (isHighScore(finalScore)) {
             Preferences pref = Gdx.app.getPreferences("pref");
             pref.putInteger("highScore", finalScore);
             pref.flush();
         }
-
         return finalScore;
+    }
+
+    public boolean isHighScore(int score){
+        return score < highScore;
+    }
+
+    @Override
+    public void act(float delta) {
+        if (currentScore > targetScore){
+            currentScore -= 5;
+        }
+        else if (currentScore < targetScore){
+            currentScore += 5;
+        }
     }
 }

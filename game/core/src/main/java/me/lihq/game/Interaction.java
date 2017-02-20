@@ -1,5 +1,6 @@
 package me.lihq.game;
 
+import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Objects;
@@ -83,45 +84,54 @@ public class Interaction {
     }
 
     /**
-     * The accuse method first checks to see if the player has collected 6 clues or more and that 1 of those clues is the weapon clue and 1 is the motive clue
-     * if this is true the players accusation becomes plausible and the logic to calculate whether it is a success or not starts
+     * The accuse method calculate whether it is a success or not
      * if this is false the player will receive a notification telling them that they need to find more evidence
      *
-     * first a checking value is initialised to 0 then for every clue in the provided array of clues the player is trying to use
-     * to accuse the npc if the clue points to the npc then the checking value is incremented by 1
+     * first a correct clue count is initialised to 0 then for every clue in the provided array of clues the player is trying to use
+     * to accuse the npc if the clue points to the npc then the checking value is incremented by 1.
+     * incorrect clue count is incremented by 1 otherwise.
      *
-     * if the checking value is greater than or equal to 4 then it is considered a successful accusation if not
-     * it is considered a failure upon a successful accusation the game is considered cleared and the player is awarded 500 points
+     * if all the clues presented are all of the clues pointing to the murderer it is considered a successful accusation if not
+     * it is considered a failure. Upon a successful accusation the game is considered cleared and the player is awarded 500 points
      *
      * if the accusation was a failure 200 points are lost and it will no longer be possible to question the npc
      *
-     * @param clues - an array of clues being used in the accusation
+     * @param presentedClues - an array of clues being used in the accusation
      */
-    public void accuse(Array<Clue> clues) {
+    public void accuse(Array<Clue> presentedClues) {
         int correctClueCount = 0;
-        for (Clue cluesCheck : clues) {
-            if (cluesCheck.getRelatedNpcIdArray().contains(interactingNpc.getId(), true)) {
-                correctClueCount += 1;
+        int incorrectClueCount = 0;
+        for (Clue cluesCheck : presentedClues) {
+            if (cluesCheck.getRelatedNpcIdArray().contains(gameWorld.npcManager.getMurderer().getId(), true)
+                    && interactingNpc.equals(gameWorld.npcManager.getMurderer())) {
+                correctClueCount++;
+            }
+            else{
+                incorrectClueCount++;
             }
         }
-        if (correctClueCount >= 4) {
+
+        // case where the presented clue array is the same as the total relevant clue array. subtract 2 for motive and weapon clues.
+        if (correctClueCount - 2 == gameWorld.clueManager.getRelevantNormalClueArray().size && incorrectClueCount == 0) {
             score.addPoints(500);      // Game clear
             gameWorld.getConversationManager().addSpeechBubble(interactingNpc, "Oh no! You got me!");
+            gameWorld.getConversationManager().addAction(() -> gameWorld.setGameClear(true));
             gameWorld.getConversationManager().nextSpeechBubble();
-
-            gameWorld.getGui().displayInfo("GAME CLEAR!");
         }
-        else if (correctClueCount < 4) {
+        else{
             score.failedAccusation();
             score.subPoints(200);      // Failed accusation
             interactingNpc.setFalseAccused(true);
 
             gameWorld.getConversationManager().addSpeechBubble(interactingNpc, "They're not enough to prove I'm the murderer!");
+//            int finalCorrectClueCount = correctClueCount;
+//            int finalIncorrectClueCount = incorrectClueCount;
             gameWorld.getConversationManager().addAction(() -> {
                 gameWorld.getConversationManager().setFinished(true);
                 gameWorld.getGui().displayInfo("Accuse fail.\n" +
-                        "You cannot question this character anymore.\n" +
-                        "Find more clues");
+                        "You cannot question this character anymore.\n");
+//                        finalCorrectClueCount + " clues correct," +
+//                        finalIncorrectClueCount + " clues incorrect");
             });
             gameWorld.getConversationManager().nextSpeechBubble();
         }

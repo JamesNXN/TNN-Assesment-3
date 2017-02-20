@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 
 import me.lihq.game.*;
+import me.lihq.game.models.Score;
 import me.lihq.game.people.Player;
 import me.lihq.game.people.controller.GamePadController;
 import me.lihq.game.people.controller.PlayerController;
@@ -56,6 +57,8 @@ public class NavigationScreen extends AbstractScreen
         multiplexer.addProcessor(gui.getGuiStage());
         multiplexer.addProcessor(playerController);
         Gdx.input.setInputProcessor(multiplexer);
+
+        Time.getInstance().setPaused(false);
     }
 
     /**

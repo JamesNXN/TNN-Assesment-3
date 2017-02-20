@@ -27,22 +27,22 @@ public class RoomUnitTests extends GameTester
 
     @Before
     public void setUp() throws Exception {
-        TextureAtlas arrows = new TextureAtlas(GameTester.ASSEST_FOLDER + "arrows.pack");
-        TiledMap testMap1 = new TmxMapLoader().load(GameTester.ASSEST_FOLDER + "testRoom1.tmx");
+        TextureAtlas arrows = new TextureAtlas(GameTester.ASSET_FOLDER + "arrows.pack");
+        TiledMap testMap1 = new TmxMapLoader().load(GameTester.ASSET_FOLDER + "testRoom1.tmx");
         testRoom1 = new Room(testMap1, arrows);
 
-        TiledMap testMap2 = new TmxMapLoader().load(GameTester.ASSEST_FOLDER + "testRoom2.tmx");
+        TiledMap testMap2 = new TmxMapLoader().load(GameTester.ASSET_FOLDER + "testRoom2.tmx");
         testRoom2 = new Room(testMap2, arrows);
 
-        TextureAtlas clueGlint = new TextureAtlas(GameTester.ASSEST_FOLDER + "clueGlint.pack");
+        TextureAtlas clueGlint = new TextureAtlas(GameTester.ASSET_FOLDER + "clueGlint.pack");
         Json json = new Json();
-        JsonValue clueJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testClue.json"));
+        JsonValue clueJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSET_FOLDER + "testClue.json"));
         Array<JsonValue> clueJsonDataArray = json.readValue(Array.class, clueJsonData);
         testClue = new Clue(clueJsonDataArray.get(0), clueGlint);
 
-        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSEST_FOLDER + "testNPC.json"));
+        JsonValue npcJsonData = new JsonReader().parse(new FileHandle(GameTester.ASSET_FOLDER + "testNPC.json"));
         Array<JsonValue> npcJsonDataArray = json.readValue(Array.class, npcJsonData);
-        TextureAtlas testSprite = new TextureAtlas(GameTester.ASSEST_FOLDER +"colin.pack");
+        TextureAtlas testSprite = new TextureAtlas(GameTester.ASSET_FOLDER +"colin.pack");
         testNpc = new Npc(npcJsonDataArray.get(0), testSprite);
     }
 
