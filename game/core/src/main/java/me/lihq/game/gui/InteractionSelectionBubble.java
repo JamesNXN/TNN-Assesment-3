@@ -59,10 +59,33 @@ public class InteractionSelectionBubble extends SpeechBubble{
                     conversationManager.setFinished(true);
                 }
 
+                //player cannot initiate accuse unless they found more than 6 clues which include weapon and motive clues.
+                if (player.getInventory().getCollectedClues().size >= 6) {
+                    //initiate accuse when both weapon and motive clue is found
+                    if (player.getInventory().isWeaponFound() && player.getInventory().isMotiveFound()) {
+                        conversationManager.addSpeechBubble(player, "You're the murderer!");
+                        conversationManager.addSpeechBubble(conversationManager.getInteractingCharacter(), "Nonsense! What proof do you have?");
+                        conversationManager.addAction(() -> gui.getAccuseWindow().show(gui.getGuiStage()));
+                        conversationManager.nextSpeechBubble();
+                    }
+                    //when the player had found only weapon clue
+                    else if (player.getInventory().isWeaponFound() && !player.getInventory().isMotiveFound()){
+                        conversationManager.addSpeechBubble(player, "I need to know the motive behind the murder before I can accuse someone");
+                        conversationManager.nextSpeechBubble();
+                    }
+                    //when the player had found only motive clue
+                    else if (!player.getInventory().isWeaponFound() && player.getInventory().isMotiveFound()){
+                        conversationManager.addSpeechBubble(player, "I need to know what the murder weapon is before I can accuse someone");
+                        conversationManager.nextSpeechBubble();
+                    }
+                    //when the player had not found both weapon and motive clues
+                    else{
+                        conversationManager.addSpeechBubble(player, "I need to know about both the weapon and motive");
+                        conversationManager.nextSpeechBubble();
+                    }
+                }
                 else{
-                    conversationManager.addSpeechBubble(player, "You're the murderer!");
-                    conversationManager.addSpeechBubble(conversationManager.getInteractingCharacter(), "Nonsense! What proof do you have?");
-                    conversationManager.addAction(() -> gui.getAccuseWindow().show(gui.getGuiStage()));
+                    conversationManager.addSpeechBubble(player, "I need more clues to accuse someone.");
                     conversationManager.nextSpeechBubble();
                 }
             }

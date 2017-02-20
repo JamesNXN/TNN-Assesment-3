@@ -98,32 +98,20 @@ public class Interaction {
      * @param clues - an array of clues being used in the accusation
      */
     public void accuse(Array<Clue> clues) {
-        if (player.getInventory().getCollectedClues().size >= 6 && player.getInventory().isWeaponFound() && player.getInventory().isMotiveFound()){
-            int checkingValue = 0;
-            for (Clue cluesCheck : clues) {
-                if (cluesCheck.getRelatedNpcIdArray().contains(interactingNpc.getId(), true)) {
-                    checkingValue += 1;
-                }
-            }
-            if (checkingValue >= 4) {
-                score.addPoints(500);      // Game clear
-                gameWorld.getConversationManager().addSpeechBubble(interactingNpc, "Oh no! You got me!");
-                gameWorld.getConversationManager().nextSpeechBubble();
-
-                gameWorld.getGui().displayInfo("GAME CLEAR!");
-            }
-            else if (checkingValue < 4) {
-                score.failedAccusation();
-                score.subPoints(200);      // Failed accusation
-                interactingNpc.setFalseAccused(true);
-
-                gameWorld.getConversationManager().addSpeechBubble(interactingNpc, "They don't prove anything!");
-                gameWorld.getConversationManager().nextSpeechBubble();
-
-                gameWorld.getGui().displayInfo("Accuse fail.\nYou cannot question this character anymore.");
+        int correctClueCount = 0;
+        for (Clue cluesCheck : clues) {
+            if (cluesCheck.getRelatedNpcIdArray().contains(interactingNpc.getId(), true)) {
+                correctClueCount += 1;
             }
         }
-        else {
+        if (correctClueCount >= 4) {
+            score.addPoints(500);      // Game clear
+            gameWorld.getConversationManager().addSpeechBubble(interactingNpc, "Oh no! You got me!");
+            gameWorld.getConversationManager().nextSpeechBubble();
+
+            gameWorld.getGui().displayInfo("GAME CLEAR!");
+        }
+        else if (correctClueCount < 4) {
             score.failedAccusation();
             score.subPoints(200);      // Failed accusation
             interactingNpc.setFalseAccused(true);
@@ -131,12 +119,11 @@ public class Interaction {
             gameWorld.getConversationManager().addSpeechBubble(interactingNpc, "They're not enough to prove I'm the murderer!");
             gameWorld.getConversationManager().addAction(() -> {
                 gameWorld.getConversationManager().setFinished(true);
-                gameWorld.getGui().displayInfo("Accuse fail." +
-                        "\nYou cannot question this character anymore.\nFind more clues");
+                gameWorld.getGui().displayInfo("Accuse fail.\n" +
+                        "You cannot question this character anymore.\n" +
+                        "Find more clues");
             });
             gameWorld.getConversationManager().nextSpeechBubble();
-
-
         }
     }
 }

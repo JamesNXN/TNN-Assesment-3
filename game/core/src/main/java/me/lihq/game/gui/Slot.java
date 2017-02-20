@@ -35,7 +35,7 @@ public class Slot extends Button {
         Label clueLabel = new Label(string, skin);
         clueLabel.setWrap(true);
         clueLabel.setAlignment(Align.center);
-        add(clueLabel).size(100,100).row();
+        add(clueLabel).size(100,70).row();
     }
 
     /**
