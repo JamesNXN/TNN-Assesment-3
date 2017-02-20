@@ -27,33 +27,33 @@ public class ScoreUnitTest extends GameTester {
 
     @Test
     public void addPoints() throws Exception {
-        assertNotNull(testScore.getCurrentScore());
+        assertNotNull(testScore.getTargetScore());
 
         testScore.addPoints(30);
 
-        assertEquals(30, testScore.getCurrentScore());
+        assertEquals(30, testScore.getTargetScore());
     }
 
     @Test
     public void subPoints() throws Exception {
-        assertNotNull(testScore.getCurrentScore());
+        assertNotNull(testScore.getTargetScore());
 
         testScore.subPoints(50);
 
-        assertEquals(-50, testScore.getCurrentScore());
+        assertEquals(-50, testScore.getTargetScore());
     }
 
     @Test
     public void getPoints() throws Exception {
-        assertNotNull(testScore.getCurrentScore());
+        assertNotNull(testScore.getTargetScore());
 
         testScore.addPoints(30);
 
-        assertEquals(30, testScore.getCurrentScore());
+        assertEquals(30, testScore.getTargetScore());
 
         testScore.subPoints(50);
 
-        assertEquals(-20, testScore.getCurrentScore());
+        assertEquals(-20, testScore.getTargetScore());
     }
 
     @Test

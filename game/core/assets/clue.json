@@ -91,29 +91,29 @@
   },
 
   {
-    "name": "Motive 7",
-    "description": "Motive 7",
+    "name": "The Homicidal Student",
+    "description": "David you are slacking in you're studies again. I will talk to you at the party about it \n However im sorry to say that i will need to submit a form to request that you either \n be expelled for lack of work or retake the year.",
     "relatedNpcId": [7],
     "clueType": "MOTIVE"
   },
 
   {
-    "name": "Motive 8",
-    "description": "Motive 8",
+    "name": "The Insane Decorator",
+    "description": "Look Julie i changed the party decoration order last minute. Why on earth did you have so many red decorations \n literally all the decorations were red that would have looked terrible. Sorry i hope that this doesn't upset you \n too much i know how you can get a little crazy with these kinds of things. Anyway seeya at the party!",
     "relatedNpcId": [8],
     "clueType": "MOTIVE"
   },
 
   {
-    "name": "Motive 9",
-    "description": "Motive 9",
+    "name": "The Pirates Life",
+    "description": "Sophie i know you've worked hard all year but i simply cannot go back on my decision to promote the newbie and not you \n im sorry but he is the managers kid i have no choice. No hard feelings seeya at the party.",
     "relatedNpcId": [9],
     "clueType": "MOTIVE"
   },
 
   {
-    "name": "Motive 10",
-    "description": "Motive 10",
+    "name": "The Red Ink",
+    "description": "Look Tom i know its tough when you have a lot of papers to mark but the university simply doesnt have the time. You've missed too many deadlines on your research and on markings so im sorry but i am gonna have to let you go",
     "relatedNpcId": [10],
     "clueType": "MOTIVE"
   },

@@ -58,6 +58,8 @@ public class Score extends Actor{
         return currentScore;
     }
 
+    public int getTargetScore() { return targetScore;}
+
     public static Score getInstance(){
         return instance;
     }
