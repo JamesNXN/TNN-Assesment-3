@@ -32,31 +32,31 @@ public class PersonalityMeterUnitTest {
         assertEquals("Should equals to 50",50,testMeter.getMeter());
 
         /**
-         * test friendly question style will increase meter by 5
+         * test friendly question style will decrease meter by 10
          */
         testMeter.setMeter(QuestionStyle.NICE);
-        assertEquals("Should equals to 55",55,testMeter.getMeter());
+        assertEquals("Should equals to 40",40,testMeter.getMeter());
 
         /**
-         * test neutral question style will decrease the meter by 5 if meter greater than 50
+         * test neutral question style will increase the meter by 10 if meter greater than 50
          */
         testMeter.setMeter(QuestionStyle.NICE);
         testMeter.setMeter(QuestionStyle.NEUTRAL);
-        assertEquals("Should equals to 55",55,testMeter.getMeter());
+        assertEquals("Should equals to 40",40,testMeter.getMeter());
 
         /**
-         * test aggressive question style will decrease the meter by 5
+         * test aggressive question style will increase the meter by 10
          */
         testMeter.setMeter(QuestionStyle.AGGRESSIVE);
         assertEquals("Should equals to 50",50,testMeter.getMeter());
 
         /**
-         * test neutral question style will increase the meter by 5 if meter less than 50
+         * test neutral question style will increase the meter by 10 if meter less than 50
          */
         testMeter.setMeter(QuestionStyle.AGGRESSIVE);
         testMeter.setMeter(QuestionStyle.AGGRESSIVE);
         testMeter.setMeter(QuestionStyle.NEUTRAL);
-        assertEquals("Should equals to 45",45,testMeter.getMeter());
+        assertEquals("Should equals to 60",60,testMeter.getMeter());
 
     }
 
