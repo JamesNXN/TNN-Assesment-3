@@ -2,12 +2,15 @@ package me.lihq.game;
 
 import com.badlogic.gdx.utils.Array;
 
+import java.util.Objects;
+
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Hint;
 import me.lihq.game.models.Score;
 import me.lihq.game.people.Npc;
 import me.lihq.game.people.Personality;
 import me.lihq.game.people.Player;
+import me.lihq.game.people.QuestionStyle;
 
 /**
  * The interaction class holds all the logic for questioning and accuse
@@ -48,7 +51,9 @@ public class Interaction {
      * @param clue - clue to question the npc about
      * @param questioningStyle - questioning style selected by the player
      */
-    public void question(Clue clue, Personality questioningStyle) {
+    public void question(Clue clue, QuestionStyle questioningStyle) {
+        player.getPersonalityMeter().setMeter(questioningStyle);
+
         // reject if it was asked before
         if (interactingNpc.getQuestionedClueArray().contains(clue, false)){
             score.subPoints(10);
@@ -58,7 +63,7 @@ public class Interaction {
             return;
         }
 
-        if (interactingNpc.getPersonality() == questioningStyle) {
+        if (Objects.equals(interactingNpc.getPersonality().toString(), questioningStyle.toString())) {
 
             score.addPoints(50);     // Successful questioning
 

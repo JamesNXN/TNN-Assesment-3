@@ -6,9 +6,9 @@ package me.lihq.game.people;
 
 public enum QuestionStyle {
 
-    FRIENDLY,
+    NICE,
 
     NEUTRAL,
 
-    AGGRESSIVELY
+    AGGRESSIVE
 }

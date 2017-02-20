@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import me.lihq.game.GameWorld;
 import me.lihq.game.models.Clue;
 import me.lihq.game.people.Personality;
+import me.lihq.game.people.QuestionStyle;
 
 public class QuestionStyleSelectionBubble extends SpeechBubble{
     public QuestionStyleSelectionBubble(GameWorld gameWorld, Clue selectedClue, Skin skin) {
@@ -17,7 +18,7 @@ public class QuestionStyleSelectionBubble extends SpeechBubble{
         aggressiveButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                gameWorld.getInteraction().question(selectedClue, Personality.AGGRESSIVE);
+                gameWorld.getInteraction().question(selectedClue, QuestionStyle.AGGRESSIVE);
             }
         });
 
@@ -25,7 +26,7 @@ public class QuestionStyleSelectionBubble extends SpeechBubble{
         neutralButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                gameWorld.getInteraction().question(selectedClue, Personality.NEUTRAL);
+                gameWorld.getInteraction().question(selectedClue, QuestionStyle.NEUTRAL);
             }
         });
 
@@ -33,7 +34,7 @@ public class QuestionStyleSelectionBubble extends SpeechBubble{
         niceButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                gameWorld.getInteraction().question(selectedClue, Personality.NICE);
+                gameWorld.getInteraction().question(selectedClue, QuestionStyle.NICE);
             }
         });
 

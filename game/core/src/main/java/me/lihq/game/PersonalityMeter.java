@@ -13,24 +13,28 @@ public class PersonalityMeter {
     private int meter;
 
 
-    public PersonalityMeter() {
-        this.meter = 50;
+    public PersonalityMeter(int initialMeter) {
+        this.meter = initialMeter;
     }
 
     public void setMeter(QuestionStyle questionStyle) {
         switch (questionStyle){
-            case FRIENDLY:
-                this.meter += 5;
+            case AGGRESSIVE:
+                this.meter += 10;
+                if (meter > 100)
+                    meter = 100;
                 break;
-            case AGGRESSIVELY:
-                this.meter -= 5;
+            case NICE:
+                this.meter -= 10;
+                if (meter < 0)
+                    meter = 0;
                 break;
             case NEUTRAL:
                 if (this.meter > 50){
-                    this.meter -= 5;
+                    this.meter -= 10;
                 }
                 if (this.meter <50){
-                    this.meter += 5;
+                    this.meter += 10;
                 }
                 else {
                     break;

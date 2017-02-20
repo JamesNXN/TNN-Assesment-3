@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.Collidable;
 import me.lihq.game.GameWorld;
 import me.lihq.game.Interaction;
+import me.lihq.game.PersonalityMeter;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Inventory;
@@ -34,7 +35,7 @@ public class Player extends AbstractPerson {
 
     private Inventory inventory = new Inventory();
 
-    private int personalityLevel;
+    private PersonalityMeter personalityMeter;
 
     private Rectangle interactionCollisionBox;
 
@@ -50,7 +51,7 @@ public class Player extends AbstractPerson {
 
         dialogue = new PlayerDialogue(this);
 
-        personalityLevel = jsonData.getInt("personalityLevel");
+        personalityMeter = new PersonalityMeter(jsonData.getInt("personalityLevel"));
         interactionCollisionBox = new Rectangle();
         interactionCollisionBox.setSize(collisionBox.getWidth(), collisionBox.getHeight());
     }
@@ -61,25 +62,6 @@ public class Player extends AbstractPerson {
      */
     public void setGameWorld(GameWorld gameWorld){
         this.gameWorld = gameWorld;
-    }
-
-    /**
-     * This method will change the players personality by the given amount.
-     * It will cap the personality between 0 and 100.
-     * <p>
-     * If the change takes it out of these bounds, it will change it to the min or max.
-     *
-     * @param change - The amount to change by, can be positive or negative
-     */
-    public void addToPersonality(int change)
-    {
-        personalityLevel = personalityLevel + change;
-
-        if (personalityLevel < 0) {
-            personalityLevel = 0;
-        } else if (personalityLevel > 100) {
-            personalityLevel = 100;
-        }
     }
 
     /**
@@ -203,10 +185,10 @@ public class Player extends AbstractPerson {
     @Override
     public Personality getPersonality()
     {
-        if (Personality.NICE.isInRange(personalityLevel)){
+        if (Personality.NICE.isInRange(personalityMeter.getMeter())){
             return Personality.NICE;
         }
-        else if (Personality.NEUTRAL.isInRange(personalityLevel)){
+        else if (Personality.NEUTRAL.isInRange(personalityMeter.getMeter())){
             return Personality.NEUTRAL;
         }
         else{
@@ -215,21 +197,15 @@ public class Player extends AbstractPerson {
     }
 
     /**
-     * This gets the players personality level; this similar to Personality but a integer representation
-     *
-     * @return (int) value between 0-100
-     */
-    public int getPersonalityLevel()
-    {
-        return this.personalityLevel;
-    }
-
-    /**
      * Getter for the players inventory
      * @return returns inventory object
      */
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public PersonalityMeter getPersonalityMeter() {
+        return personalityMeter;
     }
 
     /**

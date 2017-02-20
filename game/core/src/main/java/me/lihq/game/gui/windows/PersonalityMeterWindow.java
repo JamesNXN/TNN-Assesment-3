@@ -30,7 +30,7 @@ public class PersonalityMeterWindow extends GuiWindow {
 
     @Override
     public Dialog show(Stage stage, Action action) {
-        meterBar.setValue(gameWorld.getPlayer().getPersonalityLevel());
+        meterBar.setValue(gameWorld.getPlayer().getPersonalityMeter().getMeter());
         return super.show(stage, action);
     }
 }

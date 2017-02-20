@@ -47,33 +47,17 @@ public class PlayerUnitTest extends GameTester {
         testPlayer = null;
     }
 
-    @Test
-    public void addToPersonality() throws Exception {
-        assertNotNull(testPlayer.getPersonalityLevel());
-
-        int personalityValue = testPlayer.getPersonalityLevel();
-        testPlayer.addToPersonality(5);
-
-        assertTrue(personalityValue + 5 == testPlayer.getPersonalityLevel());
-
-        testPlayer.addToPersonality(1000000);
-
-        assertTrue(testPlayer.getPersonalityLevel() == 100);
-
-        testPlayer.addToPersonality(-1000000000);
-
-        assertTrue(testPlayer.getPersonalityLevel()==0);
-    }
 
     @Test
     public void getPersonality() throws Exception {
         assertNotNull(testPlayer.getPersonality());
         assertEquals("test player does not have expected personality", Personality.NEUTRAL, testPlayer.getPersonality());
 
-        testPlayer.addToPersonality(50);
+        testPlayer.getPersonalityMeter().setMeter(QuestionStyle.AGGRESSIVE);
         assertEquals("test player does not have expected personality", Personality.AGGRESSIVE, testPlayer.getPersonality());
 
-        testPlayer.addToPersonality(-100);
+        testPlayer.getPersonalityMeter().setMeter(QuestionStyle.NICE);
+        testPlayer.getPersonalityMeter().setMeter(QuestionStyle.NICE);
         assertEquals("test player does not have expected personality", Personality.NICE, testPlayer.getPersonality());
     }
 
