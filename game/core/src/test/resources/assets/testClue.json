@@ -3,13 +3,13 @@
     "name": "testClue1",
     "description": "description1",
     "relatedNpcId": [1,2,3],
-    "clueType": "OTHER"
+    "clueType": "NORMAL"
   },
   {
     "name": "testClue2",
     "description": "description2",
     "relatedNpcId": [4,5,6],
-    "clueType": "OTHER"
+    "clueType": "NORMAL"
   },
   {
     "name": "weaponClue",
