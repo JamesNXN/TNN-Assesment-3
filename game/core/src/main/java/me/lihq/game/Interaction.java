@@ -1,6 +1,7 @@
 package me.lihq.game;
 
 import com.badlogic.gdx.utils.Array;
+
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Hint;
 import me.lihq.game.models.Score;
@@ -13,32 +14,26 @@ import me.lihq.game.people.Player;
  */
 public class Interaction {
 
-    /**
-     * Parameters needed for Interaction object:
-     * player - The player object
-     * npc - the npc being interacted with
-     * score - a pointer to the score object to update it
-     */
-
+    private GameWorld gameWorld;
     private Player player;
-    private Npc npc;
+    private Npc interactingNpc;
     private Score score;
 
     /**
      * Constructor for interaction object
-     * @param player - the player object
-     * @param npc - the npc object being interacted with
      */
-    public Interaction(Player player, Npc npc) {
-        this.player = player;
-        this.npc = npc;
+    public Interaction(GameWorld gameWorld) {
+        this.gameWorld = gameWorld;
+        this.player = gameWorld.getPlayer();
         score = Score.getInstance();
+    }
+
+    public void setInteractingNpc(Npc interactingNpc){
+        this.interactingNpc = interactingNpc;
     }
 
     /**
      * Questioning takes a clue and a questioning style and questions the npc that is being interacted with
-     * it checks to see whether the npc has already been falsely accused not allowing the player to question
-     * that npc if they have.
      *
      * Then if the player has found a clue the questioning logic starts
      *
@@ -50,30 +45,35 @@ public class Interaction {
      * if the player questions the npc successfully they gain 50 points and if they question them unsuccessfully
      * then they lose 25 points
      *
-     * In the event a player has already falsely accused the npc the npc will simply tell the player to go away
-     *
-     * in the event a player lacks clues the game will notify the player of this
-     *
      * @param clue - clue to question the npc about
      * @param questioningStyle - questioning style selected by the player
      */
     public void question(Clue clue, Personality questioningStyle) {
-        if (!npc.isFalseAccused()) {
-            if (player.getInventory().getCollectedClues().size != 0) {
-                if (npc.getPersonality() == questioningStyle && !npc.getExhaustedClues().contains(clue, true)) {
-                    //// TODO: 08/02/2017 some graphical success text
-                    score.addPoints(50);     // Successful questioning
-                    player.getInventory().addHint(new Hint(clue));
-                    npc.addExhaustedClue(clue);
-                } else {
-                    score.subPoints(25);      // Failed questioning
-                    //// TODO: 08/02/2017 some graphical fail text
-                }
-            } else {
-                //// TODO: 08/02/2017 some graphical text regarding a lack of clues
-            }
-        } else {
-            //todo some graphical text telling player to go away
+        // reject if it was asked before
+        if (interactingNpc.getQuestionedClueArray().contains(clue, false)){
+            score.subPoints(10);
+
+            gameWorld.getConversationManager().addSpeechBubble(interactingNpc, "I already told you about that");
+            gameWorld.getConversationManager().nextSpeechBubble();
+            return;
+        }
+
+        if (interactingNpc.getPersonality() == questioningStyle) {
+
+            score.addPoints(50);     // Successful questioning
+
+            Hint hint = new Hint(clue);
+            player.getInventory().addHint(hint);
+            interactingNpc.addQuestionedClue(clue);
+
+            gameWorld.getConversationManager().addSpeechBubble(interactingNpc, "I think it's related to " + hint.getRelatedNpcNames() + '.');
+            gameWorld.getConversationManager().nextSpeechBubble();
+
+        }
+        else {
+            score.subPoints(25);      // Failed questioning
+            gameWorld.getConversationManager().addSpeechBubble(interactingNpc, interactingNpc.getDialogue().getFailResponseArray().random());
+            gameWorld.getConversationManager().nextSpeechBubble();
         }
     }
 
@@ -96,7 +96,7 @@ public class Interaction {
         if (player.getInventory().getCollectedClues().size >= 6 && player.getInventory().isWeaponFound() && player.getInventory().isMotiveFound()){
             int checkingValue = 0;
             for (Clue cluesCheck : clues) {
-                if (cluesCheck.getRelatedNpcIdArray().contains(npc.getId(), true)) {
+                if (cluesCheck.getRelatedNpcIdArray().contains(interactingNpc.getId(), true)) {
                     checkingValue += 1;
                 }
             }
@@ -107,7 +107,7 @@ public class Interaction {
             else if (checkingValue < 4) {
                 score.failedAccusation();
                 score.subPoints(200);      // Failed accusation
-                npc.setFalseAccused(true);
+                interactingNpc.setFalseAccused(true);
                 //todo some accuse fail stuff
             }
         }

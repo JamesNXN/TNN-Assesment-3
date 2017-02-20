@@ -24,7 +24,7 @@ public class NpcDialogue extends Dialogue{
         super(person);
 
         Json json = new Json();
-        JsonValue responseJsonData = dialogueJsonValue.get("failResponse");
+        JsonValue responseJsonData = dialogueJsonValue.get("failResponses");
         failResponseArray = json.readValue(Array.class, responseJsonData);
     }
 

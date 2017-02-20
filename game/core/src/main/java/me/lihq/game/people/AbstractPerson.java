@@ -248,6 +248,7 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
         return id;
     }
 
+    @Override
     public String getName() {
         return this.name;
     }

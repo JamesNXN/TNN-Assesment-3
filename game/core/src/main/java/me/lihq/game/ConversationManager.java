@@ -7,13 +7,15 @@ import com.badlogic.gdx.utils.Queue;
 
 import me.lihq.game.gui.ConversationSpeechBubble;
 import me.lihq.game.gui.SpeechBubble;
+import me.lihq.game.models.Clue;
 import me.lihq.game.people.AbstractPerson;
+import me.lihq.game.people.Npc;
 
 public class ConversationManager{
     private Stage stage;
     private Skin skin;
     private Queue<SpeechBubble> speechBubbleQueue;
-    private Array<AbstractPerson> interactingCharacterArray;
+    private Npc interactingCharacter;
 
     private SpeechBubble currentSpeech;
     private boolean isFinished = false;
@@ -21,7 +23,6 @@ public class ConversationManager{
     public ConversationManager(Skin skin){
         this.skin = skin;
         speechBubbleQueue = new Queue<>();
-        interactingCharacterArray = new Array<>();
     }
 
     public void addSpeechBubble(SpeechBubble speechBubble){
@@ -29,8 +30,8 @@ public class ConversationManager{
 
         if (speechBubble instanceof ConversationSpeechBubble) {
             AbstractPerson speakingPerson = speechBubble.getSpeakingPerson();
-            if (!interactingCharacterArray.contains(speakingPerson, false)) {
-                interactingCharacterArray.add(speakingPerson);
+            if (speakingPerson instanceof Npc) {
+                interactingCharacter = (Npc) speakingPerson;
             }
         }
     }
@@ -38,8 +39,8 @@ public class ConversationManager{
     public void addSpeechBubble(AbstractPerson speakingPerson, String dialogueLine) {
         speechBubbleQueue.addLast(new ConversationSpeechBubble(speakingPerson, dialogueLine, skin));
 
-        if (!interactingCharacterArray.contains(speakingPerson, false)) {
-            interactingCharacterArray.add(speakingPerson);
+        if (speakingPerson instanceof Npc) {
+            interactingCharacter = (Npc) speakingPerson;
         }
     }
 
@@ -48,7 +49,7 @@ public class ConversationManager{
             currentSpeech.hide();
         }
         speechBubbleQueue.clear();
-        interactingCharacterArray.clear();
+        interactingCharacter = null;
         stage = null;
     }
 
@@ -59,20 +60,17 @@ public class ConversationManager{
         currentSpeech.show(stage);
     }
 
-    public void nextSpeech(){
-        //wait for button click from the player if the current speech bubble is a button speech bubble
-        if (currentSpeech instanceof ConversationSpeechBubble) {
-            currentSpeech.hide();
-            if (speechBubbleQueue.size != 0) {
-                currentSpeech = speechBubbleQueue.removeFirst();
-                currentSpeech.show(stage);
-            } else {
-                isFinished = true;
-            }
+    public void nextSpeechBubble(){
+        currentSpeech.hide();
+        if (speechBubbleQueue.size != 0) {
+            currentSpeech = speechBubbleQueue.removeFirst();
+            currentSpeech.show(stage);
+        } else {
+            isFinished = true;
         }
     }
 
-    public void question(){
+    public void question(Clue clue){
 
     }
 
@@ -84,7 +82,11 @@ public class ConversationManager{
         isFinished = finished;
     }
 
-    public Array<AbstractPerson> getInteractingCharacterArray() {
-        return interactingCharacterArray;
+    public Npc getInteractingCharacter() {
+        return interactingCharacter;
+    }
+
+    public SpeechBubble getCurrentSpeech() {
+        return currentSpeech;
     }
 }

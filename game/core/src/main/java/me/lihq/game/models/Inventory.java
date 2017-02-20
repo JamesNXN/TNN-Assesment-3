@@ -1,6 +1,8 @@
 package me.lihq.game.models;
 
 import com.badlogic.gdx.utils.Array;
+
+import me.lihq.game.ClueManager;
 import me.lihq.game.people.Npc;
 
 /**
@@ -34,8 +36,8 @@ public class Inventory {
      * @return (boolean) Returns true if the hint has already been collected
      */
     public boolean contains(Hint hint) {
-        for (Hint hintToCheck: this.collectedHints) {
-            if (hintToCheck.getRelatedClue() == hint.getRelatedClue()) {
+        for (Hint hintToCheck: collectedHints) {
+            if (hintToCheck.getRelatedClue().equals(hint.getRelatedClue())) {
                 return true;
             }
         }
@@ -74,7 +76,11 @@ public class Inventory {
      */
     public void addClue(Clue clue) {
         this.collectedClues.add(clue);
-        /** player.score.addPoints(100); */ //@TODO Need to fix referencing score from inside inventory.
+        Score.getInstance().addPoints(100);
+
+        if (collectedClues.size > 5){
+            ClueManager.instance.getMotiveClue().setVisible(true);
+        }
     }
 
     /**
@@ -93,15 +99,24 @@ public class Inventory {
      * @param hint - hint to be added to inventory
      */
     public void addHint(Hint hint) {
-        if (contains(hint) == false) {
+        if (!contains(hint)) {
             this.collectedHints.add(hint);
         } else {
             for (Hint hintToUpdate: this.collectedHints) {
-                if (hintToUpdate == hint) {
+                if (hintToUpdate.getRelatedClue().equals(hint.getRelatedClue())) {
                     hintToUpdate.combine(hint);
                 }
             }
         }
+    }
+
+    public Hint getHint(Clue clue){
+        for (Hint hint : collectedHints){
+            if (hint.getRelatedClue().equals(clue)){
+                return hint;
+            }
+        }
+        return null;
     }
 
     /**

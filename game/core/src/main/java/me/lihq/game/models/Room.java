@@ -66,7 +66,7 @@ public class Room
         roomArrowArray.addAll(getRoomArrow(exitArray, roomArrowAtlas));
 
         hidingSpots = new Array<>();
-        hidingSpots.addAll(getHidingSpots());
+        hidingSpots.addAll(getAllHidingSpots());
     }
 
 
@@ -109,11 +109,23 @@ public class Room
      */
     public void addClue(Clue newClue)
     {
-        System.out.println("Added Clue " + newClue.getName() + " at location " + newClue.getTilePosition() + " in room " + getID());
-
         if (!clueArray.contains(newClue, false)) {
             clueArray.add(newClue);
         }
+
+        if (newClue.getClueType() == ClueType.MOTIVE){
+            TiledMapTileLayer bloodLayer = (TiledMapTileLayer) mapFile.getLayers().get("Blood");
+            for (int x = 0; x < bloodLayer.getWidth(); x++){
+                for (int y = 0; y < bloodLayer.getHeight(); y++){
+                    if (bloodLayer.getCell(x, y) != null){
+                        newClue.setTilePosition(x, y);
+                        return;
+                    }
+                }
+            }
+        }
+
+        System.out.println("Added Clue " + newClue.getName() + " at location " + newClue.getTilePosition() + " in room " + getID());
     }
 
     /**
@@ -208,16 +220,6 @@ public class Room
         return this.name;
     }
 
-
-    public Vector2Int getRandHidingSpot()
-    {
-        if (hidingSpots.size!= 0) {
-            return hidingSpots.random();
-        } else {
-            return null;
-        }
-    }
-
     public Vector2Int getRandomLocation()
     {
         int roomWidth = ((TiledMapTileLayer) getTiledMap().getLayers().get("Collision")).getWidth();
@@ -239,7 +241,7 @@ public class Room
     * This will check the map for any potential hiding locations, and add them as a list of coordinates
     *
     */
-    public Array<Vector2Int> getHidingSpots() {
+    private Array<Vector2Int> getAllHidingSpots() {
         TiledMapTileLayer layer = (TiledMapTileLayer) mapFile.getLayers().get("HidingSpot");
         int roomTileWidth = layer.getWidth();
         int roomTileHeight = layer.getHeight();
@@ -257,6 +259,10 @@ public class Room
             }
         }
         return spots;
+    }
+
+    public Array<Vector2Int> getHidingSpots() {
+        return hidingSpots;
     }
 }
 

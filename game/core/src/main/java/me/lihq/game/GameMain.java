@@ -42,11 +42,6 @@ public class GameMain extends Game
     public PlayerSelectionScreen playerSelectionScreen;
 
     /**
-     * An FPSLogger, FPSLogger allows us to check the game FPS is good enough
-     */
-    FPSLogger FPS;
-
-    /**
      * This is called at start up. It initialises the game.
      */
     @Override
@@ -55,9 +50,6 @@ public class GameMain extends Game
 
         //Set up the SplashScreen
         this.setScreen(new SplashScreen(this));
-
-        //Instantiate the FPSLogger to show FPS
-        FPS = new FPSLogger();
     }
 
     /**
@@ -69,7 +61,6 @@ public class GameMain extends Game
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        FPS.log();//this is where fps is displayed
 
         super.render(); // This calls the render method of the screen that is currently set
     }

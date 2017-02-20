@@ -1,21 +1,17 @@
 package me.lihq.game.gui.windows;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.gui.Slot;
-import me.lihq.game.models.Clue;
-import me.lihq.game.models.Inventory;
 
 abstract class SlotWindow extends GuiWindow {
-    protected SlotWindowStyle style;
+    private SlotWindowStyle style;
 
     SlotWindow(String title, Skin skin, Gui gui, GameWorld gameWorld, SlotWindowStyle style) {
         super(title, skin, gui, gameWorld);
@@ -65,7 +61,17 @@ abstract class SlotWindow extends GuiWindow {
         return super.show(stage);
     }
 
+    public SlotWindowStyle getSlotWindowStyle() {
+        return style;
+    }
 
+    public void setSlotWindowStyle(SlotWindowStyle style){
+        this.style = style;
+    }
+
+    /**
+     * Used for configuring the arrangements and the size of the window.
+     */
     static public class SlotWindowStyle{
         //default values
         public int COLUMN_COUNT = 4;

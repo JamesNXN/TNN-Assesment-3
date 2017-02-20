@@ -58,7 +58,7 @@ public abstract class SpeechBubble extends Table {
 
         setOrigin(getWidth()/2, getHeight()/2);
 
-        addAction(Actions.scaleTo(1f, 1f, 0.5f, Interpolation.swingOut));
+        addAction(Actions.scaleTo(1f, 1f, 0.2f, Interpolation.swingOut));
         stage.addActor(this);
 
         switch (speakingPerson.getDirection()){
@@ -80,7 +80,7 @@ public abstract class SpeechBubble extends Table {
 
     public void hide(){
         addAction(Actions.sequence(
-                Actions.scaleTo(0f, 0f, 0.5f, Interpolation.swingIn),
+                Actions.scaleTo(0f, 0f, 0.2f, Interpolation.swingIn),
                 Actions.run(this::remove)));
     }
 

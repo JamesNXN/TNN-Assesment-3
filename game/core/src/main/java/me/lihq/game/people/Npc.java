@@ -18,7 +18,7 @@ public class Npc extends AbstractPerson {
      * isKiller - boolean value that defines whether or not the npc is the murderer
      * isVictim - boolean value that defines whether or not the npc is the victim
      * isFalseAccused - boolean value that defines whether the npc has been falsely accused by the player
-     * exhaustedClues - an array of clues containing the clues the player has successfully questioned the npc with
+     * questionedClueArray - an array of clues containing the clues the player has successfully questioned the npc with
      * personality - contains the personality of the npc
      * randomTimeLimit - the amount of time that the npc will either stand still or walk for
      * randomTimeSum - the amount of time that the npc has spent either stood still or walking
@@ -30,7 +30,7 @@ public class Npc extends AbstractPerson {
     private boolean isVictim = false;
     private boolean isFalseAccused = false;
 
-    private Array<Clue> exhaustedClues = new Array<>();
+    private Array<Clue> questionedClueArray = new Array<>();
 
     private Personality personality;
 
@@ -110,7 +110,7 @@ public class Npc extends AbstractPerson {
         return isVictim;
     }
 
-    public void setKiller(boolean killer)
+    public void setMurderer(boolean killer)
     {
         isKiller = killer;
         System.out.println(getName() + " is the killer");
@@ -133,10 +133,10 @@ public class Npc extends AbstractPerson {
         return this.personality;
     }
 
-    public Array<Clue> getExhaustedClues() {return this.exhaustedClues;}
+    public Array<Clue> getQuestionedClueArray() {return this.questionedClueArray;}
 
-    public void addExhaustedClue(Clue clue) {
-        this.exhaustedClues.add(clue);
+    public void addQuestionedClue(Clue clue) {
+        this.questionedClueArray.add(clue);
     }
 
     public void setFalseAccused(boolean falseAccused) {

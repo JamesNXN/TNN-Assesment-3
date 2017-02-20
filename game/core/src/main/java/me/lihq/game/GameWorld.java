@@ -8,13 +8,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
-import me.lihq.game.gui.ButtonSpeechBubble;
 import me.lihq.game.gui.Gui;
+import me.lihq.game.gui.InteractionSelectionBubble;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
-import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.Direction;
 import me.lihq.game.people.Npc;
 import me.lihq.game.people.PersonState;
@@ -41,6 +40,7 @@ public class GameWorld {
     private Vector2 targetCameraPosition;
     private float targetCameraZoom;
 
+    private Interaction interaction;
     private ConversationManager conversationManager;
 
     public GameWorld(GameMain game, Player selectedPlayer){
@@ -52,7 +52,7 @@ public class GameWorld {
 
         roomManager = new RoomManager(game.assetLoader);
         npcManager = new NpcManager(roomManager, game.assetLoader);
-        clueManager = new ClueManager(roomManager, game.assetLoader);
+        clueManager = new ClueManager(npcManager, roomManager, game.assetLoader);
 
         player = selectedPlayer;
         player.setCurrentRoom(roomManager.getRoom(0));
@@ -93,7 +93,7 @@ public class GameWorld {
         gameWorldStage.addActor(clueGroup);
         gameWorldStage.addActor(characterGroup);
 
-
+        interaction = new Interaction(this);
         conversationManager = new ConversationManager(game.assetLoader.uiSkin);
     }
 
@@ -162,13 +162,14 @@ public class GameWorld {
     }
 
     public void startInteraction(Npc interactingNpc){
+        interaction.setInteractingNpc(interactingNpc);
+
         player.setInConversation(true);
         interactingNpc.setInConversation(true);
         interactingNpc.setDirection(player.getDirection().getOpposite());
         conversationManager.addSpeechBubble(player, player.getDialogue().getIntroduction());
         conversationManager.addSpeechBubble(interactingNpc, interactingNpc.getDialogue().getIntroduction());
-        conversationManager.addSpeechBubble(new ButtonSpeechBubble(player, game.assetLoader.uiSkin, this));
-
+        conversationManager.addSpeechBubble(new InteractionSelectionBubble(player, game.assetLoader.uiSkin, conversationManager, gui));
         conversationManager.startConversation(gui.getGuiStage());
 
         targetCameraPosition.set((player.getX() + interactingNpc.getRight())/2, (player.getTop() + interactingNpc.getY())/2);
@@ -177,9 +178,8 @@ public class GameWorld {
     }
 
     public void haltInteraction(){
-        for (AbstractPerson person: conversationManager.getInteractingCharacterArray()){
-            person.setInConversation(false);
-        }
+        conversationManager.getInteractingCharacter().setInConversation(false);
+        player.setInConversation(false);
 
         conversationManager.clear();
         targetCameraPosition.set(player.getDefaultCameraFocusX(), player.getDefaultCameraFocusY());
@@ -224,6 +224,10 @@ public class GameWorld {
 
     public Gui getGui() {
         return gui;
+    }
+
+    public Interaction getInteraction(){
+        return interaction;
     }
 
     public ConversationManager getConversationManager(){

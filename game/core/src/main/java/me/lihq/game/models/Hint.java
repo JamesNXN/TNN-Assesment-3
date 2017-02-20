@@ -3,6 +3,8 @@ package me.lihq.game.models;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
+import me.lihq.game.NpcManager;
+
 /**
  * This class defines hints that are given to the player upon successfully questioning
  * an npc about a clue.
@@ -44,6 +46,20 @@ public class Hint {
                 relatedNpcIdArray.add(idToBeAdded);
             }
         }
+    }
+
+    public String getRelatedNpcNames(){
+        String relatedNpcNames = "";
+
+        for (int i = 0; i < relatedNpcIdArray.size; i++){
+            if (i == relatedNpcIdArray.size - 1){
+                relatedNpcNames += NpcManager.instance.getNpc(relatedNpcIdArray.get(i)).getName();
+            }
+            else{
+                relatedNpcNames += NpcManager.instance.getNpc(relatedNpcIdArray.get(i)).getName() + ", ";
+            }
+        }
+        return relatedNpcNames;
     }
 
     /**

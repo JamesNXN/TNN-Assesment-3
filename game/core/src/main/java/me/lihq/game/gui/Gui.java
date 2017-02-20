@@ -16,6 +16,7 @@ import me.lihq.game.gui.windows.InfoWindow;
 import me.lihq.game.gui.windows.InventoryWindow;
 import me.lihq.game.gui.windows.NpcNoteWindow;
 import me.lihq.game.gui.windows.PersonalityMeterWindow;
+import me.lihq.game.gui.windows.ClueSelectionWindow;
 import me.lihq.game.models.Room;
 
 public class Gui {
@@ -32,10 +33,12 @@ public class Gui {
 
     private FadeInOut fadeInOut;
 
+    // all of the gui windows in the game
     private InfoWindow infoWindow;
     private InventoryWindow inventoryWindow;
     private PersonalityMeterWindow personalityMeterWindow;
     private NpcNoteWindow npcNoteWindow;
+    private ClueSelectionWindow clueSelectionWindow;
 
 
     public Gui(GameMain game, GameWorld gameWorld){
@@ -67,6 +70,7 @@ public class Gui {
         inventoryWindow = new InventoryWindow(game.assetLoader.uiSkin, this, gameWorld);
         personalityMeterWindow = new PersonalityMeterWindow(game.assetLoader.uiSkin, this, gameWorld);
         npcNoteWindow = new NpcNoteWindow(game.assetLoader.uiSkin, this, gameWorld);
+        clueSelectionWindow = new ClueSelectionWindow(game.assetLoader.uiSkin, this, gameWorld);
     }
 
     public void setRoomTag(Room room){
@@ -141,6 +145,10 @@ public class Gui {
 
     public NpcNoteWindow getNpcNoteWindow() {
         return npcNoteWindow;
+    }
+
+    public ClueSelectionWindow getClueSelectionWindow() {
+        return clueSelectionWindow;
     }
 
     public void dispose(){

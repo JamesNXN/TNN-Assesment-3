@@ -4,12 +4,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 
 import me.lihq.game.GameMain;
-import me.lihq.game.GameWorld;
-import me.lihq.game.Settings;
+import me.lihq.game.gui.ConversationSpeechBubble;
 import me.lihq.game.people.Direction;
 import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
-import me.lihq.game.screen.PauseScreen;
 
 /**
  * This class allows the player to be moved and controlled.
@@ -75,26 +73,14 @@ public class PlayerController extends InputAdapter
                 }
             }
         }
-        else if (player.isInConversation()){
+
+        // player press space to get the conversation flowing, but it should stop when the game is
+        // waiting for player input for interaction option
+        else if (player.isInConversation()
+                && game.gameWorld.getConversationManager().getCurrentSpeech() instanceof ConversationSpeechBubble){
             if (keycode == Input.Keys.SPACE){
-                game.gameWorld.getConversationManager().nextSpeech();
+                game.gameWorld.getConversationManager().nextSpeechBubble();
             }
-        }
-
-        //TODO: The following 3 key reads could do with being placed in another controller
-        if (keycode == Input.Keys.J) {
-            Settings.DEBUG_OPTIONS.put("showWalkable", !Settings.DEBUG_OPTIONS.get("showWalkable"));
-            return true;
-        }
-
-        if (keycode == Input.Keys.H) {
-            Settings.DEBUG_OPTIONS.put("showHideable", !Settings.DEBUG_OPTIONS.get("showHideable"));
-            return true;
-        }
-
-        if (keycode == Input.Keys.F3) {
-            Settings.DEBUG = !Settings.DEBUG;
-            return true;
         }
 
         return false;

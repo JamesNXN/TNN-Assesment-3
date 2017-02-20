@@ -3,36 +3,24 @@ package me.lihq.game.gui.windows;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
+import me.lihq.game.gui.QuestionStyleSelectionBubble;
 import me.lihq.game.gui.Slot;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Inventory;
 
 /**
- * Window that displays data in notebook
+ * Used for choosing a clue for questioning
  */
 
-public class InventoryWindow extends SlotWindow {
-    public InventoryWindow(Skin skin, Gui gui, GameWorld gameWorld) {
-        super("INVENTORY", skin, gui, gameWorld);
-
-        button("OK", true);
+public class ClueSelectionWindow extends SlotWindow {
+    public ClueSelectionWindow(Skin skin, Gui gui, GameWorld gameWorld) {
+        super("Select clue to question about", skin, gui, gameWorld);
     }
 
-    @Override
-    protected void result(Object object) {
-        if (object.equals(true)){
-            hide();
-        }
-    }
-
-    /**
-     * Set up slots that will be added to the window
-     */
     @Override
     Array<Slot> setUpSlotArray() {
         Inventory inventory = gameWorld.getPlayer().getInventory();
@@ -43,7 +31,10 @@ public class InventoryWindow extends SlotWindow {
             slot.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    gui.displayInfo(clue.getDescription() + "\n Related NPCs: " + inventory.getHint(clue).getRelatedNpcNames());
+                    hide();
+                    QuestionStyleSelectionBubble bubble = new QuestionStyleSelectionBubble(gameWorld, clue, getSkin());
+                    gameWorld.getConversationManager().addSpeechBubble(bubble);
+                    gameWorld.getConversationManager().nextSpeechBubble();
                 }
             });
 

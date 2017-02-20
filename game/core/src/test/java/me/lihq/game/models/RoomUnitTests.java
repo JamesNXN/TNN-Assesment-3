@@ -69,8 +69,8 @@ public class RoomUnitTests extends GameTester
 
     @Test
     public void getHidingSpots() throws Exception{
-        assertTrue(testRoom1.getHidingSpots().contains(testRoom1.getRandHidingSpot(),false));
-        assertTrue(testRoom2.getHidingSpots().contains(testRoom2.getRandHidingSpot(),false));
+        assertNotNull(testRoom1.getHidingSpots());
+        assertNotNull(testRoom2.getHidingSpots());
     }
 
     @Test

@@ -70,6 +70,11 @@ public class Clue extends Actor implements Collidable, TileObject {
 
         collisionBox = new Rectangle();
         collisionBox.setSize(Settings.TILE_SIZE);
+
+        //motive clue can be found when there are more than 5 clues in inventory
+        if (clueType == ClueType.MOTIVE){
+            setVisible(false);
+        }
     }
 
     public boolean isFound() {

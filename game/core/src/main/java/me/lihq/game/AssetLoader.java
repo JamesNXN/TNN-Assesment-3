@@ -240,7 +240,7 @@ public class AssetLoader {
         Label.LabelStyle speechDialogueStyle = new Label.LabelStyle(getFontWithSize(25), Color.BLACK);
         uiSkin.add("speechDialogue", speechDialogueStyle);
 
-        //used in ButtonSpeechBubble class
+        //used in InteractionSelectionBubble class and QuestionStyleSelectionBubble class
         TextButton.TextButtonStyle buttonBubbleStyle = new TextButton.TextButtonStyle();
         buttonBubbleStyle.font = getFontWithSize(30);
         buttonBubbleStyle.fontColor = Color.BLACK;

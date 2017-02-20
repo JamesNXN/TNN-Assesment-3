@@ -62,7 +62,7 @@ public class NPCUnitTests extends GameTester {
     public void setKiller() throws Exception {
         assertFalse(testNpc.isKiller());
 
-        testNpc.setKiller(true);
+        testNpc.setMurderer(true);
 
         assertTrue(testNpc.isKiller());
     }
@@ -84,17 +84,17 @@ public class NPCUnitTests extends GameTester {
 
     @Test
     public void getExhaustedClues() throws Exception {
-        assertNotNull(testNpc.getExhaustedClues());
-        assertTrue(testNpc.getExhaustedClues().size == 0);
+        assertNotNull(testNpc.getQuestionedClueArray());
+        assertTrue(testNpc.getQuestionedClueArray().size == 0);
     }
 
     @Test
     public void addExhaustedClue() throws Exception {
-        assertTrue(testNpc.getExhaustedClues().size == 0);
+        assertTrue(testNpc.getQuestionedClueArray().size == 0);
 
-        testNpc.addExhaustedClue(testClue);
+        testNpc.addQuestionedClue(testClue);
 
-        assertTrue(testNpc.getExhaustedClues().contains(testClue,true) && testNpc.getExhaustedClues().size == 1);
+        assertTrue(testNpc.getQuestionedClueArray().contains(testClue,true) && testNpc.getQuestionedClueArray().size == 1);
     }
 
     @Test

@@ -13,16 +13,19 @@ import me.lihq.game.people.Npc;
  */
 
 public class NpcManager {
+    // used for situations when passing as a parameter isn't optimal
+    public static NpcManager instance;
+
     /**
      * Parameters needed for NpcManager:
      *
      * npcArray - the array of created npcs
-     * killer - the npc randomly selected to be the killer
+     * murderer - the npc randomly selected to be the murderer
      * victim - the npc randomly selected to be the victim
      */
     private Array<Npc> npcArray;
 
-    private Npc killer;
+    private Npc murderer;
     private Npc victim;
 
     public NpcManager(RoomManager roomManager, AssetLoader assetLoader){
@@ -38,8 +41,8 @@ public class NpcManager {
         npcArray.shuffle();
         victim = npcArray.pop();
         victim.setVictim(true);
-        killer = npcArray.random();
-        killer.setKiller(true);
+        murderer = npcArray.random();
+        murderer.setMurderer(true);
 
         int roomIndex = 0;
         for (Npc npc : npcArray) {
@@ -55,6 +58,19 @@ public class NpcManager {
 
             roomIndex++;
         }
+
+        npcArray.add(victim);
+
+        instance = this;
+    }
+
+    public Npc getNpc(int id){
+        for (Npc npc : npcArray){
+            if (npc.getId() == id){
+                return npc;
+            }
+        }
+        return null;
     }
 
     /**
@@ -64,8 +80,8 @@ public class NpcManager {
         return npcArray;
     }
 
-    public Npc getKiller() {
-        return killer;
+    public Npc getMurderer() {
+        return murderer;
     }
 
     public Npc getVictim() {

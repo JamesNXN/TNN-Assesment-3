@@ -11,6 +11,7 @@ import me.lihq.game.models.Room;
 public class RoomManager
 {
     private Array<Room> roomArray;
+    private Room murderRoom;
 
     /**
      * Constructs the map
@@ -33,7 +34,8 @@ public class RoomManager
         /**
          * Assign the murder room
          */
-        roomArray.random().setMurderRoom(true);
+        murderRoom = roomArray.random();
+        murderRoom.setMurderRoom(true);
     }
 
     /**
@@ -62,4 +64,7 @@ public class RoomManager
         return roomArray;
     }
 
+    public Room getMurderRoom() {
+        return murderRoom;
+    }
 }
