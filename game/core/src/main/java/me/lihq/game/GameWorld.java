@@ -67,6 +67,7 @@ public class GameWorld {
         targetCameraZoom = ((OrthographicCamera)(gameWorldStage.getCamera())).zoom;
 
         characterGroup = new Group();
+        characterGroup.setName("characterGroup");
         clueGroup = new Group();
         roomArrowGroup = new Group();
 

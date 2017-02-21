@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.Collidable;
@@ -136,10 +137,13 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
      * @return return true when there is collision
      */
     private boolean characterCollisionDetection(Rectangle collisionBox) {
-        Array<Npc> npcArray = getCurrentRoom().getNpcArray();
+        Group characterGroup = getStage().getRoot().findActor("characterGroup");
+
+        Array<AbstractPerson> abstractPersonArray = new Array<>();
+        abstractPersonArray.addAll(characterGroup.getChildren().toArray(AbstractPerson.class));
 
         boolean characterCollision = false;
-        for (Npc person : npcArray) {
+        for (AbstractPerson person : abstractPersonArray) {
             if (person.getCollisionBox().overlaps(collisionBox) && !person.equals(this)) {
                 characterCollision = true;
                 break;
