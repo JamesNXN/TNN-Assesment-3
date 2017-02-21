@@ -21,7 +21,7 @@ import me.lihq.game.models.Inventory;
 
 public class ClueSelectionWindow extends SlotWindow {
     public ClueSelectionWindow(Skin skin, Gui gui, GameWorld gameWorld) {
-        super("Select clue to question about", skin, gui, gameWorld);
+        super("", skin, gui, gameWorld);
     }
 
     @Override

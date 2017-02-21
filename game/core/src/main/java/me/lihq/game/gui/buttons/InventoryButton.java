@@ -12,7 +12,7 @@ import me.lihq.game.gui.Gui;
 
 public class InventoryButton extends GuiButton {
     public InventoryButton(Skin skin, Gui gui) {
-        super("Inventory", skin, gui);
+        super("Inventory", skin, "statusBar", gui);
 
         addListener(new ChangeListener() {
             @Override

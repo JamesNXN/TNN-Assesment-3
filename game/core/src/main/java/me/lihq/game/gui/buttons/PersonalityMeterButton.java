@@ -12,7 +12,7 @@ import me.lihq.game.gui.Gui;
  */
 public class PersonalityMeterButton extends GuiButton {
     public PersonalityMeterButton(Skin skin, Gui gui) {
-        super("Personality Meter", skin, gui);
+        super("Personality Meter", skin, "statusBar", gui);
 
         addListener(new ChangeListener() {
             @Override

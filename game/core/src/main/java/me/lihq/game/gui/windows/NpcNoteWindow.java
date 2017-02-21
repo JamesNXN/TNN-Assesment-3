@@ -23,7 +23,7 @@ import me.lihq.game.people.Npc;
 public class NpcNoteWindow extends SlotWindow{
 
     public NpcNoteWindow(Skin skin, Gui gui, GameWorld gameWorld) {
-        super("Npc Note", skin, gui, gameWorld);
+        super("", skin, gui, gameWorld);
 
         button("OK", true);
     }

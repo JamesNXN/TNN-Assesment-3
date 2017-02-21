@@ -21,7 +21,7 @@ import me.lihq.game.models.Inventory;
 
 public class InventoryWindow extends SlotWindow {
     public InventoryWindow(Skin skin, Gui gui, GameWorld gameWorld) {
-        super("INVENTORY", skin, gui, gameWorld);
+        super("", skin, gui, gameWorld);
 
         button("OK", true);
     }

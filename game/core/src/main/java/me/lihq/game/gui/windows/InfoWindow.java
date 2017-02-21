@@ -12,7 +12,7 @@ import me.lihq.game.gui.Gui;
 
 public class InfoWindow extends GuiWindow {
     public InfoWindow(Skin skin, Gui gui, GameWorld gameWorld) {
-        super("INFO", skin, gui, gameWorld);
+        super("", skin, gui, gameWorld);
 
         button("OK", true);
     }

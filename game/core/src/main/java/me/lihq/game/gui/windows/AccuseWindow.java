@@ -22,7 +22,7 @@ public class AccuseWindow extends SlotWindow{
     private Array<Clue> cluesToBePresented;
 
     public AccuseWindow(Skin skin, Gui gui, GameWorld gameWorld) {
-        super("Accuse", skin, gui, gameWorld);
+        super("", skin, gui, gameWorld);
 
         button("OK", true);
         button("Cancel", false);

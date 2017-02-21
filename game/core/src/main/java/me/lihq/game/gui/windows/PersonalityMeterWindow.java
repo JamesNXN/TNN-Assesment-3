@@ -19,7 +19,7 @@ public class PersonalityMeterWindow extends GuiWindow {
     private ProgressBar meterBar;
 
     public PersonalityMeterWindow(Skin skin, Gui gui, GameWorld gameWorld) {
-        super("PERSONALITY METER", skin, gui, gameWorld);
+        super("", skin, gui, gameWorld);
 
         meterBar = new ProgressBar(0, 100, 1, false, skin);
         getContentTable().add(meterBar).size(GameMain.GAME_WIDTH * 0.5f, 100);

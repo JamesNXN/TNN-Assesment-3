@@ -23,4 +23,10 @@ abstract class GuiButton extends TextButton {
         this.gui = gui;
         this.gameWorld = gui.getGameWorld();
     }
+
+    public GuiButton(String text, Skin skin, String styleName, Gui gui) {
+        super(text, skin, styleName);
+        this.gui = gui;
+        this.gameWorld = gui.getGameWorld();
+    }
 }

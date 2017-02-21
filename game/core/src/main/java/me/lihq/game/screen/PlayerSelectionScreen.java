@@ -50,7 +50,7 @@ public class PlayerSelectionScreen extends AbstractScreen {
         selectionTable = new Table();
         selectionTable.setFillParent(true);
 
-        selectionConfirmWindow = new Dialog("Confirm selection?", game.assetLoader.uiSkin){
+        selectionConfirmWindow = new Dialog("", game.assetLoader.uiSkin){
             @Override
             protected void result(Object object) {
                 if (object.equals(true)){

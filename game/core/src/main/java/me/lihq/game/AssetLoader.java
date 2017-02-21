@@ -99,6 +99,7 @@ public class AssetLoader {
      */
     public void loadGameAssets(){
         manager.load("skin/uiskin.json", Skin.class);
+        manager.load("skin/comic-ui.json", Skin.class);
 
         manager.load("arrows.pack", TextureAtlas.class);
         manager.load("clueGlint.pack", TextureAtlas.class);
@@ -191,7 +192,8 @@ public class AssetLoader {
         //clue glint animation init
         clueGlint = manager.get("clueGlint.pack");
 
-        uiSkin = manager.get("skin/uiskin.json");
+//        uiSkin = manager.get("skin/uiskin.json");
+        uiSkin = manager.get("skin/comic-ui.json");
 
         //menu skin init
         initSkin();
@@ -228,7 +230,7 @@ public class AssetLoader {
 
 
         //used in InfoWindow class
-        Label.LabelStyle infoStyle = new Label.LabelStyle(getFontWithSize(30), Color.WHITE);
+        Label.LabelStyle infoStyle = new Label.LabelStyle(getFontWithSize(30), Color.BLACK);
         uiSkin.add("dialog", infoStyle);
 
         //used in ConversationSpeechBubble class

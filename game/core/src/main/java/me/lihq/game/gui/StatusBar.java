@@ -46,12 +46,12 @@ class StatusBar extends Table
         row().height(HEIGHT);
         defaults().width(WIDTH);
 
-        scoreLabel = new Label("Score: " + Score.getInstance().getCurrentScore(), game.assetLoader.uiSkin);
+        scoreLabel = new Label("Score: " + Score.getInstance().getCurrentScore(), game.assetLoader.uiSkin, "half-tone");
         scoreLabel.setAlignment(Align.center, Align.center);
         add(scoreLabel).uniform();
 
-        PersonalityMeterButton personalityMeter = new PersonalityMeterButton(game.assetLoader.uiSkin, gui);
-        add(personalityMeter).uniform();
+        PersonalityMeterButton personalityMeterButton = new PersonalityMeterButton(game.assetLoader.uiSkin, gui);
+        add(personalityMeterButton).uniform();
 
         InventoryButton inventoryButton = new InventoryButton(game.assetLoader.uiSkin, gui);
         add(inventoryButton).uniform();
