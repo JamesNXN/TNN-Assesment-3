@@ -107,7 +107,11 @@ public class Score extends Actor{
     }
 
     public boolean isHighScore(int score){
-        return score < highScore;
+        return score > highScore;
+    }
+
+    public int getHighScore() {
+        return highScore;
     }
 
     @Override

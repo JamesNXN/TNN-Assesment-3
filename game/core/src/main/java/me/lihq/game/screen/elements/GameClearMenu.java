@@ -41,9 +41,13 @@ public class GameClearMenu extends MenuTable{
         int totalScore = Score.getInstance().getFinalScore(totalTime);
         Label timeLabel = new Label("Time taken: " + timeString, menuSkin, "default", Color.WHITE);
         Label scoreLabel = new Label("Score: " + totalScore, menuSkin, "default", Color.WHITE);
+        Label highScoreLabel = new Label("New Highscore!", menuSkin, "default", Color.RED);
 
         contentTable.add(timeLabel).row();
         contentTable.add(scoreLabel).row();
+        if (Score.getInstance().isHighScore(totalScore)) {
+            contentTable.add(highScoreLabel).row();
+        }
 
         addButton(retry);
         addButton(quit);

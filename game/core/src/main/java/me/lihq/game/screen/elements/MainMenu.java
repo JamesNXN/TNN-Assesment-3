@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import me.lihq.game.GameMain;
+import me.lihq.game.models.Score;
 import me.lihq.game.screen.NavigationScreen;
 import me.lihq.game.screen.PlayerSelectionScreen;
 
@@ -32,8 +33,10 @@ public class MainMenu extends MenuTable
 
         TextButton quit = new TextButton("Quit", menuSkin);
 
-        //Loading the buttons onto the stage
+        Label highScoreLabel = new Label("High score: " + Score.getInstance().getHighScore(), menuSkin, "default", Color.RED);
+        contentTable.add(highScoreLabel);
 
+        //Loading the buttons onto the stage
         addButton(newGameButton);
         addButton(quit);
 

@@ -73,13 +73,14 @@ public class Inventory {
 
     /**
      * Method for adding clues to the inventory
+     * When there are more than 5 clues the motive clue becomes visible
      * @param clue - clue to be added to inventory
      */
     public void addClue(Clue clue) {
         this.collectedClues.add(clue);
         Score.getInstance().addPoints(100);
 
-        if (collectedClues.size > 5){
+        if (collectedClues.size == 6){
             ClueManager.instance.getMotiveClue().setVisible(true);
         }
     }

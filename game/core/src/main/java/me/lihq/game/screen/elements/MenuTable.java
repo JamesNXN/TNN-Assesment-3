@@ -16,8 +16,6 @@ import me.lihq.game.GameMain;
  */
 
 public abstract class MenuTable extends Table {
-    //Initialising necessary objects and variables
-
     protected GameMain game;
     protected Skin menuSkin;
 
@@ -44,7 +42,7 @@ public abstract class MenuTable extends Table {
         Label titleLabel = new Label(title, menuSkin, "title", Color.RED);
         titleTable.add(titleLabel).expandX().fillX();
 
-        add(titleTable).padTop(100).padBottom(100).row();
+        add(titleTable).padTop(100).padBottom(70).row();
         add(contentTable).row();
         add(buttonTable).expand(true, true);
     }

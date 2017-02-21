@@ -55,7 +55,7 @@ public class GameWorld {
     private ConversationManager conversationManager;
 
     //when the game clear condition is met, the value is changed to true
-    private boolean isGameClear = false;
+    private boolean isGameClear = true;
 
     public GameWorld(GameMain game, Player selectedPlayer){
         this.game = game;

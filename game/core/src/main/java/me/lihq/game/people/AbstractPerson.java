@@ -237,6 +237,7 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
     public void setInConversation(boolean inConversation) {
         isInConversation = inConversation;
         if (isInConversation){
+            state = PersonState.STANDING;
             setCanMove(false);
         }
         else{
