@@ -1,16 +1,17 @@
-package me.lihq.game.gui;
+package me.lihq.game.gui.speechbubbles;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import me.lihq.game.ConversationManager;
+import me.lihq.game.gui.Gui;
 import me.lihq.game.people.Npc;
 import me.lihq.game.people.Player;
 
 /**
+ * NEW
  * window for getting interaction option from the player. The options are question, accuse and ignore.
  */
 public class InteractionSelectionBubble extends SpeechBubble{
@@ -96,6 +97,7 @@ public class InteractionSelectionBubble extends SpeechBubble{
         });
         addButton(accuseButton);
 
+        //simply terminate conversation when ignore button is pressed
         TextButton ignoreButton = new TextButton("Ignore", skin, "buttonBubble");
         ignoreButton.addListener(new ChangeListener() {
             @Override

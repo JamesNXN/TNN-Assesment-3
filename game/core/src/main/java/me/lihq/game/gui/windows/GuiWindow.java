@@ -9,6 +9,7 @@ import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 
 /**
+ * NEW
  * Basic window used by gui. Interacts with a gui and gameworld.
  */
 

@@ -8,6 +8,11 @@ import me.lihq.game.GameMain;
 import me.lihq.game.screen.elements.GameClearMenu;
 import me.lihq.game.screen.elements.MainMenu;
 
+/**
+ * NEW
+ * Screen for game clear. Displays completed time and score, and option to retry or quit.
+ */
+
 public class GameClearScreen  extends AbstractScreen{
     private Stage stage;
 
@@ -19,7 +24,6 @@ public class GameClearScreen  extends AbstractScreen{
         stage = new Stage(new FitViewport(GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT));
 
         //Creates a MainMenu object thus creating the main menu
-
         menu = new GameClearMenu(game);
     }
 

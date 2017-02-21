@@ -14,6 +14,7 @@ import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.Direction;
 
 /**
+ * EXTENDED
  * This is the arrow that indicates the movement to a new room when the player gets close to a door
  */
 public class RoomArrow extends Actor implements TileObject, Collidable {

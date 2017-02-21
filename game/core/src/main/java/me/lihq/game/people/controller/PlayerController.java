@@ -4,12 +4,13 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 
 import me.lihq.game.GameMain;
-import me.lihq.game.gui.ConversationSpeechBubble;
+import me.lihq.game.gui.speechbubbles.ConversationSpeechBubble;
 import me.lihq.game.people.Direction;
 import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
 
 /**
+ * EXTENDED
  * This class allows the player to be moved and controlled.
  */
 public class PlayerController extends InputAdapter
@@ -83,7 +84,7 @@ public class PlayerController extends InputAdapter
             }
         }
 
-        return false;
+        return true;
     }
 
     /**

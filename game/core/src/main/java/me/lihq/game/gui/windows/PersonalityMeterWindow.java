@@ -10,6 +10,11 @@ import me.lihq.game.GameMain;
 import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 
+/**
+ * NEW
+ * Window that displays player's current personality meter.
+ */
+
 public class PersonalityMeterWindow extends GuiWindow {
     private ProgressBar meterBar;
 

@@ -18,6 +18,7 @@ import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 
 /**
+ * EXTENDED
  * The abstract person is an abstract representation of a person. A person can be a non playable character or Player.
  * It extends the sprite class which provides methods for the person to be rendered in the game.
  */
@@ -153,16 +154,19 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
     }
 
     /**
-     * Act and Draw methods needed by LibGDX to render the object correctly
+     * Carry out collision detection for all of the characters; wall and character for movements.
+     * if no collision occurs, move the character to the direction it's facing.
      */
     @Override
     public void act(float delta) {
-        //offset given in order to align the box in the mid bottom of the character
+        //offset given in order to align the collision box in the mid bottom of the character
         collisionBox.setPosition(getX() + getWidth() / 2 - collisionBox.getWidth() / 2, getY());
 
         if (state == PersonState.WALKING) {
+            // animation state time for getting key frames from walking animation
             animStateTime += delta;
 
+            // the distance the character will move if there is no collision
             float vectorDistanceX = direction.getDx() * MOVE_SPEED * delta;
             float vectorDistanceY = direction.getDy() * MOVE_SPEED * delta;
             collisionBox.setPosition(collisionBox.x + vectorDistanceX, collisionBox.y + vectorDistanceY);
@@ -171,8 +175,6 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
                 moveBy(vectorDistanceX, vectorDistanceY);
             }
         } else {
-            tilePosition.x = (int) (getX() / Settings.TILE_SIZE);
-            tilePosition.y = (int) (getY() / Settings.TILE_SIZE);
             animStateTime = 0;
         }
         super.act(delta);
@@ -229,6 +231,9 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
         return jsonData;
     }
 
+    /**
+     * Characters cannot move while in conversation
+     */
     public void setInConversation(boolean inConversation) {
         isInConversation = inConversation;
         if (isInConversation){

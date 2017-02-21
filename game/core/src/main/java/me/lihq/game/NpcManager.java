@@ -9,6 +9,7 @@ import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.Npc;
 
 /**
+ * NEW
  * Initialises NPCs and assigns them to rooms
  */
 

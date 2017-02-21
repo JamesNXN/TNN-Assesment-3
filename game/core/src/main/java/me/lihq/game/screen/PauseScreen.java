@@ -11,6 +11,11 @@ import me.lihq.game.Time;
 import me.lihq.game.screen.elements.MainMenu;
 import me.lihq.game.screen.elements.PauseMenu;
 
+/**
+ * EXTENDED
+ * Screen for pause
+ */
+
 public class PauseScreen extends AbstractScreen
 {
     /**

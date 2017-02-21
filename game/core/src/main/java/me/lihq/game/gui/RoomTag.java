@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import me.lihq.game.GameMain;
 
 /**
+ * EXTENDED
  * This class is for the RoomTag that is to be displayed at the top left
  * of the screen when a new room is entered.
  */

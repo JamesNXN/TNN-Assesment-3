@@ -6,9 +6,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import me.lihq.game.gui.Gui;
 
+/**
+ * NEW
+ * Button that opens npc list window
+ */
 public class NpcNoteButton extends GuiButton {
     public NpcNoteButton(Skin skin, Gui gui) {
-        super("Npc List", skin, gui);
+        super("NPC List", skin, gui);
 
         addListener(new ChangeListener() {
             @Override

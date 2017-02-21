@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import me.lihq.game.NpcManager;
 
 /**
+ * NEW
  * This class defines hints that are given to the player upon successfully questioning
  * an npc about a clue.
  */

@@ -6,7 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import me.lihq.game.gui.Gui;
 
 /**
- * Gui button that opens notebook window.
+ * NEW
+ * Gui button that opens inventory window.
  */
 
 public class InventoryButton extends GuiButton {

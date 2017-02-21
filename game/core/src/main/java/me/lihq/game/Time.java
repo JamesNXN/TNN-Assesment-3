@@ -2,6 +2,10 @@ package me.lihq.game;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+/**
+ * NEW
+ * Actor that keeps track of game play time. It should pause while in pause screen.
+ */
 
 public class Time extends Actor {
     private static Time instance = new Time();
@@ -31,5 +35,10 @@ public class Time extends Actor {
 
     public void setPaused(boolean pause){
         this.paused = pause;
+    }
+
+    public void reset(){
+        time = 0;
+        paused = false;
     }
 }

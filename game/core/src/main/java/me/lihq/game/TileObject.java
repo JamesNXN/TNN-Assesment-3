@@ -2,6 +2,10 @@ package me.lihq.game;
 
 import me.lihq.game.models.Vector2Int;
 
+/**
+ * NEW
+ * interface for objects that have tile coordination
+ */
 public interface TileObject {
     /**
      * Setter for clue tile coordinates.

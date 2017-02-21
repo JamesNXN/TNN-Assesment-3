@@ -10,6 +10,7 @@ import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 
 /**
+ * NEW
  * Basic gui button that interacts with corresponding windows
  */
 

@@ -10,6 +10,11 @@ import com.badlogic.gdx.utils.Align;
 
 import me.lihq.game.GameMain;
 
+/**
+ * NEW
+ * Abstract class for menu template for the screens.
+ */
+
 public abstract class MenuTable extends Table {
     //Initialising necessary objects and variables
 

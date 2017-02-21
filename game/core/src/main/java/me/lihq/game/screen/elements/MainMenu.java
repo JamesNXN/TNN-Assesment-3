@@ -13,6 +13,7 @@ import me.lihq.game.screen.NavigationScreen;
 import me.lihq.game.screen.PlayerSelectionScreen;
 
 /**
+ * NEW
  * Main Menu UI table
  */
 
@@ -29,14 +30,11 @@ public class MainMenu extends MenuTable
 
         TextButton newGameButton = new TextButton("New Game", menuSkin);
 
-        TextButton settings = new TextButton("Settings", menuSkin);
-
         TextButton quit = new TextButton("Quit", menuSkin);
 
         //Loading the buttons onto the stage
 
         addButton(newGameButton);
-        addButton(settings);
         addButton(quit);
 
         //Making the "New Game" button clickable and causing it to start the game
@@ -57,15 +55,6 @@ public class MainMenu extends MenuTable
             public void clicked(InputEvent event, float x, float y)
             {
                 Gdx.app.exit();
-            }
-        });
-        //Making the "Settings" button clickable and causing it to assignGameAssets the settings screen
-        settings.addListener(new ClickListener()
-        {
-            @Override
-            public void clicked(InputEvent event, float x, float y)
-            {
-                //Change to settings screen once its been made
             }
         });
     }

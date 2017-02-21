@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import me.lihq.game.models.Clue;
 
 /**
+ * EXTENDED
  * The class which is responsible for the non-playable characters within the game that the player will meet.
  */
 public class Npc extends AbstractPerson {

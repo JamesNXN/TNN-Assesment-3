@@ -5,14 +5,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.gui.Gui;
-import me.lihq.game.gui.InteractionSelectionBubble;
+import me.lihq.game.gui.speechbubbles.InteractionSelectionBubble;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Room;
+import me.lihq.game.models.Score;
 import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.Direction;
 import me.lihq.game.people.Npc;
@@ -22,7 +24,8 @@ import me.lihq.game.models.RoomArrow;
 import me.lihq.game.screen.GameClearScreen;
 
 /**
- *
+ * NEW
+ * Container for all of the core game objects in the game
  */
 public class GameWorld {
     private GameMain game;
@@ -46,10 +49,7 @@ public class GameWorld {
 
     private CustomTiledMapRenderer tiledMapRenderer;
 
-    //camera position that the camera centre needs to move towards.
-    private Vector2 targetCameraPosition;
-    //camera zoom that the camera needs to zoom in/out to
-    private float targetCameraZoom;
+    private CameraManager cameraManager;
 
     private Interaction interaction;
     private ConversationManager conversationManager;
@@ -74,20 +74,20 @@ public class GameWorld {
         player.setTilePosition(randomLocation.x, randomLocation.y);
         player.setGameWorld(this);
 
-        targetCameraPosition = new Vector2(player.getX() + player.getWidth()/2, player.getY());
-        targetCameraZoom = ((OrthographicCamera)(gameWorldStage.getCamera())).zoom;
+        cameraManager = new CameraManager((OrthographicCamera) gameWorldStage.getCamera(), player);
 
         characterGroup = new Group();
+        //name is set so it can be found from stage root
         characterGroup.setName("characterGroup");
         clueGroup = new Group();
         roomArrowGroup = new Group();
 
         tiledMapRenderer = new CustomTiledMapRenderer(player.getCurrentRoom(), gameWorldBatch);
 
+        //room arrow group is added first so it draws behind player
         gameWorldStage.addActor(roomArrowGroup);
 
         characterGroup.addActor(player);
-
         for (Npc npc : player.getCurrentRoom().getNpcArray()) {
             characterGroup.addActor(npc);
         }
@@ -111,66 +111,72 @@ public class GameWorld {
         this.gui = gui;
     }
 
-    public void changeRoom(int roomId){
+    /**
+     * Change room to render and the characters that in the room.
+     * @param roomId id of the room that needs to be changed to.
+     */
+    public void changeRoom(int roomId) {
         player.setState(PersonState.STANDING);
 
         //actual room transition happens after fade out
-        RunnableAction runnableAction = new RunnableAction();
-        runnableAction.setRunnable(() -> {
-            Room exitRoom = player.getCurrentRoom();
-            Room entryRoom = roomManager.getRoom(roomId);
-            Vector2 entryPosition = new Vector2();
-            Direction entryDirection = player.getDirection();
+        gui.getFadeInOut().addAction(Actions.sequence(
+                Actions.fadeIn(0.5f),
+                Actions.run(() -> {
+                    Room exitRoom = player.getCurrentRoom();
+                    Room entryRoom = roomManager.getRoom(roomId);
+                    Vector2 entryPosition = new Vector2();
+                    Direction entryDirection = player.getDirection();
 
-            for (Door door : entryRoom.getEntryArray()){
-                if (door.getConnectedRoomId() == exitRoom.getID()){
-                    entryPosition.set(door.getX() + door.getWidth()/2, door.getY() + door.getHeight()/2);
-                    entryDirection = door.getDirection();
-                    break;
-                }
-            }
+                    //get the direction of player should be facing and the position to be when entering the room
+                    for (Door door : entryRoom.getEntryArray()) {
+                        if (door.getConnectedRoomId() == exitRoom.getID()) {
+                            entryPosition.set(door.getX() + door.getWidth() / 2, door.getY() + door.getHeight() / 2);
+                            entryDirection = door.getDirection();
+                            break;
+                        }
+                    }
 
-            Direction finalEntryDirection = entryDirection;
+                    // clear all the actors in the previous room
+                    characterGroup.clear();
+                    clueGroup.clear();
+                    roomArrowGroup.clear();
 
-            characterGroup.clear();
-            clueGroup.clear();
-            roomArrowGroup.clear();
+                    characterGroup.addActor(player);
 
-            characterGroup.addActor(player);
+                    player.setCurrentRoom(entryRoom);
+                    player.setDirection(entryDirection);
+                    player.setPosition(entryPosition.x, entryPosition.y);
 
-            player.setCurrentRoom(entryRoom);
-            player.setDirection(finalEntryDirection);
-            player.setPosition(entryPosition.x, entryPosition.y);
+                    for (Npc npc : player.getCurrentRoom().getNpcArray()) {
+                        characterGroup.addActor(npc);
+                    }
+                    for (Clue clue : player.getCurrentRoom().getClueArray()) {
+                        clueGroup.addActor(clue);
+                    }
+                    for (RoomArrow arrow : player.getCurrentRoom().getRoomArrowArray()) {
+                        roomArrowGroup.addActor(arrow);
+                    }
 
-            for (Npc npc : player.getCurrentRoom().getNpcArray()) {
-                characterGroup.addActor(npc);
-            }
-            for (Clue clue : player.getCurrentRoom().getClueArray()){
-                clueGroup.addActor(clue);
-            }
-            for (RoomArrow arrow : player.getCurrentRoom().getRoomArrowArray()){
-                roomArrowGroup.addActor(arrow);
-            }
+                    gui.setRoomTag(entryRoom);
 
-            gui.setRoomTag(entryRoom);
+                    //prevents camera lerp when moving between rooms
+                    cameraManager.getCamera().position.x = player.getDefaultCameraFocusX();
+                    cameraManager.getCamera().position.y = player.getDefaultCameraFocusY();
 
-            //prevents camera lerp when moving between rooms
-            OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
-            camera.position.x = player.getDefaultCameraFocusX();
-            camera.position.y = player.getDefaultCameraFocusY();
-            targetCameraPosition.x = camera.position.x;
-            targetCameraPosition.y = camera.position.y;
-            camera.update();
+                    //set the new room for the tile map renderer
+                    tiledMapRenderer.setRenderingRoom(player.getCurrentRoom());
+                    tiledMapRenderer.setView((OrthographicCamera) gameWorldStage.getCamera());
 
-            tiledMapRenderer.setRenderingRoom(player.getCurrentRoom());
-            tiledMapRenderer.setView((OrthographicCamera) gameWorldStage.getCamera());
-
-            player.setCanMove(true);
-        });
-
-        gui.screenFadeInOut(runnableAction);
+                    player.setCanMove(true);
+                }),
+                Actions.fadeOut(0.5f)));
     }
 
+    /**
+     * Start an interaction with an npc. Introduction dialogues are loaded into conversation manager and
+     * the camera is set to interaction mode.
+     * @param interactingNpc npc to interact with
+     */
     public void startInteraction(Npc interactingNpc){
         interaction.setInteractingNpc(interactingNpc);
 
@@ -182,19 +188,16 @@ public class GameWorld {
         conversationManager.addSpeechBubble(new InteractionSelectionBubble(player, game.assetLoader.uiSkin, conversationManager, gui));
         conversationManager.startConversation(gui.getGuiStage());
 
-        targetCameraPosition.set((player.getX() + interactingNpc.getRight())/2, (player.getTop() + interactingNpc.getY())/2);
-        OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
-        targetCameraZoom = camera.zoom - 0.5f;
+        cameraManager.startInteractionMode(interactingNpc);
     }
 
     public void haltInteraction(){
-        conversationManager.getInteractingCharacter().setInConversation(false);
+        interaction.getInteractingNpc().setInConversation(false);
         player.setInConversation(false);
 
         conversationManager.clear();
-        targetCameraPosition.set(player.getDefaultCameraFocusX(), player.getDefaultCameraFocusY());
-        OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
-        targetCameraZoom = camera.zoom + 0.5f;
+
+        cameraManager.haltInteractionMode();
     }
 
     public void render(float delta){
@@ -204,18 +207,15 @@ public class GameWorld {
         }
 
         if (isGameClear){
+            Score.getInstance().reset();
+            Time.getInstance().reset();
             game.setScreen(new GameClearScreen(game));
         }
 
-        //camera move lerp effect
-        OrthographicCamera camera = (OrthographicCamera) gameWorldStage.getCamera();
-        camera.position.x = camera.position.x + (targetCameraPosition.x - camera.position.x) * 0.2f;
-        camera.position.y = camera.position.y + (targetCameraPosition.y - camera.position.y) * 0.2f;
-        camera.zoom = camera.zoom + (targetCameraZoom - camera.zoom) * 0.4f;
-        camera.update();
+        cameraManager.update();
 
         tiledMapRenderer.setRenderingRoom(player.getCurrentRoom());
-        tiledMapRenderer.setView((OrthographicCamera) gameWorldStage.getCamera());
+        tiledMapRenderer.setView(cameraManager.getCamera());
 
         tiledMapRenderer.render();
 
@@ -251,11 +251,6 @@ public class GameWorld {
 
     public ConversationManager getConversationManager(){
         return conversationManager;
-    }
-
-    public void setTargetCameraPosition(float x, float y) {
-        this.targetCameraPosition.x = x;
-        this.targetCameraPosition.y = y;
     }
 
     public void dispose(){

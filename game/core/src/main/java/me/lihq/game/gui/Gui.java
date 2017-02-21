@@ -1,7 +1,10 @@
 package me.lihq.game.gui;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
@@ -22,11 +25,13 @@ import me.lihq.game.gui.windows.ClueSelectionWindow;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Score;
 
-public class Gui {
-    private GameMain game;
-    private GameWorld gameWorld;
+/**
+ * NEW
+ * A container for all of the gui element of the game
+ */
 
-    private Table table;
+public class Gui {
+    private GameWorld gameWorld;
 
     private RoomTag roomTag;
     private StatusBar statusBar;
@@ -45,10 +50,10 @@ public class Gui {
     private AccuseWindow accuseWindow;
 
     public Gui(GameMain game, GameWorld gameWorld){
-        this.game = game;
         this.gameWorld = gameWorld;
 
-        table = new Table();
+        //table for main game screen gui
+        Table table = new Table();
         table.setFillParent(true);
         table.align(Align.bottom);
 
@@ -67,14 +72,25 @@ public class Gui {
         guiStage.addActor(table);
         guiStage.addActor(fadeInOut);
 
-        Time time = Time.getInstance();
-        Score score = Score.getInstance();
 
-        guiStage.addActor(time);
-        guiStage.addActor(score);
+        // time and score must be added into gui stage for them to be updated
+        guiStage.addActor(Time.getInstance());
+        guiStage.addActor(Score.getInstance());
 
 
+        //instantiate all of the gui windows altogether
         infoWindow = new InfoWindow(game.assetLoader.uiSkin, this, gameWorld);
+        //pressing space will also close the info window
+        infoWindow.addListener(new InputListener(){
+            @Override
+            public boolean keyDown(InputEvent event, int keycode) {
+                if (keycode == Input.Keys.SPACE){
+                    infoWindow.hide();
+                }
+                return true;
+            }
+        });
+
         inventoryWindow = new InventoryWindow(game.assetLoader.uiSkin, this, gameWorld);
         personalityMeterWindow = new PersonalityMeterWindow(game.assetLoader.uiSkin, this, gameWorld);
         npcNoteWindow = new NpcNoteWindow(game.assetLoader.uiSkin, this, gameWorld);
@@ -82,6 +98,10 @@ public class Gui {
         accuseWindow = new AccuseWindow(game.assetLoader.uiSkin, this, gameWorld);
     }
 
+    /**
+     * Set the room tag to be appear from top left corner of the screen
+     * @param room room to be used for room tag
+     */
     public void setRoomTag(Room room){
         roomTag.setRoomName(room.getName());
         roomTag.addAction(Actions.sequence(
@@ -90,17 +110,6 @@ public class Gui {
                     Actions.moveBy(0, -roomTag.getHeight() - 10, 1f)),
                 Actions.delay(2f),
                 Actions.fadeOut(1f)));
-    }
-
-    /**
-     * Carry out a fade in and fade out screen transition followed by an action
-     * @param runnableAction action to be carried out after the transition
-     */
-    public void screenFadeInOut(RunnableAction runnableAction){
-        fadeInOut.addAction(Actions.sequence(
-                Actions.fadeIn(0.5f),
-                Actions.run(runnableAction.getRunnable()),
-                Actions.fadeOut(0.5f)));
     }
 
     /**
@@ -162,6 +171,10 @@ public class Gui {
 
     public AccuseWindow getAccuseWindow() {
         return accuseWindow;
+    }
+
+    public FadeInOut getFadeInOut() {
+        return fadeInOut;
     }
 
     public void dispose(){

@@ -15,6 +15,7 @@ import me.lihq.game.models.Inventory;
 import me.lihq.game.models.RoomArrow;
 
 /**
+ * EXTENDED
  * This class defines the player that the person playing the game will be represented by.
  */
 public class Player extends AbstractPerson {
@@ -69,14 +70,13 @@ public class Player extends AbstractPerson {
      */
     public void interact()
     {
+        //interaction collision box needs to be positioned in front of the player
         interactionCollisionBox.setPosition(collisionBox.getX() + collisionBox.getWidth() * direction.getDx(),
                 collisionBox.getY() + collisionBox.getHeight() * direction.getDy());
 
-        System.out.println(tilePosition);
-
-
         Collidable interactingActor = null;
 
+        // all of the possible interactable game objects
         Array<Collidable> roomObjects = new Array<>();
         roomObjects.addAll(getCurrentRoom().getNpcArray());
         roomObjects.addAll(getCurrentRoom().getClueArray());
@@ -88,6 +88,7 @@ public class Player extends AbstractPerson {
             }
         }
 
+        // if the object colliding with the interaction collision box is an npc, start an interaction
         if (interactingActor instanceof Npc) {
             gameWorld.startInteraction((Npc) interactingActor);
             if (!this.inventory.getMetCharacters().contains((Npc)interactingActor, true)) {
@@ -96,10 +97,12 @@ public class Player extends AbstractPerson {
             }
             System.out.println(((Npc)interactingActor).getName());
         }
+
+        // if it is a clue, add the clue to the inventory
         else if(interactingActor instanceof Clue) {
             Clue foundClue = (Clue) interactingActor;
-            if (!foundClue.isFound()){
-                foundClue.setFound(true);
+            if (foundClue.isVisible()){
+                foundClue.setVisible(false);
                 inventory.addClue(foundClue);
 
                 gameWorld.getGui().displayInfo(foundClue.getDescription());
@@ -108,27 +111,22 @@ public class Player extends AbstractPerson {
         }
     }
 
-    /**
-     * Act method required by LibGDX to render the player correctly allowing the player model to move
-     */
 
+    /**
+     * carry out additional collision detection for the player; room arrow and door for room transition
+     */
     @Override
     public void act(float delta) {
         super.act(delta);
-
-        if (!isInConversation()){
-            gameWorld.setTargetCameraPosition(getDefaultCameraFocusX(), getDefaultCameraFocusY());
-        }
-
         RoomArrow arrow = roomArrowCollisionDetection(collisionBox);
         if (arrow != null){
             arrow.setVisible(true);
         }
 
-        //prevents colliding with doors multiple times during transition
         if (isCanMove()) {
             Door collidingExit = doorCollisionDetection(collisionBox);
             if (collidingExit != null) {
+                //prevents colliding with doors multiple times during transition
                 setCanMove(false);
                 gameWorld.changeRoom(collidingExit.getConnectedRoomId());
             }

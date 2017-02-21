@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Array;
 import me.lihq.game.people.Npc;
 
 /**
+ * EXTENDED
  * This class defines a room which is a game representation of a real world room in the Ron Cooke Hub.
  */
 public class Room
@@ -52,6 +53,7 @@ public class Room
         this.mapFile = map;
         this.name = (String) map.getProperties().get("name");
 
+        //these layers contain meta data tiles that shouldn't be rendered
         mapFile.getLayers().get("Collision").setVisible(false);
         mapFile.getLayers().get("HidingSpot").setVisible(false);
 

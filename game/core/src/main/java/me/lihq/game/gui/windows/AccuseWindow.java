@@ -13,6 +13,11 @@ import me.lihq.game.gui.Slot;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Inventory;
 
+/**
+ * NEW
+ * Window that displays collected clues which players can choose to present for accusation.
+ */
+
 public class AccuseWindow extends SlotWindow{
     private Array<Clue> cluesToBePresented;
 
@@ -67,13 +72,15 @@ public class AccuseWindow extends SlotWindow{
 
     @Override
     protected void result(Object object) {
+        // if pressed ok, continue to accuse logic
         if (object.equals(true)){
             gameWorld.getInteraction().accuse(cluesToBePresented);
         }
+        // if pressed cancel, terminate interaction without penalty
         else{
             hide();
             gameWorld.getConversationManager().addSpeechBubble(gameWorld.getPlayer(), "Sorry, it was a mistake.");
-            gameWorld.getConversationManager().addSpeechBubble(gameWorld.getConversationManager().getInteractingCharacter(), "Thought so!");
+            gameWorld.getConversationManager().addSpeechBubble(gameWorld.getInteraction().getInteractingNpc(), "Thought so!");
             gameWorld.getConversationManager().nextSpeechBubble();
         }
     }

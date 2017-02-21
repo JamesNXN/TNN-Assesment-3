@@ -8,12 +8,14 @@ import com.badlogic.gdx.utils.Array;
 
 import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
-import me.lihq.game.gui.QuestionStyleSelectionBubble;
+import me.lihq.game.gui.speechbubbles.QuestionStyleSelectionBubble;
 import me.lihq.game.gui.Slot;
 import me.lihq.game.models.Clue;
+import me.lihq.game.models.ClueType;
 import me.lihq.game.models.Inventory;
 
 /**
+ * NEW
  * Used for choosing a clue for questioning
  */
 
@@ -28,6 +30,10 @@ public class ClueSelectionWindow extends SlotWindow {
         Array<Table> slotArray = new Array<>();
 
         for (Clue clue : inventory.getCollectedClues()) {
+            //only normal clues can be questioned about
+            if (clue.getClueType() != ClueType.NORMAL){
+                continue;
+            }
             Slot slot = new Slot(clue.getName(), getSkin());
             slot.addListener(new ChangeListener() {
                 @Override

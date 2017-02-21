@@ -3,6 +3,7 @@ package me.lihq.game;
 import me.lihq.game.people.QuestionStyle;
 
 /**
+ * NEW
  * PersonalityMeter which will affect the way that player can question.
  */
 public class PersonalityMeter {

@@ -14,12 +14,15 @@ import me.lihq.game.people.Player;
 import me.lihq.game.people.QuestionStyle;
 
 /**
+ * NEW
  * The interaction class holds all the logic for questioning and accuse
  */
 public class Interaction {
 
     private GameWorld gameWorld;
     private Player player;
+
+    /** The npc that is currently interacting with the player*/
     private Npc interactingNpc;
     private Score score;
 
@@ -34,6 +37,10 @@ public class Interaction {
 
     public void setInteractingNpc(Npc interactingNpc){
         this.interactingNpc = interactingNpc;
+    }
+
+    public Npc getInteractingNpc() {
+        return interactingNpc;
     }
 
     /**
@@ -124,14 +131,14 @@ public class Interaction {
             interactingNpc.setFalseAccused(true);
 
             gameWorld.getConversationManager().addSpeechBubble(interactingNpc, "They're not enough to prove I'm the murderer!");
-//            int finalCorrectClueCount = correctClueCount;
-//            int finalIncorrectClueCount = incorrectClueCount;
+            int finalCorrectClueCount = correctClueCount;
+            int finalIncorrectClueCount = incorrectClueCount;
             gameWorld.getConversationManager().addAction(() -> {
                 gameWorld.getConversationManager().setFinished(true);
                 gameWorld.getGui().displayInfo("Accuse fail.\n" +
-                        "You cannot question this character anymore.\n");
-//                        finalCorrectClueCount + " clues correct," +
-//                        finalIncorrectClueCount + " clues incorrect");
+                        "You cannot question this character anymore\n" +
+                        finalCorrectClueCount + " clues correct," +
+                        finalIncorrectClueCount + " clues incorrect");
             });
             gameWorld.getConversationManager().nextSpeechBubble();
         }

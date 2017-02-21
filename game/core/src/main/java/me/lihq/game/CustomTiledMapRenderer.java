@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import me.lihq.game.models.Room;
 
 /**
+ * EXTENDED
  * CustomTiledMapRenderer
  * <p>
  * This class is an extension of the OrthogonalTiledMapRenderer

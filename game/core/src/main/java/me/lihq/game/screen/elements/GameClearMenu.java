@@ -14,6 +14,11 @@ import me.lihq.game.models.Score;
 import me.lihq.game.screen.NavigationScreen;
 import me.lihq.game.screen.PlayerSelectionScreen;
 
+/**
+ * NEW
+ * Table that contains contents for game clear screen
+ */
+
 public class GameClearMenu extends MenuTable{
 
     /**
@@ -29,10 +34,14 @@ public class GameClearMenu extends MenuTable{
         TextButton quit = new TextButton("Quit", menuSkin);
 
         int totalTime = (int) Time.getInstance().getTime();
+
+        //convert seconds into minutes and seconds
         String timeString = String.valueOf(totalTime/60) + ":" + String.valueOf(totalTime%60);
+
         int totalScore = Score.getInstance().getFinalScore(totalTime);
         Label timeLabel = new Label("Time taken: " + timeString, menuSkin, "default", Color.WHITE);
         Label scoreLabel = new Label("Score: " + totalScore, menuSkin, "default", Color.WHITE);
+
         contentTable.add(timeLabel).row();
         contentTable.add(scoreLabel).row();
 

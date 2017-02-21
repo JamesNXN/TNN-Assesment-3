@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 
 /**
+ * NEW
  * PlayerDialogue class contains the dialogue that a player may use in game
  */
 public class PlayerDialogue extends Dialogue {

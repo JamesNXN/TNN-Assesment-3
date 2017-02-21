@@ -8,6 +8,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import me.lihq.game.GameMain;
 import me.lihq.game.screen.NavigationScreen;
 
+/**
+ * NEW
+ * Table that contains contents for pause screen
+ */
+
 public class PauseMenu extends MenuTable{
     /**
      * Constructor for the menu
@@ -19,14 +24,11 @@ public class PauseMenu extends MenuTable{
 
         TextButton resumeButton = new TextButton("Resume", menuSkin);
 
-        TextButton settings = new TextButton("Settings", menuSkin);
-
         TextButton quit = new TextButton("Quit", menuSkin);
 
         //Loading the buttons onto the stage
 
         addButton(resumeButton);
-        addButton(settings);
         addButton(quit);
 
         //Making the "resume" button clickable and causing it to pause the game
@@ -46,15 +48,6 @@ public class PauseMenu extends MenuTable{
             public void clicked(InputEvent event, float x, float y)
             {
                 Gdx.app.exit();
-            }
-        });
-        //Making the "Settings" button clickable and causing it to assignGameAssets the settings screen
-        settings.addListener(new ClickListener()
-        {
-            @Override
-            public void clicked(InputEvent event, float x, float y)
-            {
-                //Change to settings screen once its been made
             }
         });
     }

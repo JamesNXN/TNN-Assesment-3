@@ -5,26 +5,38 @@ import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Queue;
 
-import me.lihq.game.gui.ConversationSpeechBubble;
-import me.lihq.game.gui.SpeechBubble;
-import me.lihq.game.models.Clue;
+import me.lihq.game.gui.speechbubbles.ConversationSpeechBubble;
+import me.lihq.game.gui.speechbubbles.SpeechBubble;
 import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.Npc;
+
+/**
+ * NEW
+ * A manager class that takes care of conversation flow between a player and a npc. It uses a queue
+ * to load up speech bubble or action to be executed in FIFO order.
+ */
 
 public class ConversationManager{
     private Stage stage;
     private Skin skin;
+
+    /** the queue that takes either a speech bubble or a runnable action in order.*/
     private Queue<Object> conversationQueue;
+
     private Npc interactingCharacter;
 
     private Object currentConversation;
     private boolean isFinished = false;
 
-    public ConversationManager(Skin skin){
+    ConversationManager(Skin skin){
         this.skin = skin;
         conversationQueue = new Queue<>();
     }
 
+    /**
+     * Takes a speech bubble and put it in a queue
+     * @param speechBubble speech bubble to be put in a queue
+     */
     public void addSpeechBubble(SpeechBubble speechBubble){
         conversationQueue.addLast(speechBubble);
 
@@ -48,6 +60,9 @@ public class ConversationManager{
         conversationQueue.addLast(action);
     }
 
+    /**
+     * Terminates ongoing conversation and clear the conversation queue.
+     */
     public void clear(){
         if (currentConversation != null && currentConversation instanceof SpeechBubble) {
             ((SpeechBubble)currentConversation).hide();
@@ -57,6 +72,10 @@ public class ConversationManager{
         stage = null;
     }
 
+    /**
+     * Initiate the conversation with the queue that has been loaded.
+     * @param stage stage that the speech bubbles will be added to and shown
+     */
     public void startConversation(Stage stage){
         this.stage = stage;
 
@@ -69,6 +88,9 @@ public class ConversationManager{
         }
     }
 
+    /**
+     * Move on to the next dialogue in the queue. If the queue is empty, terminate the conversation.
+     */
     public void nextSpeechBubble(){
         if (conversationQueue.size == 0){
             isFinished = true;

@@ -11,6 +11,11 @@ import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.gui.Slot;
 
+/**
+ * NEW
+ * Window that has organised slots that users can interact with. Used for inventory, question and accuse window.
+ */
+
 abstract class SlotWindow extends GuiWindow {
     private SlotWindowStyle style;
 
@@ -28,8 +33,17 @@ abstract class SlotWindow extends GuiWindow {
         setUpSlotArray();
     }
 
+    /**
+     * Sets up the table array that will be arranged in the window. Called every time the window is opened.
+     * @return table array to be arranged
+     */
     abstract Array<Table> setUpSlotArray();
 
+    /**
+     * Takes the table array from setUpSlotArray and arrange them according to the slot window style it has.
+     * Called every time the window is opened.
+     * @param slotArray table array it uses to build the window
+     */
     void refresh(Array<Table> slotArray) {
         getContentTable().clear();
         getContentTable().align(Align.topLeft);

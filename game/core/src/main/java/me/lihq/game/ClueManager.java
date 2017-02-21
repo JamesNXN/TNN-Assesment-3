@@ -11,6 +11,7 @@ import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 
 /**
+ * NEW
  * Clue manager handles creating and assigning clues to rooms
  */
 public class ClueManager {

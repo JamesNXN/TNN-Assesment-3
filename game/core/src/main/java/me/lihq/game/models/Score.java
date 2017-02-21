@@ -5,6 +5,7 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
+ * NEW
  * Score class is a singleton class used to keep track of the players score
  */
 public class Score extends Actor{

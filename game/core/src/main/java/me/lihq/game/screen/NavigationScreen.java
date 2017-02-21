@@ -13,6 +13,7 @@ import me.lihq.game.people.controller.PlayerController;
 import me.lihq.game.gui.Gui;
 
 /**
+ * EXTENDED
  * This is the screen that is responsible for the navigation of the player around the game.
  * It displays the current room that the player is in, and allows the user to move the player around between rooms.
  */
@@ -40,7 +41,9 @@ public class NavigationScreen extends AbstractScreen
 
         game.gameWorld = new GameWorld(game, selectedPlayer);
         this.gameWorld = game.gameWorld;
-        gui = new Gui(game, gameWorld);
+
+        game.gui = new Gui(game, gameWorld);
+        this.gui = game.gui;
 
         gameWorld.setGui(gui);
 

@@ -25,6 +25,7 @@ import me.lihq.game.gui.RoomTag;
 import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
 /**
+ * EXTENDED
  * This class defines the assetLoader that the game uses.
  */
 public class AssetLoader {
@@ -32,7 +33,7 @@ public class AssetLoader {
     /**
      * Parameters needed for AssetLoader object:
      *
-     * manager - a LibGDX AssetManager object used to load data
+     * manager - a LibGDX AssetManager object used to manage assets
      * splash - The 2 seperate frames for the splash screen
      * arrowAtlas -  These TextureRegions store the 4 different directions that the room changing arrows can face.
      * playerSpriteSheetArray, npcSpriteSheetMapArray - Sprite sheets for abstract person objects
@@ -191,7 +192,7 @@ public class AssetLoader {
         //clue glint animation init
         clueGlint = manager.get("clueGlint.pack");
 
-        uiSkin = manager.get("skin/uiskin.json");
+        uiSkin = manager.get("skin/comic-ui.json");
 //        speechSkin = manager.get("skin/comic-ui.json");
 
         //menu skin init
@@ -229,7 +230,7 @@ public class AssetLoader {
 
 
         //used in InfoWindow class
-        Label.LabelStyle infoStyle = new Label.LabelStyle(getFontWithSize(30), Color.WHITE);
+        Label.LabelStyle infoStyle = new Label.LabelStyle(getFontWithSize(30), Color.BLACK);
         uiSkin.add("dialog", infoStyle);
 
         //used in ConversationSpeechBubble class

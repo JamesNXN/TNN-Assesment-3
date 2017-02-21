@@ -3,6 +3,7 @@ package me.lihq.game.people;
 import com.badlogic.gdx.utils.JsonValue;
 
 /**
+ * NEW
  * Abstract class that contains dialogue information
  */
 public abstract class Dialogue {

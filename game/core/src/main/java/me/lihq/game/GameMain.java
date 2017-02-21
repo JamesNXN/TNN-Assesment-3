@@ -14,6 +14,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 
+import me.lihq.game.gui.Gui;
 import me.lihq.game.screen.AbstractScreen;
 import me.lihq.game.screen.MainMenuScreen;
 import me.lihq.game.screen.NavigationScreen;
@@ -22,6 +23,7 @@ import me.lihq.game.screen.PlayerSelectionScreen;
 import me.lihq.game.screen.SplashScreen;
 
 /**
+ * EXTENDED
  * This is the class responsible for the game as a whole. It manages the current states and entry points of the game
  */
 public class GameMain extends Game
@@ -35,6 +37,7 @@ public class GameMain extends Game
     public AssetLoader assetLoader;
 
     public GameWorld gameWorld;
+    public Gui gui;
 
     public MainMenuScreen mainMenuScreen;
     public PauseScreen pauseScreen;

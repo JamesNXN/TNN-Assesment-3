@@ -17,6 +17,7 @@ import me.lihq.game.*;
 
 
 /**
+ * EXTENDED
  * This class defines the clues that the player needs to find in order to solve the murder.
  */
 public class Clue extends Actor implements Collidable, TileObject {
@@ -30,7 +31,6 @@ public class Clue extends Actor implements Collidable, TileObject {
      * clueGlint - animated texture that contains the animation needed for the clueGlint
      * animStateTime - the time state of the clueGlint animation needed to render the animated texture
      * collisionBox - a rectangle box needed by LibGDX to calculate collisions between actors
-     * isFound - a boolean value used to determine whether the player has found the clue or not
      * clueType - a enum value used to determine whether the clue is a weapon, motive or other clue
      */
     private String name;
@@ -46,8 +46,6 @@ public class Clue extends Actor implements Collidable, TileObject {
     private float animStateTime = 0;
 
     private Rectangle collisionBox;
-
-    private boolean isFound = false;
 
     private ClueType clueType;
 
@@ -75,14 +73,6 @@ public class Clue extends Actor implements Collidable, TileObject {
         if (clueType == ClueType.MOTIVE){
             setVisible(false);
         }
-    }
-
-    public boolean isFound() {
-        return isFound;
-    }
-
-    public void setFound(boolean found) {
-        isFound = found;
     }
 
     /**
@@ -142,9 +132,6 @@ public class Clue extends Actor implements Collidable, TileObject {
         collisionBox.setPosition(getX(), getY());
     }
 
-    /**
-     * act and draw methods needed to render the clue in game through LibGDX
-     */
     @Override
     public void act(float delta) {
         animStateTime += delta;
@@ -155,9 +142,8 @@ public class Clue extends Actor implements Collidable, TileObject {
         Color color = batch.getColor();
         batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a * parentAlpha);
 
-        if (!isFound) {
-            batch.draw(clueGlint.getKeyFrame(animStateTime, true), getX(), getY(), Settings.TILE_SIZE, Settings.TILE_SIZE);
-        }
+        batch.draw(clueGlint.getKeyFrame(animStateTime, true), getX(), getY(), Settings.TILE_SIZE, Settings.TILE_SIZE);
+
         batch.setColor(color);
     }
 }

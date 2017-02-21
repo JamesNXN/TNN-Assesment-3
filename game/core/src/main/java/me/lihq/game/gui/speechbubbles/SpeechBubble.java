@@ -1,4 +1,4 @@
-package me.lihq.game.gui;
+package me.lihq.game.gui.speechbubbles;
 
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -10,6 +10,11 @@ import com.badlogic.gdx.utils.Align;
 
 import me.lihq.game.GameMain;
 import me.lihq.game.people.AbstractPerson;
+
+/**
+ * NEW
+ * Abstract class for Speech bubbles used for conversation between a player and npc.
+ */
 
 public abstract class SpeechBubble extends Table {
     private AbstractPerson speakingPerson;
@@ -40,7 +45,7 @@ public abstract class SpeechBubble extends Table {
         add(contentTable).width(300).padTop(10);
     }
 
-    public Table getContentTable(){
+    Table getContentTable(){
         return contentTable;
     }
 
@@ -49,6 +54,7 @@ public abstract class SpeechBubble extends Table {
         //height increment to account for speech bubble tail
         setHeight(contentTable.getHeight() + 100);
 
+        //if name label is present it will be shown in the top left corner
         if (nameLabel != null) {
             nameTable.add(nameLabel).align(Align.left).expandX();
             nameTable.setSize(getWidth(), nameLabel.getHeight());
@@ -58,8 +64,14 @@ public abstract class SpeechBubble extends Table {
 
         setOrigin(getWidth()/2, getHeight()/2);
 
-        addAction(Actions.scaleTo(1f, 1f, 0.2f, Interpolation.swingOut));
+        addAction(Actions.scaleTo(1f, 1f, 0.3f, Interpolation.swingOut));
         stage.addActor(this);
+
+        /*
+            speech bubbles are positioned differently depending on the direction the speaking character
+            so interacting characters facing each other will have their speech bubble appearing in the different
+            part of the screen.
+         */
 
         switch (speakingPerson.getDirection()){
             case EAST:
@@ -75,6 +87,8 @@ public abstract class SpeechBubble extends Table {
                 break;
 
         }
+
+        //scale is set to 0 so it can have a scale out action
         setScale(0);
     }
 

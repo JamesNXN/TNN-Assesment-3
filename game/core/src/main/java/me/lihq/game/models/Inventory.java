@@ -6,6 +6,7 @@ import me.lihq.game.ClueManager;
 import me.lihq.game.people.Npc;
 
 /**
+ * EXTENDED
  * Inventory class is a container that holds clues and hints collected by the player
  * as well as npc's that have been spoken to.
  */

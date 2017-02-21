@@ -1,12 +1,15 @@
-package me.lihq.game.gui;
+package me.lihq.game.gui.speechbubbles;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 
-import me.lihq.game.GameMain;
 import me.lihq.game.people.AbstractPerson;
+
+/**
+ * NEW
+ * Specialised speech bubble that displays a given string
+ */
 
 public class ConversationSpeechBubble extends SpeechBubble {
     /**

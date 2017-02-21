@@ -6,7 +6,8 @@ import com.badlogic.gdx.utils.Array;
 import me.lihq.game.models.Room;
 
 /**
- * The map is a collection of Rooms , it links them all together.
+ * NEW
+ * Manager class for rooms. it initialises all the in game rooms with TiledMap files
  */
 public class RoomManager
 {

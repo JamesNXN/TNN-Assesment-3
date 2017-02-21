@@ -8,7 +8,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 import me.lihq.game.GameMain;
 
-class FadeInOut extends Actor {
+/**
+ * NEW
+ * A blank black background that is used for fade in/out effect for room transition.
+ */
+
+public class FadeInOut extends Actor {
     Texture blackBlank;
 
     public FadeInOut(){
@@ -31,4 +36,6 @@ class FadeInOut extends Actor {
         batch.draw(blackBlank, 0, 0, GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT);
         batch.setColor(color);
     }
+
+
 }

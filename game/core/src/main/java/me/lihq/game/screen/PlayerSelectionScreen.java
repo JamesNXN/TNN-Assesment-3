@@ -17,8 +17,12 @@ import me.lihq.game.GameMain;
 import me.lihq.game.gui.Slot;
 import me.lihq.game.people.Player;
 
+/**
+ * NEW
+ * Screen that users pick their detectives.
+ */
+
 public class PlayerSelectionScreen extends AbstractScreen {
-    private AssetLoader assetLoader;
     private Array<Player> playerArray;
 
     private Stage stage;
@@ -31,7 +35,7 @@ public class PlayerSelectionScreen extends AbstractScreen {
     public PlayerSelectionScreen(GameMain game) {
         super(game);
 
-        this.assetLoader = game.assetLoader;
+        AssetLoader assetLoader = game.assetLoader;
 
         Json json = new Json();
         playerArray = new Array<>();

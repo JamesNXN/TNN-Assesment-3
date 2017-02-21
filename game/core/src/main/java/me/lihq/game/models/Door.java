@@ -11,6 +11,7 @@ import me.lihq.game.TileObject;
 import me.lihq.game.people.Direction;
 
 /**
+ * NEW
  * This class defines the doors that allow a player to travel between different rooms
  */
 public class Door extends Actor implements Collidable, TileObject{
@@ -20,7 +21,7 @@ public class Door extends Actor implements Collidable, TileObject{
      * collisionBox - used to detect when a player walks into a door to travel to the next room
      * tilePosition - used for defining the position of the door in the room
      * direction - used to define the rotation of the door visually
-     * connectedRoomId - used to define the room that the door will move the player in too
+     * connectedRoomId - used to define the room that the door will move the player in and out from
      */
     private Rectangle collisionBox;
 

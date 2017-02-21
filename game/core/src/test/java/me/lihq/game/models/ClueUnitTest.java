@@ -70,20 +70,6 @@ public class ClueUnitTest extends GameTester {
 
     }
 
-    @Test
-    public void isFound() throws Exception {
-        assertFalse(testClue1.isFound());
-    }
-
-    @Test
-    public void setFound() throws Exception {
-        assertFalse(testClue1.isFound());
-
-        testClue1.setFound(true);
-
-        assertTrue(testClue1.isFound());
-    }
-
     /**
      * Test if the setTilePosition has set the collisionBox position
      */
