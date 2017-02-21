@@ -19,15 +19,13 @@ public class AccuseWindow extends SlotWindow{
     public AccuseWindow(Skin skin, Gui gui, GameWorld gameWorld) {
         super("Accuse", skin, gui, gameWorld);
 
-        cluesToBePresented = new Array<>();
-
         button("OK", true);
         button("Cancel", false);
     }
 
     @Override
     Array<Table> setUpSlotArray() {
-        cluesToBePresented.clear();
+        cluesToBePresented = new Array<>();
         Inventory inventory = gameWorld.getPlayer().getInventory();
         Array<Table> slotArray = new Array<>();
 
