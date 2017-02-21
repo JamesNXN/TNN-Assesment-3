@@ -1,5 +1,5 @@
-# Lorem Ipsum [![CircleCI](https://circleci.com/gh/Brookke/Lorem-Ipsum.svg?style=svg&circle-token=88a08119c648799c8c1241249131701e1298e614)](https://circleci.com/gh/Brookke/Lorem-Ipsum)
-Visit out website at http://www.lihq.me, or read the documentation at http://docs.lihq.me
+# Team with no name
+Visit out website at http://nxn173.wixsite.com/teamquestionmark, or read the documentation at http://nxn173.wixsite.com/teamquestionmark/about
 
 ## Get started
 ### What you need
@@ -31,40 +31,42 @@ Configure -> Project Defaults -> Project Structure then add your JDK in Platform
 
  
 ### Edit the game
-You can now edit the game , we recommend making a new branch, then make changes on that branch. You can use GitHub desktop or equivalent to commit the changes to your branch and then use sync to upload those changes. When you are ready submit a pull request and have someone check it.
+You can now edit the game , we recommend making a new branch, then make changes on that branch. You can use GitHub desktop or equivalent to commit the changes to your branch and then use sync to upload those changes. When you are ready submit a pull request and have someone check it. However if this does not work for you feel free to decide on how to use GitHub yourself.
 ### Run the game
 You can run by first building as described below and then simply clicking run.
 
 ## Building the project
-To build the game use the built in run configuration *Desktop* in the same way that you run tests.
+To build the game use the built in run configuration *Desktop* in the same way that you run tests. This is not garunteed to always work
+so if you need to set it up yourself this can be done by navigating to run > edit configuration then clicking the green cross in the top
+left corner selecting application from the drop down menu. Then specify the DesktopLauncher class as your main class the working
+directory to core\assets and classpath for the module to desktop. 
+
+Press apply and then the game can be run at any time by selecting the build you just created from the drop down in the top right
+of intellij and clicking the green play button.
 
 ## Testing
-This project is tested using JUnit. Tests are located within the `/game/tests` directory. For test documentation, please see https://github.com/junit-team/junit4/wiki
+This project is tested using JUnit. Tests are located within the `/core/src/tests` directory. For test documentation, please see https://github.com/junit-team/junit4/wiki
 
 ### Running Tests
-For every commit CircleCI runs all the included tests, however we recomend that you run test locally too before committing.
+For every commit CircleCI runs all the included tests, however we recomend that you run test locally too before committing. Also you
+will need to setup CircleCi this is easy to do just goto their website link it to your github account and follow your project.
 
 ####Running tests locally
-We have included a handy test configuration that can be ran from intellij.
-![Running tests locally in intellij](https://thumbs.gfycat.com/SentimentalGargantuanAmericanshorthair-size_restricted.gif)
+In order to run all tests at once simply right click the test/java folder and select run all tests
+
+If you wish to run a specific test the same process applys however you right click the test you want to run and select run test
 
 ### Adding Tests
-- Create new class for tests under `/game/tests/src` When naming the class end the name with `UnitTests` for consistency e.g. `PlayerUnitTests`
+- Create new class for tests under `/game/core/src/test/java` When naming the class end the name with `UnitTests` for consistency e.g. `PlayerUnitTests`
 - This class should extend `GameTester` this initialises the backend of the game so that test run correctly. 
 - Import `org.junit.Test`
 - Write a test function using assertions, and use `@Test` decorator above it
 - See this page for examples of assertions: https://github.com/junit-team/junit4/wiki/assertions
 - Run your tests locally and see if they pass!
+- Tests should be packaged in such a way that they mimic the core class structures that they are testing.
+- Any resources needed for testing can be placed into /test/resources.
 
 ### CircleCI Test Results
 After tests have run the results are displayed in the "Test Summary" tab on CircleCI.
 
 If the tests have failed and no test summary is provided, this normally means that the code doesn't compile, or there is a problem with the test code. To gather more information, scroll down to read the console output from when the tests were run.
-
-
-
-
-
-
-
-Test addition for checking some shizzle
