@@ -21,6 +21,9 @@ import me.lihq.game.people.Player;
 import me.lihq.game.models.RoomArrow;
 import me.lihq.game.screen.GameClearScreen;
 
+/**
+ *
+ */
 public class GameWorld {
     private GameMain game;
     private Gui gui;
@@ -32,18 +35,26 @@ public class GameWorld {
     private Player player;
     private Stage gameWorldStage;
 
+    //group that has all the character actors in a room including player
     private Group characterGroup;
+
+    //group that has all the clue glints
     private Group clueGroup;
+
+    //group that has all the room arrow
     private Group roomArrowGroup;
 
     private CustomTiledMapRenderer tiledMapRenderer;
 
+    //camera position that the camera centre needs to move towards.
     private Vector2 targetCameraPosition;
+    //camera zoom that the camera needs to zoom in/out to
     private float targetCameraZoom;
 
     private Interaction interaction;
     private ConversationManager conversationManager;
 
+    //when the game clear condition is met, the value is changed to true
     private boolean isGameClear = false;
 
     public GameWorld(GameMain game, Player selectedPlayer){
@@ -214,6 +225,7 @@ public class GameWorld {
         characterGroup.getChildren().sort((actor1, actor2) -> (int) (actor2.getY() - actor1.getY()));
         gameWorldStage.draw();
 
+        //layers that need to be rendered after character
         tiledMapRenderer.renderLastLayer();
     }
 

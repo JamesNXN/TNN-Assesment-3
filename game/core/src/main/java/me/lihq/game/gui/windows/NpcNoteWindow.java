@@ -50,7 +50,8 @@ public class NpcNoteWindow extends SlotWindow{
 
                 @Override
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                    gui.displayInfo(person.getDescription());
+                    String location = "Location: " + person.getCurrentRoom().getName();
+                    gui.displayInfo(person.getDescription() + "\n" + location);
                 }
             });
 

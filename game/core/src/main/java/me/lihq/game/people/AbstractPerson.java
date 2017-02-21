@@ -132,7 +132,7 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
     }
 
     /**
-     * Detects collision with characters
+     * Detects collision with characters including player
      *
      * @return return true when there is collision
      */

@@ -14,7 +14,8 @@ public class Score extends Actor{
      * Parameters needed for score:
      *
      * highScore - The current highscore.
-     * currentScore - An integer that contains the player's current score.
+     * currentScore - An integer that contains the player's score at current frame.
+     * targetScore - An integer that the current score will eventually reach. Implemented for score increment animation effect.
      * failedAccusationCount - This integer contains the number of times a false accusation has been made.
      *
      */
@@ -88,14 +89,14 @@ public class Score extends Actor{
     /**
      * @param time - The time it took to solve the murder.
      *
-     * This method applies a time penalty to the current score.
+     * This method applies a time penalty to the current score. Time penalty is 30% of seconds taken to clear.
      * If the current score is greater than the high score, the high score is updated.
      *
      * Returns the integer finalScore.
      */
 
     public int getFinalScore(int time){
-        int finalScore = (int) (currentScore - time * 0.3f);
+        int finalScore = (int) (targetScore - time * 0.3f);
         if (isHighScore(finalScore)) {
             Preferences pref = Gdx.app.getPreferences("pref");
             pref.putInteger("highScore", finalScore);
