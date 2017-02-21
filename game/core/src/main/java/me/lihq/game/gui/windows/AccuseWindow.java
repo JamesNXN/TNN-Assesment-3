@@ -27,6 +27,7 @@ public class AccuseWindow extends SlotWindow{
 
     @Override
     Array<Table> setUpSlotArray() {
+        cluesToBePresented.clear();
         Inventory inventory = gameWorld.getPlayer().getInventory();
         Array<Table> slotArray = new Array<>();
 

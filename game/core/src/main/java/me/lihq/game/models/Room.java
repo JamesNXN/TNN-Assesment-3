@@ -125,7 +125,7 @@ public class Room
             }
         }
 
-        System.out.println("Added Clue " + newClue.getName() + " at location " + newClue.getTilePosition() + " in room " + getID());
+        System.out.println("Added Clue " + newClue.getName() + " at location " + newClue.getTilePosition() + " in room " + getName());
     }
 
     /**
