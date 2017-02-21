@@ -29,7 +29,7 @@ import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeT
  * This class defines the assetLoader that the game uses.
  */
 public class AssetLoader {
-
+    public static final String ASSET_FOLDER = "assets/";
     /**
      * Parameters needed for AssetLoader object:
      *
@@ -84,55 +84,55 @@ public class AssetLoader {
      * loads asset into manager for the splash screen
      */
     public void loadSplashAssets(){
-        manager.load("splash.pack",TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "splash.pack",TextureAtlas.class);
     }
 
     /**
      * retrieves asset from manager for the splash screen
      */
     public void assignSplashAssets(){
-        splash = manager.get("splash.pack");
+        splash = manager.get(ASSET_FOLDER + "splash.pack");
     }
 
     /**
      * loads in game assets into manager
      */
     public void loadGameAssets(){
-        manager.load("skin/uiskin.json", Skin.class);
-        manager.load("skin/comic-ui.json", Skin.class);
+        manager.load(ASSET_FOLDER + "skin/uiskin.json", Skin.class);
+        manager.load(ASSET_FOLDER + "skin/comic-ui.json", Skin.class);
 
-        manager.load("arrows.pack", TextureAtlas.class);
-        manager.load("clueGlint.pack", TextureAtlas.class);
-        manager.load("roomTagBorder.png", Texture.class);
+        manager.load(ASSET_FOLDER + "arrows.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "clueGlint.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "roomTagBorder.png", Texture.class);
 
-        manager.load("people/player/alfred.pack", TextureAtlas.class);
-        manager.load("people/player/phoebe.pack", TextureAtlas.class);
-        manager.load("people/player/sherlock.pack", TextureAtlas.class);
-        manager.load("people/player/steiner.pack", TextureAtlas.class);
-        manager.load("people/player/victoria.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/player/alfred.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/player/phoebe.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/player/sherlock.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/player/steiner.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/player/victoria.pack", TextureAtlas.class);
 
-        manager.load("people/NPCs/colin.pack", TextureAtlas.class);
-        manager.load("people/NPCs/diana.pack", TextureAtlas.class);
-        manager.load("people/NPCs/lily.pack", TextureAtlas.class);
-        manager.load("people/NPCs/mary.pack", TextureAtlas.class);
-        manager.load("people/NPCs/mike.pack", TextureAtlas.class);
-        manager.load("people/NPCs/will.pack", TextureAtlas.class);
-        manager.load("people/NPCs/david.pack", TextureAtlas.class);
-        manager.load("people/NPCs/julie.pack", TextureAtlas.class);
-        manager.load("people/NPCs/sophie.pack", TextureAtlas.class);
-        manager.load("people/NPCs/tom.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/NPCs/colin.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/NPCs/diana.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/NPCs/lily.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/NPCs/mary.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/NPCs/mike.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/NPCs/will.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/NPCs/david.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/NPCs/julie.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/NPCs/sophie.pack", TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "people/NPCs/tom.pack", TextureAtlas.class);
 
         manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        manager.load("maps/computerRoom.tmx",TiledMap.class);
-        manager.load("maps/island.tmx",TiledMap.class);
-        manager.load("maps/kitchen.tmx",TiledMap.class);
-        manager.load("maps/lakehouse.tmx",TiledMap.class);
-        manager.load("maps/mainRoom.tmx",TiledMap.class);
-        manager.load("maps/outside.tmx",TiledMap.class);
-        manager.load("maps/pod.tmx",TiledMap.class);
-        manager.load("maps/portersOffice.tmx",TiledMap.class);
-        manager.load("maps/rch037.tmx",TiledMap.class);
-        manager.load("maps/toilet.tmx",TiledMap.class);
+        manager.load(ASSET_FOLDER + "maps/computerRoom.tmx",TiledMap.class);
+        manager.load(ASSET_FOLDER + "maps/island.tmx",TiledMap.class);
+        manager.load(ASSET_FOLDER + "maps/kitchen.tmx",TiledMap.class);
+        manager.load(ASSET_FOLDER + "maps/lakehouse.tmx",TiledMap.class);
+        manager.load(ASSET_FOLDER + "maps/mainRoom.tmx",TiledMap.class);
+        manager.load(ASSET_FOLDER + "maps/outside.tmx",TiledMap.class);
+        manager.load(ASSET_FOLDER + "maps/pod.tmx",TiledMap.class);
+        manager.load(ASSET_FOLDER + "maps/portersOffice.tmx",TiledMap.class);
+        manager.load(ASSET_FOLDER + "maps/rch037.tmx",TiledMap.class);
+        manager.load(ASSET_FOLDER + "maps/toilet.tmx",TiledMap.class);
     }
 
     /**
@@ -141,59 +141,58 @@ public class AssetLoader {
     public void assignGameAssets()
     {
         //roomTagFont init
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/VT323-Regular.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(ASSET_FOLDER + "fonts/VT323-Regular.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 50;
         roomTagFont = generator.generateFont(parameter);
         generator.dispose();
 
-        playerJsonData = new JsonReader().parse(new FileHandle("player.json"));
-        npcJsonData = new JsonReader().parse(new FileHandle("npc.json"));
-        clueJsonData = new JsonReader().parse(new FileHandle("clue.json"));
+        playerJsonData = new JsonReader().parse(new FileHandle(ASSET_FOLDER + "player.json"));
+        npcJsonData = new JsonReader().parse(new FileHandle(ASSET_FOLDER + "npc.json"));
+        clueJsonData = new JsonReader().parse(new FileHandle(ASSET_FOLDER + "clue.json"));
 
         // sprite sheet assign
-        playerSpriteSheetArray.put(1,manager.get("people/player/alfred.pack"));
-        playerSpriteSheetArray.put(2,manager.get("people/player/phoebe.pack"));
-        playerSpriteSheetArray.put(3,manager.get("people/player/sherlock.pack"));
-        playerSpriteSheetArray.put(4,manager.get("people/player/steiner.pack"));
-        playerSpriteSheetArray.put(5,manager.get("people/player/victoria.pack"));
+        playerSpriteSheetArray.put(1,manager.get(ASSET_FOLDER + "people/player/alfred.pack"));
+        playerSpriteSheetArray.put(2,manager.get(ASSET_FOLDER + "people/player/phoebe.pack"));
+        playerSpriteSheetArray.put(3,manager.get(ASSET_FOLDER + "people/player/sherlock.pack"));
+        playerSpriteSheetArray.put(4,manager.get(ASSET_FOLDER + "people/player/steiner.pack"));
+        playerSpriteSheetArray.put(5,manager.get(ASSET_FOLDER + "people/player/victoria.pack"));
 
 
         //map key is the npc id
-        npcSpriteSheetMapArray.put(1, manager.get("people/NPCs/colin.pack"));
-        npcSpriteSheetMapArray.put(2, manager.get("people/NPCs/diana.pack"));
-        npcSpriteSheetMapArray.put(3, manager.get("people/NPCs/lily.pack"));
-        npcSpriteSheetMapArray.put(4, manager.get("people/NPCs/mary.pack"));
-        npcSpriteSheetMapArray.put(5, manager.get("people/NPCs/mike.pack"));
-        npcSpriteSheetMapArray.put(6, manager.get("people/NPCs/will.pack"));
-        npcSpriteSheetMapArray.put(7, manager.get("people/NPCs/david.pack"));
-        npcSpriteSheetMapArray.put(8, manager.get("people/NPCs/julie.pack"));
-        npcSpriteSheetMapArray.put(9, manager.get("people/NPCs/sophie.pack"));
-        npcSpriteSheetMapArray.put(10, manager.get("people/NPCs/tom.pack"));
+        npcSpriteSheetMapArray.put(1, manager.get(ASSET_FOLDER + "people/NPCs/colin.pack"));
+        npcSpriteSheetMapArray.put(2, manager.get(ASSET_FOLDER + "people/NPCs/diana.pack"));
+        npcSpriteSheetMapArray.put(3, manager.get(ASSET_FOLDER + "people/NPCs/lily.pack"));
+        npcSpriteSheetMapArray.put(4, manager.get(ASSET_FOLDER + "people/NPCs/mary.pack"));
+        npcSpriteSheetMapArray.put(5, manager.get(ASSET_FOLDER + "people/NPCs/mike.pack"));
+        npcSpriteSheetMapArray.put(6, manager.get(ASSET_FOLDER + "people/NPCs/will.pack"));
+        npcSpriteSheetMapArray.put(7, manager.get(ASSET_FOLDER + "people/NPCs/david.pack"));
+        npcSpriteSheetMapArray.put(8, manager.get(ASSET_FOLDER + "people/NPCs/julie.pack"));
+        npcSpriteSheetMapArray.put(9, manager.get(ASSET_FOLDER + "people/NPCs/sophie.pack"));
+        npcSpriteSheetMapArray.put(10, manager.get(ASSET_FOLDER + "people/NPCs/tom.pack"));
 
         // map assign
-        mapArray.add(manager.get("maps/computerRoom.tmx"));
-        mapArray.add(manager.get("maps/island.tmx"));
-        mapArray.add(manager.get("maps/kitchen.tmx"));
-        mapArray.add(manager.get("maps/lakehouse.tmx"));
-        mapArray.add(manager.get("maps/mainRoom.tmx"));
-        mapArray.add(manager.get("maps/outside.tmx"));
-        mapArray.add(manager.get("maps/pod.tmx"));
-        mapArray.add(manager.get("maps/portersOffice.tmx"));
-        mapArray.add(manager.get("maps/rch037.tmx"));
-        mapArray.add(manager.get("maps/toilet.tmx"));
+        mapArray.add(manager.get(ASSET_FOLDER + "maps/computerRoom.tmx"));
+        mapArray.add(manager.get(ASSET_FOLDER + "maps/island.tmx"));
+        mapArray.add(manager.get(ASSET_FOLDER + "maps/kitchen.tmx"));
+        mapArray.add(manager.get(ASSET_FOLDER + "maps/lakehouse.tmx"));
+        mapArray.add(manager.get(ASSET_FOLDER + "maps/mainRoom.tmx"));
+        mapArray.add(manager.get(ASSET_FOLDER + "maps/outside.tmx"));
+        mapArray.add(manager.get(ASSET_FOLDER + "maps/pod.tmx"));
+        mapArray.add(manager.get(ASSET_FOLDER + "maps/portersOffice.tmx"));
+        mapArray.add(manager.get(ASSET_FOLDER + "maps/rch037.tmx"));
+        mapArray.add(manager.get(ASSET_FOLDER + "maps/toilet.tmx"));
 
         //arrow texture assign
-        arrowAtlas = manager.get("arrows.pack");
+        arrowAtlas = manager.get(ASSET_FOLDER + "arrows.pack");
 
         //room tag border texture assign
-        roomTagBorder = manager.get("roomTagBorder.png");
+        roomTagBorder = manager.get(ASSET_FOLDER + "roomTagBorder.png");
 
         //clue glint animation init
-        clueGlint = manager.get("clueGlint.pack");
+        clueGlint = manager.get(ASSET_FOLDER + "clueGlint.pack");
 
-//        uiSkin = manager.get("skin/uiskin.json");
-        uiSkin = manager.get("skin/comic-ui.json");
+        uiSkin = manager.get(ASSET_FOLDER + "skin/comic-ui.json");
 
         //menu skin init
         initSkin();
@@ -259,7 +258,7 @@ public class AssetLoader {
      */
     public BitmapFont getFontWithSize(int size)
     {
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/VT323-Regular.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(new FileHandle(ASSET_FOLDER + "fonts/VT323-Regular.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = size;
         BitmapFont font = generator.generateFont(parameter);

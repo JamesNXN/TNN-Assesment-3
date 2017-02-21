@@ -53,7 +53,7 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
 
     private boolean isInConversation = false;
 
-    private final float MOVE_SPEED = 500f;
+    private final float MOVE_SPEED = 150f;
 
     protected Vector2Int tilePosition = new Vector2Int(0, 0);
 
